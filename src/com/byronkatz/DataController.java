@@ -31,7 +31,7 @@ public class DataController{
     fieldValues.add(new DataItem("yearly interest rate", "0.05", DataItem.REGULAR));
     fieldValues.add(new DataItem("monthly interest rate", "0.00416667", DataItem.CHECK_BOX));
     fieldValues.add(new DataItem("building value", "150000.0", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("number of compounding periods on loan", "360", DataItem.CHECK_BOX));
+    fieldValues.add(new DataItem("number of compounding periods on loan", "360", DataItem.REGULAR));
     fieldValues.add(new DataItem("inflation rate", "0.03", DataItem.CHECK_BOX));
     fieldValues.add(new DataItem("primary mortgage insurance rate", "0.20", DataItem.CHECK_BOX));
     fieldValues.add(new DataItem("down payment", "100000", DataItem.CHECK_BOX));

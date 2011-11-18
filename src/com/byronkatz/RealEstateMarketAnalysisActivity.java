@@ -75,7 +75,8 @@ public class RealEstateMarketAnalysisActivity extends Activity {
     double totalIPayments = calculateTotalIPayments();
     double totalPayments = calculateTotalPayments();
     double npv = calculateNPV();
-    formatAndInsertInOutputStrings(mPayment, totalIPayments, totalPayments, npv);
+    double irr = calculateIRR();
+    formatAndInsertInOutputStrings(mPayment, totalIPayments, totalPayments, npv, irr);
   }
   
   private double calculateMortgagePayment() {
@@ -144,9 +145,32 @@ public class RealEstateMarketAnalysisActivity extends Activity {
     npv = CalculatedVariables.getNPV(estimatedRentPayments, realEstateAppreciationRate, vacancyRate, yearlyGeneralExpenses, inflationRate, marginalTaxRate, principalOwed, compoundingPeriodDesired, buildingValue, requiredRateOfReturn, monthlyInterestRate, numOfCompoundingPeriods, sellingBrokerRate, generalSaleExpenses, downPayment);
     return npv;
   }
+  
+  private double calculateIRR() {
+    double irr = 0;
+    double purchaseValue = Double.valueOf(inputFields.get("total purchase value").getValue());
+    double estimatedRentPayments = Double.valueOf(inputFields.get("estimated rent payments").getValue());
+    double realEstateAppreciationRate = Double.valueOf(inputFields.get("real estate appreciation rate").getValue());
+    double vacancyRate = Double.valueOf(inputFields.get("vacancy and credit loss rate").getValue());
+    double yearlyGeneralExpenses = Double.valueOf(inputFields.get("yearly general expenses").getValue());
+    double inflationRate = Double.valueOf(inputFields.get("inflation rate").getValue());
+    double marginalTaxRate = Double.valueOf(inputFields.get("marginal tax rate").getValue());
+    double buildingValue = Double.valueOf(inputFields.get("building value").getValue());
+    double requiredRateOfReturn = Double.valueOf(inputFields.get("required rate of return").getValue());
+    double monthlyInterestRate = Double.valueOf(inputFields.get("monthly interest rate").getValue());
+    int numOfCompoundingPeriods = Integer.valueOf(inputFields.get("number of compounding periods on loan").getValue());
+    int compoundingPeriodDesired = numOfCompoundingPeriods;
+    double sellingBrokerRate = Double.valueOf(inputFields.get("selling broker rate").getValue());
+    double generalSaleExpenses = Double.valueOf(inputFields.get("general sale expenses").getValue());
+    double downPayment = Double.valueOf(inputFields.get("down payment").getValue());
+    double principalOwed = purchaseValue - downPayment;
+
+    irr = CalculatedVariables.getIRR(estimatedRentPayments, realEstateAppreciationRate, vacancyRate, yearlyGeneralExpenses, inflationRate, marginalTaxRate, principalOwed, compoundingPeriodDesired, buildingValue, requiredRateOfReturn, monthlyInterestRate, numOfCompoundingPeriods, sellingBrokerRate, generalSaleExpenses, downPayment);
+    return irr;
+  }
 
   public void formatAndInsertInOutputStrings(double mPayment, double totalIPayments,
-      double totalPayments, double npv) {
+      double totalPayments, double npv, double irr) {
     //format and insert in output string
     String mortgagePaymentString = String.format("$%(,.2f",mPayment);
     ((TextView)findViewById(R.id.textViewMonthlyPaymentOutput)).setText(mortgagePaymentString);
@@ -158,7 +182,10 @@ public class RealEstateMarketAnalysisActivity extends Activity {
     ((TextView)findViewById(R.id.textViewTotalInterestPaidOutput)).setText(totalInterestPaid);    
     
     String netPresentValue = String.format("$%(,.2f", npv);
-    ((TextView)findViewById(R.id.textViewNetPresentValueOutput)).setText(netPresentValue);    
+    ((TextView)findViewById(R.id.textViewNetPresentValueOutput)).setText(netPresentValue);
+    
+    String internalRateOfReturn = String.format("%f", irr);
+    ((TextView)findViewById(R.id.textViewInternalRateOfReturnOutput)).setText(internalRateOfReturn);    
   }
 
 

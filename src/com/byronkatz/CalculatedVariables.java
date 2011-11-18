@@ -113,7 +113,7 @@ public class CalculatedVariables {
       irr = irr - npv * ((irr - irrOld) / npv - npvOld);
       irrOld = irr;
       npvOld = npv;
-    } while (irr-irrOld > accuracy);
+    } while ((irr-irrOld) > accuracy);
     
     return irr;
   }
