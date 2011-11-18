@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Real Estate Market Analysis</string>
+ 
+ <!-- inputs -->
+ 
+ 	<!-- Address -->
+    <string name="houseStreetAddress">House Street Address</string>
+    <string name="hintHouseStreetAddress">1234 Anywhere Street</string>
+    
+    <string name="houseCity">House City</string>
+    <string name="hintHouseCity">Bethesda</string>
+    
+    <string name="houseStateInitials">House State Initials</string>
+    <string name="hintHouseStateInitials">MD</string>
+    
+    <!-- numeric value inputs -->
+
+    <string name="buildingValue">Building value (as opposed to land value):</string>
+    <string name="hintBuildingValue">0</string>
+
+    <string name="totalPurchaseValue">Total Purchase Value:</string>
+    <string name="hintTotalPurchaseValue">0</string>
+    	
+	<string name="downPayment">Down payment:</string>
+	<string name="hintDownPayment">0</string>
+	
+	<string name="primaryMortgageInsuranceRate">Primary Mortgage Insurance Rate:</string>
+    <string name="hintPrimaryMortgageInsuranceRate">0.0</string>
+    <string name="customPrimaryMortgageInsuranceRate">Use custom primary mortgage insurance rate</string>
+    
+    <string name="requiredRateOfReturn">Required rate of return:</string>
+    <string name="hintRequiredRateOfReturn">0.0</string>
+    <string name="customRequiredRateOfReturn">Use custom required rate of return</string>
+    
+    <string name="yearlyInterestRate">Yearly interest rate:</string>
+    <string name="hintYearlyInterestRate">0.0</string>
+    
+    <string name="numOfCompoundingPeriods">Number of compounding periods:</string>
+    <string name="hintNumOfCompoundingPeriods">0</string>
+    
+    <string name="estimatedRentPayments">Estimated rent payments:</string>
+    <string name="hintEstimatedRentPayments">0.0</string>
+    
+    <string name="realEstateAppreciation">Real Estate Appreciation Rate:</string>
+	<string name="hintRealEstateAppreciation">0.0</string>
+
+    <string name="yearlyHomeInsurance">Yearly Home Insurance:</string>
+	<string name="hintYearlyHomeInsurance">0.0</string>
+
+    <string name="localPropertyTaxRate">Local Property Tax Rate:</string>
+	<string name="hintLocalPropertyTaxRate">0.0</string>
+
+    <string name="marginalTaxRate">Marginal Tax Rate:</string>
+	<string name="hintMarginalTaxRate">0.0</string>
+	<string name="customMarginalTaxRate">Use custom marginal tax rate</string>
+
+	<string name="customSellingBrokerRate">Use custom selling broker rate</string>
+	<string name="sellingBrokerRate">Selling Broker Rate:</string>
+	<string name="hintSellingBrokerRate">0.0</string>
+	
+	<string name="customGeneralSaleExpenses">Use custom general sale expenses</string>
+	<string name="generalSaleExpenses">General Sale Expenses:</string>
+	<string name="hintGeneralSaleExpenses">0.0</string>
+
+	<string name="sumOfMiscLocalFees">Sum of Miscellaneous Local Fees:</string>
+	<string name="hintSumOfMiscLocalFees">0.0</string>
+	
+	<string name="yearlyGeneralExpenses">Yearly General Expenses:</string>
+	<string name="hintYearlyGeneralExpenses">0.0</string>
+	
+	<string name="vacancyRate">Vacancy Rate:</string>
+	<string name="hintVacancyRate">0.0</string>
+	
+	<string name="netPresentValueLabel">Net Present Value: </string>
+    <string name="netPresentValueOutput">$0.00</string>
+    <string name="addressLabel">Address</string>
+    <string name="totalPurchaseValuesLabel">Total Purchase Value</string>
+    <string name="assetsLabel">Assets:</string>
+    <string name="liabilitiesLabel">Liabilities:</string>
+    <string name="yearlyAltInvestmentReturn">Yearly Alternate Investment Return</string>
+    <string name="hintYearlyAltInvestmentReturn">0.0</string>
+    <string name="customRentPayment">Use custom estimated rent payment</string>
+    <string name="customRealEstateAppreciation">Use custom real estate appreciation rate</string>
+    <string name="customAlternateInvestmentRate">use custom alternate investment rate</string>
+    <string name="customYearlyHomeInsurance">Use custom yearly home insurance</string>
+    <string name="customDownPayment">Use down payment other than PMI</string>
+    <string name="customPropertyTaxRate">Use custom property tax rate</string>
+    <string name="customLocalMiscFees">Use custom local miscellaneous fees</string>
+    <string name="customYearlyGeneralExpenses">Use custom yearly general expenses</string>
+    <string name="customVacancyAndCreditLosses">use custom vacancy and credit losses rate</string>
+    <string name="typeOfCompoundingPeriods">Type of compounding period</string>
+    <string-array name="type_of_compounding_period_array">
+        <item>Months</item>
+        <item>Years</item>
+    </string-array>
+    <string name="assetsSection">Customize assets section</string>
+    <string name="liabilitiesSection">Customize liabilities section</string>
+	<string name="customInflationRate">Use custom inflation rate</string>
+	<string name="inflationRate">Inflation Rate:</string>
+	<string name="hintInflationRate">0.0</string>
+	
+<!-- Button String -->
+    <string name="analyze">Analyze!</string>
+	
+<!-- outputs -->
+    <string name="monthlyPaymentLabel">Monthly Payment: </string>
+    <string name="mortgagePaymentOutput">$0.00</string>
+    
+    <string name="totalInterestPaidLabel">Total interest paid: </string>
+    <string name="totalInterestPaidOutput">$0.00</string>
+    
+    <string name="totalMortgagePaymentsPaidLabel">Total mortgage payments paid: </string>
+    <string name="totalMortgagePaymentsPaidOutput">$0.00</string>
+    
+    <string name="totalPrincipalPaymentsPaidLabel">Total principal paid: </string>
+    <string name="totalPrincipalPaymentsPaidOutput">$0.00</string>
+
+
+</resources>
