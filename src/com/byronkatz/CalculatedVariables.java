@@ -90,34 +90,6 @@ public class CalculatedVariables {
     npv = npv + (ater/ Math.pow(1 + requiredRateOfReturn, yCpd)) - downPayment;
     return npv;
   }
-            
-  /**
-   * This uses the secant method
-   * @return
-   */
-  public static double getIRR(double estimatedRentPayments, double realEstateAppreciationRate, double vacancyRate,
-      double yearlyGeneralExpenses, double inflationRate, double marginalTaxRate, double principalOwed,
-      int compoundingPeriodDesired, double buildingValue, double requiredRateOfReturn, double monthlyInterestRate, 
-      int numOfCompoundingPeriods, double sellingBrokerRate, double generalSaleExpenses, double downPayment) {
-    double accuracy = IRR_ACCURACY; 
-    double irr = 0;
-    double irrOld = 0;
-    double npv = getNPV(estimatedRentPayments, realEstateAppreciationRate, 
-        vacancyRate, yearlyGeneralExpenses, inflationRate, marginalTaxRate, 
-        principalOwed, compoundingPeriodDesired, buildingValue, requiredRateOfReturn, 
-        monthlyInterestRate, numOfCompoundingPeriods, sellingBrokerRate, 
-        generalSaleExpenses, downPayment);
-    double npvOld = 0;
-    
-    do {
-      irr = irr - npv * ((irr - irrOld) / npv - npvOld);
-      irrOld = irr;
-      npvOld = npv;
-    } while ((irr-irrOld) > accuracy);
-    
-    return irr;
-  }
-  
   
   public static double getPrincipalPaymentAtPoint (double principalOwed, double monthlyInterestRate, 
       int numOfCompoundingPeriods,int compoundingPeriodDesired) {

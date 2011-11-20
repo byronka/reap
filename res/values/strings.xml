@@ -19,7 +19,4 @@
     <string name="netPresentValueLabel">Net Present Value: </string>
     <string name="netPresentValueOutput">$0.00</string>
 
-	<string name="internalRateOfReturnLabel">Internal Rate of Return: </string>
-    <string name="internalRateOfReturnOutput">0.0%</string>
-
 </resources>

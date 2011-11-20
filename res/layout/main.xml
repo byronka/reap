@@ -88,19 +88,7 @@
 				android:layout_height="wrap_content"
 				android:editable="false"
 				android:id="@+id/textViewNetPresentValueOutput" />
-			
-			<!-- Internal Rate of return (irr) -->
-			<TextView 
-				android:layout_width="wrap_content" 
-				android:id="@+id/textViewInternalRateOfReturn"
-				android:layout_height="wrap_content" 
-				android:text="@string/internalRateOfReturnLabel" />
-			<EditText 
-				android:text="@string/internalRateOfReturnOutput"
-				android:layout_width="wrap_content" 
-				android:layout_height="wrap_content"
-				android:editable="false"
-				android:id="@+id/textViewInternalRateOfReturnOutput" />
+				
 			</LinearLayout>
 			
 		</LinearLayout>

@@ -4,7 +4,7 @@ public class DataItem {
   public static final int NONE = 3;
   public static final int CHECK_BOX = 1;
   public static final int REGULAR = 2;
-  
+
   private String value;
   private String id;
   private int type;

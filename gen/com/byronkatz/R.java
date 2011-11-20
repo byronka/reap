@@ -19,8 +19,6 @@ public final class R {
         public static final int linearLayoutCheckBoxInputsSection=0x7f050002;
         public static final int linearLayoutRegularInputsSection=0x7f050001;
         public static final int outputValues=0x7f050004;
-        public static final int textViewInternalRateOfReturn=0x7f05000d;
-        public static final int textViewInternalRateOfReturnOutput=0x7f05000e;
         public static final int textViewMonthlyPayment=0x7f050005;
         public static final int textViewMonthlyPaymentOutput=0x7f050006;
         public static final int textViewNetPresentValue=0x7f05000b;
@@ -38,8 +36,6 @@ public final class R {
          */
         public static final int analyze=0x7f040001;
         public static final int app_name=0x7f040000;
-        public static final int internalRateOfReturnLabel=0x7f04000a;
-        public static final int internalRateOfReturnOutput=0x7f04000b;
         /**  outputs 
          */
         public static final int monthlyPaymentLabel=0x7f040002;
