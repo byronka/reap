@@ -53,42 +53,68 @@ public class CalculatedVariables {
     return accumInterestPaymentAtPoint;
   }
 
-  public static double getNPV(double estimatedRentPayments, double realEstateAppreciationRate, double vacancyRate,
-      double yearlyGeneralExpenses, double inflationRate, double marginalTaxRate, double principalOwed,
-      int compoundingPeriodDesired, double buildingValue, double requiredRateOfReturn, double monthlyInterestRate, 
-      int numOfCompoundingPeriods, double sellingBrokerRate, double generalSaleExpenses, double downPayment) {
-
-    //all variables should be yearly - this equation designed to work for yearly only - have not tested on monthly
-    int yCpd = compoundingPeriodDesired / NUM_OF_MONTHS_IN_YEAR; //yearly cpd
-    double yErp = estimatedRentPayments * NUM_OF_MONTHS_IN_YEAR;
-    double yip = 0; //yearly interest paid
-    double mp = getMortgagePayment(principalOwed, monthlyInterestRate, numOfCompoundingPeriods);
-    double depr = buildingValue / RESIDENTIAL_DEPRECIATION_YEARS;
-    double noi; // net operating income - temporary variable
-    double atcf = 0.0; //after tax cash flow
-    double tax = 0.0;  //tax
-    double npv = 0.0;  //net present value
-    double ater = 0.0; //after-tax equity reversion
+  public static double getNPV(double estimatedRentPayments, double realEstateAppreciationRate, 
+      double vacancyRate,      double yearlyGeneralExpenses, double inflationRate,
+      double marginalTaxRate, double principalOwed,      int monthlyCompoundingPeriodDesired, 
+      double buildingValue, double requiredRateOfReturn, double yearlyInterestRate, 
+      int numOfCompoundingPeriods, double sellingBrokerRate, double generalSaleExpenses, 
+      double downPayment, double totalPurchaseValue, double fixupCosts,
+      double initialYearlyPropertyTax) {
+    
+    double firstDay = downPayment + generalSaleExpenses + fixupCosts;
         
-    for (int period = 0; period < yCpd; period++) {
-      noi = yErp * (1 - vacancyRate) * Math.pow(1 + realEstateAppreciationRate, period) - (yearlyGeneralExpenses * Math.pow(1+inflationRate, period));
-      compoundingPeriodDesired = (period + 1) * 12; //used in getAccumulatedInterestPaymentsAtPoint
-      yip = getAccumulatedInterestPaymentsAtPoint(principalOwed, monthlyInterestRate, numOfCompoundingPeriods, compoundingPeriodDesired) - yip;
-      tax = marginalTaxRate * (noi - yip - depr);
-      atcf = noi - (mp * NUM_OF_MONTHS_IN_YEAR) - tax;
-      npv += atcf / Math.pow(1 + requiredRateOfReturn, period + 1);
+    double yearlyNPVSummation = 0.0;
+    double yearlyAfterTaxCashFlow = 0.0;
+    double yearlyBeforeTaxCashFlow = 0.0;
+    double yearlyTaxes = 0.0;
+    double yearlyPrincipalPaid = 0.0;
+    double yearlyDepreciation = buildingValue / 27.5;
+    double monthlyInterestRate = yearlyInterestRate / 12;
+    double yearlyMortgagePayment = 12 * getMortgagePayment(principalOwed, monthlyInterestRate, 
+        numOfCompoundingPeriods);
+    double taxableIncome = 0.0;
+    double yearlyCompoundingPeriodDesired = monthlyCompoundingPeriodDesired / 12;
+    double yearlyPropertyTax = 0.0;
+    for (int n = 1; n < yearlyCompoundingPeriodDesired; n++) {
+      // cashflowIn - cashflowOut
+      yearlyPropertyTax = initialYearlyPropertyTax * Math.pow(1 + realEstateAppreciationRate,n);
+      yearlyBeforeTaxCashFlow = 12 * estimatedRentPayments * (1-vacancyRate) 
+          * Math.pow(1 + realEstateAppreciationRate,n)
+          - (yearlyGeneralExpenses + yearlyPropertyTax + yearlyMortgagePayment)* Math.pow(1 + inflationRate,n);
+      //next year's yearlyAmountOutstanding minus this year's
+      yearlyPrincipalPaid = getPrincipalOutstandingAtPoint(
+            principalOwed, monthlyInterestRate, numOfCompoundingPeriods, (n - 1) * 12) -
+            getPrincipalOutstandingAtPoint(principalOwed, monthlyInterestRate, 
+                numOfCompoundingPeriods, n  * 12);
+      taxableIncome = (yearlyBeforeTaxCashFlow + yearlyPrincipalPaid - yearlyDepreciation);
+      if (taxableIncome <= 0) {
+        taxableIncome = 0.0;
+      }
+      yearlyTaxes = taxableIncome * marginalTaxRate;
+      
+      yearlyAfterTaxCashFlow = yearlyBeforeTaxCashFlow - yearlyTaxes;
+      
+      //should the n below be n or n+1?
+      yearlyNPVSummation += yearlyAfterTaxCashFlow/Math.pow(1+requiredRateOfReturn, n);
     }
     
-    double salePrice = buildingValue * Math.pow(1 + realEstateAppreciationRate, yCpd);
-    double sellingExpenses = (sellingBrokerRate * salePrice) + (generalSaleExpenses * Math.pow(1+inflationRate,yCpd));
-    double netSalePrice = salePrice - sellingExpenses;
-    double accumulatedDepreciation = yCpd * depr; //check with tax accountant on this - how many years do I take depr
-    double aterTax = marginalTaxRate * (netSalePrice - buildingValue + accumulatedDepreciation);
-    double amountOutstanding = getPrincipalOutstandingAtPoint(principalOwed, monthlyInterestRate, numOfCompoundingPeriods, compoundingPeriodDesired);
-    ater = salePrice - sellingExpenses - amountOutstanding - aterTax;
-
-    npv = npv + (ater/ Math.pow(1 + requiredRateOfReturn, yCpd)) - downPayment;
-    return npv;
+    double projectedValueOfHomeAtSale = totalPurchaseValue * 
+        Math.pow(1 + realEstateAppreciationRate,yearlyCompoundingPeriodDesired);
+    double brokerCut = projectedValueOfHomeAtSale * sellingBrokerRate;
+    double inflationAdjustedSellingExpenses = generalSaleExpenses * 
+        Math.pow(1 + inflationRate, yearlyCompoundingPeriodDesired);
+    double principalOwedAtSale = getPrincipalOutstandingAtPoint(principalOwed, 
+        monthlyInterestRate, numOfCompoundingPeriods, monthlyCompoundingPeriodDesired);
+    //How many years do I take depreciation?
+    double accumulatingDepreciation = yearlyDepreciation * yearlyCompoundingPeriodDesired;
+    double taxesDueAtSale = (projectedValueOfHomeAtSale - totalPurchaseValue + accumulatingDepreciation)
+        * marginalTaxRate;
+    double ater = projectedValueOfHomeAtSale - brokerCut - 
+        inflationAdjustedSellingExpenses - principalOwedAtSale - taxesDueAtSale;
+        
+    double npvAccumulator = firstDay + yearlyNPVSummation + ater;
+   
+    return npvAccumulator;
   }
   
   public static double getPrincipalPaymentAtPoint (double principalOwed, double monthlyInterestRate, 

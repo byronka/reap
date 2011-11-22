@@ -124,7 +124,7 @@ public class RealEstateMarketAnalysisActivity extends Activity {
   
   private double calculateNPV() {
     double npv = 0;
-    double purchaseValue = Double.valueOf(inputFields.get("total purchase value").getValue());
+    double totalPurchaseValue = Double.valueOf(inputFields.get("total purchase value").getValue());
     double estimatedRentPayments = Double.valueOf(inputFields.get("estimated rent payments").getValue());
     double realEstateAppreciationRate = Double.valueOf(inputFields.get("real estate appreciation rate").getValue());
     double vacancyRate = Double.valueOf(inputFields.get("vacancy and credit loss rate").getValue());
@@ -133,15 +133,22 @@ public class RealEstateMarketAnalysisActivity extends Activity {
     double marginalTaxRate = Double.valueOf(inputFields.get("marginal tax rate").getValue());
     double buildingValue = Double.valueOf(inputFields.get("building value").getValue());
     double requiredRateOfReturn = Double.valueOf(inputFields.get("required rate of return").getValue());
-    double monthlyInterestRate = Double.valueOf(inputFields.get("monthly interest rate").getValue());
+    double yearlyInterestRate = Double.valueOf(inputFields.get("yearly interest rate").getValue());
     int numOfCompoundingPeriods = Integer.valueOf(inputFields.get("number of compounding periods on loan").getValue());
     int compoundingPeriodDesired = numOfCompoundingPeriods;
     double sellingBrokerRate = Double.valueOf(inputFields.get("selling broker rate").getValue());
     double generalSaleExpenses = Double.valueOf(inputFields.get("general sale expenses").getValue());
     double downPayment = Double.valueOf(inputFields.get("down payment").getValue());
-    double principalOwed = purchaseValue - downPayment;
+    double fixupCosts = Double.valueOf(inputFields.get("fix-up costs").getValue());
+    double propertyTaxRate = Double.valueOf(inputFields.get("property tax rate").getValue());
+    double principalOwed = totalPurchaseValue - downPayment;
+    double initialYearlyPropertyTax = totalPurchaseValue * propertyTaxRate;
 
-    npv = CalculatedVariables.getNPV(estimatedRentPayments, realEstateAppreciationRate, vacancyRate, yearlyGeneralExpenses, inflationRate, marginalTaxRate, principalOwed, compoundingPeriodDesired, buildingValue, requiredRateOfReturn, monthlyInterestRate, numOfCompoundingPeriods, sellingBrokerRate, generalSaleExpenses, downPayment);
+    npv = CalculatedVariables.getNPV(estimatedRentPayments, realEstateAppreciationRate, 
+        vacancyRate, yearlyGeneralExpenses, inflationRate, marginalTaxRate, principalOwed, 
+        compoundingPeriodDesired, buildingValue, requiredRateOfReturn, yearlyInterestRate, 
+        numOfCompoundingPeriods, sellingBrokerRate, generalSaleExpenses, downPayment, 
+        totalPurchaseValue, fixupCosts, initialYearlyPropertyTax);
     return npv;
   }
 
