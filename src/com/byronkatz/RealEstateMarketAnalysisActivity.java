@@ -128,7 +128,7 @@ public class RealEstateMarketAnalysisActivity extends Activity {
     double estimatedRentPayments = Double.valueOf(inputFields.get("estimated rent payments").getValue());
     double realEstateAppreciationRate = Double.valueOf(inputFields.get("real estate appreciation rate").getValue());
     double vacancyRate = Double.valueOf(inputFields.get("vacancy and credit loss rate").getValue());
-    double yearlyGeneralExpenses = Double.valueOf(inputFields.get("yearly general expenses").getValue());
+    double initialYearlyGeneralExpenses = Double.valueOf(inputFields.get("initial yearly general expenses").getValue());
     double inflationRate = Double.valueOf(inputFields.get("inflation rate").getValue());
     double marginalTaxRate = Double.valueOf(inputFields.get("marginal tax rate").getValue());
     double buildingValue = Double.valueOf(inputFields.get("building value").getValue());
@@ -145,7 +145,7 @@ public class RealEstateMarketAnalysisActivity extends Activity {
     double initialYearlyPropertyTax = totalPurchaseValue * propertyTaxRate;
 
     npv = CalculatedVariables.getNPV(estimatedRentPayments, realEstateAppreciationRate, 
-        vacancyRate, yearlyGeneralExpenses, inflationRate, marginalTaxRate, principalOwed, 
+        vacancyRate, initialYearlyGeneralExpenses, inflationRate, marginalTaxRate, principalOwed, 
         compoundingPeriodDesired, buildingValue, requiredRateOfReturn, yearlyInterestRate, 
         numOfCompoundingPeriods, sellingBrokerRate, generalSaleExpenses, downPayment, 
         totalPurchaseValue, fixupCosts, initialYearlyPropertyTax);

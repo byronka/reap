@@ -45,13 +45,12 @@ public class DataController{
     fieldValues.add(new DataItem("property tax rate", "0.0109", DataItem.CHECK_BOX));
     fieldValues.add(new DataItem("local municipal fees", "443.17", DataItem.CHECK_BOX));
     fieldValues.add(new DataItem("vacancy and credit loss rate", "0.03", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("yearly general expenses", "2988.57", DataItem.CHECK_BOX));
+    fieldValues.add(new DataItem("initial yearly general expenses", "2988.57", DataItem.CHECK_BOX));
     fieldValues.add(new DataItem("marginal tax rate", "0.28", DataItem.CHECK_BOX));
     fieldValues.add(new DataItem("selling broker rate", "0.06", DataItem.CHECK_BOX));
     fieldValues.add(new DataItem("general sale expenses", "2000", DataItem.CHECK_BOX));
     fieldValues.add(new DataItem("required rate of return", "0.05", DataItem.CHECK_BOX));
     fieldValues.add(new DataItem("fix-up costs", "6000.00", DataItem.CHECK_BOX));
-
   }    
 }
 

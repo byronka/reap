@@ -4,7 +4,6 @@ public class CalculatedVariables {
 
   private static final int NUM_OF_MONTHS_IN_YEAR = 12;
   private static final double RESIDENTIAL_DEPRECIATION_YEARS = 27.5;
-  private static final double IRR_ACCURACY = 0.001;
   
   private CalculatedVariables() {
   }
@@ -54,12 +53,20 @@ public class CalculatedVariables {
   }
 
   public static double getNPV(double estimatedRentPayments, double realEstateAppreciationRate, 
-      double vacancyRate,      double yearlyGeneralExpenses, double inflationRate,
+      double vacancyRate,      double initialYearlyGeneralExpenses, double inflationRate,
       double marginalTaxRate, double principalOwed,      int monthlyCompoundingPeriodDesired, 
       double buildingValue, double requiredRateOfReturn, double yearlyInterestRate, 
       int numOfCompoundingPeriods, double sellingBrokerRate, double generalSaleExpenses, 
       double downPayment, double totalPurchaseValue, double fixupCosts,
       double initialYearlyPropertyTax) {
+    
+    /*note: many of the equations below are calculated using monthly variables.  This is done
+     * when the reality of the equation is monthly.  For example, in the final summation of
+     * NPV, the equation is (income - outlay) / (1 + discountRate/12)^numberOfMonthsAtPoint.
+     * In other situations, such as taxes, they are only assessed yearly so their "reality" is yearly.
+     * Sorry if that is a bad terminology, I am writing this at 6:30 in the morning!
+     * Think about that a bit before making changes.
+     */
     
     double firstDay = downPayment + generalSaleExpenses + fixupCosts;
         
@@ -68,41 +75,65 @@ public class CalculatedVariables {
     double yearlyBeforeTaxCashFlow = 0.0;
     double yearlyTaxes = 0.0;
     double yearlyPrincipalPaid = 0.0;
-    double yearlyDepreciation = buildingValue / 27.5;
-    double monthlyInterestRate = yearlyInterestRate / 12;
-    double yearlyMortgagePayment = 12 * getMortgagePayment(principalOwed, monthlyInterestRate, 
+    double yearlyDepreciation = buildingValue / RESIDENTIAL_DEPRECIATION_YEARS;
+    double monthlyInterestRate = yearlyInterestRate / NUM_OF_MONTHS_IN_YEAR;
+    double yearlyMortgagePayment = NUM_OF_MONTHS_IN_YEAR * getMortgagePayment(principalOwed, monthlyInterestRate, 
         numOfCompoundingPeriods);
     double taxableIncome = 0.0;
-    double yearlyCompoundingPeriodDesired = monthlyCompoundingPeriodDesired / 12;
+    double yearlyCompoundingPeriodDesired = monthlyCompoundingPeriodDesired / NUM_OF_MONTHS_IN_YEAR;
     double yearlyPropertyTax = 0.0;
+    double currentYearAmountOutstanding = 0.0;
+    double pastYearAmountOutstanding = 0.0;
+    double yearlyIncome = 0;
+    double yearlyOutlay = 0;
+    double monthlyREARIncrementer = 0.0;
+    double grossYearlyIncome = 0.0;
+    double netYearlyIncome = 0.0;
+    double monthlyIRIncrementer = 0.0;
+    double yearlyGeneralExpenses = 0.0;
+    double monthlyRealEstateAppreciationRate = realEstateAppreciationRate / NUM_OF_MONTHS_IN_YEAR;
+    double monthlyRequiredRateOfReturn = requiredRateOfReturn / NUM_OF_MONTHS_IN_YEAR;
+    double monthlyInflationRate = inflationRate / NUM_OF_MONTHS_IN_YEAR;
+    int monthCPModifier = 0;
+    double yearlyDiscountRateDivisor = 0.0;
+    int prevYearMonthCPModifier = 0;
+    
     for (int n = 1; n < yearlyCompoundingPeriodDesired; n++) {
       // cashflowIn - cashflowOut
-      yearlyPropertyTax = initialYearlyPropertyTax * Math.pow(1 + realEstateAppreciationRate,n);
-      yearlyBeforeTaxCashFlow = 12 * estimatedRentPayments * (1-vacancyRate) 
-          * Math.pow(1 + realEstateAppreciationRate,n)
-          - (yearlyGeneralExpenses + yearlyPropertyTax + yearlyMortgagePayment)* Math.pow(1 + inflationRate,n);
+      monthCPModifier = n * NUM_OF_MONTHS_IN_YEAR;
+      prevYearMonthCPModifier = (n - 1) * NUM_OF_MONTHS_IN_YEAR;
+      monthlyREARIncrementer = Math.pow(1 + monthlyRealEstateAppreciationRate,prevYearMonthCPModifier);
+      yearlyPropertyTax = initialYearlyPropertyTax * monthlyREARIncrementer; 
+      grossYearlyIncome = estimatedRentPayments * NUM_OF_MONTHS_IN_YEAR;
+      netYearlyIncome = (1 - vacancyRate) * grossYearlyIncome;
+      yearlyIncome = netYearlyIncome * monthlyREARIncrementer; 
+      monthlyIRIncrementer = Math.pow(1 + monthlyInflationRate, prevYearMonthCPModifier); 
+      yearlyGeneralExpenses = initialYearlyGeneralExpenses * monthlyIRIncrementer;
+      yearlyOutlay = yearlyPropertyTax + yearlyMortgagePayment + yearlyGeneralExpenses;
+      yearlyBeforeTaxCashFlow = yearlyIncome - yearlyOutlay;
       //next year's yearlyAmountOutstanding minus this year's
-      yearlyPrincipalPaid = getPrincipalOutstandingAtPoint(
-            principalOwed, monthlyInterestRate, numOfCompoundingPeriods, (n - 1) * 12) -
-            getPrincipalOutstandingAtPoint(principalOwed, monthlyInterestRate, 
-                numOfCompoundingPeriods, n  * 12);
-      taxableIncome = (yearlyBeforeTaxCashFlow + yearlyPrincipalPaid - yearlyDepreciation);
+       pastYearAmountOutstanding = getPrincipalOutstandingAtPoint(
+            principalOwed, monthlyInterestRate, numOfCompoundingPeriods, prevYearMonthCPModifier);
+       currentYearAmountOutstanding = getPrincipalOutstandingAtPoint(principalOwed, monthlyInterestRate, 
+                numOfCompoundingPeriods, monthCPModifier);
+       yearlyPrincipalPaid = pastYearAmountOutstanding - currentYearAmountOutstanding;
+       taxableIncome = (yearlyBeforeTaxCashFlow + yearlyPrincipalPaid - yearlyDepreciation);
+       // doesn't make sense to tax negative income...but should this be used to offset taxes? hmmm...
       if (taxableIncome <= 0) {
         taxableIncome = 0.0;
       }
       yearlyTaxes = taxableIncome * marginalTaxRate;
       
       yearlyAfterTaxCashFlow = yearlyBeforeTaxCashFlow - yearlyTaxes;
-      
-      //should the n below be n or n+1?
-      yearlyNPVSummation += yearlyAfterTaxCashFlow/Math.pow(1+requiredRateOfReturn, n);
+      yearlyDiscountRateDivisor = Math.pow(1 + monthlyRequiredRateOfReturn, monthCPModifier);
+      yearlyNPVSummation += yearlyAfterTaxCashFlow / yearlyDiscountRateDivisor;
     }
     
-    double projectedValueOfHomeAtSale = totalPurchaseValue * 
-        Math.pow(1 + realEstateAppreciationRate,yearlyCompoundingPeriodDesired);
+    monthlyREARIncrementer = Math.pow(1 + monthlyRealEstateAppreciationRate, monthlyCompoundingPeriodDesired);
+    double projectedValueOfHomeAtSale = totalPurchaseValue * monthlyREARIncrementer;
     double brokerCut = projectedValueOfHomeAtSale * sellingBrokerRate;
-    double inflationAdjustedSellingExpenses = generalSaleExpenses * 
-        Math.pow(1 + inflationRate, yearlyCompoundingPeriodDesired);
+    monthlyIRIncrementer = Math.pow(1 + monthlyInflationRate, monthlyCompoundingPeriodDesired);
+    double inflationAdjustedSellingExpenses = generalSaleExpenses * monthlyIRIncrementer;
     double principalOwedAtSale = getPrincipalOutstandingAtPoint(principalOwed, 
         monthlyInterestRate, numOfCompoundingPeriods, monthlyCompoundingPeriodDesired);
     //How many years do I take depreciation?
@@ -111,8 +142,8 @@ public class CalculatedVariables {
         * marginalTaxRate;
     double ater = projectedValueOfHomeAtSale - brokerCut - 
         inflationAdjustedSellingExpenses - principalOwedAtSale - taxesDueAtSale;
-        
-    double npvAccumulator = firstDay + yearlyNPVSummation + ater;
+    double adjustedAter = ater / Math.pow(1 + monthlyRequiredRateOfReturn,monthlyCompoundingPeriodDesired);
+    double npvAccumulator = -firstDay + yearlyNPVSummation + adjustedAter;
    
     return npvAccumulator;
   }
