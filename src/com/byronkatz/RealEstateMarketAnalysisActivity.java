@@ -23,7 +23,7 @@ public class RealEstateMarketAnalysisActivity extends Activity {
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
     setContentView(R.layout.main);
-    dataController = new DataController();
+    dataController = new DataController(this);
     createFields();
   }
 

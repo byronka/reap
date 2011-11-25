@@ -1,56 +1,60 @@
 package com.byronkatz;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+
+import android.content.ContentValues;
+import android.content.Context;
 
 
-/** This class controls the access to data provided by the user, not calculated.
- * 
- * @author byron
- *
- */
-public class DataController{
 
-  ArrayList<DataItem> fieldValues;
+public class DataController {
 
-  public ArrayList<DataItem> getFieldValues() {
-    return fieldValues;
-  }
+ 
+  private ContentValues contentValues;
+  private HashMap<String, String> fieldValues;
+  private DatabaseAdapter databaseAdapter;
 
-  /**
-   * constructor
-   */
-  public DataController() {
+  
+  public DataController(Context context) {
     loadFieldValues();
+    openOrCreateDatabase();
+    
   }
 
   public void loadFieldValues() {
-    fieldValues = new ArrayList<DataItem>();
-    //   HashMap<String, DataItem> fieldValues = new HashMap<String, DataItem>();
+    fieldValues = new HashMap<String, String>();
 
-    fieldValues.add(new DataItem("total purchase value","450000.00", DataItem.REGULAR));
-    fieldValues.add(new DataItem("yearly interest rate", "0.05", DataItem.REGULAR));
-    fieldValues.add(new DataItem("monthly interest rate", "0.00416667", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("building value", "150000.0", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("number of compounding periods on loan", "360", DataItem.REGULAR));
-    fieldValues.add(new DataItem("inflation rate", "0.03", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("primary mortgage insurance rate", "0.20", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("down payment", "100000", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("street address", "1234 Anywhere Street", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("city", "Bethesda", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("state initials", "MD", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("estimated rent payments", "2015.0", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("real estate appreciation rate", "0.04", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("yearly alternate investment return", "0.05", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("yearly home insurance", "1000.0", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("property tax rate", "0.0109", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("local municipal fees", "443.17", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("vacancy and credit loss rate", "0.03", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("initial yearly general expenses", "2988.57", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("marginal tax rate", "0.28", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("selling broker rate", "0.06", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("general sale expenses", "2000", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("required rate of return", "0.05", DataItem.CHECK_BOX));
-    fieldValues.add(new DataItem("fix-up costs", "6000.00", DataItem.CHECK_BOX));
-  }    
+    fieldValues.put(DatabaseAdapter.TOTAL_PURCHASE_VALUE,"450000.00");
+    fieldValues.put(DatabaseAdapter.YEARLY_INTEREST_RATE, "0.05");
+    fieldValues.put(DatabaseAdapter.MONTHLY_INTEREST_RATE, "0.00416667");
+    fieldValues.put(DatabaseAdapter.BUILDING_VALUE, "150000.0");
+    fieldValues.put(DatabaseAdapter.NUMBER_OF_COMPOUNDING_PERIODS, "360");
+    fieldValues.put(DatabaseAdapter.INFLATION_RATE, "0.03");
+    fieldValues.put(DatabaseAdapter.PRIMARY_MORTGAGE_INSURANCE_RATE, "0.20");
+    fieldValues.put(DatabaseAdapter.DOWN_PAYMENT, "100000");
+    fieldValues.put(DatabaseAdapter.STREET_ADDRESS, "1234 Anywhere Street");
+    fieldValues.put(DatabaseAdapter.CITY, "Bethesda");
+    fieldValues.put(DatabaseAdapter.STATE_INITIALS, "MD");
+    fieldValues.put(DatabaseAdapter.ESTIMATED_RENT_PAYMENTS, "2015.0");
+    fieldValues.put(DatabaseAdapter.REAL_ESTATE_APPRECIATION_RATE, "0.04");
+    fieldValues.put(DatabaseAdapter.YEARLY_ALTERNATE_INVESTMENT_RETURN, "0.05");
+    fieldValues.put(DatabaseAdapter.YEARLY_HOME_INSURANCE, "1000.0");
+    fieldValues.put(DatabaseAdapter.PROPERTY_TAX_RATE, "0.0109");
+    fieldValues.put(DatabaseAdapter.LOCAL_MUNICIPAL_FEES, "443.17");
+    fieldValues.put(DatabaseAdapter.VACANCY_AND_CREDIT_LOSS_RATE, "0.03");
+    fieldValues.put(DatabaseAdapter.INITIAL_YEARLY_GENERAL_EXPENSES, "2988.57");
+    fieldValues.put(DatabaseAdapter.MARGINAL_TAX_RATE, "0.28");
+    fieldValues.put(DatabaseAdapter.SELLING_BROKER_RATE, "0.06");
+    fieldValues.put(DatabaseAdapter.GENERAL_SALE_EXPENSES, "2000");
+    fieldValues.put(DatabaseAdapter.REQUIRED_RATE_OF_RETURN, "0.05");
+    fieldValues.put(DatabaseAdapter.FIX_UP_COSTS, "6000.00");
+  }
+  
+  private int openOrCreateDatabase() {
+    int index = databaseAdapter.insertEntry(fieldValues);
+    
+    return index;
+  }
+ 
 }
 
