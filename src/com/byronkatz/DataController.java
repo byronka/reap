@@ -2,23 +2,16 @@ package com.byronkatz;
 
 import java.util.HashMap;
 
-import android.content.ContentValues;
-import android.content.Context;
-
-
-
 public class DataController {
 
- 
-  private ContentValues contentValues;
   private HashMap<String, String> fieldValues;
+
   private DatabaseAdapter databaseAdapter;
 
   
-  public DataController(Context context) {
+  public DataController() {
     loadFieldValues();
-    openOrCreateDatabase();
-    
+    databaseAdapter.insertEntry(fieldValues);
   }
 
   public void loadFieldValues() {
@@ -49,12 +42,25 @@ public class DataController {
     fieldValues.put(DatabaseAdapter.REQUIRED_RATE_OF_RETURN, "0.05");
     fieldValues.put(DatabaseAdapter.FIX_UP_COSTS, "6000.00");
   }
-  
-  private int openOrCreateDatabase() {
-    int index = databaseAdapter.insertEntry(fieldValues);
-    
-    return index;
-  }
  
+//  public HashMap<String, String> getFieldValues() {
+//    return fieldValues;
+//  }
+//
+//  public void setFieldValues(HashMap<String, String> fieldValues) {
+//    this.fieldValues = fieldValues;
+//  }
+  
+  public void setValue(String key, String value) {
+    fieldValues.put(key, value);
+  }
+  
+  public String getValue(String key) {
+    String value = fieldValues.get(key);
+    return value;
+  }
+
+
+  
 }
 

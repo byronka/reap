@@ -22,9 +22,8 @@ public class DatabaseAdapter {
   public static final String KEY_ID="id";
 
   // The name and column index of each column in your database.
-  public static final String KEY_NAME="name"; 
-  public static final int NAME_COLUMN = 1;
-  // TODO: Create public field for each column in your table.
+  public static final String KEY_NAME                          = "name"; 
+  public static final int    NAME_COLUMN                       = 1;
   public static final String TOTAL_PURCHASE_VALUE              = "total_purchase_value";
   public static final String YEARLY_INTEREST_RATE              = "yearly_interest_rate";
   public static final String MONTHLY_INTEREST_RATE             = "monthly_interest_rate";
@@ -51,9 +50,34 @@ public class DatabaseAdapter {
   public static final String FIX_UP_COSTS                      = "fix_up_costs";
 
   private static final String DATABASE_CREATE = "create table " + 
-      DATABASE_TABLE + " (" + KEY_ID + 
-      " integer primary key autoincrement, " +
-      KEY_NAME + " text not null);";
+      DATABASE_TABLE + " ("     + 
+      KEY_ID + " integer primary key autoincrement" + ", " +
+      KEY_NAME                           + " text not null" + ", " +
+      TOTAL_PURCHASE_VALUE               + "REAL"    +     ", " +
+      YEARLY_INTEREST_RATE               + "REAL"    +     ", " +
+      MONTHLY_INTEREST_RATE              + "REAL"    +     ", " +
+      BUILDING_VALUE                     + "REAL"    +     ", " +
+      NUMBER_OF_COMPOUNDING_PERIODS      + "INTEGER" +     ", " +
+      INFLATION_RATE                     + "REAL"    +     ", " +
+      PRIMARY_MORTGAGE_INSURANCE_RATE    + "REAL"    +     ", " +
+      DOWN_PAYMENT                       + "REAL"    +     ", " +
+      STREET_ADDRESS                     + "TEXT"    +     ", " +
+      CITY                               + "TEXT"    +     ", " +
+      STATE_INITIALS                     + "TEXT"    +     ", " +
+      ESTIMATED_RENT_PAYMENTS            + "REAL"    +     ", " +
+      REAL_ESTATE_APPRECIATION_RATE      + "REAL"    +     ", " +
+      YEARLY_ALTERNATE_INVESTMENT_RETURN + "REAL"    +     ", " +
+      YEARLY_HOME_INSURANCE              + "REAL"    +     ", " +
+      PROPERTY_TAX_RATE                  + "REAL"    +     ", " +
+      LOCAL_MUNICIPAL_FEES               + "REAL"    +     ", " +
+      VACANCY_AND_CREDIT_LOSS_RATE       + "REAL"    +     ", " +
+      INITIAL_YEARLY_GENERAL_EXPENSES    + "REAL"    +     ", " +
+      MARGINAL_TAX_RATE                  + "REAL"    +     ", " +
+      SELLING_BROKER_RATE                + "REAL"    +     ", " +
+      GENERAL_SALE_EXPENSES              + "REAL"    +     ", " +
+      REQUIRED_RATE_OF_RETURN            + "REAL"    +     ", " +
+      FIX_UP_COSTS                       + "REAL"    +
+      		");";
 
   private SQLiteDatabase db;
   private final Context context;
@@ -64,7 +88,7 @@ public class DatabaseAdapter {
     dbHelper = new myDbHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
   }
 
-  public DBAdapter open() throws SQLException {
+  public DatabaseAdapter open() throws SQLException {
     db = dbHelper.getWritableDatabase();
     return this;
   }
@@ -94,17 +118,24 @@ public class DatabaseAdapter {
   }
 
   public Cursor getAllEntries () {
-    return db.query(DATABASE_TABLE, new String[] {KEY_ID, KEY_NAME}, 
+    return db.query(DATABASE_TABLE, new String[] {KEY_ID, KEY_NAME,TOTAL_PURCHASE_VALUE, 
+YEARLY_INTEREST_RATE, MONTHLY_INTEREST_RATE, BUILDING_VALUE, NUMBER_OF_COMPOUNDING_PERIODS,
+INFLATION_RATE, PRIMARY_MORTGAGE_INSURANCE_RATE, DOWN_PAYMENT, STREET_ADDRESS, CITY, STATE_INITIALS,
+ESTIMATED_RENT_PAYMENTS, REAL_ESTATE_APPRECIATION_RATE, YEARLY_ALTERNATE_INVESTMENT_RETURN,
+YEARLY_HOME_INSURANCE, PROPERTY_TAX_RATE, LOCAL_MUNICIPAL_FEES, VACANCY_AND_CREDIT_LOSS_RATE,
+INITIAL_YEARLY_GENERAL_EXPENSES, MARGINAL_TAX_RATE, SELLING_BROKER_RATE, GENERAL_SALE_EXPENSES,
+REQUIRED_RATE_OF_RETURN, FIX_UP_COSTS}, 
         null, null, null, null, null);
   }
 
-  public MyObject getEntry(long rowIndex) {
+  public HashMap<String, String> getEntry(long rowIndex) {
+    HashMap<String, String> fieldValues = null;
     // TODO: Return a cursor to a row from the database and
     // use the values to populate an instance of MyObject
-    return objectInstance;
+    return fieldValues;
   }
 
-  public boolean updateEntry(long rowIndex, MyObject myObject) {
+  public boolean updateEntry(long rowIndex, HashMap<String, String> fieldValues) {
     // TODO: Create a new ContentValues based on the new object
     // and use it to update a row in the database.
     return true;

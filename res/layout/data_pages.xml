@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_gravity="center_horizontal" android:id="@+id/dataPagesHeader"
+		android:text="@string/dataPagesHeaderText"></TextView>
+	<LinearLayout
+	    android:id="@+id/dataPagesButtonsLinearLayout"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="20dip" android:layout_marginBottom="20dip">
+	    <Button android:id="@+id/taxesButton" android:text="@string/taxesButtonText" 
+    		android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+    	<Button android:id="@+id/loanButton" android:text="@string/loanButtonText"
+    		android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+    	<Button android:id="@+id/saleButton" android:text="@string/saleButtonText" 
+    		android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+    	<Button android:id="@+id/financialEnvironmentButton"
+    		android:text="@string/financialEnvironmentButtonText"
+    		android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+    	<Button android:text="@string/rentalButtonText" android:id="@+id/rentalButton"
+    		android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+	</LinearLayout>
+	<Button android:layout_width="wrap_content" android:text="@string/backButtonText" android:id="@+id/backButton" android:layout_gravity="center_horizontal" android:layout_height="wrap_content"></Button>
+
+
+</LinearLayout>

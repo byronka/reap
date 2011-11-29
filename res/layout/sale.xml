@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+    <TextView android:textAppearance="?android:attr/textAppearanceLarge" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:id="@+id/saleScreenHeader" android:text="@string/saleScreenHeaderText"></TextView>
+    <ScrollView
+        android:id="@+id/overallSaleScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:layout_marginTop="20dip" android:layout_marginBottom="20dip">
+        <LinearLayout
+            android:id="@+id/overallSaleLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" android:orientation="vertical">
+            <TextView android:textAppearance="?android:attr/textAppearanceSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/generalSaleExpensesDescription" android:text="@string/generalSaleExpensesDescriptionText"></TextView>
+            <LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/generalSaleExpensesLinearLayout">
+                <TextView android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/generalSaleExpensesTitle" android:text="@string/generalSaleExpensesTitleText"></TextView>
+                <EditText android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/generalSaleExpensesEditText">
+                    <requestFocus></requestFocus>
+                </EditText>
+            </LinearLayout>
+            <TextView android:textAppearance="?android:attr/textAppearanceSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/sellingBrokerRateDescription" android:text="@string/sellingBrokerRateDescriptionText"></TextView>
+            <LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/sellingBrokerRateLinearLayout">
+                <TextView android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/sellingBrokerRateTitle" android:text="@string/sellingBrokerRateTitleText"></TextView>
+                <EditText android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/sellingBrokerRateEditText"></EditText>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <Button android:layout_width="wrap_content" android:id="@+id/backButton" android:layout_height="wrap_content" android:text="@string/backButtonText" android:layout_gravity="center_horizontal"></Button>
+    
+</LinearLayout>
