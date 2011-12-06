@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class RealEstateMarketAnalysisActivity extends Activity {
+public class EntryScreenActivity extends Activity {
 
   private Button setDataValues;
   private Button viewGraph;
@@ -24,7 +24,6 @@ public class RealEstateMarketAnalysisActivity extends Activity {
     setDataValues.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        new Intent
         Intent intent = new Intent("SetDataValuesActivity");
         startActivity(intent);   
       }

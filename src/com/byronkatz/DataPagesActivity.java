@@ -1,41 +1,73 @@
 package com.byronkatz;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class DataPagesActivity extends Activity {
 
+  private Button taxes;
+  private Button loan;
+  private Button sale;
+  private Button financialEnvironment;
+  private Button rental;
+  
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
     setContentView(R.layout.data_pages);
+
+  taxes                  = (Button) findViewById(R.id.taxesButton);
+  loan                   = (Button) findViewById(R.id.loanButton);
+  sale                   = (Button) findViewById(R.id.saleButton);
+  financialEnvironment   = (Button) findViewById(R.id.financialEnvironmentButton);
+  rental                 = (Button) findViewById(R.id.rentalButton);
+  
+  taxes.setOnClickListener(new OnClickListener() {
+    @Override
+    public void onClick(View v) {
+      Intent intent = new Intent("UNKNOWN_SET_LATER");
+      startActivity(intent); 
+    }
+  });
+  
+  loan.setOnClickListener(new OnClickListener() {
+    @Override
+    public void onClick(View v) {
+      Intent intent = new Intent("UNKNOWN_SET_LATER");
+      startActivity(intent); 
+    }
+  });
+  
+  sale.setOnClickListener(new OnClickListener() {
+    @Override
+    public void onClick(View v) {
+      Intent intent = new Intent("UNKNOWN_SET_LATER");
+      startActivity(intent); 
+    }
+  });
+  
+  financialEnvironment.setOnClickListener(new OnClickListener() {
+    @Override
+    public void onClick(View v) {
+      Intent intent = new Intent("UNKNOWN_SET_LATER");
+      startActivity(intent); 
+    }
+  });
+  
+  rental.setOnClickListener(new OnClickListener() {
+    @Override
+    public void onClick(View v) {
+      Intent intent = new Intent("UNKNOWN_SET_LATER");
+      startActivity(intent); 
+    }
+  });
+  
   }
 
-  @Override
-  protected void onStart() {
-      super.onStart();
-      // The activity is about to become visible.
-  }
-  @Override
-  protected void onResume() {
-      super.onResume();
-      // The activity has become visible (it is now "resumed").
-  }
-  @Override
-  protected void onPause() {
-      super.onPause();
-      // Another activity is taking focus (this activity is about to be "paused").
-  }
-  @Override
-  protected void onStop() {
-      super.onStop();
-      // The activity is no longer visible (it is now "stopped")
-  }
-  @Override
-  protected void onDestroy() {
-      super.onDestroy();
-      // The activity is about to be destroyed.
-  }
 
 }

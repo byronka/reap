@@ -8,7 +8,7 @@
     <application android:icon="@drawable/icon" 
     	android:label="@string/app_name" 
     	android:name="RealEstateMarketAnalysisApplication">
-        <activity android:name=".RealEstateMarketAnalysisActivity"
+        <activity android:name=".EntryScreenActivity"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,10 +16,17 @@
             </intent-filter>
         </activity>
         
-        <activity 
-        	android:name=".RentalActivity">
-        
-        </activity>
+        <activity android:name=".RentalActivity" />
+		<activity android:name=".DataPagesActivity" />
+		<activity android:name=".AddressActivity" />
+		<activity android:name=".FinancialEnvironmentActivity" />
+		<activity android:name=".GraphActivity" />
+		<activity android:name=".LoadSavedValuesActivity" />
+		<activity android:name=".LoanActivity" />
+		<activity android:name=".SaleActivity" />
+		<activity android:name=".SetDataValuesActivity" />
+		<activity android:name=".TaxesActivity" />
+		
 
 <!-- A LOT to do here.  Clean up, add stuff, etc. -->
     </application>

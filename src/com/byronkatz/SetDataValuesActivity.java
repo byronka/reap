@@ -4,33 +4,60 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class SetDataValuesActivity extends Activity {
+
+  Button genericDefaultValues;
+  Button loadSavedValuesFromDatabase;
+  Button editValuesWithNoDefaultsSet;
+  Button defaultValuesFromAddress;
+
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
     setContentView(R.layout.set_data_values);
+
+    genericDefaultValues        = (Button) findViewById(R.id.genericDefaultValues);
+    loadSavedValuesFromDatabase = (Button) findViewById(R.id.loadSavedValuesButton);
+    editValuesWithNoDefaultsSet = (Button) findViewById(R.id.editWithoutDefaultValuesButton);
+    defaultValuesFromAddress    = (Button) findViewById(R.id.defaultValuesFromAddress);
+
+    genericDefaultValues.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent("UNKNOWN_SET_LATER");
+        startActivity(intent); 
+      }
+    });
+
+    loadSavedValuesFromDatabase.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent("UNKNOWN_SET_LATER");
+        startActivity(intent); 
+      }
+    });
+
+    editValuesWithNoDefaultsSet.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent("UNKNOWN_SET_LATER");
+        startActivity(intent); 
+      }
+    });
+
+    defaultValuesFromAddress.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent("UNKNOWN_SET_LATER");
+        startActivity(intent); 
+      }
+    });
+
+
   }
-  
-  public void genericDefaultValues(View view) {
-    //TODO: set up the values with generics
-    Intent intent = new Intent(this, DataPagesActivity.class);
-    startActivity(intent);   
-  }
-  
-  public void loadSavedValuesFromDatabase(View view) {
-    Intent intent = new Intent(this, LoadSavedValuesActivity.class);
-    startActivity(intent);   
-  }
-  
-  public void editValuesWithNoDefaultsSet(View view) {
-    Intent intent = new Intent(this, DataPagesActivity.class);
-    startActivity(intent);   
-  }
-  
-  public void defaultValuesFromAddress(View view) {
-    Intent intent = new Intent(this, AddressActivity.class);
-    startActivity(intent);   
-  }
+
 }

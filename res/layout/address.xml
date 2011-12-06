@@ -8,18 +8,18 @@
     <TextView android:text="@string/streetAddressHeaderText" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:id="@+id/streetAddressHeader"></TextView>
     <LinearLayout android:layout_height="wrap_content" android:id="@+id/addressOverallLinearLayout" android:layout_width="fill_parent" android:orientation="vertical" android:layout_marginTop="20dip" android:layout_marginBottom="20dip">
         <LinearLayout android:layout_height="wrap_content" android:id="@+id/LinearLayoutStreetAddress" android:layout_width="fill_parent">
-            <TextView android:text="@string/streetAddressTitleText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TextView01"></TextView>
-            <EditText android:inputType="textPersonName" android:layout_weight="1" android:layout_width="fill_parent" android:id="@+id/EditText01" android:layout_height="wrap_content">
+            <TextView android:text="@string/streetAddressTitleText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/streetAddress"></TextView>
+            <EditText android:inputType="textPersonName" android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/streetAddressEditText">
                 <requestFocus></requestFocus>
             </EditText>
         </LinearLayout>
         <LinearLayout android:layout_height="wrap_content" android:id="@+id/LinearLayoutCity" android:layout_width="fill_parent">
             <TextView android:text="@string/cityTitleText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/cityTitle"></TextView>
-            <EditText android:layout_weight="1" android:layout_width="fill_parent" android:id="@+id/EditTextCity" android:layout_height="wrap_content"></EditText>
+            <EditText android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/cityEditText"></EditText>
         </LinearLayout>
         <LinearLayout android:layout_height="wrap_content" android:id="@+id/linearLayoutStreetAddress" android:layout_width="fill_parent">
             <TextView android:text="@string/stateTitleText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/stateTitle"></TextView>
-            <Spinner android:layout_weight="1" android:layout_height="wrap_content" android:id="@+id/Spinner1" android:layout_width="fill_parent" android:entries="@array/states_array"></Spinner>
+            <Spinner android:layout_weight="1" android:layout_height="wrap_content" android:layout_width="fill_parent" android:entries="@array/states_array" android:id="@+id/stateTitleSpinner"></Spinner>
         </LinearLayout>
     </LinearLayout>
     <Button android:layout_width="wrap_content" android:text="@string/backButtonText" android:id="@+id/backButton" android:layout_gravity="center_horizontal" android:layout_height="wrap_content"></Button>

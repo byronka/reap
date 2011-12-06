@@ -50,58 +50,7 @@
     <string name="cityTitleText">City: </string>
     <string name="stateTitleText">State: </string>
     <string name="state_prompt">Choose a State: </string>
-    <string-array name="states_array">
-		<item>Alabama</item>
-		<item>Alaska</item>
-		<item>Arizona</item>
-		<item>Arkansas</item>
-		<item>California</item>
-		<item>Colorado</item>
-		<item>Connecticut</item>
-		<item>Delaware</item>
-		<item>Florida</item>
-		<item>Georgia</item>
-		<item>Hawaii</item>
-		<item>Idaho</item>
-		<item>Illinois</item>
-		<item>Indiana</item>
-		<item>Iowa</item>
-		<item>Kansas</item>
-		<item>Kentucky</item>
-		<item>Louisiana</item>
-		<item>Maine</item>
-		<item>Maryland</item>
-		<item>Massachusetts</item>
-		<item>Michigan</item>
-		<item>Minnesota</item>
-		<item>Mississippi</item>
-		<item>Missouri</item>
-		<item>Montana</item>
-		<item>Nebraska</item>
-		<item>Nevada</item>
-		<item>New Hampshire</item>
-		<item>New Jersey</item>
-		<item>New Mexico</item>
-		<item>New York</item>
-		<item>North Carolina</item>
-		<item>North Dakota</item>
-		<item>Ohio</item>
-		<item>Oklahoma</item>
-		<item>Oregon</item>
-		<item>Pennsylvania</item>
-		<item>Rhode Island</item>
-		<item>South Carolina</item>
-		<item>South Dakota</item>
-		<item>Tennessee</item>
-		<item>Texas</item>
-		<item>Utah</item>
-		<item>Vermont</item>
-		<item>Virginia</item>
-		<item>Washington</item>
-		<item>West Virginia</item>
-		<item>Wisconsin</item>
-		<item>Wyoming</item>
-    </string-array>
+   
     
     <!-- data pages -->
 		<string name="dataPagesHeaderText">Data Pages</string>
@@ -120,10 +69,7 @@
 		<string name="downPaymentTitleText">Down payment: </string>
 		<string name="numOfCompoundingPeriodsDescriptionText">The number of compounding periods on the loan.  This may be monthly or yearly.  Typical residential loans are 180 months (15 years) or 360 months (30 years)</string>
 		<string name="numOfCompoundingPeriodsTitleText">Num. of compounding periods:</string>
-		<string-array name="numOfCompoundingPeriodsArray">
-			<item>Fixed-rate mortgage - 30 years</item>
-			<item>Fixed-rate mortgage - 15 years</item>
-    	</string-array>
+		
 			<string name="totalPurchaseValueDescriptionText">This value is the total purchase price, including the land and building</string>
 			<string name="totalPurchasePriceTitleText">Total purchase price</string>
 		<string name = "closingCostsTitleText">Closing costs: </string>
@@ -158,6 +104,8 @@
 		<string name="requiredRateOfReturnDescriptionText">The required rate of return is the minimum rate of return, as a yearly percentage, expected as the average yearly return.  It is used in the net present value equation to bring all future values into the present value.</string>
 		<string name="requiredRateOfReturnTitleText">Required Rate of Return: </string>
 		<string name="editWithoutDefaultValuesButtonText">Edit values with no defaults set</string>
+		<string name="genericDefaultValues">Use generic default values</string>
+		<string name="defaultValuesFromAddress">Use default values from address</string>
 		
 
 
