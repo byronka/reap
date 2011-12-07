@@ -7,6 +7,7 @@ public class CalculationObject {
   public static final int YEARLY = 1;
   public static final int MONTHLY = 2;
   
+  //input variables
   private DataController dataController;
   private double totalPurchaseValue;
   private double estimatedRentPayments;
@@ -29,10 +30,14 @@ public class CalculationObject {
   private double principalOwed;
   private double initialYearlyPropertyTax;
   
+  //calculated variables
+  private GraphDataObject gdo;
+  
   public CalculationObject() {
     //Get the singleton dataController
     dataController = RealEstateMarketAnalysisApplication.getInstance().getDataController();
     assignVariables();
+    calculateVariables();
   }
   
   private void assignVariables() {
@@ -76,13 +81,8 @@ public class CalculationObject {
 
   }
 
-  public void calculateAndUpdateOutputStrings(Activity activity) {
-    double mPayment = calculateMortgagePayment();
-    double totalIPayments = calculateTotalIPayments();
-    double totalPayments = calculateTotalPayments();
-    double npv = calculateNPV();
-    NPVGraphDataObject npvgdo = calculateNPVgdo();
-
+  private void calculateVariables() {
+    setGdo(calculateGdo());
   }
 
   private double calculateMortgagePayment() {
@@ -124,15 +124,20 @@ public class CalculationObject {
     return npv;
   }
   
-  private NPVGraphDataObject calculateNPVgdo() {
-    NPVGraphDataObject npvgdo;
+  private GraphDataObject calculateGdo() {
+    GraphDataObject gdo;
 
 
-    npvgdo = CalculatedVariables.getNPVGraphDataObject(estimatedRentPayments, realEstateAppreciationRate, 
+    gdo = CalculatedVariables.getGraphDataObject(estimatedRentPayments, realEstateAppreciationRate, 
         vacancyRate, initialYearlyGeneralExpenses, inflationRate, marginalTaxRate, principalOwed,
         buildingValue, requiredRateOfReturn, yearlyInterestRate, 
         numOfCompoundingPeriods, sellingBrokerRate, generalSaleExpenses, downPayment, 
         totalPurchaseValue, fixupCosts, initialYearlyPropertyTax);
-    return npvgdo;
+    return gdo;
   }
+
+  public GraphDataObject getGdo() {
+    return gdo;
+  }
+
 }

@@ -148,7 +148,7 @@ public class CalculatedVariables {
     return npvAccumulator;
   }
   
-  public static NPVGraphDataObject getNPVGraphDataObject(double estimatedRentPayments, double realEstateAppreciationRate, 
+  public static GraphDataObject getGraphDataObject(double estimatedRentPayments, double realEstateAppreciationRate, 
       double vacancyRate,      double initialYearlyGeneralExpenses, double inflationRate,
       double marginalTaxRate, double principalOwed, 
       double buildingValue, double requiredRateOfReturn, double yearlyInterestRate, 
@@ -166,7 +166,7 @@ public class CalculatedVariables {
     
     double firstDay = downPayment + generalSaleExpenses + fixupCosts;
     
-    NPVGraphDataObject nPVGraphDataObject = new NPVGraphDataObject();
+    GraphDataObject nPVGraphDataObject = new GraphDataObject();
     double yearlyNPVSummation = 0.0;
     double yearlyAfterTaxCashFlow = 0.0;
     double yearlyBeforeTaxCashFlow = 0.0;
