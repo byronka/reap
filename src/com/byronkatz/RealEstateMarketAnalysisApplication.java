@@ -14,7 +14,7 @@ public class RealEstateMarketAnalysisApplication extends Application {
   @Override
   public final void onCreate() {
     super.onCreate();
-    setDataController(new DataController());
+    setDataController(new DataController(this));
     singleton = this;
   }
 

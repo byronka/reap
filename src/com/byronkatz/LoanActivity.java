@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -19,6 +21,7 @@ public class LoanActivity extends Activity {
   private EditText downPayment;
   private Spinner loanTerm;
   private EditText totalPurchasePrice;
+  private Button backButton;
   
   /** Called when the activity is first created. */
   @Override
@@ -31,6 +34,7 @@ public class LoanActivity extends Activity {
     downPayment =        (EditText)findViewById(R.id.downPaymentEditText);
     loanTerm =           (Spinner) findViewById(R.id.numOfCompoundingPeriodsSpinner);
     totalPurchasePrice = (EditText)findViewById(R.id.totalPurchasePriceEditText);
+    backButton         = (Button)findViewById(R.id.backButton);
     
     ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
         this, R.array.numOfCompoundingPeriodsArray, android.R.layout.simple_spinner_item);
@@ -88,6 +92,13 @@ public class LoanActivity extends Activity {
       }
     });
 
+    backButton.setOnClickListener(new OnClickListener() {
+      
+      @Override
+      public void onClick(View v) {
+       finish();
+      }
+    });
   }
 
   

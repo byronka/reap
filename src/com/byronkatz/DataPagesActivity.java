@@ -14,6 +14,7 @@ public class DataPagesActivity extends Activity {
   private Button sale;
   private Button financialEnvironment;
   private Button rental;
+  private Button backButton;
   
   /** Called when the activity is first created. */
   @Override
@@ -26,11 +27,12 @@ public class DataPagesActivity extends Activity {
   sale                   = (Button) findViewById(R.id.saleButton);
   financialEnvironment   = (Button) findViewById(R.id.financialEnvironmentButton);
   rental                 = (Button) findViewById(R.id.rentalButton);
+  backButton             = (Button) findViewById(R.id.backButton);
   
   taxes.setOnClickListener(new OnClickListener() {
     @Override
     public void onClick(View v) {
-      Intent intent = new Intent("UNKNOWN_SET_LATER");
+      Intent intent = new Intent(DataPagesActivity.this, TaxesActivity.class);
       startActivity(intent); 
     }
   });
@@ -38,7 +40,7 @@ public class DataPagesActivity extends Activity {
   loan.setOnClickListener(new OnClickListener() {
     @Override
     public void onClick(View v) {
-      Intent intent = new Intent("UNKNOWN_SET_LATER");
+      Intent intent = new Intent(DataPagesActivity.this, LoanActivity.class);
       startActivity(intent); 
     }
   });
@@ -46,7 +48,7 @@ public class DataPagesActivity extends Activity {
   sale.setOnClickListener(new OnClickListener() {
     @Override
     public void onClick(View v) {
-      Intent intent = new Intent("UNKNOWN_SET_LATER");
+      Intent intent = new Intent(DataPagesActivity.this, SaleActivity.class);
       startActivity(intent); 
     }
   });
@@ -54,7 +56,7 @@ public class DataPagesActivity extends Activity {
   financialEnvironment.setOnClickListener(new OnClickListener() {
     @Override
     public void onClick(View v) {
-      Intent intent = new Intent("UNKNOWN_SET_LATER");
+      Intent intent = new Intent(DataPagesActivity.this, FinancialEnvironmentActivity.class);
       startActivity(intent); 
     }
   });
@@ -62,8 +64,17 @@ public class DataPagesActivity extends Activity {
   rental.setOnClickListener(new OnClickListener() {
     @Override
     public void onClick(View v) {
-      Intent intent = new Intent("UNKNOWN_SET_LATER");
+      Intent intent = new Intent(DataPagesActivity.this, RentalActivity.class);
       startActivity(intent); 
+    }
+  });
+  
+  backButton.setOnClickListener(new OnClickListener() {
+    
+    @Override
+    public void onClick(View v) {
+      finish();
+      
     }
   });
   

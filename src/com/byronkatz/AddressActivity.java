@@ -85,8 +85,7 @@ public class AddressActivity extends Activity {
       
       @Override
       public void onClick(View v) {
-        // TODO how to return to previous activity?  Check reference book
-        
+       finish();
       }
     });
     

@@ -1,6 +1,5 @@
 package com.byronkatz;
 
-import android.app.Activity;
 
 public class CalculationObject {
 

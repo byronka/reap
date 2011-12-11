@@ -2,41 +2,58 @@ package com.byronkatz;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class FinancialEnvironmentActivity extends Activity {
 
+  private EditText inflationRate;
+  private EditText realEstateAppreciationRate;
+  private Button backButton;
+  
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
     setContentView(R.layout.financial_environment);
-  }
 
-  @Override
-  protected void onStart() {
-      super.onStart();
-      // The activity is about to become visible.
+    //Hook up the components from the GUI to some variables here
+    inflationRate               = (EditText)findViewById(R.id.inflationRateEditText);
+    realEstateAppreciationRate  = (EditText)findViewById(R.id.realEstateAppreciationRateEditText);
+    backButton                  = (Button)findViewById(R.id.backButton);
+    
+    inflationRate.setOnKeyListener(new OnKeyListener() {
+      @Override
+      public boolean onKey(View v, int keyCode, KeyEvent event) {
+        String key = DatabaseAdapter.INFLATION_RATE;
+        String value = inflationRate.getText().toString();
+        RealEstateMarketAnalysisApplication.getInstance().getDataController().setValue(key, value);
+        return false;
+      }
+    });
+    
+    realEstateAppreciationRate.setOnKeyListener(new OnKeyListener() {
+      
+      @Override
+      public boolean onKey(View v, int keyCode, KeyEvent event) {
+        String key = DatabaseAdapter.REAL_ESTATE_APPRECIATION_RATE;
+        String value = realEstateAppreciationRate.getText().toString();
+        RealEstateMarketAnalysisApplication.getInstance().getDataController().setValue(key, value);
+        return false;
+      }
+    });
+    
+    backButton.setOnClickListener(new OnClickListener() {
+      
+      @Override
+      public void onClick(View v) {
+       finish();
+      }
+    });
   }
-  @Override
-  protected void onResume() {
-      super.onResume();
-      // The activity has become visible (it is now "resumed").
-  }
-  @Override
-  protected void onPause() {
-      super.onPause();
-      // Another activity is taking focus (this activity is about to be "paused").
-  }
-  @Override
-  protected void onStop() {
-      super.onStop();
-      // The activity is no longer visible (it is now "stopped")
-  }
-  @Override
-  protected void onDestroy() {
-      super.onDestroy();
-      // The activity is about to be destroyed.
-  }
-
 }
 

@@ -28,7 +28,7 @@ public class SetDataValuesActivity extends Activity {
     genericDefaultValues.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent("UNKNOWN_SET_LATER");
+        Intent intent = new Intent(SetDataValuesActivity.this, DataPagesActivity.class);
         startActivity(intent); 
       }
     });
@@ -36,7 +36,7 @@ public class SetDataValuesActivity extends Activity {
     loadSavedValuesFromDatabase.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent("UNKNOWN_SET_LATER");
+        Intent intent = new Intent(SetDataValuesActivity.this, LoadSavedValuesActivity.class);
         startActivity(intent); 
       }
     });
@@ -44,7 +44,7 @@ public class SetDataValuesActivity extends Activity {
     editValuesWithNoDefaultsSet.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent("UNKNOWN_SET_LATER");
+        Intent intent = new Intent(SetDataValuesActivity.this, DataPagesActivity.class);
         startActivity(intent); 
       }
     });
@@ -52,7 +52,7 @@ public class SetDataValuesActivity extends Activity {
     defaultValuesFromAddress.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent("UNKNOWN_SET_LATER");
+        Intent intent = new Intent(SetDataValuesActivity.this, AddressActivity.class);
         startActivity(intent); 
       }
     });

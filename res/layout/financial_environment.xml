@@ -16,14 +16,14 @@
             <TextView android:textAppearance="?android:attr/textAppearanceSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/inflationRateDescription" android:text="@string/inflationRateDescriptionText"></TextView>
             <LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/inflationRateLinearLayout">
                 <TextView android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/inflationRateTitle" android:text="@string/inflationRateTitleText"></TextView>
-                <EditText android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/inflationRateEditText">
+                <EditText android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/inflationRateEditText" android:inputType="numberDecimal">
                     <requestFocus></requestFocus>
                 </EditText>
             </LinearLayout>
             <TextView android:textAppearance="?android:attr/textAppearanceSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/realEstateAppreciationRateDescription" android:text="@string/realEstateAppreciationRateDescriptionText"></TextView>
             <LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/realEstateAppreciationRateLinearLayout">
                 <TextView android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/realEstateAppreciationRateTitle" android:text="@string/realEstateAppreciationRateTitleText"></TextView>
-                <EditText android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/realEstateAppreciationRateEditText"></EditText>
+                <EditText android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/realEstateAppreciationRateEditText" android:inputType="numberDecimal"></EditText>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -24,7 +24,7 @@ public class EntryScreenActivity extends Activity {
     setDataValues.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent("SetDataValuesActivity");
+        Intent intent = new Intent(EntryScreenActivity.this, SetDataValuesActivity.class);
         startActivity(intent);   
       }
     });
@@ -33,7 +33,7 @@ public class EntryScreenActivity extends Activity {
       
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent();
+        Intent intent = new Intent(EntryScreenActivity.this, GraphActivity.class);
         startActivity(intent);
         
       }

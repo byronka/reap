@@ -23,7 +23,9 @@
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:id="@+id/yearlyInterestRateTitle"></TextView>
 				<EditText android:layout_weight="1" android:layout_width="fill_parent"
-					android:id="@+id/yearlyInterestRateEditText" android:layout_height="wrap_content"></EditText>
+					android:id="@+id/yearlyInterestRateEditText" 
+					android:inputType="numberDecimal" 
+					android:layout_height="wrap_content"></EditText>
 			</LinearLayout>
 			<TextView android:text="@string/downPaymentDescriptionText"
 				android:textAppearance="?android:attr/textAppearanceSmall"
@@ -63,7 +65,7 @@
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:id="@+id/totalPurchasePriceTitle" android:text="@string/totalPurchasePriceTitleText"></TextView>
 				<EditText android:layout_weight="1" android:layout_width="fill_parent"
-					android:layout_height="wrap_content" android:id="@+id/totalPurchasePriceEditText"></EditText>
+					android:layout_height="wrap_content" android:id="@+id/totalPurchasePriceEditText" android:inputType="numberDecimal"></EditText>
 			</LinearLayout>
 			
 			<TextView android:textAppearance="?android:attr/textAppearanceSmall"

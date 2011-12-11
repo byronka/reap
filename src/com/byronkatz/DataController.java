@@ -2,15 +2,17 @@ package com.byronkatz;
 
 import java.util.HashMap;
 
+import android.content.Context;
+
 public class DataController {
 
   private HashMap<String, String> fieldValues;
-
   private DatabaseAdapter databaseAdapter;
 
   
-  public DataController() {
+  public DataController(Context context) {
     loadFieldValues();
+    databaseAdapter = new DatabaseAdapter(context);
     databaseAdapter.insertEntry(fieldValues);
   }
 

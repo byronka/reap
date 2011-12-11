@@ -15,7 +15,7 @@
         </LinearLayout>
         <LinearLayout android:layout_height="wrap_content" android:id="@+id/LinearLayoutCity" android:layout_width="fill_parent">
             <TextView android:text="@string/cityTitleText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/cityTitle"></TextView>
-            <EditText android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/cityEditText"></EditText>
+            <EditText android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/cityEditText" android:inputType="textPersonName"></EditText>
         </LinearLayout>
         <LinearLayout android:layout_height="wrap_content" android:id="@+id/linearLayoutStreetAddress" android:layout_width="fill_parent">
             <TextView android:text="@string/stateTitleText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/stateTitle"></TextView>

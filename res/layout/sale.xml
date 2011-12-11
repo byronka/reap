@@ -16,14 +16,14 @@
             <TextView android:textAppearance="?android:attr/textAppearanceSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/generalSaleExpensesDescription" android:text="@string/generalSaleExpensesDescriptionText"></TextView>
             <LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/generalSaleExpensesLinearLayout">
                 <TextView android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/generalSaleExpensesTitle" android:text="@string/generalSaleExpensesTitleText"></TextView>
-                <EditText android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/generalSaleExpensesEditText">
+                <EditText android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/generalSaleExpensesEditText" android:inputType="numberDecimal">
                     <requestFocus></requestFocus>
                 </EditText>
             </LinearLayout>
             <TextView android:textAppearance="?android:attr/textAppearanceSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/sellingBrokerRateDescription" android:text="@string/sellingBrokerRateDescriptionText"></TextView>
             <LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/sellingBrokerRateLinearLayout">
                 <TextView android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/sellingBrokerRateTitle" android:text="@string/sellingBrokerRateTitleText"></TextView>
-                <EditText android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/sellingBrokerRateEditText"></EditText>
+                <EditText android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/sellingBrokerRateEditText" android:inputType="numberDecimal"></EditText>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

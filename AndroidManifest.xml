@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.byronkatz"
-      android:versionCode="1"
-      android:versionName="1.0">
+      android:versionCode="1" android:versionName="0.75">
     <uses-sdk android:minSdkVersion="4" />
 
     <application android:icon="@drawable/icon" 
     	android:label="@string/app_name" 
     	android:name="RealEstateMarketAnalysisApplication">
         <activity android:name=".EntryScreenActivity"
-                  android:label="@string/app_name">
+                  android:label="@string/entryScreenActivityTitleText">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <activity android:name=".RentalActivity" />
-		<activity android:name=".DataPagesActivity" />
-		<activity android:name=".AddressActivity" />
-		<activity android:name=".FinancialEnvironmentActivity" />
-		<activity android:name=".GraphActivity" />
-		<activity android:name=".LoadSavedValuesActivity" />
-		<activity android:name=".LoanActivity" />
-		<activity android:name=".SaleActivity" />
-		<activity android:name=".SetDataValuesActivity" />
-		<activity android:name=".TaxesActivity" />
-		
+        <activity android:name=".RentalActivity" 
+       		android:label="@string/rentalActivityTitleText" />
+		<activity android:name=".DataPagesActivity" 
+			android:label="@string/dataPagesActivityTitleText" />
+		<activity android:name=".AddressActivity" 
+			android:label="@string/addressActivityTitleText" />
+		<activity android:name=".FinancialEnvironmentActivity" 
+			android:label="@string/financialEnvironmentActivityTitleText" />
+		<activity android:name=".GraphActivity" 
+			android:label="@string/graphActivityTitleText" />
+		<activity android:name=".LoadSavedValuesActivity" 
+			android:label="@string/loadSavedValuesActivityTitleText" />
+		<activity android:name=".LoanActivity" 
+			android:label="@string/loanActivityTitleText" />
+		<activity android:name=".SaleActivity"
+			android:label="@string/saleActivityTitleText" />
+		<activity android:name=".SetDataValuesActivity" 
+			android:label="@string/setDataValuesActivityTitleText" />
+		<activity android:name=".TaxesActivity" 
+			android:label="@string/taxesActivityTitleText" />
 
 <!-- A LOT to do here.  Clean up, add stuff, etc. -->
     </application>

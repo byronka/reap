@@ -80,12 +80,11 @@ public class DatabaseAdapter {
       		");";
 
   private SQLiteDatabase db;
-  private final Context context;
   private myDbHelper dbHelper;
 
   public DatabaseAdapter(Context context) {
-    this.context = context;
     dbHelper = new myDbHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+    db = dbHelper.getWritableDatabase();
   }
 
   public DatabaseAdapter open() throws SQLException {

@@ -107,6 +107,17 @@
 		<string name="genericDefaultValues">Use generic default values</string>
 		<string name="defaultValuesFromAddress">Use default values from address</string>
 		
-
+	<!-- Activity title value- -->
+		<string name="entryScreenActivityTitleText">Main screen</string>
+		<string name="rentalActivityTitleText">Rental</string>
+		<string name="dataPagesActivityTitleText">Data pages</string>
+		<string name="addressActivityTitleText">Address</string>
+		<string name="financialEnvironmentActivityTitleText">Financial Environment</string>
+		<string name="graphActivityTitleText">Graph</string>
+		<string name="loadSavedValuesActivityTitleText">Load saved values</string>
+		<string name="loanActivityTitleText">Loan</string>
+		<string name="saleActivityTitleText">Sale</string>
+		<string name="setDataValuesActivityTitleText">Set data values</string>
+		<string name="taxesActivityTitleText">Taxes</string>
 
 </resources>
