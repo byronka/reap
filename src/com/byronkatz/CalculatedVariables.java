@@ -197,6 +197,7 @@ public class CalculatedVariables {
 
     
     for (int year = 1; year < yearlyCompoundingPeriods; year++) {
+
       // cashflowIn - cashflowOut
       monthCPModifier = year * NUM_OF_MONTHS_IN_YEAR;
       prevYearMonthCPModifier = (year - 1) * NUM_OF_MONTHS_IN_YEAR;
@@ -223,11 +224,12 @@ public class CalculatedVariables {
       yearlyTaxes = taxableIncome * marginalTaxRate;
       
       yearlyAfterTaxCashFlow = yearlyBeforeTaxCashFlow - yearlyTaxes;
-      nPVGraphDataObject.addYearlyAtcf(yearlyAfterTaxCashFlow);
+      //add this year's atcf to the graph data object
+      nPVGraphDataObject.addYearlyAtcf(year, yearlyAfterTaxCashFlow);
       yearlyDiscountRateDivisor = Math.pow(1 + monthlyRequiredRateOfReturn, monthCPModifier);
       yearlyNPVSummation += yearlyAfterTaxCashFlow / yearlyDiscountRateDivisor;
     
-    
+    //equity reversion portion
     monthlyREARIncrementer = Math.pow(1 + monthlyRealEstateAppreciationRate, monthCPModifier);
     double projectedValueOfHomeAtSale = totalPurchaseValue * monthlyREARIncrementer;
     double brokerCut = projectedValueOfHomeAtSale * sellingBrokerRate;
@@ -241,10 +243,12 @@ public class CalculatedVariables {
         * marginalTaxRate;
     double ater = projectedValueOfHomeAtSale - brokerCut - 
         inflationAdjustedSellingExpenses - principalOwedAtSale - taxesDueAtSale;
-    nPVGraphDataObject.addYearlyAter(ater);
+    //add this year's ater to the graph data object
+    nPVGraphDataObject.addYearlyAter(year, ater);
     double adjustedAter = ater / Math.pow(1 + monthlyRequiredRateOfReturn,monthCPModifier);
     double npvAccumulator = -firstDay + yearlyNPVSummation + adjustedAter;
-    nPVGraphDataObject.addYearlyNPV(npvAccumulator);
+    //add this year's NPV to the graph data object
+    nPVGraphDataObject.addYearlyNPV(year, npvAccumulator);
    
     }
     return nPVGraphDataObject;

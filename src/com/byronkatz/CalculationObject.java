@@ -82,7 +82,7 @@ public class CalculationObject {
   }
 
   private void calculateVariables() {
-    setGdo(calculateGdo());
+    gdo = calculateGdo();
   }
 
   private double calculateMortgagePayment() {
@@ -125,15 +125,15 @@ public class CalculationObject {
   }
   
   private GraphDataObject calculateGdo() {
-    GraphDataObject gdo;
+    GraphDataObject graphDataObject;
 
 
-    gdo = CalculatedVariables.getGraphDataObject(estimatedRentPayments, realEstateAppreciationRate, 
+    graphDataObject = CalculatedVariables.getGraphDataObject(estimatedRentPayments, realEstateAppreciationRate, 
         vacancyRate, initialYearlyGeneralExpenses, inflationRate, marginalTaxRate, principalOwed,
         buildingValue, requiredRateOfReturn, yearlyInterestRate, 
         numOfCompoundingPeriods, sellingBrokerRate, generalSaleExpenses, downPayment, 
         totalPurchaseValue, fixupCosts, initialYearlyPropertyTax);
-    return gdo;
+    return graphDataObject;
   }
 
   public GraphDataObject getGdo() {
