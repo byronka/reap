@@ -34,6 +34,10 @@
 			android:label="@string/setDataValuesActivityTitleText" />
 		<activity android:name=".TaxesActivity" 
 			android:label="@string/taxesActivityTitleText" />
+		<activity android:name=".SavedDataBrowserActivity" 
+			android:label="@string/savedDataBrowserActivityTitleText" />
+		<activity android:name=".DatabaseSearchActivity" 
+			android:label="@string/databaseSearchActivityTitleText" />
 
 <!-- A LOT to do here.  Clean up, add stuff, etc. -->
     </application>

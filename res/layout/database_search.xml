@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+    <LinearLayout
+        android:id="@+id/addressLinearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/addressTextView" android:text="@string/addressTextViewString"></TextView>
+        <EditText android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/addressEditText">
+            <requestFocus></requestFocus>
+        </EditText>
+    </LinearLayout>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/priceLabelTextView" android:layout_gravity="center_horizontal" android:text="@string/totalPurchasePriceTitleText"></TextView>
+
+        <LinearLayout
+            android:id="@+id/minimumPriceLinearLayout"
+            android:layout_height="wrap_content" android:layout_width="fill_parent">
+            <TextView android:textAppearance="?android:attr/textAppearanceSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/priceMinimumTextview" android:text="@string/minimumPriceTextView"></TextView>
+            <EditText android:layout_height="wrap_content" android:id="@+id/priceMinimumEditText" android:layout_width="fill_parent"></EditText>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/maximumPriceLinearLayout"
+            android:layout_height="wrap_content" android:layout_width="fill_parent">
+            <TextView android:textAppearance="?android:attr/textAppearanceSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/priceMaximumTextView" android:text="@string/maximumPriceEditText"></TextView>
+            <EditText android:layout_height="wrap_content"  android:id="@+id/priceMaximumEditText" android:layout_width="fill_parent"></EditText>
+        </LinearLayout>
+    <Button android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/searchButton" android:text="@string/searchDatabaseButtonText"></Button>
+    <ScrollView
+        android:id="@+id/databaseResultsScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TableLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/databaseResultsTableLayout">
+            <TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content" android:layout_height="wrap_content"></TableRow>
+            <TableRow android:id="@+id/tableRow2" android:layout_width="wrap_content" android:layout_height="wrap_content"></TableRow>
+            <TableRow android:id="@+id/tableRow3" android:layout_width="wrap_content" android:layout_height="wrap_content"></TableRow>
+            <TableRow android:id="@+id/tableRow4" android:layout_width="wrap_content" android:layout_height="wrap_content"></TableRow>
+        </TableLayout>
+    </ScrollView>
+    
+</LinearLayout>

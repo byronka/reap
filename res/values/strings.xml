@@ -108,7 +108,7 @@
 		<string name="defaultValuesFromAddress">Use default values from address</string>
 		
 	<!-- Activity title value- -->
-		<string name="entryScreenActivityTitleText">Main screen</string>
+		<string name="entryScreenActivityTitleText">Real Estate Market Analysis</string>
 		<string name="rentalActivityTitleText">Rental</string>
 		<string name="dataPagesActivityTitleText">Data pages</string>
 		<string name="addressActivityTitleText">Address</string>
@@ -119,5 +119,10 @@
 		<string name="saleActivityTitleText">Sale</string>
 		<string name="setDataValuesActivityTitleText">Set data values</string>
 		<string name="taxesActivityTitleText">Taxes</string>
+		<string name="addressTextViewString">Street address: </string>
+		<string name="minimumPriceTextView">Minimum price: </string>
+		<string name="maximumPriceEditText">Maximum price: </string>
+		<string name="savedDataBrowserActivityTitleText">Saved Data Browser</string>
+		<string name="databaseSearchActivityTitleText">Database Search</string>
 
 </resources>

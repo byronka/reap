@@ -4,9 +4,6 @@
   android:orientation="vertical"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
-    <com.byronkatz.NPVGraph 
-    	android:layout_width="fill_parent" 
-    	android:layout_height="wrap_content" 
-    	android:id="@+id/npvFrameLayout">
-    </com.byronkatz.NPVGraph>
+    <ListView android:id="@+id/listView1" android:layout_height="wrap_content" android:layout_width="fill_parent"></ListView>
+    
 </LinearLayout>

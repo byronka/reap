@@ -25,8 +25,7 @@ public class LoadSavedValuesActivity extends Activity {
       
       @Override
       public void onClick(View v) {
-        //TODO - fill in the action below
-        Intent intent = new Intent("what is the action here??");
+        Intent intent = new Intent(LoadSavedValuesActivity.this, SavedDataBrowserActivity.class);
         startActivity(intent);
         
       }
@@ -36,8 +35,7 @@ public class LoadSavedValuesActivity extends Activity {
       
       @Override
       public void onClick(View v) {
-      //TODO - fill in the action below
-        Intent intent = new Intent("what is the action here??");
+        Intent intent = new Intent(LoadSavedValuesActivity.this, DatabaseSearchActivity.class);
         startActivity(intent);
         
       }

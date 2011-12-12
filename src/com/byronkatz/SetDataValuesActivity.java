@@ -9,7 +9,6 @@ import android.widget.Button;
 
 public class SetDataValuesActivity extends Activity {
 
-  Button genericDefaultValues;
   Button loadSavedValuesFromDatabase;
   Button editValuesWithNoDefaultsSet;
   Button defaultValuesFromAddress;
@@ -20,18 +19,9 @@ public class SetDataValuesActivity extends Activity {
     super.onCreate(savedState);
     setContentView(R.layout.set_data_values);
 
-    genericDefaultValues        = (Button) findViewById(R.id.genericDefaultValues);
     loadSavedValuesFromDatabase = (Button) findViewById(R.id.loadSavedValuesButton);
     editValuesWithNoDefaultsSet = (Button) findViewById(R.id.editWithoutDefaultValuesButton);
     defaultValuesFromAddress    = (Button) findViewById(R.id.defaultValuesFromAddress);
-
-    genericDefaultValues.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Intent intent = new Intent(SetDataValuesActivity.this, DataPagesActivity.class);
-        startActivity(intent); 
-      }
-    });
 
     loadSavedValuesFromDatabase.setOnClickListener(new OnClickListener() {
       @Override

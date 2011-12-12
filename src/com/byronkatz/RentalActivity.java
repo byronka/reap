@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class RentalActivity extends Activity {
@@ -15,6 +17,7 @@ public class RentalActivity extends Activity {
   private EditText fixupCosts;
   private EditText ininialYearlyGeneralExpenses;
   private EditText requiredRateOfReturn;
+  private Button backButton;
 
 
   /** Called when the activity is first created. */
@@ -30,6 +33,7 @@ public class RentalActivity extends Activity {
     fixupCosts                    = (EditText)findViewById(R.id.fixupCostsEditText);
     ininialYearlyGeneralExpenses  = (EditText)findViewById(R.id.initialYearlyGeneralExpensesEditText);
     requiredRateOfReturn          = (EditText)findViewById(R.id.requiredRateOfReturnEditText);
+    backButton                    = (Button)  findViewById(R.id.backButton);
 
     //Set up the listeners for the inputs
     estimatedRentPayments.setOnKeyListener(new OnKeyListener() {
@@ -89,6 +93,16 @@ public class RentalActivity extends Activity {
         String value = requiredRateOfReturn.getText().toString();
         RealEstateMarketAnalysisApplication.getInstance().getDataController().setValue(key, value);
         return false;
+      }
+    });
+    
+    
+    backButton.setOnClickListener(new OnClickListener() {
+      
+      @Override
+      public void onClick(View v) {
+        finish();
+        
       }
     });
   }
