@@ -16,6 +16,8 @@ public class TaxesActivity extends Activity {
   private EditText propertyTaxRate;
   private EditText localMunicipalFees;
   private Button backButton;
+  private final DataController dataController = 
+      RealEstateMarketAnalysisApplication.getInstance().getDataController();
   
   /** Called when the activity is first created. */
   @Override
@@ -29,13 +31,15 @@ public class TaxesActivity extends Activity {
     localMunicipalFees = (EditText)findViewById(R.id.localMunicipalFeesEditText);
     backButton         = (Button)findViewById(R.id.backButton);
     
+    assignValuesToFields();
+    
     marginalTaxRate.setOnKeyListener(new OnKeyListener() {
       
       @Override
       public boolean onKey(View v, int keyCode, KeyEvent event) {
         String key = DatabaseAdapter.MARGINAL_TAX_RATE;
         String value = marginalTaxRate.getText().toString();
-        RealEstateMarketAnalysisApplication.getInstance().getDataController().setValue(key, value);
+        dataController.setValue(key, value);
         return false;
       }
     });
@@ -46,7 +50,7 @@ public class TaxesActivity extends Activity {
       public boolean onKey(View v, int keyCode, KeyEvent event) {
         String key = DatabaseAdapter.BUILDING_VALUE;
         String value = buildingValue.getText().toString();
-        RealEstateMarketAnalysisApplication.getInstance().getDataController().setValue(key, value);
+        dataController.setValue(key, value);
         return false;
       }
     });
@@ -57,7 +61,7 @@ public class TaxesActivity extends Activity {
       public boolean onKey(View v, int keyCode, KeyEvent event) {
         String key = DatabaseAdapter.PROPERTY_TAX_RATE;
         String value = propertyTaxRate.getText().toString();
-        RealEstateMarketAnalysisApplication.getInstance().getDataController().setValue(key, value);
+        dataController.setValue(key, value);
         return false;
       }
     });
@@ -68,7 +72,7 @@ public class TaxesActivity extends Activity {
       public boolean onKey(View v, int keyCode, KeyEvent event) {
         String key = DatabaseAdapter.LOCAL_MUNICIPAL_FEES;
         String value = localMunicipalFees.getText().toString();
-        RealEstateMarketAnalysisApplication.getInstance().getDataController().setValue(key, value);
+        dataController.setValue(key, value);
         return false;
       }
     });
@@ -80,5 +84,20 @@ public class TaxesActivity extends Activity {
        finish();
       }
     });
+  }
+  
+  private void assignValuesToFields() {
+    
+    String mtr = dataController.getValue(DatabaseAdapter.MARGINAL_TAX_RATE);
+    marginalTaxRate.setText(mtr);
+    
+    String bv = dataController.getValue(DatabaseAdapter.BUILDING_VALUE);
+    buildingValue.setText(bv);
+    
+    String ptr = dataController.getValue(DatabaseAdapter.PROPERTY_TAX_RATE);
+    propertyTaxRate.setText(ptr);
+    
+    String lmf = dataController.getValue(DatabaseAdapter.LOCAL_MUNICIPAL_FEES);
+    localMunicipalFees.setText(lmf);
   }
 }

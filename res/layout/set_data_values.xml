@@ -9,8 +9,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="20dip" android:layout_gravity="center_horizontal">
         <Button android:layout_width="wrap_content" android:text="@string/loadSavedValuesButtonText" android:id="@+id/loadSavedValuesButton" android:layout_gravity="center_horizontal" android:layout_height="wrap_content"></Button>
-        <Button android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/editWithoutDefaultValuesButtonText" android:id="@+id/editWithoutDefaultValuesButton"></Button>
         <Button android:layout_width="wrap_content" android:layout_gravity="center_horizontal" android:layout_height="wrap_content" android:id="@+id/defaultValuesFromAddress" android:text="@string/defaultValuesFromAddress"></Button>
+        <Button android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/saveCurrentValuesToDatabase" android:text="@string/saveCurrentValuesToDatabaseButtonText"></Button>
+        <Button android:id="@+id/editValuesButton" android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:text="@string/editValuesButtonText" android:layout_width="wrap_content"></Button>
     </LinearLayout>
     
 </LinearLayout>

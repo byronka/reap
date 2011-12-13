@@ -38,7 +38,8 @@
 			android:label="@string/savedDataBrowserActivityTitleText" />
 		<activity android:name=".DatabaseSearchActivity" 
 			android:label="@string/databaseSearchActivityTitleText" />
+		<activity android:name=".SaveCurrentValuesActivity" 
+			android:label="@string/saveCurrentValuesActivityTitleText" />
 
-<!-- A LOT to do here.  Clean up, add stuff, etc. -->
     </application>
 </manifest>

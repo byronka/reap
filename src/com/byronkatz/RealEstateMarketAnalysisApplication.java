@@ -22,8 +22,9 @@ public class RealEstateMarketAnalysisApplication extends Application {
     return dataController;
   }
 
-  public void setDataController(DataController dataController) {
+  private void setDataController(DataController dataController) {
     this.dataController = dataController;
   }
+
   
 }

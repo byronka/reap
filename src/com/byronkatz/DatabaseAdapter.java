@@ -48,11 +48,12 @@ public class DatabaseAdapter {
   public static final String GENERAL_SALE_EXPENSES             = "general_sale_expenses";
   public static final String REQUIRED_RATE_OF_RETURN           = "required_rate_of_return";
   public static final String FIX_UP_COSTS                      = "fix_up_costs";
+  public static final String CLOSING_COSTS                     = "closing_costs";
 
   private static final String DATABASE_CREATE = "create table " + 
       DATABASE_TABLE + " ("     + 
       KEY_ID + " integer primary key autoincrement" + ", " +
-      KEY_NAME                           + " text not null" + ", " +
+//      KEY_NAME                           + " text not null" + ", " +
       TOTAL_PURCHASE_VALUE               + "REAL"    +     ", " +
       YEARLY_INTEREST_RATE               + "REAL"    +     ", " +
       MONTHLY_INTEREST_RATE              + "REAL"    +     ", " +
@@ -76,8 +77,9 @@ public class DatabaseAdapter {
       SELLING_BROKER_RATE                + "REAL"    +     ", " +
       GENERAL_SALE_EXPENSES              + "REAL"    +     ", " +
       REQUIRED_RATE_OF_RETURN            + "REAL"    +     ", " +
-      FIX_UP_COSTS                       + "REAL"    +
-      		");";
+      FIX_UP_COSTS                       + "REAL"    +     ","  +
+      CLOSING_COSTS                      + "REAL"    +
+      		" );";
 
   private SQLiteDatabase db;
   private myDbHelper dbHelper;
@@ -107,7 +109,7 @@ public class DatabaseAdapter {
       contentValues.put(key, value);
     }
     
-    int index = (int) db.insert(DATABASE_TABLE, KEY_ID, contentValues);
+    int index = (int) db.insert(DATABASE_TABLE, null, contentValues);
 
     return index;
   }

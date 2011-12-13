@@ -15,9 +15,11 @@ public class RentalActivity extends Activity {
   private EditText yearlyHomeInsurance;
   private EditText vacancyAndCreditLoss;
   private EditText fixupCosts;
-  private EditText ininialYearlyGeneralExpenses;
+  private EditText initialYearlyGeneralExpenses;
   private EditText requiredRateOfReturn;
   private Button backButton;
+  private final DataController dataController = 
+      RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
 
   /** Called when the activity is first created. */
@@ -31,17 +33,19 @@ public class RentalActivity extends Activity {
     yearlyHomeInsurance           = (EditText)findViewById(R.id.yearlyHomeInsuranceEditText);
     vacancyAndCreditLoss          = (EditText)findViewById(R.id.vacancyAndCreditLossEditText);
     fixupCosts                    = (EditText)findViewById(R.id.fixupCostsEditText);
-    ininialYearlyGeneralExpenses  = (EditText)findViewById(R.id.initialYearlyGeneralExpensesEditText);
+    initialYearlyGeneralExpenses  = (EditText)findViewById(R.id.initialYearlyGeneralExpensesEditText);
     requiredRateOfReturn          = (EditText)findViewById(R.id.requiredRateOfReturnEditText);
     backButton                    = (Button)  findViewById(R.id.backButton);
 
+    assignValuesToFields();
+    
     //Set up the listeners for the inputs
     estimatedRentPayments.setOnKeyListener(new OnKeyListener() {
       @Override
       public boolean onKey(View v, int keyCode, KeyEvent event) {
         String key = DatabaseAdapter.ESTIMATED_RENT_PAYMENTS;
         String value = estimatedRentPayments.getText().toString();
-        RealEstateMarketAnalysisApplication.getInstance().getDataController().setValue(key, value);
+        dataController.setValue(key, value);
         return false;
       }
     });
@@ -51,7 +55,7 @@ public class RentalActivity extends Activity {
       public boolean onKey(View v, int keyCode, KeyEvent event) {
         String key = DatabaseAdapter.YEARLY_HOME_INSURANCE;
         String value = yearlyHomeInsurance.getText().toString();
-        RealEstateMarketAnalysisApplication.getInstance().getDataController().setValue(key, value);
+        dataController.setValue(key, value);
         return false;
       }
     });
@@ -61,7 +65,7 @@ public class RentalActivity extends Activity {
       public boolean onKey(View v, int keyCode, KeyEvent event) {
         String key = DatabaseAdapter.VACANCY_AND_CREDIT_LOSS_RATE;
         String value = vacancyAndCreditLoss.getText().toString();
-        RealEstateMarketAnalysisApplication.getInstance().getDataController().setValue(key, value);
+        dataController.setValue(key, value);
         return false;
       }
     });
@@ -71,17 +75,17 @@ public class RentalActivity extends Activity {
       public boolean onKey(View v, int keyCode, KeyEvent event) {
         String key = DatabaseAdapter.FIX_UP_COSTS;
         String value = fixupCosts.getText().toString();
-        RealEstateMarketAnalysisApplication.getInstance().getDataController().setValue(key, value);
+        dataController.setValue(key, value);
         return false;
       }
     });
 
-    ininialYearlyGeneralExpenses.setOnKeyListener(new OnKeyListener() {
+    initialYearlyGeneralExpenses.setOnKeyListener(new OnKeyListener() {
       @Override
       public boolean onKey(View v, int keyCode, KeyEvent event) {
         String key = DatabaseAdapter.INITIAL_YEARLY_GENERAL_EXPENSES;
-        String value = ininialYearlyGeneralExpenses.getText().toString();
-        RealEstateMarketAnalysisApplication.getInstance().getDataController().setValue(key, value);
+        String value = initialYearlyGeneralExpenses.getText().toString();
+        dataController.setValue(key, value);
         return false;
       }
     });
@@ -91,7 +95,7 @@ public class RentalActivity extends Activity {
       public boolean onKey(View v, int keyCode, KeyEvent event) {
         String key = DatabaseAdapter.REQUIRED_RATE_OF_RETURN;
         String value = requiredRateOfReturn.getText().toString();
-        RealEstateMarketAnalysisApplication.getInstance().getDataController().setValue(key, value);
+        dataController.setValue(key, value);
         return false;
       }
     });
@@ -107,4 +111,25 @@ public class RentalActivity extends Activity {
     });
   }
 
+  
+  private void assignValuesToFields() {
+    
+    String erp = dataController.getValue(DatabaseAdapter.ESTIMATED_RENT_PAYMENTS);
+    estimatedRentPayments.setText(erp);
+    
+    String yhi = dataController.getValue(DatabaseAdapter.YEARLY_HOME_INSURANCE);
+    yearlyHomeInsurance.setText(yhi);
+    
+    String vacl = dataController.getValue(DatabaseAdapter.VACANCY_AND_CREDIT_LOSS_RATE);
+    vacancyAndCreditLoss.setText(vacl);
+    
+    String fc = dataController.getValue(DatabaseAdapter.FIX_UP_COSTS);
+    fixupCosts.setText(fc);
+    
+    String iyge = dataController.getValue(DatabaseAdapter.INITIAL_YEARLY_GENERAL_EXPENSES);
+    initialYearlyGeneralExpenses.setText(iyge);
+    
+    String rrr = dataController.getValue(DatabaseAdapter.REQUIRED_RATE_OF_RETURN);
+    requiredRateOfReturn.setText(rrr);
+  }
 }

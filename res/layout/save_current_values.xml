@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+		<LinearLayout
+		    android:id="@+id/saveCurrentValueButtonsLinearLayout"
+		    android:layout_height="wrap_content" android:layout_width="fill_parent">
+		    <Button android:id="@+id/saveButton" android:layout_height="wrap_content"
+    			android:text="@string/saveButtonText" android:layout_weight="1" android:layout_width="0dp"></Button>
+    		<Button android:id="@+id/backButton" android:layout_height="wrap_content"
+    			android:text="@string/backButtonText" android:layout_weight="1" android:layout_width="0dp"></Button>
+		</LinearLayout>
+
+	<ScrollView android:id="@+id/dataValuesScrollView"
+		android:layout_width="fill_parent" android:layout_weight="1" android:layout_height="wrap_content" android:layout_gravity="top">
+		<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:stretchColumns="1">
+
+			<TableRow>
+				<TextView android:text="Taxes" android:textColor="#abea15"
+					android:padding="3dip" />
+			</TableRow>
+			
+			<TableRow>
+				<TextView android:layout_column="1" android:text="Marginal Tax Rate"
+					android:padding="3dip" />
+				<TextView android:text="0.04" android:gravity="right"
+					android:padding="3dip" />
+			</TableRow>
+
+			<TableRow>
+				<TextView android:layout_column="1" android:text="Building Value"
+					android:padding="3dip" />
+				<TextView android:text="$450,000.00" android:gravity="right"
+					android:padding="3dip" />
+			</TableRow>
+
+			<TableRow>
+				<TextView android:layout_column="1" android:text="Property Tax Rate"
+					android:padding="3dip" />
+				<TextView android:text="0.05" android:gravity="right"
+					android:padding="3dip" android:editable="true"/>
+			</TableRow>
+
+			<TableRow>
+				<TextView android:text="Loan" android:textColor="#abea15"
+					android:padding="3dip" />
+			</TableRow>
+			
+			<TableRow>
+				<TextView android:text="X" android:padding="3dip" />
+				<TextView android:text="Import..." android:padding="3dip" />
+			</TableRow>
+
+			<TableRow>
+				<TextView android:text="X" android:padding="3dip" />
+				<TextView android:text="Export..." android:padding="3dip" />
+				<TextView android:text="Ctrl-E" android:gravity="right"
+					android:padding="3dip" />
+			</TableRow>
+
+			<View android:layout_height="2dip" android:background="#FF909090" />
+
+			<TableRow>
+				<TextView android:layout_column="1" android:text="Quit"
+					android:padding="3dip" />
+			</TableRow>
+		</TableLayout>
+	</ScrollView>
+
+</LinearLayout>

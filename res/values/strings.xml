@@ -103,7 +103,7 @@
 		<string name="initialYearlyGeneralExpensesTitle">Initial Yearly General Expenses: </string>
 		<string name="requiredRateOfReturnDescriptionText">The required rate of return is the minimum rate of return, as a yearly percentage, expected as the average yearly return.  It is used in the net present value equation to bring all future values into the present value.</string>
 		<string name="requiredRateOfReturnTitleText">Required Rate of Return: </string>
-		<string name="editWithoutDefaultValuesButtonText">Edit values with no defaults set</string>
+		<string name="editValuesButtonText">Edit values</string>
 		<string name="genericDefaultValues">Use generic default values</string>
 		<string name="defaultValuesFromAddress">Use default values from address</string>
 		
@@ -124,5 +124,8 @@
 		<string name="maximumPriceEditText">Maximum price: </string>
 		<string name="savedDataBrowserActivityTitleText">Saved Data Browser</string>
 		<string name="databaseSearchActivityTitleText">Database Search</string>
+		<string name="saveCurrentValuesActivityTitleText">Save Current Values</string>
+		<string name="saveCurrentValuesToDatabaseButtonText">Save current values to database</string>
+		<string name="saveButtonText">Save</string>
 
 </resources>

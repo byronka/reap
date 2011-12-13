@@ -14,6 +14,8 @@ public class FinancialEnvironmentActivity extends Activity {
   private EditText inflationRate;
   private EditText realEstateAppreciationRate;
   private Button backButton;
+  private final DataController dataController = 
+      RealEstateMarketAnalysisApplication.getInstance().getDataController();
   
   /** Called when the activity is first created. */
   @Override
@@ -26,12 +28,14 @@ public class FinancialEnvironmentActivity extends Activity {
     realEstateAppreciationRate  = (EditText)findViewById(R.id.realEstateAppreciationRateEditText);
     backButton                  = (Button)findViewById(R.id.backButton);
     
+    assignValuesToFields();
+    
     inflationRate.setOnKeyListener(new OnKeyListener() {
       @Override
       public boolean onKey(View v, int keyCode, KeyEvent event) {
         String key = DatabaseAdapter.INFLATION_RATE;
         String value = inflationRate.getText().toString();
-        RealEstateMarketAnalysisApplication.getInstance().getDataController().setValue(key, value);
+        dataController.setValue(key, value);
         return false;
       }
     });
@@ -42,7 +46,7 @@ public class FinancialEnvironmentActivity extends Activity {
       public boolean onKey(View v, int keyCode, KeyEvent event) {
         String key = DatabaseAdapter.REAL_ESTATE_APPRECIATION_RATE;
         String value = realEstateAppreciationRate.getText().toString();
-        RealEstateMarketAnalysisApplication.getInstance().getDataController().setValue(key, value);
+        dataController.setValue(key, value);
         return false;
       }
     });
@@ -54,6 +58,16 @@ public class FinancialEnvironmentActivity extends Activity {
        finish();
       }
     });
+  }
+  
+  private void assignValuesToFields() {
+
+    String ir = dataController.getValue(DatabaseAdapter.INFLATION_RATE);
+    inflationRate.setText(ir);
+    
+    String rear = dataController.getValue(DatabaseAdapter.REAL_ESTATE_APPRECIATION_RATE);
+    realEstateAppreciationRate.setText(rear);
+    
   }
 }
 

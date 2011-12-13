@@ -14,6 +14,8 @@ public class SaleActivity extends Activity {
   private EditText generalSaleExpenses;
   private EditText sellingBrokerRate;
   private Button backButton;
+  private final DataController dataController = 
+      RealEstateMarketAnalysisApplication.getInstance().getDataController();
   
   /** Called when the activity is first created. */
   @Override
@@ -26,13 +28,15 @@ public class SaleActivity extends Activity {
     sellingBrokerRate     = (EditText)findViewById(R.id.sellingBrokerRateEditText);
     backButton            = (Button)  findViewById(R.id.backButton);
     
+    assignValuesToFields();
+    
     //Set up the listeners for the inputs
     generalSaleExpenses.setOnKeyListener(new OnKeyListener() {
       @Override
       public boolean onKey(View v, int keyCode, KeyEvent event) {
         String key = DatabaseAdapter.GENERAL_SALE_EXPENSES;
         String value = generalSaleExpenses.getText().toString();
-        RealEstateMarketAnalysisApplication.getInstance().getDataController().setValue(key, value);
+        dataController.setValue(key, value);
         return false;
       }
     });
@@ -42,7 +46,7 @@ public class SaleActivity extends Activity {
       public boolean onKey(View v, int keyCode, KeyEvent event) {
         String key = DatabaseAdapter.SELLING_BROKER_RATE;
         String value = sellingBrokerRate.getText().toString();
-        RealEstateMarketAnalysisApplication.getInstance().getDataController().setValue(key, value);
+        dataController.setValue(key, value);
         return false;
       }
     });
@@ -57,4 +61,15 @@ public class SaleActivity extends Activity {
     });
     
   }
+  
+  private void assignValuesToFields() {
+    
+    String gse = dataController.getValue(DatabaseAdapter.GENERAL_SALE_EXPENSES);
+    generalSaleExpenses.setText(gse);
+    
+    String sbr = dataController.getValue(DatabaseAdapter.SELLING_BROKER_RATE);
+    sellingBrokerRate.setText(sbr);
+    
+  }
+  
 }

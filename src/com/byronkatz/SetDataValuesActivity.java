@@ -12,6 +12,7 @@ public class SetDataValuesActivity extends Activity {
   Button loadSavedValuesFromDatabase;
   Button editValuesWithNoDefaultsSet;
   Button defaultValuesFromAddress;
+  Button saveCurrentValues;
 
   /** Called when the activity is first created. */
   @Override
@@ -20,8 +21,9 @@ public class SetDataValuesActivity extends Activity {
     setContentView(R.layout.set_data_values);
 
     loadSavedValuesFromDatabase = (Button) findViewById(R.id.loadSavedValuesButton);
-    editValuesWithNoDefaultsSet = (Button) findViewById(R.id.editWithoutDefaultValuesButton);
+    editValuesWithNoDefaultsSet = (Button) findViewById(R.id.editValuesButton);
     defaultValuesFromAddress    = (Button) findViewById(R.id.defaultValuesFromAddress);
+    saveCurrentValues           = (Button) findViewById(R.id.saveCurrentValuesToDatabase);
 
     loadSavedValuesFromDatabase.setOnClickListener(new OnClickListener() {
       @Override
@@ -43,6 +45,15 @@ public class SetDataValuesActivity extends Activity {
       @Override
       public void onClick(View v) {
         Intent intent = new Intent(SetDataValuesActivity.this, AddressActivity.class);
+        startActivity(intent); 
+      }
+    });
+    
+    saveCurrentValues.setOnClickListener(new OnClickListener() {
+      
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(SetDataValuesActivity.this, SaveCurrentValuesActivity.class);
         startActivity(intent); 
       }
     });
