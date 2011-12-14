@@ -19,7 +19,7 @@ public class DatabaseAdapter {
   private static final int DATABASE_VERSION = 1;
 
   // The index (key) column name for use in where clauses.
-  public static final String KEY_ID="id";
+  public static final String KEY_ID="_id";
 
   // The name and column index of each column in your database.
   public static final String KEY_NAME                          = "name"; 
@@ -53,32 +53,31 @@ public class DatabaseAdapter {
   private static final String DATABASE_CREATE = "create table " + 
       DATABASE_TABLE + " ("     + 
       KEY_ID + " integer primary key autoincrement" + ", " +
-//      KEY_NAME                           + " text not null" + ", " +
-      TOTAL_PURCHASE_VALUE               + "REAL"    +     ", " +
-      YEARLY_INTEREST_RATE               + "REAL"    +     ", " +
-      MONTHLY_INTEREST_RATE              + "REAL"    +     ", " +
-      BUILDING_VALUE                     + "REAL"    +     ", " +
-      NUMBER_OF_COMPOUNDING_PERIODS      + "INTEGER" +     ", " +
-      INFLATION_RATE                     + "REAL"    +     ", " +
-      PRIMARY_MORTGAGE_INSURANCE_RATE    + "REAL"    +     ", " +
-      DOWN_PAYMENT                       + "REAL"    +     ", " +
-      STREET_ADDRESS                     + "TEXT"    +     ", " +
-      CITY                               + "TEXT"    +     ", " +
-      STATE_INITIALS                     + "TEXT"    +     ", " +
-      ESTIMATED_RENT_PAYMENTS            + "REAL"    +     ", " +
-      REAL_ESTATE_APPRECIATION_RATE      + "REAL"    +     ", " +
-      YEARLY_ALTERNATE_INVESTMENT_RETURN + "REAL"    +     ", " +
-      YEARLY_HOME_INSURANCE              + "REAL"    +     ", " +
-      PROPERTY_TAX_RATE                  + "REAL"    +     ", " +
-      LOCAL_MUNICIPAL_FEES               + "REAL"    +     ", " +
-      VACANCY_AND_CREDIT_LOSS_RATE       + "REAL"    +     ", " +
-      INITIAL_YEARLY_GENERAL_EXPENSES    + "REAL"    +     ", " +
-      MARGINAL_TAX_RATE                  + "REAL"    +     ", " +
-      SELLING_BROKER_RATE                + "REAL"    +     ", " +
-      GENERAL_SALE_EXPENSES              + "REAL"    +     ", " +
-      REQUIRED_RATE_OF_RETURN            + "REAL"    +     ", " +
-      FIX_UP_COSTS                       + "REAL"    +     ","  +
-      CLOSING_COSTS                      + "REAL"    +
+      TOTAL_PURCHASE_VALUE               + " REAL"    +     ", " +
+      YEARLY_INTEREST_RATE               + " REAL"    +     ", " +
+      MONTHLY_INTEREST_RATE              + " REAL"    +     ", " +
+      BUILDING_VALUE                     + " REAL"    +     ", " +
+      NUMBER_OF_COMPOUNDING_PERIODS      + " INTEGER" +     ", " +
+      INFLATION_RATE                     + " REAL"    +     ", " +
+      PRIMARY_MORTGAGE_INSURANCE_RATE    + " REAL"    +     ", " +
+      DOWN_PAYMENT                       + " REAL"    +     ", " +
+      STREET_ADDRESS                     + " TEXT"    +     ", " +
+      CITY                               + " TEXT"    +     ", " +
+      STATE_INITIALS                     + " TEXT"    +     ", " +
+      ESTIMATED_RENT_PAYMENTS            + " REAL"    +     ", " +
+      REAL_ESTATE_APPRECIATION_RATE      + " REAL"    +     ", " +
+      YEARLY_ALTERNATE_INVESTMENT_RETURN + " REAL"    +     ", " +
+      YEARLY_HOME_INSURANCE              + " REAL"    +     ", " +
+      PROPERTY_TAX_RATE                  + " REAL"    +     ", " +
+      LOCAL_MUNICIPAL_FEES               + " REAL"    +     ", " +
+      VACANCY_AND_CREDIT_LOSS_RATE       + " REAL"    +     ", " +
+      INITIAL_YEARLY_GENERAL_EXPENSES    + " REAL"    +     ", " +
+      MARGINAL_TAX_RATE                  + " REAL"    +     ", " +
+      SELLING_BROKER_RATE                + " REAL"    +     ", " +
+      GENERAL_SALE_EXPENSES              + " REAL"    +     ", " +
+      REQUIRED_RATE_OF_RETURN            + " REAL"    +     ", " +
+      FIX_UP_COSTS                       + " REAL"    +     ","  +
+      CLOSING_COSTS                      + " REAL"    +
       		" );";
 
   private SQLiteDatabase db;
@@ -102,14 +101,13 @@ public class DatabaseAdapter {
     // Create a new ContentValues to represent my row
     // and insert it into the database.
     ContentValues contentValues = new ContentValues();
-    
     for (HashMap.Entry<String, String> entry : fieldValues.entrySet()) {
       String key = entry.getKey();
       String value = entry.getValue();
       contentValues.put(key, value);
     }
-    
-    int index = (int) db.insert(DATABASE_TABLE, null, contentValues);
+
+    int index = (int) db.insertOrThrow(DATABASE_TABLE, null, contentValues);
 
     return index;
   }
@@ -119,7 +117,7 @@ public class DatabaseAdapter {
   }
 
   public Cursor getAllEntries () {
-    return db.query(DATABASE_TABLE, new String[] {KEY_ID, KEY_NAME,TOTAL_PURCHASE_VALUE, 
+    return db.query(DATABASE_TABLE, new String[] {KEY_ID,TOTAL_PURCHASE_VALUE, 
 YEARLY_INTEREST_RATE, MONTHLY_INTEREST_RATE, BUILDING_VALUE, NUMBER_OF_COMPOUNDING_PERIODS,
 INFLATION_RATE, PRIMARY_MORTGAGE_INSURANCE_RATE, DOWN_PAYMENT, STREET_ADDRESS, CITY, STATE_INITIALS,
 ESTIMATED_RENT_PAYMENTS, REAL_ESTATE_APPRECIATION_RATE, YEARLY_ALTERNATE_INVESTMENT_RETURN,

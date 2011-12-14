@@ -13,8 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-
-
 public class LoanActivity extends Activity {
   
   private EditText yearlyInterestRate;
@@ -82,11 +80,15 @@ public class LoanActivity extends Activity {
       @Override
       public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
           long arg3) {
+        
+        int THIRTY_YEARS  = adapter.getPosition("Fixed-rate mortgage - 30 years");
+        int FIFTEEN_YEARS = adapter.getPosition("Fixed-rate mortgage - 15 years");
         String value = null;
+        
         String key = DatabaseAdapter.NUMBER_OF_COMPOUNDING_PERIODS;
-        if (loanTerm.getItemAtPosition(pos).toString() == "Fixed-rate mortgage - 30 years") {
+        if (pos == THIRTY_YEARS) {
           value = "360";
-        } else if (loanTerm.getItemAtPosition(pos).toString() == "Fixed-rate mortgage - 15 years") {
+        } else if (pos == FIFTEEN_YEARS) {
           value = "180";
         }
         dataController.setValue(key, value);
@@ -147,4 +149,15 @@ public class LoanActivity extends Activity {
     closingCosts.setText(cC);
   }
   
+  @Override
+  protected void onPause() {
+    // TODO Auto-generated method stub
+    super.onPause();
+  }
+  
+  @Override
+  protected void onResume() {
+    // TODO Auto-generated method stub
+    super.onResume();
+  }
 }

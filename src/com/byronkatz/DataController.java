@@ -3,6 +3,7 @@ package com.byronkatz;
 import java.util.HashMap;
 
 import android.content.Context;
+import android.database.Cursor;
 
 public class DataController {
 
@@ -13,7 +14,6 @@ public class DataController {
   public DataController(Context context) {
     loadFieldValues();
     databaseAdapter = new DatabaseAdapter(context);
-    databaseAdapter.insertEntry(fieldValues);
   }
 
 //  public void loadFieldValues() {
@@ -88,6 +88,10 @@ public class DataController {
     databaseAdapter.insertEntry(fieldValues);
   }
 
+  public Cursor getAllDatabaseValues() {
+    Cursor cursor = databaseAdapter.getAllEntries();
+    return cursor;
+  }
   
 }
 
