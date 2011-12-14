@@ -97,15 +97,7 @@ public class DatabaseAdapter {
     db.close();
   }
 
-  public int insertEntry(HashMap<String, String> fieldValues) {
-    // Create a new ContentValues to represent my row
-    // and insert it into the database.
-    ContentValues contentValues = new ContentValues();
-    for (HashMap.Entry<String, String> entry : fieldValues.entrySet()) {
-      String key = entry.getKey();
-      String value = entry.getValue();
-      contentValues.put(key, value);
-    }
+  public int insertEntry(ContentValues contentValues) {
 
     int index = (int) db.insertOrThrow(DATABASE_TABLE, null, contentValues);
 
@@ -117,14 +109,8 @@ public class DatabaseAdapter {
   }
 
   public Cursor getAllEntries () {
-    return db.query(DATABASE_TABLE, new String[] {KEY_ID,TOTAL_PURCHASE_VALUE, 
-YEARLY_INTEREST_RATE, MONTHLY_INTEREST_RATE, BUILDING_VALUE, NUMBER_OF_COMPOUNDING_PERIODS,
-INFLATION_RATE, PRIMARY_MORTGAGE_INSURANCE_RATE, DOWN_PAYMENT, STREET_ADDRESS, CITY, STATE_INITIALS,
-ESTIMATED_RENT_PAYMENTS, REAL_ESTATE_APPRECIATION_RATE, YEARLY_ALTERNATE_INVESTMENT_RETURN,
-YEARLY_HOME_INSURANCE, PROPERTY_TAX_RATE, LOCAL_MUNICIPAL_FEES, VACANCY_AND_CREDIT_LOSS_RATE,
-INITIAL_YEARLY_GENERAL_EXPENSES, MARGINAL_TAX_RATE, SELLING_BROKER_RATE, GENERAL_SALE_EXPENSES,
-REQUIRED_RATE_OF_RETURN, FIX_UP_COSTS}, 
-        null, null, null, null, null);
+    
+    return db.query(DATABASE_TABLE, null, null, null, null, null, null);
   }
 
   public HashMap<String, String> getEntry(long rowIndex) {
