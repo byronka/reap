@@ -40,6 +40,10 @@ public class SaveCurrentValuesActivity extends Activity {
     });
   }
 
+  /**
+   * assignValuesToTable adds values to the table which is located at
+   * the bottom of the layout for confirmation of the proper values.
+   */
   private void assignValuesToTable() {
     
   }

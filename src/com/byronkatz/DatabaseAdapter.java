@@ -23,7 +23,6 @@ public class DatabaseAdapter {
 
   // The name and column index of each column in your database.
   public static final String KEY_NAME                          = "name"; 
-  public static final int    NAME_COLUMN                       = 1;
   public static final String TOTAL_PURCHASE_VALUE              = "total_purchase_value";
   public static final String YEARLY_INTEREST_RATE              = "yearly_interest_rate";
   public static final String MONTHLY_INTEREST_RATE             = "monthly_interest_rate";
@@ -98,7 +97,7 @@ public class DatabaseAdapter {
   }
 
   public int insertEntry(ContentValues contentValues) {
-
+    contentValues.remove(KEY_ID);
     int index = (int) db.insertOrThrow(DATABASE_TABLE, null, contentValues);
 
     return index;
