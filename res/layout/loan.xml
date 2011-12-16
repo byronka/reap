@@ -1,88 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:weightSum="1">
-	<TextView android:textAppearance="?android:attr/textAppearanceLarge"
-		android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal" android:id="@+id/LoanScreenHeader"
-		android:text="@string/loanScreenHeaderText"></TextView>
-	<ScrollView android:id="@+id/overallLoanScrollView"
-		android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="20dip" android:layout_marginBottom="20dip">
-		<LinearLayout android:layout_height="fill_parent"
-			android:id="@+id/overallLoanLinearLayout" android:layout_width="fill_parent"
-			android:orientation="vertical">
-			<TextView android:text="@string/yearlyInterestRateDescriptionText"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:id="@+id/yearlyInterestRateDescription"></TextView>
-			<LinearLayout android:layout_height="wrap_content"
-				android:id="@+id/yearlyInterestRateLinearLayout"
-				android:layout_width="fill_parent">
-				<TextView android:text="@string/yearlyInterestRateTitleText"
-					android:textAppearance="?android:attr/textAppearanceMedium"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:id="@+id/yearlyInterestRateTitle"></TextView>
-				<EditText android:layout_weight="1" android:layout_width="fill_parent"
-					android:id="@+id/yearlyInterestRateEditText" 
-					android:inputType="numberDecimal" 
-					android:layout_height="wrap_content"></EditText>
-			</LinearLayout>
-			<TextView android:text="@string/downPaymentDescriptionText"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:id="@+id/downPaymentDescription"></TextView>
-			<LinearLayout android:layout_height="wrap_content"
-				android:id="@+id/downPaymentLinearLayout" android:layout_width="fill_parent">
-				<TextView android:text="@string/downPaymentTitleText"
-					android:textAppearance="?android:attr/textAppearanceMedium"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:id="@+id/downPaymentTitle"></TextView>
-				<EditText android:inputType="numberDecimal"
-					android:layout_weight="1" android:layout_width="fill_parent"
-					android:id="@+id/downPaymentEditText" android:layout_height="wrap_content"></EditText>
-			</LinearLayout>
-			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:id="@+id/numOfCompoundingPeriodsDescription" android:text="@string/numOfCompoundingPeriodsDescriptionText"></TextView>
-			<LinearLayout android:layout_height="wrap_content"
-				android:layout_width="fill_parent" android:id="@+id/numOfCompoundingPeriodsLinearLayout">
-				<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:id="@+id/numOfCompoundingPeriodsTitle" android:text="@string/numOfCompoundingPeriodsTitleText"></TextView>
-				<EditText android:layout_weight="1" android:layout_width="fill_parent"
-					android:layout_height="wrap_content" android:inputType="number|numberDecimal"
-					android:visibility="gone" android:id="@+id/numOfCompoundingPeriodsEditText"></EditText>
-			</LinearLayout>
-			<Spinner android:layout_height="wrap_content"
-				android:layout_width="fill_parent" android:id="@+id/numOfCompoundingPeriodsSpinner"
-				android:entries="@array/numOfCompoundingPeriodsArray"></Spinner>
-			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:id="@+id/totalPurchaseValueDescription" android:text="@string/totalPurchaseValueDescriptionText"></TextView>
-			<LinearLayout android:id="@+id/totalPurchasePriceLinearLayout"
-				android:layout_width="fill_parent" android:layout_height="wrap_content">
-				<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:id="@+id/totalPurchasePriceTitle" android:text="@string/totalPurchasePriceTitleText"></TextView>
-				<EditText android:layout_weight="1" android:layout_width="fill_parent"
-					android:layout_height="wrap_content" android:id="@+id/totalPurchasePriceEditText" android:inputType="numberDecimal"></EditText>
-			</LinearLayout>
-			
-			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:id="@+id/closingCostsDescription" android:text="@string/closingCostsDescriptionText"></TextView>
-			<LinearLayout android:id="@+id/closingCostsLinearLayout"
-				android:layout_width="fill_parent" android:layout_height="wrap_content">
-				<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:id="@+id/closingCostsTitle" android:text="@string/closingCostsTitleText"></TextView>
-				<EditText android:layout_weight="1" android:layout_width="fill_parent"
-					android:layout_height="wrap_content" android:id="@+id/closingCostsEditText" android:inputType="numberDecimal"></EditText>
-			</LinearLayout>
-		</LinearLayout>
-	</ScrollView>
-	<Button android:layout_width="wrap_content" android:id="@+id/backButton"
-		android:layout_height="wrap_content" android:text="@string/backButtonText"
-		android:layout_gravity="center_horizontal"></Button>
-
-</LinearLayout>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loanScrollView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent"
+    	android:layout_height="fill_parent" android:weightSum="1">
+    	<TextView android:textAppearance="?android:attr/textAppearanceLarge"
+    		android:layout_width="wrap_content" android:layout_height="wrap_content"
+    		android:layout_gravity="center_horizontal" android:id="@+id/LoanScreenHeader"
+    		android:text="@string/loanScreenHeaderText"></TextView>
+    	<ScrollView android:id="@+id/overallLoanScrollView"
+    		android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="20dip" android:layout_marginBottom="20dip">
+    		<LinearLayout android:layout_height="fill_parent"
+    			android:id="@+id/overallLoanLinearLayout" android:layout_width="fill_parent"
+    			android:orientation="vertical">
+    			<TextView android:text="@string/yearlyInterestRateDescriptionText"
+    				android:textAppearance="?android:attr/textAppearanceSmall"
+    				android:layout_width="wrap_content" android:layout_height="wrap_content"
+    				android:id="@+id/yearlyInterestRateDescription"></TextView>
+    			<LinearLayout android:layout_height="wrap_content"
+    				android:id="@+id/yearlyInterestRateLinearLayout"
+    				android:layout_width="fill_parent">
+    				<TextView android:text="@string/yearlyInterestRateTitleText"
+    					android:textAppearance="?android:attr/textAppearanceMedium"
+    					android:layout_width="wrap_content" android:layout_height="wrap_content"
+    					android:id="@+id/yearlyInterestRateTitle"></TextView>
+    				<EditText android:layout_weight="1" android:layout_width="fill_parent"
+    					android:id="@+id/yearlyInterestRateEditText" 
+    					android:inputType="numberDecimal" 
+    					android:layout_height="wrap_content"></EditText>
+    			</LinearLayout>
+    			<TextView android:text="@string/downPaymentDescriptionText"
+    				android:textAppearance="?android:attr/textAppearanceSmall"
+    				android:layout_width="wrap_content" android:layout_height="wrap_content"
+    				android:id="@+id/downPaymentDescription"></TextView>
+    			<LinearLayout android:layout_height="wrap_content"
+    				android:id="@+id/downPaymentLinearLayout" android:layout_width="fill_parent">
+    				<TextView android:text="@string/downPaymentTitleText"
+    					android:textAppearance="?android:attr/textAppearanceMedium"
+    					android:layout_width="wrap_content" android:layout_height="wrap_content"
+    					android:id="@+id/downPaymentTitle"></TextView>
+    				<EditText android:inputType="numberDecimal"
+    					android:layout_weight="1" android:layout_width="fill_parent"
+    					android:id="@+id/downPaymentEditText" android:layout_height="wrap_content"></EditText>
+    			</LinearLayout>
+    			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+    				android:layout_width="wrap_content" android:layout_height="wrap_content"
+    				android:id="@+id/numOfCompoundingPeriodsDescription" android:text="@string/numOfCompoundingPeriodsDescriptionText"></TextView>
+    			<LinearLayout android:layout_height="wrap_content"
+    				android:layout_width="fill_parent" android:id="@+id/numOfCompoundingPeriodsLinearLayout">
+    				<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+    					android:layout_width="wrap_content" android:layout_height="wrap_content"
+    					android:id="@+id/numOfCompoundingPeriodsTitle" android:text="@string/numOfCompoundingPeriodsTitleText"></TextView>
+    				<EditText android:layout_weight="1" android:layout_width="fill_parent"
+    					android:layout_height="wrap_content" android:inputType="number|numberDecimal"
+    					android:visibility="gone" android:id="@+id/numOfCompoundingPeriodsEditText"></EditText>
+    			</LinearLayout>
+    			<Spinner android:layout_height="wrap_content"
+    				android:layout_width="fill_parent" android:id="@+id/numOfCompoundingPeriodsSpinner"
+    				android:entries="@array/numOfCompoundingPeriodsArray"></Spinner>
+    			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+    				android:layout_width="wrap_content" android:layout_height="wrap_content"
+    				android:id="@+id/totalPurchaseValueDescription" android:text="@string/totalPurchaseValueDescriptionText"></TextView>
+    			<LinearLayout android:id="@+id/totalPurchasePriceLinearLayout"
+    				android:layout_width="fill_parent" android:layout_height="wrap_content">
+    				<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+    					android:layout_width="wrap_content" android:layout_height="wrap_content"
+    					android:id="@+id/totalPurchasePriceTitle" android:text="@string/totalPurchasePriceTitleText"></TextView>
+    				<EditText android:layout_weight="1" android:layout_width="fill_parent"
+    					android:layout_height="wrap_content" android:id="@+id/totalPurchasePriceEditText" android:inputType="numberDecimal"></EditText>
+    			</LinearLayout>
+    			
+    			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+    				android:layout_width="wrap_content" android:layout_height="wrap_content"
+    				android:id="@+id/closingCostsDescription" android:text="@string/closingCostsDescriptionText"></TextView>
+    			<LinearLayout android:id="@+id/closingCostsLinearLayout"
+    				android:layout_width="fill_parent" android:layout_height="wrap_content">
+    				<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+    					android:layout_width="wrap_content" android:layout_height="wrap_content"
+    					android:id="@+id/closingCostsTitle" android:text="@string/closingCostsTitleText"></TextView>
+    				<EditText android:layout_weight="1" android:layout_width="fill_parent"
+    					android:layout_height="wrap_content" android:id="@+id/closingCostsEditText" android:inputType="numberDecimal"></EditText>
+    			</LinearLayout>
+    		</LinearLayout>
+    	</ScrollView>
+    	<Button android:layout_width="wrap_content" android:id="@+id/backButton"
+    		android:layout_height="wrap_content" android:text="@string/backButtonText"
+    		android:layout_gravity="center_horizontal"></Button>
+    
+    </LinearLayout>
+</ScrollView>
