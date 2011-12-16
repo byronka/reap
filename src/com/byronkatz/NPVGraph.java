@@ -16,39 +16,48 @@ class NPVGraph extends View {
   public static final float GRAPH_MARGIN = 0.05f;
   public static final int GRAPH_MIN_X = 0;
   public static final int GRAPH_MIN_Y = 0;
-  public static final float CIRCLE_RADIUS = 3.0f;
-  
+  public static final float CIRCLE_RADIUS = 1.0f;
+
   private int graphMaxY;
   private int graphMaxX;
   private CalculationObject calculationObject;
   private HashMap<Float, Float> netPresentValueGraphMap;
   private GraphDataObject gdo;
-  
+
   public NPVGraph(Context context) {
     super(context);
-    initView();
+    //if we are not looking at the view in Eclipse...
+    if (! isInEditMode()) {
+      initView();
+    }
   }
 
   public NPVGraph(Context context, AttributeSet attrs) {
     super(context, attrs);
-    initView();
+    //if we are not looking at the view in Eclipse...
+    if (! isInEditMode()) {
+      initView();
+    }
   }
 
   public NPVGraph(Context context, 
-                     AttributeSet ats, 
-                     int defaultStyle) {
+      AttributeSet ats, 
+      int defaultStyle) {
     super(context, ats, defaultStyle);
-    initView();
+    //if we are not looking at the view in Eclipse...
+    if (! isInEditMode()) {
+      initView();
+    }
   }
 
   private void initView() {
     setFocusable(true);
-    
+
     calculationObject = new CalculationObject();
     netPresentValueGraphMap = new HashMap<Float, Float>();
     gdo = calculationObject.getGdo();
   }
-  
+
   private void buildNPVGraph() {
     double functionMinY = gdo.getMinNPV();
     double functionMaxY = gdo.getMaxNPV();
@@ -82,24 +91,27 @@ class NPVGraph extends View {
       netPresentValueGraphMap.put(xGraphValue, yGraphValue);
     }
   }
-  
+
   public void onDraw(Canvas canvas) {
-    
-    graphMaxY = getMeasuredHeight();
-    graphMaxX = getMeasuredWidth();
-    Paint defaultPaint = new Paint();
-    defaultPaint.setColor(Color.BLUE);
-    defaultPaint.setStrokeWidth(10.0f);
-    defaultPaint.setStyle(Paint.Style.STROKE);
-    buildNPVGraph();
-    
-    Rect graphFrameRect = new Rect(GRAPH_MIN_X,GRAPH_MIN_Y, 
-        graphMaxX, graphMaxY);
-    canvas.drawRect(graphFrameRect, defaultPaint);
-    for (HashMap.Entry<Float, Float> entry : netPresentValueGraphMap.entrySet()) {
-      Float xValue = entry.getKey();
-      Float yValue = entry.getValue();
-      canvas.drawCircle(xValue, yValue, CIRCLE_RADIUS, defaultPaint);
+//    //if we are not looking at the view in Eclipse...
+    if (! isInEditMode()) {
+
+      graphMaxY = getMeasuredHeight();
+      graphMaxX = getMeasuredWidth();
+      Paint defaultPaint = new Paint();
+      defaultPaint.setColor(Color.BLUE);
+      defaultPaint.setStrokeWidth(5.0f);
+      defaultPaint.setStyle(Paint.Style.STROKE);
+      buildNPVGraph();
+
+      Rect graphFrameRect = new Rect(GRAPH_MIN_X,GRAPH_MIN_Y, 
+          graphMaxX, graphMaxY);
+      canvas.drawRect(graphFrameRect, defaultPaint);
+      for (HashMap.Entry<Float, Float> entry : netPresentValueGraphMap.entrySet()) {
+        Float xValue = entry.getKey();
+        Float yValue = entry.getValue();
+        canvas.drawCircle(xValue, yValue, CIRCLE_RADIUS, defaultPaint);
+      }
     }
   }
 
