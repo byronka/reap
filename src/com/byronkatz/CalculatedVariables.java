@@ -81,7 +81,7 @@ public class CalculatedVariables {
   }
 
 
-  public void getGraphDataObject() {
+  public void crunchCalculation() {
 
     /*note: many of the equations below are calculated using monthly variables.  This is done
      * when the reality of the equation is monthly.  For example, in the final summation of

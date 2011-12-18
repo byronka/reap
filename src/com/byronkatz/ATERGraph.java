@@ -15,8 +15,10 @@ public class ATERGraph extends AnalysisGraph {
 
   public ATERGraph(Context context, AttributeSet attrs) {
     super(context, attrs);
-    setGraphDataObject(new CalculatedVariables().getAterGraphDataObject());
-  }
+    CalculatedVariables cv = new CalculatedVariables();
+    cv.crunchCalculation();
+    setGraphDataObject(cv.getAterGraphDataObject());
+    }
 
 //  public ATERGraph(Context context, AttributeSet ats, int defaultStyle) {
 //    super(context, ats, defaultStyle);

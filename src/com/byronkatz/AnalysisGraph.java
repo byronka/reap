@@ -26,10 +26,8 @@ class AnalysisGraph extends View {
   public AnalysisGraph(Context context, AttributeSet attrs) {
     super(context, attrs);
     //if we are not looking at the view in Eclipse...
-    if (! isInEditMode()) {
       graphMap = new HashMap<Float, Float>();
       initView();
-    }
   }
 
   public void setGraphDataObject(GraphDataObject graphDataObject) {
@@ -76,8 +74,6 @@ class AnalysisGraph extends View {
 
   public void onDraw(Canvas canvas) {
 //    //if we are not looking at the view in Eclipse...
-    if (! isInEditMode()) {
-
       graphMaxY = getMeasuredHeight();
       graphMaxX = getMeasuredWidth();
       Paint defaultPaint = new Paint();
@@ -94,7 +90,6 @@ class AnalysisGraph extends View {
         Float yValue = entry.getValue();
         canvas.drawCircle(xValue, yValue, CIRCLE_RADIUS, defaultPaint);
       }
-    }
   }
 
 

@@ -11,8 +11,10 @@ public class ATCFGraph extends AnalysisGraph {
 
   public ATCFGraph(Context context, AttributeSet attrs) {
     super(context, attrs);
-    setGraphDataObject(new CalculatedVariables().getAtcfGraphDataObject());
-  }
+    CalculatedVariables cv = new CalculatedVariables();
+    cv.crunchCalculation();
+    setGraphDataObject(cv.getAtcfGraphDataObject());
+    }
 
   
 }

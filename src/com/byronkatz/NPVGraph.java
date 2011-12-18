@@ -15,7 +15,9 @@ public class NPVGraph extends AnalysisGraph {
 
   public NPVGraph(Context context, AttributeSet attrs) {
     super(context, attrs);
-    setGraphDataObject(new CalculatedVariables().getNpvGraphDataObject());
+    CalculatedVariables cv = new CalculatedVariables();
+    cv.crunchCalculation();
+    setGraphDataObject(cv.getNpvGraphDataObject());
   }
 
 //  public NPVGraph(Context context, AttributeSet ats, int defaultStyle) {

@@ -40,7 +40,7 @@ public class GraphDataObject {
       minYearValue = year;
     }
     if (year > maxYearValue) {
-      minYearValue = year;
+      maxYearValue = year;
     }
   }
   
