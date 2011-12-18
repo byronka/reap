@@ -1,7 +1,5 @@
 package com.byronkatz;
 
-import java.util.HashMap;
-
 import android.app.ListActivity;
 import android.content.ContentValues;
 import android.database.Cursor;
