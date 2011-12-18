@@ -23,28 +23,8 @@ class AnalysisGraph extends View {
   private HashMap<Float, Float> graphMap;
   private GraphDataObject gdo;
 
-  public AnalysisGraph(Context context) {
-    super(context);
-    //if we are not looking at the view in Eclipse...
-    if (! isInEditMode()) {
-      graphMap = new HashMap<Float, Float>();
-      initView();
-    }
-  }
-
   public AnalysisGraph(Context context, AttributeSet attrs) {
     super(context, attrs);
-    //if we are not looking at the view in Eclipse...
-    if (! isInEditMode()) {
-      graphMap = new HashMap<Float, Float>();
-      initView();
-    }
-  }
-
-  public AnalysisGraph(Context context, 
-      AttributeSet ats, 
-      int defaultStyle) {
-    super(context, ats, defaultStyle);
     //if we are not looking at the view in Eclipse...
     if (! isInEditMode()) {
       graphMap = new HashMap<Float, Float>();
