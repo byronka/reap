@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
- <string-array name="states_array">
+	<string-array name="states_array">
 		<item>Alabama</item>
 		<item>Alaska</item>
 		<item>Arizona</item>
@@ -51,10 +51,11 @@
 		<item>West Virginia</item>
 		<item>Wisconsin</item>
 		<item>Wyoming</item>
-    </string-array>
-    
-    <string-array name="numOfCompoundingPeriodsArray">
-			<item>Fixed-rate mortgage - 30 years</item>
-			<item>Fixed-rate mortgage - 15 years</item>
-    	</string-array>    
+	</string-array>
+
+	<string-array name="numOfCompoundingPeriodsArray">
+		<item>Fixed-rate mortgage - 30 years</item>
+		<item>Fixed-rate mortgage - 15 years</item>
+	</string-array>
+	
 </resources>

@@ -49,6 +49,10 @@ public class DataController {
     this.contentValues = contentValues;
   }
   
+  public ContentValues getContentValues() {
+    return contentValues;
+  }
+
   public void setValue(String key, String value) {
     contentValues.put(key, value);
   }

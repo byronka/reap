@@ -6,15 +6,8 @@ import android.util.AttributeSet;
 
 public class ATCFGraph extends AnalysisGraph {
 
-  
-
-
   public ATCFGraph(Context context, AttributeSet attrs) {
-    super(context, attrs);
-    CalculatedVariables cv = new CalculatedVariables();
-    cv.crunchCalculation();
-    setGraphDataObject(cv.getAtcfGraphDataObject());
+    super(context, attrs, AnalysisGraph.ATCF_GRAPH);
     }
 
-  
 }

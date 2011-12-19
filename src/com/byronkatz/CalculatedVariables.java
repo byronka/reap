@@ -33,13 +33,12 @@ public class CalculatedVariables {
   private double initialYearlyPropertyTax;
 
   public CalculatedVariables() {
-    npvGraphDataObject  = new GraphDataObject();
-    aterGraphDataObject = new GraphDataObject();
-    atcfGraphDataObject = new GraphDataObject();
+    npvGraphDataObject  = new GraphDataObject("NPV Graph");
+    aterGraphDataObject = new GraphDataObject("ATER Graph");
+    atcfGraphDataObject = new GraphDataObject("ATCF Graph");
     //Get the singleton dataController
     dataController = RealEstateMarketAnalysisApplication.getInstance().getDataController();
     assignVariables();
-//    calculateGdo();
   }
 
   private void assignVariables() {
