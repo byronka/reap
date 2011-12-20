@@ -9,7 +9,7 @@
     <LinearLayout android:layout_height="wrap_content" android:id="@+id/addressOverallLinearLayout" android:layout_width="fill_parent" android:orientation="vertical" android:layout_marginTop="20dip" android:layout_marginBottom="20dip">
         <LinearLayout android:layout_height="wrap_content" android:id="@+id/LinearLayoutStreetAddress" android:layout_width="fill_parent">
             <TextView android:text="@string/streetAddressTitleText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/streetAddress"></TextView>
-            <EditText android:inputType="textPersonName" android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/streetAddressEditText">
+            <EditText android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/streetAddressEditText">
                 <requestFocus></requestFocus>
             </EditText>
         </LinearLayout>

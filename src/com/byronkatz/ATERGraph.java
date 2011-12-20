@@ -1,7 +1,6 @@
 package com.byronkatz;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.util.AttributeSet;
 
 public class ATERGraph extends AnalysisGraph {

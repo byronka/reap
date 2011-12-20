@@ -3,10 +3,8 @@ package com.byronkatz;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -45,6 +43,7 @@ public class AddressActivity extends Activity {
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     stateSpinner.setAdapter(adapter);
 
+
     assignValuesToFields();
 
     useGPS.setOnClickListener(new OnClickListener() {
@@ -56,35 +55,13 @@ public class AddressActivity extends Activity {
       }
     });
 
-    streetAddressEditText.setOnKeyListener(new OnKeyListener() {
-
-      @Override
-      public boolean onKey(View v, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.STREET_ADDRESS;
-        String value = streetAddressEditText.getText().toString();
-        dataController.setValue(key, value);
-        return false;
-      }
-    });
-
-    cityEditText.setOnKeyListener(new OnKeyListener() {
-
-      @Override
-      public boolean onKey(View v, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.CITY;
-        String value = cityEditText.getText().toString();
-        dataController.setValue(key, value);
-        return false;
-      }
-    });
-
     stateSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
       @Override
       public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
           long arg3) {
         String key = DatabaseAdapter.STATE_INITIALS;
-        
+
         String value = adapter.getItem(pos).toString();
         dataController.setValue(key, value);
       }
@@ -106,6 +83,19 @@ public class AddressActivity extends Activity {
 
   }
 
+  @Override
+  protected void onPause() {
+    String key = DatabaseAdapter.STREET_ADDRESS;
+    String value = streetAddressEditText.getText().toString();
+    dataController.setValue(key, value);
+    
+    key = DatabaseAdapter.CITY;
+    value = cityEditText.getText().toString();
+    dataController.setValue(key, value);
+    
+    super.onPause();
+  }
+  
   private void assignValuesToFields() {
 
     String sa = dataController.getValue(DatabaseAdapter.STREET_ADDRESS);
@@ -121,4 +111,6 @@ public class AddressActivity extends Activity {
     stateSpinner.setSelection(statePosition);
 
   }
+
+  
 }

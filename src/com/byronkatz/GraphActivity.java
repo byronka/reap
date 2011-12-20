@@ -2,6 +2,7 @@ package com.byronkatz;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 
 public class GraphActivity extends Activity {
@@ -33,13 +35,22 @@ public class GraphActivity extends Activity {
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
   private ContentValues contentValues;
   private ArrayAdapter<String> spinnerArrayAdapter;
+  private Float currentYearSelected;
+  
+  //grid variables at bottom
+  private TextView yearGridTextView;
+  private TextView atcfGridTextView;
+  private TextView aterGridTextView;
+  private TextView npvGridTextView;
 
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
     setContentView(R.layout.graph);
-
+    
+    currentYearSelected = 30.0f;
+    
     valueSpinner = (Spinner) findViewById(R.id.valueSpinner);
     contentValues = dataController.getContentValues();
     ArrayList<String> spinnerValuesArray = new ArrayList<String>();
@@ -56,8 +67,15 @@ public class GraphActivity extends Activity {
     maxValueEditText     =   (EditText) findViewById(R.id.maxValueEditText);
     aterGraph            =   (com.byronkatz.ATERGraph) findViewById(R.id.aterFrameLayout);
     atcfGraph            =   (com.byronkatz.ATCFGraph) findViewById(R.id.atcfFrameLayout);
-    npvGraph            =   (com.byronkatz.NPVGraph) findViewById(R.id.npvFrameLayout);
+    npvGraph             =   (com.byronkatz.NPVGraph) findViewById(R.id.npvFrameLayout);
     
+    yearGridTextView     = (TextView) findViewById(R.id.yearGridTextView);
+    atcfGridTextView     = (TextView) findViewById(R.id.atcfGridTextView);
+    aterGridTextView     = (TextView) findViewById(R.id.aterGridTextView);
+    npvGridTextView      = (TextView) findViewById(R.id.npvGridTextView);
+    
+
+
     
     valueSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -85,20 +103,7 @@ public class GraphActivity extends Activity {
       
       @Override
       public void onStopTrackingTouch(SeekBar seekBar) {
-        String minValueString = minValueEditText.getText().toString();
-        String maxValueString = maxValueEditText.getText().toString();
-        Double minValueNumeric = Double.valueOf(minValueString);
-        Double maxValueNumeric = Double.valueOf(maxValueString);
-        Double deltaValueNumeric = maxValueNumeric - minValueNumeric;
-        Integer progressSlid = valueSlider.getProgress();
-        Double percentageSlid = progressSlid / 100.0;
-        Double newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
-        String newCurrentValueString = String.valueOf(newCurrentValue);
-        currentValueEditText.setText(newCurrentValueString);
-        dataController.setValue(currentSliderKey, newCurrentValueString);
-        aterGraph.invalidate();
-        atcfGraph.invalidate();
-        npvGraph.invalidate();
+
       }
       
       @Override
@@ -109,9 +114,36 @@ public class GraphActivity extends Activity {
       
       @Override
       public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
+        String minValueString = minValueEditText.getText().toString();
+        String maxValueString = maxValueEditText.getText().toString();
+        Double minValueNumeric = Double.valueOf(minValueString);
+        Double maxValueNumeric = Double.valueOf(maxValueString);
+        Double deltaValueNumeric = maxValueNumeric - minValueNumeric;
+        Double percentageSlid = progress / 100.0;
+        Double newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
+        String newCurrentValueString = String.valueOf(newCurrentValue);
+        currentValueEditText.setText(newCurrentValueString);
+        dataController.setValue(currentSliderKey, newCurrentValueString);
+        aterGraph.invalidate();
+        atcfGraph.invalidate();
+        npvGraph.invalidate();
+        assignValues();
       }
     });
+  
+    
+  }
+  
+  private void assignValues() {
+
+    String currentYearSelectedString = String.valueOf(currentYearSelected);
+    String currentYearAterString     = CalculatedVariables.
+    String currentYearAtcfString     = 
+    String currentYearNpvString      = 
+    yearGridTextView.setText(currentYearSelectedString);
+    atcfGridTextView.setText(currentYearAterString);
+    aterGridTextView.setText(currentYearAtcfString);
+    npvGridTextView.setText(currentYearNpvString);
   }
 
 }

@@ -1,5 +1,7 @@
 package com.byronkatz;
 
+import java.util.HashMap;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,7 +10,6 @@ public class DataController {
 
   private ContentValues contentValues;
   private DatabaseAdapter databaseAdapter;
-
   
   public DataController(Context context) {
     contentValues = new ContentValues();
@@ -70,6 +71,6 @@ public class DataController {
     Cursor cursor = databaseAdapter.getAllEntries();
     return cursor;
   }
-  
+
 }
 
