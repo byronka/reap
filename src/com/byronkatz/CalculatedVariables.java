@@ -96,6 +96,7 @@ public class CalculatedVariables {
      * Sorry if that is a bad terminology, I am writing this at 6:30 in the morning!
      * Think about that a bit before making changes.
      */
+    assignVariables();
 
     double firstDay = downPayment + generalSaleExpenses + fixupCosts;
 

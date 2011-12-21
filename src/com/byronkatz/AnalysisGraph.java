@@ -23,6 +23,8 @@ class AnalysisGraph extends View {
   public static final float DEFAULT_GRAPH_STROKE_WIDTH = 1.5f;
   public static final String X_AXIS_STRING = "0";
   
+  public static final CalculatedVariables calculatedVariables = new CalculatedVariables();
+  
   //local graph math variables
   private int graphMaxY;
   private int graphMaxX;
@@ -46,11 +48,17 @@ class AnalysisGraph extends View {
       this.graphKeyValue = graphKeyValue;
       dataPointsMap = new HashMap<Integer, Float>();
       initView();
+      crunchData();
     }
   }
 
   private void initView() {
     setFocusable(true);
+  }
+  
+  private void crunchData() {
+    calculatedVariables.crunchCalculation();
+    createDataPoints();
   }
 
   public void onDraw(Canvas canvas) {
@@ -58,11 +66,6 @@ class AnalysisGraph extends View {
       graphMaxY = getMeasuredHeight();
       graphMaxX = getMeasuredWidth();
 
-      //crunch the numbers
-
-      CalculatedVariables calculatedVariables = new CalculatedVariables();
-      calculatedVariables.crunchCalculation();
-      createDataPoints();
 
       double functionMinY = getMinFunctionValue(dataPointsMap);
       double functionMaxY = getMaxFunctionValue(dataPointsMap);
@@ -210,7 +213,7 @@ class AnalysisGraph extends View {
 
 
   
-  private void createDataPoints() {
+  public void createDataPoints() {
     HashMap<Integer, HashMap<String, Float>> calculatedValuesHashMap = dataController.getCalculatedValuesHashMap();
     for (HashMap.Entry<Integer, HashMap<String, Float>> entry : calculatedValuesHashMap.entrySet()) {
       

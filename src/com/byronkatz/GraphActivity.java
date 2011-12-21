@@ -1,6 +1,5 @@
 package com.byronkatz;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -19,7 +18,6 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-
 public class GraphActivity extends Activity {
 
   private String currentSliderKey;
@@ -31,16 +29,16 @@ public class GraphActivity extends Activity {
   private SeekBar valueSlider;
   private EditText minValueEditText;
   private EditText maxValueEditText;
-  private final DataController dataController = 
-      RealEstateMarketAnalysisApplication.getInstance().getDataController();
+  private final DataController dataController = RealEstateMarketAnalysisApplication
+      .getInstance().getDataController();
   private ContentValues contentValues;
   private ArrayAdapter<String> spinnerArrayAdapter;
   private Integer currentYearSelected;
-  
-  //calculated variables
+
+  // calculated variables
   private HashMap<Integer, HashMap<String, Float>> calculatedValuesHashMap;
-  
-  //grid variables at bottom
+
+  // grid variables at bottom
   private TextView yearGridTextView;
   private TextView atcfGridTextView;
   private TextView aterGridTextView;
@@ -51,38 +49,35 @@ public class GraphActivity extends Activity {
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
     setContentView(R.layout.graph);
-    
+
     calculatedValuesHashMap = dataController.getCalculatedValuesHashMap();
-    
-    currentYearSelected = 30;
-    
+
+    currentYearSelected = 29;
+
     valueSpinner = (Spinner) findViewById(R.id.valueSpinner);
-    
+
     contentValues = dataController.getContentValues();
     ArrayList<String> spinnerValuesArray = new ArrayList<String>();
     Set<Entry<String, Object>> contentValuesSet = contentValues.valueSet();
     for (Entry<String, Object> entry : contentValuesSet) {
-      spinnerValuesArray.add((String)entry.getKey());
+      spinnerValuesArray.add((String) entry.getKey());
     }
-    spinnerArrayAdapter = new ArrayAdapter<String>(this, 
+    spinnerArrayAdapter = new ArrayAdapter<String>(this,
         android.R.layout.simple_spinner_dropdown_item, spinnerValuesArray);
     valueSpinner.setAdapter(spinnerArrayAdapter);
-    currentValueEditText =   (EditText) findViewById(R.id.currentValueEditText);
-    valueSlider          =   (SeekBar) findViewById(R.id.valueSlider);
-    minValueEditText     =   (EditText) findViewById(R.id.minValueEditText);
-    maxValueEditText     =   (EditText) findViewById(R.id.maxValueEditText);
-    aterGraph            =   (com.byronkatz.ATERGraph) findViewById(R.id.aterFrameLayout);
-    atcfGraph            =   (com.byronkatz.ATCFGraph) findViewById(R.id.atcfFrameLayout);
-    npvGraph             =   (com.byronkatz.NPVGraph) findViewById(R.id.npvFrameLayout);
-    
-    yearGridTextView     = (TextView) findViewById(R.id.yearGridTextView);
-    atcfGridTextView     = (TextView) findViewById(R.id.atcfGridTextView);
-    aterGridTextView     = (TextView) findViewById(R.id.aterGridTextView);
-    npvGridTextView      = (TextView) findViewById(R.id.npvGridTextView);
-    
+    currentValueEditText = (EditText) findViewById(R.id.currentValueEditText);
+    valueSlider = (SeekBar) findViewById(R.id.valueSlider);
+    minValueEditText = (EditText) findViewById(R.id.minValueEditText);
+    maxValueEditText = (EditText) findViewById(R.id.maxValueEditText);
+    aterGraph = (com.byronkatz.ATERGraph) findViewById(R.id.aterFrameLayout);
+    atcfGraph = (com.byronkatz.ATCFGraph) findViewById(R.id.atcfFrameLayout);
+    npvGraph = (com.byronkatz.NPVGraph) findViewById(R.id.npvFrameLayout);
 
+    yearGridTextView = (TextView) findViewById(R.id.yearGridTextView);
+    atcfGridTextView = (TextView) findViewById(R.id.atcfGridTextView);
+    aterGridTextView = (TextView) findViewById(R.id.aterGridTextView);
+    npvGridTextView = (TextView) findViewById(R.id.npvGridTextView);
 
-    
     valueSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
       @Override
@@ -100,56 +95,65 @@ public class GraphActivity extends Activity {
 
       @Override
       public void onNothingSelected(AdapterView<?> arg0) {
-        // do nothing with this.  This method is necessary to satisfy interface.
+        // do nothing with this. This method is necessary to satisfy interface.
 
       }
     });
-        
+
     valueSlider.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-      
+
       @Override
       public void onStopTrackingTouch(SeekBar seekBar) {
 
       }
-      
+
       @Override
       public void onStartTrackingTouch(SeekBar seekBar) {
 
-        
       }
-      
+
       @Override
-      public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+      public void onProgressChanged(SeekBar seekBar, int progress,
+          boolean fromUser) {
         String minValueString = minValueEditText.getText().toString();
         String maxValueString = maxValueEditText.getText().toString();
         Double minValueNumeric = Double.valueOf(minValueString);
         Double maxValueNumeric = Double.valueOf(maxValueString);
         Double deltaValueNumeric = maxValueNumeric - minValueNumeric;
         Double percentageSlid = progress / 100.0;
-        Double newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
+        Double newCurrentValue = minValueNumeric
+            + (percentageSlid * deltaValueNumeric);
         String newCurrentValueString = String.valueOf(newCurrentValue);
         currentValueEditText.setText(newCurrentValueString);
         dataController.setValue(currentSliderKey, newCurrentValueString);
+
+        AnalysisGraph.calculatedVariables.crunchCalculation();
+
+        aterGraph.createDataPoints();
+        atcfGraph.createDataPoints();
+        npvGraph.createDataPoints();
+
         aterGraph.invalidate();
         atcfGraph.invalidate();
         npvGraph.invalidate();
         assignValuesToDataTable();
       }
     });
-  
-    
+
   }
-  
+
   private void assignValuesToDataTable() {
 
-    HashMap<String, Float> dataValues = calculatedValuesHashMap.get(currentYearSelected);
+    HashMap<String, Float> dataValues = calculatedValuesHashMap
+        .get(currentYearSelected);
     String currentYearSelectedString = String.valueOf(currentYearSelected);
-    Float currentYearAter           = dataValues.get(DatabaseAdapter.AFTER_TAX_EQUITY_REVERSION);
-    String currentYearAterString    = String.valueOf(currentYearAter);
-    Float currentYearAtcf           = dataValues.get(DatabaseAdapter.AFTER_TAX_CASH_FLOW);
-    String currentYearAtcfString    = String.valueOf(currentYearAtcf);
-    Float currentYearNpv            = dataValues.get(DatabaseAdapter.NET_PRESENT_VALUE);
-    String currentYearNpvString     = String.valueOf(currentYearNpv);
+    Float currentYearAter = dataValues
+        .get(DatabaseAdapter.AFTER_TAX_EQUITY_REVERSION);
+    String currentYearAterString = String.valueOf(currentYearAter);
+    Float currentYearAtcf = dataValues.get(DatabaseAdapter.AFTER_TAX_CASH_FLOW);
+    String currentYearAtcfString = String.valueOf(currentYearAtcf);
+    Float currentYearNpv = dataValues.get(DatabaseAdapter.NET_PRESENT_VALUE);
+    String currentYearNpvString = String.valueOf(currentYearNpv);
     yearGridTextView.setText(currentYearSelectedString);
     atcfGridTextView.setText(currentYearAterString);
     aterGridTextView.setText(currentYearAtcfString);
