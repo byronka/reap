@@ -22,23 +22,29 @@ class AnalysisGraph extends View {
   public static final float TEXT_SIZE = 10.0f;
   public static final float DEFAULT_GRAPH_STROKE_WIDTH = 1.5f;
   public static final String X_AXIS_STRING = "0";
-
-  public static final int NPV_GRAPH = 1;
-  public static final int ATCF_GRAPH = 2;
-  public static final int ATER_GRAPH = 3;
-
   
+  //local graph math variables
   private int graphMaxY;
   private int graphMaxX;
+  private HashMap<Integer, Float> dataPointsMap;
   private HashMap<Float, Float> graphMap;
-  private GraphDataObject gdo;
-  private int graphType;
   
-  public AnalysisGraph(Context context, AttributeSet attrs, int graphType) {
+  private String graphKeyValue;
+  private String graphName;
+  
+  //singleton with data
+  private final DataController dataController = 
+      RealEstateMarketAnalysisApplication.getInstance().getDataController();
+  
+  
+  
+  public AnalysisGraph(Context context, AttributeSet attrs, String graphName, String graphKeyValue) {
     super(context, attrs);
     if (! isInEditMode()) {
+      this.graphName = graphName;
       graphMap = new HashMap<Float, Float>();
-      this.graphType = graphType;
+      this.graphKeyValue = graphKeyValue;
+      dataPointsMap = new HashMap<Integer, Float>();
       initView();
     }
   }
@@ -56,26 +62,12 @@ class AnalysisGraph extends View {
 
       CalculatedVariables calculatedVariables = new CalculatedVariables();
       calculatedVariables.crunchCalculation();
-            
-      switch (graphType) {
-      case NPV_GRAPH:
-        this.gdo = calculatedVariables.getNpvGraphDataObject();
-        break;
-      case ATER_GRAPH:
-        this.gdo = calculatedVariables.getAterGraphDataObject();
-        break;
-      case ATCF_GRAPH:
-        this.gdo = calculatedVariables.getAtcfGraphDataObject();
-        break;
-      default:
-        System.err.println("You should not get to the default case statement" + 
-            " in the AnalysisGraph class, yet you have");
-        break;
-      }
-      double functionMinY = gdo.getMinFunctionValue();
-      double functionMaxY = gdo.getMaxFunctionValue();
-      double functionMinX = gdo.getMinYearValue();
-      double functionMaxX = gdo.getMaxYearValue();
+      createDataPoints();
+
+      double functionMinY = getMinFunctionValue(dataPointsMap);
+      double functionMaxY = getMaxFunctionValue(dataPointsMap);
+      double functionMinX = getMinYearValue(dataPointsMap);
+      double functionMaxX = getMaxYearValue(dataPointsMap);
       double deltaGraphY = graphMaxY - GRAPH_MIN_Y;
       double deltaGraphX = graphMaxX - GRAPH_MIN_X;
       double deltaFunctionY = functionMaxY - functionMinY;
@@ -93,10 +85,9 @@ class AnalysisGraph extends View {
 
       float xGraphValue = 0.0f;
       float yGraphValue = 0.0f;
-      HashMap<Float, Float> dataPoints = gdo.getYearlyFunctionValue();
 
-      for (HashMap.Entry<Float, Float> entry : dataPoints.entrySet()) {
-        Float xValue = entry.getKey();
+      for (HashMap.Entry<Integer, Float> entry : dataPointsMap.entrySet()) {
+        Integer xValue = entry.getKey();
         Float yValue = entry.getValue();
         xGraphValue = (float) (marginWidthX +  xGraphCoefficient * (xValue - functionMinX));
         yGraphValue = (float) (marginWidthY + yGraphCoefficient * (functionMaxY - yValue));
@@ -153,18 +144,88 @@ class AnalysisGraph extends View {
       canvas.drawText(minYString, minX, minY, textPaint);
 
       //draw GraphName
-      String graphName = gdo.getGraphName();
       float widthOfGraph = graphMaxX - GRAPH_MIN_X;
       float halfwayPoint = widthOfGraph / 2;
       float bottom = (float) (marginWidthY + betweenMarginsOnY + (marginWidthY/2));
       canvas.drawText(graphName, halfwayPoint, bottom, textPaint);
     }
   }
-
+  
+  private double getMinFunctionValue(HashMap<Integer, Float> dataPointsMap) {
+    
+    double minFunctionValue = Double.POSITIVE_INFINITY;
+    
+    for (HashMap.Entry<Integer, Float> entry : dataPointsMap.entrySet()) {
+      if (entry.getValue() < minFunctionValue) {
+        minFunctionValue = entry.getValue();
+      }
+    }
+    
+    return minFunctionValue;
+  }
+  
+  private double getMaxFunctionValue(HashMap<Integer, Float> dataPointsMap) {
+   
+    double maxFunctionValue = Double.NEGATIVE_INFINITY;
+    
+    for (HashMap.Entry<Integer, Float> entry : dataPointsMap.entrySet()) {
+      if (entry.getValue() > maxFunctionValue) {
+        maxFunctionValue = entry.getValue();
+      }
+    }
+    
+    return maxFunctionValue;
+  }
+  
+  private double getMinYearValue(HashMap<Integer, Float> dataPointsMap) {
+  
+    int minYearValue = Integer.MAX_VALUE;
+    
+    for (HashMap.Entry<Integer, Float> entry : dataPointsMap.entrySet()) {
+      if (entry.getKey() < minYearValue) {
+        minYearValue = entry.getKey();
+      }
+    }
+    
+    return minYearValue;
+  }
+  
+  private double getMaxYearValue(HashMap<Integer, Float> dataPointsMap) {
+   
+    int maxYearValue = Integer.MIN_VALUE;
+    
+    for (HashMap.Entry<Integer, Float> entry : dataPointsMap.entrySet()) {
+      if (entry.getKey() > maxYearValue) {
+        maxYearValue = entry.getKey();
+      }
+    }
+    
+    return maxYearValue;
+  }
+  
   private String displayCurrency(Double value) {
     NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
     return currencyFormatter.format(value);
   }
 
+
+  
+  private void createDataPoints() {
+    HashMap<Integer, HashMap<String, Float>> calculatedValuesHashMap = dataController.getCalculatedValuesHashMap();
+    for (HashMap.Entry<Integer, HashMap<String, Float>> entry : calculatedValuesHashMap.entrySet()) {
+      
+      //each year is the key
+      Integer key = entry.getKey();
+      HashMap<String, Float> values = entry.getValue();
+      
+      //unpack the contentValues per year
+      Float dataValue = values.get(graphKeyValue);
+      
+      //map of year to value for this graph
+      dataPointsMap.put(key, dataValue);
+      
+    }
+    
+  }
 
 }

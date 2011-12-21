@@ -1,5 +1,8 @@
 package com.byronkatz;
 
+import java.util.HashMap;
+
+
 public class CalculatedVariables {
 
   private static final int NUM_OF_MONTHS_IN_YEAR = 12;
@@ -7,12 +10,14 @@ public class CalculatedVariables {
   public static final int YEARLY = 1;
   public static final int MONTHLY = 2;
   
-  private GraphDataObject npvGraphDataObject;
-  private GraphDataObject aterGraphDataObject;
-  private GraphDataObject atcfGraphDataObject;
+  private final DataController dataController = 
+      RealEstateMarketAnalysisApplication.getInstance().getDataController();
+  
+  //calculated variables
+  private HashMap<Integer, HashMap<String, Float>> calculatedValuesHashMap;
+  private HashMap<String, Float> calculatedContentValues;
 
   //input variables
-  private DataController dataController;
   private double totalPurchaseValue;
   private double estimatedRentPayments;
   private double realEstateAppreciationRate;
@@ -32,13 +37,12 @@ public class CalculatedVariables {
   private double principalOwed;
   private double initialYearlyPropertyTax;
   private double monthlyInterestRate;
+  
+  
 
   public CalculatedVariables() {
-    npvGraphDataObject  = new GraphDataObject("NPV Graph");
-    aterGraphDataObject = new GraphDataObject("ATER Graph");
-    atcfGraphDataObject = new GraphDataObject("ATCF Graph");
+
     //Get the singleton dataController
-    dataController = RealEstateMarketAnalysisApplication.getInstance().getDataController();
     assignVariables();
   }
 
@@ -79,9 +83,10 @@ public class CalculatedVariables {
     initialYearlyPropertyTax = totalPurchaseValue * propertyTaxRate;
     monthlyInterestRate = yearlyInterestRate / NUM_OF_MONTHS_IN_YEAR;
 
+    //calculated variables
+    calculatedValuesHashMap = dataController.getCalculatedValuesHashMap();
   }
-
-
+  
   public void crunchCalculation() {
 
     /*note: many of the equations below are calculated using monthly variables.  This is done
@@ -100,7 +105,6 @@ public class CalculatedVariables {
     double yearlyTaxes = 0.0;
     double yearlyPrincipalPaid = 0.0;
     double yearlyDepreciation = buildingValue / RESIDENTIAL_DEPRECIATION_YEARS;
-    double monthlyInterestRate = yearlyInterestRate / NUM_OF_MONTHS_IN_YEAR;
     double yearlyMortgagePayment = NUM_OF_MONTHS_IN_YEAR * getMortgagePayment();
     double taxableIncome = 0.0;
     double yearlyCompoundingPeriods = numOfCompoundingPeriods / NUM_OF_MONTHS_IN_YEAR;
@@ -123,6 +127,8 @@ public class CalculatedVariables {
 
 
     for (int year = 1; year < yearlyCompoundingPeriods; year++) {
+
+      calculatedContentValues = new HashMap<String, Float>();
 
       // cashflowIn - cashflowOut
       monthCPModifier = year * NUM_OF_MONTHS_IN_YEAR;
@@ -149,8 +155,10 @@ public class CalculatedVariables {
       yearlyTaxes = taxableIncome * marginalTaxRate;
 
       yearlyAfterTaxCashFlow = yearlyBeforeTaxCashFlow - yearlyTaxes;
+      
       //add this year's atcf to the graph data object
-      atcfGraphDataObject.addYearlyFunctionValue(year, yearlyAfterTaxCashFlow);
+      calculatedContentValues.put(DatabaseAdapter.AFTER_TAX_CASH_FLOW, (float)yearlyAfterTaxCashFlow);
+      
       yearlyDiscountRateDivisor = Math.pow(1 + monthlyRequiredRateOfReturn, monthCPModifier);
       yearlyNPVSummation += yearlyAfterTaxCashFlow / yearlyDiscountRateDivisor;
 
@@ -167,26 +175,22 @@ public class CalculatedVariables {
           * marginalTaxRate;
       double ater = projectedValueOfHomeAtSale - brokerCut - 
           inflationAdjustedSellingExpenses - principalOwedAtSale - taxesDueAtSale;
+      
       //add this year's ater to the graph data object
-      aterGraphDataObject.addYearlyFunctionValue(year, ater);
+      calculatedContentValues.put(DatabaseAdapter.AFTER_TAX_EQUITY_REVERSION, (float) ater);
+
       double adjustedAter = ater / Math.pow(1 + monthlyRequiredRateOfReturn,monthCPModifier);
       double npvAccumulator = -firstDay + yearlyNPVSummation + adjustedAter;
+      
       //add this year's NPV to the graph data object
-      npvGraphDataObject.addYearlyFunctionValue(year, npvAccumulator);
-
+      calculatedContentValues.put(DatabaseAdapter.NET_PRESENT_VALUE, (float) npvAccumulator);
+      
+      //put this year's data into a wrapper hashMap
+      calculatedValuesHashMap.put(year, calculatedContentValues);
     }
-  }
-
-  public GraphDataObject getNpvGraphDataObject() {
-    return npvGraphDataObject;
-  }
-
-  public GraphDataObject getAterGraphDataObject() {
-    return aterGraphDataObject;
-  }
-
-  public GraphDataObject getAtcfGraphDataObject() {
-    return atcfGraphDataObject;
+    
+    //put the data in its place in the dataController
+    dataController.setCalculatedValuesHashMap(calculatedValuesHashMap);
   }
 
   

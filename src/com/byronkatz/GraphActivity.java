@@ -35,7 +35,10 @@ public class GraphActivity extends Activity {
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
   private ContentValues contentValues;
   private ArrayAdapter<String> spinnerArrayAdapter;
-  private Float currentYearSelected;
+  private Integer currentYearSelected;
+  
+  //calculated variables
+  private HashMap<Integer, HashMap<String, Float>> calculatedValuesHashMap;
   
   //grid variables at bottom
   private TextView yearGridTextView;
@@ -49,9 +52,12 @@ public class GraphActivity extends Activity {
     super.onCreate(savedState);
     setContentView(R.layout.graph);
     
-    currentYearSelected = 30.0f;
+    calculatedValuesHashMap = dataController.getCalculatedValuesHashMap();
+    
+    currentYearSelected = 30;
     
     valueSpinner = (Spinner) findViewById(R.id.valueSpinner);
+    
     contentValues = dataController.getContentValues();
     ArrayList<String> spinnerValuesArray = new ArrayList<String>();
     Set<Entry<String, Object>> contentValuesSet = contentValues.valueSet();
@@ -127,19 +133,23 @@ public class GraphActivity extends Activity {
         aterGraph.invalidate();
         atcfGraph.invalidate();
         npvGraph.invalidate();
-        assignValues();
+        assignValuesToDataTable();
       }
     });
   
     
   }
   
-  private void assignValues() {
+  private void assignValuesToDataTable() {
 
+    HashMap<String, Float> dataValues = calculatedValuesHashMap.get(currentYearSelected);
     String currentYearSelectedString = String.valueOf(currentYearSelected);
-    String currentYearAterString     = CalculatedVariables.
-    String currentYearAtcfString     = 
-    String currentYearNpvString      = 
+    Float currentYearAter           = dataValues.get(DatabaseAdapter.AFTER_TAX_EQUITY_REVERSION);
+    String currentYearAterString    = String.valueOf(currentYearAter);
+    Float currentYearAtcf           = dataValues.get(DatabaseAdapter.AFTER_TAX_CASH_FLOW);
+    String currentYearAtcfString    = String.valueOf(currentYearAtcf);
+    Float currentYearNpv            = dataValues.get(DatabaseAdapter.NET_PRESENT_VALUE);
+    String currentYearNpvString     = String.valueOf(currentYearNpv);
     yearGridTextView.setText(currentYearSelectedString);
     atcfGridTextView.setText(currentYearAterString);
     aterGridTextView.setText(currentYearAtcfString);

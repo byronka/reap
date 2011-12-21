@@ -10,11 +10,13 @@ public class DataController {
 
   private ContentValues contentValues;
   private DatabaseAdapter databaseAdapter;
+  private HashMap<Integer, HashMap<String, Float>> calculatedValuesHashMap;
   
   public DataController(Context context) {
     contentValues = new ContentValues();
     loadFieldValues();
     databaseAdapter = new DatabaseAdapter(context);
+    calculatedValuesHashMap = new HashMap<Integer, HashMap<String, Float>>();
   }
   
   public void loadFieldValues() {
@@ -70,6 +72,14 @@ public class DataController {
   public Cursor getAllDatabaseValues() {
     Cursor cursor = databaseAdapter.getAllEntries();
     return cursor;
+  }
+
+  public HashMap<Integer, HashMap<String, Float>> getCalculatedValuesHashMap() {
+    return calculatedValuesHashMap;
+  }
+
+  public void setCalculatedValuesHashMap(HashMap<Integer, HashMap<String, Float>> calculatedValuesHashMap) {
+    this.calculatedValuesHashMap = calculatedValuesHashMap;
   }
 
 }
