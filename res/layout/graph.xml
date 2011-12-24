@@ -1,160 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/graphDataScrollView" android:layout_width="fill_parent"
-	android:layout_height="wrap_content">
-
-	<LinearLayout android:orientation="vertical"
-		android:layout_width="fill_parent" android:layout_height="fill_parent">
-
-
-		<com.byronkatz.NPVGraph android:id="@+id/npvFrameLayout"
-			android:layout_width="200dip" android:layout_height="200dip" />
-
-		<com.byronkatz.ATCFGraph
-			android:layout_height="200dip" android:layout_width="200dip"
-			android:id="@+id/atcfFrameLayout" />
-
-		<com.byronkatz.ATERGraph
-			android:layout_height="200dip" android:layout_width="200dip"
-			android:id="@+id/aterFrameLayout" />
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:katz="http://schemas.android.com/apk/res/com.byronkatz"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:weightSum="1">
+	<ScrollView android:id="@+id/graphDataScrollView"
+		android:layout_width="fill_parent" android:layout_height="0dp"
+		android:layout_weight="0.80">
 		<LinearLayout android:layout_width="fill_parent"
-			android:layout_height="40dip" android:gravity="center">
-			<EditText android:layout_height="fill_parent"
-				android:layout_width="60dip" android:inputType="numberDecimal"
-				android:layout_gravity="left" android:fadingEdge="none"
-				android:editable="true" android:textSize="10dp"
-				android:layout_weight="0.07" android:id="@+id/minValueEditText" />
-			<LinearLayout android:layout_height="fill_parent"
-				android:layout_width="0dp" android:id="@+id/valueToSlideLinearLayout"
-				android:layout_weight="0.86">
-				<Spinner android:layout_height="wrap_content"
-					android:layout_weight="1" android:layout_width="wrap_content"
-					android:id="@+id/valueSpinner"></Spinner>
-				<EditText android:layout_height="fill_parent"
-					android:textSize="10dp" android:inputType="numberDecimal"
-					android:fadingEdge="none" android:layout_weight="1"
-					android:layout_width="wrap_content" android:id="@+id/currentValueEditText"
-					android:editable="false">
-				</EditText>
+			android:orientation="vertical" android:layout_height="wrap_content">
+
+			<LinearLayout android:id="@+id/graphLinearLayout"
+				android:layout_width="fill_parent" android:layout_height="0dp"
+				android:orientation="vertical" android:layout_weight="0.60" >
+				<com.byronkatz.AnalysisGraph
+					android:layout_width="fill_parent" android:id="@+id/npvFrameLayout"
+					android:layout_height="100dp" katz:graphType="NPV"></com.byronkatz.AnalysisGraph>
+				<com.byronkatz.AnalysisGraph
+					android:layout_width="fill_parent" android:id="@+id/atcfFrameLayout"
+				    android:layout_height="100dp" katz:graphType="ATCF"></com.byronkatz.AnalysisGraph>
+				<com.byronkatz.AnalysisGraph
+					android:layout_width="fill_parent" android:id="@+id/aterFrameLayout"
+					android:layout_height="100dp" katz:graphType="ATER"></com.byronkatz.AnalysisGraph>
 			</LinearLayout>
-			<EditText android:layout_width="60dip" android:inputType="numberDecimal"
-				android:layout_height="fill_parent" android:fadingEdge="none"
-				android:editable="true" android:textSize="10dp"
-				android:layout_gravity="right" android:layout_weight="0.07"
-				android:id="@+id/maxValueEditText"></EditText>
+
+			<LinearLayout android:layout_height="40dip"
+				android:layout_width="fill_parent">
+				<EditText android:textSize="10dp" android:fadingEdge="none"
+					android:layout_width="60dip" android:layout_gravity="left"
+					android:layout_height="fill_parent" android:inputType="numberDecimal"
+					android:layout_weight="0.07" android:id="@+id/minValueEditText"
+					android:editable="true">
+					<requestFocus></requestFocus>
+				</EditText>
+				<LinearLayout android:layout_height="fill_parent"
+					android:layout_weight="0.86" android:id="@+id/valueToSlideLinearLayout"
+					android:layout_width="0dp">
+					<EditText android:textSize="10dp" android:fadingEdge="none"
+						android:layout_width="wrap_content" android:layout_height="fill_parent"
+						android:inputType="numberDecimal" android:layout_weight="1"
+						android:id="@+id/currentValueEditText" android:editable="false"></EditText>
+				</LinearLayout>
+				<EditText android:textSize="10dp" android:fadingEdge="none"
+					android:layout_width="60dip" android:layout_gravity="right"
+					android:layout_height="fill_parent" android:inputType="numberDecimal"
+					android:layout_weight="0.07" android:id="@+id/maxValueEditText"
+					android:editable="true"></EditText>
+			</LinearLayout>
+			<Spinner android:layout_height="40dp" android:id="@+id/valueSpinner"
+				android:layout_width="fill_parent"></Spinner>
+			<TableLayout android:layout_height="0dp"
+				android:layout_width="fill_parent" android:stretchColumns="1"
+				android:gravity="clip_vertical" android:layout_weight="0.40">
+				<View android:layout_height="1dip" android:background="#FF909090"></View>
+				<TableRow android:background="#FF909090">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="Year"></TextView>
+					<TextView android:id="@+id/yearGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="0"></TextView>
+				</TableRow>
+				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+				<TableRow android:background="#afe6e7">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="After Tax Equity Reversion"></TextView>
+					<TextView android:id="@+id/aterGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="$0.00"></TextView>
+				</TableRow>
+				<View android:layout_height="1dip" android:background="#FF909090"></View>
+				<TableRow android:background="#FF909090">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="After Tax Cash Flow"></TextView>
+					<TextView android:id="@+id/atcfGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="$0.00"></TextView>
+				</TableRow>
+				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+				<TableRow android:background="#afe6e7">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="Net Present Value"></TextView>
+					<TextView android:id="@+id/npvGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="$0.00"></TextView>
+				</TableRow>
+				<View android:layout_height="1dip" android:background="#FF909090"></View>
+				<TableRow android:background="#FF909090">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="Marginal Tax Rate"></TextView>
+					<TextView android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="0.04"></TextView>
+				</TableRow>
+				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+				<TableRow android:background="#afe6e7">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="Building Value"></TextView>
+					<TextView android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="$450,000.00"></TextView>
+				</TableRow>
+				<View android:layout_height="1dip" android:background="#FF909090"></View>
+				<TableRow android:background="#FF909090">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="Marginal Tax Rate"></TextView>
+					<TextView android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="0.04"></TextView>
+				</TableRow>
+				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+				<TableRow android:background="#afe6e7">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="Building Value"></TextView>
+					<TextView android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="$450,000.00"></TextView>
+				</TableRow>
+				<View android:layout_height="1dip" android:background="#FF909090"></View>
+				<TableRow android:background="#FF909090">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="Marginal Tax Rate"></TextView>
+					<TextView android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="0.04"></TextView>
+				</TableRow>
+				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+				<TableRow android:background="#afe6e7">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="Building Value"></TextView>
+					<TextView android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="$450,000.00"></TextView>
+				</TableRow>
+			</TableLayout>
 		</LinearLayout>
+	</ScrollView>
 
-		<SeekBar android:padding="20dip" android:layout_height="wrap_content"
+	<LinearLayout android:layout_width="fill_parent"
+		android:orientation="vertical" android:id="@+id/sliderLinearLayout"
+		android:layout_gravity="bottom" android:layout_height="0dp"
+		android:layout_weight="0.20">
+		<SeekBar android:layout_height="wrap_content" android:padding="5dip"
 			android:layout_width="fill_parent" android:id="@+id/valueSlider"></SeekBar>
-		<SeekBar android:padding="20dip" android:layout_height="wrap_content"
+		<SeekBar android:layout_height="wrap_content"  android:padding="5dip"
 			android:layout_width="fill_parent" android:id="@+id/monthSlider"></SeekBar>
-
-
-
-		<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			android:layout_width="fill_parent" android:layout_height="fill_parent"
-			android:stretchColumns="1">
-
-			<View android:layout_height="1dip" android:background="#FF909090" />
-
-			<TableRow android:background="#FF909090">
-				<TextView android:layout_column="1" android:text="Year"
-					android:padding="3dip" android:textColor="#000000" />
-				<TextView android:id="@+id/yearGridTextView" android:text="0" android:gravity="right"
-					android:padding="3dip" android:textColor="#000000" />
-			</TableRow>
-
-			<View android:layout_height="1dip" android:background="#9d7c62" />
-
-			<TableRow android:background="#afe6e7">
-				<TextView android:layout_column="1" android:text="After Tax Equity Reversion"
-					android:padding="3dip" android:textColor="#000000" />
-				<TextView android:id="@+id/aterGridTextView"
-					 android:text="$0.00" android:gravity="right"
-					android:padding="3dip" android:textColor="#000000" />
-			</TableRow>
-
-
-			<View android:layout_height="1dip" android:background="#FF909090" />
-
-			<TableRow android:background="#FF909090">
-				<TextView android:layout_column="1" android:text="After Tax Cash Flow"
-					android:padding="3dip" android:textColor="#000000" />
-				<TextView android:id="@+id/atcfGridTextView"
-					android:text="$0.00" android:gravity="right"
-					android:padding="3dip" android:textColor="#000000" />
-			</TableRow>
-
-			<View android:layout_height="1dip" android:background="#9d7c62" />
-
-			<TableRow android:background="#afe6e7">
-				<TextView android:layout_column="1" android:text="Net Present Value"
-					android:padding="3dip" android:textColor="#000000" />
-				<TextView android:id="@+id/npvGridTextView" 
-					android:text="$0.00" android:gravity="right"
-					android:padding="3dip" android:textColor="#000000" />
-			</TableRow>
-
-
-			<View android:layout_height="1dip" android:background="#FF909090" />
-
-			<TableRow android:background="#FF909090">
-				<TextView android:layout_column="1" android:text="Marginal Tax Rate"
-					android:padding="3dip" android:textColor="#000000" />
-				<TextView android:text="0.04" android:gravity="right"
-					android:padding="3dip" android:textColor="#000000" />
-			</TableRow>
-
-			<View android:layout_height="1dip" android:background="#9d7c62" />
-
-			<TableRow android:background="#afe6e7">
-				<TextView android:layout_column="1" android:text="Building Value"
-					android:padding="3dip" android:textColor="#000000" />
-				<TextView android:text="$450,000.00" android:gravity="right"
-					android:padding="3dip" android:textColor="#000000" />
-			</TableRow>
-
-
-			<View android:layout_height="1dip" android:background="#FF909090" />
-
-			<TableRow android:background="#FF909090">
-				<TextView android:layout_column="1" android:text="Marginal Tax Rate"
-					android:padding="3dip" android:textColor="#000000" />
-				<TextView android:text="0.04" android:gravity="right"
-					android:padding="3dip" android:textColor="#000000" />
-			</TableRow>
-
-			<View android:layout_height="1dip" android:background="#9d7c62" />
-
-			<TableRow android:background="#afe6e7">
-				<TextView android:layout_column="1" android:text="Building Value"
-					android:padding="3dip" android:textColor="#000000" />
-				<TextView android:text="$450,000.00" android:gravity="right"
-					android:padding="3dip" android:textColor="#000000" />
-			</TableRow>
-
-
-			<View android:layout_height="1dip" android:background="#FF909090" />
-
-			<TableRow android:background="#FF909090">
-				<TextView android:layout_column="1" android:text="Marginal Tax Rate"
-					android:padding="3dip" android:textColor="#000000" />
-				<TextView android:text="0.04" android:gravity="right"
-					android:padding="3dip" android:textColor="#000000" />
-			</TableRow>
-
-			<View android:layout_height="1dip" android:background="#9d7c62" />
-
-			<TableRow android:background="#afe6e7">
-				<TextView android:layout_column="1" android:text="Building Value"
-					android:padding="3dip" android:textColor="#000000" />
-				<TextView android:text="$450,000.00" android:gravity="right"
-					android:padding="3dip" android:textColor="#000000" />
-			</TableRow>
-
-		</TableLayout>
 	</LinearLayout>
-</ScrollView>
 
-
+</LinearLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="AnalysisGraph">
+    <attr name="graphType" format="integer">
+    	<enum name="NPV" value="0" />
+    	<enum name="ATER" value="1" />
+    	<enum name="ATCF" value="2" />	
+    </attr>	
+  </declare-styleable>
+    
+</resources>

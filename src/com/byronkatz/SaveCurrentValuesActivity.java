@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class SaveCurrentValuesActivity extends Activity {
 
@@ -28,6 +29,8 @@ public class SaveCurrentValuesActivity extends Activity {
       @Override
       public void onClick(View v) {
         dataController.saveValues();
+        Toast toast = Toast.makeText(SaveCurrentValuesActivity.this, "Data saved", Toast.LENGTH_SHORT);
+        toast.show();
       }
     });
 

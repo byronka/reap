@@ -21,9 +21,9 @@ import android.widget.TextView;
 public class GraphActivity extends Activity {
 
   private String currentSliderKey;
-  private ATERGraph aterGraph;
-  private NPVGraph npvGraph;
-  private ATCFGraph atcfGraph;
+  private AnalysisGraph npvGraph;
+  private AnalysisGraph aterGraph;
+  private AnalysisGraph atcfGraph;
   private Spinner valueSpinner;
   private EditText currentValueEditText;
   private SeekBar valueSlider;
@@ -69,9 +69,9 @@ public class GraphActivity extends Activity {
     valueSlider = (SeekBar) findViewById(R.id.valueSlider);
     minValueEditText = (EditText) findViewById(R.id.minValueEditText);
     maxValueEditText = (EditText) findViewById(R.id.maxValueEditText);
-    aterGraph = (com.byronkatz.ATERGraph) findViewById(R.id.aterFrameLayout);
-    atcfGraph = (com.byronkatz.ATCFGraph) findViewById(R.id.atcfFrameLayout);
-    npvGraph = (com.byronkatz.NPVGraph) findViewById(R.id.npvFrameLayout);
+    aterGraph = (com.byronkatz.AnalysisGraph) findViewById(R.id.aterFrameLayout);
+    atcfGraph = (com.byronkatz.AnalysisGraph) findViewById(R.id.atcfFrameLayout);
+    npvGraph = (com.byronkatz.AnalysisGraph) findViewById(R.id.npvFrameLayout);
 
     yearGridTextView = (TextView) findViewById(R.id.yearGridTextView);
     atcfGridTextView = (TextView) findViewById(R.id.atcfGridTextView);
@@ -119,13 +119,15 @@ public class GraphActivity extends Activity {
         String maxValueString = maxValueEditText.getText().toString();
         Double minValueNumeric = Double.valueOf(minValueString);
         Double maxValueNumeric = Double.valueOf(maxValueString);
+        
         Double deltaValueNumeric = maxValueNumeric - minValueNumeric;
         Double percentageSlid = progress / 100.0;
         Double newCurrentValue = minValueNumeric
             + (percentageSlid * deltaValueNumeric);
-        String newCurrentValueString = String.valueOf(newCurrentValue);
+        String newCurrentValueString = CalculatedVariables.displayCurrency(newCurrentValue);
         currentValueEditText.setText(newCurrentValueString);
-        dataController.setValue(currentSliderKey, newCurrentValueString);
+        String currentValueStorageString = String.valueOf(newCurrentValue);
+        dataController.setValue(currentSliderKey, currentValueStorageString);
 
         AnalysisGraph.calculatedVariables.crunchCalculation();
 
@@ -144,19 +146,21 @@ public class GraphActivity extends Activity {
 
   private void assignValuesToDataTable() {
 
-    HashMap<String, Float> dataValues = calculatedValuesHashMap
-        .get(currentYearSelected);
+    HashMap<String, Float> dataValues = calculatedValuesHashMap.get(currentYearSelected);
     String currentYearSelectedString = String.valueOf(currentYearSelected);
-    Float currentYearAter = dataValues
-        .get(DatabaseAdapter.AFTER_TAX_EQUITY_REVERSION);
-    String currentYearAterString = String.valueOf(currentYearAter);
-    Float currentYearAtcf = dataValues.get(DatabaseAdapter.AFTER_TAX_CASH_FLOW);
-    String currentYearAtcfString = String.valueOf(currentYearAtcf);
-    Float currentYearNpv = dataValues.get(DatabaseAdapter.NET_PRESENT_VALUE);
-    String currentYearNpvString = String.valueOf(currentYearNpv);
+    
+    Float currentYearAter = dataValues.get(AnalysisGraph.GraphType.ATER.getGraphName());
+    String currentYearAterString = CalculatedVariables.displayCurrency(currentYearAter);
+    
+    Float currentYearAtcf = dataValues.get(AnalysisGraph.GraphType.ATCF.getGraphName());
+    String currentYearAtcfString = CalculatedVariables.displayCurrency(currentYearAtcf);
+    
+    Float currentYearNpv = dataValues.get(AnalysisGraph.GraphType.NPV.getGraphName());
+    String currentYearNpvString = CalculatedVariables.displayCurrency(currentYearNpv);
+    
     yearGridTextView.setText(currentYearSelectedString);
-    atcfGridTextView.setText(currentYearAterString);
-    aterGridTextView.setText(currentYearAtcfString);
+    atcfGridTextView.setText(currentYearAtcfString);
+    aterGridTextView.setText(currentYearAterString);
     npvGridTextView.setText(currentYearNpvString);
   }
 

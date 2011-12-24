@@ -50,9 +50,9 @@ public class DatabaseAdapter {
   public static final String CLOSING_COSTS                     = "closing_costs";
 
   //calculated values
-  public static final String AFTER_TAX_EQUITY_REVERSION        = "after_tax_equity_reversion";
-  public static final String AFTER_TAX_CASH_FLOW               = "after_tax_cash_flow";
-  public static final String NET_PRESENT_VALUE                 = "net_present_value";
+//  public static final String AFTER_TAX_EQUITY_REVERSION        = "after_tax_equity_reversion";
+//  public static final String AFTER_TAX_CASH_FLOW               = "after_tax_cash_flow";
+//  public static final String NET_PRESENT_VALUE                 = "net_present_value";
 
   private static final String DATABASE_CREATE = "create table " + 
       DATABASE_TABLE + " ("     + 

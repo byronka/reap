@@ -1,6 +1,8 @@
 package com.byronkatz;
 
+import java.text.NumberFormat;
 import java.util.HashMap;
+import java.util.Locale;
 
 
 public class CalculatedVariables {
@@ -158,7 +160,7 @@ public class CalculatedVariables {
       yearlyAfterTaxCashFlow = yearlyBeforeTaxCashFlow - yearlyTaxes;
       
       //add this year's atcf to the graph data object
-      calculatedContentValues.put(DatabaseAdapter.AFTER_TAX_CASH_FLOW, (float)yearlyAfterTaxCashFlow);
+      calculatedContentValues.put(AnalysisGraph.GraphType.ATCF.getGraphName(), (float)yearlyAfterTaxCashFlow);
       
       yearlyDiscountRateDivisor = Math.pow(1 + monthlyRequiredRateOfReturn, monthCPModifier);
       yearlyNPVSummation += yearlyAfterTaxCashFlow / yearlyDiscountRateDivisor;
@@ -178,13 +180,13 @@ public class CalculatedVariables {
           inflationAdjustedSellingExpenses - principalOwedAtSale - taxesDueAtSale;
       
       //add this year's ater to the graph data object
-      calculatedContentValues.put(DatabaseAdapter.AFTER_TAX_EQUITY_REVERSION, (float) ater);
+      calculatedContentValues.put(AnalysisGraph.GraphType.ATER.getGraphName(), (float) ater);
 
       double adjustedAter = ater / Math.pow(1 + monthlyRequiredRateOfReturn,monthCPModifier);
       double npvAccumulator = -firstDay + yearlyNPVSummation + adjustedAter;
       
       //add this year's NPV to the graph data object
-      calculatedContentValues.put(DatabaseAdapter.NET_PRESENT_VALUE, (float) npvAccumulator);
+      calculatedContentValues.put(AnalysisGraph.GraphType.NPV.getGraphName(), (float) npvAccumulator);
       
       //put this year's data into a wrapper hashMap
       calculatedValuesHashMap.put(year, calculatedContentValues);
@@ -196,7 +198,15 @@ public class CalculatedVariables {
 
   
   
-  
+  public static String displayCurrency(Double value) {
+    NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
+    return currencyFormatter.format(value);
+  }
+
+  public static String displayCurrency(Float value) {
+    NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
+    return currencyFormatter.format(value);
+  }
   
   public double getMortgagePayment() {
     double a = (monthlyInterestRate + 1);

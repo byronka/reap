@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 
 public class SavedDataBrowserActivity extends ListActivity {
@@ -47,6 +48,9 @@ public class SavedDataBrowserActivity extends ListActivity {
         
         DatabaseUtils.cursorRowToContentValues(cursor, contentValues);
         dataController.setContentValues(contentValues);
+        
+        Toast toast = Toast.makeText(SavedDataBrowserActivity.this, "Data loaded", Toast.LENGTH_SHORT);
+        toast.show();
       }
     });
   }
