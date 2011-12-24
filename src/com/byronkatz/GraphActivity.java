@@ -9,7 +9,9 @@ import java.util.Set;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnKeyListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -41,7 +43,8 @@ public class GraphActivity extends Activity {
   // calculated variables
   private HashMap<Integer, HashMap<String, Float>> calculatedValuesHashMap;
 
-
+  private Double minValueNumeric;
+  private Double maxValueNumeric;
   
   private static final String NOCP = DatabaseAdapter.NUMBER_OF_COMPOUNDING_PERIODS;
 
@@ -119,6 +122,23 @@ public class GraphActivity extends Activity {
     npvGraph.setCurrentYearHighlighted(currentYearSelected);
     
 
+    minValueEditText.setOnKeyListener(new OnKeyListener() {
+      
+      @Override
+      public boolean onKey(View v, int keyCode, KeyEvent event) {
+        minValueNumeric = Double.valueOf(minValueEditText.getText().toString());
+        return false;
+      }
+    });
+    
+    maxValueEditText.setOnKeyListener(new OnKeyListener() {
+      
+      @Override
+      public boolean onKey(View v, int keyCode, KeyEvent event) {
+        maxValueNumeric = Double.valueOf(maxValueEditText.getText().toString());
+        return false;
+      }
+    });
     
     valueSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -146,14 +166,12 @@ public class GraphActivity extends Activity {
       
       @Override
       public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-        
+        //do nothing here
       }
       
       @Override
       public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-        
+        //do nothing here
       }
       
       @Override
@@ -186,11 +204,6 @@ public class GraphActivity extends Activity {
       @Override
       public void onProgressChanged(SeekBar seekBar, int progress,
           boolean fromUser) {
-        //take values from min and max edit fields
-        String minValueString = minValueEditText.getText().toString();
-        String maxValueString = maxValueEditText.getText().toString();
-        Double minValueNumeric = Double.valueOf(minValueString);
-        Double maxValueNumeric = Double.valueOf(maxValueString);
 
         Double deltaValueNumeric = maxValueNumeric - minValueNumeric;
         Double percentageSlid = progress / 100.0;
@@ -199,6 +212,7 @@ public class GraphActivity extends Activity {
         String newCurrentValueString = CalculatedVariables.displayCurrency(
             newCurrentValue);
         currentValueEditText.setText(newCurrentValueString);
+        
         String currentValueStorageString = String.valueOf(newCurrentValue);
         dataController.setValue(currentSliderKey, currentValueStorageString);
 
