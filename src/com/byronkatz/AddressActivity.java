@@ -50,7 +50,6 @@ public class AddressActivity extends Activity {
       @Override
       public void onClick(View v) {
         Intent intent = new Intent(LOCATION_SERVICE);
-        //TODO - this is probably not right at all.  How to do activity for result?
         startActivityForResult(intent, MODE_PRIVATE);
       }
     });

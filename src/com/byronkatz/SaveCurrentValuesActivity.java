@@ -23,8 +23,6 @@ public class SaveCurrentValuesActivity extends Activity {
     saveButton = (Button) findViewById(R.id.saveButton);
     backButton = (Button) findViewById(R.id.backButton);
     
-    assignValuesToTable();
-
     saveButton.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -42,11 +40,4 @@ public class SaveCurrentValuesActivity extends Activity {
     });
   }
 
-  /**
-   * assignValuesToTable adds values to the table which is located at
-   * the bottom of the layout for confirmation of the proper values.
-   */
-  private void assignValuesToTable() {
-    
-  }
 }

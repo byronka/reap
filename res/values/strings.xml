@@ -127,5 +127,6 @@
 		<string name="saveCurrentValuesActivityTitleText">Save Current Values</string>
 		<string name="saveCurrentValuesToDatabaseButtonText">Save current values to database</string>
 		<string name="saveButtonText">Save</string>
+		<string name="calcPMIDownPaymentButtonText">Set down payment by PMI</string>
 
 </resources>

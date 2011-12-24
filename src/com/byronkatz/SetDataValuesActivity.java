@@ -28,7 +28,7 @@ public class SetDataValuesActivity extends Activity {
     loadSavedValuesFromDatabase.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(SetDataValuesActivity.this, LoadSavedValuesActivity.class);
+        Intent intent = new Intent(SetDataValuesActivity.this, SavedDataBrowserActivity.class);
         startActivity(intent); 
       }
     });

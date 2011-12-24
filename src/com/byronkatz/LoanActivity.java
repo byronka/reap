@@ -21,6 +21,7 @@ public class LoanActivity extends Activity {
   private EditText totalPurchasePrice;
   private EditText closingCosts;
   private Button backButton;
+  private Button pmiButton;
   ArrayAdapter<CharSequence> adapter;
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
@@ -37,6 +38,7 @@ public class LoanActivity extends Activity {
     loanTerm           = (Spinner) findViewById(R.id.numOfCompoundingPeriodsSpinner);
     totalPurchasePrice = (EditText)findViewById(R.id.totalPurchasePriceEditText);
     closingCosts       = (EditText)findViewById(R.id.closingCostsEditText);
+    pmiButton          = (Button)findViewById(R.id.calcPMIDownPaymentButton);
     backButton         = (Button)findViewById(R.id.backButton);
     
     adapter = ArrayAdapter.createFromResource(
@@ -45,6 +47,19 @@ public class LoanActivity extends Activity {
     loanTerm.setAdapter(adapter);
 
     assignValuesToFields();
+    
+    pmiButton.setOnClickListener(new OnClickListener() {
+      
+      @Override
+      public void onClick(View v) {
+        Double totalPurchasevalue = 
+            Double.valueOf(dataController.getValue(DatabaseAdapter.TOTAL_PURCHASE_VALUE));
+        Double pmiDownPayment = totalPurchasevalue * 0.20;
+        String pmiDownPaymentText = String.valueOf(pmiDownPayment);
+        downPayment.setText(pmiDownPaymentText);
+        
+      }
+    });
     
     //Set up the listeners for the inputs
     yearlyInterestRate.setOnKeyListener(new OnKeyListener() {

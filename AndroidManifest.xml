@@ -24,8 +24,6 @@
 			android:label="@string/financialEnvironmentActivityTitleText" />
 		<activity android:name=".GraphActivity" 
 			android:label="@string/graphActivityTitleText" />
-		<activity android:name=".LoadSavedValuesActivity" 
-			android:label="@string/loadSavedValuesActivityTitleText" />
 		<activity android:name=".LoanActivity" 
 			android:label="@string/loanActivityTitleText" />
 		<activity android:name=".SaleActivity"
@@ -36,8 +34,6 @@
 			android:label="@string/taxesActivityTitleText" />
 		<activity android:name=".SavedDataBrowserActivity" 
 			android:label="@string/savedDataBrowserActivityTitleText" />
-		<activity android:name=".DatabaseSearchActivity" 
-			android:label="@string/databaseSearchActivityTitleText" />
 		<activity android:name=".SaveCurrentValuesActivity" 
 			android:label="@string/saveCurrentValuesActivityTitleText" />
 

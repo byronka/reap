@@ -2,7 +2,6 @@ package com.byronkatz;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.TreeMap;
 
 import android.content.Context;
@@ -35,6 +34,7 @@ class AnalysisGraph extends View {
   private int graphMaxX;
   private HashMap<Integer, Float> dataPointsMap;
   private TreeMap<Float, Float> graphMap;
+  private boolean xAxisAppears;
 
   private Integer graphTypeAttribute;
   private String graphKeyValue;
@@ -44,7 +44,7 @@ class AnalysisGraph extends View {
   private Paint borderPaint;
   private Paint highlightPaint;
   private int currentYearHighlighted;
-  
+
   //singleton with data
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
@@ -59,24 +59,24 @@ class AnalysisGraph extends View {
       defaultPaint.setColor(Color.BLUE);
       defaultPaint.setStrokeWidth(DEFAULT_GRAPH_STROKE_WIDTH);
       defaultPaint.setStyle(Paint.Style.STROKE);
-      
+
       //draw the max and min values text on left side
       textPaint = new Paint();
       textPaint.setColor(Color.WHITE);
       textPaint.setStrokeWidth(0);
       textPaint.setStyle(Paint.Style.STROKE);
       textPaint.setTextSize(TEXT_SIZE);
-      
+
       borderPaint = new Paint();
       borderPaint.setColor(Color.GRAY);
       borderPaint.setStrokeWidth(3.0f);
       borderPaint.setStyle(Paint.Style.STROKE);
-      
+
       highlightPaint = new Paint();
       highlightPaint.setColor(Color.YELLOW);
       highlightPaint.setStrokeWidth(4.0f);
       highlightPaint.setStyle(Paint.Style.STROKE);
-      
+
       graphMap = new TreeMap<Float, Float>();
       dataPointsMap = new HashMap<Integer, Float>();
       initView(attrs);
@@ -143,8 +143,12 @@ class AnalysisGraph extends View {
         Float yValue = entry.getValue();
         xGraphValue = (float) (marginWidthX +  xGraphCoefficient * (xValue - functionMinX));
         yGraphValue = (float) (marginWidthY + yGraphCoefficient * (functionMaxY - yValue));
-        //load up the real values for graphing
-        graphMap.put(xGraphValue, yGraphValue);
+        
+        //draw the points on the graph
+        if (xValue == currentYearHighlighted) {
+          canvas.drawCircle(xGraphValue, yGraphValue, CIRCLE_RADIUS, highlightPaint);
+        }
+        canvas.drawCircle(xGraphValue, yGraphValue, CIRCLE_RADIUS, defaultPaint);
       }
 
       //draw the frame
@@ -152,42 +156,42 @@ class AnalysisGraph extends View {
           graphMaxX, graphMaxY);
       canvas.drawRect(graphFrameRect, borderPaint);
 
-      //draw the points
- 
-      int currentYear = 1;
-      for (LinkedHashMap.Entry<Float, Float> entry : graphMap.entrySet()) {
-        
-        Float xValue = entry.getKey();
-        Float yValue = entry.getValue();
-        if (currentYear == currentYearHighlighted) {
-          canvas.drawCircle(xValue, yValue, CIRCLE_RADIUS, highlightPaint);
-        }
-        canvas.drawCircle(xValue, yValue, CIRCLE_RADIUS, defaultPaint);
-        currentYear++;
-      }
 
       //draw the 0 X-axis if the graph passes it.
       //if the x-axis is between function max and min
       if (functionMaxY > 0 && functionMinY < 0) {
+        xAxisAppears = true;
         float distFromMarginToXAxis = (float) (marginWidthY + (yGraphCoefficient * functionMaxY));
         float startX = (float) GRAPH_MIN_X;
         float stopX  = (float) graphMaxX;
         canvas.drawLine(startX, distFromMarginToXAxis, stopX, 
             distFromMarginToXAxis, defaultPaint);
-        canvas.drawText(X_AXIS_STRING, startX, distFromMarginToXAxis, defaultPaint);
+        canvas.drawText(X_AXIS_STRING, (float) (marginWidthX / 4), 
+            distFromMarginToXAxis, textPaint);
+      } else {
+        xAxisAppears = false;
       }
 
-
+      //      //draw a short vertical line where the graph and the x-axis intersect
+      //      if (xAxisAppears) {
+      //        //determine where the intersection is
+      //        Collection<Float> values = graphMap.values();
+      //        for (Float f : values) {
+      //          if (f > 0) {
+      //            
+      //          }
+      //        }
+      //      }
 
       //draw top number text
       String maxYString = CalculatedVariables.displayCurrency (functionMaxY);
-      float maxX = 0;
+      float maxX = (float) marginWidthX / 4;
       float maxY = (float) marginWidthY;
       canvas.drawText(maxYString, maxX, maxY, textPaint);
 
       //draw bottom number text
       String minYString = CalculatedVariables.displayCurrency (functionMinY);
-      float minX = 0;
+      float minX = (float) marginWidthX / 4;
       float minY = (float) (marginWidthY + betweenMarginsOnY);
       canvas.drawText(minYString, minX, minY, textPaint);
 
