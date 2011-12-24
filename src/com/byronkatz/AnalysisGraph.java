@@ -2,6 +2,7 @@ package com.byronkatz;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -20,12 +21,12 @@ class AnalysisGraph extends View {
   private static final int ATER = 1;
   private static final int ATCF = 2;
 
-  public static final float GRAPH_MARGIN = 0.20f;
+  public static final Float GRAPH_MARGIN = 0.20f;
   public static final int GRAPH_MIN_X = 0;
   public static final int GRAPH_MIN_Y = 0;
-  public static final float CIRCLE_RADIUS = 3.0f;
-  public static final float TEXT_SIZE = 10.0f;
-  public static final float DEFAULT_GRAPH_STROKE_WIDTH = 1.8f;
+  public static final Float CIRCLE_RADIUS = 3.0f;
+  public static final Float TEXT_SIZE = 10.0f;
+  public static final Float DEFAULT_GRAPH_STROKE_WIDTH = 1.8f;
   public static final String X_AXIS_STRING = "0";
 
   public static final CalculatedVariables calculatedVariables = new CalculatedVariables();
@@ -33,12 +34,12 @@ class AnalysisGraph extends View {
   //local graph math variables
   private int graphMaxY;
   private int graphMaxX;
-  private HashMap<Integer, Float> dataPointsMap;
-  private TreeMap<Float, Float> graphMap;
+  private Map<Integer, Float> dataPointsMap;
+  private Map<Float, Float> graphMap;
   private boolean xAxisAppears;
 
   private Integer graphTypeAttribute;
-  private String graphKeyValue;
+  private ValueEnum graphKeyValue;
 
   private Paint defaultPaint;
   private Paint textPaint;
@@ -92,13 +93,13 @@ class AnalysisGraph extends View {
 
     switch (graphTypeAttribute) {
     case NPV:
-      graphKeyValue = GraphType.NPV.getGraphName();
+      graphKeyValue = ValueEnum.NPV;
       break;
     case ATER:
-      graphKeyValue = GraphType.ATER.getGraphName();
+      graphKeyValue = ValueEnum.ATER;
       break;
     case ATCF:
-      graphKeyValue = GraphType.ATCF.getGraphName();
+      graphKeyValue = ValueEnum.ATCF;
       break;
     default:
       System.err.println("You should not get here, in initView, in AnalysisGraph");
@@ -108,7 +109,7 @@ class AnalysisGraph extends View {
 
   private void crunchData() {
     calculatedVariables.crunchCalculation();
-    createDataPoints();
+//    createDataPoints();
   }
 
   public void onDraw(Canvas canvas) {
@@ -117,33 +118,33 @@ class AnalysisGraph extends View {
       graphMaxX = getMeasuredWidth();
 
 
-      double functionMinY = Collections.min(dataPointsMap.values());
-      double functionMaxY = Collections.max(dataPointsMap.values());
-      double functionMinX = Collections.min(dataPointsMap.keySet());
-      double functionMaxX = Collections.max(dataPointsMap.keySet());
-      double deltaGraphY = graphMaxY - GRAPH_MIN_Y;
-      double deltaGraphX = graphMaxX - GRAPH_MIN_X;
-      double deltaFunctionY = functionMaxY - functionMinY;
-      double deltaFunctionX = functionMaxX - functionMinX;
-      double marginWidthX = deltaGraphX * GRAPH_MARGIN;
-      double marginWidthY = deltaGraphY * GRAPH_MARGIN;
+      Float functionMinY = Collections.min(dataPointsMap.values());
+      Float functionMaxY = Collections.max(dataPointsMap.values());
+      Float functionMinX = Collections.min(dataPointsMap.keySet());
+      Float functionMaxX = Collections.max(dataPointsMap.keySet());
+      Float deltaGraphY = graphMaxY - GRAPH_MIN_Y;
+      Float deltaGraphX = graphMaxX - GRAPH_MIN_X;
+      Float deltaFunctionY = functionMaxY - functionMinY;
+      Float deltaFunctionX = functionMaxX - functionMinX;
+      Float marginWidthX = deltaGraphX * GRAPH_MARGIN;
+      Float marginWidthY = deltaGraphY * GRAPH_MARGIN;
       //margin on left and right
-      double twiceXMargin = marginWidthX * 2;
+      Float twiceXMargin = marginWidthX * 2;
       //for margin on top and bottom
-      double twiceYMargin = marginWidthY * 2;
-      double betweenMarginsOnX = deltaGraphX - twiceXMargin;
-      double betweenMarginsOnY = deltaGraphY - twiceYMargin;
-      double xGraphCoefficient = betweenMarginsOnX / deltaFunctionX;
-      double yGraphCoefficient = betweenMarginsOnY / deltaFunctionY;
+      Float twiceYMargin = marginWidthY * 2;
+      Float betweenMarginsOnX = deltaGraphX - twiceXMargin;
+      Float betweenMarginsOnY = deltaGraphY - twiceYMargin;
+      Float xGraphCoefficient = betweenMarginsOnX / deltaFunctionX;
+      Float yGraphCoefficient = betweenMarginsOnY / deltaFunctionY;
 
-      float xGraphValue = 0.0f;
-      float yGraphValue = 0.0f;
+      Float xGraphValue = 0.0f;
+      Float yGraphValue = 0.0f;
 
       for (HashMap.Entry<Integer, Float> entry : dataPointsMap.entrySet()) {
         Integer xValue = entry.getKey();
         Float yValue = entry.getValue();
-        xGraphValue = (float) (marginWidthX +  xGraphCoefficient * (xValue - functionMinX));
-        yGraphValue = (float) (marginWidthY + yGraphCoefficient * (functionMaxY - yValue));
+        xGraphValue = (Float) (marginWidthX +  xGraphCoefficient * (xValue - functionMinX));
+        yGraphValue = (Float) (marginWidthY + yGraphCoefficient * (functionMaxY - yValue));
         
         //draw the points on the graph
         if (xValue == currentYearHighlighted) {
@@ -162,12 +163,12 @@ class AnalysisGraph extends View {
       //if the x-axis is between function max and min
       if (functionMaxY > 0 && functionMinY < 0) {
         xAxisAppears = true;
-        float distFromMarginToXAxis = (float) (marginWidthY + (yGraphCoefficient * functionMaxY));
-        float startX = (float) GRAPH_MIN_X;
-        float stopX  = (float) graphMaxX;
+        Float distFromMarginToXAxis = (marginWidthY + (yGraphCoefficient * functionMaxY));
+        Float startX = (float) GRAPH_MIN_X;
+        Float stopX  = (float) graphMaxX;
         canvas.drawLine(startX, distFromMarginToXAxis, stopX, 
             distFromMarginToXAxis, defaultPaint);
-        canvas.drawText(X_AXIS_STRING, (float) (marginWidthX / 4), 
+        canvas.drawText(X_AXIS_STRING, (Float) (marginWidthX / 4), 
             distFromMarginToXAxis, textPaint);
       } else {
         xAxisAppears = false;
@@ -186,41 +187,45 @@ class AnalysisGraph extends View {
 
       //draw top number text
       String maxYString = CalculatedVariables.displayCurrency (functionMaxY);
-      float maxX = (float) marginWidthX / 4;
-      float maxY = (float) marginWidthY;
+      Float maxX = (Float) marginWidthX / 4;
+      Float maxY = (Float) marginWidthY;
       canvas.drawText(maxYString, maxX, maxY, textPaint);
 
       //draw bottom number text
       String minYString = CalculatedVariables.displayCurrency (functionMinY);
-      float minX = (float) marginWidthX / 4;
-      float minY = (float) (marginWidthY + betweenMarginsOnY);
+      Float minX = (Float) marginWidthX / 4;
+      Float minY = (Float) (marginWidthY + betweenMarginsOnY);
       canvas.drawText(minYString, minX, minY, textPaint);
 
       //draw GraphName
-      float widthOfGraph = graphMaxX - GRAPH_MIN_X;
-      float halfwayPoint = widthOfGraph / 2;
-      float bottom = (float) (marginWidthY + betweenMarginsOnY + (marginWidthY/2));
-      canvas.drawText(graphKeyValue, halfwayPoint, bottom, textPaint);
+      Integer widthOfGraph = graphMaxX - GRAPH_MIN_X;
+      Float halfwayPoint = widthOfGraph / 2.0f;
+      Float bottom = marginWidthY + betweenMarginsOnY + (marginWidthY/2);
+      canvas.drawText(graphKeyValue.toString(), halfwayPoint, bottom, textPaint);
     }
   }
 
-
-  public void createDataPoints() {
-    Map<Integer, Map<String, Float>> calculatedValuesHashMap = dataController.getCalculatedValuesList();
-    for (Map.Entry<Integer, Map<String, Float>> entry : calculatedValuesHashMap.entrySet()) {
-
-      //each year is the key
-      Integer key = entry.getKey();
-      Map<String, Float> values = entry.getValue();
-
-      //unpack the contentValues per year
-      Float dataValue = values.get(graphKeyValue);
-
-      //map of year to value for this graph
-      dataPointsMap.put(key, dataValue);
-
-    }
-  }
+/**
+ * This function creates a Collection local to this class so that it can efficiently render
+ * the graph.  It also allows the use of Collections.min() and max() for the onDraw() function.
+ * @return
+ */
+//  public void createDataPoints() {
+//    List<Map<String, Float>> calculatedValuesHashMap = dataController.getCalculatedValuesList();
+//    for (Map.Entry<Integer, Map<String, Float>> entry : calculatedValuesHashMap.entrySet()) {
+//
+//      //each year is the key
+//      Integer key = entry.getKey();
+//      Map<String, Float> values = entry.getValue();
+//
+//      //unpack the contentValues per year
+//      Float dataValue = values.get(graphKeyValue);
+//
+//      //map of year to value for this graph
+//      dataPointsMap.put(key, dataValue);
+//
+//    }
+//  }
 
   public int getCurrentYearHighlighted() {
     return currentYearHighlighted;
@@ -228,27 +233,6 @@ class AnalysisGraph extends View {
 
   public void setCurrentYearHighlighted(int currentYearHighlighted) {
     this.currentYearHighlighted = currentYearHighlighted;
-  }
-
-  public enum GraphType {
-
-    NPV  ("Net present value"),
-    ATER ("After Tax Equity Reversion"),
-    ATCF ("After Tax Cash Flow");
-
-    private GraphType (String graphName) {
-      this.setGraphName(graphName);
-    }
-
-    public String getGraphName() {
-      return graphName;
-    }
-
-    public void setGraphName(String graphName) {
-      this.graphName = graphName;
-    }
-
-    private String graphName;
   }
 
 }

@@ -59,7 +59,7 @@ public class AddressActivity extends Activity {
       @Override
       public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
           long arg3) {
-        String key = DatabaseAdapter.STATE_INITIALS;
+        ValueEnum key = ValueEnum.STATE_INITIALS;
 
         String value = adapter.getItem(pos).toString();
         dataController.setValueAsString(key, value);
@@ -84,11 +84,11 @@ public class AddressActivity extends Activity {
 
   @Override
   protected void onPause() {
-    String key = DatabaseAdapter.STREET_ADDRESS;
+    ValueEnum key = ValueEnum.STREET_ADDRESS;
     String value = streetAddressEditText.getText().toString();
     dataController.setValueAsString(key, value);
     
-    key = DatabaseAdapter.CITY;
+    key = ValueEnum.CITY;
     value = cityEditText.getText().toString();
     dataController.setValueAsString(key, value);
     
@@ -97,14 +97,14 @@ public class AddressActivity extends Activity {
   
   private void assignValuesToFields() {
 
-    String sa = dataController.getValueAsString(DatabaseAdapter.STREET_ADDRESS);
+    String sa = dataController.getValueAsString(ValueEnum.STREET_ADDRESS);
     streetAddressEditText.setText(sa);
 
-    String city = dataController.getValueAsString(DatabaseAdapter.CITY);
+    String city = dataController.getValueAsString(ValueEnum.CITY);
     cityEditText.setText(city);
 
     String stateInitials = 
-        dataController.getValueAsString(DatabaseAdapter.STATE_INITIALS);
+        dataController.getValueAsString(ValueEnum.STATE_INITIALS);
 
     int statePosition = adapter.getPosition(stateInitials);
     stateSpinner.setSelection(statePosition);

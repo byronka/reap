@@ -21,67 +21,34 @@ public class DatabaseAdapter {
   // The index (key) column name for use in where clauses.
   public static final String KEY_ID="_id";
 
-  // The name and column index of each column in your database.
-  public static final String KEY_NAME                          = "name"; 
-  public static final String TOTAL_PURCHASE_VALUE              = "total_purchase_value";
-  public static final String YEARLY_INTEREST_RATE              = "yearly_interest_rate";
-  public static final String MONTHLY_INTEREST_RATE             = "monthly_interest_rate";
-  public static final String BUILDING_VALUE                    = "building_value";
-  public static final String NUMBER_OF_COMPOUNDING_PERIODS     = "number_of_compounding_periods";
-  public static final String INFLATION_RATE                    = "inflation_rate";
-  public static final String PRIMARY_MORTGAGE_INSURANCE_RATE   = "primary_mortgage_insurance_rate";
-  public static final String DOWN_PAYMENT                      = "down_payment";
-  public static final String STREET_ADDRESS                    = "street_address";
-  public static final String CITY                              = "city";
-  public static final String STATE_INITIALS                    = "state_initials";
-  public static final String ESTIMATED_RENT_PAYMENTS           = "estimated_rent_payments";
-  public static final String REAL_ESTATE_APPRECIATION_RATE     = "real_estate_appreciation_rate";
-  public static final String YEARLY_ALTERNATE_INVESTMENT_RETURN= "yearly_alternate_investment_return";
-  public static final String YEARLY_HOME_INSURANCE             = "yearly_home_insurance";
-  public static final String PROPERTY_TAX_RATE                 = "property_tax_rate";
-  public static final String LOCAL_MUNICIPAL_FEES              = "local_municipal_fees";
-  public static final String VACANCY_AND_CREDIT_LOSS_RATE      = "vacancy_and_credit_loss_rate";
-  public static final String INITIAL_YEARLY_GENERAL_EXPENSES   = "initial_yearly_general_expenses";
-  public static final String MARGINAL_TAX_RATE                 = "marginal_tax_rate";
-  public static final String SELLING_BROKER_RATE               = "selling_broker_rate";
-  public static final String GENERAL_SALE_EXPENSES             = "general_sale_expenses";
-  public static final String REQUIRED_RATE_OF_RETURN           = "required_rate_of_return";
-  public static final String FIX_UP_COSTS                      = "fix_up_costs";
-  public static final String CLOSING_COSTS                     = "closing_costs";
-
-  //calculated values
-//  public static final String AFTER_TAX_EQUITY_REVERSION        = "after_tax_equity_reversion";
-//  public static final String AFTER_TAX_CASH_FLOW               = "after_tax_cash_flow";
-//  public static final String NET_PRESENT_VALUE                 = "net_present_value";
 
   private static final String DATABASE_CREATE = "create table " + 
       DATABASE_TABLE + " ("     + 
       KEY_ID + " integer primary key autoincrement" + ", " +
-      TOTAL_PURCHASE_VALUE               + " REAL"    +     ", " +
-      YEARLY_INTEREST_RATE               + " REAL"    +     ", " +
-      MONTHLY_INTEREST_RATE              + " REAL"    +     ", " +
-      BUILDING_VALUE                     + " REAL"    +     ", " +
-      NUMBER_OF_COMPOUNDING_PERIODS      + " INTEGER" +     ", " +
-      INFLATION_RATE                     + " REAL"    +     ", " +
-      PRIMARY_MORTGAGE_INSURANCE_RATE    + " REAL"    +     ", " +
-      DOWN_PAYMENT                       + " REAL"    +     ", " +
-      STREET_ADDRESS                     + " TEXT"    +     ", " +
-      CITY                               + " TEXT"    +     ", " +
-      STATE_INITIALS                     + " TEXT"    +     ", " +
-      ESTIMATED_RENT_PAYMENTS            + " REAL"    +     ", " +
-      REAL_ESTATE_APPRECIATION_RATE      + " REAL"    +     ", " +
-      YEARLY_ALTERNATE_INVESTMENT_RETURN + " REAL"    +     ", " +
-      YEARLY_HOME_INSURANCE              + " REAL"    +     ", " +
-      PROPERTY_TAX_RATE                  + " REAL"    +     ", " +
-      LOCAL_MUNICIPAL_FEES               + " REAL"    +     ", " +
-      VACANCY_AND_CREDIT_LOSS_RATE       + " REAL"    +     ", " +
-      INITIAL_YEARLY_GENERAL_EXPENSES    + " REAL"    +     ", " +
-      MARGINAL_TAX_RATE                  + " REAL"    +     ", " +
-      SELLING_BROKER_RATE                + " REAL"    +     ", " +
-      GENERAL_SALE_EXPENSES              + " REAL"    +     ", " +
-      REQUIRED_RATE_OF_RETURN            + " REAL"    +     ", " +
-      FIX_UP_COSTS                       + " REAL"    +     ","  +
-      CLOSING_COSTS                      + " REAL"    +
+      ValueEnum.TOTAL_PURCHASE_VALUE               + " REAL"    +     ", " +
+      ValueEnum.YEARLY_INTEREST_RATE               + " REAL"    +     ", " +
+      ValueEnum.BUILDING_VALUE                     + " REAL"    +     ", " +
+      ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS      + " INTEGER" +     ", " +
+      ValueEnum.INFLATION_RATE                     + " REAL"    +     ", " +
+      ValueEnum.PRIMARY_MORTGAGE_INSURANCE_RATE    + " REAL"    +     ", " +
+      ValueEnum.DOWN_PAYMENT                       + " REAL"    +     ", " +
+      ValueEnum.STREET_ADDRESS                     + " TEXT"    +     ", " +
+      ValueEnum.CITY                               + " TEXT"    +     ", " +
+      ValueEnum.STATE_INITIALS                     + " TEXT"    +     ", " +
+      ValueEnum.ESTIMATED_RENT_PAYMENTS            + " REAL"    +     ", " +
+      ValueEnum.REAL_ESTATE_APPRECIATION_RATE      + " REAL"    +     ", " +
+      ValueEnum.YEARLY_ALTERNATE_INVESTMENT_RETURN + " REAL"    +     ", " +
+      ValueEnum.YEARLY_HOME_INSURANCE              + " REAL"    +     ", " +
+      ValueEnum.PROPERTY_TAX_RATE                  + " REAL"    +     ", " +
+      ValueEnum.LOCAL_MUNICIPAL_FEES               + " REAL"    +     ", " +
+      ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE       + " REAL"    +     ", " +
+      ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES    + " REAL"    +     ", " +
+      ValueEnum.MARGINAL_TAX_RATE                  + " REAL"    +     ", " +
+      ValueEnum.SELLING_BROKER_RATE                + " REAL"    +     ", " +
+      ValueEnum.GENERAL_SALE_EXPENSES              + " REAL"    +     ", " +
+      ValueEnum.REQUIRED_RATE_OF_RETURN            + " REAL"    +     ", " +
+      ValueEnum.FIX_UP_COSTS                       + " REAL"    +     ","  +
+      ValueEnum.CLOSING_COSTS                      + " REAL"    +
       		" );";
 
   private SQLiteDatabase db;

@@ -9,7 +9,7 @@ import java.util.Map;
 public class CalculatedVariables {
 
   public static final int NUM_OF_MONTHS_IN_YEAR = 12;
-  public static final double RESIDENTIAL_DEPRECIATION_YEARS = 27.5;
+  public static final Float RESIDENTIAL_DEPRECIATION_YEARS = 27.5f;
   public static final int YEARLY = 1;
   public static final int MONTHLY = 2;
 
@@ -21,25 +21,25 @@ public class CalculatedVariables {
   private Map<String, Float> calculatedContentValues;
 
   //input variables
-  private double totalPurchaseValue;
-  private double estimatedRentPayments;
-  private double realEstateAppreciationRate;
-  private double vacancyRate;
-  private double initialYearlyGeneralExpenses;
-  private double inflationRate;
-  private double marginalTaxRate;
-  private double buildingValue;
-  private double requiredRateOfReturn;
-  private double yearlyInterestRate;
+  private Float totalPurchaseValue;
+  private Float estimatedRentPayments;
+  private Float realEstateAppreciationRate;
+  private Float vacancyRate;
+  private Float initialYearlyGeneralExpenses;
+  private Float inflationRate;
+  private Float marginalTaxRate;
+  private Float buildingValue;
+  private Float requiredRateOfReturn;
+  private Float yearlyInterestRate;
   private int numOfCompoundingPeriods;
-  private double sellingBrokerRate;
-  private double generalSaleExpenses;
-  private double downPayment;
-  private double fixupCosts;
-  private double propertyTaxRate;
-  private double principalOwed;
-  private double initialYearlyPropertyTax;
-  private double monthlyInterestRate;
+  private Float sellingBrokerRate;
+  private Float generalSaleExpenses;
+  private Float downPayment;
+  private Float fixupCosts;
+  private Float propertyTaxRate;
+  private Float principalOwed;
+  private Float initialYearlyPropertyTax;
+  private Float monthlyInterestRate;
 
 
 
@@ -50,28 +50,28 @@ public class CalculatedVariables {
   }
 
   private void assignVariables() {
-    totalPurchaseValue = dataController.getValueAsFloat(DatabaseAdapter.TOTAL_PURCHASE_VALUE);
-    estimatedRentPayments = dataController.getValueAsFloat(DatabaseAdapter.ESTIMATED_RENT_PAYMENTS);
-    realEstateAppreciationRate = dataController.getValueAsFloat(DatabaseAdapter.REAL_ESTATE_APPRECIATION_RATE);
-    vacancyRate = dataController.getValueAsFloat(DatabaseAdapter.VACANCY_AND_CREDIT_LOSS_RATE);
-    initialYearlyGeneralExpenses = dataController.getValueAsFloat(DatabaseAdapter.INITIAL_YEARLY_GENERAL_EXPENSES);
-    inflationRate = dataController.getValueAsFloat(DatabaseAdapter.INFLATION_RATE);
-    marginalTaxRate = dataController.getValueAsFloat(DatabaseAdapter.MARGINAL_TAX_RATE);
-    buildingValue = dataController.getValueAsFloat(DatabaseAdapter.BUILDING_VALUE);
-    requiredRateOfReturn = dataController.getValueAsFloat(DatabaseAdapter.REQUIRED_RATE_OF_RETURN);
-    yearlyInterestRate = dataController.getValueAsFloat(DatabaseAdapter.YEARLY_INTEREST_RATE);
-    numOfCompoundingPeriods = dataController.getValueAsInteger(DatabaseAdapter.NUMBER_OF_COMPOUNDING_PERIODS);
-    sellingBrokerRate = dataController.getValueAsFloat(DatabaseAdapter.SELLING_BROKER_RATE);
-    generalSaleExpenses = dataController.getValueAsFloat(DatabaseAdapter.GENERAL_SALE_EXPENSES);
-    downPayment = dataController.getValueAsFloat(DatabaseAdapter.DOWN_PAYMENT);
-    fixupCosts = dataController.getValueAsFloat(DatabaseAdapter.FIX_UP_COSTS);
-    propertyTaxRate = dataController.getValueAsFloat(DatabaseAdapter.PROPERTY_TAX_RATE);
+    totalPurchaseValue = dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE);
+    estimatedRentPayments = dataController.getValueAsFloat(ValueEnum.ESTIMATED_RENT_PAYMENTS);
+    realEstateAppreciationRate = dataController.getValueAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE);
+    vacancyRate = dataController.getValueAsFloat(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE);
+    initialYearlyGeneralExpenses = dataController.getValueAsFloat(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES);
+    inflationRate = dataController.getValueAsFloat(ValueEnum.INFLATION_RATE);
+    marginalTaxRate = dataController.getValueAsFloat(ValueEnum.MARGINAL_TAX_RATE);
+    buildingValue = dataController.getValueAsFloat(ValueEnum.BUILDING_VALUE);
+    requiredRateOfReturn = dataController.getValueAsFloat(ValueEnum.REQUIRED_RATE_OF_RETURN);
+    yearlyInterestRate = dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE);
+    numOfCompoundingPeriods = dataController.getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue();
+    sellingBrokerRate = dataController.getValueAsFloat(ValueEnum.SELLING_BROKER_RATE);
+    generalSaleExpenses = dataController.getValueAsFloat(ValueEnum.GENERAL_SALE_EXPENSES);
+    downPayment = dataController.getValueAsFloat(ValueEnum.DOWN_PAYMENT);
+    fixupCosts = dataController.getValueAsFloat(ValueEnum.FIX_UP_COSTS);
+    propertyTaxRate = dataController.getValueAsFloat(ValueEnum.PROPERTY_TAX_RATE);
     principalOwed = totalPurchaseValue - downPayment;
     initialYearlyPropertyTax = totalPurchaseValue * propertyTaxRate;
     monthlyInterestRate = yearlyInterestRate / NUM_OF_MONTHS_IN_YEAR;
 
-    //calculated variables
-    calculatedValuesMap = dataController.getCalculatedValuesList();
+//    //calculated variables
+//    calculatedValuesMap = dataController.getCalculatedValuesList();
   }
 
   public void crunchCalculation() {
@@ -85,32 +85,32 @@ public class CalculatedVariables {
      */
     assignVariables();
 
-    double firstDay = downPayment + generalSaleExpenses + fixupCosts;
+    Float firstDay = downPayment + generalSaleExpenses + fixupCosts;
 
-    double yearlyNPVSummation = 0.0;
-    double yearlyAfterTaxCashFlow = 0.0;
-    double yearlyBeforeTaxCashFlow = 0.0;
-    double yearlyTaxes = 0.0;
-    double yearlyPrincipalPaid = 0.0;
-    double yearlyDepreciation = buildingValue / RESIDENTIAL_DEPRECIATION_YEARS;
-    double yearlyMortgagePayment = NUM_OF_MONTHS_IN_YEAR * getMortgagePayment();
-    double taxableIncome = 0.0;
-    double yearlyCompoundingPeriods = numOfCompoundingPeriods / NUM_OF_MONTHS_IN_YEAR;
-    double yearlyPropertyTax = 0.0;
-    double currentYearAmountOutstanding = 0.0;
-    double pastYearAmountOutstanding = 0.0;
-    double yearlyIncome = 0;
-    double yearlyOutlay = 0;
-    double monthlyREARIncrementer = 0.0;
-    double grossYearlyIncome = 0.0;
-    double netYearlyIncome = 0.0;
-    double monthlyIRIncrementer = 0.0;
-    double yearlyGeneralExpenses = 0.0;
-    double monthlyRealEstateAppreciationRate = realEstateAppreciationRate / NUM_OF_MONTHS_IN_YEAR;
-    double monthlyRequiredRateOfReturn = requiredRateOfReturn / NUM_OF_MONTHS_IN_YEAR;
-    double monthlyInflationRate = inflationRate / NUM_OF_MONTHS_IN_YEAR;
+    Float yearlyNPVSummation = 0.0f;
+    Float yearlyAfterTaxCashFlow = 0.0f;
+    Float yearlyBeforeTaxCashFlow = 0.0f;
+    Float yearlyTaxes = 0.0f;
+    Float yearlyPrincipalPaid = 0.0f;
+    Float yearlyDepreciation = buildingValue / RESIDENTIAL_DEPRECIATION_YEARS;
+    Float yearlyMortgagePayment = NUM_OF_MONTHS_IN_YEAR * getMortgagePayment();
+    Float taxableIncome = 0.0f;
+    Integer yearlyCompoundingPeriods = numOfCompoundingPeriods / NUM_OF_MONTHS_IN_YEAR;
+    Float yearlyPropertyTax = 0.0f;
+    Float currentYearAmountOutstanding = 0.0f;
+    Float pastYearAmountOutstanding = 0.0f;
+    Float yearlyIncome = 0.0f;
+    Float yearlyOutlay = 0.0f;
+    Float monthlyREARIncrementer = 0.0f;
+    Float grossYearlyIncome = 0.0f;
+    Float netYearlyIncome = 0.0f;
+    Float monthlyIRIncrementer = 0.0f;
+    Float yearlyGeneralExpenses = 0.0f;
+    Float monthlyRealEstateAppreciationRate = realEstateAppreciationRate / NUM_OF_MONTHS_IN_YEAR;
+    Float monthlyRequiredRateOfReturn = requiredRateOfReturn / NUM_OF_MONTHS_IN_YEAR;
+    Float monthlyInflationRate = inflationRate / NUM_OF_MONTHS_IN_YEAR;
     int monthCPModifier = 0;
-    double yearlyDiscountRateDivisor = 0.0;
+    Float yearlyDiscountRateDivisor = 0.0f;
     int prevYearMonthCPModifier = 0;
 
 
@@ -121,12 +121,12 @@ public class CalculatedVariables {
       // cashflowIn - cashflowOut
       monthCPModifier = year * NUM_OF_MONTHS_IN_YEAR;
       prevYearMonthCPModifier = (year - 1) * NUM_OF_MONTHS_IN_YEAR;
-      monthlyREARIncrementer = Math.pow(1 + monthlyRealEstateAppreciationRate,prevYearMonthCPModifier);
+      monthlyREARIncrementer = (float) Math.pow(1 + monthlyRealEstateAppreciationRate,prevYearMonthCPModifier);
       yearlyPropertyTax = initialYearlyPropertyTax * monthlyREARIncrementer; 
       grossYearlyIncome = estimatedRentPayments * NUM_OF_MONTHS_IN_YEAR;
       netYearlyIncome = (1 - vacancyRate) * grossYearlyIncome;
       yearlyIncome = netYearlyIncome * monthlyREARIncrementer; 
-      monthlyIRIncrementer = Math.pow(1 + monthlyInflationRate, prevYearMonthCPModifier); 
+      monthlyIRIncrementer = (float) Math.pow(1 + monthlyInflationRate, prevYearMonthCPModifier); 
       yearlyGeneralExpenses = initialYearlyGeneralExpenses * monthlyIRIncrementer;
       yearlyOutlay = yearlyPropertyTax + yearlyMortgagePayment + yearlyGeneralExpenses;
       yearlyBeforeTaxCashFlow = yearlyIncome - yearlyOutlay;
@@ -138,54 +138,44 @@ public class CalculatedVariables {
       taxableIncome = (yearlyBeforeTaxCashFlow + yearlyPrincipalPaid - yearlyDepreciation);
       // doesn't make sense to tax negative income...but should this be used to offset taxes? hmmm...
       if (taxableIncome <= 0) {
-        taxableIncome = 0.0;
+        taxableIncome = 0.0f;
       }
       yearlyTaxes = taxableIncome * marginalTaxRate;
 
       yearlyAfterTaxCashFlow = yearlyBeforeTaxCashFlow - yearlyTaxes;
 
-      //add this year's atcf to the graph data object
-      calculatedContentValues.put(AnalysisGraph.GraphType.ATCF.getGraphName(), (float)yearlyAfterTaxCashFlow);
+      dataController.setValueAsFloat(ValueEnum.ATCF, (Float)yearlyAfterTaxCashFlow);
 
-      yearlyDiscountRateDivisor = Math.pow(1 + monthlyRequiredRateOfReturn, monthCPModifier);
+      yearlyDiscountRateDivisor = (float) Math.pow(1 + monthlyRequiredRateOfReturn, monthCPModifier);
       yearlyNPVSummation += yearlyAfterTaxCashFlow / yearlyDiscountRateDivisor;
 
       //equity reversion portion
-      monthlyREARIncrementer = Math.pow(1 + monthlyRealEstateAppreciationRate, monthCPModifier);
-      double projectedValueOfHomeAtSale = totalPurchaseValue * monthlyREARIncrementer;
-      double brokerCut = projectedValueOfHomeAtSale * sellingBrokerRate;
-      monthlyIRIncrementer = Math.pow(1 + monthlyInflationRate, monthCPModifier);
-      double inflationAdjustedSellingExpenses = generalSaleExpenses * monthlyIRIncrementer;
-      double principalOwedAtSale = getPrincipalOutstandingAtPoint(monthCPModifier);
+      monthlyREARIncrementer = (float) Math.pow(1 + monthlyRealEstateAppreciationRate, monthCPModifier);
+      Float projectedValueOfHomeAtSale = totalPurchaseValue * monthlyREARIncrementer;
+      Float brokerCut = projectedValueOfHomeAtSale * sellingBrokerRate;
+      monthlyIRIncrementer = (float) Math.pow(1 + monthlyInflationRate, monthCPModifier);
+      Float inflationAdjustedSellingExpenses = generalSaleExpenses * monthlyIRIncrementer;
+      Float principalOwedAtSale = getPrincipalOutstandingAtPoint(monthCPModifier);
       //How many years do I take depreciation?
-      double accumulatingDepreciation = yearlyDepreciation * year;
-      double taxesDueAtSale = (projectedValueOfHomeAtSale - totalPurchaseValue + accumulatingDepreciation)
+      Float accumulatingDepreciation = yearlyDepreciation * year;
+      Float taxesDueAtSale = (projectedValueOfHomeAtSale - totalPurchaseValue + accumulatingDepreciation)
           * marginalTaxRate;
-      double ater = projectedValueOfHomeAtSale - brokerCut - 
+      Float ater = projectedValueOfHomeAtSale - brokerCut - 
           inflationAdjustedSellingExpenses - principalOwedAtSale - taxesDueAtSale;
 
       //add this year's ater to the graph data object
-      calculatedContentValues.put(AnalysisGraph.GraphType.ATER.getGraphName(), (float) ater);
+      dataController.setValueAsFloat(ValueEnum.ATER, ater);
 
-      double adjustedAter = ater / Math.pow(1 + monthlyRequiredRateOfReturn,monthCPModifier);
-      double npvAccumulator = -firstDay + yearlyNPVSummation + adjustedAter;
+      Float adjustedAter = (float) (ater / Math.pow(1 + monthlyRequiredRateOfReturn,monthCPModifier));
+      Float npvAccumulator = -firstDay + yearlyNPVSummation + adjustedAter;
 
       //add this year's NPV to the graph data object
-      calculatedContentValues.put(AnalysisGraph.GraphType.NPV.getGraphName(), (float) npvAccumulator);
+      dataController.setValueAsFloat(ValueEnum.NPV, (float) npvAccumulator);
 
       //put this year's data into a wrapper hashMap
       calculatedValuesMap.put(year, calculatedContentValues);
     }
 
-    //put the data in its place in the dataController
-    dataController.setCalculatedValuesList(calculatedValuesMap);
-  }
-
-
-
-  public static String displayCurrency(Double value) {
-    NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
-    return currencyFormatter.format(value);
   }
 
   public static String displayCurrency(Float value) {
@@ -193,30 +183,30 @@ public class CalculatedVariables {
     return currencyFormatter.format(value);
   }
 
-  public double getMortgagePayment() {
-    double a = (monthlyInterestRate + 1);
-    double b = java.lang.Math.pow(a, numOfCompoundingPeriods);
+  public Float getMortgagePayment() {
+    Float a = (monthlyInterestRate + 1);
+    Float b = (float) Math.pow(a, numOfCompoundingPeriods);
 
-    double mortgageEquation = (monthlyInterestRate/(1-(1/ b)));
+    Float mortgageEquation = (monthlyInterestRate/(1-(1/ b)));
 
     return principalOwed * mortgageEquation;
   }
 
-  public double getInterestPaymentAtPoint() {
+  public Float getInterestPaymentAtPoint() {
 
     return principalOwed * monthlyInterestRate;
   }
 
-  public double getAccumulatedInterestPaymentsAtPoint (int compoundingPeriodDesired) {
-    double monthlyInterestRate = yearlyInterestRate / NUM_OF_MONTHS_IN_YEAR;
+  public Float getAccumulatedInterestPaymentsAtPoint (int compoundingPeriodDesired) {
+    Float monthlyInterestRate = yearlyInterestRate / NUM_OF_MONTHS_IN_YEAR;
 
-    double mp = getMortgagePayment();
+    Float mp = getMortgagePayment();
 
     if (principalOwed < 0.0) {
-      principalOwed = 0.0;
+      principalOwed = 0.0f;
     }
     if (monthlyInterestRate < 0.0) {
-      monthlyInterestRate = 0.0;
+      monthlyInterestRate = 0.0f;
     }
     if (compoundingPeriodDesired < 0) {
       compoundingPeriodDesired = 0;
@@ -224,49 +214,49 @@ public class CalculatedVariables {
     if (compoundingPeriodDesired > numOfCompoundingPeriods) {
       compoundingPeriodDesired = numOfCompoundingPeriods;
     }
-    double c = monthlyInterestRate+1;
-    double d = Math.pow(c, compoundingPeriodDesired);
-    double e = (1-d)/(1-c);
-    double f = mp/monthlyInterestRate;
-    double g = compoundingPeriodDesired + 1;
+    Float c = monthlyInterestRate+1;
+    Float d = (float) Math.pow(c, compoundingPeriodDesired);
+    Float e = (1-d)/(1-c);
+    Float f = mp/monthlyInterestRate;
+    Integer g = compoundingPeriodDesired + 1;
 
-    double accumInterestPaymentAtPoint = monthlyInterestRate*(principalOwed*(e+d)+(f)*(c*g-(e + d))-(mp*g));
+    Float accumInterestPaymentAtPoint = monthlyInterestRate*(principalOwed*(e+d)+(f)*(c*g-(e + d))-(mp*g));
 
     return accumInterestPaymentAtPoint;
   }
 
 
-  public double getPrincipalPaymentAtPoint (int compoundingPeriodDesired) {
+  public Float getPrincipalPaymentAtPoint (int compoundingPeriodDesired) {
 
-    double mp = getMortgagePayment();
+    Float mp = getMortgagePayment();
 
-    double pOutstanding = getPrincipalOutstandingAtPoint(compoundingPeriodDesired);
-    double principalPaymentAtPoint = mp - (pOutstanding * monthlyInterestRate);
+    Float pOutstanding = getPrincipalOutstandingAtPoint(compoundingPeriodDesired);
+    Float principalPaymentAtPoint = mp - (pOutstanding * monthlyInterestRate);
     return principalPaymentAtPoint;
   }
 
-  public double getPrincipalOutstandingAtPoint (int compoundingPeriodDesired) {
+  public Float getPrincipalOutstandingAtPoint (int compoundingPeriodDesired) {
 
-    double mp = getMortgagePayment();
-    double a = monthlyInterestRate+1;
+    Float mp = getMortgagePayment();
+    Float a = monthlyInterestRate+1;
 
-    double princpalOutstandingAtPoint =(Math.pow(a,compoundingPeriodDesired) * principalOwed) -
-        ( mp *  (((a - Math.pow(a,compoundingPeriodDesired) )/ -monthlyInterestRate) + 1));
+    Float princpalOutstandingAtPoint = (float) ((Math.pow(a,compoundingPeriodDesired) * principalOwed) -
+        ( mp *  (((a - Math.pow(a,compoundingPeriodDesired) )/ -monthlyInterestRate) + 1)));
 
     return princpalOutstandingAtPoint;
   }
 
-  public double getTotalPaymentsMadeAtPoint (int compoundingPeriodDesired) {
+  public Float getTotalPaymentsMadeAtPoint (int compoundingPeriodDesired) {
 
     return compoundingPeriodDesired * getMortgagePayment();
   }
 
-  public double getMonthlyRentalIncomeAtPoint (int compoundingPeriod) {
-    return estimatedRentPayments * Math.pow((1 + inflationRate),((compoundingPeriod / NUM_OF_MONTHS_IN_YEAR)-1));
+  public Float getMonthlyRentalIncomeAtPoint (int compoundingPeriod) {
+    return (float) (estimatedRentPayments * Math.pow((1 + inflationRate),((compoundingPeriod / NUM_OF_MONTHS_IN_YEAR)-1)));
   }
 
-  public double getPropertyTaxAtPoint (int compoundingPeriod) {
-    return initialYearlyPropertyTax * Math.pow((1 + realEstateAppreciationRate),(compoundingPeriod-1));
+  public Float getPropertyTaxAtPoint (int compoundingPeriod) {
+    return (float) (initialYearlyPropertyTax * Math.pow((1 + realEstateAppreciationRate),(compoundingPeriod-1)));
   }
 
 
