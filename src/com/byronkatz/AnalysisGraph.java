@@ -2,6 +2,8 @@ package com.byronkatz;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.TreeMap;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -21,9 +23,9 @@ class AnalysisGraph extends View {
   public static final float GRAPH_MARGIN = 0.20f;
   public static final int GRAPH_MIN_X = 0;
   public static final int GRAPH_MIN_Y = 0;
-  public static final float CIRCLE_RADIUS = 1.0f;
+  public static final float CIRCLE_RADIUS = 3.0f;
   public static final float TEXT_SIZE = 10.0f;
-  public static final float DEFAULT_GRAPH_STROKE_WIDTH = 1.5f;
+  public static final float DEFAULT_GRAPH_STROKE_WIDTH = 1.8f;
   public static final String X_AXIS_STRING = "0";
 
   public static final CalculatedVariables calculatedVariables = new CalculatedVariables();
@@ -32,11 +34,17 @@ class AnalysisGraph extends View {
   private int graphMaxY;
   private int graphMaxX;
   private HashMap<Integer, Float> dataPointsMap;
-  private HashMap<Float, Float> graphMap;
+  private TreeMap<Float, Float> graphMap;
 
   private Integer graphTypeAttribute;
   private String graphKeyValue;
 
+  private Paint defaultPaint;
+  private Paint textPaint;
+  private Paint borderPaint;
+  private Paint highlightPaint;
+  private int currentYearHighlighted;
+  
   //singleton with data
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
@@ -46,7 +54,30 @@ class AnalysisGraph extends View {
     super(context, attrs);
     if (! isInEditMode()) {
 
-      graphMap = new HashMap<Float, Float>();
+      //set up defaults for the drawing - canvas size, paint color, stroke width.
+      defaultPaint = new Paint();
+      defaultPaint.setColor(Color.BLUE);
+      defaultPaint.setStrokeWidth(DEFAULT_GRAPH_STROKE_WIDTH);
+      defaultPaint.setStyle(Paint.Style.STROKE);
+      
+      //draw the max and min values text on left side
+      textPaint = new Paint();
+      textPaint.setColor(Color.WHITE);
+      textPaint.setStrokeWidth(0);
+      textPaint.setStyle(Paint.Style.STROKE);
+      textPaint.setTextSize(TEXT_SIZE);
+      
+      borderPaint = new Paint();
+      borderPaint.setColor(Color.GRAY);
+      borderPaint.setStrokeWidth(3.0f);
+      borderPaint.setStyle(Paint.Style.STROKE);
+      
+      highlightPaint = new Paint();
+      highlightPaint.setColor(Color.YELLOW);
+      highlightPaint.setStrokeWidth(4.0f);
+      highlightPaint.setStyle(Paint.Style.STROKE);
+      
+      graphMap = new TreeMap<Float, Float>();
       dataPointsMap = new HashMap<Integer, Float>();
       initView(attrs);
       crunchData();
@@ -116,24 +147,23 @@ class AnalysisGraph extends View {
         graphMap.put(xGraphValue, yGraphValue);
       }
 
-      //set up defaults for the drawing - canvas size, paint color, stroke width.
-      Paint defaultPaint = new Paint();
-      defaultPaint.setColor(Color.BLUE);
-      defaultPaint.setStrokeWidth(DEFAULT_GRAPH_STROKE_WIDTH);
-      defaultPaint.setStyle(Paint.Style.STROKE);
-
       //draw the frame
       Rect graphFrameRect = new Rect(GRAPH_MIN_X,GRAPH_MIN_Y, 
           graphMaxX, graphMaxY);
-      canvas.drawRect(graphFrameRect, defaultPaint);
+      canvas.drawRect(graphFrameRect, borderPaint);
 
       //draw the points
  
-      for (HashMap.Entry<Float, Float> entry : graphMap.entrySet()) {
+      int currentYear = 1;
+      for (LinkedHashMap.Entry<Float, Float> entry : graphMap.entrySet()) {
+        
         Float xValue = entry.getKey();
         Float yValue = entry.getValue();
+        if (currentYear == currentYearHighlighted) {
+          canvas.drawCircle(xValue, yValue, CIRCLE_RADIUS, highlightPaint);
+        }
         canvas.drawCircle(xValue, yValue, CIRCLE_RADIUS, defaultPaint);
-
+        currentYear++;
       }
 
       //draw the 0 X-axis if the graph passes it.
@@ -147,12 +177,7 @@ class AnalysisGraph extends View {
         canvas.drawText(X_AXIS_STRING, startX, distFromMarginToXAxis, defaultPaint);
       }
 
-      //draw the max and min values text on left side
-      Paint textPaint = new Paint();
-      textPaint.setColor(Color.WHITE);
-      textPaint.setStrokeWidth(0);
-      textPaint.setStyle(Paint.Style.STROKE);
-      textPaint.setTextSize(TEXT_SIZE);
+
 
       //draw top number text
       String maxYString = CalculatedVariables.displayCurrency (functionMaxY);
@@ -190,7 +215,14 @@ class AnalysisGraph extends View {
       dataPointsMap.put(key, dataValue);
 
     }
+  }
 
+  public int getCurrentYearHighlighted() {
+    return currentYearHighlighted;
+  }
+
+  public void setCurrentYearHighlighted(int currentYearHighlighted) {
+    this.currentYearHighlighted = currentYearHighlighted;
   }
 
   public enum GraphType {

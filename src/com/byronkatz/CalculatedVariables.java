@@ -7,8 +7,8 @@ import java.util.Locale;
 
 public class CalculatedVariables {
 
-  private static final int NUM_OF_MONTHS_IN_YEAR = 12;
-  private static final double RESIDENTIAL_DEPRECIATION_YEARS = 27.5;
+  public static final int NUM_OF_MONTHS_IN_YEAR = 12;
+  public static final double RESIDENTIAL_DEPRECIATION_YEARS = 27.5;
   public static final int YEARLY = 1;
   public static final int MONTHLY = 2;
   
@@ -129,7 +129,7 @@ public class CalculatedVariables {
     int prevYearMonthCPModifier = 0;
 
 
-    for (int year = 1; year < yearlyCompoundingPeriods; year++) {
+    for (int year = 1; year <= yearlyCompoundingPeriods; year++) {
 
       calculatedContentValues = new HashMap<String, Float>();
 

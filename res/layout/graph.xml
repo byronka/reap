@@ -136,7 +136,7 @@
 		<SeekBar android:layout_height="wrap_content" android:padding="5dip"
 			android:layout_width="fill_parent" android:id="@+id/valueSlider"></SeekBar>
 		<SeekBar android:layout_height="wrap_content"  android:padding="5dip"
-			android:layout_width="fill_parent" android:id="@+id/monthSlider"></SeekBar>
+			android:layout_width="fill_parent" android:id="@+id/timeSlider"></SeekBar>
 	</LinearLayout>
 
 </LinearLayout>
