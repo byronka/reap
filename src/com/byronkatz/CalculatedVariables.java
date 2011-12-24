@@ -3,6 +3,7 @@ package com.byronkatz;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 
 public class CalculatedVariables {
@@ -11,13 +12,13 @@ public class CalculatedVariables {
   public static final double RESIDENTIAL_DEPRECIATION_YEARS = 27.5;
   public static final int YEARLY = 1;
   public static final int MONTHLY = 2;
-  
+
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
-  
+
   //calculated variables
-  private HashMap<Integer, HashMap<String, Float>> calculatedValuesHashMap;
-  private HashMap<String, Float> calculatedContentValues;
+  private Map<Integer, Map<String, Float>> calculatedValuesMap;
+  private Map<String, Float> calculatedContentValues;
 
   //input variables
   private double totalPurchaseValue;
@@ -39,8 +40,8 @@ public class CalculatedVariables {
   private double principalOwed;
   private double initialYearlyPropertyTax;
   private double monthlyInterestRate;
-  
-  
+
+
 
   public CalculatedVariables() {
 
@@ -49,46 +50,30 @@ public class CalculatedVariables {
   }
 
   private void assignVariables() {
-    totalPurchaseValue = Double.valueOf(
-        dataController.getValue(DatabaseAdapter.TOTAL_PURCHASE_VALUE));
-    estimatedRentPayments = Double.valueOf(
-        dataController.getValue(DatabaseAdapter.ESTIMATED_RENT_PAYMENTS));
-    realEstateAppreciationRate = Double.valueOf(
-        dataController.getValue(DatabaseAdapter.REAL_ESTATE_APPRECIATION_RATE));
-    vacancyRate = Double.valueOf(
-        dataController.getValue(DatabaseAdapter.VACANCY_AND_CREDIT_LOSS_RATE));
-    initialYearlyGeneralExpenses = Double.valueOf(
-        dataController.getValue(DatabaseAdapter.INITIAL_YEARLY_GENERAL_EXPENSES));
-    inflationRate = Double.valueOf(
-        dataController.getValue(DatabaseAdapter.INFLATION_RATE));
-    marginalTaxRate = Double.valueOf(
-        dataController.getValue(DatabaseAdapter.MARGINAL_TAX_RATE));
-    buildingValue = Double.valueOf(
-        dataController.getValue(DatabaseAdapter.BUILDING_VALUE));
-    requiredRateOfReturn = Double.valueOf(
-        dataController.getValue(DatabaseAdapter.REQUIRED_RATE_OF_RETURN));
-    yearlyInterestRate = Double.valueOf(
-        dataController.getValue(DatabaseAdapter.YEARLY_INTEREST_RATE));
-    numOfCompoundingPeriods = Integer.valueOf(
-        dataController.getValue(DatabaseAdapter.NUMBER_OF_COMPOUNDING_PERIODS));
-    sellingBrokerRate = Double.valueOf(
-        dataController.getValue(DatabaseAdapter.SELLING_BROKER_RATE));
-    generalSaleExpenses = Double.valueOf(
-        dataController.getValue(DatabaseAdapter.GENERAL_SALE_EXPENSES));
-    downPayment = Double.valueOf(
-        dataController.getValue(DatabaseAdapter.DOWN_PAYMENT));
-    fixupCosts = Double.valueOf(
-        dataController.getValue(DatabaseAdapter.FIX_UP_COSTS));
-    propertyTaxRate = Double.valueOf(
-        dataController.getValue(DatabaseAdapter.PROPERTY_TAX_RATE));
+    totalPurchaseValue = dataController.getValueAsFloat(DatabaseAdapter.TOTAL_PURCHASE_VALUE);
+    estimatedRentPayments = dataController.getValueAsFloat(DatabaseAdapter.ESTIMATED_RENT_PAYMENTS);
+    realEstateAppreciationRate = dataController.getValueAsFloat(DatabaseAdapter.REAL_ESTATE_APPRECIATION_RATE);
+    vacancyRate = dataController.getValueAsFloat(DatabaseAdapter.VACANCY_AND_CREDIT_LOSS_RATE);
+    initialYearlyGeneralExpenses = dataController.getValueAsFloat(DatabaseAdapter.INITIAL_YEARLY_GENERAL_EXPENSES);
+    inflationRate = dataController.getValueAsFloat(DatabaseAdapter.INFLATION_RATE);
+    marginalTaxRate = dataController.getValueAsFloat(DatabaseAdapter.MARGINAL_TAX_RATE);
+    buildingValue = dataController.getValueAsFloat(DatabaseAdapter.BUILDING_VALUE);
+    requiredRateOfReturn = dataController.getValueAsFloat(DatabaseAdapter.REQUIRED_RATE_OF_RETURN);
+    yearlyInterestRate = dataController.getValueAsFloat(DatabaseAdapter.YEARLY_INTEREST_RATE);
+    numOfCompoundingPeriods = dataController.getValueAsInteger(DatabaseAdapter.NUMBER_OF_COMPOUNDING_PERIODS);
+    sellingBrokerRate = dataController.getValueAsFloat(DatabaseAdapter.SELLING_BROKER_RATE);
+    generalSaleExpenses = dataController.getValueAsFloat(DatabaseAdapter.GENERAL_SALE_EXPENSES);
+    downPayment = dataController.getValueAsFloat(DatabaseAdapter.DOWN_PAYMENT);
+    fixupCosts = dataController.getValueAsFloat(DatabaseAdapter.FIX_UP_COSTS);
+    propertyTaxRate = dataController.getValueAsFloat(DatabaseAdapter.PROPERTY_TAX_RATE);
     principalOwed = totalPurchaseValue - downPayment;
     initialYearlyPropertyTax = totalPurchaseValue * propertyTaxRate;
     monthlyInterestRate = yearlyInterestRate / NUM_OF_MONTHS_IN_YEAR;
 
     //calculated variables
-    calculatedValuesHashMap = dataController.getCalculatedValuesHashMap();
+    calculatedValuesMap = dataController.getCalculatedValuesList();
   }
-  
+
   public void crunchCalculation() {
 
     /*note: many of the equations below are calculated using monthly variables.  This is done
@@ -145,7 +130,7 @@ public class CalculatedVariables {
       yearlyGeneralExpenses = initialYearlyGeneralExpenses * monthlyIRIncrementer;
       yearlyOutlay = yearlyPropertyTax + yearlyMortgagePayment + yearlyGeneralExpenses;
       yearlyBeforeTaxCashFlow = yearlyIncome - yearlyOutlay;
-      
+
       //next year's yearlyAmountOutstanding minus this year's
       pastYearAmountOutstanding = getPrincipalOutstandingAtPoint(prevYearMonthCPModifier);
       currentYearAmountOutstanding = getPrincipalOutstandingAtPoint(monthCPModifier);
@@ -158,10 +143,10 @@ public class CalculatedVariables {
       yearlyTaxes = taxableIncome * marginalTaxRate;
 
       yearlyAfterTaxCashFlow = yearlyBeforeTaxCashFlow - yearlyTaxes;
-      
+
       //add this year's atcf to the graph data object
       calculatedContentValues.put(AnalysisGraph.GraphType.ATCF.getGraphName(), (float)yearlyAfterTaxCashFlow);
-      
+
       yearlyDiscountRateDivisor = Math.pow(1 + monthlyRequiredRateOfReturn, monthCPModifier);
       yearlyNPVSummation += yearlyAfterTaxCashFlow / yearlyDiscountRateDivisor;
 
@@ -178,26 +163,26 @@ public class CalculatedVariables {
           * marginalTaxRate;
       double ater = projectedValueOfHomeAtSale - brokerCut - 
           inflationAdjustedSellingExpenses - principalOwedAtSale - taxesDueAtSale;
-      
+
       //add this year's ater to the graph data object
       calculatedContentValues.put(AnalysisGraph.GraphType.ATER.getGraphName(), (float) ater);
 
       double adjustedAter = ater / Math.pow(1 + monthlyRequiredRateOfReturn,monthCPModifier);
       double npvAccumulator = -firstDay + yearlyNPVSummation + adjustedAter;
-      
+
       //add this year's NPV to the graph data object
       calculatedContentValues.put(AnalysisGraph.GraphType.NPV.getGraphName(), (float) npvAccumulator);
-      
+
       //put this year's data into a wrapper hashMap
-      calculatedValuesHashMap.put(year, calculatedContentValues);
+      calculatedValuesMap.put(year, calculatedContentValues);
     }
-    
+
     //put the data in its place in the dataController
-    dataController.setCalculatedValuesHashMap(calculatedValuesHashMap);
+    dataController.setCalculatedValuesList(calculatedValuesMap);
   }
 
-  
-  
+
+
   public static String displayCurrency(Double value) {
     NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
     return currencyFormatter.format(value);
@@ -207,7 +192,7 @@ public class CalculatedVariables {
     NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
     return currencyFormatter.format(value);
   }
-  
+
   public double getMortgagePayment() {
     double a = (monthlyInterestRate + 1);
     double b = java.lang.Math.pow(a, numOfCompoundingPeriods);

@@ -3,6 +3,8 @@ package com.byronkatz;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -37,11 +39,11 @@ public class GraphActivity extends Activity {
       .getInstance().getDataController();
   private ContentValues contentValues;
   private ArrayAdapter<String> spinnerArrayAdapter;
-  private Integer currentYearMaximum;
-  private Integer currentYearSelected;
+  private Float currentYearMaximum;
+  private Float currentYearSelected;
 
   // calculated variables
-  private HashMap<Integer, HashMap<String, Float>> calculatedValuesHashMap;
+  private List<Map<String, Float>> calculatedValuesList;
 
   private Double minValueNumeric;
   private Double maxValueNumeric;
@@ -60,8 +62,8 @@ public class GraphActivity extends Activity {
   public void onResume() {
     super.onResume();
     //necessary in case the user switches between loan types (15 vs. 30 year)
-    currentYearMaximum = Integer.
-        valueOf(dataController.getValue(NOCP)) / CalculatedVariables.NUM_OF_MONTHS_IN_YEAR;
+    currentYearMaximum = dataController.getValueAsFloat(
+        DatabaseAdapter.NUMBER_OF_COMPOUNDING_PERIODS);
     currentYearSelected = currentYearMaximum;
   }
   
@@ -71,7 +73,7 @@ public class GraphActivity extends Activity {
     super.onCreate(savedState);
     setContentView(R.layout.graph);
 
-    calculatedValuesHashMap = dataController.getCalculatedValuesHashMap();
+    calculatedValuesList = dataController.getCalculatedValuesList();
 
     currentYearMaximum = Integer.
         valueOf(dataController.getValue(NOCP)) / CalculatedVariables.NUM_OF_MONTHS_IN_YEAR;
@@ -234,7 +236,7 @@ public class GraphActivity extends Activity {
 
   private void assignValuesToDataTable() {
     
-    HashMap<String, Float> dataValues = calculatedValuesHashMap.get(currentYearSelected);
+    HashMap<String, Float> dataValues = calculatedValuesList.get(currentYearSelected);
     String currentYearSelectedString = String.valueOf(currentYearSelected);
 
     Float currentYearAter = dataValues.get(AnalysisGraph.GraphType.ATER.getGraphName());

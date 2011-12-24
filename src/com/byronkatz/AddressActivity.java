@@ -62,7 +62,7 @@ public class AddressActivity extends Activity {
         String key = DatabaseAdapter.STATE_INITIALS;
 
         String value = adapter.getItem(pos).toString();
-        dataController.setValue(key, value);
+        dataController.setValueAsString(key, value);
       }
 
       @Override
@@ -86,25 +86,25 @@ public class AddressActivity extends Activity {
   protected void onPause() {
     String key = DatabaseAdapter.STREET_ADDRESS;
     String value = streetAddressEditText.getText().toString();
-    dataController.setValue(key, value);
+    dataController.setValueAsString(key, value);
     
     key = DatabaseAdapter.CITY;
     value = cityEditText.getText().toString();
-    dataController.setValue(key, value);
+    dataController.setValueAsString(key, value);
     
     super.onPause();
   }
   
   private void assignValuesToFields() {
 
-    String sa = dataController.getValue(DatabaseAdapter.STREET_ADDRESS);
+    String sa = dataController.getValueAsString(DatabaseAdapter.STREET_ADDRESS);
     streetAddressEditText.setText(sa);
 
-    String city = dataController.getValue(DatabaseAdapter.CITY);
+    String city = dataController.getValueAsString(DatabaseAdapter.CITY);
     cityEditText.setText(city);
 
     String stateInitials = 
-        dataController.getValue(DatabaseAdapter.STATE_INITIALS);
+        dataController.getValueAsString(DatabaseAdapter.STATE_INITIALS);
 
     int statePosition = adapter.getPosition(stateInitials);
     stateSpinner.setSelection(statePosition);

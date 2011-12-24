@@ -2,6 +2,7 @@ package com.byronkatz;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 
 import android.content.Context;
@@ -205,12 +206,12 @@ class AnalysisGraph extends View {
 
 
   public void createDataPoints() {
-    HashMap<Integer, HashMap<String, Float>> calculatedValuesHashMap = dataController.getCalculatedValuesHashMap();
-    for (HashMap.Entry<Integer, HashMap<String, Float>> entry : calculatedValuesHashMap.entrySet()) {
+    Map<Integer, Map<String, Float>> calculatedValuesHashMap = dataController.getCalculatedValuesList();
+    for (Map.Entry<Integer, Map<String, Float>> entry : calculatedValuesHashMap.entrySet()) {
 
       //each year is the key
       Integer key = entry.getKey();
-      HashMap<String, Float> values = entry.getValue();
+      Map<String, Float> values = entry.getValue();
 
       //unpack the contentValues per year
       Float dataValue = values.get(graphKeyValue);

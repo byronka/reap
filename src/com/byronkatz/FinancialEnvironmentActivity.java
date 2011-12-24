@@ -34,8 +34,9 @@ public class FinancialEnvironmentActivity extends Activity {
       @Override
       public boolean onKey(View v, int keyCode, KeyEvent event) {
         String key = DatabaseAdapter.INFLATION_RATE;
-        String value = inflationRate.getText().toString();
-        dataController.setValue(key, value);
+        Float value = Float.valueOf(inflationRate.getText().toString());
+        
+        dataController.setValueAsFloat(key, value);
         return false;
       }
     });
@@ -45,8 +46,9 @@ public class FinancialEnvironmentActivity extends Activity {
       @Override
       public boolean onKey(View v, int keyCode, KeyEvent event) {
         String key = DatabaseAdapter.REAL_ESTATE_APPRECIATION_RATE;
-        String value = realEstateAppreciationRate.getText().toString();
-        dataController.setValue(key, value);
+        Float value = Float.valueOf(realEstateAppreciationRate.getText().toString());
+        
+        dataController.setValueAsFloat(key, value);
         return false;
       }
     });
@@ -62,10 +64,10 @@ public class FinancialEnvironmentActivity extends Activity {
   
   private void assignValuesToFields() {
 
-    String ir = dataController.getValue(DatabaseAdapter.INFLATION_RATE);
+    String ir = dataController.getValueAsString(DatabaseAdapter.INFLATION_RATE);
     inflationRate.setText(ir);
     
-    String rear = dataController.getValue(DatabaseAdapter.REAL_ESTATE_APPRECIATION_RATE);
+    String rear = dataController.getValueAsString(DatabaseAdapter.REAL_ESTATE_APPRECIATION_RATE);
     realEstateAppreciationRate.setText(rear);
     
   }
