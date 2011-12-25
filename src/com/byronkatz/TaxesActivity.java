@@ -32,51 +32,7 @@ public class TaxesActivity extends Activity {
     backButton         = (Button)findViewById(R.id.backButton);
     
     assignValuesToFields();
-    
-    marginalTaxRate.setOnKeyListener(new OnKeyListener() {
-      
-      @Override
-      public boolean onKey(View v, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.MARGINAL_TAX_RATE;
-        String value = marginalTaxRate.getText().toString();
-        dataController.setValue(key, value);
-        return false;
-      }
-    });
-    
-    buildingValue.setOnKeyListener(new OnKeyListener() {
-      
-      @Override
-      public boolean onKey(View v, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.BUILDING_VALUE;
-        String value = buildingValue.getText().toString();
-        dataController.setValue(key, value);
-        return false;
-      }
-    });
-    
-    propertyTaxRate.setOnKeyListener(new OnKeyListener() {
-      
-      @Override
-      public boolean onKey(View v, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.PROPERTY_TAX_RATE;
-        String value = propertyTaxRate.getText().toString();
-        dataController.setValue(key, value);
-        return false;
-      }
-    });
-    
-    localMunicipalFees.setOnKeyListener(new OnKeyListener() {
-      
-      @Override
-      public boolean onKey(View v, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.LOCAL_MUNICIPAL_FEES;
-        String value = localMunicipalFees.getText().toString();
-        dataController.setValue(key, value);
-        return false;
-      }
-    });
-    
+
     backButton.setOnClickListener(new OnClickListener() {
       
       @Override
@@ -86,18 +42,38 @@ public class TaxesActivity extends Activity {
     });
   }
   
+  @Override
+  public void onPause() {
+    super.onPause();
+    
+    ValueEnum key = ValueEnum.MARGINAL_TAX_RATE;
+    Float value = Float.valueOf(marginalTaxRate.getText().toString());
+    dataController.setValueAsFloat(key, value);
+    
+    key = ValueEnum.BUILDING_VALUE;
+    value = Float.valueOf(buildingValue.getText().toString());
+    dataController.setValueAsFloat(key, value);
+    
+    key = ValueEnum.PROPERTY_TAX_RATE;
+    value = Float.valueOf(propertyTaxRate.getText().toString());
+    dataController.setValueAsFloat(key, value);
+    
+    key = ValueEnum.LOCAL_MUNICIPAL_FEES;
+    value = Float.valueOf(localMunicipalFees.getText().toString());
+    dataController.setValueAsFloat(key, value);
+  }
   private void assignValuesToFields() {
     
-    String mtr = dataController.getValue(DatabaseAdapter.MARGINAL_TAX_RATE);
-    marginalTaxRate.setText(mtr);
+    Float mtr = dataController.getValueAsFloat(ValueEnum.MARGINAL_TAX_RATE);
+    marginalTaxRate.setText(CalculatedVariables.displayPercentage(mtr));
     
-    String bv = dataController.getValue(DatabaseAdapter.BUILDING_VALUE);
-    buildingValue.setText(bv);
+    Float bv = dataController.getValueAsFloat(ValueEnum.BUILDING_VALUE);
+    buildingValue.setText(CalculatedVariables.displayCurrency(bv));
     
-    String ptr = dataController.getValue(DatabaseAdapter.PROPERTY_TAX_RATE);
-    propertyTaxRate.setText(ptr);
+    Float ptr = dataController.getValueAsFloat(ValueEnum.PROPERTY_TAX_RATE);
+    propertyTaxRate.setText(CalculatedVariables.displayPercentage(ptr));
     
-    String lmf = dataController.getValue(DatabaseAdapter.LOCAL_MUNICIPAL_FEES);
-    localMunicipalFees.setText(lmf);
+    Float lmf = dataController.getValueAsFloat(ValueEnum.LOCAL_MUNICIPAL_FEES);
+    localMunicipalFees.setText(CalculatedVariables.displayCurrency(lmf));
   }
 }

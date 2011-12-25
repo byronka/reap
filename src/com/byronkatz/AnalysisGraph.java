@@ -1,8 +1,9 @@
 package com.byronkatz;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -34,7 +35,7 @@ class AnalysisGraph extends View {
   //local graph math variables
   private int graphMaxY;
   private int graphMaxX;
-  private Map<Integer, Float> dataPointsMap;
+  private List<Float> dataPoints;
   private Map<Float, Float> graphMap;
   private boolean xAxisAppears;
 
@@ -79,8 +80,10 @@ class AnalysisGraph extends View {
       highlightPaint.setStrokeWidth(4.0f);
       highlightPaint.setStyle(Paint.Style.STROKE);
 
+      
+      
       graphMap = new TreeMap<Float, Float>();
-      dataPointsMap = new HashMap<Integer, Float>();
+      dataPoints = new ArrayList<Float>();
       initView(attrs);
       crunchData();
     }
@@ -109,7 +112,7 @@ class AnalysisGraph extends View {
 
   private void crunchData() {
     calculatedVariables.crunchCalculation();
-//    createDataPoints();
+    //    createDataPoints();
   }
 
   public void onDraw(Canvas canvas) {
@@ -118,12 +121,12 @@ class AnalysisGraph extends View {
       graphMaxX = getMeasuredWidth();
 
 
-      Float functionMinY = Collections.min(dataPointsMap.values());
-      Float functionMaxY = Collections.max(dataPointsMap.values());
-      Float functionMinX = Collections.min(dataPointsMap.keySet());
-      Float functionMaxX = Collections.max(dataPointsMap.keySet());
-      Float deltaGraphY = graphMaxY - GRAPH_MIN_Y;
-      Float deltaGraphX = graphMaxX - GRAPH_MIN_X;
+      Float functionMinY = Collections.min(dataPoints);
+      Float functionMaxY = Collections.max(dataPoints);
+      Float functionMinX = 1.0f;
+      Float functionMaxX = dataPoints.size() - 1.0f;
+      Integer deltaGraphY = graphMaxY - GRAPH_MIN_Y;
+      Integer deltaGraphX = graphMaxX - GRAPH_MIN_X;
       Float deltaFunctionY = functionMaxY - functionMinY;
       Float deltaFunctionX = functionMaxX - functionMinX;
       Float marginWidthX = deltaGraphX * GRAPH_MARGIN;
@@ -140,12 +143,13 @@ class AnalysisGraph extends View {
       Float xGraphValue = 0.0f;
       Float yGraphValue = 0.0f;
 
-      for (HashMap.Entry<Integer, Float> entry : dataPointsMap.entrySet()) {
-        Integer xValue = entry.getKey();
-        Float yValue = entry.getValue();
+      //start the listIterator on the second element, which has an index of "1"
+      for (ListIterator<Float> listIterator = dataPoints.listIterator(1); listIterator.hasNext(); ) {  
+        Float xValue = (float) listIterator.nextIndex();
+        Float yValue = listIterator.next();
         xGraphValue = (Float) (marginWidthX +  xGraphCoefficient * (xValue - functionMinX));
         yGraphValue = (Float) (marginWidthY + yGraphCoefficient * (functionMaxY - yValue));
-        
+
         //draw the points on the graph
         if (xValue == currentYearHighlighted) {
           canvas.drawCircle(xGraphValue, yGraphValue, CIRCLE_RADIUS, highlightPaint);
@@ -205,27 +209,21 @@ class AnalysisGraph extends View {
     }
   }
 
-/**
- * This function creates a Collection local to this class so that it can efficiently render
- * the graph.  It also allows the use of Collections.min() and max() for the onDraw() function.
- * @return
- */
-//  public void createDataPoints() {
-//    List<Map<String, Float>> calculatedValuesHashMap = dataController.getCalculatedValuesList();
-//    for (Map.Entry<Integer, Map<String, Float>> entry : calculatedValuesHashMap.entrySet()) {
-//
-//      //each year is the key
-//      Integer key = entry.getKey();
-//      Map<String, Float> values = entry.getValue();
-//
-//      //unpack the contentValues per year
-//      Float dataValue = values.get(graphKeyValue);
-//
-//      //map of year to value for this graph
-//      dataPointsMap.put(key, dataValue);
-//
-//    }
-//  }
+  /**
+   * This function creates a Collection local to this class so that it can efficiently render
+   * the graph.  It also allows the use of Collections.min() and max() for the onDraw() function.
+   * @return
+   */
+  public void createDataPoints() {
+
+    int yearsOfCompounding = dataController.
+        getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue() / CalculatedVariables.NUM_OF_MONTHS_IN_YEAR;
+
+    for (int year = 1; year < yearsOfCompounding; year++) {
+      dataPoints.add(dataController.getValueAsFloat(graphKeyValue, year));
+    }
+
+  }
 
   public int getCurrentYearHighlighted() {
     return currentYearHighlighted;

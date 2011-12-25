@@ -42,7 +42,6 @@ public class CalculatedVariables {
   private Float monthlyInterestRate;
 
 
-
   public CalculatedVariables() {
 
     //Get the singleton dataController
@@ -144,7 +143,7 @@ public class CalculatedVariables {
 
       yearlyAfterTaxCashFlow = yearlyBeforeTaxCashFlow - yearlyTaxes;
 
-      dataController.setValueAsFloat(ValueEnum.ATCF, (Float)yearlyAfterTaxCashFlow);
+      dataController.setValueAsFloat(ValueEnum.ATCF, (Float)yearlyAfterTaxCashFlow, year);
 
       yearlyDiscountRateDivisor = (float) Math.pow(1 + monthlyRequiredRateOfReturn, monthCPModifier);
       yearlyNPVSummation += yearlyAfterTaxCashFlow / yearlyDiscountRateDivisor;
@@ -164,13 +163,13 @@ public class CalculatedVariables {
           inflationAdjustedSellingExpenses - principalOwedAtSale - taxesDueAtSale;
 
       //add this year's ater to the graph data object
-      dataController.setValueAsFloat(ValueEnum.ATER, ater);
+      dataController.setValueAsFloat(ValueEnum.ATER, ater, year);
 
       Float adjustedAter = (float) (ater / Math.pow(1 + monthlyRequiredRateOfReturn,monthCPModifier));
       Float npvAccumulator = -firstDay + yearlyNPVSummation + adjustedAter;
 
       //add this year's NPV to the graph data object
-      dataController.setValueAsFloat(ValueEnum.NPV, (float) npvAccumulator);
+      dataController.setValueAsFloat(ValueEnum.NPV, npvAccumulator, year);
 
       //put this year's data into a wrapper hashMap
       calculatedValuesMap.put(year, calculatedContentValues);
@@ -183,6 +182,10 @@ public class CalculatedVariables {
     return currencyFormatter.format(value);
   }
 
+  public static String displayPercentage(Float value) {
+    return String.format("{0,number,#.##%}", value);  
+  }
+  
   public Float getMortgagePayment() {
     Float a = (monthlyInterestRate + 1);
     Float b = (float) Math.pow(a, numOfCompoundingPeriods);

@@ -52,43 +52,16 @@ public class LoanActivity extends Activity {
       
       @Override
       public void onClick(View v) {
-        Double totalPurchasevalue = 
-            Double.valueOf(dataController.getValue(DatabaseAdapter.TOTAL_PURCHASE_VALUE));
-        Double pmiDownPayment = totalPurchasevalue * 0.20;
+        Float totalPurchasevalue = 
+            Float.valueOf(dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE));
+        Float pmiDownPayment = totalPurchasevalue * 0.20f;
         String pmiDownPaymentText = String.valueOf(pmiDownPayment);
         downPayment.setText(pmiDownPaymentText);
         
       }
     });
     
-    //Set up the listeners for the inputs
-    yearlyInterestRate.setOnKeyListener(new OnKeyListener() {
-      @Override
-      public boolean onKey(View v, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.YEARLY_INTEREST_RATE;
-        String value = yearlyInterestRate.getText().toString();
-        dataController.setValue(key, value);
-        return false;
-      }
-    });
     
-    downPayment.setOnKeyListener(new OnKeyListener() {
-      @Override
-      public boolean onKey(View arg0, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.DOWN_PAYMENT;
-        String value = downPayment.getText().toString();
-        dataController.setValue(key, value);
-        return false;
-      }});
-    
-    totalPurchasePrice.setOnKeyListener(new OnKeyListener() {
-      @Override
-      public boolean onKey(View arg0, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.TOTAL_PURCHASE_VALUE;
-        String value = totalPurchasePrice.getText().toString();
-        dataController.setValue(key, value);
-        return false;
-      }});
     
     loanTerm.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -98,15 +71,15 @@ public class LoanActivity extends Activity {
         
         int THIRTY_YEARS  = adapter.getPosition("Fixed-rate mortgage - 30 years");
         int FIFTEEN_YEARS = adapter.getPosition("Fixed-rate mortgage - 15 years");
-        String value = null;
+        Float value = null;
         
-        String key = DatabaseAdapter.NUMBER_OF_COMPOUNDING_PERIODS;
+        ValueEnum key = ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS;
         if (pos == THIRTY_YEARS) {
-          value = "360";
+          value = 360.0f;
         } else if (pos == FIFTEEN_YEARS) {
-          value = "180";
+          value = 360.0f;
         }
-        dataController.setValue(key, value);
+        dataController.setValueAsFloat(key, value);
         
       }
 
@@ -124,16 +97,6 @@ public class LoanActivity extends Activity {
       }
     });
     
-    closingCosts.setOnKeyListener(new OnKeyListener() {
-      
-      @Override
-      public boolean onKey(View v, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.CLOSING_COSTS;
-        String value = closingCosts.getText().toString();
-        dataController.setValue(key, value);
-        return false;
-      }
-    });
   }
 
   private void assignValuesToFields() {
@@ -142,32 +105,47 @@ public class LoanActivity extends Activity {
     int THIRTY_YEARS  = adapter.getPosition("Fixed-rate mortgage - 30 years");
     int FIFTEEN_YEARS = adapter.getPosition("Fixed-rate mortgage - 15 years");
 
-    String numOfCompoundingPeriods = 
-        dataController.getValue(DatabaseAdapter.NUMBER_OF_COMPOUNDING_PERIODS);
+    Float numOfCompoundingPeriods = 
+        dataController.getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS);
     
-    if (numOfCompoundingPeriods.equals("360")) {
+    if (numOfCompoundingPeriods.intValue() == 360) {
       loanTerm.setSelection(THIRTY_YEARS);
-    } else if (numOfCompoundingPeriods.equals("180")) {
+    } else if (numOfCompoundingPeriods.intValue() == 180) {
       loanTerm.setSelection(FIFTEEN_YEARS);
     }
     
-    String yir = dataController.getValue(DatabaseAdapter.YEARLY_INTEREST_RATE);
-    yearlyInterestRate.setText(yir);
+    Float yir = dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE);
+    yearlyInterestRate.setText(CalculatedVariables.displayPercentage(yir));
     
-    String dP = dataController.getValue(DatabaseAdapter.DOWN_PAYMENT);
-    downPayment.setText(dP);
+    Float dP = dataController.getValueAsFloat(ValueEnum.DOWN_PAYMENT);
+    downPayment.setText(CalculatedVariables.displayCurrency(dP));
     
-    String tPP = dataController.getValue(DatabaseAdapter.TOTAL_PURCHASE_VALUE);
-    totalPurchasePrice.setText(tPP);
+    Float tPP = dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE);
+    totalPurchasePrice.setText(CalculatedVariables.displayCurrency(tPP));
     
-    String cC = dataController.getValue(DatabaseAdapter.CLOSING_COSTS);
-    closingCosts.setText(cC);
+    Float cC = dataController.getValueAsFloat(ValueEnum.CLOSING_COSTS);
+    closingCosts.setText(CalculatedVariables.displayCurrency(cC));
   }
   
   @Override
   protected void onPause() {
-    // TODO Auto-generated method stub
     super.onPause();
+    
+    ValueEnum key = ValueEnum.TOTAL_PURCHASE_VALUE;
+    Float value = Float.valueOf(totalPurchasePrice.getText().toString());
+    dataController.setValueAsFloat(key, value);
+    
+    key = ValueEnum.DOWN_PAYMENT;
+    value = Float.valueOf(downPayment.getText().toString());
+    dataController.setValueAsFloat(key, value);
+    
+    key = ValueEnum.YEARLY_INTEREST_RATE;
+    value = Float.valueOf(yearlyInterestRate.getText().toString());
+    dataController.setValueAsFloat(key, value);
+
+    key = ValueEnum.CLOSING_COSTS;
+    value = Float.valueOf(closingCosts.getText().toString());
+    dataController.setValueAsFloat(key, value);
   }
   
   @Override

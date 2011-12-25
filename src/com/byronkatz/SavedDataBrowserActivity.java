@@ -33,7 +33,7 @@ public class SavedDataBrowserActivity extends ListActivity {
         this, // Context.
         android.R.layout.two_line_list_item,  
         cursor,                                              // Pass in the cursor to bind to.
-        new String[] {DatabaseAdapter.STREET_ADDRESS, DatabaseAdapter.TOTAL_PURCHASE_VALUE},           // Array of cursor columns to bind to.
+        new String[] {ValueEnum.STREET_ADDRESS.toString(), ValueEnum.TOTAL_PURCHASE_VALUE.toString()},           // Array of cursor columns to bind to.
         new int[] {android.R.id.text1, android.R.id.text2});  // Parallel array of which template objects to bind to those columns.
 
     // Bind to our new adapter.
@@ -47,7 +47,7 @@ public class SavedDataBrowserActivity extends ListActivity {
         cursor.moveToPosition(position);
         
         DatabaseUtils.cursorRowToContentValues(cursor, contentValues);
-        dataController.setContentValues(contentValues);
+        dataController.setCurrentData(contentValues);
         
         Toast toast = Toast.makeText(SavedDataBrowserActivity.this, "Data loaded", Toast.LENGTH_SHORT);
         toast.show();

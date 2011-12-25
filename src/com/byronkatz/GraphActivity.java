@@ -254,7 +254,7 @@ public class GraphActivity extends Activity {
     tempTextView.setText(tempStringValue);  
     
     tempTextView = (TextView) findViewById(R.id.yirGridTextView);
-    tempStringValue = String.format("{0,number,#.##%}", dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE));
+    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE));
     tempTextView.setText(tempStringValue);
     
     tempTextView = (TextView) findViewById(R.id.bvGridTextView);
@@ -266,11 +266,11 @@ public class GraphActivity extends Activity {
     tempTextView.setText(tempStringValue);
    
     tempTextView = (TextView) findViewById(R.id.irGridTextView);
-    tempStringValue = String.format("{0,number,#.##%}",dataController.getValueAsFloat(ValueEnum.INFLATION_RATE));
+    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.INFLATION_RATE));
     tempTextView.setText(tempStringValue);
    
     tempTextView = (TextView) findViewById(R.id.pmirGridTextView);
-    tempStringValue = String.format("{0,number,#.##%}",dataController.getValueAsFloat(ValueEnum.PRIMARY_MORTGAGE_INSURANCE_RATE));
+    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.PRIMARY_MORTGAGE_INSURANCE_RATE));
     tempTextView.setText(tempStringValue);
     
     tempTextView = (TextView) findViewById(R.id.dpGridTextView);
@@ -294,7 +294,7 @@ public class GraphActivity extends Activity {
     tempTextView.setText(tempStringValue);
     
     tempTextView = (TextView) findViewById(R.id.rearGridTextView);
-    tempStringValue = String.format("{0,number,#.##%}",dataController.getValueAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE));
+    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE));
     tempTextView.setText(tempStringValue);
     
     tempTextView = (TextView) findViewById(R.id.yhiGridTextView);
@@ -302,7 +302,7 @@ public class GraphActivity extends Activity {
     tempTextView.setText(tempStringValue);
     
     tempTextView = (TextView) findViewById(R.id.ptrGridTextView);
-    tempStringValue = String.format("{0,number,#.##%}",dataController.getValueAsFloat(ValueEnum.PROPERTY_TAX_RATE));
+    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.PROPERTY_TAX_RATE));
     tempTextView.setText(tempStringValue);
     
     tempTextView = (TextView) findViewById(R.id.lmfGridTextView);
@@ -310,7 +310,7 @@ public class GraphActivity extends Activity {
     tempTextView.setText(tempStringValue);
     
     tempTextView = (TextView) findViewById(R.id.vaclrGridTextView);
-    tempStringValue = String.format("{0,number,#.##%}",dataController.getValueAsFloat(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE));
+    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE));
     tempTextView.setText(tempStringValue);
     
     tempTextView = (TextView) findViewById(R.id.iygeGridTextView);
@@ -318,11 +318,11 @@ public class GraphActivity extends Activity {
     tempTextView.setText(tempStringValue);
     
     tempTextView = (TextView) findViewById(R.id.mtrGridTextView);
-    tempStringValue = String.format("{0,number,#.##%}",dataController.getValueAsFloat(ValueEnum.MARGINAL_TAX_RATE));
+    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.MARGINAL_TAX_RATE));
     tempTextView.setText(tempStringValue);
     
     tempTextView = (TextView) findViewById(R.id.sbrGridTextView);
-    tempStringValue = String.format("{0,number,#.##%}",dataController.getValueAsFloat(ValueEnum.SELLING_BROKER_RATE));
+    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.SELLING_BROKER_RATE));
     tempTextView.setText(tempStringValue);
     
     tempTextView = (TextView) findViewById(R.id.gseGridTextView);
@@ -330,7 +330,7 @@ public class GraphActivity extends Activity {
     tempTextView.setText(tempStringValue);
     
     tempTextView = (TextView) findViewById(R.id.rrrGridTextView);
-    tempStringValue = String.format("{0,number,#.##%}",dataController.getValueAsFloat(ValueEnum.REQUIRED_RATE_OF_RETURN));
+    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.REQUIRED_RATE_OF_RETURN));
     tempTextView.setText(tempStringValue);
     
     tempTextView = (TextView) findViewById(R.id.fucGridTextView);

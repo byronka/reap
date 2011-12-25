@@ -2,6 +2,7 @@ package com.byronkatz;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,9 +44,9 @@ public class RentalActivity extends Activity {
     estimatedRentPayments.setOnKeyListener(new OnKeyListener() {
       @Override
       public boolean onKey(View v, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.ESTIMATED_RENT_PAYMENTS;
-        String value = estimatedRentPayments.getText().toString();
-        dataController.setValue(key, value);
+        ValueEnum key = ValueEnum.ESTIMATED_RENT_PAYMENTS;
+        Float value = Float.valueOf(estimatedRentPayments.getText().toString());
+        dataController.setValueAsFloat(key, value);
         return false;
       }
     });
@@ -53,9 +54,9 @@ public class RentalActivity extends Activity {
     yearlyHomeInsurance.setOnKeyListener(new OnKeyListener() {
       @Override
       public boolean onKey(View v, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.YEARLY_HOME_INSURANCE;
-        String value = yearlyHomeInsurance.getText().toString();
-        dataController.setValue(key, value);
+        ValueEnum key = ValueEnum.YEARLY_HOME_INSURANCE;
+        Float value = Float.valueOf(yearlyHomeInsurance.getText().toString());
+        dataController.setValueAsFloat(key, value);
         return false;
       }
     });
@@ -63,9 +64,9 @@ public class RentalActivity extends Activity {
     vacancyAndCreditLoss.setOnKeyListener(new OnKeyListener() {
       @Override
       public boolean onKey(View v, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.VACANCY_AND_CREDIT_LOSS_RATE;
-        String value = vacancyAndCreditLoss.getText().toString();
-        dataController.setValue(key, value);
+        ValueEnum key = ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE;
+        Float value = Float.valueOf(vacancyAndCreditLoss.getText().toString());
+        dataController.setValueAsFloat(key, value);
         return false;
       }
     });
@@ -73,9 +74,9 @@ public class RentalActivity extends Activity {
     fixupCosts.setOnKeyListener(new OnKeyListener() {
       @Override
       public boolean onKey(View v, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.FIX_UP_COSTS;
-        String value = fixupCosts.getText().toString();
-        dataController.setValue(key, value);
+        ValueEnum key = ValueEnum.FIX_UP_COSTS;
+        Float value = Float.valueOf(fixupCosts.getText().toString());
+        dataController.setValueAsFloat(key, value);
         return false;
       }
     });
@@ -83,9 +84,9 @@ public class RentalActivity extends Activity {
     initialYearlyGeneralExpenses.setOnKeyListener(new OnKeyListener() {
       @Override
       public boolean onKey(View v, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.INITIAL_YEARLY_GENERAL_EXPENSES;
-        String value = initialYearlyGeneralExpenses.getText().toString();
-        dataController.setValue(key, value);
+        ValueEnum key = ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES;
+        Float value = Float.valueOf(initialYearlyGeneralExpenses.getText().toString());
+        dataController.setValueAsFloat(key, value);
         return false;
       }
     });
@@ -93,9 +94,9 @@ public class RentalActivity extends Activity {
     requiredRateOfReturn.setOnKeyListener(new OnKeyListener() {
       @Override
       public boolean onKey(View v, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.REQUIRED_RATE_OF_RETURN;
-        String value = requiredRateOfReturn.getText().toString();
-        dataController.setValue(key, value);
+        ValueEnum key = ValueEnum.REQUIRED_RATE_OF_RETURN;
+        Float value = Float.valueOf(requiredRateOfReturn.getText().toString());
+        dataController.setValueAsFloat(key, value);
         return false;
       }
     });
@@ -114,22 +115,22 @@ public class RentalActivity extends Activity {
   
   private void assignValuesToFields() {
     
-    String erp = dataController.getValue(DatabaseAdapter.ESTIMATED_RENT_PAYMENTS);
-    estimatedRentPayments.setText(erp);
+    Float erp = dataController.getValueAsFloat(ValueEnum.ESTIMATED_RENT_PAYMENTS);
+    estimatedRentPayments.setText(CalculatedVariables.displayCurrency(erp));
     
-    String yhi = dataController.getValue(DatabaseAdapter.YEARLY_HOME_INSURANCE);
-    yearlyHomeInsurance.setText(yhi);
+    Float yhi = dataController.getValueAsFloat(ValueEnum.YEARLY_HOME_INSURANCE);
+    yearlyHomeInsurance.setText(CalculatedVariables.displayCurrency(yhi));
     
-    String vacl = dataController.getValue(DatabaseAdapter.VACANCY_AND_CREDIT_LOSS_RATE);
-    vacancyAndCreditLoss.setText(vacl);
+    Float vacl = dataController.getValueAsFloat(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE);
+    vacancyAndCreditLoss.setText(CalculatedVariables.displayPercentage(vacl));
     
-    String fc = dataController.getValue(DatabaseAdapter.FIX_UP_COSTS);
-    fixupCosts.setText(fc);
+    Float fc = dataController.getValueAsFloat(ValueEnum.FIX_UP_COSTS);
+    fixupCosts.setText(CalculatedVariables.displayCurrency(fc));
     
-    String iyge = dataController.getValue(DatabaseAdapter.INITIAL_YEARLY_GENERAL_EXPENSES);
-    initialYearlyGeneralExpenses.setText(iyge);
+    Float iyge = dataController.getValueAsFloat(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES);
+    initialYearlyGeneralExpenses.setText(CalculatedVariables.displayCurrency(iyge));
     
-    String rrr = dataController.getValue(DatabaseAdapter.REQUIRED_RATE_OF_RETURN);
-    requiredRateOfReturn.setText(rrr);
+    Float rrr = dataController.getValueAsFloat(ValueEnum.REQUIRED_RATE_OF_RETURN);
+    requiredRateOfReturn.setText(CalculatedVariables.displayPercentage(rrr));
   }
 }

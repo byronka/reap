@@ -30,26 +30,7 @@ public class SaleActivity extends Activity {
     
     assignValuesToFields();
     
-    //Set up the listeners for the inputs
-    generalSaleExpenses.setOnKeyListener(new OnKeyListener() {
-      @Override
-      public boolean onKey(View v, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.GENERAL_SALE_EXPENSES;
-        String value = generalSaleExpenses.getText().toString();
-        dataController.setValue(key, value);
-        return false;
-      }
-    });
-    
-    sellingBrokerRate.setOnKeyListener(new OnKeyListener() {
-      @Override
-      public boolean onKey(View v, int keyCode, KeyEvent event) {
-        String key = DatabaseAdapter.SELLING_BROKER_RATE;
-        String value = sellingBrokerRate.getText().toString();
-        dataController.setValue(key, value);
-        return false;
-      }
-    });
+   
     
     backButton.setOnClickListener(new OnClickListener() {
       
@@ -62,13 +43,26 @@ public class SaleActivity extends Activity {
     
   }
   
+  @Override
+  protected void onPause() {
+    ValueEnum key = ValueEnum.GENERAL_SALE_EXPENSES;
+    Float value = Float.valueOf(generalSaleExpenses.getText().toString());
+    dataController.setValueAsFloat(key, value);
+    
+    key = ValueEnum.SELLING_BROKER_RATE;
+    value = Float.valueOf(sellingBrokerRate.getText().toString());
+    dataController.setValueAsFloat(key, value);
+    
+    super.onPause();
+  }
+  
   private void assignValuesToFields() {
     
-    String gse = dataController.getValue(DatabaseAdapter.GENERAL_SALE_EXPENSES);
-    generalSaleExpenses.setText(gse);
+    Float gse = dataController.getValueAsFloat(ValueEnum.GENERAL_SALE_EXPENSES);
+    generalSaleExpenses.setText(String.valueOf(gse));
     
-    String sbr = dataController.getValue(DatabaseAdapter.SELLING_BROKER_RATE);
-    sellingBrokerRate.setText(sbr);
+    Float sbr = dataController.getValueAsFloat(ValueEnum.SELLING_BROKER_RATE);
+    sellingBrokerRate.setText(String.valueOf(sbr));
     
   }
   
