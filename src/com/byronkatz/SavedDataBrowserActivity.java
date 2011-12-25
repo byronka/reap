@@ -23,7 +23,6 @@ public class SavedDataBrowserActivity extends ListActivity {
   @Override
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
-//    setContentView(R.layout.saved_data_browser);
 
     contentValues = new ContentValues();
     cursor = dataController.getAllDatabaseValues();
@@ -33,7 +32,7 @@ public class SavedDataBrowserActivity extends ListActivity {
         this, // Context.
         android.R.layout.two_line_list_item,  
         cursor,                                              // Pass in the cursor to bind to.
-        new String[] {ValueEnum.STREET_ADDRESS.toString(), ValueEnum.TOTAL_PURCHASE_VALUE.toString()},           // Array of cursor columns to bind to.
+        new String[] {ValueEnum.STREET_ADDRESS.name(), ValueEnum.TOTAL_PURCHASE_VALUE.name()},           // Array of cursor columns to bind to.
         new int[] {android.R.id.text1, android.R.id.text2});  // Parallel array of which template objects to bind to those columns.
 
     // Bind to our new adapter.

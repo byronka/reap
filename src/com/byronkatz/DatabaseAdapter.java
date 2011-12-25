@@ -25,30 +25,30 @@ public class DatabaseAdapter {
   private static final String DATABASE_CREATE = "create table " + 
       DATABASE_TABLE + " ("     + 
       KEY_ID + " integer primary key autoincrement" + ", " +
-      ValueEnum.TOTAL_PURCHASE_VALUE               + " REAL"    +     ", " +
-      ValueEnum.YEARLY_INTEREST_RATE               + " REAL"    +     ", " +
-      ValueEnum.BUILDING_VALUE                     + " REAL"    +     ", " +
-      ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS      + " INTEGER" +     ", " +
-      ValueEnum.INFLATION_RATE                     + " REAL"    +     ", " +
-      ValueEnum.PRIMARY_MORTGAGE_INSURANCE_RATE    + " REAL"    +     ", " +
-      ValueEnum.DOWN_PAYMENT                       + " REAL"    +     ", " +
-      ValueEnum.STREET_ADDRESS                     + " TEXT"    +     ", " +
-      ValueEnum.CITY                               + " TEXT"    +     ", " +
-      ValueEnum.STATE_INITIALS                     + " TEXT"    +     ", " +
-      ValueEnum.ESTIMATED_RENT_PAYMENTS            + " REAL"    +     ", " +
-      ValueEnum.REAL_ESTATE_APPRECIATION_RATE      + " REAL"    +     ", " +
-      ValueEnum.YEARLY_ALTERNATE_INVESTMENT_RETURN + " REAL"    +     ", " +
-      ValueEnum.YEARLY_HOME_INSURANCE              + " REAL"    +     ", " +
-      ValueEnum.PROPERTY_TAX_RATE                  + " REAL"    +     ", " +
-      ValueEnum.LOCAL_MUNICIPAL_FEES               + " REAL"    +     ", " +
-      ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE       + " REAL"    +     ", " +
-      ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES    + " REAL"    +     ", " +
-      ValueEnum.MARGINAL_TAX_RATE                  + " REAL"    +     ", " +
-      ValueEnum.SELLING_BROKER_RATE                + " REAL"    +     ", " +
-      ValueEnum.GENERAL_SALE_EXPENSES              + " REAL"    +     ", " +
-      ValueEnum.REQUIRED_RATE_OF_RETURN            + " REAL"    +     ", " +
-      ValueEnum.FIX_UP_COSTS                       + " REAL"    +     ","  +
-      ValueEnum.CLOSING_COSTS                      + " REAL"    +
+      ValueEnum.TOTAL_PURCHASE_VALUE.name()               + " REAL"    +     ", " +
+      ValueEnum.YEARLY_INTEREST_RATE.name()               + " REAL"    +     ", " +
+      ValueEnum.BUILDING_VALUE.name()                     + " REAL"    +     ", " +
+      ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS.name()      + " INTEGER" +     ", " +
+      ValueEnum.INFLATION_RATE.name()                     + " REAL"    +     ", " +
+      ValueEnum.PRIMARY_MORTGAGE_INSURANCE_RATE.name()    + " REAL"    +     ", " +
+      ValueEnum.DOWN_PAYMENT.name()                       + " REAL"    +     ", " +
+      ValueEnum.STREET_ADDRESS.name()                     + " TEXT"    +     ", " +
+      ValueEnum.CITY.name()                               + " TEXT"    +     ", " +
+      ValueEnum.STATE_INITIALS.name()                     + " TEXT"    +     ", " +
+      ValueEnum.ESTIMATED_RENT_PAYMENTS.name()            + " REAL"    +     ", " +
+      ValueEnum.REAL_ESTATE_APPRECIATION_RATE.name()      + " REAL"    +     ", " +
+      ValueEnum.YEARLY_ALTERNATE_INVESTMENT_RETURN.name() + " REAL"    +     ", " +
+      ValueEnum.YEARLY_HOME_INSURANCE.name()              + " REAL"    +     ", " +
+      ValueEnum.PROPERTY_TAX_RATE.name()                  + " REAL"    +     ", " +
+      ValueEnum.LOCAL_MUNICIPAL_FEES.name()               + " REAL"    +     ", " +
+      ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE.name()       + " REAL"    +     ", " +
+      ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES.name()    + " REAL"    +     ", " +
+      ValueEnum.MARGINAL_TAX_RATE.name()                  + " REAL"    +     ", " +
+      ValueEnum.SELLING_BROKER_RATE.name()                + " REAL"    +     ", " +
+      ValueEnum.GENERAL_SALE_EXPENSES.name()              + " REAL"    +     ", " +
+      ValueEnum.REQUIRED_RATE_OF_RETURN.name()            + " REAL"    +     ", " +
+      ValueEnum.FIX_UP_COSTS.name()                       + " REAL"    +     ","  +
+      ValueEnum.CLOSING_COSTS.name()                      + " REAL"    +
       		" );";
 
   private SQLiteDatabase db;
