@@ -156,56 +156,79 @@ public class DataController {
     Map<Enum<ValueEnum>, String> textFieldValues = new HashMap<Enum<ValueEnum>, String> ();
     
     numericFieldValues.put(
-        ValueEnum.TOTAL_PURCHASE_VALUE,cv.getAsFloat(
-            ValueEnum.TOTAL_PURCHASE_VALUE.toString()));
+        ValueEnum.TOTAL_PURCHASE_VALUE,
+        cv.getAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE.toString()));
     numericFieldValues.put(
-        ValueEnum.YEARLY_INTEREST_RATE, 0f);
+        ValueEnum.YEARLY_INTEREST_RATE, 
+        cv.getAsFloat(ValueEnum.YEARLY_INTEREST_RATE.toString()));
     numericFieldValues.put(
-        ValueEnum.MONTHLY_INTEREST_RATE, 0f);
+        ValueEnum.MONTHLY_INTEREST_RATE, 
+        cv.getAsFloat(ValueEnum.MONTHLY_INTEREST_RATE.toString()));
     numericFieldValues.put(
-        ValueEnum.BUILDING_VALUE, 0f);
+        ValueEnum.BUILDING_VALUE, 
+        cv.getAsFloat(ValueEnum.BUILDING_VALUE.toString()));
     numericFieldValues.put(
         ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS, 360f);
     numericFieldValues.put(
-        ValueEnum.INFLATION_RATE, 0f);
+        ValueEnum.INFLATION_RATE, 
+        cv.getAsFloat(ValueEnum.INFLATION_RATE.toString()));
     numericFieldValues.put(
-        ValueEnum.PRIMARY_MORTGAGE_INSURANCE_RATE, 0f);
+        ValueEnum.PRIMARY_MORTGAGE_INSURANCE_RATE, 
+        cv.getAsFloat(ValueEnum.PRIMARY_MORTGAGE_INSURANCE_RATE.toString()));
     numericFieldValues.put(
-        ValueEnum.DOWN_PAYMENT, 0f);
+        ValueEnum.DOWN_PAYMENT, 
+        cv.getAsFloat(ValueEnum.DOWN_PAYMENT.toString()));
     textFieldValues.put(
-        ValueEnum.STREET_ADDRESS, "");
+        ValueEnum.STREET_ADDRESS, 
+        cv.getAsString(ValueEnum.STREET_ADDRESS.toString()));
     textFieldValues.put(
-        ValueEnum.CITY, "");
+        ValueEnum.CITY, 
+        cv.getAsString(ValueEnum.CITY.toString()));
     textFieldValues.put(
-        ValueEnum.STATE_INITIALS, "");
+        ValueEnum.STATE_INITIALS, 
+        cv.getAsString(ValueEnum.STATE_INITIALS.toString()));
     numericFieldValues.put(
-        ValueEnum.ESTIMATED_RENT_PAYMENTS, 0f);
+        ValueEnum.ESTIMATED_RENT_PAYMENTS, 
+        cv.getAsFloat(ValueEnum.ESTIMATED_RENT_PAYMENTS.toString()));
     numericFieldValues.put(
-        ValueEnum.REAL_ESTATE_APPRECIATION_RATE, 0f);
+        ValueEnum.REAL_ESTATE_APPRECIATION_RATE, 
+        cv.getAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE.toString()));
     numericFieldValues.put(
-        ValueEnum.YEARLY_ALTERNATE_INVESTMENT_RETURN, 0f);
+        ValueEnum.YEARLY_ALTERNATE_INVESTMENT_RETURN, 
+        cv.getAsFloat(ValueEnum.YEARLY_ALTERNATE_INVESTMENT_RETURN.toString()));
     numericFieldValues.put(
-        ValueEnum.YEARLY_HOME_INSURANCE, 0f);
+        ValueEnum.YEARLY_HOME_INSURANCE, 
+        cv.getAsFloat(ValueEnum.YEARLY_HOME_INSURANCE.toString()));
     numericFieldValues.put(
-        ValueEnum.PROPERTY_TAX_RATE, 0f);
+        ValueEnum.PROPERTY_TAX_RATE, 
+        cv.getAsFloat(ValueEnum.PROPERTY_TAX_RATE.toString()));
     numericFieldValues.put(
-        ValueEnum.LOCAL_MUNICIPAL_FEES, 0f);
+        ValueEnum.LOCAL_MUNICIPAL_FEES, 
+        cv.getAsFloat(ValueEnum.LOCAL_MUNICIPAL_FEES.toString()));
     numericFieldValues.put(
-        ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE, 0f);
+        ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE, 
+        cv.getAsFloat(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE.toString()));
     numericFieldValues.put(
-        ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES, 0f);
+        ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES, 
+        cv.getAsFloat(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES.toString()));
     numericFieldValues.put(
-        ValueEnum.MARGINAL_TAX_RATE, 0f);
+        ValueEnum.MARGINAL_TAX_RATE, 
+        cv.getAsFloat(ValueEnum.MARGINAL_TAX_RATE.toString()));
     numericFieldValues.put(
-        ValueEnum.SELLING_BROKER_RATE, 0f);
+        ValueEnum.SELLING_BROKER_RATE, 
+        cv.getAsFloat(ValueEnum.SELLING_BROKER_RATE.toString()));
     numericFieldValues.put(
-        ValueEnum.GENERAL_SALE_EXPENSES, 0f);
+        ValueEnum.GENERAL_SALE_EXPENSES, 
+        cv.getAsFloat(ValueEnum.GENERAL_SALE_EXPENSES.toString()));
     numericFieldValues.put(
-        ValueEnum.REQUIRED_RATE_OF_RETURN, 0f);
+        ValueEnum.REQUIRED_RATE_OF_RETURN, 
+        cv.getAsFloat(ValueEnum.REQUIRED_RATE_OF_RETURN.toString()));
     numericFieldValues.put(
-        ValueEnum.FIX_UP_COSTS, 0f);
+        ValueEnum.FIX_UP_COSTS, 
+        cv.getAsFloat(ValueEnum.FIX_UP_COSTS.toString()));
     numericFieldValues.put(
-        ValueEnum.CLOSING_COSTS, 0f);
+        ValueEnum.CLOSING_COSTS, 
+        cv.getAsFloat(ValueEnum.CLOSING_COSTS.toString()));
     
     numericValues.add(numericFieldValues);
     textValues.add(textFieldValues);
