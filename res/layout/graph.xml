@@ -128,22 +128,6 @@
 				<View android:layout_height="1dip" android:background="#9d7c62"></View>
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Primary Mortgage Insurance Rate"></TextView>
-					<TextView android:id="@+id/pmirGridTextView"
-						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
-				</TableRow>
-				<View android:layout_height="1dip" android:background="#FF909090"></View>
-				<TableRow android:background="#FF909090">
-					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Down Payment"></TextView>
-					<TextView android:id="@+id/dpGridTextView"
-						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
-				</TableRow>
-				<View android:layout_height="1dip" android:background="#9d7c62"></View>
-				<TableRow android:background="#afe6e7">
-					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="Street Address"></TextView>
 					<TextView android:id="@+id/saGridTextView"
 						android:gravity="right" android:textColor="#000000"
@@ -269,6 +253,16 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="$0.00"></TextView>
 				</TableRow>
+				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+				<TableRow android:background="#afe6e7">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="Down Payment"></TextView>
+					<TextView android:id="@+id/dpGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="$0.00"></TextView>
+				</TableRow>
+
+
 			</TableLayout>
 		</LinearLayout>
 	</ScrollView>

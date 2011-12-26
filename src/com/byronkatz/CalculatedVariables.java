@@ -2,9 +2,7 @@ package com.byronkatz;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 
 public class CalculatedVariables {
@@ -18,8 +16,8 @@ public class CalculatedVariables {
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
   //calculated variables
-  private Map<Integer, Map<String, Float>> calculatedValuesMap;
-  private Map<String, Float> calculatedContentValues;
+//  private Map<Integer, Map<String, Float>> calculatedValuesMap;
+//  private Map<String, Float> calculatedContentValues;
 
   //input variables
   private Float totalPurchaseValue;

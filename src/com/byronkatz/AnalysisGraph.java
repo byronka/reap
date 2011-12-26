@@ -170,7 +170,7 @@ class AnalysisGraph extends View {
         Float stopX  = (float) graphMaxX;
         canvas.drawLine(startX, distFromMarginToXAxis, stopX, 
             distFromMarginToXAxis, defaultPaint);
-        canvas.drawText(X_AXIS_STRING, (Float) (marginWidthX / 4), 
+        canvas.drawText(X_AXIS_STRING, (Float) (marginWidthX / 8), 
             distFromMarginToXAxis, textPaint);
       } else {
         xAxisAppears = false;
