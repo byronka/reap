@@ -1,10 +1,13 @@
 package com.byronkatz;
 
+import com.byronkatz.ValueEnum.ValueType;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -70,7 +73,25 @@ public class AddressActivity extends Activity {
       }
     });
 
-
+    streetAddressEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
+      
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          DataController.setSelectionOnView(v, ValueType.STRING);
+        }     
+      }
+    });
+    
+    cityEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
+      
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          DataController.setSelectionOnView(v, ValueType.STRING);
+        }     
+      }
+    });
 
   }
 

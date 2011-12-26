@@ -1,9 +1,12 @@
 package com.byronkatz;
 
+import com.byronkatz.ValueEnum.ValueType;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -57,7 +60,45 @@ public class LoanActivity extends Activity {
       }
     });
     
+    yearlyInterestRate.setOnFocusChangeListener(new OnFocusChangeListener() {
+      
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          DataController.setSelectionOnView(v, ValueType.PERCENTAGE);
+        }     
+      }
+    });
     
+    downPayment.setOnFocusChangeListener(new OnFocusChangeListener() {
+      
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          DataController.setSelectionOnView(v, ValueType.CURRENCY);
+        }     
+      }
+    });
+    
+    totalPurchasePrice.setOnFocusChangeListener(new OnFocusChangeListener() {
+      
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          DataController.setSelectionOnView(v, ValueType.CURRENCY);
+        }     
+      }
+    });
+    
+    closingCosts.setOnFocusChangeListener(new OnFocusChangeListener() {
+      
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          DataController.setSelectionOnView(v, ValueType.CURRENCY);
+        }     
+      }
+    });
     
     loanTerm.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -87,6 +128,27 @@ public class LoanActivity extends Activity {
     
   }
 
+//  private void setSelectionOnView(View v, ValueType valueType) {
+//    EditText editText = (EditText) v;
+//    //we'll use textInEditText to measure the string for the selection
+//    String textInEditText = editText.getText().toString();
+//    int textLength = textInEditText.length();
+//    
+//    switch (valueType) {
+//    case CURRENCY:
+//      editText.setSelection(1, textLength);
+//      break;
+//    case PERCENTAGE:
+//      editText.setSelection(0, textLength - 1);
+//      break;
+//    case STRING:
+//      editText.setSelection(0, textLength);
+//      break;
+//      default:
+//        System.err.println("shouldn't get here in setSelectionOnView");
+//    }
+//  }
+  
   private void assignValuesToFields() {
 
     //Have to do the following in order to pick item in array by number - see setSelection()

@@ -10,7 +10,19 @@
 
 	<LinearLayout android:orientation="vertical"
 		android:layout_width="fill_parent" android:layout_height="75dp">
-		<LinearLayout android:layout_height="40dip"
+		<LinearLayout android:layout_height="15dip"
+			android:layout_width="fill_parent">
+			<TextView android:textSize="10dp" android:layout_width="0dip"
+				android:layout_height="fill_parent" android:id="@+id/minValueTextView"
+				android:layout_weight="1" android:text="@string/minValueLabel" android:gravity="center"/>
+			<TextView android:textSize="10dp" android:layout_width="0dip"
+				android:layout_height="fill_parent" android:id="@+id/currentValueTextView"
+				android:layout_weight="1" android:text="@string/currentValueLabel" android:gravity="center"/>
+			<TextView android:textSize="10dp" android:layout_width="0dip"
+				android:layout_height="fill_parent" android:id="@+id/maxValueTextView"
+				android:layout_weight="1" android:text="@string/maxValueLabel" android:gravity="center" />
+		</LinearLayout>
+		<LinearLayout android:layout_height="25dip"
 			android:layout_width="fill_parent">
 			<EditText android:textSize="10dp" android:fadingEdge="none"
 				android:layout_width="0dip" android:layout_gravity="left"
@@ -58,7 +70,7 @@
 				<View android:layout_height="1dip" android:background="#FF909090"></View>
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Year"></TextView>
+						android:text="@string/yearDataTableItem"></TextView>
 					<TextView android:id="@+id/yearGridTextView"
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="0"></TextView>
@@ -66,202 +78,202 @@
 				<View android:layout_height="1dip" android:background="#9d7c62"></View>
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="After Tax Equity Reversion"></TextView>
+						android:text="@string/aterDataTableItem"></TextView>
 					<TextView android:id="@+id/aterGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#FF909090"></View>
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="After Tax Cash Flow"></TextView>
+						android:text="@string/atcfDataTableItem"></TextView>
 					<TextView android:id="@+id/atcfGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#9d7c62"></View>
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Net Present Value"></TextView>
+						android:text="@string/npvDataTableItem"></TextView>
 					<TextView android:id="@+id/npvGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#FF909090"></View>
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Total Purchase Value"></TextView>
+						android:text="@string/totalPurchaseValueDataTableItem"></TextView>
 					<TextView android:id="@+id/tpvGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#9d7c62"></View>
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Yearly Interest Rate"></TextView>
+						android:text="@string/yearlyInterestRateDataTableItem"></TextView>
 					<TextView android:id="@+id/yirGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroPercentage"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#FF909090"></View>
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Building Value"></TextView>
+						android:text="@string/buildingValueDataTableItem"></TextView>
 					<TextView android:id="@+id/bvGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#9d7c62"></View>
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Number of compounding periods"></TextView>
+						android:text="@string/numOfCompPeriodsDataTableItem"></TextView>
 					<TextView android:id="@+id/nocpGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="0"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#FF909090"></View>
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Inflation Rate"></TextView>
+						android:text="@string/inflationRateDataTableItem"></TextView>
 					<TextView android:id="@+id/irGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroPercentage"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#9d7c62"></View>
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Street Address"></TextView>
+						android:text="@string/streetAddressDataTableItem"></TextView>
 					<TextView android:id="@+id/saGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultStreetAddress"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#FF909090"></View>
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="City"></TextView>
+						android:text="@string/cityDataTableITem"></TextView>
 					<TextView android:id="@+id/cityGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultCity"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#9d7c62"></View>
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="State"></TextView>
+						android:text="@string/stateDataTableItem"></TextView>
 					<TextView android:id="@+id/siGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultState"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#FF909090"></View>
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Estimated rent payments"></TextView>
+						android:text="@string/estRentPaymentsDataTableItem"></TextView>
 					<TextView android:id="@+id/erpGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#9d7c62"></View>
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Real Estate Appreciation Rate"></TextView>
+						android:text="@string/realEstateApprRateDataTableItem"></TextView>
 					<TextView android:id="@+id/rearGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroPercentage"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#FF909090"></View>
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Yearly Home Insurance"></TextView>
+						android:text="@string/yearlyHomeInsuranceDataTableItem"></TextView>
 					<TextView android:id="@+id/yhiGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#9d7c62"></View>
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Property Tax Rate"></TextView>
+						android:text="@string/propertyTaxRateDataTableItem"></TextView>
 					<TextView android:id="@+id/ptrGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroPercentage"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#FF909090"></View>
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Local Municipal Fees"></TextView>
+						android:text="@string/localMuniFeesDataTableItem"></TextView>
 					<TextView android:id="@+id/lmfGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#9d7c62"></View>
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Vacancy and Credit Loss Rate"></TextView>
+						android:text="@string/vacancyRateDataTableItem"></TextView>
 					<TextView android:id="@+id/vaclrGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroPercentage"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#FF909090"></View>
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Initial Yearly General Expenses"></TextView>
+						android:text="@string/initialYearlyGenExpensesDataTableItem"></TextView>
 					<TextView android:id="@+id/iygeGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#9d7c62"></View>
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Marginal Tax Rate"></TextView>
+						android:text="@string/marginalTaxRateDataTableITem"></TextView>
 					<TextView android:id="@+id/mtrGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroPercentage"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#FF909090"></View>
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Selling Broker Rate"></TextView>
+						android:text="@string/sellingBrokerRateDataTableItem"></TextView>
 					<TextView android:id="@+id/sbrGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroPercentage"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#9d7c62"></View>
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="General Sale Expenses"></TextView>
+						android:text="@string/generalSaleExpensesDataTableItem"></TextView>
 					<TextView android:id="@+id/gseGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#FF909090"></View>
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Required Rate of Return"></TextView>
+						android:text="@string/reqRateOfReturnDataTableItem"></TextView>
 					<TextView android:id="@+id/rrrGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroPercentage"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#9d7c62"></View>
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Fix-up Costs"></TextView>
+						android:text="@string/fixUpCostsDataTableItem"></TextView>
 					<TextView android:id="@+id/fucGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#FF909090"></View>
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Closing Costs"></TextView>
+						android:text="@string/closingCostsDataTableItem"></TextView>
 					<TextView android:id="@+id/ccGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
 				<View android:layout_height="1dip" android:background="#9d7c62"></View>
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
-						android:text="Down Payment"></TextView>
+						android:text="@string/downPaymentDataTableItem"></TextView>
 					<TextView android:id="@+id/dpGridTextView"
 						android:gravity="right" android:textColor="#000000"
-						android:padding="3dip" android:text="$0.00"></TextView>
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
 
 
@@ -272,13 +284,29 @@
 	<LinearLayout android:layout_width="fill_parent"
 		android:orientation="vertical" android:id="@+id/sliderLinearLayout"
 		android:layout_gravity="bottom" android:layout_height="wrap_content">
-		<SeekBar android:layout_height="wrap_content" android:padding="5dip"
-			android:layout_width="fill_parent" android:id="@+id/valueSlider"
-			android:layout_marginLeft="6dip" android:layout_marginRight="6dip"
-			android:background="@string/valueSliderText"></SeekBar>
-		<SeekBar android:layout_height="wrap_content" android:padding="5dip"
-			android:layout_width="fill_parent" android:id="@+id/timeSlider"
-			android:layout_marginLeft="6dip" android:layout_marginRight="6dip"></SeekBar>
+		<LinearLayout android:id="@+id/valueSliderLinearLayout"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:baselineAligned="false">
+			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:id="@+id/valueSliderLabel" android:text="@string/valueSliderText"
+				android:layout_gravity="center"></TextView>
+			<SeekBar android:layout_height="wrap_content"
+				android:padding="5dip" android:layout_width="fill_parent"
+				android:id="@+id/valueSlider" android:layout_marginLeft="6dip"
+				android:layout_marginRight="6dip"></SeekBar>
+		</LinearLayout>
+		<LinearLayout android:id="@+id/timeSliderLinearLayout"
+			android:layout_width="fill_parent" android:layout_height="wrap_content">
+			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:id="@+id/timeSliderLabel" android:text="@string/timeSliderText"
+				android:layout_gravity="center"></TextView>
+			<SeekBar android:layout_height="wrap_content"
+				android:padding="5dip" android:layout_width="fill_parent"
+				android:id="@+id/timeSlider" android:layout_marginLeft="6dip"
+				android:layout_marginRight="6dip"></SeekBar>
+		</LinearLayout>
 	</LinearLayout>
 
 </LinearLayout>

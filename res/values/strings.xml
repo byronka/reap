@@ -19,6 +19,47 @@
 	<string name="browseDatabaseButtonText">Browse the saved data</string>
 	<string name="searchDatabaseButtonText">Search the database</string>
 
+	<!-- Graph Activity page -->
+	<string name="minValueLabel">Minimum Value</string>
+	<string name="maxValueLabel">Maximum Value</string>
+	<string name="currentValueLabel">Current Value</string>
+	
+	<!-- Data table -->
+	<string name="defaultZeroPercentage">0%</string>
+	<string name="defaultZeroCurrency">$0.00</string>
+	<string name="yearDataTableItem">Year</string>
+	<string name="defaultStreetAddress">1234 Anywhere Street</string>
+	<string name="defaultCity">Memphis</string>
+	<string name="defaultState">Tennessee</string>
+	
+	<string name="aterDataTableItem">After Tax Equity Reversion</string><string name="atcfDataTableItem">After Tax Cash Flow</string>
+	<string name="npvDataTableItem">Net Present Value</string>
+	<string name="totalPurchaseValueDataTableItem">Total Purchase Value</string>
+	<string name="yearlyInterestRateDataTableItem">Yearly Interest Rate</string>
+	<string name="buildingValueDataTableItem">Building Value</string>
+	<string name="numOfCompPeriodsDataTableItem">Number of compounding periods</string>
+	<string name="inflationRateDataTableItem">Inflation Rate</string>
+	<string name="streetAddressDataTableItem">Street Address</string>
+	<string name="cityDataTableITem">City</string>
+	<string name="stateDataTableItem">State</string>
+	<string name="estRentPaymentsDataTableItem">Estimated rent payments</string>
+	<string name="realEstateApprRateDataTableItem">Real Estate Appreciation Rate</string>
+	<string name="yearlyHomeInsuranceDataTableItem">Yearly Home Insurance</string>
+	<string name="propertyTaxRateDataTableItem">Property Tax Rate</string>
+	<string name="localMuniFeesDataTableItem">Local Municipal Fees</string>
+	<string name="vacancyRateDataTableItem">Vacancy and Credit Loss Rate</string>
+	<string name="initialYearlyGenExpensesDataTableItem">Initial Yearly General Expenses</string>
+	<string name="marginalTaxRateDataTableITem">Marginal Tax Rate</string>
+	<string name="sellingBrokerRateDataTableItem">Selling Broker Rate</string>
+	<string name="generalSaleExpensesDataTableItem">General Sale Expenses</string>
+	<string name="reqRateOfReturnDataTableItem">Required Rate of Return</string>
+	<string name="fixUpCostsDataTableItem">Fix-up Costs</string>
+	<string name="closingCostsDataTableItem">Closing Costs</string>
+	<string name="downPaymentDataTableItem">Down Payment</string>
+
+	
+	
+	
 	<!-- taxes -->
 	<string name="TaxesScreenHeaderText">Taxes</string>
 	<string name="marginalTaxRateTitleString">Marginal Tax Rate: </string>
@@ -161,5 +202,6 @@
 	<!-- Save current values activity -->
 	<string name="saveButtonText">Save</string>
 	<string name="valueSliderText">Value Slider</string>
+	<string name="timeSliderText">Time Slider</string>
 
 </resources>

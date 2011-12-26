@@ -1,7 +1,11 @@
 package com.byronkatz;
 
+import com.byronkatz.ValueEnum.ValueType;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 
 public class RentalActivity extends Activity {
@@ -32,6 +36,65 @@ public class RentalActivity extends Activity {
 
     assignValuesToFields();
 
+    estimatedRentPayments.setOnFocusChangeListener(new OnFocusChangeListener() {
+      
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          DataController.setSelectionOnView(v, ValueType.CURRENCY);
+        }     
+      }
+    });
+    
+    yearlyHomeInsurance.setOnFocusChangeListener(new OnFocusChangeListener() {
+      
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          DataController.setSelectionOnView(v, ValueType.CURRENCY);
+        }     
+      }
+    });
+    
+    vacancyAndCreditLoss.setOnFocusChangeListener(new OnFocusChangeListener() {
+      
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          DataController.setSelectionOnView(v, ValueType.PERCENTAGE);
+        }     
+      }
+    });
+    
+    fixupCosts.setOnFocusChangeListener(new OnFocusChangeListener() {
+      
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          DataController.setSelectionOnView(v, ValueType.CURRENCY);
+        }     
+      }
+    });
+    
+    initialYearlyGeneralExpenses.setOnFocusChangeListener(new OnFocusChangeListener() {
+      
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          DataController.setSelectionOnView(v, ValueType.CURRENCY);
+        }     
+      }
+    });
+    
+    requiredRateOfReturn.setOnFocusChangeListener(new OnFocusChangeListener() {
+      
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          DataController.setSelectionOnView(v, ValueType.PERCENTAGE);
+        }     
+      }
+    });
   }
 
   @Override

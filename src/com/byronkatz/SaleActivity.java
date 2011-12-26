@@ -1,7 +1,11 @@
 package com.byronkatz;
 
+import com.byronkatz.ValueEnum.ValueType;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 
 public class SaleActivity extends Activity {
@@ -23,7 +27,25 @@ public class SaleActivity extends Activity {
     
     assignValuesToFields();
 
+    generalSaleExpenses.setOnFocusChangeListener(new OnFocusChangeListener() {
+      
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          DataController.setSelectionOnView(v, ValueType.CURRENCY);
+        }     
+      }
+    });
     
+    sellingBrokerRate.setOnFocusChangeListener(new OnFocusChangeListener() {
+      
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          DataController.setSelectionOnView(v, ValueType.PERCENTAGE);
+        }     
+      }
+    });
   }
   
   @Override

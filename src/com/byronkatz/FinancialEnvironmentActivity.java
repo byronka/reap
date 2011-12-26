@@ -1,7 +1,11 @@
 package com.byronkatz;
 
+import com.byronkatz.ValueEnum.ValueType;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 
 public class FinancialEnvironmentActivity extends Activity {
@@ -23,7 +27,29 @@ public class FinancialEnvironmentActivity extends Activity {
     
     assignValuesToFields();
    
+    inflationRate.setOnFocusChangeListener(new OnFocusChangeListener() {
+      
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          DataController.setSelectionOnView(v, ValueType.PERCENTAGE);
+        }     
+      }
+    });
+    
+    realEstateAppreciationRate.setOnFocusChangeListener(new OnFocusChangeListener() {
+      
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          DataController.setSelectionOnView(v, ValueType.PERCENTAGE);
+        }     
+      }
+    });
   }
+  
+
+  
   
   private void assignValuesToFields() {
 
