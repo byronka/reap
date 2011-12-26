@@ -52,6 +52,7 @@ public class GraphActivity extends Activity {
         getValueAsFloat(NOCP) / CalculatedVariables.NUM_OF_MONTHS_IN_YEAR;
     currentYearMaximum = tempFloatValue.intValue();
     currentYearSelected = currentYearMaximum.intValue();
+    assignValuesToDataTable();
   }
 
   /** Called when the activity is first created. */
@@ -64,25 +65,25 @@ public class GraphActivity extends Activity {
         getValueAsFloat(NOCP) / CalculatedVariables.NUM_OF_MONTHS_IN_YEAR;
     currentYearMaximum = tempFloatValue.intValue();
     currentYearSelected = currentYearMaximum.intValue();
+    assignValuesToDataTable();
 
 
     valueSpinner = (Spinner) findViewById(R.id.valueSpinner);
 
     //  ArrayList<ValueEnum> spinnerValuesArray = new ArrayList<ValueEnum>(Arrays.asList(ValueEnum.values()));
-    ValueEnum[] valuesNotToUse = {
-        ValueEnum.TOTAL_PURCHASE_VALUE,
-        ValueEnum.FIX_UP_COSTS,
+    ValueEnum[] selectionValues = {
         ValueEnum.DOWN_PAYMENT,
+        ValueEnum.ESTIMATED_RENT_PAYMENTS,
+        ValueEnum.FIX_UP_COSTS,
+        ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES,
         ValueEnum.REAL_ESTATE_APPRECIATION_RATE,
-        ValueEnum.YEARLY_INTEREST_RATE,
-        ValueEnum.,
-        ValueEnum.,
-        ValueEnum.
+        ValueEnum.REQUIRED_RATE_OF_RETURN,
+        ValueEnum.TOTAL_PURCHASE_VALUE,
+        ValueEnum.YEARLY_INTEREST_RATE
     };
-    ValueEnum[] spinnerValuesArray = {};
 
     spinnerArrayAdapter = new ArrayAdapter<ValueEnum>(this,
-        android.R.layout.simple_spinner_dropdown_item, spinnerValuesArray);
+        android.R.layout.simple_spinner_dropdown_item, selectionValues);
     valueSpinner.setAdapter(spinnerArrayAdapter);
 
     currentValueEditText = (EditText) findViewById(R.id.currentValueEditText);
@@ -133,9 +134,8 @@ public class GraphActivity extends Activity {
       public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
           long arg3) {
         currentSliderKey = spinnerArrayAdapter.getItem(pos);
-        String currentValueString = dataController.getValueAsString(currentSliderKey);
-        currentValueEditText.setText(currentValueString);
-        Float currentValueNumeric = Float.valueOf(currentValueString);
+        Float currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
+        currentValueEditText.setText(String.valueOf(currentValueNumeric));
         Float halfCurrentValue = currentValueNumeric / 2;
         Float twiceCurrentValue = currentValueNumeric * 2;
         minValueEditText.setText(String.valueOf(halfCurrentValue));

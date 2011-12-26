@@ -81,10 +81,11 @@ public class DataController {
      */
     if (numericMap == null) {
       numericMap = new HashMap<ValueEnum, Float>();
+      numericMap.put(key, value);
+      numericValues.put(year, numericMap);
+    } else {
+      numericMap.put(key, value);      
     }
-
-    numericMap.put(key, value);
-
   }
 
   public void setValueAsString(ValueEnum key, String value) {
@@ -111,10 +112,11 @@ public class DataController {
      */
     if (textMap == null) {
       textMap = new HashMap<ValueEnum, String>();
+      textMap.put(key, value);
+      textValues.put(year, textMap);
+    } else {
+      textMap.put(key, value);
     }
-
-    textMap.put(key, value);
-
   }
 
   public String getValueAsString(ValueEnum key) {
