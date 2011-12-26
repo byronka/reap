@@ -1,101 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rentalScrollView"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" android:orientation="vertical">
-    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent"
-    	android:layout_height="fill_parent">
-    	<TextView android:text="@string/rentalHeaderText"
-    		android:textAppearance="?android:attr/textAppearanceLarge"
-    		android:layout_width="wrap_content" android:layout_height="wrap_content"
-    		android:layout_gravity="center_horizontal" android:id="@+id/rentalHeader"></TextView>
-    	<ScrollView android:id="@+id/overallRentalScrollView"
-    		android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="20dip" android:layout_marginBottom="20dip">
-    		<LinearLayout android:layout_height="wrap_content"
-    			android:id="@+id/overallFinancialEnvironmentLinearLayout"
-    			android:layout_width="fill_parent" android:orientation="vertical">
-    			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
-    				android:layout_width="wrap_content" android:layout_height="wrap_content"
-    				android:id="@+id/estimatedRentPaymentsDescription" android:text="@string/estimatedRentPaymentsDescriptionText"></TextView>
-    			<LinearLayout android:layout_height="wrap_content"
-    				android:id="@+id/inflationRateLinearLayout" android:layout_width="fill_parent">
-    				<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-    					android:layout_width="wrap_content" android:layout_height="wrap_content"
-    					android:id="@+id/estimatedRentPaymentsTitle" android:text="@string/estimatedRentPaymentsTitleText"></TextView>
-    				<EditText android:layout_weight="1" android:layout_width="fill_parent"
-    					android:layout_height="wrap_content" android:id="@+id/estimatedRentPaymentsEditText" android:inputType="numberDecimal">
-    					<requestFocus></requestFocus>
-    				</EditText>
-    			</LinearLayout>
-    			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
-    				android:layout_width="wrap_content" android:layout_height="wrap_content"
-    				android:id="@+id/yearlyHomeInsuranceDescription" android:text="@string/yearlyHomeInsuranceDescriptionText"></TextView>
-    			<LinearLayout android:layout_height="wrap_content"
-    				android:id="@+id/realEstateAppreciationRateLinearLayout"
-    				android:layout_width="fill_parent">
-    				<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-    					android:layout_width="wrap_content" android:layout_height="wrap_content"
-    					android:id="@+id/yearlyHomeInsuranceTitle" android:text="@string/yearlyHomeInsuranceTitleText"></TextView>
-    				<EditText android:layout_weight="1" android:layout_width="fill_parent"
-    					android:layout_height="wrap_content" android:id="@+id/yearlyHomeInsuranceEditText" android:inputType="numberDecimal"></EditText>
-    			</LinearLayout>
-    			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
-    				android:layout_width="wrap_content" android:layout_height="wrap_content"
-    				android:id="@+id/vacancyAndCreditLossDescription" android:text="@string/vacancyAndCreditLossDescriptionText"></TextView>
-    			<LinearLayout android:layout_height="wrap_content"
-    				android:id="@+id/vacancyAndCreditLossLinearLayout"
-    				android:layout_width="fill_parent">
-    				<TextView android:text="@string/vacancyAndCreditLossTitle"
-    					android:textAppearance="?android:attr/textAppearanceMedium"
-    					android:layout_width="wrap_content" android:layout_height="wrap_content"
-    					android:id="@+id/vacancyAndCreditLossTitle"></TextView>
-    				<EditText android:layout_weight="1" android:layout_width="fill_parent"
-    					android:id="@+id/vacancyAndCreditLossEditText"
-    					android:layout_height="wrap_content" android:inputType="numberDecimal"></EditText>
-    			</LinearLayout>
-    			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
-    				android:layout_width="wrap_content" android:layout_height="wrap_content"
-    				android:id="@+id/fixupCostsDescription" android:text="@string/fixupCostsDescriptionText"></TextView>
-    			
-    			<LinearLayout android:layout_height="wrap_content"
-    				android:layout_width="fill_parent" android:id="@+id/fixupCostsLinearLayout">
-    				<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-    					android:layout_width="wrap_content" android:layout_height="wrap_content"
-    					android:id="@+id/fixupCostsTitle" android:text="@string/fixupCostsTitleText"></TextView>
-    				<EditText android:layout_weight="1" android:layout_width="fill_parent"
-    					android:layout_height="wrap_content" android:id="@+id/fixupCostsEditText" android:inputType="numberDecimal"></EditText>
-    			</LinearLayout>
-    			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
-    				android:layout_width="wrap_content" android:layout_height="wrap_content"
-    				android:id="@+id/initialYearlyGeneralExpensesDescription"
-    				android:text="@string/initialYearlyGeneralExpensesDescriptionText"></TextView>
-    			<LinearLayout android:layout_height="wrap_content"
-    				android:layout_width="fill_parent" android:id="@+id/initialYearlyGeneralExpensesLinearLayout">
-    				<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-    					android:layout_width="wrap_content" android:layout_height="wrap_content"
-    					android:id="@+id/TextView02" android:text="@string/initialYearlyGeneralExpensesTitle"></TextView>
-    				<EditText android:layout_weight="1" android:layout_width="fill_parent"
-    					android:layout_height="wrap_content" android:id="@+id/initialYearlyGeneralExpensesEditText" android:inputType="numberDecimal"></EditText>
-    			</LinearLayout>
-    			
-    			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
-    				android:layout_width="wrap_content" android:layout_height="wrap_content"
-    				android:id="@+id/requiredRateOfReturnDescription"
-    				android:text="@string/requiredRateOfReturnDescriptionText"></TextView>
-    			<LinearLayout android:layout_width="fill_parent"
-    				android:layout_height="wrap_content" android:id="@+id/requiredRateOfReturnLinearLayout">
-    				<TextView android:layout_width="wrap_content"
-    					android:textAppearance="?android:attr/textAppearanceMedium"
-    					android:layout_height="wrap_content" android:id="@+id/requiredRateOfReturnTitle"
-    					android:text="@string/requiredRateOfReturnTitleText"></TextView>
-    				<EditText android:layout_width="fill_parent"
-    					android:layout_weight="1" android:layout_height="wrap_content"
-    					android:id="@+id/requiredRateOfReturnEditText" android:inputType="numberDecimal"></EditText>
-    			</LinearLayout>
-    		</LinearLayout>
-    	</ScrollView>
-    	<Button android:layout_width="wrap_content" android:text="@string/backButtonText" android:id="@+id/backButton" android:layout_gravity="center_horizontal" android:layout_height="wrap_content"></Button>
-    
-    </LinearLayout>
-</ScrollView>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/rentalScrollView" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:orientation="vertical">
+
+		<TextView android:text="@string/rentalHeaderText"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:padding="10dip"
+			android:layout_gravity="center_horizontal" android:id="@+id/rentalHeader"></TextView>
+		<ScrollView android:id="@+id/overallRentalScrollView"
+			android:layout_width="fill_parent" android:layout_height="wrap_content" >
+			<LinearLayout android:layout_height="wrap_content"
+				android:id="@+id/overallFinancialEnvironmentLinearLayout"
+				android:layout_width="fill_parent" android:orientation="vertical">
+				<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:id="@+id/estimatedRentPaymentsDescription" android:text="@string/estimatedRentPaymentsDescriptionText"></TextView>
+				<LinearLayout android:layout_height="wrap_content"
+					android:id="@+id/inflationRateLinearLayout" android:layout_width="fill_parent">
+					<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:id="@+id/estimatedRentPaymentsTitle" android:text="@string/estimatedRentPaymentsTitleText"></TextView>
+					<EditText android:layout_weight="1" android:layout_width="fill_parent"
+						android:layout_height="wrap_content" android:id="@+id/estimatedRentPaymentsEditText"
+						android:inputType="numberDecimal">
+						<requestFocus></requestFocus>
+					</EditText>
+				</LinearLayout>
+				<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:id="@+id/yearlyHomeInsuranceDescription" android:text="@string/yearlyHomeInsuranceDescriptionText"></TextView>
+				<LinearLayout android:layout_height="wrap_content"
+					android:id="@+id/realEstateAppreciationRateLinearLayout"
+					android:layout_width="fill_parent">
+					<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:id="@+id/yearlyHomeInsuranceTitle" android:text="@string/yearlyHomeInsuranceTitleText"></TextView>
+					<EditText android:layout_weight="1" android:layout_width="fill_parent"
+						android:layout_height="wrap_content" android:id="@+id/yearlyHomeInsuranceEditText"
+						android:inputType="numberDecimal"></EditText>
+				</LinearLayout>
+				<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:id="@+id/vacancyAndCreditLossDescription" android:text="@string/vacancyAndCreditLossDescriptionText"></TextView>
+				<LinearLayout android:layout_height="wrap_content"
+					android:id="@+id/vacancyAndCreditLossLinearLayout"
+					android:layout_width="fill_parent" android:baselineAligned="false">
+					<TextView android:text="@string/vacancyAndCreditLossTitle"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:layout_height="wrap_content"
+						android:id="@+id/vacancyAndCreditLossTitle" android:layout_width="132dp"></TextView>
+					<EditText android:layout_weight="1" android:layout_width="fill_parent"
+						android:id="@+id/vacancyAndCreditLossEditText"
+						android:layout_height="wrap_content" android:inputType="numberDecimal"></EditText>
+				</LinearLayout>
+				<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:id="@+id/fixupCostsDescription" android:text="@string/fixupCostsDescriptionText"></TextView>
+
+				<LinearLayout android:layout_height="wrap_content"
+					android:layout_width="fill_parent" android:id="@+id/fixupCostsLinearLayout">
+					<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:id="@+id/fixupCostsTitle" android:text="@string/fixupCostsTitleText"></TextView>
+					<EditText android:layout_weight="1" android:layout_width="fill_parent"
+						android:layout_height="wrap_content" android:id="@+id/fixupCostsEditText"
+						android:inputType="numberDecimal"></EditText>
+				</LinearLayout>
+				<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:id="@+id/initialYearlyGeneralExpensesDescription"
+					android:text="@string/initialYearlyGeneralExpensesDescriptionText"></TextView>
+				<LinearLayout android:layout_height="wrap_content"
+					android:layout_width="fill_parent"
+					android:id="@+id/initialYearlyGeneralExpensesLinearLayout" android:baselineAligned="false">
+					<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+						android:layout_height="wrap_content"
+						android:id="@+id/TextView02" android:text="@string/initialYearlyGeneralExpensesTitle" android:layout_width="188dp"></TextView>
+					<EditText android:layout_weight="1" android:layout_width="fill_parent"
+						android:layout_height="wrap_content" android:id="@+id/initialYearlyGeneralExpensesEditText"
+						android:inputType="numberDecimal"></EditText>
+				</LinearLayout>
+
+				<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:id="@+id/requiredRateOfReturnDescription" android:text="@string/requiredRateOfReturnDescriptionText"></TextView>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:id="@+id/requiredRateOfReturnLinearLayout">
+					<TextView android:layout_width="wrap_content"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:layout_height="wrap_content" android:id="@+id/requiredRateOfReturnTitle"
+						android:text="@string/requiredRateOfReturnTitleText"></TextView>
+					<EditText android:layout_width="fill_parent"
+						android:layout_weight="1" android:layout_height="wrap_content"
+						android:id="@+id/requiredRateOfReturnEditText" android:inputType="numberDecimal"></EditText>
+				</LinearLayout>
+			</LinearLayout>
+		</ScrollView>
+
+
+	</LinearLayout>

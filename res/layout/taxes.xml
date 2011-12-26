@@ -1,54 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
-    <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/TaxesScreenHeader" android:text="@string/TaxesScreenHeaderText" android:layout_width="wrap_content" android:layout_gravity="center_horizontal"></TextView>
-    <ScrollView
-        android:id="@+id/taxesScrollView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" android:layout_marginTop="20dip">
-        <LinearLayout
-            android:id="@+id/overallTaxesLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" android:orientation="vertical">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall" android:id="@+id/marginalTaxRateDescription" android:text="@string/marginalTaxRateDescriptionString"></TextView>
-            <LinearLayout
-                android:id="@+id/linearLayoutMarginalTaxRate"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/marginalTaxRateTitle" android:textAppearance="?android:attr/textAppearanceMedium" android:text="@string/marginalTaxRateTitleString"></TextView>
-                <EditText android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/marginalTaxRateEditText" android:inputType="numberDecimal">
-                    <requestFocus></requestFocus>
-                </EditText>
-            </LinearLayout>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/buildingValueDescription" android:text="@string/buildingValueDescriptionString"></TextView>
-            <LinearLayout
-                android:id="@+id/linearLayoutBuildingValue"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-                <TextView android:text="@string/buildingValueTitleString" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/buildingValueTitle" android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
-                <EditText android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:id="@+id/buildingValueEditText"></EditText>
-            </LinearLayout>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/propertyTaxRateDescription" android:text="@string/propertyTaxRateDescriptionString"></TextView>
-            <LinearLayout
-                android:id="@+id/linearLayoutPropertyTaxRate"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-                <TextView android:text="@string/propertyTaxRateTitleString" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/propertyTaxRateTitle" android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
-                <EditText android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:id="@+id/propertyTaxRateEditText"></EditText>
-            </LinearLayout>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/localMunicipalFeesDescription" android:text="@string/localMunicipalFeesDescriptionString"></TextView>
-            <LinearLayout
-                android:id="@+id/linearLayoutLocalMunicipalFees"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-                <TextView android:text="@string/localMunicipalFeesTitleString" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/localMunicipalFeesTitle" android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
-                <EditText android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:id="@+id/localMunicipalFeesEditText"></EditText>
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/backButton" android:text="@string/backButtonText" android:layout_gravity="center_horizontal"></Button>
-    
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<TextView android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/TaxesScreenHeader"
+		android:text="@string/TaxesScreenHeaderText" android:layout_width="wrap_content"
+		android:layout_gravity="center_horizontal" android:padding="10dip"></TextView>
+	<ScrollView android:id="@+id/taxesScrollView"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<LinearLayout android:id="@+id/overallTaxesLayout"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="vertical">
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall"
+				android:id="@+id/marginalTaxRateDescription" android:text="@string/marginalTaxRateDescriptionString"></TextView>
+			<LinearLayout android:id="@+id/linearLayoutMarginalTaxRate"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/marginalTaxRateTitle"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:text="@string/marginalTaxRateTitleString"></TextView>
+				<EditText android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:id="@+id/marginalTaxRateEditText"
+					android:inputType="numberDecimal">
+					<requestFocus></requestFocus>
+				</EditText>
+			</LinearLayout>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:id="@+id/buildingValueDescription"
+				android:text="@string/buildingValueDescriptionString"></TextView>
+			<LinearLayout android:id="@+id/linearLayoutBuildingValue"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<TextView android:text="@string/buildingValueTitleString"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:id="@+id/buildingValueTitle" android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+				<EditText android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:inputType="numberDecimal"
+					android:id="@+id/buildingValueEditText"></EditText>
+			</LinearLayout>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:id="@+id/propertyTaxRateDescription"
+				android:text="@string/propertyTaxRateDescriptionString"></TextView>
+			<LinearLayout android:id="@+id/linearLayoutPropertyTaxRate"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<TextView android:text="@string/propertyTaxRateTitleString"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:id="@+id/propertyTaxRateTitle" android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+				<EditText android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:inputType="numberDecimal"
+					android:id="@+id/propertyTaxRateEditText"></EditText>
+			</LinearLayout>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:id="@+id/localMunicipalFeesDescription"
+				android:text="@string/localMunicipalFeesDescriptionString"></TextView>
+			<LinearLayout android:id="@+id/linearLayoutLocalMunicipalFees"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<TextView android:text="@string/localMunicipalFeesTitleString"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:id="@+id/localMunicipalFeesTitle" android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+				<EditText android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:inputType="numberDecimal"
+					android:id="@+id/localMunicipalFeesEditText"></EditText>
+			</LinearLayout>
+		</LinearLayout>
+	</ScrollView>
+
 </LinearLayout>

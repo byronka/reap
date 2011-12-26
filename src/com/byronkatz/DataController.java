@@ -1,11 +1,8 @@
 package com.byronkatz;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -14,27 +11,26 @@ import android.database.Cursor;
 public class DataController {
 
   private DatabaseAdapter databaseAdapter;
-  private List<Map<Enum<ValueEnum>, Float>> numericValues;
-  private List<Map<Enum<ValueEnum>, String>> textValues;
-  private int defaultYear = 0;
-  
+  private Map<Integer, Map<ValueEnum, Float>> numericValues;
+  private Map<Integer, Map<ValueEnum, String>> textValues;
+  private static final Integer DEFAULT_YEAR = 1;
+
   public DataController(Context context) {
-    
+
     databaseAdapter = new DatabaseAdapter(context);
-    numericValues = new ArrayList<Map<Enum<ValueEnum>, Float>>();
-    textValues = new ArrayList<Map<Enum<ValueEnum>, String>>();
-    
+    numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
+    textValues = new HashMap<Integer, Map<ValueEnum, String>>();
+
     loadFieldValues();
   }
-  
+
   private void loadFieldValues() {
-    
-    Map<Enum<ValueEnum>, Float> numericFieldValues = new HashMap<Enum<ValueEnum>, Float> ();    
-    Map<Enum<ValueEnum>, String> textFieldValues = new HashMap<Enum<ValueEnum>, String> ();
+
+    Map<ValueEnum, Float> numericFieldValues = new HashMap<ValueEnum, Float> ();    
+    Map<ValueEnum, String> textFieldValues = new HashMap<ValueEnum, String> ();
 
     numericFieldValues.put(ValueEnum.TOTAL_PURCHASE_VALUE,0f);
     numericFieldValues.put(ValueEnum.YEARLY_INTEREST_RATE, 0f);
-    numericFieldValues.put(ValueEnum.MONTHLY_INTEREST_RATE, 0f);
     numericFieldValues.put(ValueEnum.BUILDING_VALUE, 0f);
     numericFieldValues.put(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS, 360f);
     numericFieldValues.put(ValueEnum.INFLATION_RATE, 0f);
@@ -45,7 +41,6 @@ public class DataController {
     textFieldValues.put(ValueEnum.STATE_INITIALS, "");
     numericFieldValues.put(ValueEnum.ESTIMATED_RENT_PAYMENTS, 0f);
     numericFieldValues.put(ValueEnum.REAL_ESTATE_APPRECIATION_RATE, 0f);
-    numericFieldValues.put(ValueEnum.YEARLY_ALTERNATE_INVESTMENT_RETURN, 0f);
     numericFieldValues.put(ValueEnum.YEARLY_HOME_INSURANCE, 0f);
     numericFieldValues.put(ValueEnum.PROPERTY_TAX_RATE, 0f);
     numericFieldValues.put(ValueEnum.LOCAL_MUNICIPAL_FEES, 0f);
@@ -57,86 +52,105 @@ public class DataController {
     numericFieldValues.put(ValueEnum.REQUIRED_RATE_OF_RETURN, 0f);
     numericFieldValues.put(ValueEnum.FIX_UP_COSTS, 0f);
     numericFieldValues.put(ValueEnum.CLOSING_COSTS, 0f);
-    
-    numericValues.add(year, numericFieldValues);
-    textValues.add(year, textFieldValues);
+
+    numericValues.put(DEFAULT_YEAR, numericFieldValues);
+    textValues.put(DEFAULT_YEAR, textFieldValues);
   }
 
-  public void setValueAsFloat(Enum<ValueEnum> key, Float value) {
-    
-    Integer year = 0;
-    Map<Enum<ValueEnum>, Float> numericMap = new HashMap<Enum<ValueEnum>, Float> ();
+  public void setValueAsFloat(ValueEnum key, Float value) {
+
+    //get the Map for this year
+    Map<ValueEnum, Float> numericMap = numericValues.get(DEFAULT_YEAR);
+
+    /*
+     * this year has always been initialized by default, 
+     * so just go ahead and add the value.
+     */
     numericMap.put(key, value);
-    
-    numericValues.add(year, numericMap);
   }
-  
-  public void setValueAsFloat(Enum<ValueEnum> key, Float value, Integer year) {
-    
+
+  public void setValueAsFloat(ValueEnum key, Float value, Integer year) {
+
     //TODO: add code to check that the year parameter is kosher
 
-    Map<Enum<ValueEnum>, Float> numericMap = new HashMap<Enum<ValueEnum>, Float> ();
+    Map<ValueEnum, Float> numericMap = numericValues.get(year);
+    
+    /*
+     * check to see if this year's Map has been initialized.
+     * If not, create a new Map for it.
+     */
+    if (numericMap == null) {
+      numericMap = new HashMap<ValueEnum, Float>();
+    }
+
     numericMap.put(key, value);
-    
-    numericValues.add(year, numericMap);
-  }
-  
-  public void setValueAsString(Enum<ValueEnum> key, String value) {
-    
-    Integer year = 0;
-    Map<Enum<ValueEnum>, String> textMap = new HashMap<Enum<ValueEnum>, String> ();
-    textMap.put(key, value);
-    textValues.add(year, textMap);
+
   }
 
-  public void setValueAsString(Enum<ValueEnum> key, String value, Integer year) {
-    
+  public void setValueAsString(ValueEnum key, String value) {
+
+    //get the Map for this year
+    Map<ValueEnum, String> textMap = textValues.get(DEFAULT_YEAR);
+
+    /*
+     * this year has always been initialized by default, 
+     * so just go ahead and add the value.
+     */
+    textMap.put(key, value);
+  }
+
+  public void setValueAsString(ValueEnum key, String value, Integer year) {
+
     //TODO: add code to check that the year parameter is kosher
 
-    Map<Enum<ValueEnum>, String> textMap = new HashMap<Enum<ValueEnum>, String> ();
+    Map<ValueEnum, String> textMap = textValues.get(year);
+    
+    /*
+     * check to see if this year's Map has been initialized.
+     * If not, create a new Map for it.
+     */
+    if (textMap == null) {
+      textMap = new HashMap<ValueEnum, String>();
+    }
+
     textMap.put(key, value);
-    textValues.add(year, textMap);
-  }
-  
-  public String getValueAsString(Enum<ValueEnum> key) {
-    
-    Integer year = 0;
-    
-    return textValues.get(year).get(key);
+
   }
 
-  public String getValueAsString(Enum<ValueEnum> key, Integer year) {
-    
-    //TODO: add code to check that the year parameter is kosher
-    
-    return textValues.get(year).get(key);
-  }
-  
-  public Float getValueAsFloat(Enum<ValueEnum> key) {
-    
-    Integer year = 0;
-    
-    return numericValues.get(year).get(key);
+  public String getValueAsString(ValueEnum key) {
+
+    Map<ValueEnum, String> m = textValues.get(DEFAULT_YEAR);
+    String returnValue = m.get(key);
+    return returnValue;
   }
 
-  public Float getValueAsFloat(Enum<ValueEnum> key, Integer year) {
-    
-    return numericValues.get(year).get(key);
+  public Float getValueAsFloat(ValueEnum key) {
+    Map<ValueEnum, Float> m = numericValues.get(DEFAULT_YEAR);
+    Float returnValue = m.get(key);
+    return returnValue;
   }
-  
+
+  public Float getValueAsFloat(ValueEnum key, Integer year) {
+    Map<ValueEnum, Float> m = numericValues.get(year);
+    Float returnValue = m.get(key);
+    return returnValue;
+  }
+
   public void saveValues() {
     ContentValues cv = new ContentValues();
     // get year 1
     //TODO: This next 5 lines may be a problem, since it includes calc
     //values which don't go in the database.  Check.
-    for (Entry<Enum<ValueEnum>, Float> m: numericValues.get(1).entrySet()) {
-      String key = m.getKey().toString();
+    Map<ValueEnum, Float> numericMap = numericValues.get(DEFAULT_YEAR);
+    for (Entry<ValueEnum, Float> m: numericMap.entrySet()) {
+      String key = m.getKey().name();
       Float value = m.getValue();
       cv.put(key, value);
     }
-    
-    for (Entry<Enum<ValueEnum>, String> m: textValues.get(1).entrySet()) {
-      String key = m.getKey().toString();
+
+    Map<ValueEnum, String> textMap = textValues.get(DEFAULT_YEAR);
+    for (Entry<ValueEnum, String> m: textMap.entrySet()) {
+      String key = m.getKey().name();
       String value = m.getValue();
       cv.put(key, value);
     }
@@ -147,21 +161,18 @@ public class DataController {
     Cursor cursor = databaseAdapter.getAllEntries();
     return cursor;
   }
-  
+
   public void setCurrentData(ContentValues cv) {
-    
-    Map<Enum<ValueEnum>, Float> numericFieldValues = new HashMap<Enum<ValueEnum>, Float> ();    
-    Map<Enum<ValueEnum>, String> textFieldValues = new HashMap<Enum<ValueEnum>, String> ();
-    
+
+    Map<ValueEnum, Float> numericFieldValues = new HashMap<ValueEnum, Float> ();    
+    Map<ValueEnum, String> textFieldValues = new HashMap<ValueEnum, String> ();
+
     numericFieldValues.put(
         ValueEnum.TOTAL_PURCHASE_VALUE,
         cv.getAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE.name()));
     numericFieldValues.put(
         ValueEnum.YEARLY_INTEREST_RATE, 
         cv.getAsFloat(ValueEnum.YEARLY_INTEREST_RATE.name()));
-    numericFieldValues.put(
-        ValueEnum.MONTHLY_INTEREST_RATE, 
-        cv.getAsFloat(ValueEnum.MONTHLY_INTEREST_RATE.name()));
     numericFieldValues.put(
         ValueEnum.BUILDING_VALUE, 
         cv.getAsFloat(ValueEnum.BUILDING_VALUE.name()));
@@ -191,9 +202,6 @@ public class DataController {
     numericFieldValues.put(
         ValueEnum.REAL_ESTATE_APPRECIATION_RATE, 
         cv.getAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE.name()));
-    numericFieldValues.put(
-        ValueEnum.YEARLY_ALTERNATE_INVESTMENT_RETURN, 
-        cv.getAsFloat(ValueEnum.YEARLY_ALTERNATE_INVESTMENT_RETURN.name()));
     numericFieldValues.put(
         ValueEnum.YEARLY_HOME_INSURANCE, 
         cv.getAsFloat(ValueEnum.YEARLY_HOME_INSURANCE.name()));
@@ -227,9 +235,9 @@ public class DataController {
     numericFieldValues.put(
         ValueEnum.CLOSING_COSTS, 
         cv.getAsFloat(ValueEnum.CLOSING_COSTS.name()));
-    
-    numericValues.add(numericFieldValues);
-    textValues.add(textFieldValues);
+
+    numericValues.put(DEFAULT_YEAR, numericFieldValues);
+    textValues.put(DEFAULT_YEAR, textFieldValues);
   }
 
 }

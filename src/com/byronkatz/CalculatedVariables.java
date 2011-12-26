@@ -1,6 +1,7 @@
 package com.byronkatz;
 
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -69,8 +70,8 @@ public class CalculatedVariables {
     initialYearlyPropertyTax = totalPurchaseValue * propertyTaxRate;
     monthlyInterestRate = yearlyInterestRate / NUM_OF_MONTHS_IN_YEAR;
 
-//    //calculated variables
-//    calculatedValuesMap = dataController.getCalculatedValuesList();
+    //    //calculated variables
+    //    calculatedValuesMap = dataController.getCalculatedValuesList();
   }
 
   public void crunchCalculation() {
@@ -114,9 +115,6 @@ public class CalculatedVariables {
 
 
     for (int year = 1; year <= yearlyCompoundingPeriods; year++) {
-
-      calculatedContentValues = new HashMap<String, Float>();
-
       // cashflowIn - cashflowOut
       monthCPModifier = year * NUM_OF_MONTHS_IN_YEAR;
       prevYearMonthCPModifier = (year - 1) * NUM_OF_MONTHS_IN_YEAR;
@@ -143,7 +141,7 @@ public class CalculatedVariables {
 
       yearlyAfterTaxCashFlow = yearlyBeforeTaxCashFlow - yearlyTaxes;
 
-      dataController.setValueAsFloat(ValueEnum.ATCF, (Float)yearlyAfterTaxCashFlow, year);
+      dataController.setValueAsFloat(ValueEnum.ATCF, yearlyAfterTaxCashFlow, year);
 
       yearlyDiscountRateDivisor = (float) Math.pow(1 + monthlyRequiredRateOfReturn, monthCPModifier);
       yearlyNPVSummation += yearlyAfterTaxCashFlow / yearlyDiscountRateDivisor;
@@ -171,8 +169,6 @@ public class CalculatedVariables {
       //add this year's NPV to the graph data object
       dataController.setValueAsFloat(ValueEnum.NPV, npvAccumulator, year);
 
-      //put this year's data into a wrapper hashMap
-      calculatedValuesMap.put(year, calculatedContentValues);
     }
 
   }
@@ -182,10 +178,57 @@ public class CalculatedVariables {
     return currencyFormatter.format(value);
   }
 
-  public static String displayPercentage(Float value) {
-    return String.format("{0,number,#.##%}", value);  
+  public static Float parseCurrency(String value) {
+    Float returnValue = 0.0f;
+    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
+    if (value.contains("$")) {
+      try {
+        Number n = currencyFormat.parse(value);
+        returnValue = n.floatValue();
+      } catch (ParseException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    } else {
+      try {
+        returnValue = Float.valueOf(value);
+      } catch (NumberFormatException e) {
+        returnValue = 0.0f;
+      }
+    }
+    return returnValue;
   }
-  
+
+  public static String displayPercentage(Float value) {
+    NumberFormat percentFormat = NumberFormat.getPercentInstance(Locale.US);
+    percentFormat.setMaximumFractionDigits(4);
+    String result = percentFormat.format(value);
+    return result;
+  }
+
+  public static Float parsePercentage (String value) {
+    Float returnValue = 0.0f;
+    NumberFormat percentFormat = NumberFormat.getPercentInstance(Locale.US);
+    percentFormat.setMaximumFractionDigits(4);
+    if (value.contains("%")) {
+      try {
+        Number n = percentFormat.parse(value);
+        returnValue = n.floatValue();
+      } catch (ParseException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    }else {
+      try {
+        returnValue = Float.valueOf(value);
+      } catch (NumberFormatException e) {
+        returnValue = 0.0f;
+      }
+    }
+    return returnValue;
+  }
+
+
   public Float getMortgagePayment() {
     Float a = (monthlyInterestRate + 1);
     Float b = (float) Math.pow(a, numOfCompoundingPeriods);

@@ -22,6 +22,5 @@
             <Spinner android:layout_weight="1" android:layout_height="wrap_content" android:layout_width="fill_parent" android:entries="@array/states_array" android:id="@+id/stateTitleSpinner"></Spinner>
         </LinearLayout>
     </LinearLayout>
-    <Button android:layout_width="wrap_content" android:text="@string/backButtonText" android:id="@+id/backButton" android:layout_gravity="center_horizontal" android:layout_height="wrap_content"></Button>
     
 </LinearLayout>

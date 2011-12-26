@@ -20,7 +20,6 @@ public class AddressActivity extends Activity {
   private EditText streetAddressEditText;
   private EditText cityEditText;
   private Spinner stateSpinner;
-  private Button backButton;
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
   private ArrayAdapter<CharSequence> adapter;
@@ -36,7 +35,6 @@ public class AddressActivity extends Activity {
     streetAddressEditText = (EditText) findViewById(R.id.streetAddressEditText);
     cityEditText = (EditText) findViewById(R.id.cityEditText);
     stateSpinner = (Spinner) findViewById(R.id.stateTitleSpinner);
-    backButton = (Button) findViewById(R.id.backButton);
 
     adapter = ArrayAdapter.createFromResource(this, R.array.states_array, 
         android.R.layout.simple_spinner_item);
@@ -72,13 +70,7 @@ public class AddressActivity extends Activity {
       }
     });
 
-    backButton.setOnClickListener(new OnClickListener() {
 
-      @Override
-      public void onClick(View v) {
-        finish();
-      }
-    });
 
   }
 

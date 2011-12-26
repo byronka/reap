@@ -2,10 +2,8 @@ package com.byronkatz;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -20,7 +18,6 @@ public class LoanActivity extends Activity {
   private Spinner loanTerm;
   private EditText totalPurchasePrice;
   private EditText closingCosts;
-  private Button backButton;
   private Button pmiButton;
   ArrayAdapter<CharSequence> adapter;
   private final DataController dataController = 
@@ -39,7 +36,6 @@ public class LoanActivity extends Activity {
     totalPurchasePrice = (EditText)findViewById(R.id.totalPurchasePriceEditText);
     closingCosts       = (EditText)findViewById(R.id.closingCostsEditText);
     pmiButton          = (Button)findViewById(R.id.calcPMIDownPaymentButton);
-    backButton         = (Button)findViewById(R.id.backButton);
     
     adapter = ArrayAdapter.createFromResource(
         this, R.array.numOfCompoundingPeriodsArray, android.R.layout.simple_spinner_item);
@@ -53,9 +49,9 @@ public class LoanActivity extends Activity {
       @Override
       public void onClick(View v) {
         Float totalPurchasevalue = 
-            Float.valueOf(dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE));
+            CalculatedVariables.parseCurrency(totalPurchasePrice.getText().toString());
         Float pmiDownPayment = totalPurchasevalue * 0.20f;
-        String pmiDownPaymentText = String.valueOf(pmiDownPayment);
+        String pmiDownPaymentText = CalculatedVariables.displayCurrency(pmiDownPayment);
         downPayment.setText(pmiDownPaymentText);
         
       }
@@ -73,12 +69,12 @@ public class LoanActivity extends Activity {
         int FIFTEEN_YEARS = adapter.getPosition("Fixed-rate mortgage - 15 years");
         Float value = null;
         
-        ValueEnum key = ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS;
         if (pos == THIRTY_YEARS) {
           value = 360.0f;
         } else if (pos == FIFTEEN_YEARS) {
-          value = 360.0f;
+          value = 180.0f;
         }
+        ValueEnum key = ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS;
         dataController.setValueAsFloat(key, value);
         
       }
@@ -86,14 +82,6 @@ public class LoanActivity extends Activity {
       @Override
       public void onNothingSelected(AdapterView<?> arg0) {
         // Do nothing.
-      }
-    });
-
-    backButton.setOnClickListener(new OnClickListener() {
-      
-      @Override
-      public void onClick(View v) {
-       finish();
       }
     });
     
@@ -132,19 +120,19 @@ public class LoanActivity extends Activity {
     super.onPause();
     
     ValueEnum key = ValueEnum.TOTAL_PURCHASE_VALUE;
-    Float value = Float.valueOf(totalPurchasePrice.getText().toString());
+    Float value = CalculatedVariables.parseCurrency(totalPurchasePrice.getText().toString());
     dataController.setValueAsFloat(key, value);
     
     key = ValueEnum.DOWN_PAYMENT;
-    value = Float.valueOf(downPayment.getText().toString());
+    value = CalculatedVariables.parseCurrency(downPayment.getText().toString());
     dataController.setValueAsFloat(key, value);
     
     key = ValueEnum.YEARLY_INTEREST_RATE;
-    value = Float.valueOf(yearlyInterestRate.getText().toString());
+    value = CalculatedVariables.parsePercentage(yearlyInterestRate.getText().toString());
     dataController.setValueAsFloat(key, value);
 
     key = ValueEnum.CLOSING_COSTS;
-    value = Float.valueOf(closingCosts.getText().toString());
+    value = CalculatedVariables.parseCurrency(closingCosts.getText().toString());
     dataController.setValueAsFloat(key, value);
   }
   

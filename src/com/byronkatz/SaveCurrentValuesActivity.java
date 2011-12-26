@@ -10,7 +10,6 @@ import android.widget.Toast;
 public class SaveCurrentValuesActivity extends Activity {
 
   Button saveButton;
-  Button backButton;
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
@@ -21,7 +20,6 @@ public class SaveCurrentValuesActivity extends Activity {
     setContentView(R.layout.save_current_values);
 
     saveButton = (Button) findViewById(R.id.saveButton);
-    backButton = (Button) findViewById(R.id.backButton);
     
     saveButton.setOnClickListener(new OnClickListener() {
       @Override
@@ -32,12 +30,6 @@ public class SaveCurrentValuesActivity extends Activity {
       }
     });
 
-    backButton.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        finish();
-      }
-    });
   }
 
 }

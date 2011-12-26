@@ -10,9 +10,8 @@
 	    android:id="@+id/dataPagesButtonsLinearLayout"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="20dip" android:layout_marginBottom="20dip">
+		<Button android:text="@string/loanButtonText" android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/loanButton"></Button>
 	    <Button android:id="@+id/taxesButton" android:text="@string/taxesButtonText" 
-    		android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
-    	<Button android:id="@+id/loanButton" android:text="@string/loanButtonText"
     		android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
     	<Button android:id="@+id/saleButton" android:text="@string/saleButtonText" 
     		android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
@@ -22,7 +21,6 @@
     	<Button android:text="@string/rentalButtonText" android:id="@+id/rentalButton"
     		android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
 	</LinearLayout>
-	<Button android:layout_width="wrap_content" android:text="@string/backButtonText" android:id="@+id/backButton" android:layout_gravity="center_horizontal" android:layout_height="wrap_content"></Button>
 
 
 </LinearLayout>

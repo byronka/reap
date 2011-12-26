@@ -2,12 +2,6 @@ package com.byronkatz;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
-import android.widget.Button;
 import android.widget.EditText;
 
 public class RentalActivity extends Activity {
@@ -18,7 +12,6 @@ public class RentalActivity extends Activity {
   private EditText fixupCosts;
   private EditText initialYearlyGeneralExpenses;
   private EditText requiredRateOfReturn;
-  private Button backButton;
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
@@ -36,82 +29,40 @@ public class RentalActivity extends Activity {
     fixupCosts                    = (EditText)findViewById(R.id.fixupCostsEditText);
     initialYearlyGeneralExpenses  = (EditText)findViewById(R.id.initialYearlyGeneralExpensesEditText);
     requiredRateOfReturn          = (EditText)findViewById(R.id.requiredRateOfReturnEditText);
-    backButton                    = (Button)  findViewById(R.id.backButton);
 
     assignValuesToFields();
-    
-    //Set up the listeners for the inputs
-    estimatedRentPayments.setOnKeyListener(new OnKeyListener() {
-      @Override
-      public boolean onKey(View v, int keyCode, KeyEvent event) {
-        ValueEnum key = ValueEnum.ESTIMATED_RENT_PAYMENTS;
-        Float value = Float.valueOf(estimatedRentPayments.getText().toString());
-        dataController.setValueAsFloat(key, value);
-        return false;
-      }
-    });
 
-    yearlyHomeInsurance.setOnKeyListener(new OnKeyListener() {
-      @Override
-      public boolean onKey(View v, int keyCode, KeyEvent event) {
-        ValueEnum key = ValueEnum.YEARLY_HOME_INSURANCE;
-        Float value = Float.valueOf(yearlyHomeInsurance.getText().toString());
-        dataController.setValueAsFloat(key, value);
-        return false;
-      }
-    });
-
-    vacancyAndCreditLoss.setOnKeyListener(new OnKeyListener() {
-      @Override
-      public boolean onKey(View v, int keyCode, KeyEvent event) {
-        ValueEnum key = ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE;
-        Float value = Float.valueOf(vacancyAndCreditLoss.getText().toString());
-        dataController.setValueAsFloat(key, value);
-        return false;
-      }
-    });
-
-    fixupCosts.setOnKeyListener(new OnKeyListener() {
-      @Override
-      public boolean onKey(View v, int keyCode, KeyEvent event) {
-        ValueEnum key = ValueEnum.FIX_UP_COSTS;
-        Float value = Float.valueOf(fixupCosts.getText().toString());
-        dataController.setValueAsFloat(key, value);
-        return false;
-      }
-    });
-
-    initialYearlyGeneralExpenses.setOnKeyListener(new OnKeyListener() {
-      @Override
-      public boolean onKey(View v, int keyCode, KeyEvent event) {
-        ValueEnum key = ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES;
-        Float value = Float.valueOf(initialYearlyGeneralExpenses.getText().toString());
-        dataController.setValueAsFloat(key, value);
-        return false;
-      }
-    });
-
-    requiredRateOfReturn.setOnKeyListener(new OnKeyListener() {
-      @Override
-      public boolean onKey(View v, int keyCode, KeyEvent event) {
-        ValueEnum key = ValueEnum.REQUIRED_RATE_OF_RETURN;
-        Float value = Float.valueOf(requiredRateOfReturn.getText().toString());
-        dataController.setValueAsFloat(key, value);
-        return false;
-      }
-    });
-    
-    
-    backButton.setOnClickListener(new OnClickListener() {
-      
-      @Override
-      public void onClick(View v) {
-        finish();
-        
-      }
-    });
   }
 
+  @Override
+  public void onPause() {
+    super.onPause();
+    
+    ValueEnum key = ValueEnum.ESTIMATED_RENT_PAYMENTS;
+    Float value = CalculatedVariables.parseCurrency(estimatedRentPayments.getText().toString());
+    dataController.setValueAsFloat(key, value);
+    
+    key = ValueEnum.YEARLY_HOME_INSURANCE;
+    value = CalculatedVariables.parseCurrency(yearlyHomeInsurance.getText().toString());
+    dataController.setValueAsFloat(key, value);
+    
+    key = ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE;
+    value = CalculatedVariables.parsePercentage(vacancyAndCreditLoss.getText().toString());
+    dataController.setValueAsFloat(key, value);
+    
+    key = ValueEnum.FIX_UP_COSTS;
+    value = CalculatedVariables.parseCurrency(fixupCosts.getText().toString());
+    dataController.setValueAsFloat(key, value);
+    
+    key = ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES;
+    value = CalculatedVariables.parseCurrency(initialYearlyGeneralExpenses.getText().toString());
+    dataController.setValueAsFloat(key, value);
+    
+    key = ValueEnum.REQUIRED_RATE_OF_RETURN;
+    value = CalculatedVariables.parsePercentage(requiredRateOfReturn.getText().toString());
+    dataController.setValueAsFloat(key, value);
+
+  }
   
   private void assignValuesToFields() {
     

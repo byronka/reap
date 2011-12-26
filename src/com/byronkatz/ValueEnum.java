@@ -4,7 +4,6 @@ public enum ValueEnum {
 
   TOTAL_PURCHASE_VALUE ("total purchase value"),
   YEARLY_INTEREST_RATE("yearly interest rate"),
-  MONTHLY_INTEREST_RATE("monthly interest rate"),
   BUILDING_VALUE("building value"),
   NUMBER_OF_COMPOUNDING_PERIODS("number of compounding periods"),
   INFLATION_RATE("inflation rate"),
@@ -15,7 +14,6 @@ public enum ValueEnum {
   STATE_INITIALS("state initials"),
   ESTIMATED_RENT_PAYMENTS("estimated rent payments"),
   REAL_ESTATE_APPRECIATION_RATE("real estate appreciation rate"),
-  YEARLY_ALTERNATE_INVESTMENT_RETURN("yearly alternate investment return"),
   YEARLY_HOME_INSURANCE("yearly home insurance"),
   PROPERTY_TAX_RATE("property tax rate"),
   LOCAL_MUNICIPAL_FEES("local municipal fees"),

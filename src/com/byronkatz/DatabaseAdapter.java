@@ -37,7 +37,6 @@ public class DatabaseAdapter {
       ValueEnum.STATE_INITIALS.name()                     + " TEXT"    +     ", " +
       ValueEnum.ESTIMATED_RENT_PAYMENTS.name()            + " REAL"    +     ", " +
       ValueEnum.REAL_ESTATE_APPRECIATION_RATE.name()      + " REAL"    +     ", " +
-      ValueEnum.YEARLY_ALTERNATE_INVESTMENT_RETURN.name() + " REAL"    +     ", " +
       ValueEnum.YEARLY_HOME_INSURANCE.name()              + " REAL"    +     ", " +
       ValueEnum.PROPERTY_TAX_RATE.name()                  + " REAL"    +     ", " +
       ValueEnum.LOCAL_MUNICIPAL_FEES.name()               + " REAL"    +     ", " +
@@ -69,7 +68,6 @@ public class DatabaseAdapter {
   }
 
   public int insertEntry(ContentValues contentValues) {
-    contentValues.remove(KEY_ID);
     int index = (int) db.insertOrThrow(DATABASE_TABLE, null, contentValues);
 
     return index;

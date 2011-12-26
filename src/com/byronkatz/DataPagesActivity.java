@@ -14,7 +14,6 @@ public class DataPagesActivity extends Activity {
   private Button sale;
   private Button financialEnvironment;
   private Button rental;
-  private Button backButton;
   
   /** Called when the activity is first created. */
   @Override
@@ -27,7 +26,6 @@ public class DataPagesActivity extends Activity {
   sale                   = (Button) findViewById(R.id.saleButton);
   financialEnvironment   = (Button) findViewById(R.id.financialEnvironmentButton);
   rental                 = (Button) findViewById(R.id.rentalButton);
-  backButton             = (Button) findViewById(R.id.backButton);
   
   taxes.setOnClickListener(new OnClickListener() {
     @Override
@@ -68,15 +66,7 @@ public class DataPagesActivity extends Activity {
       startActivity(intent); 
     }
   });
-  
-  backButton.setOnClickListener(new OnClickListener() {
-    
-    @Override
-    public void onClick(View v) {
-      finish();
-      
-    }
-  });
+
   
   }
 

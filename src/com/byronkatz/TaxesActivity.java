@@ -2,11 +2,6 @@ package com.byronkatz;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
-import android.widget.Button;
 import android.widget.EditText;
 
 public class TaxesActivity extends Activity {
@@ -15,7 +10,6 @@ public class TaxesActivity extends Activity {
   private EditText buildingValue;
   private EditText propertyTaxRate;
   private EditText localMunicipalFees;
-  private Button backButton;
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
   
@@ -29,17 +23,9 @@ public class TaxesActivity extends Activity {
     buildingValue      = (EditText)findViewById(R.id.buildingValueEditText);
     propertyTaxRate    = (EditText)findViewById(R.id.propertyTaxRateEditText);
     localMunicipalFees = (EditText)findViewById(R.id.localMunicipalFeesEditText);
-    backButton         = (Button)findViewById(R.id.backButton);
     
     assignValuesToFields();
 
-    backButton.setOnClickListener(new OnClickListener() {
-      
-      @Override
-      public void onClick(View v) {
-       finish();
-      }
-    });
   }
   
   @Override
@@ -47,21 +33,22 @@ public class TaxesActivity extends Activity {
     super.onPause();
     
     ValueEnum key = ValueEnum.MARGINAL_TAX_RATE;
-    Float value = Float.valueOf(marginalTaxRate.getText().toString());
+    Float value = CalculatedVariables.parsePercentage(marginalTaxRate.getText().toString());
     dataController.setValueAsFloat(key, value);
     
     key = ValueEnum.BUILDING_VALUE;
-    value = Float.valueOf(buildingValue.getText().toString());
+    value = CalculatedVariables.parseCurrency(buildingValue.getText().toString());
     dataController.setValueAsFloat(key, value);
     
     key = ValueEnum.PROPERTY_TAX_RATE;
-    value = Float.valueOf(propertyTaxRate.getText().toString());
+    value = CalculatedVariables.parsePercentage(propertyTaxRate.getText().toString());
     dataController.setValueAsFloat(key, value);
     
     key = ValueEnum.LOCAL_MUNICIPAL_FEES;
-    value = Float.valueOf(localMunicipalFees.getText().toString());
+    value = CalculatedVariables.parseCurrency(localMunicipalFees.getText().toString());
     dataController.setValueAsFloat(key, value);
   }
+  
   private void assignValuesToFields() {
     
     Float mtr = dataController.getValueAsFloat(ValueEnum.MARGINAL_TAX_RATE);
