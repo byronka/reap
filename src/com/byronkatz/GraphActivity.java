@@ -40,9 +40,11 @@ public class GraphActivity extends Activity {
 
   private Float minValueNumeric;
   private Float maxValueNumeric;
+  private Float deltaValueNumeric;
   private Float currentValueNumeric;
 
   private static final ValueEnum NOCP = ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS;
+  private static final int DIVISIONS_OF_VALUE_SLIDER = 20;
 
   @Override
   public void onResume() {
@@ -89,7 +91,10 @@ public class GraphActivity extends Activity {
     currentValueEditText = (EditText) findViewById(R.id.currentValueEditText);
 
     valueSlider = (SeekBar) findViewById(R.id.valueSlider);
+    valueSlider.setMax(DIVISIONS_OF_VALUE_SLIDER);
     valueSlider.setProgress(valueSlider.getMax() / 2);
+    
+    
     timeSlider = (SeekBar) findViewById(R.id.timeSlider);
     timeSlider.setMax(currentYearMaximum);
     timeSlider.setProgress(timeSlider.getMax());
@@ -140,8 +145,11 @@ public class GraphActivity extends Activity {
           System.err.println("Should not get here in currentValueEditText.setOnFocusChangeListener");
           break;
         }
+
         dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
         setMinAndMaxFromCurrent();
+        valueSlider.setProgress(valueSlider.getMax() / 2);
+
         return false;
       }
     });
@@ -168,6 +176,8 @@ public class GraphActivity extends Activity {
           System.err.println("Should not get here in currentValueEditText.setOnFocusChangeListener");
           break;
         }
+        setMinAndMaxFromCurrent();
+        valueSlider.setProgress(valueSlider.getMax() / 2);
       }
     });
 
@@ -202,6 +212,8 @@ public class GraphActivity extends Activity {
           System.err.println("Should not get here in minValueEditText.setOnFocusChangeListener");
           break;
         }
+        
+        deltaValueNumeric = maxValueNumeric - minValueNumeric;
       }
     });
 
@@ -236,6 +248,8 @@ public class GraphActivity extends Activity {
           System.err.println("Should not get here in maxValueEditText.setOnFocusChangeListener");
           break;
         }
+        
+        deltaValueNumeric = maxValueNumeric - minValueNumeric;
       }
     });
 
@@ -300,10 +314,9 @@ public class GraphActivity extends Activity {
       public void onProgressChanged(SeekBar seekBar, int progress,
           boolean fromUser) {
 
-        Float deltaValueNumeric = maxValueNumeric - minValueNumeric;
-        Float percentageSlid = progress / 100.0f;
-        Float newCurrentValue = minValueNumeric
-            + (percentageSlid * deltaValueNumeric);
+     
+        Float percentageSlid = (progress / (float) DIVISIONS_OF_VALUE_SLIDER);
+        Float newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
 
         ValueType test = currentSliderKey.getType(); 
 
@@ -337,8 +350,8 @@ public class GraphActivity extends Activity {
 
   private void setMinAndMaxFromCurrent() {
     minValueNumeric = currentValueNumeric / 2;
-    maxValueNumeric = currentValueNumeric * 2;
-
+    maxValueNumeric = currentValueNumeric + (currentValueNumeric - minValueNumeric);
+    deltaValueNumeric = maxValueNumeric - minValueNumeric;
     ValueType test = currentSliderKey.getType(); 
 
     switch (test) {
@@ -358,6 +371,7 @@ public class GraphActivity extends Activity {
       System.err.println("Should not get here in maxValueEditText.setOnFocusChangeListener");
       break;
     }
+    
   }
 
   private void assignValuesToDataTable(Integer year) {

@@ -160,5 +160,6 @@
 	
 	<!-- Save current values activity -->
 	<string name="saveButtonText">Save</string>
+	<string name="valueSliderText">Value Slider</string>
 
 </resources>

@@ -8,34 +8,46 @@
     	android:label="@string/app_name" 
     	android:name="RealEstateMarketAnalysisApplication">
         <activity android:name=".EntryScreenActivity"
-                  android:label="@string/entryScreenActivityTitleText">
+                  android:label="@string/entryScreenActivityTitleText"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".RentalActivity" 
-       		android:label="@string/rentalActivityTitleText" />
+       		android:label="@string/rentalActivityTitleText" 
+       		android:screenOrientation="portrait"/>
 		<activity android:name=".DataPagesActivity" 
-			android:label="@string/dataPagesActivityTitleText" />
+			android:label="@string/dataPagesActivityTitleText" 
+			android:screenOrientation="portrait"/>
 		<activity android:name=".AddressActivity" 
-			android:label="@string/addressActivityTitleText" />
+			android:label="@string/addressActivityTitleText" 
+			android:screenOrientation="portrait"/>
 		<activity android:name=".FinancialEnvironmentActivity" 
-			android:label="@string/financialEnvironmentActivityTitleText" />
+			android:label="@string/financialEnvironmentActivityTitleText"
+			android:screenOrientation="portrait" />
 		<activity android:name=".GraphActivity" 
-			android:label="@string/graphActivityTitleText" />
+			android:label="@string/graphActivityTitleText"
+			android:screenOrientation="portrait" />
 		<activity android:name=".LoanActivity" 
-			android:label="@string/loanActivityTitleText" />
+			android:label="@string/loanActivityTitleText" 
+			android:screenOrientation="portrait"/>
 		<activity android:name=".SaleActivity"
-			android:label="@string/saleActivityTitleText" />
+			android:label="@string/saleActivityTitleText" 
+			android:screenOrientation="portrait"/>
 		<activity android:name=".SetDataValuesActivity" 
-			android:label="@string/setDataValuesActivityTitleText" />
+			android:label="@string/setDataValuesActivityTitleText" 
+			android:screenOrientation="portrait"/>
 		<activity android:name=".TaxesActivity" 
-			android:label="@string/taxesActivityTitleText" />
+			android:label="@string/taxesActivityTitleText" 
+			android:screenOrientation="portrait"/>
 		<activity android:name=".SavedDataBrowserActivity" 
-			android:label="@string/savedDataBrowserActivityTitleText" />
+			android:label="@string/savedDataBrowserActivityTitleText" 
+			android:screenOrientation="portrait"/>
 		<activity android:name=".SaveCurrentValuesActivity" 
-			android:label="@string/saveCurrentValuesActivityTitleText" />
+			android:label="@string/saveCurrentValuesActivityTitleText" 
+			android:screenOrientation="portrait"/>
 
     </application>
 </manifest>
