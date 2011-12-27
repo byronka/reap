@@ -91,7 +91,12 @@ public class CalculatedVariables {
     Float yearlyTaxes = 0.0f;
     Float yearlyPrincipalPaid = 0.0f;
     Float yearlyDepreciation = buildingValue / RESIDENTIAL_DEPRECIATION_YEARS;
-    Float yearlyMortgagePayment = NUM_OF_MONTHS_IN_YEAR * getMortgagePayment();
+    Float monthlyMortgagePayment = getMortgagePayment();
+    dataController.setValueAsFloat(ValueEnum.MONTHLY_MORTGAGE_PAYMENT, monthlyMortgagePayment);
+
+    Float yearlyMortgagePayment = NUM_OF_MONTHS_IN_YEAR * monthlyMortgagePayment;
+    dataController.setValueAsFloat(ValueEnum.YEARLY_MORTGAGE_PAYMENT, yearlyMortgagePayment);
+
     Float taxableIncome = 0.0f;
     Integer yearlyCompoundingPeriods = numOfCompoundingPeriods / NUM_OF_MONTHS_IN_YEAR;
     Float yearlyPropertyTax = 0.0f;
@@ -118,23 +123,37 @@ public class CalculatedVariables {
       prevYearMonthCPModifier = (year - 1) * NUM_OF_MONTHS_IN_YEAR;
       monthlyREARIncrementer = (float) Math.pow(1 + monthlyRealEstateAppreciationRate,prevYearMonthCPModifier);
       yearlyPropertyTax = initialYearlyPropertyTax * monthlyREARIncrementer; 
+      dataController.setValueAsFloat(ValueEnum.YEARLY_PROPERTY_TAX, yearlyPropertyTax, year);
+
       grossYearlyIncome = estimatedRentPayments * NUM_OF_MONTHS_IN_YEAR;
       netYearlyIncome = (1 - vacancyRate) * grossYearlyIncome;
       yearlyIncome = netYearlyIncome * monthlyREARIncrementer; 
+      dataController.setValueAsFloat(ValueEnum.YEARLY_INCOME, yearlyIncome, year);
+      
       monthlyIRIncrementer = (float) Math.pow(1 + monthlyInflationRate, prevYearMonthCPModifier); 
       yearlyGeneralExpenses = initialYearlyGeneralExpenses * monthlyIRIncrementer;
+      dataController.setValueAsFloat(ValueEnum.YEARLY_GENERAL_EXPENSES, yearlyGeneralExpenses, year);
+
       yearlyOutlay = yearlyPropertyTax + yearlyMortgagePayment + yearlyGeneralExpenses;
       yearlyBeforeTaxCashFlow = yearlyIncome - yearlyOutlay;
 
       //next year's yearlyAmountOutstanding minus this year's
       pastYearAmountOutstanding = getPrincipalOutstandingAtPoint(prevYearMonthCPModifier);
       currentYearAmountOutstanding = getPrincipalOutstandingAtPoint(monthCPModifier);
+      dataController.setValueAsFloat(ValueEnum.CURRENT_AMOUNT_OUTSTANDING,
+          currentYearAmountOutstanding, year);
+
       yearlyPrincipalPaid = pastYearAmountOutstanding - currentYearAmountOutstanding;
+      dataController.setValueAsFloat(ValueEnum.YEARLY_PRINCIPAL_PAID, yearlyPrincipalPaid, year);
+
       taxableIncome = (yearlyBeforeTaxCashFlow + yearlyPrincipalPaid - yearlyDepreciation);
+      
       // doesn't make sense to tax negative income...but should this be used to offset taxes? hmmm...
       if (taxableIncome <= 0) {
         taxableIncome = 0.0f;
       }
+      dataController.setValueAsFloat(ValueEnum.TAXABLE_INCOME, taxableIncome, year);
+
       yearlyTaxes = taxableIncome * marginalTaxRate;
 
       yearlyAfterTaxCashFlow = yearlyBeforeTaxCashFlow - yearlyTaxes;
@@ -147,16 +166,25 @@ public class CalculatedVariables {
       //equity reversion portion
       monthlyREARIncrementer = (float) Math.pow(1 + monthlyRealEstateAppreciationRate, monthCPModifier);
       Float projectedValueOfHomeAtSale = totalPurchaseValue * monthlyREARIncrementer;
+      dataController.setValueAsFloat(ValueEnum.PROJECTED_HOME_VALUE, 
+          projectedValueOfHomeAtSale, year);
+
       Float brokerCut = projectedValueOfHomeAtSale * sellingBrokerRate;
+      dataController.setValueAsFloat(ValueEnum.BROKER_CUT_OF_SALE, brokerCut, year);
+
       monthlyIRIncrementer = (float) Math.pow(1 + monthlyInflationRate, monthCPModifier);
       Float inflationAdjustedSellingExpenses = generalSaleExpenses * monthlyIRIncrementer;
-      Float principalOwedAtSale = getPrincipalOutstandingAtPoint(monthCPModifier);
+      dataController.setValueAsFloat(ValueEnum.SELLING_EXPENSES, 
+          inflationAdjustedSellingExpenses, year);
+
       //How many years do I take depreciation?
       Float accumulatingDepreciation = yearlyDepreciation * year;
       Float taxesDueAtSale = (projectedValueOfHomeAtSale - totalPurchaseValue + accumulatingDepreciation)
           * marginalTaxRate;
+      dataController.setValueAsFloat(ValueEnum.TAXES_DUE_AT_SALE, taxesDueAtSale, year);
+
       Float ater = projectedValueOfHomeAtSale - brokerCut - 
-          inflationAdjustedSellingExpenses - principalOwedAtSale - taxesDueAtSale;
+          inflationAdjustedSellingExpenses - currentYearAmountOutstanding - taxesDueAtSale;
 
       //add this year's ater to the graph data object
       dataController.setValueAsFloat(ValueEnum.ATER, ater, year);
@@ -166,6 +194,13 @@ public class CalculatedVariables {
 
       //add this year's NPV to the graph data object
       dataController.setValueAsFloat(ValueEnum.NPV, npvAccumulator, year);
+      
+      Float accumulatedInterest = getAccumulatedInterestPaymentsAtPoint(monthCPModifier);
+      dataController.setValueAsFloat(ValueEnum.ACCUM_INTEREST, accumulatedInterest, year);
+      
+      Float accumulatedInterestPreviousYear = getAccumulatedInterestPaymentsAtPoint(prevYearMonthCPModifier);
+      Float yearlyInterestPaid = accumulatedInterest - accumulatedInterestPreviousYear;
+      dataController.setValueAsFloat(ValueEnum.YEARLY_INTEREST_PAID, yearlyInterestPaid, year);
 
     }
 
@@ -184,7 +219,6 @@ public class CalculatedVariables {
         Number n = currencyFormat.parse(value);
         returnValue = n.floatValue();
       } catch (ParseException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       }
     } else {
@@ -213,7 +247,6 @@ public class CalculatedVariables {
         Number n = percentFormat.parse(value);
         returnValue = n.floatValue();
       } catch (ParseException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       }
     }else {

@@ -44,7 +44,7 @@ public class GraphActivity extends Activity {
   private Float currentValueNumeric;
 
   private static final ValueEnum NOCP = ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS;
-  private static final int DIVISIONS_OF_VALUE_SLIDER = 20;
+  private static final int DIVISIONS_OF_VALUE_SLIDER = 100;
 
   @Override
   public void onResume() {
@@ -377,30 +377,26 @@ public class GraphActivity extends Activity {
   private void assignValuesToDataTable(Integer year) {
 
     //get connections to gui elements
-    TextView yearGridTextView = (TextView) findViewById(R.id.yearGridTextView);
-    TextView atcfGridTextView = (TextView) findViewById(R.id.atcfGridTextView);
-    TextView aterGridTextView = (TextView) findViewById(R.id.aterGridTextView);
-    TextView npvGridTextView = (TextView) findViewById(R.id.npvGridTextView);
 
-    String currentYearSelectedString = String.valueOf(currentYearSelected);
-
-    Float currentYearAter = dataController.getValueAsFloat(ValueEnum.ATER, year);
-    String currentYearAterString = CalculatedVariables.displayCurrency(currentYearAter);
-
-    Float currentYearAtcf = dataController.getValueAsFloat(ValueEnum.ATCF, year);
-    String currentYearAtcfString = CalculatedVariables.displayCurrency(currentYearAtcf);
-
-    Float currentYearNpv = dataController.getValueAsFloat(ValueEnum.NPV, year);
-    String currentYearNpvString = CalculatedVariables.displayCurrency(currentYearNpv);
-
-    //set text values
-    yearGridTextView.setText(currentYearSelectedString);
-    atcfGridTextView.setText(currentYearAtcfString);
-    aterGridTextView.setText(currentYearAterString);
-    npvGridTextView.setText(currentYearNpvString);
 
     String tempStringValue = "";
     TextView tempTextView = null;
+    
+    tempTextView = (TextView) findViewById(R.id.yearGridTextView);
+    tempStringValue = String.valueOf(currentYearSelected);
+    tempTextView.setText(tempStringValue);
+
+    tempTextView = (TextView) findViewById(R.id.aterGridTextView);
+    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.ATER, year));
+    tempTextView.setText(tempStringValue);
+
+    tempTextView = (TextView) findViewById(R.id.atcfGridTextView);
+    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.ATCF, year));
+    tempTextView.setText(tempStringValue);
+
+    tempTextView = (TextView) findViewById(R.id.npvGridTextView);
+    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.NPV, year));
+    tempTextView.setText(tempStringValue);
 
     tempTextView = (TextView) findViewById(R.id.tpvGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE));
@@ -421,10 +417,6 @@ public class GraphActivity extends Activity {
     tempTextView = (TextView) findViewById(R.id.irGridTextView);
     tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.INFLATION_RATE));
     tempTextView.setText(tempStringValue);
-
-    //    tempTextView = (TextView) findViewById(R.id.pmirGridTextView);
-    //    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.PRIMARY_MORTGAGE_INSURANCE_RATE));
-    //    tempTextView.setText(tempStringValue);
 
     tempTextView = (TextView) findViewById(R.id.dpGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.DOWN_PAYMENT));
@@ -493,6 +485,64 @@ public class GraphActivity extends Activity {
     tempTextView = (TextView) findViewById(R.id.ccGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.CLOSING_COSTS));
     tempTextView.setText(tempStringValue);
+    
+    //new stuff
+    tempTextView = (TextView) findViewById(R.id.tdasGridTextView);
+    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.TAXES_DUE_AT_SALE, year));
+    tempTextView.setText(tempStringValue);
+
+    tempTextView = (TextView) findViewById(R.id.seGridTextView);
+    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.SELLING_EXPENSES, year));
+    tempTextView.setText(tempStringValue);
+    
+    tempTextView = (TextView) findViewById(R.id.bcGridTextView);
+    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.BROKER_CUT_OF_SALE, year));
+    tempTextView.setText(tempStringValue);
+    
+    tempTextView = (TextView) findViewById(R.id.phvGridTextView);
+    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.PROJECTED_HOME_VALUE, year));
+    tempTextView.setText(tempStringValue);
+    
+    tempTextView = (TextView) findViewById(R.id.tiGridTextView);
+    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.TAXABLE_INCOME, year));
+    tempTextView.setText(tempStringValue);
+    
+    tempTextView = (TextView) findViewById(R.id.yppGridTextView);
+    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_PRINCIPAL_PAID, year));
+    tempTextView.setText(tempStringValue);
+    
+    tempTextView = (TextView) findViewById(R.id.caoGridTextView);
+    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.CURRENT_AMOUNT_OUTSTANDING, year));
+    tempTextView.setText(tempStringValue);
+    
+    tempTextView = (TextView) findViewById(R.id.ygeGridTextView);
+    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_GENERAL_EXPENSES, year));
+    tempTextView.setText(tempStringValue);
+    
+    tempTextView = (TextView) findViewById(R.id.yiGridTextView);
+    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_INCOME, year));
+    tempTextView.setText(tempStringValue);
+    
+    tempTextView = (TextView) findViewById(R.id.yptGridTextView);
+    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_PROPERTY_TAX, year));
+    tempTextView.setText(tempStringValue);
+    
+    tempTextView = (TextView) findViewById(R.id.ympGridTextView);
+    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_MORTGAGE_PAYMENT));
+    tempTextView.setText(tempStringValue);
+    
+    tempTextView = (TextView) findViewById(R.id.mmpGridTextView);
+    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.MONTHLY_MORTGAGE_PAYMENT));
+    tempTextView.setText(tempStringValue);
+    
+    tempTextView = (TextView) findViewById(R.id.aipGridTextView);
+    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.ACCUM_INTEREST, year));
+    tempTextView.setText(tempStringValue);
+    
+    tempTextView = (TextView) findViewById(R.id.yipGridTextView);
+    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_PAID, year));
+    tempTextView.setText(tempStringValue);
+
   }
 
 }

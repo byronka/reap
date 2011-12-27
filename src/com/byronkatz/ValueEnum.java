@@ -27,7 +27,24 @@ public enum ValueEnum {
   NPV  ("Net present value", ValueType.CURRENCY),
   ATER ("After Tax Equity Reversion", ValueType.CURRENCY),
   ATCF ("After Tax Cash Flow", ValueType.CURRENCY),
-  CLOSING_COSTS("closing costs", ValueType.CURRENCY);
+  CLOSING_COSTS("closing costs", ValueType.CURRENCY), 
+
+  //new stuff!
+
+  TAXES_DUE_AT_SALE ("taxes due at sale", ValueType.CURRENCY), 
+  SELLING_EXPENSES ("inflation adjusted selling expenses", ValueType.CURRENCY), 
+  BROKER_CUT_OF_SALE ("Broker cut at sale", ValueType.CURRENCY), 
+  PROJECTED_HOME_VALUE ("projected home value at sale time", ValueType.CURRENCY), 
+  TAXABLE_INCOME ("yearly taxable income", ValueType.CURRENCY), 
+  YEARLY_PRINCIPAL_PAID ("yearly principal paid", ValueType.CURRENCY), 
+  CURRENT_AMOUNT_OUTSTANDING ("current amount outstanding", ValueType.CURRENCY), 
+  YEARLY_GENERAL_EXPENSES ("yearly general expenses", ValueType.CURRENCY), 
+  YEARLY_INCOME ("yearly taxable income", ValueType.CURRENCY),  
+  YEARLY_PROPERTY_TAX ("yearly property tax", ValueType.CURRENCY),  
+  YEARLY_MORTGAGE_PAYMENT ("yearly mortgage payment", ValueType.CURRENCY),  
+  MONTHLY_MORTGAGE_PAYMENT ("monthly mortgage payment", ValueType.CURRENCY),  
+  ACCUM_INTEREST ("accumulated interest paid", ValueType.CURRENCY),
+  YEARLY_INTEREST_PAID ("yearly interest paid", ValueType.CURRENCY);
   
   private ValueEnum(String valueText, ValueType valueType) {
     this.valueText = valueText;

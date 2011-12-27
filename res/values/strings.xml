@@ -23,7 +23,7 @@
 	<string name="minValueLabel">Minimum Value</string>
 	<string name="maxValueLabel">Maximum Value</string>
 	<string name="currentValueLabel">Current Value</string>
-	
+
 	<!-- Data table -->
 	<string name="defaultZeroPercentage">0%</string>
 	<string name="defaultZeroCurrency">$0.00</string>
@@ -31,13 +31,13 @@
 	<string name="defaultStreetAddress">1234 Anywhere Street</string>
 	<string name="defaultCity">Memphis</string>
 	<string name="defaultState">Tennessee</string>
-	
-	<string name="aterDataTableItem">After Tax Equity Reversion</string><string name="atcfDataTableItem">After Tax Cash Flow</string>
+	<string name="aterDataTableItem">After Tax Equity Reversion</string>
+	<string name="atcfDataTableItem">After Tax Cash Flow</string>
 	<string name="npvDataTableItem">Net Present Value</string>
 	<string name="totalPurchaseValueDataTableItem">Total Purchase Value</string>
 	<string name="yearlyInterestRateDataTableItem">Yearly Interest Rate</string>
 	<string name="buildingValueDataTableItem">Building Value</string>
-	<string name="numOfCompPeriodsDataTableItem">Number of compounding periods</string>
+	<string name="numOfCompPeriodsDataTableItem"># of compounding periods</string>
 	<string name="inflationRateDataTableItem">Inflation Rate</string>
 	<string name="streetAddressDataTableItem">Street Address</string>
 	<string name="cityDataTableITem">City</string>
@@ -56,10 +56,24 @@
 	<string name="fixUpCostsDataTableItem">Fix-up Costs</string>
 	<string name="closingCostsDataTableItem">Closing Costs</string>
 	<string name="downPaymentDataTableItem">Down Payment</string>
+	<string name="taxesDueAtSaleDataTableItem">Taxes due at sale</string>
+	<string name="sellingExpensesDataTableItem">Selling Expenses</string>
+	<string name="brokerCutDataTableItem">Broker cut at sale</string>
+	<string name="projectedHomeValueDataTableItem">Projected home value</string>
+	<string name="taxableIncomeDataTableItem">Yearly taxable income</string>
+	<string name="yearlyPrincipalPaidDataTableItem">Yearly principal paid</string>
+	<string name="currentAmountOutstandingDataTableItem">Yearly principal outstanding</string>
+	<string name="yearlyGeneralExpensesDataTableItem">Yearly general expenses</string>
+	<string name="yearlyIncomeDataTableItem">Yearly Income</string>
+	<string name="yearlyPropertyTaxDataTableItem">Yearly property tax</string>
+	<string name="yearlyMortgagePaymentDataTableItem">Yearly mortgage payment</string>
+	<string name="monthlyMortgagePaymentDataTableItem">Monthly mortgage payment</string>
+	<string name="accumulatedInterestPaidDataTableItem">Accumulated interest paid to date</string>
+	<string name="yearlyInterestPaidDataTableItem">Yearly interest paid</string>
 
-	
-	
-	
+
+
+
 	<!-- taxes -->
 	<string name="TaxesScreenHeaderText">Taxes</string>
 	<string name="marginalTaxRateTitleString">Marginal Tax Rate: </string>
@@ -198,7 +212,7 @@
 	<string name="savedDataBrowserActivityTitleText">Saved Data Browser</string>
 	<string name="databaseSearchActivityTitleText">Database Search</string>
 	<string name="saveCurrentValuesActivityTitleText">Save Current Values</string>
-	
+
 	<!-- Save current values activity -->
 	<string name="saveButtonText">Save</string>
 	<string name="valueSliderText">Value Slider</string>

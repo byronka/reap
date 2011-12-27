@@ -10,20 +10,23 @@
 
 	<LinearLayout android:orientation="vertical"
 		android:layout_width="fill_parent" android:layout_height="75dp">
-		<LinearLayout android:layout_height="15dip"
-			android:layout_width="fill_parent">
+		<LinearLayout android:layout_height="0dip"
+			android:layout_weight="0.20" android:layout_width="fill_parent">
 			<TextView android:textSize="10dp" android:layout_width="0dip"
 				android:layout_height="fill_parent" android:id="@+id/minValueTextView"
-				android:layout_weight="1" android:text="@string/minValueLabel" android:gravity="center"/>
+				android:layout_weight="1" android:text="@string/minValueLabel"
+				android:gravity="center" />
 			<TextView android:textSize="10dp" android:layout_width="0dip"
 				android:layout_height="fill_parent" android:id="@+id/currentValueTextView"
-				android:layout_weight="1" android:text="@string/currentValueLabel" android:gravity="center"/>
+				android:layout_weight="1" android:text="@string/currentValueLabel"
+				android:gravity="center" />
 			<TextView android:textSize="10dp" android:layout_width="0dip"
 				android:layout_height="fill_parent" android:id="@+id/maxValueTextView"
-				android:layout_weight="1" android:text="@string/maxValueLabel" android:gravity="center" />
+				android:layout_weight="1" android:text="@string/maxValueLabel"
+				android:gravity="center" />
 		</LinearLayout>
-		<LinearLayout android:layout_height="25dip"
-			android:layout_width="fill_parent">
+		<LinearLayout android:layout_height="0dip"
+			android:layout_weight="0.40" android:layout_width="fill_parent">
 			<EditText android:textSize="10dp" android:fadingEdge="none"
 				android:layout_width="0dip" android:layout_gravity="left"
 				android:layout_height="fill_parent" android:inputType="numberDecimal"
@@ -39,8 +42,8 @@
 				android:id="@+id/maxValueEditText" android:editable="true"
 				android:layout_weight="1"></EditText>
 		</LinearLayout>
-		<Spinner android:layout_height="40dp" android:id="@+id/valueSpinner"
-			android:layout_width="fill_parent"></Spinner>
+		<Spinner android:layout_height="0dp" android:layout_weight="0.40"
+			android:id="@+id/valueSpinner" android:layout_width="fill_parent"></Spinner>
 	</LinearLayout>
 
 	<ScrollView android:id="@+id/graphDataScrollView"
@@ -65,9 +68,10 @@
 
 
 			<TableLayout android:layout_height="0dp"
-				android:layout_width="fill_parent" android:stretchColumns="1"
+				android:shrinkColumns="0" android:stretchColumns="1"
+				android:layout_width="fill_parent" 
 				android:gravity="clip_vertical" android:layout_weight="0.40">
-				<View android:layout_height="1dip" android:background="#FF909090"></View>
+
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/yearDataTableItem"></TextView>
@@ -75,7 +79,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="0"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/aterDataTableItem"></TextView>
@@ -83,7 +87,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#FF909090"></View>
+
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/atcfDataTableItem"></TextView>
@@ -91,7 +95,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/npvDataTableItem"></TextView>
@@ -99,7 +103,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#FF909090"></View>
+
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/totalPurchaseValueDataTableItem"></TextView>
@@ -107,7 +111,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/yearlyInterestRateDataTableItem"></TextView>
@@ -115,7 +119,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroPercentage"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#FF909090"></View>
+
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/buildingValueDataTableItem"></TextView>
@@ -123,7 +127,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/numOfCompPeriodsDataTableItem"></TextView>
@@ -131,7 +135,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="0"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#FF909090"></View>
+
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/inflationRateDataTableItem"></TextView>
@@ -139,7 +143,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroPercentage"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/streetAddressDataTableItem"></TextView>
@@ -147,7 +151,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultStreetAddress"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#FF909090"></View>
+
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/cityDataTableITem"></TextView>
@@ -155,7 +159,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultCity"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/stateDataTableItem"></TextView>
@@ -163,7 +167,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultState"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#FF909090"></View>
+
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/estRentPaymentsDataTableItem"></TextView>
@@ -171,7 +175,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/realEstateApprRateDataTableItem"></TextView>
@@ -179,7 +183,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroPercentage"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#FF909090"></View>
+
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/yearlyHomeInsuranceDataTableItem"></TextView>
@@ -187,7 +191,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/propertyTaxRateDataTableItem"></TextView>
@@ -195,7 +199,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroPercentage"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#FF909090"></View>
+
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/localMuniFeesDataTableItem"></TextView>
@@ -203,7 +207,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/vacancyRateDataTableItem"></TextView>
@@ -211,7 +215,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroPercentage"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#FF909090"></View>
+
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/initialYearlyGenExpensesDataTableItem"></TextView>
@@ -219,7 +223,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/marginalTaxRateDataTableITem"></TextView>
@@ -227,7 +231,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroPercentage"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#FF909090"></View>
+
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/sellingBrokerRateDataTableItem"></TextView>
@@ -235,7 +239,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroPercentage"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/generalSaleExpensesDataTableItem"></TextView>
@@ -243,7 +247,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#FF909090"></View>
+
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/reqRateOfReturnDataTableItem"></TextView>
@@ -251,7 +255,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroPercentage"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/fixUpCostsDataTableItem"></TextView>
@@ -259,7 +263,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#FF909090"></View>
+
 				<TableRow android:background="#FF909090">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/closingCostsDataTableItem"></TextView>
@@ -267,7 +271,7 @@
 						android:gravity="right" android:textColor="#000000"
 						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
-				<View android:layout_height="1dip" android:background="#9d7c62"></View>
+
 				<TableRow android:background="#afe6e7">
 					<TextView android:textColor="#000000" android:padding="3dip"
 						android:text="@string/downPaymentDataTableItem"></TextView>
@@ -276,6 +280,119 @@
 						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
 				</TableRow>
 
+				<!-- NEW STUFF!! -->
+
+				<TableRow android:background="#FF909090">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="@string/taxesDueAtSaleDataTableItem"></TextView>
+					<TextView android:id="@+id/tdasGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
+				</TableRow>
+
+				<TableRow android:background="#afe6e7">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="@string/sellingExpensesDataTableItem"></TextView>
+					<TextView android:id="@+id/seGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
+				</TableRow>
+
+				<TableRow android:background="#FF909090">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="@string/brokerCutDataTableItem"></TextView>
+					<TextView android:id="@+id/bcGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
+				</TableRow>
+
+				<TableRow android:background="#afe6e7">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="@string/projectedHomeValueDataTableItem"></TextView>
+					<TextView android:id="@+id/phvGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
+				</TableRow>
+
+				<TableRow android:background="#FF909090">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="@string/taxableIncomeDataTableItem"></TextView>
+					<TextView android:id="@+id/tiGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
+				</TableRow>
+
+				<TableRow android:background="#afe6e7">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="@string/yearlyPrincipalPaidDataTableItem"></TextView>
+					<TextView android:id="@+id/yppGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
+				</TableRow>
+
+				<TableRow android:background="#FF909090">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="@string/currentAmountOutstandingDataTableItem"></TextView>
+					<TextView android:id="@+id/caoGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
+				</TableRow>
+
+				<TableRow android:background="#afe6e7">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="@string/yearlyGeneralExpensesDataTableItem"></TextView>
+					<TextView android:id="@+id/ygeGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
+				</TableRow>
+
+				<TableRow android:background="#FF909090">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="@string/yearlyIncomeDataTableItem"></TextView>
+					<TextView android:id="@+id/yiGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
+				</TableRow>
+
+				<TableRow android:background="#afe6e7">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="@string/yearlyPropertyTaxDataTableItem"></TextView>
+					<TextView android:id="@+id/yptGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
+				</TableRow>
+
+				<TableRow android:background="#FF909090">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="@string/yearlyMortgagePaymentDataTableItem"></TextView>
+					<TextView android:id="@+id/ympGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
+				</TableRow>
+
+				<TableRow android:background="#afe6e7">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="@string/monthlyMortgagePaymentDataTableItem"></TextView>
+					<TextView android:id="@+id/mmpGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
+				</TableRow>
+
+				<TableRow android:background="#FF909090">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="@string/accumulatedInterestPaidDataTableItem"></TextView>
+					<TextView android:id="@+id/aipGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
+				</TableRow>
+
+				<TableRow android:background="#afe6e7">
+					<TextView android:textColor="#000000" android:padding="3dip"
+						android:text="@string/yearlyInterestPaidDataTableItem"></TextView>
+					<TextView android:id="@+id/yipGridTextView"
+						android:gravity="right" android:textColor="#000000"
+						android:padding="3dip" android:text="@string/defaultZeroCurrency"></TextView>
+				</TableRow>
 
 			</TableLayout>
 		</LinearLayout>
