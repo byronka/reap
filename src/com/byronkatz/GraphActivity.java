@@ -21,28 +21,28 @@ import com.byronkatz.ValueEnum.ValueType;
 
 public class GraphActivity extends Activity {
 
-  private ValueEnum currentSliderKey;
-  private AnalysisGraph npvGraph;
-  private AnalysisGraph aterGraph;
-  private AnalysisGraph atcfGraph;
-  private EditText currentValueEditText;
-  private SeekBar valueSlider;
-  private SeekBar timeSlider;
-  private TextView yearDisplayAtSeekBar;
-  private EditText minValueEditText;
-  private EditText maxValueEditText;
-  private final DataController dataController = RealEstateMarketAnalysisApplication
+  ValueEnum currentSliderKey;
+  AnalysisGraph npvGraph;
+  AnalysisGraph aterGraph;
+  AnalysisGraph atcfGraph;
+  EditText currentValueEditText;
+  SeekBar valueSlider;
+  SeekBar timeSlider;
+  TextView yearDisplayAtSeekBar;
+  EditText minValueEditText;
+  EditText maxValueEditText;
+  static final DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
-  private ArrayAdapter<ValueEnum> spinnerArrayAdapter;
-  private Integer currentYearMaximum;
-  private Integer currentYearSelected;
-  private Button resetButton;
-  private Float minValueNumeric;
-  private Float maxValueNumeric;
-  private Float deltaValueNumeric;
-  private Float currentValueNumeric;
+  ArrayAdapter<ValueEnum> spinnerArrayAdapter;
+  Integer currentYearMaximum;
+  Integer currentYearSelected;
+  Button resetButton;
+  Float minValueNumeric;
+  Float maxValueNumeric;
+  Float deltaValueNumeric;
+  Float currentValueNumeric;
 
-  private static final int DIVISIONS_OF_VALUE_SLIDER = 100;
+  static final int DIVISIONS_OF_VALUE_SLIDER = 100;
 
   @Override
   public void onResume() {
@@ -192,6 +192,7 @@ public class GraphActivity extends Activity {
       @Override
       public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
        
+        //put focus on the invisible View - see graph.xml
         findViewById(R.id.focusJail).requestFocus();
 
         return false;
