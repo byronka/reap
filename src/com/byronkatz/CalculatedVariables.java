@@ -12,42 +12,44 @@ public class CalculatedVariables {
   public static final int YEARLY = 1;
   public static final int MONTHLY = 2;
 
-  private final DataController dataController = 
+  private static final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
   //calculated variables
-//  private Map<Integer, Map<String, Float>> calculatedValuesMap;
-//  private Map<String, Float> calculatedContentValues;
+//  private static Map<Integer, Map<String, Float>> calculatedValuesMap;
+//  private static Map<String, Float> calculatedContentValues;
 
   //input variables
-  private Float totalPurchaseValue;
-  private Float estimatedRentPayments;
-  private Float realEstateAppreciationRate;
-  private Float vacancyRate;
-  private Float initialYearlyGeneralExpenses;
-  private Float inflationRate;
-  private Float marginalTaxRate;
-  private Float buildingValue;
-  private Float requiredRateOfReturn;
-  private Float yearlyInterestRate;
-  private int numOfCompoundingPeriods;
-  private Float sellingBrokerRate;
-  private Float generalSaleExpenses;
-  private Float downPayment;
-  private Float fixupCosts;
-  private Float propertyTaxRate;
-  private Float principalOwed;
-  private Float initialYearlyPropertyTax;
-  private Float monthlyInterestRate;
+  private static Float totalPurchaseValue;
+  private static Float estimatedRentPayments;
+  private static Float realEstateAppreciationRate;
+  private static Float vacancyRate;
+  private static Float initialYearlyGeneralExpenses;
+  private static Float inflationRate;
+  private static Float marginalTaxRate;
+  private static Float buildingValue;
+  private static Float requiredRateOfReturn;
+  private static Float yearlyInterestRate;
+  private static int numOfCompoundingPeriods;
+  private static Float sellingBrokerRate;
+  private static Float generalSaleExpenses;
+  private static Float downPayment;
+  private static Float fixupCosts;
+  private static Float propertyTaxRate;
+  private static Float principalOwed;
+  private static Float initialYearlyPropertyTax;
+  private static Float monthlyInterestRate;
 
 
-  public CalculatedVariables() {
+//  public static CalculatedVariables() {
+//
+//    //Get the singleton dataController
+//    assignVariables();
+//  }
+  
+  
 
-    //Get the singleton dataController
-    assignVariables();
-  }
-
-  private void assignVariables() {
+  private static void assignVariables() {
     totalPurchaseValue = dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE);
     estimatedRentPayments = dataController.getValueAsFloat(ValueEnum.ESTIMATED_RENT_PAYMENTS);
     realEstateAppreciationRate = dataController.getValueAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE);
@@ -68,11 +70,9 @@ public class CalculatedVariables {
     initialYearlyPropertyTax = totalPurchaseValue * propertyTaxRate;
     monthlyInterestRate = yearlyInterestRate / NUM_OF_MONTHS_IN_YEAR;
 
-    //    //calculated variables
-    //    calculatedValuesMap = dataController.getCalculatedValuesList();
   }
 
-  public void crunchCalculation() {
+  public static void crunchCalculation() {
 
     /*note: many of the equations below are calculated using monthly variables.  This is done
      * when the reality of the equation is monthly.  For example, in the final summation of
@@ -260,7 +260,7 @@ public class CalculatedVariables {
   }
 
 
-  public Float getMortgagePayment() {
+  public static Float getMortgagePayment() {
     Float a = (monthlyInterestRate + 1);
     Float b = (float) Math.pow(a, numOfCompoundingPeriods);
 
@@ -269,12 +269,12 @@ public class CalculatedVariables {
     return principalOwed * mortgageEquation;
   }
 
-  public Float getInterestPaymentAtPoint() {
+  public static Float getInterestPaymentAtPoint() {
 
     return principalOwed * monthlyInterestRate;
   }
 
-  public Float getAccumulatedInterestPaymentsAtPoint (int compoundingPeriodDesired) {
+  public static Float getAccumulatedInterestPaymentsAtPoint (int compoundingPeriodDesired) {
     Float monthlyInterestRate = yearlyInterestRate / NUM_OF_MONTHS_IN_YEAR;
 
     Float mp = getMortgagePayment();
@@ -303,7 +303,7 @@ public class CalculatedVariables {
   }
 
 
-  public Float getPrincipalPaymentAtPoint (int compoundingPeriodDesired) {
+  public static Float getPrincipalPaymentAtPoint (int compoundingPeriodDesired) {
 
     Float mp = getMortgagePayment();
 
@@ -312,7 +312,7 @@ public class CalculatedVariables {
     return principalPaymentAtPoint;
   }
 
-  public Float getPrincipalOutstandingAtPoint (int compoundingPeriodDesired) {
+  public static Float getPrincipalOutstandingAtPoint (int compoundingPeriodDesired) {
 
     Float mp = getMortgagePayment();
     Float a = monthlyInterestRate+1;
@@ -323,16 +323,16 @@ public class CalculatedVariables {
     return princpalOutstandingAtPoint;
   }
 
-  public Float getTotalPaymentsMadeAtPoint (int compoundingPeriodDesired) {
+  public static Float getTotalPaymentsMadeAtPoint (int compoundingPeriodDesired) {
 
     return compoundingPeriodDesired * getMortgagePayment();
   }
 
-  public Float getMonthlyRentalIncomeAtPoint (int compoundingPeriod) {
+  public static Float getMonthlyRentalIncomeAtPoint (int compoundingPeriod) {
     return (float) (estimatedRentPayments * Math.pow((1 + inflationRate),((compoundingPeriod / NUM_OF_MONTHS_IN_YEAR)-1)));
   }
 
-  public Float getPropertyTaxAtPoint (int compoundingPeriod) {
+  public static Float getPropertyTaxAtPoint (int compoundingPeriod) {
     return (float) (initialYearlyPropertyTax * Math.pow((1 + realEstateAppreciationRate),(compoundingPeriod-1)));
   }
 

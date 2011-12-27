@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -23,10 +25,10 @@ public class GraphActivity extends Activity {
   private AnalysisGraph npvGraph;
   private AnalysisGraph aterGraph;
   private AnalysisGraph atcfGraph;
-  private Spinner valueSpinner;
   private EditText currentValueEditText;
   private SeekBar valueSlider;
   private SeekBar timeSlider;
+  private TextView yearDisplayAtSeekBar;
   private EditText minValueEditText;
   private EditText maxValueEditText;
   private final DataController dataController = RealEstateMarketAnalysisApplication
@@ -34,27 +36,23 @@ public class GraphActivity extends Activity {
   private ArrayAdapter<ValueEnum> spinnerArrayAdapter;
   private Integer currentYearMaximum;
   private Integer currentYearSelected;
-
-  //  // calculated variables
-  //  private List<Map<String, Float>> calculatedValuesList;
-
+  private Button resetButton;
   private Float minValueNumeric;
   private Float maxValueNumeric;
   private Float deltaValueNumeric;
   private Float currentValueNumeric;
 
-  private static final ValueEnum NOCP = ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS;
   private static final int DIVISIONS_OF_VALUE_SLIDER = 100;
 
   @Override
   public void onResume() {
     super.onResume();
     //necessary in case the user switches between loan types (15 vs. 30 year)
-    Float tempFloatValue = dataController.
-        getValueAsFloat(NOCP) / CalculatedVariables.NUM_OF_MONTHS_IN_YEAR;
-    currentYearMaximum = tempFloatValue.intValue();
-    currentYearSelected = currentYearMaximum.intValue();
-    assignValuesToDataTable(currentYearSelected);
+    getNumOfCompoundingPeriodsAndSetTableYear();
+    
+    valueSlider.setProgress(valueSlider.getMax() / 2);
+    timeSlider.setProgress(timeSlider.getMax());
+    
   }
 
   /** Called when the activity is first created. */
@@ -63,92 +61,75 @@ public class GraphActivity extends Activity {
     super.onCreate(savedState);
     setContentView(R.layout.graph);
 
-    Float tempFloatValue = dataController.
-        getValueAsFloat(NOCP) / CalculatedVariables.NUM_OF_MONTHS_IN_YEAR;
-    currentYearMaximum = tempFloatValue.intValue();
-    currentYearSelected = currentYearMaximum.intValue();
-    assignValuesToDataTable(currentYearSelected);
-
-
-    valueSpinner = (Spinner) findViewById(R.id.valueSpinner);
-
-    //  ArrayList<ValueEnum> spinnerValuesArray = new ArrayList<ValueEnum>(Arrays.asList(ValueEnum.values()));
-    ValueEnum[] selectionValues = {
-        ValueEnum.DOWN_PAYMENT,
-        ValueEnum.ESTIMATED_RENT_PAYMENTS,
-        ValueEnum.FIX_UP_COSTS,
-        ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES,
-        ValueEnum.REAL_ESTATE_APPRECIATION_RATE,
-        ValueEnum.REQUIRED_RATE_OF_RETURN,
-        ValueEnum.TOTAL_PURCHASE_VALUE,
-        ValueEnum.YEARLY_INTEREST_RATE
-    };
-
-    spinnerArrayAdapter = new ArrayAdapter<ValueEnum>(this,
-        android.R.layout.simple_spinner_dropdown_item, selectionValues);
-    valueSpinner.setAdapter(spinnerArrayAdapter);
-
-    currentValueEditText = (EditText) findViewById(R.id.currentValueEditText);
-
-    valueSlider = (SeekBar) findViewById(R.id.valueSlider);
-    valueSlider.setMax(DIVISIONS_OF_VALUE_SLIDER);
-    valueSlider.setProgress(valueSlider.getMax() / 2);
+    getNumOfCompoundingPeriodsAndSetTableYear();
+    setupValueSpinner();
+    setupTimeSlider();
+    setupValueSlider();
+    setupGraphs();
+    setupCurrentValueFields();
     
     
-    timeSlider = (SeekBar) findViewById(R.id.timeSlider);
-    timeSlider.setMax(currentYearMaximum);
-    timeSlider.setProgress(timeSlider.getMax());
+  }
 
-    minValueEditText = (EditText) findViewById(R.id.minValueEditText);
-    maxValueEditText = (EditText) findViewById(R.id.maxValueEditText);
+  private void createDataPointsOnGraphs() {
+    aterGraph.createDataPoints();
+    atcfGraph.createDataPoints();
+    npvGraph.createDataPoints();
+  }
+  
+  private void invalidateGraphs() {
+    aterGraph.invalidate();
+    atcfGraph.invalidate();
+    npvGraph.invalidate();
+  }
+  
+  private void highlightCurrentYearOnGraph(Integer currentYearHighlight) {
+    aterGraph.setCurrentYearHighlighted(currentYearHighlight);
+    atcfGraph.setCurrentYearHighlighted(currentYearHighlight);
+    npvGraph.setCurrentYearHighlighted(currentYearHighlight);
+  }
+  
+  private void setupGraphs() {
 
     aterGraph = (com.byronkatz.AnalysisGraph) findViewById(R.id.aterFrameLayout);
     atcfGraph = (com.byronkatz.AnalysisGraph) findViewById(R.id.atcfFrameLayout);
     npvGraph = (com.byronkatz.AnalysisGraph) findViewById(R.id.npvFrameLayout);
 
-    aterGraph.invalidate();
-    atcfGraph.invalidate();
-    npvGraph.invalidate();
+    invalidateGraphs();
+    highlightCurrentYearOnGraph(currentYearSelected);
 
-    aterGraph.setCurrentYearHighlighted(currentYearSelected);
-    atcfGraph.setCurrentYearHighlighted(currentYearSelected);
-    npvGraph.setCurrentYearHighlighted(currentYearSelected);
+  }
+  
+  private void getNumOfCompoundingPeriodsAndSetTableYear() {
+    Float tempFloatValue = dataController.
+        getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS) / CalculatedVariables.NUM_OF_MONTHS_IN_YEAR;
+    currentYearMaximum = tempFloatValue.intValue();
+    currentYearSelected = currentYearMaximum.intValue();
+    assignValuesToDataTable(currentYearSelected);
+  }
+  
+  private void setupCurrentValueFields() {
+    
+    resetButton      = (Button)   findViewById(R.id.resetButton);
+    currentValueEditText = (EditText) findViewById(R.id.currentValueEditText);
+    minValueEditText = (EditText) findViewById(R.id.minValueEditText);
+    maxValueEditText = (EditText) findViewById(R.id.maxValueEditText);
+    
+    resetButton.setOnClickListener(new OnClickListener() {
 
-    //currentValueEditText.setOnKeyListener(new OnKeyListener() {
-    //
-    //  @Override
-    //  public boolean onKey(View v, int keyCode, KeyEvent event) {
-    //    currentValueNumeric = Float.valueOf(currentValueEditText.getText().toString());
-    //    return false;
-    //  }
-    //});
+      @Override
+      public void onClick(View v) {
+        valueSlider.setProgress(valueSlider.getMax() / 2);
+
+      }
+    });
 
     currentValueEditText.setOnEditorActionListener(new OnEditorActionListener() {
 
       @Override
       public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        ValueType test = currentSliderKey.getType(); 
-        String value = null;
-
-        switch (test) {
-        case CURRENCY:
-          value = currentValueEditText.getText().toString();
-          currentValueNumeric = CalculatedVariables.parseCurrency(value);
-          currentValueEditText.setText(CalculatedVariables.displayCurrency(currentValueNumeric));
-          break;
-        case PERCENTAGE:
-          value = currentValueEditText.getText().toString();
-          currentValueNumeric = CalculatedVariables.parsePercentage(value);
-          currentValueEditText.setText(CalculatedVariables.displayPercentage(currentValueNumeric));
-          break;
-        default:
-          System.err.println("Should not get here in currentValueEditText.setOnFocusChangeListener");
-          break;
-        }
-
-        dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
-        setMinAndMaxFromCurrent();
-        valueSlider.setProgress(valueSlider.getMax() / 2);
+       
+        findViewById(R.id.focusJail).requestFocus();
 
         return false;
       }
@@ -161,35 +142,62 @@ public class GraphActivity extends Activity {
         ValueType test = currentSliderKey.getType(); 
         String value = null;
 
-        switch (test) {
-        case CURRENCY:
-          value = currentValueEditText.getText().toString();
-          currentValueNumeric = CalculatedVariables.parseCurrency(value);
-          currentValueEditText.setText(CalculatedVariables.displayCurrency(currentValueNumeric));
-          break;
-        case PERCENTAGE:
-          value = currentValueEditText.getText().toString();
-          currentValueNumeric = CalculatedVariables.parsePercentage(value);
-          currentValueEditText.setText(CalculatedVariables.displayPercentage(currentValueNumeric));
-          break;
-        default:
-          System.err.println("Should not get here in currentValueEditText.setOnFocusChangeListener");
-          break;
+        if (hasFocus) {
+          switch (test) {
+          case CURRENCY:
+            DataController.setSelectionOnView(v, ValueType.CURRENCY);
+            break;
+          case PERCENTAGE:
+            DataController.setSelectionOnView(v, ValueType.PERCENTAGE);
+            break;
+          default:
+            System.err.println("Should not get here in currentValueEditText.setOnFocusChangeListener");
+            break;
+          }
+
+        } else {
+          switch (test) {
+          case CURRENCY:
+            value = currentValueEditText.getText().toString();
+            currentValueNumeric = CalculatedVariables.parseCurrency(value);
+            currentValueEditText.setText(CalculatedVariables.displayCurrency(currentValueNumeric));
+            break;
+          case PERCENTAGE:
+            value = currentValueEditText.getText().toString();
+            currentValueNumeric = CalculatedVariables.parsePercentage(value);
+            currentValueEditText.setText(CalculatedVariables.displayPercentage(currentValueNumeric));
+            break;
+          default:
+            System.err.println("Should not get here in currentValueEditText.setOnFocusChangeListener");
+            break;
+          }
+          setMinAndMaxFromCurrent();
+          valueSlider.setProgress(valueSlider.getMax() / 2);
+          AnalysisGraph.calculatedVariables.crunchCalculation();
+
+          createDataPointsOnGraphs();
+
+          invalidateGraphs();
+
+          assignValuesToDataTable(currentYearSelected);
         }
-        setMinAndMaxFromCurrent();
-        valueSlider.setProgress(valueSlider.getMax() / 2);
+
+
+
       }
     });
 
-    //    minValueEditText.setOnKeyListener(new OnKeyListener() {
-    //
-    //      @Override
-    //      public boolean onKey(View v, int keyCode, KeyEvent event) {
-    //        minValueNumeric = Float.valueOf(minValueEditText.getText().toString());
-    //        return false;
-    //      }
-    //    });
+    minValueEditText.setOnEditorActionListener(new OnEditorActionListener() {
 
+      @Override
+      public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+       
+        findViewById(R.id.focusJail).requestFocus();
+
+        return false;
+      }
+    });
+    
     minValueEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
 
       @Override
@@ -197,35 +205,51 @@ public class GraphActivity extends Activity {
         ValueType test = currentSliderKey.getType(); 
         String value = null;
 
-        switch (test) {
-        case CURRENCY:
-          value = minValueEditText.getText().toString();
-          minValueNumeric = CalculatedVariables.parseCurrency(value);
-          minValueEditText.setText(CalculatedVariables.displayCurrency(minValueNumeric));
-          break;
-        case PERCENTAGE:
-          value = minValueEditText.getText().toString();
-          minValueNumeric = CalculatedVariables.parsePercentage(value);
-          minValueEditText.setText(CalculatedVariables.displayPercentage(minValueNumeric));
-          break;
-        default:
-          System.err.println("Should not get here in minValueEditText.setOnFocusChangeListener");
-          break;
+        if (hasFocus) {
+          switch (test) {
+          case CURRENCY:
+            DataController.setSelectionOnView(v, ValueType.CURRENCY);
+            break;
+          case PERCENTAGE:
+            DataController.setSelectionOnView(v, ValueType.PERCENTAGE);
+            break;
+          default:
+            System.err.println("Should not get here in currentValueEditText.setOnFocusChangeListener");
+            break;
+          }
+
+        } else {
+          switch (test) {
+          case CURRENCY:
+            value = minValueEditText.getText().toString();
+            minValueNumeric = CalculatedVariables.parseCurrency(value);
+            minValueEditText.setText(CalculatedVariables.displayCurrency(minValueNumeric));
+            break;
+          case PERCENTAGE:
+            value = minValueEditText.getText().toString();
+            minValueNumeric = CalculatedVariables.parsePercentage(value);
+            minValueEditText.setText(CalculatedVariables.displayPercentage(minValueNumeric));
+            break;
+          default:
+            System.err.println("Should not get here in minValueEditText.setOnFocusChangeListener");
+            break;
+          }
         }
-        
         deltaValueNumeric = maxValueNumeric - minValueNumeric;
       }
     });
 
-    //    maxValueEditText.setOnKeyListener(new OnKeyListener() {
-    //
-    //      @Override
-    //      public boolean onKey(View v, int keyCode, KeyEvent event) {
-    //        maxValueNumeric = Float.valueOf(maxValueEditText.getText().toString());
-    //        return false;
-    //      }
-    //    });
+    maxValueEditText.setOnEditorActionListener(new OnEditorActionListener() {
 
+      @Override
+      public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+       
+        findViewById(R.id.focusJail).requestFocus();
+
+        return false;
+      }
+    });
+    
     maxValueEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
 
       @Override
@@ -233,71 +257,53 @@ public class GraphActivity extends Activity {
         ValueType test = currentSliderKey.getType(); 
         String value = null;
 
-        switch (test) {
-        case CURRENCY:
-          value = maxValueEditText.getText().toString();
-          maxValueNumeric = CalculatedVariables.parseCurrency(value);
-          maxValueEditText.setText(CalculatedVariables.displayCurrency(maxValueNumeric));
-          break;
-        case PERCENTAGE:
-          value = maxValueEditText.getText().toString();
-          maxValueNumeric = CalculatedVariables.parsePercentage(value);
-          maxValueEditText.setText(CalculatedVariables.displayPercentage(maxValueNumeric));
-          break;
-        default:
-          System.err.println("Should not get here in maxValueEditText.setOnFocusChangeListener");
-          break;
+        if (hasFocus) {
+          switch (test) {
+          case CURRENCY:
+            DataController.setSelectionOnView(v, ValueType.CURRENCY);
+            break;
+          case PERCENTAGE:
+            DataController.setSelectionOnView(v, ValueType.PERCENTAGE);
+            break;
+          default:
+            System.err.println("Should not get here in currentValueEditText.setOnFocusChangeListener");
+            break;
+          }
+
+        } else {
+          switch (test) {
+          case CURRENCY:
+            value = maxValueEditText.getText().toString();
+            maxValueNumeric = CalculatedVariables.parseCurrency(value);
+            maxValueEditText.setText(CalculatedVariables.displayCurrency(maxValueNumeric));
+            break;
+          case PERCENTAGE:
+            value = maxValueEditText.getText().toString();
+            maxValueNumeric = CalculatedVariables.parsePercentage(value);
+            maxValueEditText.setText(CalculatedVariables.displayPercentage(maxValueNumeric));
+            break;
+          default:
+            System.err.println("Should not get here in maxValueEditText.setOnFocusChangeListener");
+            break;
+          }
         }
-        
         deltaValueNumeric = maxValueNumeric - minValueNumeric;
       }
     });
 
-    valueSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+  }
+  
+  private void setupValueSlider() {
+    
 
-      @Override
-      public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
-          long arg3) {
-        currentSliderKey = spinnerArrayAdapter.getItem(pos);
-        currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
+    valueSlider = (SeekBar) findViewById(R.id.valueSlider);
+    valueSlider.setMax(DIVISIONS_OF_VALUE_SLIDER);
+    valueSlider.setProgress(valueSlider.getMax() / 2);
 
-        setMinAndMaxFromCurrent();
-      }
-
-      @Override
-      public void onNothingSelected(AdapterView<?> arg0) {
-        // do nothing with this. This method is necessary to satisfy interface.
-
-      }
-    });
-
-    timeSlider.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-
-      @Override
-      public void onStopTrackingTouch(SeekBar seekBar) {
-        //do nothing here
-      }
-
-      @Override
-      public void onStartTrackingTouch(SeekBar seekBar) {
-        //do nothing here
-      }
-
-      @Override
-      public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        if ( progress > 0 ) {
-          currentYearSelected = progress;
-          assignValuesToDataTable(currentYearSelected);
-          aterGraph.setCurrentYearHighlighted(currentYearSelected);
-          atcfGraph.setCurrentYearHighlighted(currentYearSelected);
-          npvGraph.setCurrentYearHighlighted(currentYearSelected);
-          aterGraph.invalidate();
-          atcfGraph.invalidate();
-          npvGraph.invalidate();
-        }
-      }
-    });
-
+    yearDisplayAtSeekBar = (TextView) findViewById(R.id.yearLabel);
+    yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(currentYearMaximum));
+    
+    
     valueSlider.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
       @Override
@@ -314,7 +320,7 @@ public class GraphActivity extends Activity {
       public void onProgressChanged(SeekBar seekBar, int progress,
           boolean fromUser) {
 
-     
+
         Float percentageSlid = (progress / (float) DIVISIONS_OF_VALUE_SLIDER);
         Float newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
 
@@ -335,19 +341,89 @@ public class GraphActivity extends Activity {
 
         AnalysisGraph.calculatedVariables.crunchCalculation();
 
-        aterGraph.createDataPoints();
-        atcfGraph.createDataPoints();
-        npvGraph.createDataPoints();
+        createDataPointsOnGraphs();
 
-        aterGraph.invalidate();
-        atcfGraph.invalidate();
-        npvGraph.invalidate();
+        invalidateGraphs();
+
         assignValuesToDataTable(currentYearSelected);
       }
     });
 
   }
 
+  private void setupTimeSlider() {
+    
+
+    timeSlider = (SeekBar) findViewById(R.id.timeSlider);
+    timeSlider.setMax(currentYearMaximum);
+    timeSlider.setProgress(timeSlider.getMax());
+    
+    timeSlider.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+
+      @Override
+      public void onStopTrackingTouch(SeekBar seekBar) {
+        //do nothing here
+      }
+
+      @Override
+      public void onStartTrackingTouch(SeekBar seekBar) {
+        //do nothing here
+      }
+
+      @Override
+      public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        if ( progress > 0 ) {
+          yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(progress));
+          
+          currentYearSelected = progress;
+          assignValuesToDataTable(currentYearSelected);
+          highlightCurrentYearOnGraph(currentYearSelected);
+          invalidateGraphs();
+        }
+      }
+    });
+  }
+  
+  private void setupValueSpinner() {
+    Spinner valueSpinner = (Spinner) findViewById(R.id.valueSpinner);
+
+    //  ArrayList<ValueEnum> spinnerValuesArray = new ArrayList<ValueEnum>(Arrays.asList(ValueEnum.values()));
+    ValueEnum[] selectionValues = {
+        ValueEnum.DOWN_PAYMENT,
+        ValueEnum.ESTIMATED_RENT_PAYMENTS,
+        ValueEnum.FIX_UP_COSTS,
+        ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES,
+        ValueEnum.REAL_ESTATE_APPRECIATION_RATE,
+        ValueEnum.REQUIRED_RATE_OF_RETURN,
+        ValueEnum.TOTAL_PURCHASE_VALUE,
+        ValueEnum.YEARLY_INTEREST_RATE
+    };
+
+    spinnerArrayAdapter = new ArrayAdapter<ValueEnum>(this,
+        android.R.layout.simple_spinner_dropdown_item, selectionValues);
+    valueSpinner.setAdapter(spinnerArrayAdapter);
+
+    
+    valueSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+      @Override
+      public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
+          long arg3) {
+        currentSliderKey = spinnerArrayAdapter.getItem(pos);
+        currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
+
+        setMinAndMaxFromCurrent();
+      }
+
+      @Override
+      public void onNothingSelected(AdapterView<?> arg0) {
+        // do nothing with this. This method is necessary to satisfy interface.
+
+      }
+    });
+
+  }
+  
   private void setMinAndMaxFromCurrent() {
     minValueNumeric = currentValueNumeric / 2;
     maxValueNumeric = currentValueNumeric + (currentValueNumeric - minValueNumeric);
@@ -371,7 +447,7 @@ public class GraphActivity extends Activity {
       System.err.println("Should not get here in maxValueEditText.setOnFocusChangeListener");
       break;
     }
-    
+
   }
 
   private void assignValuesToDataTable(Integer year) {
@@ -381,7 +457,7 @@ public class GraphActivity extends Activity {
 
     String tempStringValue = "";
     TextView tempTextView = null;
-    
+
     tempTextView = (TextView) findViewById(R.id.yearGridTextView);
     tempStringValue = String.valueOf(currentYearSelected);
     tempTextView.setText(tempStringValue);
@@ -411,7 +487,7 @@ public class GraphActivity extends Activity {
     tempTextView.setText(tempStringValue);
 
     tempTextView = (TextView) findViewById(R.id.nocpGridTextView);
-    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS));
+    tempStringValue = String.valueOf(dataController.getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue());
     tempTextView.setText(tempStringValue);
 
     tempTextView = (TextView) findViewById(R.id.irGridTextView);
@@ -485,7 +561,7 @@ public class GraphActivity extends Activity {
     tempTextView = (TextView) findViewById(R.id.ccGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.CLOSING_COSTS));
     tempTextView.setText(tempStringValue);
-    
+
     //new stuff
     tempTextView = (TextView) findViewById(R.id.tdasGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.TAXES_DUE_AT_SALE, year));
@@ -494,51 +570,51 @@ public class GraphActivity extends Activity {
     tempTextView = (TextView) findViewById(R.id.seGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.SELLING_EXPENSES, year));
     tempTextView.setText(tempStringValue);
-    
+
     tempTextView = (TextView) findViewById(R.id.bcGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.BROKER_CUT_OF_SALE, year));
     tempTextView.setText(tempStringValue);
-    
+
     tempTextView = (TextView) findViewById(R.id.phvGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.PROJECTED_HOME_VALUE, year));
     tempTextView.setText(tempStringValue);
-    
+
     tempTextView = (TextView) findViewById(R.id.tiGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.TAXABLE_INCOME, year));
     tempTextView.setText(tempStringValue);
-    
+
     tempTextView = (TextView) findViewById(R.id.yppGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_PRINCIPAL_PAID, year));
     tempTextView.setText(tempStringValue);
-    
+
     tempTextView = (TextView) findViewById(R.id.caoGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.CURRENT_AMOUNT_OUTSTANDING, year));
     tempTextView.setText(tempStringValue);
-    
+
     tempTextView = (TextView) findViewById(R.id.ygeGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_GENERAL_EXPENSES, year));
     tempTextView.setText(tempStringValue);
-    
+
     tempTextView = (TextView) findViewById(R.id.yiGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_INCOME, year));
     tempTextView.setText(tempStringValue);
-    
+
     tempTextView = (TextView) findViewById(R.id.yptGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_PROPERTY_TAX, year));
     tempTextView.setText(tempStringValue);
-    
+
     tempTextView = (TextView) findViewById(R.id.ympGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_MORTGAGE_PAYMENT));
     tempTextView.setText(tempStringValue);
-    
+
     tempTextView = (TextView) findViewById(R.id.mmpGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.MONTHLY_MORTGAGE_PAYMENT));
     tempTextView.setText(tempStringValue);
-    
+
     tempTextView = (TextView) findViewById(R.id.aipGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.ACCUM_INTEREST, year));
     tempTextView.setText(tempStringValue);
-    
+
     tempTextView = (TextView) findViewById(R.id.yipGridTextView);
     tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_PAID, year));
     tempTextView.setText(tempStringValue);

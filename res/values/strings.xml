@@ -23,6 +23,7 @@
 	<string name="minValueLabel">Minimum Value</string>
 	<string name="maxValueLabel">Maximum Value</string>
 	<string name="currentValueLabel">Current Value</string>
+	<string name="resetButton">Reset</string>
 
 	<!-- Data table -->
 	<string name="defaultZeroPercentage">0%</string>
