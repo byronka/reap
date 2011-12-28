@@ -1,95 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/loanScrollView" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 
 
-		<LinearLayout android:orientation="vertical"
-			android:layout_width="fill_parent" android:layout_height="fill_parent"
-			android:weightSum="1">
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:weightSum="1">
 
-					<!-- the following is just to catch the focus and do nothing with it -->
-					<LinearLayout android:focusable="true"
-						android:focusableInTouchMode="true" android:layout_width="0px"
-						android:layout_height="0px" />
+		<!-- the following is just to catch the focus and do nothing with it -->
+		<LinearLayout android:focusable="true"
+			android:focusableInTouchMode="true" android:layout_width="0px"
+			android:layout_height="0px" />
 
-					<TextView android:text="@string/yearlyInterestRateDescriptionText"
-						android:textAppearance="?android:attr/textAppearanceSmall"
-						android:layout_width="wrap_content" android:layout_height="wrap_content"
-						android:id="@+id/yearlyInterestRateDescription"></TextView>
-					<LinearLayout android:layout_height="wrap_content"
-						android:id="@+id/yearlyInterestRateLinearLayout"
-						android:layout_width="fill_parent">
-						<TextView android:text="@string/yearlyInterestRateTitleText"
-							android:textAppearance="?android:attr/textAppearanceMedium"
-							android:layout_width="wrap_content" android:layout_height="wrap_content"
-							android:id="@+id/yearlyInterestRateTitle"></TextView>
-						<EditText android:layout_weight="1" android:layout_width="fill_parent"
-							android:id="@+id/yearlyInterestRateEditText" android:inputType="numberDecimal"
-							android:layout_height="wrap_content"></EditText>
-					</LinearLayout>
-					<TextView android:text="@string/totalPurchaseValueDescriptionText"
-						android:id="@+id/totalPurchaseValueDescription"
-						android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall"
-						android:layout_width="wrap_content"></TextView>
-					<LinearLayout android:layout_width="fill_parent"
-						android:id="@+id/totalPurchasePriceLinearLayout"
-						android:layout_height="wrap_content">
-						<TextView android:text="@string/totalPurchasePriceTitleText"
-							android:id="@+id/totalPurchasePriceTitle" android:layout_height="wrap_content"
-							android:textAppearance="?android:attr/textAppearanceMedium"
-							android:layout_width="wrap_content"></TextView>
-						<EditText android:layout_height="wrap_content"
-							android:inputType="numberDecimal" android:id="@+id/totalPurchasePriceEditText"
-							android:layout_width="fill_parent" android:layout_weight="1">
-						</EditText>
-					</LinearLayout>
-					<TextView android:text="@string/downPaymentDescriptionText"
-						android:textAppearance="?android:attr/textAppearanceSmall"
-						android:layout_width="wrap_content" android:layout_height="wrap_content"
-						android:id="@+id/downPaymentDescription"></TextView>
-					<Button android:layout_height="wrap_content"
-						android:id="@+id/calcPMIDownPaymentButton" android:layout_width="wrap_content"
-						android:text="@string/calcPMIDownPaymentButtonText"
-						android:layout_gravity="center"></Button>
-					<LinearLayout android:layout_height="wrap_content"
-						android:id="@+id/downPaymentLinearLayout" android:layout_width="fill_parent">
-						<TextView android:text="@string/downPaymentTitleText"
-							android:textAppearance="?android:attr/textAppearanceMedium"
-							android:layout_width="wrap_content" android:layout_height="wrap_content"
-							android:id="@+id/downPaymentTitle"></TextView>
-						<EditText android:inputType="numberDecimal"
-							android:layout_weight="1" android:layout_width="fill_parent"
-							android:id="@+id/downPaymentEditText" android:layout_height="wrap_content"></EditText>
-					</LinearLayout>
-					<TextView android:textAppearance="?android:attr/textAppearanceSmall"
-						android:layout_width="wrap_content" android:layout_height="wrap_content"
-						android:id="@+id/numOfCompoundingPeriodsDescription" android:text="@string/numOfCompoundingPeriodsDescriptionText"></TextView>
-					<LinearLayout android:layout_height="wrap_content"
-						android:layout_width="fill_parent" android:id="@+id/numOfCompoundingPeriodsLinearLayout">
-						<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-							android:layout_width="wrap_content" android:layout_height="wrap_content"
-							android:id="@+id/numOfCompoundingPeriodsTitle" android:text="@string/numOfCompoundingPeriodsTitleText"></TextView>
-						<EditText android:layout_weight="1" android:layout_width="fill_parent"
-							android:layout_height="wrap_content" android:inputType="number|numberDecimal"
-							android:visibility="gone" android:id="@+id/numOfCompoundingPeriodsEditText"></EditText>
-					</LinearLayout>
-					<Spinner android:layout_height="wrap_content"
-						android:layout_width="fill_parent" android:id="@+id/numOfCompoundingPeriodsSpinner"
-						android:entries="@array/numOfCompoundingPeriodsArray"></Spinner>
+		<LinearLayout android:layout_height="wrap_content"
+			android:id="@+id/yearlyInterestRateLinearLayout"
+			android:layout_width="fill_parent">
+			<TextView android:text="@string/yearlyInterestRateTitleText"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:id="@+id/yearlyInterestRateTitle"></TextView>
+			<EditText android:layout_weight="1" android:layout_width="fill_parent"
+				android:id="@+id/yearlyInterestRateEditText" android:inputType="numberDecimal"
+				android:layout_height="wrap_content"></EditText>
+			<ImageButton android:id="@+id/yearlyInterestRateHelpButton" android:layout_height="fill_parent" 
+			android:src="@drawable/question_mark" android:scaleType="centerInside" android:layout_width="55dp"/>
+					
+		</LinearLayout>
+		<TextView android:text="@string/totalPurchaseValueDescriptionText"
+			android:id="@+id/totalPurchaseValueDescription"
+			android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall"
+			android:layout_width="wrap_content"></TextView>
+		<LinearLayout android:layout_width="fill_parent"
+			android:id="@+id/totalPurchasePriceLinearLayout"
+			android:layout_height="wrap_content">
+			<TextView android:text="@string/totalPurchasePriceTitleText"
+				android:id="@+id/totalPurchasePriceTitle" android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="wrap_content"></TextView>
+			<EditText android:layout_height="wrap_content"
+				android:inputType="numberDecimal" android:id="@+id/totalPurchasePriceEditText"
+				android:layout_width="fill_parent" android:layout_weight="1">
+			</EditText>
+		</LinearLayout>
+		<TextView android:text="@string/downPaymentDescriptionText"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:id="@+id/downPaymentDescription"></TextView>
+		<Button android:layout_height="wrap_content" android:id="@+id/calcPMIDownPaymentButton"
+			android:layout_width="wrap_content" android:text="@string/calcPMIDownPaymentButtonText"
+			android:layout_gravity="center"></Button>
+		<LinearLayout android:layout_height="wrap_content"
+			android:id="@+id/downPaymentLinearLayout" android:layout_width="fill_parent">
+			<TextView android:text="@string/downPaymentTitleText"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:id="@+id/downPaymentTitle"></TextView>
+			<EditText android:inputType="numberDecimal"
+				android:layout_weight="1" android:layout_width="fill_parent"
+				android:id="@+id/downPaymentEditText" android:layout_height="wrap_content"></EditText>
+		</LinearLayout>
+		<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:id="@+id/numOfCompoundingPeriodsDescription" android:text="@string/numOfCompoundingPeriodsDescriptionText"></TextView>
+		<LinearLayout android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:id="@+id/numOfCompoundingPeriodsLinearLayout">
+			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:id="@+id/numOfCompoundingPeriodsTitle" android:text="@string/numOfCompoundingPeriodsTitleText"></TextView>
+			<EditText android:layout_weight="1" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:inputType="number|numberDecimal"
+				android:visibility="gone" android:id="@+id/numOfCompoundingPeriodsEditText"></EditText>
+		</LinearLayout>
+		<Spinner android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:id="@+id/numOfCompoundingPeriodsSpinner"
+			android:entries="@array/numOfCompoundingPeriodsArray"></Spinner>
 
-					<TextView android:textAppearance="?android:attr/textAppearanceSmall"
-						android:layout_width="wrap_content" android:layout_height="wrap_content"
-						android:id="@+id/closingCostsDescription" android:text="@string/closingCostsDescriptionText"></TextView>
-					<LinearLayout android:id="@+id/closingCostsLinearLayout"
-						android:layout_width="fill_parent" android:layout_height="wrap_content">
-						<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-							android:layout_width="wrap_content" android:layout_height="wrap_content"
-							android:id="@+id/closingCostsTitle" android:text="@string/closingCostsTitleText"></TextView>
-						<EditText android:layout_weight="1" android:layout_width="fill_parent"
-							android:layout_height="wrap_content" android:id="@+id/closingCostsEditText"
-							android:inputType="numberDecimal"></EditText>
-					</LinearLayout>
-				</LinearLayout>
-			</ScrollView>
+		<TextView android:textAppearance="?android:attr/textAppearanceSmall"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:id="@+id/closingCostsDescription" android:text="@string/closingCostsDescriptionText"></TextView>
+		<LinearLayout android:id="@+id/closingCostsLinearLayout"
+			android:layout_width="fill_parent" android:layout_height="wrap_content">
+			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:id="@+id/closingCostsTitle" android:text="@string/closingCostsTitleText"></TextView>
+			<EditText android:layout_weight="1" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:id="@+id/closingCostsEditText"
+				android:inputType="numberDecimal"></EditText>
+		</LinearLayout>
+	</LinearLayout>
+</ScrollView>
 
