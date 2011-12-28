@@ -77,21 +77,21 @@
 
 	<!-- taxes -->
 	<string name="TaxesScreenHeaderText">Taxes</string>
-	<string name="marginalTaxRateTitleString">Marginal Tax Rate: </string>
-	<string name="marginalTaxRateDescriptionString">The marginal tax rate is the tax rate that is
+	<string name="marginalTaxRateTitleText">Marginal Tax Rate: </string>
+	<string name="marginalTaxRateDescriptionText">The marginal tax rate is the tax rate that is
 		expected for the amount of adjusted gross income for the year
 	</string>
 	<string name="backButtonText">Back</string>
-	<string name="buildingValueTitleString">Building Value: </string>
-	<string name="propertyTaxRateTitleString">Property Tax Rate: </string>
-	<string name="localMunicipalFeesTitleString">Local Municipal Fees: </string>
-	<string name="buildingValueDescriptionString">the value of the building, as opposed to the land
+	<string name="buildingValueTitleText">Building Value: </string>
+	<string name="propertyTaxRateTitleText">Property Tax Rate: </string>
+	<string name="localMunicipalFeesTitleText">Local Municipal Fees: </string>
+	<string name="buildingValueDescriptionText">the value of the building, as opposed to the land
 		value.
 	</string>
-	<string name="propertyTaxRateDescriptionString">this coefficient is multipiled by the house value
+	<string name="propertyTaxRateDescriptionText">this coefficient is multipiled by the house value
 		to obtain the yearly property tax
 	</string>
-	<string name="localMunicipalFeesDescriptionString">Fees assessed by the local municipality in addition
+	<string name="localMunicipalFeesDescriptionText">Fees assessed by the local municipality in addition
 		to the property tax (such as solid waste or water taxes)
 	</string>
 
@@ -174,7 +174,7 @@
 		tenants not paying their rent for whatever reason, as a percentage of
 		total rental income
 	</string>
-	<string name="vacancyAndCreditLossTitle">Vacancy and Credit Loss: </string>
+	<string name="vacancyAndCreditLossTitleText">Vacancy and Credit Loss: </string>
 	<string name="fixupCostsDescriptionText">Cost to fix up the property to a rentable state as
 		a one-time dollar amount
 	</string>
@@ -184,7 +184,7 @@
 		big-ticket repairs, management costs, minor repair costs, advertising,
 		and other miscellaneous expenses
 	</string>
-	<string name="initialYearlyGeneralExpensesTitle">Initial Yearly General Expenses: </string>
+	<string name="initialYearlyGeneralExpensesTitleText">Initial Yearly General Expenses: </string>
 	<string name="requiredRateOfReturnDescriptionText">The required rate of return is the minimum rate of
 		return, as a yearly percentage, expected as the average yearly return.
 		It is used in the net present value equation to bring all future

@@ -5,8 +5,10 @@ import com.byronkatz.ValueEnum.ValueType;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 public class FinancialEnvironmentActivity extends Activity {
 
@@ -37,6 +39,19 @@ public class FinancialEnvironmentActivity extends Activity {
       }
     });
     
+    ImageButton inflationRateHelpButton = 
+        (ImageButton)findViewById(R.id.inflationRateHelpButton);
+    inflationRateHelpButton.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        Utility.showHelpDialog(
+            R.string.inflationRateDescriptionText, 
+            R.string.inflationRateTitleText,
+            FinancialEnvironmentActivity.this);
+      }
+    });
+    
     realEstateAppreciationRate.setOnFocusChangeListener(new OnFocusChangeListener() {
       
       @Override
@@ -46,6 +61,20 @@ public class FinancialEnvironmentActivity extends Activity {
         }     
       }
     });
+    
+    ImageButton realEstateAppreciationRateHelpButton = 
+        (ImageButton)findViewById(R.id.realEstateAppreciationRateHelpButton);
+    realEstateAppreciationRateHelpButton.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        Utility.showHelpDialog(
+            R.string.realEstateAppreciationRateDescriptionText, 
+            R.string.realEstateAppreciationRateTitleText,
+            FinancialEnvironmentActivity.this);
+      }
+    });
+    
   }
   
 

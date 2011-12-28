@@ -1,13 +1,10 @@
 package com.byronkatz;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -15,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.byronkatz.ValueEnum.ValueType;
 
@@ -23,7 +19,7 @@ public class LoanActivity extends Activity {
 
 
   private EditText yearlyInterestRate;
-  private ImageButton yearlyInterestRateHelpButton;
+  //  private ImageButton yearlyInterestRateHelpButton;
   private EditText downPayment;
   private Spinner loanTerm;
   private EditText totalPurchasePrice;
@@ -31,7 +27,7 @@ public class LoanActivity extends Activity {
   private Button pmiButton;
   ArrayAdapter<CharSequence> adapter;
 
-  
+
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
@@ -43,7 +39,7 @@ public class LoanActivity extends Activity {
 
     //Hook up the components from the GUI to some variables here
     yearlyInterestRate = (EditText)findViewById(R.id.yearlyInterestRateEditText);
-    yearlyInterestRateHelpButton = (ImageButton)findViewById(R.id.yearlyInterestRateHelpButton);
+    //    yearlyInterestRateHelpButton = (ImageButton)findViewById(R.id.yearlyInterestRateHelpButton);
     downPayment        = (EditText)findViewById(R.id.downPaymentEditText);
     loanTerm           = (Spinner) findViewById(R.id.numOfCompoundingPeriodsSpinner);
     totalPurchasePrice = (EditText)findViewById(R.id.totalPurchasePriceEditText);
@@ -76,16 +72,22 @@ public class LoanActivity extends Activity {
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
+          
           DataController.setSelectionOnView(v, ValueType.PERCENTAGE);
         }     
       }
     });
 
+    ImageButton yearlyInterestRateHelpButton = 
+        (ImageButton)findViewById(R.id.yearlyInterestRateHelpButton);
     yearlyInterestRateHelpButton.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
-        showHelpDialog(R.string.yearlyInterestRateDescriptionText);
+        Utility.showHelpDialog(
+            R.string.yearlyInterestRateDescriptionText, 
+            R.string.yearlyInterestRateTitleText,
+            LoanActivity.this);
       }
     });
 
@@ -99,6 +101,18 @@ public class LoanActivity extends Activity {
       }
     });
 
+    ImageButton downPaymentHelpButton = 
+        (ImageButton)findViewById(R.id.downPaymentHelpButton);
+    downPaymentHelpButton.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        Utility.showHelpDialog(
+            R.string.downPaymentDescriptionText, 
+            R.string.downPaymentTitleText, LoanActivity.this);
+      }
+    });
+
     totalPurchasePrice.setOnFocusChangeListener(new OnFocusChangeListener() {
 
       @Override
@@ -109,6 +123,18 @@ public class LoanActivity extends Activity {
       }
     });
 
+    ImageButton totalPurchasePriceHelpButton = 
+        (ImageButton)findViewById(R.id.totalPurchasePriceHelpButton);
+    totalPurchasePriceHelpButton.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        Utility.showHelpDialog(
+            R.string.totalPurchaseValueDescriptionText, 
+            R.string.totalPurchasePriceTitleText, LoanActivity.this);
+      }
+    });
+
     closingCosts.setOnFocusChangeListener(new OnFocusChangeListener() {
 
       @Override
@@ -116,6 +142,18 @@ public class LoanActivity extends Activity {
         if (hasFocus) {
           DataController.setSelectionOnView(v, ValueType.CURRENCY);
         }     
+      }
+    });
+
+    ImageButton closingCostsHelpButton = 
+        (ImageButton)findViewById(R.id.closingCostsHelpButton);
+    closingCostsHelpButton.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        Utility.showHelpDialog(
+            R.string.closingCostsDescriptionText, 
+            R.string.closingCostsTitleText, LoanActivity.this);
       }
     });
 
@@ -139,25 +177,44 @@ public class LoanActivity extends Activity {
 
       }
 
+
       @Override
       public void onNothingSelected(AdapterView<?> arg0) {
         // Do nothing.
       }
     });
 
+
+    ImageButton loanTermHelpButton = 
+        (ImageButton)findViewById(R.id.numOfCompoundingPeriodsHelpButton);
+    loanTermHelpButton.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        Utility.showHelpDialog(
+            R.string.numOfCompoundingPeriodsDescriptionText, 
+            R.string.numOfCompoundingPeriodsTitleText, LoanActivity.this);
+      }
+    });
   }
 
-  private void showHelpDialog(int resourceId) {
-    Dialog helpDialog = new Dialog(LoanActivity.this);
-    Window window = helpDialog.getWindow();
-    window.setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND, 
-        WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
-    helpDialog.setContentView(R.layout.help_dialog_view);
-    
-    TextView helpTextView = (TextView)helpDialog.findViewById(R.id.help_text);
-    helpTextView.setText(resourceId);
-    helpDialog.show();
-  }
+
+
+
+
+
+  //  private void showHelpDialog(int helpText, int helpTitle) {
+  //    Dialog helpDialog = new Dialog(LoanActivity.this);
+  //    Window window = helpDialog.getWindow();
+  //    window.setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND, 
+  //        WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+  //    helpDialog.setContentView(R.layout.help_dialog_view);
+  //    
+  //    TextView helpTextView = (TextView)helpDialog.findViewById(R.id.help_text);
+  //    helpTextView.setText(helpText);
+  //    helpDialog.setTitle(helpTitle);
+  //    helpDialog.show();
+  //  }
 
   private void assignValuesToFields() {
 

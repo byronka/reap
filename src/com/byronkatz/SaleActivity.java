@@ -5,8 +5,10 @@ import com.byronkatz.ValueEnum.ValueType;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 public class SaleActivity extends Activity {
   
@@ -37,6 +39,19 @@ public class SaleActivity extends Activity {
       }
     });
     
+    ImageButton generalSaleExpensesHelpButton = 
+        (ImageButton)findViewById(R.id.generalSaleExpensesHelpButton);
+    generalSaleExpensesHelpButton.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        Utility.showHelpDialog(
+            R.string.generalSaleExpensesDescriptionText, 
+            R.string.generalSaleExpensesTitleText, SaleActivity.this);
+      }
+    });
+
+  
     sellingBrokerRate.setOnFocusChangeListener(new OnFocusChangeListener() {
       
       @Override
@@ -44,6 +59,18 @@ public class SaleActivity extends Activity {
         if (hasFocus) {
           DataController.setSelectionOnView(v, ValueType.PERCENTAGE);
         }     
+      }
+    });
+    
+    ImageButton sellingBrokerRateHelpButton = 
+        (ImageButton)findViewById(R.id.sellingBrokerRateHelpButton);
+    sellingBrokerRateHelpButton.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        Utility.showHelpDialog(
+            R.string.sellingBrokerRateDescriptionText, 
+            R.string.sellingBrokerRateTitleText, SaleActivity.this);
       }
     });
   }

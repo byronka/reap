@@ -16,8 +16,10 @@ public class RealEstateMarketAnalysisApplication extends Application {
     super.onCreate();
     setDataController(new DataController(this));
     singleton = this;
+    
   }
 
+    
   public DataController getDataController() {
     return dataController;
   }

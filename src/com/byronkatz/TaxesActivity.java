@@ -5,8 +5,10 @@ import com.byronkatz.ValueEnum.ValueType;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 public class TaxesActivity extends Activity {
   
@@ -40,6 +42,18 @@ public class TaxesActivity extends Activity {
       }
     });
     
+    ImageButton marginalTaxRateHelpButton = 
+        (ImageButton)findViewById(R.id.marginalTaxRateHelpButton);
+    marginalTaxRateHelpButton.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        Utility.showHelpDialog(
+            R.string.marginalTaxRateDescriptionText, 
+            R.string.marginalTaxRateTitleText, TaxesActivity.this);
+      }
+    });
+    
     buildingValue.setOnFocusChangeListener(new OnFocusChangeListener() {
       
       @Override
@@ -47,6 +61,18 @@ public class TaxesActivity extends Activity {
         if (hasFocus) {
           DataController.setSelectionOnView(v, ValueType.CURRENCY);
         }     
+      }
+    });
+    
+    ImageButton buildingValueHelpButton = 
+        (ImageButton)findViewById(R.id.buildingValueHelpButton);
+    buildingValueHelpButton.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        Utility.showHelpDialog(
+            R.string.buildingValueDescriptionText, 
+            R.string.buildingValueTitleText, TaxesActivity.this);
       }
     });
     
@@ -60,6 +86,18 @@ public class TaxesActivity extends Activity {
       }
     });
     
+    ImageButton propertyTaxRateHelpButton = 
+        (ImageButton)findViewById(R.id.propertyTaxRateHelpButton);
+    propertyTaxRateHelpButton.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        Utility.showHelpDialog(
+            R.string.propertyTaxRateDescriptionText, 
+            R.string.propertyTaxRateTitleText, TaxesActivity.this);
+      }
+    });
+    
     localMunicipalFees.setOnFocusChangeListener(new OnFocusChangeListener() {
       
       @Override
@@ -69,7 +107,22 @@ public class TaxesActivity extends Activity {
         }     
       }
     });
+    
+    ImageButton localMunicipalFeesHelpButton = 
+        (ImageButton)findViewById(R.id.localMunicipalFeesHelpButton);
+    localMunicipalFeesHelpButton.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        Utility.showHelpDialog(
+            R.string.localMunicipalFeesDescriptionText, 
+            R.string.localMunicipalFeesTitleText, TaxesActivity.this);
+      }
+    });
+    
   }
+  
+
   
   @Override
   public void onPause() {

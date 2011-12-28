@@ -3,7 +3,7 @@
 
 <ScrollView android:id="@+id/taxesScrollView"
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="wrap_content">
+	android:layout_width="300dip" android:layout_height="wrap_content">
 	<LinearLayout android:id="@+id/overallTaxesLayout"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:orientation="vertical">
@@ -12,56 +12,59 @@
 		<LinearLayout android:focusable="true"
 			android:focusableInTouchMode="true" android:layout_width="0px"
 			android:layout_height="0px" />
-
-		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall"
-			android:id="@+id/marginalTaxRateDescription" android:text="@string/marginalTaxRateDescriptionString"></TextView>
 		<LinearLayout android:id="@+id/linearLayoutMarginalTaxRate"
 			android:layout_width="fill_parent" android:layout_height="wrap_content">
 			<TextView android:layout_width="wrap_content"
 				android:layout_height="wrap_content" android:id="@+id/marginalTaxRateTitle"
 				android:textAppearance="?android:attr/textAppearanceMedium"
-				android:text="@string/marginalTaxRateTitleString"></TextView>
+				android:text="@string/marginalTaxRateTitleText"></TextView>
 			<EditText android:layout_width="fill_parent"
-				android:layout_height="wrap_content" android:id="@+id/marginalTaxRateEditText"
-				android:inputType="numberDecimal">
+				android:layout_weight="1" android:layout_height="wrap_content"
+				android:id="@+id/marginalTaxRateEditText" android:inputType="numberDecimal">
 			</EditText>
+			<ImageButton android:id="@+id/marginalTaxRateHelpButton"
+				android:layout_height="fill_parent" android:src="@drawable/question_mark"
+				android:scaleType="centerInside" android:layout_width="55dp"
+				android:minWidth="55dip" android:minHeight="55dip" />
 		</LinearLayout>
-		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:id="@+id/buildingValueDescription"
-			android:text="@string/buildingValueDescriptionString"></TextView>
 		<LinearLayout android:id="@+id/linearLayoutBuildingValue"
 			android:layout_width="fill_parent" android:layout_height="wrap_content">
-			<TextView android:text="@string/buildingValueTitleString"
+			<TextView android:text="@string/buildingValueTitleText"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:id="@+id/buildingValueTitle" android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
 			<EditText android:layout_width="fill_parent"
-				android:layout_height="wrap_content" android:inputType="numberDecimal"
-				android:id="@+id/buildingValueEditText"></EditText>
+				android:layout_weight="1" android:layout_height="wrap_content"
+				android:inputType="numberDecimal" android:id="@+id/buildingValueEditText"></EditText>
+			<ImageButton android:id="@+id/buildingValueHelpButton"
+				android:layout_height="fill_parent" android:src="@drawable/question_mark"
+				android:scaleType="centerInside" android:layout_width="55dp"
+				android:minWidth="55dip" android:minHeight="55dip" />
 		</LinearLayout>
-		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:id="@+id/propertyTaxRateDescription"
-			android:text="@string/propertyTaxRateDescriptionString"></TextView>
 		<LinearLayout android:id="@+id/linearLayoutPropertyTaxRate"
 			android:layout_width="fill_parent" android:layout_height="wrap_content">
-			<TextView android:text="@string/propertyTaxRateTitleString"
+			<TextView android:text="@string/propertyTaxRateTitleText"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:id="@+id/propertyTaxRateTitle" android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
 			<EditText android:layout_width="fill_parent"
-				android:layout_height="wrap_content" android:inputType="numberDecimal"
-				android:id="@+id/propertyTaxRateEditText"></EditText>
+				android:layout_weight="1" android:layout_height="wrap_content"
+				android:inputType="numberDecimal" android:id="@+id/propertyTaxRateEditText"></EditText>
+			<ImageButton android:id="@+id/propertyTaxRateHelpButton"
+				android:layout_height="fill_parent" android:src="@drawable/question_mark"
+				android:scaleType="centerInside" android:layout_width="55dp"
+				android:minWidth="55dip" android:minHeight="55dip" />
 		</LinearLayout>
-		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:id="@+id/localMunicipalFeesDescription"
-			android:text="@string/localMunicipalFeesDescriptionString"></TextView>
 		<LinearLayout android:id="@+id/linearLayoutLocalMunicipalFees"
 			android:layout_width="fill_parent" android:layout_height="wrap_content">
-			<TextView android:text="@string/localMunicipalFeesTitleString"
+			<TextView android:text="@string/localMunicipalFeesTitleText"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:id="@+id/localMunicipalFeesTitle" android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
 			<EditText android:layout_width="fill_parent"
 				android:layout_height="wrap_content" android:inputType="numberDecimal"
-				android:id="@+id/localMunicipalFeesEditText"></EditText>
+				android:layout_weight="1" android:id="@+id/localMunicipalFeesEditText"></EditText>
+			<ImageButton android:id="@+id/localMunicipalFeesHelpButton"
+				android:layout_height="fill_parent" android:src="@drawable/question_mark"
+				android:scaleType="centerInside" android:layout_width="55dp"
+				android:minWidth="55dip" android:minHeight="55dip" />
 		</LinearLayout>
 	</LinearLayout>
 </ScrollView>

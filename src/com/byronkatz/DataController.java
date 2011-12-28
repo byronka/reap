@@ -197,11 +197,6 @@ public class DataController {
     Map<ValueEnum, Float> numericMap = numericValues.get(DEFAULT_YEAR);
 
 
-   
-
-    Map<ValueEnum, Float> numericFieldValues = new HashMap<ValueEnum, Float> ();    
-    Map<ValueEnum, String> textFieldValues = new HashMap<ValueEnum, String> ();
-
     numericMap.put(
         ValueEnum.TOTAL_PURCHASE_VALUE,
         cv.getAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE.name()));

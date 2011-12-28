@@ -1,7 +1,5 @@
 package com.byronkatz;
 
-import java.util.Currency;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,11 +16,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
-import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
 import com.byronkatz.ValueEnum.ValueType;
 
@@ -148,6 +146,7 @@ public class GraphActivity extends Activity {
     setupGraphs();
     setupCurrentValueFields();
 
+//    showWelcomeScreen();
 
   }
 
@@ -701,4 +700,18 @@ public class GraphActivity extends Activity {
 
   }
 
+//  public void showWelcomeScreen() {
+//    Dialog dialog = new Dialog(GraphActivity.this);
+//    Window window = dialog.getWindow();
+//    window.setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND, 
+//        WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+//    window.setFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM, 
+//        WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+//    dialog.setContentView(R.layout.welcome_dialog_view);
+//    
+//    TextView textView = (TextView)dialog.findViewById(R.id.welcome_text);
+//    textView.setText("HELLO");
+//    dialog.setTitle("WELCOME");
+//    dialog.show();
+//  }
 }
