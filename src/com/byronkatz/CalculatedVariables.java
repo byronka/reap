@@ -39,13 +39,6 @@ public class CalculatedVariables {
   private static Float principalOwed;
   private static Float initialYearlyPropertyTax;
   private static Float monthlyInterestRate;
-
-
-//  public static CalculatedVariables() {
-//
-//    //Get the singleton dataController
-//    assignVariables();
-//  }
   
   
 

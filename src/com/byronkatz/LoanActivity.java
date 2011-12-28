@@ -1,7 +1,5 @@
 package com.byronkatz;
 
-import com.byronkatz.ValueEnum.ValueType;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,8 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.byronkatz.ValueEnum.ValueType;
+
 public class LoanActivity extends Activity {
-  
+
+
   private EditText yearlyInterestRate;
   private EditText downPayment;
   private Spinner loanTerm;
@@ -128,26 +129,6 @@ public class LoanActivity extends Activity {
     
   }
 
-//  private void setSelectionOnView(View v, ValueType valueType) {
-//    EditText editText = (EditText) v;
-//    //we'll use textInEditText to measure the string for the selection
-//    String textInEditText = editText.getText().toString();
-//    int textLength = textInEditText.length();
-//    
-//    switch (valueType) {
-//    case CURRENCY:
-//      editText.setSelection(1, textLength);
-//      break;
-//    case PERCENTAGE:
-//      editText.setSelection(0, textLength - 1);
-//      break;
-//    case STRING:
-//      editText.setSelection(0, textLength);
-//      break;
-//      default:
-//        System.err.println("shouldn't get here in setSelectionOnView");
-//    }
-//  }
   
   private void assignValuesToFields() {
 
@@ -163,18 +144,19 @@ public class LoanActivity extends Activity {
     } else if (numOfCompoundingPeriods.intValue() == 180) {
       loanTerm.setSelection(FIFTEEN_YEARS);
     }
+    Float tempVariable = null;
     
-    Float yir = dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE);
-    yearlyInterestRate.setText(CalculatedVariables.displayPercentage(yir));
+    tempVariable = dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE);
+    yearlyInterestRate.setText(CalculatedVariables.displayPercentage(tempVariable));
     
-    Float dP = dataController.getValueAsFloat(ValueEnum.DOWN_PAYMENT);
-    downPayment.setText(CalculatedVariables.displayCurrency(dP));
+    tempVariable = dataController.getValueAsFloat(ValueEnum.DOWN_PAYMENT);
+    downPayment.setText(CalculatedVariables.displayCurrency(tempVariable));
     
-    Float tPP = dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE);
-    totalPurchasePrice.setText(CalculatedVariables.displayCurrency(tPP));
+    tempVariable = dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE);
+    totalPurchasePrice.setText(CalculatedVariables.displayCurrency(tempVariable));
     
-    Float cC = dataController.getValueAsFloat(ValueEnum.CLOSING_COSTS);
-    closingCosts.setText(CalculatedVariables.displayCurrency(cC));
+    tempVariable = dataController.getValueAsFloat(ValueEnum.CLOSING_COSTS);
+    closingCosts.setText(CalculatedVariables.displayCurrency(tempVariable));
   }
   
   @Override

@@ -1,51 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+	android:id="@+id/addressOverallLinearLayout" android:orientation="vertical"
+	android:layout_width="wrap_content" android:layout_height="wrap_content">
 
 	<!-- the following is just to catch the focus and do nothing with it -->
+
 	<LinearLayout android:focusable="true"
 		android:focusableInTouchMode="true" android:layout_width="0px"
 		android:layout_height="0px" />
 
-	<Button android:layout_width="wrap_content" android:id="@+id/useGPS"
-		android:layout_height="wrap_content" android:text="@string/useGPSButtonText"
-		android:layout_gravity="center_horizontal"></Button>
-	<TextView android:text="@string/streetAddressHeaderText"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal" android:id="@+id/streetAddressHeader"></TextView>
-	<LinearLayout android:layout_height="wrap_content"
-		android:id="@+id/addressOverallLinearLayout" android:layout_width="fill_parent"
-		android:orientation="vertical" android:layout_marginTop="20dip"
-		android:layout_marginBottom="20dip">
-		<LinearLayout android:layout_height="wrap_content"
-			android:id="@+id/LinearLayoutStreetAddress" android:layout_width="fill_parent">
-			<TextView android:text="@string/streetAddressTitleText"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:id="@+id/streetAddress"></TextView>
-			<EditText android:layout_weight="1" android:layout_width="fill_parent"
-				android:layout_height="wrap_content" android:id="@+id/streetAddressEditText">
-			</EditText>
-		</LinearLayout>
-		<LinearLayout android:layout_height="wrap_content"
-			android:id="@+id/LinearLayoutCity" android:layout_width="fill_parent">
-			<TextView android:text="@string/cityTitleText"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:id="@+id/cityTitle"></TextView>
-			<EditText android:layout_weight="1" android:layout_width="fill_parent"
-				android:layout_height="wrap_content" android:id="@+id/cityEditText"
-				android:inputType="textPersonName"></EditText>
-		</LinearLayout>
-		<LinearLayout android:layout_height="wrap_content"
-			android:id="@+id/linearLayoutStreetAddress" android:layout_width="fill_parent">
-			<TextView android:text="@string/stateTitleText"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:id="@+id/stateTitle"></TextView>
-			<Spinner android:layout_weight="1" android:layout_height="wrap_content"
-				android:layout_width="fill_parent" android:entries="@array/states_array"
-				android:id="@+id/stateTitleSpinner"></Spinner>
-		</LinearLayout>
-	</LinearLayout>
 
+
+	<LinearLayout android:id="@+id/LinearLayoutStreetAddress"
+		android:layout_height="wrap_content" android:layout_width="wrap_content">
+		<TextView android:text="@string/streetAddressTitleText"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:id="@+id/streetAddress" android:gravity="center_vertical"></TextView>
+		<EditText android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:id="@+id/streetAddressEditText" android:inputType="textCapWords" android:lines="1">
+		</EditText>
+	</LinearLayout>
+	<LinearLayout android:layout_height="wrap_content"
+		android:id="@+id/LinearLayoutCity" android:layout_width="wrap_content">
+		<TextView android:text="@string/cityTitleText"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:id="@+id/cityTitle"></TextView>
+		<EditText android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:id="@+id/cityEditText" android:inputType="textCapWords|textPersonName"></EditText>
+	</LinearLayout>
+	<LinearLayout android:layout_height="wrap_content"
+		android:id="@+id/linearLayoutStreetAddress" android:layout_width="wrap_content">
+		<TextView android:text="@string/stateTitleText"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:id="@+id/stateTitle"></TextView>
+		<Spinner android:layout_height="wrap_content"
+			android:layout_width="wrap_content" android:entries="@array/states_array"
+			android:id="@+id/stateTitleSpinner"></Spinner>
+	</LinearLayout>
 </LinearLayout>
+

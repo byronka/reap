@@ -38,7 +38,6 @@ public class DataController {
     numericFieldValues.put(ValueEnum.BUILDING_VALUE, 0f);
     numericFieldValues.put(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS, 360f);
     numericFieldValues.put(ValueEnum.INFLATION_RATE, 0f);
-    numericFieldValues.put(ValueEnum.PRIMARY_MORTGAGE_INSURANCE_RATE, 0f);
     numericFieldValues.put(ValueEnum.DOWN_PAYMENT, 0f);
     textFieldValues.put(ValueEnum.STREET_ADDRESS, "1234 Anywhere Street");
     textFieldValues.put(ValueEnum.CITY, "Memphis");
@@ -145,21 +144,25 @@ public class DataController {
   public void saveValues() {
     ContentValues cv = new ContentValues();
     // get year 1
-    //TODO: This next 5 lines may be a problem, since it includes calc
-    //values which don't go in the database.  Check.
+
     Map<ValueEnum, Float> numericMap = numericValues.get(DEFAULT_YEAR);
     for (Entry<ValueEnum, Float> m: numericMap.entrySet()) {
+      if (m.getKey().isSavedToDatabase()) {
       String key = m.getKey().name();
       Float value = m.getValue();
       cv.put(key, value);
+      }
     }
 
     Map<ValueEnum, String> textMap = textValues.get(DEFAULT_YEAR);
     for (Entry<ValueEnum, String> m: textMap.entrySet()) {
+      if (m.getKey().isSavedToDatabase()) {
       String key = m.getKey().name();
       String value = m.getValue();
       cv.put(key, value);
+      }
     }
+    
     databaseAdapter.insertEntry(cv);
   }
 
@@ -190,81 +193,83 @@ public class DataController {
   }
   
   public void setCurrentData(ContentValues cv) {
+    Map<ValueEnum, String> textMap = textValues.get(DEFAULT_YEAR);
+    Map<ValueEnum, Float> numericMap = numericValues.get(DEFAULT_YEAR);
+
+
+   
 
     Map<ValueEnum, Float> numericFieldValues = new HashMap<ValueEnum, Float> ();    
     Map<ValueEnum, String> textFieldValues = new HashMap<ValueEnum, String> ();
 
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.TOTAL_PURCHASE_VALUE,
         cv.getAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE.name()));
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.YEARLY_INTEREST_RATE, 
         cv.getAsFloat(ValueEnum.YEARLY_INTEREST_RATE.name()));
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.BUILDING_VALUE, 
         cv.getAsFloat(ValueEnum.BUILDING_VALUE.name()));
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS, 360f);
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.INFLATION_RATE, 
         cv.getAsFloat(ValueEnum.INFLATION_RATE.name()));
-    numericFieldValues.put(
-        ValueEnum.PRIMARY_MORTGAGE_INSURANCE_RATE, 
-        cv.getAsFloat(ValueEnum.PRIMARY_MORTGAGE_INSURANCE_RATE.name()));
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.DOWN_PAYMENT, 
         cv.getAsFloat(ValueEnum.DOWN_PAYMENT.name()));
-    textFieldValues.put(
+    textMap.put(
         ValueEnum.STREET_ADDRESS, 
         cv.getAsString(ValueEnum.STREET_ADDRESS.name()));
-    textFieldValues.put(
+    textMap.put(
         ValueEnum.CITY, 
         cv.getAsString(ValueEnum.CITY.name()));
-    textFieldValues.put(
+    textMap.put(
         ValueEnum.STATE_INITIALS, 
         cv.getAsString(ValueEnum.STATE_INITIALS.name()));
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.ESTIMATED_RENT_PAYMENTS, 
         cv.getAsFloat(ValueEnum.ESTIMATED_RENT_PAYMENTS.name()));
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.REAL_ESTATE_APPRECIATION_RATE, 
         cv.getAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE.name()));
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.YEARLY_HOME_INSURANCE, 
         cv.getAsFloat(ValueEnum.YEARLY_HOME_INSURANCE.name()));
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.PROPERTY_TAX_RATE, 
         cv.getAsFloat(ValueEnum.PROPERTY_TAX_RATE.name()));
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.LOCAL_MUNICIPAL_FEES, 
         cv.getAsFloat(ValueEnum.LOCAL_MUNICIPAL_FEES.name()));
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE, 
         cv.getAsFloat(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE.name()));
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES, 
         cv.getAsFloat(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES.name()));
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.MARGINAL_TAX_RATE, 
         cv.getAsFloat(ValueEnum.MARGINAL_TAX_RATE.name()));
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.SELLING_BROKER_RATE, 
         cv.getAsFloat(ValueEnum.SELLING_BROKER_RATE.name()));
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.GENERAL_SALE_EXPENSES, 
         cv.getAsFloat(ValueEnum.GENERAL_SALE_EXPENSES.name()));
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.REQUIRED_RATE_OF_RETURN, 
         cv.getAsFloat(ValueEnum.REQUIRED_RATE_OF_RETURN.name()));
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.FIX_UP_COSTS, 
         cv.getAsFloat(ValueEnum.FIX_UP_COSTS.name()));
-    numericFieldValues.put(
+    numericMap.put(
         ValueEnum.CLOSING_COSTS, 
         cv.getAsFloat(ValueEnum.CLOSING_COSTS.name()));
 
-    numericValues.put(DEFAULT_YEAR, numericFieldValues);
-    textValues.put(DEFAULT_YEAR, textFieldValues);
+    numericValues.put(DEFAULT_YEAR, numericMap);
+    textValues.put(DEFAULT_YEAR, textMap);
   }
 
 }

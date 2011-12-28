@@ -1,8 +1,14 @@
 package com.byronkatz;
 
+import java.util.Currency;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -12,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,6 +40,7 @@ public class GraphActivity extends Activity {
   EditText maxValueEditText;
   static final DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
+  Spinner valueSpinner;
   ArrayAdapter<ValueEnum> spinnerArrayAdapter;
   Integer currentYearMaximum;
   Integer currentYearSelected;
@@ -44,15 +52,87 @@ public class GraphActivity extends Activity {
 
   static final int DIVISIONS_OF_VALUE_SLIDER = 100;
 
+
+
+  @Override
+  public boolean onCreateOptionsMenu (Menu menu){
+    super.onCreateOptionsMenu(menu);
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.data_pages_menu, menu);
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected (MenuItem item) {
+    super.onOptionsItemSelected(item);
+    Intent intent = null;
+    //which item is selected?
+    switch (item.getItemId()) {
+    case R.id.loanMenuItem:
+      intent = new Intent(GraphActivity.this, LoanActivity.class);
+      startActivity(intent); 
+      break;
+
+    case R.id.addressMenuItem:
+      intent = new Intent(GraphActivity.this, AddressActivity.class);
+      startActivity(intent); 
+      break;
+
+    case R.id.taxesMenuItem:
+      intent = new Intent(GraphActivity.this, TaxesActivity.class);
+      startActivity(intent); 
+      break;
+
+    case R.id.saleMenuItem:
+      intent = new Intent(GraphActivity.this, SaleActivity.class);
+      startActivity(intent); 
+      break;
+
+    case R.id.financialEnvironmentMenuItem:
+      intent = new Intent(GraphActivity.this, FinancialEnvironmentActivity.class);
+      startActivity(intent); 
+      break;
+
+    case R.id.rentalMenuItem:
+      intent = new Intent(GraphActivity.this, RentalActivity.class);
+      startActivity(intent); 
+      break;
+
+    case R.id.saveCurrentValuesMenuItem:
+      dataController.saveValues();
+      Toast toast = Toast.makeText(GraphActivity.this, "Data saved", Toast.LENGTH_SHORT);
+      toast.show();
+      break;
+
+    case R.id.databaseMenuItem:
+      intent = new Intent(GraphActivity.this, SavedDataBrowserActivity.class);
+      startActivity(intent); 
+      break;
+    default:
+      //select nothing / do nothing
+      return true;
+    }
+
+    return false;
+  }
+
   @Override
   public void onResume() {
     super.onResume();
     //necessary in case the user switches between loan types (15 vs. 30 year)
-    getNumOfCompoundingPeriodsAndSetTableYear();
-    
+    getNumOfCompoundingPeriods();
+
+    currentSliderKey = spinnerArrayAdapter.getItem(0);
+    currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
+    setMinAndMaxFromCurrent();
     valueSlider.setProgress(valueSlider.getMax() / 2);
     timeSlider.setProgress(timeSlider.getMax());
+
+    CalculatedVariables.crunchCalculation();
+    createDataPointsOnGraphs();
+    invalidateGraphs();
     
+    assignValuesToDataTable(currentYearSelected);
   }
 
   /** Called when the activity is first created. */
@@ -61,14 +141,14 @@ public class GraphActivity extends Activity {
     super.onCreate(savedState);
     setContentView(R.layout.graph);
 
-    getNumOfCompoundingPeriodsAndSetTableYear();
+    getNumOfCompoundingPeriods();
     setupValueSpinner();
     setupTimeSlider();
     setupValueSlider();
     setupGraphs();
     setupCurrentValueFields();
-    
-    
+
+
   }
 
   private void createDataPointsOnGraphs() {
@@ -76,19 +156,19 @@ public class GraphActivity extends Activity {
     atcfGraph.createDataPoints();
     npvGraph.createDataPoints();
   }
-  
+
   private void invalidateGraphs() {
     aterGraph.invalidate();
     atcfGraph.invalidate();
     npvGraph.invalidate();
   }
-  
+
   private void highlightCurrentYearOnGraph(Integer currentYearHighlight) {
     aterGraph.setCurrentYearHighlighted(currentYearHighlight);
     atcfGraph.setCurrentYearHighlighted(currentYearHighlight);
     npvGraph.setCurrentYearHighlighted(currentYearHighlight);
   }
-  
+
   private void setupGraphs() {
 
     aterGraph = (com.byronkatz.AnalysisGraph) findViewById(R.id.aterFrameLayout);
@@ -99,22 +179,21 @@ public class GraphActivity extends Activity {
     highlightCurrentYearOnGraph(currentYearSelected);
 
   }
-  
-  private void getNumOfCompoundingPeriodsAndSetTableYear() {
+
+  private void getNumOfCompoundingPeriods() {
     Float tempFloatValue = dataController.
         getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS) / CalculatedVariables.NUM_OF_MONTHS_IN_YEAR;
     currentYearMaximum = tempFloatValue.intValue();
     currentYearSelected = currentYearMaximum.intValue();
-    assignValuesToDataTable(currentYearSelected);
   }
-  
+
   private void setupCurrentValueFields() {
-    
+
     resetButton      = (Button)   findViewById(R.id.resetButton);
     currentValueEditText = (EditText) findViewById(R.id.currentValueEditText);
     minValueEditText = (EditText) findViewById(R.id.minValueEditText);
     maxValueEditText = (EditText) findViewById(R.id.maxValueEditText);
-    
+
     resetButton.setOnClickListener(new OnClickListener() {
 
       @Override
@@ -128,7 +207,7 @@ public class GraphActivity extends Activity {
 
       @Override
       public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-       
+
         findViewById(R.id.focusJail).requestFocus();
 
         return false;
@@ -173,7 +252,7 @@ public class GraphActivity extends Activity {
           }
           setMinAndMaxFromCurrent();
           valueSlider.setProgress(valueSlider.getMax() / 2);
-          AnalysisGraph.calculatedVariables.crunchCalculation();
+          CalculatedVariables.crunchCalculation();
 
           createDataPointsOnGraphs();
 
@@ -191,14 +270,14 @@ public class GraphActivity extends Activity {
 
       @Override
       public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-       
+
         //put focus on the invisible View - see graph.xml
         findViewById(R.id.focusJail).requestFocus();
 
         return false;
       }
     });
-    
+
     minValueEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
 
       @Override
@@ -244,13 +323,13 @@ public class GraphActivity extends Activity {
 
       @Override
       public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-       
+
         findViewById(R.id.focusJail).requestFocus();
 
         return false;
       }
     });
-    
+
     maxValueEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
 
       @Override
@@ -293,9 +372,9 @@ public class GraphActivity extends Activity {
     });
 
   }
-  
+
   private void setupValueSlider() {
-    
+
 
     valueSlider = (SeekBar) findViewById(R.id.valueSlider);
     valueSlider.setMax(DIVISIONS_OF_VALUE_SLIDER);
@@ -303,8 +382,8 @@ public class GraphActivity extends Activity {
 
     yearDisplayAtSeekBar = (TextView) findViewById(R.id.yearLabel);
     yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(currentYearMaximum));
-    
-    
+
+
     valueSlider.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
       @Override
@@ -340,7 +419,7 @@ public class GraphActivity extends Activity {
         }
         dataController.setValueAsFloat(currentSliderKey, newCurrentValue);
 
-        AnalysisGraph.calculatedVariables.crunchCalculation();
+        CalculatedVariables.crunchCalculation();
 
         createDataPointsOnGraphs();
 
@@ -353,12 +432,12 @@ public class GraphActivity extends Activity {
   }
 
   private void setupTimeSlider() {
-    
+
 
     timeSlider = (SeekBar) findViewById(R.id.timeSlider);
     timeSlider.setMax(currentYearMaximum);
     timeSlider.setProgress(timeSlider.getMax());
-    
+
     timeSlider.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
       @Override
@@ -375,7 +454,7 @@ public class GraphActivity extends Activity {
       public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if ( progress > 0 ) {
           yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(progress));
-          
+
           currentYearSelected = progress;
           assignValuesToDataTable(currentYearSelected);
           highlightCurrentYearOnGraph(currentYearSelected);
@@ -384,9 +463,9 @@ public class GraphActivity extends Activity {
       }
     });
   }
-  
+
   private void setupValueSpinner() {
-    Spinner valueSpinner = (Spinner) findViewById(R.id.valueSpinner);
+    valueSpinner = (Spinner) findViewById(R.id.valueSpinner);
 
     //  ArrayList<ValueEnum> spinnerValuesArray = new ArrayList<ValueEnum>(Arrays.asList(ValueEnum.values()));
     ValueEnum[] selectionValues = {
@@ -404,7 +483,7 @@ public class GraphActivity extends Activity {
         android.R.layout.simple_spinner_dropdown_item, selectionValues);
     valueSpinner.setAdapter(spinnerArrayAdapter);
 
-    
+
     valueSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
       @Override
@@ -424,7 +503,7 @@ public class GraphActivity extends Activity {
     });
 
   }
-  
+
   private void setMinAndMaxFromCurrent() {
     minValueNumeric = currentValueNumeric / 2;
     maxValueNumeric = currentValueNumeric + (currentValueNumeric - minValueNumeric);

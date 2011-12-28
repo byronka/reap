@@ -30,7 +30,6 @@ public class DatabaseAdapter {
       ValueEnum.BUILDING_VALUE.name()                     + " REAL"    +     ", " +
       ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS.name()      + " INTEGER" +     ", " +
       ValueEnum.INFLATION_RATE.name()                     + " REAL"    +     ", " +
-      ValueEnum.PRIMARY_MORTGAGE_INSURANCE_RATE.name()    + " REAL"    +     ", " +
       ValueEnum.DOWN_PAYMENT.name()                       + " REAL"    +     ", " +
       ValueEnum.STREET_ADDRESS.name()                     + " TEXT"    +     ", " +
       ValueEnum.CITY.name()                               + " TEXT"    +     ", " +

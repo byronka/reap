@@ -19,7 +19,6 @@ public class AddressActivity extends Activity {
 
   private static final int STATE_ARRAY_SIZE = 50;
   String[] statePosition;
-  private Button useGPS;
   private EditText streetAddressEditText;
   private EditText cityEditText;
   private Spinner stateSpinner;
@@ -34,7 +33,6 @@ public class AddressActivity extends Activity {
     setContentView(R.layout.address);
 
     statePosition = new String[STATE_ARRAY_SIZE];
-    useGPS = (Button) findViewById(R.id.useGPS);
     streetAddressEditText = (EditText) findViewById(R.id.streetAddressEditText);
     cityEditText = (EditText) findViewById(R.id.cityEditText);
     stateSpinner = (Spinner) findViewById(R.id.stateTitleSpinner);
@@ -46,14 +44,6 @@ public class AddressActivity extends Activity {
 
 
     assignValuesToFields();
-
-    useGPS.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Intent intent = new Intent(LOCATION_SERVICE);
-        startActivityForResult(intent, MODE_PRIVATE);
-      }
-    });
 
     stateSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
