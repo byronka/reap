@@ -63,7 +63,7 @@ public class GraphActivity extends Activity {
   TextView dataTablePropertyName;
   TextView dataTablePropertyValue;
   static final int DIVISIONS_OF_VALUE_SLIDER = 100;
-  ValueEnum[] initialItems = ValueEnum.values();
+  ValueEnum[] dataTableItems = ValueEnum.values();
 
 
   @Override
@@ -80,36 +80,12 @@ public class GraphActivity extends Activity {
     Intent intent = null;
     //which item is selected?
     switch (item.getItemId()) {
-    case R.id.loanMenuItem:
-      intent = new Intent(GraphActivity.this, LoanActivity.class);
+
+    case R.id.editValuesMenuItem:
+      intent = new Intent(GraphActivity.this, DataPagesActivity.class);
       startActivity(intent); 
       break;
-
-    case R.id.addressMenuItem:
-      intent = new Intent(GraphActivity.this, AddressActivity.class);
-      startActivity(intent); 
-      break;
-
-    case R.id.taxesMenuItem:
-      intent = new Intent(GraphActivity.this, TaxesActivity.class);
-      startActivity(intent); 
-      break;
-
-    case R.id.saleMenuItem:
-      intent = new Intent(GraphActivity.this, SaleActivity.class);
-      startActivity(intent); 
-      break;
-
-    case R.id.financialEnvironmentMenuItem:
-      intent = new Intent(GraphActivity.this, FinancialEnvironmentActivity.class);
-      startActivity(intent); 
-      break;
-
-    case R.id.rentalMenuItem:
-      intent = new Intent(GraphActivity.this, RentalActivity.class);
-      startActivity(intent); 
-      break;
-
+      
     case R.id.saveCurrentValuesMenuItem:
       dataController.saveValues();
       Toast toast = Toast.makeText(GraphActivity.this, "Data saved", Toast.LENGTH_SHORT);
@@ -144,7 +120,7 @@ public class GraphActivity extends Activity {
     createDataPointsOnGraphs();
     invalidateGraphs();
 
-    setDataTableItems(initialItems, currentYearSelected);
+    setDataTableItems(dataTableItems, currentYearSelected);
   }
 
   /** Called when the activity is first created. */
@@ -276,7 +252,7 @@ public class GraphActivity extends Activity {
 
           invalidateGraphs();
 
-          setDataTableItems(initialItems, currentYearSelected);
+          setDataTableItems(dataTableItems, currentYearSelected);
         }
 
 
@@ -443,7 +419,7 @@ public class GraphActivity extends Activity {
 
         invalidateGraphs();
 
-        setDataTableItems(initialItems, currentYearSelected);
+        setDataTableItems(dataTableItems, currentYearSelected);
       }
     });
 
@@ -474,7 +450,7 @@ public class GraphActivity extends Activity {
           yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(progress));
 
           currentYearSelected = progress;
-          setDataTableItems(initialItems, currentYearSelected);
+          setDataTableItems(dataTableItems, currentYearSelected);
           highlightCurrentYearOnGraph(currentYearSelected);
           invalidateGraphs();
         }
@@ -637,174 +613,7 @@ public class GraphActivity extends Activity {
     }
 
   }
-  //  private void assignValuesToDataTable(Integer year) {
-  //
-  //    //get connections to gui elements
-  //    String tempStringValue = "";
-  //    TextView tempTextView = null;
-  //
-  //    tempTextView = (TextView) findViewById(R.id.yearGridTextView);
-  //    tempStringValue = String.valueOf(currentYearSelected);
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.aterGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.ATER, year));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.atcfGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.ATCF, year));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.npvGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.NPV, year));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.tpvGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE));
-  //    tempTextView.setText(tempStringValue);  
-  //
-  //    tempTextView = (TextView) findViewById(R.id.yirGridTextView);
-  //    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.bvGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.BUILDING_VALUE));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.nocpGridTextView);
-  //    tempStringValue = String.valueOf(dataController.getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue());
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.irGridTextView);
-  //    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.INFLATION_RATE));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.dpGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.DOWN_PAYMENT));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.saGridTextView);
-  //    tempStringValue = dataController.getValueAsString(ValueEnum.STREET_ADDRESS);
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.cityGridTextView);
-  //    tempStringValue = dataController.getValueAsString(ValueEnum.CITY);
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.siGridTextView);
-  //    tempStringValue = dataController.getValueAsString(ValueEnum.STATE_INITIALS);
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.erpGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.ESTIMATED_RENT_PAYMENTS));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.rearGridTextView);
-  //    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.yhiGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_HOME_INSURANCE));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.ptrGridTextView);
-  //    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.PROPERTY_TAX_RATE));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.lmfGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.LOCAL_MUNICIPAL_FEES));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.vaclrGridTextView);
-  //    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.iygeGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.mtrGridTextView);
-  //    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.MARGINAL_TAX_RATE));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.sbrGridTextView);
-  //    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.SELLING_BROKER_RATE));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.gseGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.GENERAL_SALE_EXPENSES));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.rrrGridTextView);
-  //    tempStringValue = CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ValueEnum.REQUIRED_RATE_OF_RETURN));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.fucGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.FIX_UP_COSTS));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.ccGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.CLOSING_COSTS));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    //new stuff
-  //    tempTextView = (TextView) findViewById(R.id.tdasGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.TAXES_DUE_AT_SALE, year));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.seGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.SELLING_EXPENSES, year));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.bcGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.BROKER_CUT_OF_SALE, year));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.phvGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.PROJECTED_HOME_VALUE, year));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.tiGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.TAXABLE_INCOME, year));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.yppGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_PRINCIPAL_PAID, year));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.caoGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.CURRENT_AMOUNT_OUTSTANDING, year));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.ygeGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_GENERAL_EXPENSES, year));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.yiGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_INCOME, year));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.yptGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_PROPERTY_TAX, year));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.ympGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_MORTGAGE_PAYMENT));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.mmpGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.MONTHLY_MORTGAGE_PAYMENT));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.aipGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.ACCUM_INTEREST, year));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //    tempTextView = (TextView) findViewById(R.id.yipGridTextView);
-  //    tempStringValue = CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_PAID, year));
-  //    tempTextView.setText(tempStringValue);
-  //
-  //  }
+ 
 
   //  public void showWelcomeScreen() {
   //    Dialog dialog = new Dialog(GraphActivity.this);

@@ -64,6 +64,7 @@ public class SavedDataBrowserActivity extends ListActivity {
 
         Toast toast = Toast.makeText(SavedDataBrowserActivity.this, "Data loaded", Toast.LENGTH_SHORT);
         toast.show();
+        finish();
       }
     });
     

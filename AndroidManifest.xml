@@ -18,7 +18,8 @@
 		<activity android:name=".RentalActivity" android:theme="@android:style/Theme.Dialog"
 			android:label="@string/rentalActivityTitleText"
 			android:screenOrientation="portrait" />
-		<activity android:name=".DataPagesActivity" android:label="@string/dataPagesActivityTitleText"
+		<activity android:name=".DataPagesActivity" android:theme="@android:style/Theme.Dialog"
+			android:label="@string/dataPagesActivityTitleText"
 			android:screenOrientation="portrait" />
 		<activity android:name=".AddressActivity" android:theme="@android:style/Theme.Dialog"
 			android:label="@string/addressActivityTitleText"
@@ -39,7 +40,7 @@
 		<activity android:name=".SavedDataBrowserActivity"
 			android:theme="@android:style/Theme.Dialog" android:label="@string/savedDataBrowserActivityTitleText"
 			android:screenOrientation="portrait" />
-		
+
 
 	</application>
 </manifest>

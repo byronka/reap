@@ -7,6 +7,7 @@
 		android:icon="@drawable/icon" />
 	<item android:id="@+id/editValuesMenuItem" android:title="Edit data values"
 		android:icon="@drawable/icon">
+		<!-- 
 		<menu>
 			<item android:id="@+id/loanMenuItem" android:icon="@drawable/house"
 				android:title="@string/loanScreenHeaderText" />
@@ -21,6 +22,7 @@
 			<item android:id="@+id/rentalMenuItem" android:icon="@drawable/house"
 				android:title="@string/rentalHeaderText" />
 		</menu>
+		-->
 	</item>
 	<item android:id="@+id/saveCurrentValuesMenuItem" android:title="Save current"
 		android:icon="@drawable/icon" />
