@@ -15,11 +15,11 @@
 			android:focusableInTouchMode="true" android:layout_width="0px"
 			android:layout_height="0px" />
 		<LinearLayout android:layout_height="wrap_content"
-			android:layout_width="fill_parent" android:id="@+id/generalSaleExpensesLinearLayout">
-			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:id="@+id/generalSaleExpensesLinearLayout" android:baselineAligned="false">
+			<TextView android:textAppearance="?android:attr/textAppearanceMedium" android:layout_weight="0.50"
+				android:layout_width="0dip" android:layout_height="wrap_content"
 				android:id="@+id/generalSaleExpensesTitle" android:text="@string/generalSaleExpensesTitleText"></TextView>
-			<EditText android:layout_weight="1" android:layout_width="fill_parent"
+			<EditText android:layout_weight="0.50" android:layout_width="0dip"
 				android:layout_height="wrap_content" android:id="@+id/generalSaleExpensesEditText"
 				android:inputType="numberDecimal">
 			</EditText>
