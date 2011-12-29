@@ -33,18 +33,13 @@
 		<activity android:name=".SaleActivity" android:label="@string/saleActivityTitleText"
 			android:theme="@android:style/Theme.Dialog"
 			android:screenOrientation="portrait" />
-		<activity android:name=".SetDataValuesActivity"
-			android:label="@string/setDataValuesActivityTitleText"
-			android:screenOrientation="portrait" />
 		<activity android:name=".TaxesActivity" android:theme="@android:style/Theme.Dialog"
 			android:label="@string/taxesActivityTitleText"
 			android:screenOrientation="portrait" />
 		<activity android:name=".SavedDataBrowserActivity"
 			android:theme="@android:style/Theme.Dialog" android:label="@string/savedDataBrowserActivityTitleText"
 			android:screenOrientation="portrait" />
-		<activity android:name=".SaveCurrentValuesActivity"
-			android:label="@string/saveCurrentValuesActivityTitleText"
-			android:screenOrientation="portrait" />
+		
 
 	</application>
 </manifest>

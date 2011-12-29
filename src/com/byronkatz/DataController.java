@@ -17,7 +17,7 @@ public class DataController {
   private DatabaseAdapter databaseAdapter;
   private Map<Integer, Map<ValueEnum, Float>> numericValues;
   private Map<Integer, Map<ValueEnum, String>> textValues;
-  private static final Integer DEFAULT_YEAR = 1;
+  public static final Integer DEFAULT_YEAR = 1;
 
   public DataController(Context context) {
 

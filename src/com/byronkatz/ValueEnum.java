@@ -2,6 +2,7 @@ package com.byronkatz;
 
 public enum ValueEnum {
 
+  //saved to database
   TOTAL_PURCHASE_VALUE ("total purchase value", ValueType.CURRENCY, true),
   YEARLY_INTEREST_RATE("yearly interest rate", ValueType.PERCENTAGE, true),
   BUILDING_VALUE("building value", ValueType.CURRENCY, true),
@@ -23,10 +24,12 @@ public enum ValueEnum {
   GENERAL_SALE_EXPENSES("general sale expenses", ValueType.CURRENCY, true),
   REQUIRED_RATE_OF_RETURN("required rate of return", ValueType.PERCENTAGE, true),
   FIX_UP_COSTS("fix up costs", ValueType.CURRENCY, true),
+  CLOSING_COSTS("closing costs", ValueType.CURRENCY, true), 
+  
+  //not saved to database
   NPV  ("Net present value", ValueType.CURRENCY, false),
   ATER ("After Tax Equity Reversion", ValueType.CURRENCY, false),
   ATCF ("After Tax Cash Flow", ValueType.CURRENCY, false),
-  CLOSING_COSTS("closing costs", ValueType.CURRENCY, true), 
   TAXES_DUE_AT_SALE ("taxes due at sale", ValueType.CURRENCY, false), 
   SELLING_EXPENSES ("inflation adjusted selling expenses", ValueType.CURRENCY, false), 
   BROKER_CUT_OF_SALE ("Broker cut at sale", ValueType.CURRENCY, false), 
