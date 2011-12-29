@@ -162,18 +162,18 @@ class AnalysisGraph extends View {
 
       //draw the 0 X-axis if the graph passes it.
       //if the x-axis is between function max and min
-//      if (functionMaxY > 0 && functionMinY < 0) {
+      if (functionMaxY > 0 && functionMinY < 0) {
 //        xAxisAppears = true;
-//        Float distFromMarginToXAxis = (marginWidthY + (yGraphCoefficient * functionMaxY));
-//        Float startX = (float) GRAPH_MIN_X;
-//        Float stopX  = (float) graphMaxX;
-//        canvas.drawLine(startX, distFromMarginToXAxis, stopX, 
-//            distFromMarginToXAxis, defaultPaint);
-//        canvas.drawText(X_AXIS_STRING, (Float) (marginWidthX / 8), 
-//            distFromMarginToXAxis, textPaint);
-//      } else {
+        Float distFromMarginToXAxis = (marginWidthY + (yGraphCoefficient * functionMaxY));
+        Float startX = (float) GRAPH_MIN_X;
+        Float stopX  = (float) graphMaxX;
+        canvas.drawLine(startX, distFromMarginToXAxis, stopX, 
+            distFromMarginToXAxis, defaultPaint);
+        canvas.drawText(X_AXIS_STRING, (Float) (marginWidthX / 8), 
+            distFromMarginToXAxis, textPaint);
+      } else {
 //        xAxisAppears = false;
-//      }
+      }
 
       //      //draw a short vertical line where the graph and the x-axis intersect
       //      if (xAxisAppears) {

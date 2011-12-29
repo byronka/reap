@@ -19,4 +19,6 @@ public static void showHelpDialog(int helpText, int helpTitle, Context context) 
     helpDialog.setTitle(helpTitle);
     helpDialog.show();
   }
+
+
 }

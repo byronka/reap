@@ -266,6 +266,11 @@ public class DataController {
     numericValues.put(DEFAULT_YEAR, numericMap);
     textValues.put(DEFAULT_YEAR, textMap);
   }
+  
+  public boolean removeDatabaseEntry(int rowIndex) {
+    boolean returnValue = databaseAdapter.removeEntry(rowIndex);
+    return returnValue;
+  }
 
 }
 

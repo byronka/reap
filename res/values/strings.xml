@@ -218,5 +218,11 @@
 	<string name="saveButtonText">Save</string>
 	<string name="valueSliderText">Value Slider</string>
 	<string name="timeSliderText">Time Slider</string>
+	<string name="realEstateMarketAnalysisSplashPageDescription">This program does the following ... touch the screen or click enter to contirue</string>
+	<string name="databaseItemTextViewDesc1">Street Address: </string>
+	<string name="databaseItemTextViewDesc2">Total Purchase Value: </string>
+	<string name="databaseItemTextViewDesc3">Yearly Interest Rate: </string>
+	<string name="databaseItemTextViewDesc4">Down Payment: </string>
+	<string name="databaseItemTextViewDesc5">Required Rate of Return: </string>
 
 </resources>
