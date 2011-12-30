@@ -21,7 +21,6 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
@@ -30,6 +29,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.byronkatz.ValueEnum.ValueType;
 
@@ -57,11 +57,12 @@ public class GraphActivity extends Activity {
   Float deltaValueNumeric;
   Float currentValueNumeric;
   Map<ValueEnum, Integer> valueToDataTableItemCorrespondence;
+  boolean isConfigurationDisplayMode;
 
   TableLayout dataTableLayout;
-  LinearLayout dataTableRow;
-  TextView dataTablePropertyName;
-  TextView dataTablePropertyValue;
+  //  LinearLayout dataTableRow;
+  //  TextView dataTablePropertyName;
+  //  TextView dataTablePropertyValue;
   static final int DIVISIONS_OF_VALUE_SLIDER = 100;
   ValueEnum[] dataTableItems = ValueEnum.values();
 
@@ -75,17 +76,46 @@ public class GraphActivity extends Activity {
   }
 
   @Override
+  public boolean onPrepareOptionsMenu(Menu menu) {
+    super.onPrepareOptionsMenu(menu);
+
+    MenuItem menuItem = menu.findItem(R.id.configureGraphPageMenuItem);
+
+    if (isConfigurationDisplayMode) {
+      menuItem.setTitle("Show data display");
+
+    } else if (! isConfigurationDisplayMode) {
+      menuItem.setTitle("Configure graph page");
+
+    }
+
+    return true;
+  }
+
+  @Override
   public boolean onOptionsItemSelected (MenuItem item) {
     super.onOptionsItemSelected(item);
     Intent intent = null;
     //which item is selected?
     switch (item.getItemId()) {
 
+    case R.id.configureGraphPageMenuItem:
+      if (! isConfigurationDisplayMode) {
+        turnOnAllRowsAndMakeButtonsVisible();
+        isConfigurationDisplayMode = ! isConfigurationDisplayMode;
+
+      } else if (isConfigurationDisplayMode) {
+        makeSelectedRowsVisible();
+        isConfigurationDisplayMode = ! isConfigurationDisplayMode;
+
+      }
+
+      break;
     case R.id.editValuesMenuItem:
       intent = new Intent(GraphActivity.this, DataPagesActivity.class);
       startActivity(intent); 
       break;
-      
+
     case R.id.saveCurrentValuesMenuItem:
       dataController.saveValues();
       Toast toast = Toast.makeText(GraphActivity.this, "Data saved", Toast.LENGTH_SHORT);
@@ -129,6 +159,8 @@ public class GraphActivity extends Activity {
     super.onCreate(savedState);
     setContentView(R.layout.graph);
 
+    //following is for the configuration mode
+    isConfigurationDisplayMode = false;
     valueToDataTableItemCorrespondence = new HashMap<ValueEnum, Integer>();
     dataTableLayout = (TableLayout) findViewById(R.id.dataTableLayout);        
 
@@ -526,11 +558,14 @@ public class GraphActivity extends Activity {
 
   private void createDataTableItems() {
 
+    TextView dataTablePropertyName;
+
     LayoutInflater inflater = (LayoutInflater)GraphActivity.this.getSystemService
         (Context.LAYOUT_INFLATER_SERVICE);
+    ValueEnum[] dataTableValues = ValueEnum.values();
+
 
     //This is where we create the TableLayout
-    ValueEnum[] dataTableValues = ValueEnum.values();
     //set alternate colors by row
     boolean alternateColor = true;
     //main loop to create the data table rows
@@ -540,10 +575,9 @@ public class GraphActivity extends Activity {
 
       //set up the correspondence between the table index and the valueEnums
       valueToDataTableItemCorrespondence.put(ve, index);
-      
+
       TableRow newTableRow = (TableRow) inflater.inflate(R.layout.data_table_tablerow, null);
       dataTablePropertyName = (TextView) newTableRow.getChildAt(0);
-      dataTablePropertyValue = (TextView) newTableRow.getChildAt(1);
 
       if (alternateColor) {
         newTableRow.setBackgroundResource(R.color.data_table_row_color_alternate_a);
@@ -561,7 +595,7 @@ public class GraphActivity extends Activity {
        * means we only need the first year, or 
        * "getValueAsFloat(key)" rather than "getValueAsFloat(key, year)"
        */
- 
+
       //set the map to find these later
       dataTableLayout.addView(newTableRow, index);
       index++;
@@ -575,45 +609,89 @@ public class GraphActivity extends Activity {
     TextView tempDataTablePropertyValue;
     for (Entry<ValueEnum, Integer> entry : valueToDataTableItemCorrespondence.entrySet()) {
 
-    ve = entry.getKey();
-    index = entry.getValue();
-    tempTableRow = (TableRow) dataTableLayout.getChildAt(index);
-    tempDataTablePropertyValue = (TextView) tempTableRow.getChildAt(1);
-    
-    
-    switch (ve.getType()) {
-    case CURRENCY:
+      ve = entry.getKey();
+      index = entry.getValue();
+      tempTableRow = (TableRow) dataTableLayout.getChildAt(index);
+      tempDataTablePropertyValue = (TextView) tempTableRow.getChildAt(1);
 
-      if (ve.isSavedToDatabase()) {
-        tempDataTablePropertyValue.setText(CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ve)));
-      } else if (! ve.isSavedToDatabase()) {
-        tempDataTablePropertyValue.setText(CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ve, year)));
+
+      switch (ve.getType()) {
+      case CURRENCY:
+
+        if (ve.isSavedToDatabase()) {
+          tempDataTablePropertyValue.setText(CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ve)));
+        } else if (! ve.isSavedToDatabase()) {
+          tempDataTablePropertyValue.setText(CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ve, year)));
+        }
+        break;
+
+
+      case PERCENTAGE:
+
+
+        if (ve.isSavedToDatabase()) {
+          tempDataTablePropertyValue.setText(CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ve)));
+        } else if (! ve.isSavedToDatabase()) {
+          tempDataTablePropertyValue.setText(CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ve, year)));
+        }
+        break;
+
+
+      case STRING:
+
+        tempDataTablePropertyValue.setText(dataController.getValueAsString(ve));
+        break;
+      default:
+        break;
       }
-      break;
-
-
-    case PERCENTAGE:
-
-
-      if (ve.isSavedToDatabase()) {
-        tempDataTablePropertyValue.setText(CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ve)));
-      } else if (! ve.isSavedToDatabase()) {
-        tempDataTablePropertyValue.setText(CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ve, year)));
-      }
-      break;
-
-
-    case STRING:
-
-      tempDataTablePropertyValue.setText(dataController.getValueAsString(ve));
-      break;
-    default:
-      break;
-    }
     }
 
   }
- 
+
+  private void turnOnAllRowsAndMakeButtonsVisible() {
+    int index;
+    TableRow tempTableRow;
+    TextView tempDataTablePropertyValue;
+    ToggleButton tempDataTableToggleButton;
+
+    for (Entry<ValueEnum, Integer> entry : valueToDataTableItemCorrespondence.entrySet()) {
+
+      index = entry.getValue();
+      tempTableRow = (TableRow) dataTableLayout.getChildAt(index);
+      tempTableRow.setVisibility(View.VISIBLE);
+      
+      tempDataTablePropertyValue = (TextView) tempTableRow.getChildAt(1);
+      tempDataTablePropertyValue.setVisibility(View.GONE);
+
+      tempDataTableToggleButton = (ToggleButton) tempTableRow.getChildAt(2);
+      tempDataTableToggleButton.setVisibility(View.VISIBLE);
+      
+
+    }
+  }
+  
+  private void makeSelectedRowsVisible() {
+    int index;
+    TableRow tempTableRow;
+    TextView tempDataTablePropertyValue;
+    ToggleButton tempDataTableToggleButton;
+
+    for (Entry<ValueEnum, Integer> entry : valueToDataTableItemCorrespondence.entrySet()) {
+
+      index = entry.getValue();
+      tempTableRow = (TableRow) dataTableLayout.getChildAt(index);
+      
+      tempDataTablePropertyValue = (TextView) tempTableRow.getChildAt(1);
+      tempDataTablePropertyValue.setVisibility(View.VISIBLE);
+
+      tempDataTableToggleButton = (ToggleButton) tempTableRow.getChildAt(2);
+      tempDataTableToggleButton.setVisibility(View.GONE);
+      if (! tempDataTableToggleButton.isChecked()) {
+        tempTableRow.setVisibility(View.GONE);
+      }
+    }
+  }
+
 
   //  public void showWelcomeScreen() {
   //    Dialog dialog = new Dialog(GraphActivity.this);

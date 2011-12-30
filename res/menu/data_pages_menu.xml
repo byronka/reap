@@ -6,24 +6,7 @@
 	<item android:id="@+id/databaseMenuItem" android:title="Database"
 		android:icon="@drawable/icon" />
 	<item android:id="@+id/editValuesMenuItem" android:title="Edit data values"
-		android:icon="@drawable/icon">
-		<!-- 
-		<menu>
-			<item android:id="@+id/loanMenuItem" android:icon="@drawable/house"
-				android:title="@string/loanScreenHeaderText" />
-			<item android:id="@+id/addressMenuItem" android:icon="@drawable/house"
-				android:title="@string/streetAddressHeaderText" />
-			<item android:id="@+id/taxesMenuItem" android:icon="@drawable/house"
-				android:title="@string/TaxesScreenHeaderText" />
-			<item android:id="@+id/saleMenuItem" android:icon="@drawable/house"
-				android:title="@string/saleScreenHeaderText" />
-			<item android:id="@+id/financialEnvironmentMenuItem"
-				android:icon="@drawable/house" android:title="@string/financialEnvironmentHeaderText" />
-			<item android:id="@+id/rentalMenuItem" android:icon="@drawable/house"
-				android:title="@string/rentalHeaderText" />
-		</menu>
-		-->
-	</item>
+		android:icon="@drawable/icon" />
 	<item android:id="@+id/saveCurrentValuesMenuItem" android:title="Save current"
 		android:icon="@drawable/icon" />
 
