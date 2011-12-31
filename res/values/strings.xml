@@ -203,6 +203,7 @@
 	<string name="rentalActivityTitleText">Rental</string>
 	<string name="dataPagesActivityTitleText">Data pages</string>
 	<string name="addressActivityTitleText">Address</string>
+	<string name="configureDataTableTitleText">Configure data tables</string>
 	<string name="financialEnvironmentActivityTitleText">Financial Environment</string>
 	<string name="graphActivityTitleText">Graph</string>
 	<string name="loadSavedValuesActivityTitleText">Load saved values</string>

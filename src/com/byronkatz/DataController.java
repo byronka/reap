@@ -1,10 +1,10 @@
 package com.byronkatz;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import com.byronkatz.ValueEnum.ValueType;
+import java.util.Set;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,11 +12,14 @@ import android.database.Cursor;
 import android.view.View;
 import android.widget.EditText;
 
+import com.byronkatz.ValueEnum.ValueType;
+
 public class DataController {
 
   private DatabaseAdapter databaseAdapter;
   private Map<Integer, Map<ValueEnum, Float>> numericValues;
   private Map<Integer, Map<ValueEnum, String>> textValues;
+  private Set<ValueEnum> viewableDataTableRows;
   public static final Integer DEFAULT_YEAR = 1;
 
   public DataController(Context context) {
@@ -24,7 +27,7 @@ public class DataController {
     databaseAdapter = new DatabaseAdapter(context);
     numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
     textValues = new HashMap<Integer, Map<ValueEnum, String>>();
-
+    setViewableDataTableRows(new HashSet<ValueEnum>());
     loadFieldValues();
   }
 
@@ -271,6 +274,17 @@ public class DataController {
     boolean returnValue = databaseAdapter.removeEntry(rowIndex);
     return returnValue;
   }
+
+  public Set<ValueEnum> getViewableDataTableRows() {
+    return viewableDataTableRows;
+  }
+
+  public void setViewableDataTableRows(Set<ValueEnum> viewableDataTableRows) {
+    this.viewableDataTableRows = viewableDataTableRows;
+  }
+
+
+
 
 }
 

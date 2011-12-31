@@ -1,8 +1,10 @@
 package com.byronkatz;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import android.app.Activity;
 import android.content.Context;
@@ -47,6 +49,9 @@ public class GraphActivity extends Activity {
   EditText maxValueEditText;
   static final DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
+  Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence;
+  Set<ValueEnum> viewableDataTableRows;
+
   Spinner valueSpinner;
   ArrayAdapter<ValueEnum> spinnerArrayAdapter;
   Integer currentYearMaximum;
@@ -56,14 +61,16 @@ public class GraphActivity extends Activity {
   Float maxValueNumeric;
   Float deltaValueNumeric;
   Float currentValueNumeric;
-  Map<ValueEnum, Integer> valueToDataTableItemCorrespondence;
   boolean isConfigurationDisplayMode;
 
   TableLayout dataTableLayout;
-  //  LinearLayout dataTableRow;
-  //  TextView dataTablePropertyName;
-  //  TextView dataTablePropertyValue;
+
   static final int DIVISIONS_OF_VALUE_SLIDER = 100;
+  static final int PROPERTY_LABEL_INDEX = 0;
+  static final int PROPERTY_VALUE_INDEX = 1;
+  static final int TOGGLE_BUTTON_INDEX = 2;
+  static final int CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE = 1;
+
   ValueEnum[] dataTableItems = ValueEnum.values();
 
 
@@ -100,16 +107,18 @@ public class GraphActivity extends Activity {
     switch (item.getItemId()) {
 
     case R.id.configureGraphPageMenuItem:
-      if (! isConfigurationDisplayMode) {
-        turnOnAllRowsAndMakeButtonsVisible();
-        isConfigurationDisplayMode = ! isConfigurationDisplayMode;
+      //      if (! isConfigurationDisplayMode) {
+      //        turnOnAllRowsAndMakeButtonsVisible();
+      //        isConfigurationDisplayMode = ! isConfigurationDisplayMode;
+      //
+      //      } else if (isConfigurationDisplayMode) {
+      //        makeSelectedRowsVisible();
+      //        isConfigurationDisplayMode = ! isConfigurationDisplayMode;
+      //
+      //      }
 
-      } else if (isConfigurationDisplayMode) {
-        makeSelectedRowsVisible();
-        isConfigurationDisplayMode = ! isConfigurationDisplayMode;
-
-      }
-
+      intent = new Intent(GraphActivity.this, ConfigureDataTablesActivity.class);
+      startActivityForResult(intent, CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE);
       break;
     case R.id.editValuesMenuItem:
       intent = new Intent(GraphActivity.this, DataPagesActivity.class);
@@ -135,6 +144,15 @@ public class GraphActivity extends Activity {
   }
 
   @Override
+  public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    
+    if (requestCode == CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE) {
+      makeSelectedRowsVisible(dataController.getViewableDataTableRows());
+    }
+  }
+  
+  @Override
   public void onResume() {
     super.onResume();
     //necessary in case the user switches between loan types (15 vs. 30 year)
@@ -159,10 +177,10 @@ public class GraphActivity extends Activity {
     super.onCreate(savedState);
     setContentView(R.layout.graph);
 
-    //following is for the configuration mode
-    isConfigurationDisplayMode = false;
-    valueToDataTableItemCorrespondence = new HashMap<ValueEnum, Integer>();
+    viewableDataTableRows = new HashSet<ValueEnum>();
+    dataController.setViewableDataTableRows(viewableDataTableRows);
     dataTableLayout = (TableLayout) findViewById(R.id.dataTableLayout);        
+    valueToDataTableItemCorrespondence = new HashMap<ValueEnum, TableRow> ();
 
 
     getNumOfCompoundingPeriods();
@@ -558,6 +576,8 @@ public class GraphActivity extends Activity {
 
   private void createDataTableItems() {
 
+
+
     TextView dataTablePropertyName;
 
     LayoutInflater inflater = (LayoutInflater)GraphActivity.this.getSystemService
@@ -570,14 +590,15 @@ public class GraphActivity extends Activity {
     boolean alternateColor = true;
     //main loop to create the data table rows
 
-    int index = 0;
     for (ValueEnum ve : dataTableValues) {
 
       //set up the correspondence between the table index and the valueEnums
-      valueToDataTableItemCorrespondence.put(ve, index);
-
       TableRow newTableRow = (TableRow) inflater.inflate(R.layout.data_table_tablerow, null);
-      dataTablePropertyName = (TextView) newTableRow.getChildAt(0);
+      valueToDataTableItemCorrespondence.put(ve, newTableRow);
+
+      ToggleButton toggleButton = (ToggleButton) newTableRow.getChildAt(TOGGLE_BUTTON_INDEX);
+      //make every row viewable by default
+      viewableDataTableRows.add(ve);
 
       if (alternateColor) {
         newTableRow.setBackgroundResource(R.color.data_table_row_color_alternate_a);
@@ -586,6 +607,8 @@ public class GraphActivity extends Activity {
         newTableRow.setBackgroundResource(R.color.data_table_row_color_alternate_b);
         alternateColor = ! alternateColor;
       }
+
+      dataTablePropertyName = (TextView) newTableRow.getChildAt(PROPERTY_LABEL_INDEX);
 
       //the property name is always a string
       dataTablePropertyName.setText(ve.toString());
@@ -597,22 +620,21 @@ public class GraphActivity extends Activity {
        */
 
       //set the map to find these later
-      dataTableLayout.addView(newTableRow, index);
-      index++;
+      dataTableLayout.addView(newTableRow);
     } //end of main for loop to set dataTableItems
+    
+    dataController.setViewableDataTableRows(viewableDataTableRows);
   }
 
   private void setDataTableItems(ValueEnum[] items, Integer year) {
     ValueEnum ve;
-    int index;
     TableRow tempTableRow;
     TextView tempDataTablePropertyValue;
-    for (Entry<ValueEnum, Integer> entry : valueToDataTableItemCorrespondence.entrySet()) {
+    for (Entry<ValueEnum, TableRow> entry : valueToDataTableItemCorrespondence.entrySet()) {
 
       ve = entry.getKey();
-      index = entry.getValue();
-      tempTableRow = (TableRow) dataTableLayout.getChildAt(index);
-      tempDataTablePropertyValue = (TextView) tempTableRow.getChildAt(1);
+      tempTableRow = entry.getValue();
+      tempDataTablePropertyValue = (TextView) tempTableRow.getChildAt(PROPERTY_VALUE_INDEX);
 
 
       switch (ve.getType()) {
@@ -648,45 +670,36 @@ public class GraphActivity extends Activity {
 
   }
 
-  private void turnOnAllRowsAndMakeButtonsVisible() {
-    int index;
+  //  private void turnOnAllRowsAndMakeButtonsVisible() {
+  //    int index;
+  //    TableRow tempTableRow;
+  //    TextView tempDataTablePropertyValue;
+  //    ToggleButton tempDataTableToggleButton;
+  //
+  //    for (Entry<ValueEnum, Integer> entry : valueToDataTableItemCorrespondence.entrySet()) {
+  //
+  //      index = entry.getValue();
+  //      tempTableRow = (TableRow) dataTableLayout.getChildAt(index);
+  //      tempTableRow.setVisibility(View.VISIBLE);
+  //      
+  //      tempDataTablePropertyValue = (TextView) tempTableRow.getChildAt(PROPERTY_VALUE_INDEX);
+  //      tempDataTablePropertyValue.setVisibility(View.GONE);
+  //
+  //      tempDataTableToggleButton = (ToggleButton) tempTableRow.getChildAt(TOGGLE_BUTTON_INDEX);
+  //      tempDataTableToggleButton.setVisibility(View.VISIBLE);
+  //      
+  //
+  //    }
+  //  }
+
+  public void makeSelectedRowsVisible(Set<ValueEnum> values) {
     TableRow tempTableRow;
-    TextView tempDataTablePropertyValue;
-    ToggleButton tempDataTableToggleButton;
 
-    for (Entry<ValueEnum, Integer> entry : valueToDataTableItemCorrespondence.entrySet()) {
-
-      index = entry.getValue();
-      tempTableRow = (TableRow) dataTableLayout.getChildAt(index);
-      tempTableRow.setVisibility(View.VISIBLE);
-      
-      tempDataTablePropertyValue = (TextView) tempTableRow.getChildAt(1);
-      tempDataTablePropertyValue.setVisibility(View.GONE);
-
-      tempDataTableToggleButton = (ToggleButton) tempTableRow.getChildAt(2);
-      tempDataTableToggleButton.setVisibility(View.VISIBLE);
-      
-
-    }
-  }
-  
-  private void makeSelectedRowsVisible() {
-    int index;
-    TableRow tempTableRow;
-    TextView tempDataTablePropertyValue;
-    ToggleButton tempDataTableToggleButton;
-
-    for (Entry<ValueEnum, Integer> entry : valueToDataTableItemCorrespondence.entrySet()) {
-
-      index = entry.getValue();
-      tempTableRow = (TableRow) dataTableLayout.getChildAt(index);
-      
-      tempDataTablePropertyValue = (TextView) tempTableRow.getChildAt(1);
-      tempDataTablePropertyValue.setVisibility(View.VISIBLE);
-
-      tempDataTableToggleButton = (ToggleButton) tempTableRow.getChildAt(2);
-      tempDataTableToggleButton.setVisibility(View.GONE);
-      if (! tempDataTableToggleButton.isChecked()) {
+    for (Entry<ValueEnum, TableRow> entry : valueToDataTableItemCorrespondence.entrySet()) {
+      tempTableRow = entry.getValue();
+      if (values.contains(entry.getKey())) {
+        tempTableRow.setVisibility(View.VISIBLE);
+      } else if (! values.contains(entry.getKey())) {
         tempTableRow.setVisibility(View.GONE);
       }
     }

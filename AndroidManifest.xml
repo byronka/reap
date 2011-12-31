@@ -24,6 +24,9 @@
 		<activity android:name=".AddressActivity" android:theme="@android:style/Theme.Dialog"
 			android:label="@string/addressActivityTitleText"
 			android:screenOrientation="portrait" />
+		<activity android:name=".ConfigureDataTablesActivity"
+			android:theme="@android:style/Theme.Dialog" android:label="@string/configureDataTableTitleText"
+			android:screenOrientation="portrait" />
 		<activity android:name=".FinancialEnvironmentActivity"
 			android:label="@string/financialEnvironmentActivityTitleText"
 			android:theme="@android:style/Theme.Dialog"
