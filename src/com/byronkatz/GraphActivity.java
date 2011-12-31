@@ -62,6 +62,7 @@ public class GraphActivity extends Activity {
   Float currentValueNumeric;
   boolean isConfigurationDisplayMode;
 
+  
   TableLayout dataTableLayout;
 
   static final int DIVISIONS_OF_VALUE_SLIDER = 100;
@@ -71,7 +72,8 @@ public class GraphActivity extends Activity {
   static final int CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE = 1;
 
   ValueEnum[] dataTableItems = ValueEnum.values();
-
+  Float percentageSlid;
+  Float newCurrentValue;
 
   @Override
   public boolean onCreateOptionsMenu (Menu menu){
@@ -154,7 +156,16 @@ public class GraphActivity extends Activity {
     valueSlider.setProgress(valueSlider.getMax() / 2);
     timeSlider.setProgress(timeSlider.getMax());
 
-    CalculatedVariables.crunchCalculation();
+    //get all the values for the current number and number of divisions
+    //take those numbers and crunch them in the main equation, once for each division
+    //then store them in a map of division numbers to crunched values
+    for (int i = 0; i <= DIVISIONS_OF_VALUE_SLIDER; i++) {
+      dataController.setCurrentDivision(i);
+      percentageSlid = (i / (float) DIVISIONS_OF_VALUE_SLIDER);
+      newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
+      dataController.setValueAsFloat(currentSliderKey, newCurrentValue);
+      CalculatedVariables.crunchCalculation();
+    }
     invalidateGraphs();
 
     setDataTableItems(dataTableItems, currentYearSelected);
@@ -182,20 +193,12 @@ public class GraphActivity extends Activity {
 
   }
 
-  //  private void createDataPointsOnGraphs() {
-  //    //    aterGraph.createDataPoints();
-  //    atcfGraph.createDataPoints();
-  //    npvGraph.createDataPoints();
-  //  }
-
   private void invalidateGraphs() {
-    //    aterGraph.invalidate();
     atcfGraph.invalidate();
     npvGraph.invalidate();
   }
 
   private void highlightCurrentYearOnGraph(Integer currentYearHighlight) {
-    //    aterGraph.setCurrentYearHighlighted(currentYearHighlight);
     atcfGraph.setCurrentYearHighlighted(currentYearHighlight);
     npvGraph.setCurrentYearHighlighted(currentYearHighlight);
   }
@@ -272,10 +275,16 @@ public class GraphActivity extends Activity {
           }
           setMinAndMaxFromCurrent();
           valueSlider.setProgress(valueSlider.getMax() / 2);
-          CalculatedVariables.crunchCalculation();
-
-          //          createDataPointsOnGraphs();
-
+          //get all the values for the current number and number of divisions
+          //take those numbers and crunch them in the main equation, once for each division
+          //then store them in a map of division numbers to crunched values
+          for (int i = 0; i <= DIVISIONS_OF_VALUE_SLIDER; i++) {
+            dataController.setCurrentDivision(i);
+            percentageSlid = (i / (float) DIVISIONS_OF_VALUE_SLIDER);
+            newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
+            dataController.setValueAsFloat(currentSliderKey, newCurrentValue);
+            CalculatedVariables.crunchCalculation();
+          }
           invalidateGraphs();
 
           setDataTableItems(dataTableItems, currentYearSelected);
@@ -543,6 +552,9 @@ public class GraphActivity extends Activity {
         //then store them in a map of division numbers to crunched values
         for (int i = 0; i <= DIVISIONS_OF_VALUE_SLIDER; i++) {
           dataController.setCurrentDivision(i);
+          percentageSlid = (i / (float) DIVISIONS_OF_VALUE_SLIDER);
+          newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
+          dataController.setValueAsFloat(currentSliderKey, newCurrentValue);
           CalculatedVariables.crunchCalculation();
         }
 
