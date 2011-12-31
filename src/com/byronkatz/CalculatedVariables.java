@@ -1,9 +1,5 @@
 package com.byronkatz;
 
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.util.Locale;
-
 
 public class CalculatedVariables {
 
@@ -150,6 +146,8 @@ public class CalculatedVariables {
     yearlyDepreciation = buildingValue / RESIDENTIAL_DEPRECIATION_YEARS;
     monthlyMortgagePayment = getMortgagePayment();
     yearlyMortgagePayment = NUM_OF_MONTHS_IN_YEAR * monthlyMortgagePayment;
+    dataController.setValueAsFloat(ValueEnum.MONTHLY_MORTGAGE_PAYMENT, monthlyMortgagePayment);
+    dataController.setValueAsFloat(ValueEnum.YEARLY_MORTGAGE_PAYMENT, yearlyMortgagePayment);
     yearlyCompoundingPeriods = numOfCompoundingPeriods / NUM_OF_MONTHS_IN_YEAR;
     monthlyRealEstateAppreciationRate = realEstateAppreciationRate / NUM_OF_MONTHS_IN_YEAR;
     monthlyRequiredRateOfReturn = requiredRateOfReturn / NUM_OF_MONTHS_IN_YEAR;
@@ -170,15 +168,6 @@ public class CalculatedVariables {
     assignVariables();
 
     for (int year = 1; year <= yearlyCompoundingPeriods; year++) {
-
-      /*necessary to add these for each year as a hack because the data table looks
-       * through the enums, and if it is "true" to save to the database, then it only
-       * looks in the default year, and if "false" then it looks through every year.
-       * Problem is that monthly and yearly mortgage payment are set as "false". See
-       * the case: CURRENCY in GraphActivity.createDataTableItems() 
-       */
-      dataController.setValueAsFloat(ValueEnum.MONTHLY_MORTGAGE_PAYMENT, monthlyMortgagePayment, year);
-      dataController.setValueAsFloat(ValueEnum.YEARLY_MORTGAGE_PAYMENT, yearlyMortgagePayment, year);
 
       
       // cashflowIn - cashflowOut
@@ -265,58 +254,7 @@ public class CalculatedVariables {
 
   }
 
-  public static String displayCurrency(Float value) {
-    NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
-    return currencyFormatter.format(value);
-  }
-
-  public static Float parseCurrency(String value) {
-    Float returnValue = 0.0f;
-    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
-    if (value.contains("$")) {
-      try {
-        Number n = currencyFormat.parse(value);
-        returnValue = n.floatValue();
-      } catch (ParseException e) {
-        e.printStackTrace();
-      }
-    } else {
-      try {
-        returnValue = Float.valueOf(value);
-      } catch (NumberFormatException e) {
-        returnValue = 0.0f;
-      }
-    }
-    return returnValue;
-  }
-
-  public static String displayPercentage(Float value) {
-    NumberFormat percentFormat = NumberFormat.getPercentInstance(Locale.US);
-    percentFormat.setMaximumFractionDigits(4);
-    String result = percentFormat.format(value);
-    return result;
-  }
-
-  public static Float parsePercentage (String value) {
-    Float returnValue = 0.0f;
-    NumberFormat percentFormat = NumberFormat.getPercentInstance(Locale.US);
-    percentFormat.setMaximumFractionDigits(4);
-    if (value.contains("%")) {
-      try {
-        Number n = percentFormat.parse(value);
-        returnValue = n.floatValue();
-      } catch (ParseException e) {
-        e.printStackTrace();
-      }
-    }else {
-      try {
-        returnValue = Float.valueOf(value);
-      } catch (NumberFormatException e) {
-        returnValue = 0.0f;
-      }
-    }
-    return returnValue;
-  }
+ 
 
 
   public static Float getMortgagePayment() {

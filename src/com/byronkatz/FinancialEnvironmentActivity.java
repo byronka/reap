@@ -83,10 +83,10 @@ public class FinancialEnvironmentActivity extends Activity {
   private void assignValuesToFields() {
 
     Float ir = dataController.getValueAsFloat(ValueEnum.INFLATION_RATE);
-    inflationRate.setText(CalculatedVariables.displayPercentage(ir));
+    inflationRate.setText(Utility.displayPercentage(ir));
     
     Float rear = dataController.getValueAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE);
-    realEstateAppreciationRate.setText(CalculatedVariables.displayPercentage(rear));
+    realEstateAppreciationRate.setText(Utility.displayPercentage(rear));
     
   }
   
@@ -95,11 +95,11 @@ public class FinancialEnvironmentActivity extends Activity {
     super.onPause();
     
     ValueEnum key = ValueEnum.INFLATION_RATE;
-    Float value = CalculatedVariables.parsePercentage(inflationRate.getText().toString());
+    Float value = Utility.parsePercentage(inflationRate.getText().toString());
     dataController.setValueAsFloat(key, value);
     
     key = ValueEnum.REAL_ESTATE_APPRECIATION_RATE;
-    value = CalculatedVariables.parsePercentage(realEstateAppreciationRate.getText().toString());   
+    value = Utility.parsePercentage(realEstateAppreciationRate.getText().toString());   
     dataController.setValueAsFloat(key, value);
 
   }

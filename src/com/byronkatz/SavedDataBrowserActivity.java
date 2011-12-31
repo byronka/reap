@@ -76,7 +76,6 @@ public class SavedDataBrowserActivity extends ListActivity {
         cursor.moveToPosition(position);
         createDialog();
 
-        //not sure what this boolean is doing.  For now, it's arbitrary.
         return true;
       } 
     });

@@ -2,7 +2,6 @@ package com.byronkatz;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -79,7 +78,6 @@ class AnalysisGraph extends View {
 
       
       
-      dataPoints = new HashMap<Integer, Float>();
       initView(attrs);
       crunchData();
     }
@@ -108,11 +106,13 @@ class AnalysisGraph extends View {
 
   private void crunchData() {
     CalculatedVariables.crunchCalculation();
-    createDataPoints();
   }
 
   public void onDraw(Canvas canvas) {
     if (! isInEditMode()) {
+      
+      dataPoints = dataController.getPlotPoints(graphKeyValue);
+      
       graphMaxY = getMeasuredHeight();
       graphMaxX = getMeasuredWidth();
 
@@ -140,7 +140,6 @@ class AnalysisGraph extends View {
       Float xGraphValue = 0.0f;
       Float yGraphValue = 0.0f;
 
-      //start the listIterator on the second element, which has an index of "1"
       for (Entry<Integer, Float> entry : dataPoints.entrySet()) {  
         Integer xValue = entry.getKey();
         Float yValue = entry.getValue();
@@ -187,13 +186,13 @@ class AnalysisGraph extends View {
       //      }
 
       //draw top number text
-      String maxYString = CalculatedVariables.displayCurrency (functionMaxY);
+      String maxYString = Utility.displayCurrency (functionMaxY);
       Float maxX = (Float) marginWidthX / 4;
       Float maxY = (Float) marginWidthY;
       canvas.drawText(maxYString, maxX, maxY, textPaint);
 
       //draw bottom number text
-      String minYString = CalculatedVariables.displayCurrency (functionMinY);
+      String minYString = Utility.displayCurrency (functionMinY);
       Float minX = (Float) marginWidthX / 4;
       Float minY = (Float) (marginWidthY + betweenMarginsOnY);
       canvas.drawText(minYString, minX, minY, textPaint);
@@ -204,23 +203,6 @@ class AnalysisGraph extends View {
       Float bottom = marginWidthY + betweenMarginsOnY + (marginWidthY/2);
       canvas.drawText(graphKeyValue.toString(), halfwayPoint, bottom, textPaint);
     }
-  }
-
-  /**
-   * This function creates a Collection local to this class so that it can efficiently render
-   * the graph.  It also allows the use of Collections.min() and max() for the onDraw() function.
-   * @return
-   */
-  public void createDataPoints() {
-
-    int yearsOfCompounding = dataController.
-        getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue() / CalculatedVariables.NUM_OF_MONTHS_IN_YEAR;
-
-    for (int year = 1; year <= yearsOfCompounding; year++) {
-      Float tempVal = dataController.getValueAsFloat(graphKeyValue, year);
-      dataPoints.put(year, tempVal);
-    }
-
   }
 
   public int getCurrentYearHighlighted() {

@@ -78,11 +78,11 @@ public class SaleActivity extends Activity {
   @Override
   protected void onPause() {
     ValueEnum key = ValueEnum.GENERAL_SALE_EXPENSES;
-    Float value = CalculatedVariables.parseCurrency(generalSaleExpenses.getText().toString());
+    Float value = Utility.parseCurrency(generalSaleExpenses.getText().toString());
     dataController.setValueAsFloat(key, value);
     
     key = ValueEnum.SELLING_BROKER_RATE;
-    value = CalculatedVariables.parsePercentage(sellingBrokerRate.getText().toString());
+    value = Utility.parsePercentage(sellingBrokerRate.getText().toString());
     dataController.setValueAsFloat(key, value);
     
     super.onPause();
@@ -91,10 +91,10 @@ public class SaleActivity extends Activity {
   private void assignValuesToFields() {
     
     Float gse = dataController.getValueAsFloat(ValueEnum.GENERAL_SALE_EXPENSES);
-    generalSaleExpenses.setText(CalculatedVariables.displayCurrency(gse));
+    generalSaleExpenses.setText(Utility.displayCurrency(gse));
     
     Float sbr = dataController.getValueAsFloat(ValueEnum.SELLING_BROKER_RATE);
-    sellingBrokerRate.setText(CalculatedVariables.displayPercentage(sbr));
+    sellingBrokerRate.setText(Utility.displayPercentage(sbr));
     
   }
   

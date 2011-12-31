@@ -31,7 +31,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.byronkatz.ValueEnum.ValueType;
 
@@ -107,15 +106,6 @@ public class GraphActivity extends Activity {
     switch (item.getItemId()) {
 
     case R.id.configureGraphPageMenuItem:
-      //      if (! isConfigurationDisplayMode) {
-      //        turnOnAllRowsAndMakeButtonsVisible();
-      //        isConfigurationDisplayMode = ! isConfigurationDisplayMode;
-      //
-      //      } else if (isConfigurationDisplayMode) {
-      //        makeSelectedRowsVisible();
-      //        isConfigurationDisplayMode = ! isConfigurationDisplayMode;
-      //
-      //      }
 
       intent = new Intent(GraphActivity.this, ConfigureDataTablesActivity.class);
       startActivityForResult(intent, CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE);
@@ -146,12 +136,12 @@ public class GraphActivity extends Activity {
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    
+
     if (requestCode == CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE) {
       makeSelectedRowsVisible(dataController.getViewableDataTableRows());
     }
   }
-  
+
   @Override
   public void onResume() {
     super.onResume();
@@ -165,7 +155,6 @@ public class GraphActivity extends Activity {
     timeSlider.setProgress(timeSlider.getMax());
 
     CalculatedVariables.crunchCalculation();
-    createDataPointsOnGraphs();
     invalidateGraphs();
 
     setDataTableItems(dataTableItems, currentYearSelected);
@@ -191,16 +180,13 @@ public class GraphActivity extends Activity {
     setupCurrentValueFields();
     createDataTableItems();
 
-
-    //    showWelcomeScreen();
-
   }
 
-  private void createDataPointsOnGraphs() {
-    //    aterGraph.createDataPoints();
-    atcfGraph.createDataPoints();
-    npvGraph.createDataPoints();
-  }
+  //  private void createDataPointsOnGraphs() {
+  //    //    aterGraph.createDataPoints();
+  //    atcfGraph.createDataPoints();
+  //    npvGraph.createDataPoints();
+  //  }
 
   private void invalidateGraphs() {
     //    aterGraph.invalidate();
@@ -266,39 +252,29 @@ public class GraphActivity extends Activity {
         String value = null;
 
         if (hasFocus) {
-          switch (test) {
-          case CURRENCY:
-            DataController.setSelectionOnView(v, ValueType.CURRENCY);
-            break;
-          case PERCENTAGE:
-            DataController.setSelectionOnView(v, ValueType.PERCENTAGE);
-            break;
-          default:
-            System.err.println("Should not get here in currentValueEditText.setOnFocusChangeListener");
-            break;
-          }
-
-        } else {
+          DataController.setSelectionOnView(v, test);
+        } else if (! hasFocus) {
           switch (test) {
           case CURRENCY:
             value = currentValueEditText.getText().toString();
-            currentValueNumeric = CalculatedVariables.parseCurrency(value);
-            currentValueEditText.setText(CalculatedVariables.displayCurrency(currentValueNumeric));
+            currentValueNumeric = Utility.parseCurrency(value);
+            currentValueEditText.setText(Utility.displayCurrency(currentValueNumeric));
             break;
           case PERCENTAGE:
             value = currentValueEditText.getText().toString();
-            currentValueNumeric = CalculatedVariables.parsePercentage(value);
-            currentValueEditText.setText(CalculatedVariables.displayPercentage(currentValueNumeric));
+            currentValueNumeric = Utility.parsePercentage(value);
+            currentValueEditText.setText(Utility.displayPercentage(currentValueNumeric));
             break;
+          case INTEGER:
           default:
-            System.err.println("Should not get here in currentValueEditText.setOnFocusChangeListener");
+            //do nothing
             break;
           }
           setMinAndMaxFromCurrent();
           valueSlider.setProgress(valueSlider.getMax() / 2);
           CalculatedVariables.crunchCalculation();
 
-          createDataPointsOnGraphs();
+          //          createDataPointsOnGraphs();
 
           invalidateGraphs();
 
@@ -346,13 +322,13 @@ public class GraphActivity extends Activity {
           switch (test) {
           case CURRENCY:
             value = minValueEditText.getText().toString();
-            minValueNumeric = CalculatedVariables.parseCurrency(value);
-            minValueEditText.setText(CalculatedVariables.displayCurrency(minValueNumeric));
+            minValueNumeric = Utility.parseCurrency(value);
+            minValueEditText.setText(Utility.displayCurrency(minValueNumeric));
             break;
           case PERCENTAGE:
             value = minValueEditText.getText().toString();
-            minValueNumeric = CalculatedVariables.parsePercentage(value);
-            minValueEditText.setText(CalculatedVariables.displayPercentage(minValueNumeric));
+            minValueNumeric = Utility.parsePercentage(value);
+            minValueEditText.setText(Utility.displayPercentage(minValueNumeric));
             break;
           default:
             System.err.println("Should not get here in minValueEditText.setOnFocusChangeListener");
@@ -382,29 +358,18 @@ public class GraphActivity extends Activity {
         String value = null;
 
         if (hasFocus) {
-          switch (test) {
-          case CURRENCY:
-            DataController.setSelectionOnView(v, ValueType.CURRENCY);
-            break;
-          case PERCENTAGE:
-            DataController.setSelectionOnView(v, ValueType.PERCENTAGE);
-            break;
-          default:
-            System.err.println("Should not get here in currentValueEditText.setOnFocusChangeListener");
-            break;
-          }
-
-        } else {
+          DataController.setSelectionOnView(v, test);
+        } else if (! hasFocus) {
           switch (test) {
           case CURRENCY:
             value = maxValueEditText.getText().toString();
-            maxValueNumeric = CalculatedVariables.parseCurrency(value);
-            maxValueEditText.setText(CalculatedVariables.displayCurrency(maxValueNumeric));
+            maxValueNumeric = Utility.parseCurrency(value);
+            maxValueEditText.setText(Utility.displayCurrency(maxValueNumeric));
             break;
           case PERCENTAGE:
             value = maxValueEditText.getText().toString();
-            maxValueNumeric = CalculatedVariables.parsePercentage(value);
-            maxValueEditText.setText(CalculatedVariables.displayPercentage(maxValueNumeric));
+            maxValueNumeric = Utility.parsePercentage(value);
+            maxValueEditText.setText(Utility.displayPercentage(maxValueNumeric));
             break;
           default:
             System.err.println("Should not get here in maxValueEditText.setOnFocusChangeListener");
@@ -430,6 +395,9 @@ public class GraphActivity extends Activity {
 
     valueSlider.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
+      Float newCurrentValue;
+      Float percentageSlid;
+
       @Override
       public void onStopTrackingTouch(SeekBar seekBar) {
 
@@ -444,32 +412,63 @@ public class GraphActivity extends Activity {
       public void onProgressChanged(SeekBar seekBar, int progress,
           boolean fromUser) {
 
+        //WORK AREA
 
-        Float percentageSlid = (progress / (float) DIVISIONS_OF_VALUE_SLIDER);
-        Float newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
+        //set the current division by the progress
+        dataController.setCurrentDivision(progress);
 
-        ValueType test = currentSliderKey.getType(); 
+        //set the value in the current value field:
+        percentageSlid = (progress / (float) DIVISIONS_OF_VALUE_SLIDER);
+        newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
 
-        switch (test) {
+        switch (currentSliderKey.getType()) {
         case CURRENCY:
-          currentValueEditText.setText(CalculatedVariables.displayCurrency(newCurrentValue));
+          currentValueEditText.setText(Utility.displayCurrency(newCurrentValue));
           break;
         case PERCENTAGE:
-          currentValueEditText.setText(CalculatedVariables.displayPercentage(newCurrentValue));
+          currentValueEditText.setText(Utility.displayPercentage(newCurrentValue));
+          break;
+        case INTEGER:
+          currentValueEditText.setText(String.valueOf(newCurrentValue));
           break;
         default:
           System.err.println("Should not get here in valueSlider.setOnSeekBarChangeListener");
           break;
         }
-        dataController.setValueAsFloat(currentSliderKey, newCurrentValue);
 
-        CalculatedVariables.crunchCalculation();
-
-        createDataPointsOnGraphs();
-
+        //set the values for use by the graphs and data tables
         invalidateGraphs();
-
         setDataTableItems(dataTableItems, currentYearSelected);
+
+
+
+
+
+        //WORK AREA ENDS
+
+        //OLD STUFF
+        //        percentageSlid = (progress / (float) DIVISIONS_OF_VALUE_SLIDER);
+        //        newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
+        //
+        //        ValueType test = currentSliderKey.getType(); 
+        //
+        //        switch (test) {
+        //        case CURRENCY:
+        //          currentValueEditText.setText(Utility.displayCurrency(newCurrentValue));
+        //          break;
+        //        case PERCENTAGE:
+        //          currentValueEditText.setText(Utility.displayPercentage(newCurrentValue));
+        //          break;
+        //        default:
+        //          System.err.println("Should not get here in valueSlider.setOnSeekBarChangeListener");
+        //          break;
+        //        }
+        //        dataController.setValueAsFloat(currentSliderKey, newCurrentValue);
+        //
+        //        CalculatedVariables.crunchCalculation();
+        //
+        //        invalidateGraphs();
+        //        setDataTableItems(dataTableItems, currentYearSelected);
       }
     });
 
@@ -537,6 +536,16 @@ public class GraphActivity extends Activity {
         currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
 
         setMinAndMaxFromCurrent();
+
+
+        //get all the values for the current number and number of divisions
+        //take those numbers and crunch them in the main equation, once for each division
+        //then store them in a map of division numbers to crunched values
+        for (int i = 0; i <= DIVISIONS_OF_VALUE_SLIDER; i++) {
+          dataController.setCurrentDivision(i);
+          CalculatedVariables.crunchCalculation();
+        }
+
       }
 
       @Override
@@ -557,15 +566,15 @@ public class GraphActivity extends Activity {
     switch (test) {
     case CURRENCY:
 
-      maxValueEditText.setText(CalculatedVariables.displayCurrency(maxValueNumeric));
-      minValueEditText.setText(CalculatedVariables.displayCurrency(minValueNumeric));
-      currentValueEditText.setText(CalculatedVariables.displayCurrency(currentValueNumeric));
+      maxValueEditText.setText(Utility.displayCurrency(maxValueNumeric));
+      minValueEditText.setText(Utility.displayCurrency(minValueNumeric));
+      currentValueEditText.setText(Utility.displayCurrency(currentValueNumeric));
       break;
     case PERCENTAGE:
 
-      maxValueEditText.setText(CalculatedVariables.displayPercentage(maxValueNumeric));
-      minValueEditText.setText(CalculatedVariables.displayPercentage(minValueNumeric));
-      currentValueEditText.setText(CalculatedVariables.displayPercentage(currentValueNumeric));
+      maxValueEditText.setText(Utility.displayPercentage(maxValueNumeric));
+      minValueEditText.setText(Utility.displayPercentage(minValueNumeric));
+      currentValueEditText.setText(Utility.displayPercentage(currentValueNumeric));
       break;
     default:
       System.err.println("Should not get here in maxValueEditText.setOnFocusChangeListener");
@@ -596,7 +605,6 @@ public class GraphActivity extends Activity {
       TableRow newTableRow = (TableRow) inflater.inflate(R.layout.data_table_tablerow, null);
       valueToDataTableItemCorrespondence.put(ve, newTableRow);
 
-      ToggleButton toggleButton = (ToggleButton) newTableRow.getChildAt(TOGGLE_BUTTON_INDEX);
       //make every row viewable by default
       viewableDataTableRows.add(ve);
 
@@ -622,7 +630,7 @@ public class GraphActivity extends Activity {
       //set the map to find these later
       dataTableLayout.addView(newTableRow);
     } //end of main for loop to set dataTableItems
-    
+
     dataController.setViewableDataTableRows(viewableDataTableRows);
   }
 
@@ -640,10 +648,10 @@ public class GraphActivity extends Activity {
       switch (ve.getType()) {
       case CURRENCY:
 
-        if (ve.isSavedToDatabase()) {
-          tempDataTablePropertyValue.setText(CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ve)));
-        } else if (! ve.isSavedToDatabase()) {
-          tempDataTablePropertyValue.setText(CalculatedVariables.displayCurrency(dataController.getValueAsFloat(ve, year)));
+        if (ve.isVaryingByYear()) {
+          tempDataTablePropertyValue.setText(Utility.displayCurrency(dataController.getValueAsFloat(ve, year)));
+        } else if (! ve.isVaryingByYear()) {
+          tempDataTablePropertyValue.setText(Utility.displayCurrency(dataController.getValueAsFloat(ve)));
         }
         break;
 
@@ -651,10 +659,10 @@ public class GraphActivity extends Activity {
       case PERCENTAGE:
 
 
-        if (ve.isSavedToDatabase()) {
-          tempDataTablePropertyValue.setText(CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ve)));
-        } else if (! ve.isSavedToDatabase()) {
-          tempDataTablePropertyValue.setText(CalculatedVariables.displayPercentage(dataController.getValueAsFloat(ve, year)));
+        if (ve.isVaryingByYear()) {
+          tempDataTablePropertyValue.setText(Utility.displayPercentage(dataController.getValueAsFloat(ve, year)));
+        } else if (! ve.isVaryingByYear()) {
+          tempDataTablePropertyValue.setText(Utility.displayPercentage(dataController.getValueAsFloat(ve)));
         }
         break;
 
@@ -663,34 +671,21 @@ public class GraphActivity extends Activity {
 
         tempDataTablePropertyValue.setText(dataController.getValueAsString(ve));
         break;
+
+      case INTEGER:
+
+        if (ve.isVaryingByYear()) {
+          tempDataTablePropertyValue.setText(String.valueOf(dataController.getValueAsFloat(ve, year).intValue()));
+        } else if (! ve.isVaryingByYear()) {
+          tempDataTablePropertyValue.setText(String.valueOf(dataController.getValueAsFloat(ve).intValue()));
+        }
+        break;        
       default:
         break;
       }
     }
 
   }
-
-  //  private void turnOnAllRowsAndMakeButtonsVisible() {
-  //    int index;
-  //    TableRow tempTableRow;
-  //    TextView tempDataTablePropertyValue;
-  //    ToggleButton tempDataTableToggleButton;
-  //
-  //    for (Entry<ValueEnum, Integer> entry : valueToDataTableItemCorrespondence.entrySet()) {
-  //
-  //      index = entry.getValue();
-  //      tempTableRow = (TableRow) dataTableLayout.getChildAt(index);
-  //      tempTableRow.setVisibility(View.VISIBLE);
-  //      
-  //      tempDataTablePropertyValue = (TextView) tempTableRow.getChildAt(PROPERTY_VALUE_INDEX);
-  //      tempDataTablePropertyValue.setVisibility(View.GONE);
-  //
-  //      tempDataTableToggleButton = (ToggleButton) tempTableRow.getChildAt(TOGGLE_BUTTON_INDEX);
-  //      tempDataTableToggleButton.setVisibility(View.VISIBLE);
-  //      
-  //
-  //    }
-  //  }
 
   public void makeSelectedRowsVisible(Set<ValueEnum> values) {
     TableRow tempTableRow;

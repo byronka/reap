@@ -129,34 +129,34 @@ public class TaxesActivity extends Activity {
     super.onPause();
     
     ValueEnum key = ValueEnum.MARGINAL_TAX_RATE;
-    Float value = CalculatedVariables.parsePercentage(marginalTaxRate.getText().toString());
+    Float value = Utility.parsePercentage(marginalTaxRate.getText().toString());
     dataController.setValueAsFloat(key, value);
     
     key = ValueEnum.BUILDING_VALUE;
-    value = CalculatedVariables.parseCurrency(buildingValue.getText().toString());
+    value = Utility.parseCurrency(buildingValue.getText().toString());
     dataController.setValueAsFloat(key, value);
     
     key = ValueEnum.PROPERTY_TAX_RATE;
-    value = CalculatedVariables.parsePercentage(propertyTaxRate.getText().toString());
+    value = Utility.parsePercentage(propertyTaxRate.getText().toString());
     dataController.setValueAsFloat(key, value);
     
     key = ValueEnum.LOCAL_MUNICIPAL_FEES;
-    value = CalculatedVariables.parseCurrency(localMunicipalFees.getText().toString());
+    value = Utility.parseCurrency(localMunicipalFees.getText().toString());
     dataController.setValueAsFloat(key, value);
   }
   
   private void assignValuesToFields() {
     
     Float mtr = dataController.getValueAsFloat(ValueEnum.MARGINAL_TAX_RATE);
-    marginalTaxRate.setText(CalculatedVariables.displayPercentage(mtr));
+    marginalTaxRate.setText(Utility.displayPercentage(mtr));
     
     Float bv = dataController.getValueAsFloat(ValueEnum.BUILDING_VALUE);
-    buildingValue.setText(CalculatedVariables.displayCurrency(bv));
+    buildingValue.setText(Utility.displayCurrency(bv));
     
     Float ptr = dataController.getValueAsFloat(ValueEnum.PROPERTY_TAX_RATE);
-    propertyTaxRate.setText(CalculatedVariables.displayPercentage(ptr));
+    propertyTaxRate.setText(Utility.displayPercentage(ptr));
     
     Float lmf = dataController.getValueAsFloat(ValueEnum.LOCAL_MUNICIPAL_FEES);
-    localMunicipalFees.setText(CalculatedVariables.displayCurrency(lmf));
+    localMunicipalFees.setText(Utility.displayCurrency(lmf));
   }
 }

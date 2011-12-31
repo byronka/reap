@@ -9,6 +9,7 @@ import android.widget.Button;
 
 public class DataPagesActivity extends Activity {
 
+  private Button address;
   private Button taxes;
   private Button loan;
   private Button sale;
@@ -21,11 +22,21 @@ public class DataPagesActivity extends Activity {
     super.onCreate(savedState);
     setContentView(R.layout.data_pages);
 
+  address                = (Button) findViewById(R.id.addressButton);
   taxes                  = (Button) findViewById(R.id.taxesButton);
   loan                   = (Button) findViewById(R.id.loanButton);
   sale                   = (Button) findViewById(R.id.saleButton);
   financialEnvironment   = (Button) findViewById(R.id.financialEnvironmentButton);
   rental                 = (Button) findViewById(R.id.rentalButton);
+  
+  address.setOnClickListener(new OnClickListener() {
+    
+    @Override
+    public void onClick(View v) {
+      Intent intent = new Intent(DataPagesActivity.this, AddressActivity.class);
+      startActivity(intent); 
+    }
+  });
   
   taxes.setOnClickListener(new OnClickListener() {
     @Override

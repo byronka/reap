@@ -14,18 +14,33 @@ import android.widget.EditText;
 
 import com.byronkatz.ValueEnum.ValueType;
 
+/**
+ * 
+ * @author byron
+ *
+ */
 public class DataController {
 
+  //variable below is to hold the pointer to which set (division) of data we want.
+  private Integer currentDivision;
   private DatabaseAdapter databaseAdapter;
+  private Map<Integer, Map<ValueEnum, Float>> tempValues;
   private Map<Integer, Map<ValueEnum, Float>> numericValues;
+  //below data structure holds a whole set of calculated values 
+  //for each division of the progress slider
+  private Map<Integer, Map<Integer, Map<ValueEnum, Float>>> multiDivisionNumericValues;
   private Map<Integer, Map<ValueEnum, String>> textValues;
   private Set<ValueEnum> viewableDataTableRows;
+
+  //DEFAULT_YEAR is for which year to store values that don't change per year.
   public static final Integer DEFAULT_YEAR = 1;
+  public static final Integer DEFAULT_DIVISION = 0;
 
   public DataController(Context context) {
 
     databaseAdapter = new DatabaseAdapter(context);
     numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
+    multiDivisionNumericValues = new HashMap<Integer, Map<Integer, Map<ValueEnum, Float>>>();
     textValues = new HashMap<Integer, Map<ValueEnum, String>>();
     setViewableDataTableRows(new HashSet<ValueEnum>());
     loadFieldValues();
@@ -60,11 +75,15 @@ public class DataController {
     numericFieldValues.put(ValueEnum.CLOSING_COSTS, 0f);
 
     numericValues.put(DEFAULT_YEAR, numericFieldValues);
+    multiDivisionNumericValues.put(DEFAULT_DIVISION, numericValues);
+    
     textValues.put(DEFAULT_YEAR, textFieldValues);
   }
 
   public void setValueAsFloat(ValueEnum key, Float value) {
 
+    //get the default division
+    numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
     //get the Map for this year
     Map<ValueEnum, Float> numericMap = numericValues.get(DEFAULT_YEAR);
 
@@ -79,8 +98,24 @@ public class DataController {
 
     //TODO: add code to check that the year parameter is kosher
 
-    Map<ValueEnum, Float> numericMap = numericValues.get(year);
+    //get the current division
+    numericValues = multiDivisionNumericValues.get(currentDivision);
+
+    /*
+     * check to see if this division's Map has been initialized.
+     * If not, create a new Map for it.
+     */
+    if (numericValues == null) {
+      numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
+      numericValues.put(year, value);
+      multiDivisionNumericValues.put(year, numericValues);
+    } else {
+      numericValues.put(key, value);      
+    }
+
     
+    Map<ValueEnum, Float> numericMap = numericValues.get(year);
+
     /*
      * check to see if this year's Map has been initialized.
      * If not, create a new Map for it.
@@ -92,6 +127,10 @@ public class DataController {
     } else {
       numericMap.put(key, value);      
     }
+  }
+
+  public void setCurrentDivision(Integer currentDivision) {
+    this.currentDivision = currentDivision;
   }
 
   public void setValueAsString(ValueEnum key, String value) {
@@ -106,24 +145,25 @@ public class DataController {
     textMap.put(key, value);
   }
 
-  public void setValueAsString(ValueEnum key, String value, Integer year) {
-
-    //TODO: add code to check that the year parameter is kosher
-
-    Map<ValueEnum, String> textMap = textValues.get(year);
-    
-    /*
-     * check to see if this year's Map has been initialized.
-     * If not, create a new Map for it.
-     */
-    if (textMap == null) {
-      textMap = new HashMap<ValueEnum, String>();
-      textMap.put(key, value);
-      textValues.put(year, textMap);
-    } else {
-      textMap.put(key, value);
-    }
-  }
+  //Not sure what use this method is.  probably safe to remove.
+//  public void setValueAsString(ValueEnum key, String value, Integer year) {
+//
+//    //TODO: add code to check that the year parameter is kosher
+//
+//    Map<ValueEnum, String> textMap = textValues.get(year);
+//
+//    /*
+//     * check to see if this year's Map has been initialized.
+//     * If not, create a new Map for it.
+//     */
+//    if (textMap == null) {
+//      textMap = new HashMap<ValueEnum, String>();
+//      textMap.put(key, value);
+//      textValues.put(year, textMap);
+//    } else {
+//      textMap.put(key, value);
+//    }
+//  }
 
   public String getValueAsString(ValueEnum key) {
 
@@ -133,15 +173,44 @@ public class DataController {
   }
 
   public Float getValueAsFloat(ValueEnum key) {
+    
+    //get the default division
+    numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
+    
     Map<ValueEnum, Float> m = numericValues.get(DEFAULT_YEAR);
     Float returnValue = m.get(key);
     return returnValue;
   }
 
+  //  public Float getValueAsFloat(ValueEnum key, Integer year) {
+  //    Map<ValueEnum, Float> m = numericValues.get(year);
+  //    Float returnValue = m.get(key);
+  //    return returnValue;
+  //  }
+
   public Float getValueAsFloat(ValueEnum key, Integer year) {
+
+    //get the default division
+    numericValues = multiDivisionNumericValues.get(currentDivision);
+    
     Map<ValueEnum, Float> m = numericValues.get(year);
     Float returnValue = m.get(key);
     return returnValue;
+  }
+
+  public Map<Integer, Float> getPlotPoints(ValueEnum graphKeyValue) {
+    Map<Integer, Float> dataPoints = new HashMap<Integer, Float>();
+    Float yValue;
+
+    int yearsOfCompounding = getValueAsFloat(
+        ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue() / CalculatedVariables.NUM_OF_MONTHS_IN_YEAR;
+
+    for (int year = 1; year <= yearsOfCompounding; year++) {
+      yValue = getValueAsFloat(graphKeyValue, year);
+      dataPoints.put(year, yValue);
+    }
+
+    return dataPoints;
   }
 
   public void saveValues() {
@@ -151,21 +220,21 @@ public class DataController {
     Map<ValueEnum, Float> numericMap = numericValues.get(DEFAULT_YEAR);
     for (Entry<ValueEnum, Float> m: numericMap.entrySet()) {
       if (m.getKey().isSavedToDatabase()) {
-      String key = m.getKey().name();
-      Float value = m.getValue();
-      cv.put(key, value);
+        String key = m.getKey().name();
+        Float value = m.getValue();
+        cv.put(key, value);
       }
     }
 
     Map<ValueEnum, String> textMap = textValues.get(DEFAULT_YEAR);
     for (Entry<ValueEnum, String> m: textMap.entrySet()) {
       if (m.getKey().isSavedToDatabase()) {
-      String key = m.getKey().name();
-      String value = m.getValue();
-      cv.put(key, value);
+        String key = m.getKey().name();
+        String value = m.getValue();
+        cv.put(key, value);
       }
     }
-    
+
     databaseAdapter.insertEntry(cv);
   }
 
@@ -179,7 +248,7 @@ public class DataController {
     //we'll use textInEditText to measure the string for the selection
     String textInEditText = editText.getText().toString();
     int textLength = textInEditText.length();
-    
+
     switch (valueType) {
     case CURRENCY:
       editText.setSelection(1, textLength);
@@ -187,14 +256,17 @@ public class DataController {
     case PERCENTAGE:
       editText.setSelection(0, textLength - 1);
       break;
+    case INTEGER:
+      editText.setSelection(0, textLength);
+      break;
     case STRING:
       editText.setSelection(0, textLength);
       break;
-      default:
-        System.err.println("shouldn't get here in setSelectionOnView");
+    default:
+      System.err.println("shouldn't get here in setSelectionOnView");
     }
   }
-  
+
   public void setCurrentData(ContentValues cv) {
     Map<ValueEnum, String> textMap = textValues.get(DEFAULT_YEAR);
     Map<ValueEnum, Float> numericMap = numericValues.get(DEFAULT_YEAR);
@@ -269,7 +341,7 @@ public class DataController {
     numericValues.put(DEFAULT_YEAR, numericMap);
     textValues.put(DEFAULT_YEAR, textMap);
   }
-  
+
   public boolean removeDatabaseEntry(int rowIndex) {
     boolean returnValue = databaseAdapter.removeEntry(rowIndex);
     return returnValue;

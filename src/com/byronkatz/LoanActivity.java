@@ -59,9 +59,9 @@ public class LoanActivity extends Activity {
       @Override
       public void onClick(View v) {
         Float totalPurchasevalue = 
-            CalculatedVariables.parseCurrency(totalPurchasePrice.getText().toString());
+            Utility.parseCurrency(totalPurchasePrice.getText().toString());
         Float pmiDownPayment = totalPurchasevalue * 0.20f;
-        String pmiDownPaymentText = CalculatedVariables.displayCurrency(pmiDownPayment);
+        String pmiDownPaymentText = Utility.displayCurrency(pmiDownPayment);
         downPayment.setText(pmiDownPaymentText);
 
       }
@@ -233,16 +233,16 @@ public class LoanActivity extends Activity {
     Float tempVariable = null;
 
     tempVariable = dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE);
-    yearlyInterestRate.setText(CalculatedVariables.displayPercentage(tempVariable));
+    yearlyInterestRate.setText(Utility.displayPercentage(tempVariable));
 
     tempVariable = dataController.getValueAsFloat(ValueEnum.DOWN_PAYMENT);
-    downPayment.setText(CalculatedVariables.displayCurrency(tempVariable));
+    downPayment.setText(Utility.displayCurrency(tempVariable));
 
     tempVariable = dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE);
-    totalPurchasePrice.setText(CalculatedVariables.displayCurrency(tempVariable));
+    totalPurchasePrice.setText(Utility.displayCurrency(tempVariable));
 
     tempVariable = dataController.getValueAsFloat(ValueEnum.CLOSING_COSTS);
-    closingCosts.setText(CalculatedVariables.displayCurrency(tempVariable));
+    closingCosts.setText(Utility.displayCurrency(tempVariable));
   }
 
   @Override
@@ -250,19 +250,19 @@ public class LoanActivity extends Activity {
     super.onPause();
 
     ValueEnum key = ValueEnum.TOTAL_PURCHASE_VALUE;
-    Float value = CalculatedVariables.parseCurrency(totalPurchasePrice.getText().toString());
+    Float value = Utility.parseCurrency(totalPurchasePrice.getText().toString());
     dataController.setValueAsFloat(key, value);
 
     key = ValueEnum.DOWN_PAYMENT;
-    value = CalculatedVariables.parseCurrency(downPayment.getText().toString());
+    value = Utility.parseCurrency(downPayment.getText().toString());
     dataController.setValueAsFloat(key, value);
 
     key = ValueEnum.YEARLY_INTEREST_RATE;
-    value = CalculatedVariables.parsePercentage(yearlyInterestRate.getText().toString());
+    value = Utility.parsePercentage(yearlyInterestRate.getText().toString());
     dataController.setValueAsFloat(key, value);
 
     key = ValueEnum.CLOSING_COSTS;
-    value = CalculatedVariables.parseCurrency(closingCosts.getText().toString());
+    value = Utility.parseCurrency(closingCosts.getText().toString());
     dataController.setValueAsFloat(key, value);
   }
 
