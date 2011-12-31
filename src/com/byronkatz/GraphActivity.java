@@ -83,22 +83,22 @@ public class GraphActivity extends Activity {
     return true;
   }
 
-  @Override
-  public boolean onPrepareOptionsMenu(Menu menu) {
-    super.onPrepareOptionsMenu(menu);
-
-    MenuItem menuItem = menu.findItem(R.id.configureGraphPageMenuItem);
-
-    if (isConfigurationDisplayMode) {
-      menuItem.setTitle("Show data display");
-
-    } else if (! isConfigurationDisplayMode) {
-      menuItem.setTitle("Configure graph page");
-
-    }
-
-    return true;
-  }
+//  @Override
+//  public boolean onPrepareOptionsMenu(Menu menu) {
+//    super.onPrepareOptionsMenu(menu);
+//
+//    MenuItem menuItem = menu.findItem(R.id.configureGraphPageMenuItem);
+//
+//    if (isConfigurationDisplayMode) {
+//      menuItem.setTitle("Show data display");
+//
+//    } else if (! isConfigurationDisplayMode) {
+//      menuItem.setTitle("Configure graph page");
+//
+//    }
+//
+//    return true;
+//  }
 
   @Override
   public boolean onOptionsItemSelected (MenuItem item) {
@@ -150,7 +150,7 @@ public class GraphActivity extends Activity {
     //necessary in case the user switches between loan types (15 vs. 30 year)
     getNumOfCompoundingPeriods();
 
-    currentSliderKey = spinnerArrayAdapter.getItem(0);
+//    currentSliderKey = spinnerArrayAdapter.getItem(0);
     currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
     setMinAndMaxFromCurrent();
     valueSlider.setProgress(valueSlider.getMax() / 2);
@@ -190,6 +190,7 @@ public class GraphActivity extends Activity {
     setupGraphs();
     setupCurrentValueFields();
     createDataTableItems();
+    currentSliderKey = spinnerArrayAdapter.getItem(0);
 
   }
 
