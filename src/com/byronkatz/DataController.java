@@ -207,7 +207,9 @@ public class DataController {
     ContentValues cv = new ContentValues();
     // get year 1
 
-    Map<ValueEnum, Float> numericMap = numericValues.get(DEFAULT_YEAR);
+    numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
+    numericMap = numericValues.get(DEFAULT_YEAR);
+    
     for (Entry<ValueEnum, Float> m: numericMap.entrySet()) {
       if (m.getKey().isSavedToDatabase()) {
         String key = m.getKey().name();
