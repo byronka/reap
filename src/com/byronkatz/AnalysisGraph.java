@@ -11,6 +11,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.os.AsyncTask;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -79,7 +80,7 @@ class AnalysisGraph extends View {
       
       
       initView(attrs);
-      crunchData();
+//      crunchData();
     }
   }
 
@@ -104,12 +105,18 @@ class AnalysisGraph extends View {
     setFocusable(true);
   }
 
-  private void crunchData() {
-    CalculatedVariables.crunchCalculation();
-  }
+//  private void crunchData() {
+//    CalculatedVariables.crunchCalculation();
+//  }
 
   public void onDraw(Canvas canvas) {
-    if (! isInEditMode()) {
+    
+    AsyncTask.Status threadStatus = GraphActivity.calculateInBackgroundTask.getStatus();
+    if (
+        (! isInEditMode()) 
+      && 
+        (threadStatus != AsyncTask.Status.RUNNING)
+      ) {
       
       dataPoints = dataController.getPlotPoints(graphKeyValue);
       

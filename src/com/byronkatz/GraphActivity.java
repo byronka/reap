@@ -7,9 +7,12 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -52,6 +55,8 @@ public class GraphActivity extends Activity {
   Set<ValueEnum> viewableDataTableRows;
 
   Spinner valueSpinner;
+  ProgressDialog progressDialog;
+
   ArrayAdapter<ValueEnum> spinnerArrayAdapter;
   Integer currentYearMaximum;
   Integer currentYearSelected;
@@ -61,8 +66,9 @@ public class GraphActivity extends Activity {
   Float deltaValueNumeric;
   Float currentValueNumeric;
   boolean isConfigurationDisplayMode;
-
+  Context context;
   
+
   TableLayout dataTableLayout;
 
   static final int DIVISIONS_OF_VALUE_SLIDER = 100;
@@ -74,7 +80,8 @@ public class GraphActivity extends Activity {
   ValueEnum[] dataTableItems = ValueEnum.values();
   Float percentageSlid;
   Float newCurrentValue;
-
+  static AsyncTask<Void, Integer, Void> calculateInBackgroundTask;
+  
   @Override
   public boolean onCreateOptionsMenu (Menu menu){
     super.onCreateOptionsMenu(menu);
@@ -83,22 +90,22 @@ public class GraphActivity extends Activity {
     return true;
   }
 
-//  @Override
-//  public boolean onPrepareOptionsMenu(Menu menu) {
-//    super.onPrepareOptionsMenu(menu);
-//
-//    MenuItem menuItem = menu.findItem(R.id.configureGraphPageMenuItem);
-//
-//    if (isConfigurationDisplayMode) {
-//      menuItem.setTitle("Show data display");
-//
-//    } else if (! isConfigurationDisplayMode) {
-//      menuItem.setTitle("Configure graph page");
-//
-//    }
-//
-//    return true;
-//  }
+  //  @Override
+  //  public boolean onPrepareOptionsMenu(Menu menu) {
+  //    super.onPrepareOptionsMenu(menu);
+  //
+  //    MenuItem menuItem = menu.findItem(R.id.configureGraphPageMenuItem);
+  //
+  //    if (isConfigurationDisplayMode) {
+  //      menuItem.setTitle("Show data display");
+  //
+  //    } else if (! isConfigurationDisplayMode) {
+  //      menuItem.setTitle("Configure graph page");
+  //
+  //    }
+  //
+  //    return true;
+  //  }
 
   @Override
   public boolean onOptionsItemSelected (MenuItem item) {
@@ -150,25 +157,15 @@ public class GraphActivity extends Activity {
     //necessary in case the user switches between loan types (15 vs. 30 year)
     getNumOfCompoundingPeriods();
 
-//    currentSliderKey = spinnerArrayAdapter.getItem(0);
     currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
     setMinAndMaxFromCurrent();
     valueSlider.setProgress(valueSlider.getMax() / 2);
+    DataController.setCurrentDivisionForReading(valueSlider.getMax() / 2);
+
     timeSlider.setProgress(timeSlider.getMax());
 
-    //get all the values for the current number and number of divisions
-    //take those numbers and crunch them in the main equation, once for each division
-    //then store them in a map of division numbers to crunched values
-    for (int i = 0; i <= DIVISIONS_OF_VALUE_SLIDER; i++) {
-      dataController.setCurrentDivision(i);
-      percentageSlid = (i / (float) DIVISIONS_OF_VALUE_SLIDER);
-      newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
-      dataController.setValueAsFloat(currentSliderKey, newCurrentValue);
-      CalculatedVariables.crunchCalculation();
-    }
-    invalidateGraphs();
+    calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
 
-    setDataTableItems(dataTableItems, currentYearSelected);
   }
 
   /** Called when the activity is first created. */
@@ -177,6 +174,7 @@ public class GraphActivity extends Activity {
     super.onCreate(savedState);
     setContentView(R.layout.graph);
 
+    context = GraphActivity.this;
     viewableDataTableRows = new HashSet<ValueEnum>();
     dataController.setViewableDataTableRows(viewableDataTableRows);
     dataTableLayout = (TableLayout) findViewById(R.id.dataTableLayout);        
@@ -276,19 +274,10 @@ public class GraphActivity extends Activity {
           }
           setMinAndMaxFromCurrent();
           valueSlider.setProgress(valueSlider.getMax() / 2);
-          //get all the values for the current number and number of divisions
-          //take those numbers and crunch them in the main equation, once for each division
-          //then store them in a map of division numbers to crunched values
-          for (int i = 0; i <= DIVISIONS_OF_VALUE_SLIDER; i++) {
-            dataController.setCurrentDivision(i);
-            percentageSlid = (i / (float) DIVISIONS_OF_VALUE_SLIDER);
-            newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
-            dataController.setValueAsFloat(currentSliderKey, newCurrentValue);
-            CalculatedVariables.crunchCalculation();
-          }
-          invalidateGraphs();
-
-          setDataTableItems(dataTableItems, currentYearSelected);
+          calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
+//          invalidateGraphs();
+//
+//          setDataTableItems(dataTableItems, currentYearSelected);
         }
 
 
@@ -392,6 +381,16 @@ public class GraphActivity extends Activity {
 
   }
 
+  private void popUpProgressGraphDialog() {
+    progressDialog = new ProgressDialog(context);
+    progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+    progressDialog.setMax(DIVISIONS_OF_VALUE_SLIDER);
+    progressDialog.setMessage("Loading...");
+    progressDialog.setCancelable(false);
+    progressDialog.show();
+  }
+  
+
   private void setupValueSlider() {
 
 
@@ -422,10 +421,8 @@ public class GraphActivity extends Activity {
       public void onProgressChanged(SeekBar seekBar, int progress,
           boolean fromUser) {
 
-        //WORK AREA
-
         //set the current division by the progress
-        dataController.setCurrentDivision(progress);
+        DataController.setCurrentDivisionForReading(progress);
 
         //set the value in the current value field:
         percentageSlid = (progress / (float) DIVISIONS_OF_VALUE_SLIDER);
@@ -450,35 +447,6 @@ public class GraphActivity extends Activity {
         invalidateGraphs();
         setDataTableItems(dataTableItems, currentYearSelected);
 
-
-
-
-
-        //WORK AREA ENDS
-
-        //OLD STUFF
-        //        percentageSlid = (progress / (float) DIVISIONS_OF_VALUE_SLIDER);
-        //        newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
-        //
-        //        ValueType test = currentSliderKey.getType(); 
-        //
-        //        switch (test) {
-        //        case CURRENCY:
-        //          currentValueEditText.setText(Utility.displayCurrency(newCurrentValue));
-        //          break;
-        //        case PERCENTAGE:
-        //          currentValueEditText.setText(Utility.displayPercentage(newCurrentValue));
-        //          break;
-        //        default:
-        //          System.err.println("Should not get here in valueSlider.setOnSeekBarChangeListener");
-        //          break;
-        //        }
-        //        dataController.setValueAsFloat(currentSliderKey, newCurrentValue);
-        //
-        //        CalculatedVariables.crunchCalculation();
-        //
-        //        invalidateGraphs();
-        //        setDataTableItems(dataTableItems, currentYearSelected);
       }
     });
 
@@ -537,8 +505,10 @@ public class GraphActivity extends Activity {
     valueSpinner.setAdapter(spinnerArrayAdapter);
 
 
-    valueSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+    valueSpinner.setOnItemSelectedListener(new OnItemSelectedListenerWrapper(new OnItemSelectedListener() {
 
+      
+      
       @Override
       public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
           long arg3) {
@@ -546,18 +516,7 @@ public class GraphActivity extends Activity {
         currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
 
         setMinAndMaxFromCurrent();
-
-
-        //get all the values for the current number and number of divisions
-        //take those numbers and crunch them in the main equation, once for each division
-        //then store them in a map of division numbers to crunched values
-        for (int i = 0; i <= DIVISIONS_OF_VALUE_SLIDER; i++) {
-          dataController.setCurrentDivision(i);
-          percentageSlid = (i / (float) DIVISIONS_OF_VALUE_SLIDER);
-          newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
-          dataController.setValueAsFloat(currentSliderKey, newCurrentValue);
-          CalculatedVariables.crunchCalculation();
-        }
+        calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
 
       }
 
@@ -566,7 +525,7 @@ public class GraphActivity extends Activity {
         // do nothing with this. This method is necessary to satisfy interface.
 
       }
-    });
+    }));
 
   }
 
@@ -711,6 +670,52 @@ public class GraphActivity extends Activity {
         tempTableRow.setVisibility(View.GONE);
       }
     }
+  }
+
+  private class CalculateInBackgroundTask extends AsyncTask<Void, Integer, Void> {
+
+
+    @Override
+    protected void onProgressUpdate(Integer... progress) {
+      progressDialog.setProgress(progress[0]);
+    }
+
+    @Override
+    protected void onPostExecute(Void result) {
+      progressDialog.dismiss();
+      invalidateGraphs();
+      setDataTableItems(dataTableItems, currentYearSelected);
+    }
+    
+    @Override
+    protected void onPreExecute() {
+      popUpProgressGraphDialog();
+    }
+
+    @Override
+    protected Void doInBackground(Void... arg0) {
+      for (int division = 0; division <= DIVISIONS_OF_VALUE_SLIDER; division++) {
+        calculateEachDivision(division);
+        publishProgress(division);
+      }
+      return null;
+    }
+
+    private void calculateEachDivision(int division) {
+      
+      //get all the values for the current number and number of divisions
+      //take those numbers and crunch them in the main equation, once for each division
+      //then store them in a map of division numbers to crunched values
+      DataController.setCurrentDivisionForWriting(division);
+      percentageSlid = (division / (float) DIVISIONS_OF_VALUE_SLIDER);
+      newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
+      dataController.setValueAsFloat(currentSliderKey, newCurrentValue);
+      CalculatedVariables.crunchCalculation();
+    }
+    
+
+
+
   }
 
 

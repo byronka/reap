@@ -22,7 +22,8 @@ import com.byronkatz.ValueEnum.ValueType;
 public class DataController {
 
   //variable below is to hold the pointer to which set (division) of data we want.
-  private static Integer currentDivision;
+  private static Integer currentDivisionForWriting;
+  private static Integer currentDivisionForReading;
   private static DatabaseAdapter databaseAdapter;
   private static Map<Integer, Map<ValueEnum, Float>> numericValues;
   private static Map<ValueEnum, Float> numericMap;
@@ -43,8 +44,30 @@ public class DataController {
     multiDivisionNumericValues = new HashMap<Integer, Map<Integer, Map<ValueEnum, Float>>>();
     textValues = new HashMap<Integer, Map<ValueEnum, String>>();
     setViewableDataTableRows(new HashSet<ValueEnum>());
+//    initializeCalculatedValuesArray();
     loadFieldValues();
   }
+
+//  private Map<ValueEnum, Float> initAllValuesForOneYearToZero(Map<ValueEnum, Float> numericMap) {
+//    for (ValueEnum ve : ValueEnum.values()) {
+//      //as long as the value is not a string, enter it.
+//      if (ve.getType() != ValueEnum.ValueType.STRING) {
+//        numericMap = new HashMap<ValueEnum, Float> (); 
+//        numericMap.put(ve, 0f);
+//      }
+//    }
+//  }
+//  private void initializeCalculatedValuesArray() {
+//    numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
+//    numericMap = new HashMap<ValueEnum, Float> ();
+//    multiDivisionNumericValues = new HashMap<Integer, Map<Integer, Map<ValueEnum, Float>>> ();
+//
+//    ///WORK ZONE
+//    
+//    for ()
+//    numericMap = initAllValuesForOneYearToZero(numericMap);
+//
+//  }
 
   private void loadFieldValues() {
 
@@ -87,10 +110,6 @@ public class DataController {
     //get the Map for this year
     Map<ValueEnum, Float> numericMap = numericValues.get(DEFAULT_YEAR);
 
-    /*
-     * this year has always been initialized by default, 
-     * so just go ahead and add the value.
-     */
     numericMap.put(key, value);
   }
 
@@ -99,71 +118,45 @@ public class DataController {
     //TODO: add code to check that the year parameter is kosher
 
     //get the current division
-    numericValues = multiDivisionNumericValues.get(currentDivision);
+    numericValues = multiDivisionNumericValues.get(currentDivisionForWriting);
 
     //prime candidate for refactoring below.
     /*
      * check to see if this division's Map has been initialized.
      * If not, create a new Map and sub-map for it.
      */
-    if (numericValues == null) {
-      //if numericValues is null, then create it and its numeric map
-      numericMap = new HashMap<ValueEnum, Float>();
-      numericMap.put(key, value);
-
-      numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
-      numericValues.put(year, numericMap);
-
-      multiDivisionNumericValues.put(currentDivision, numericValues);
-    } else {
-      numericMap = numericValues.get(year);
-    }
-
-    if (numericMap == null) {
-      numericMap = new HashMap<ValueEnum, Float>();
-      numericMap.put(key, value);
-      numericValues.put(year, numericMap);
-    } else {
-      numericMap.put(key, value);
-    }
+        if (numericValues == null) {
+          //if numericValues is null, then create it and its numeric map
+          numericMap = new HashMap<ValueEnum, Float>();
+          numericMap.put(key, value);
+    
+          numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
+          numericValues.put(year, numericMap);
+    
+          multiDivisionNumericValues.put(currentDivisionForWriting, numericValues);
+        } else {
+          numericMap = numericValues.get(year);
+        }
+    
+        if (numericMap == null) {
+          numericMap = new HashMap<ValueEnum, Float>();
+          numericMap.put(key, value);
+          numericValues.put(year, numericMap);
+        } else {
+          numericMap.put(key, value);
+        }
 
   }
 
-  public void setCurrentDivision(Integer currentDivision) {
-    DataController.currentDivision = currentDivision;
-  }
+
 
   public void setValueAsString(ValueEnum key, String value) {
 
     //get the Map for this year
     Map<ValueEnum, String> textMap = textValues.get(DEFAULT_YEAR);
 
-    /*
-     * this year has always been initialized by default, 
-     * so just go ahead and add the value.
-     */
     textMap.put(key, value);
   }
-
-  //Not sure what use this method is.  probably safe to remove.
-  //  public void setValueAsString(ValueEnum key, String value, Integer year) {
-  //
-  //    //TODO: add code to check that the year parameter is kosher
-  //
-  //    Map<ValueEnum, String> textMap = textValues.get(year);
-  //
-  //    /*
-  //     * check to see if this year's Map has been initialized.
-  //     * If not, create a new Map for it.
-  //     */
-  //    if (textMap == null) {
-  //      textMap = new HashMap<ValueEnum, String>();
-  //      textMap.put(key, value);
-  //      textValues.put(year, textMap);
-  //    } else {
-  //      textMap.put(key, value);
-  //    }
-  //  }
 
   public String getValueAsString(ValueEnum key) {
 
@@ -182,16 +175,11 @@ public class DataController {
     return returnValue;
   }
 
-  //  public Float getValueAsFloat(ValueEnum key, Integer year) {
-  //    Map<ValueEnum, Float> m = numericValues.get(year);
-  //    Float returnValue = m.get(key);
-  //    return returnValue;
-  //  }
 
   public Float getValueAsFloat(ValueEnum key, Integer year) {
 
     //unpack the numericValues for this division
-    numericValues = multiDivisionNumericValues.get(currentDivision);
+    numericValues = multiDivisionNumericValues.get(currentDivisionForReading);
 
     //unpack the map for this year
     Map<ValueEnum, Float> m = numericValues.get(year);
@@ -200,6 +188,7 @@ public class DataController {
   }
 
   public Map<Integer, Float> getPlotPoints(ValueEnum graphKeyValue) {
+    
     Map<Integer, Float> dataPoints = new HashMap<Integer, Float>();
     Float yValue;
 
@@ -269,8 +258,8 @@ public class DataController {
   }
 
   public void setCurrentData(ContentValues cv) {
-//    Map<ValueEnum, String> textMap = textValues.get(DEFAULT_YEAR);
-//    Map<ValueEnum, Float> numericMap = numericValues.get(DEFAULT_YEAR);
+    //    Map<ValueEnum, String> textMap = textValues.get(DEFAULT_YEAR);
+    //    Map<ValueEnum, Float> numericMap = numericValues.get(DEFAULT_YEAR);
 
     for (ValueEnum inputEnum : ValueEnum.values()) {
       if (inputEnum.isSavedToDatabase() && (inputEnum.getType() != ValueEnum.ValueType.STRING)) {
@@ -281,77 +270,6 @@ public class DataController {
             cv.getAsString(inputEnum.name()));
       }
     }
-// 
-//    textMap.put(
-//        ValueEnum.STREET_ADDRESS, 
-//        cv.getAsString(ValueEnum.STREET_ADDRESS.name()));
-//    textMap.put(
-//        ValueEnum.CITY, 
-//        cv.getAsString(ValueEnum.CITY.name()));
-//    textMap.put(
-//        ValueEnum.STATE_INITIALS, 
-//        cv.getAsString(ValueEnum.STATE_INITIALS.name()));
-//    
-//    numericMap.put(
-//        ValueEnum.TOTAL_PURCHASE_VALUE,
-//        cv.getAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE.name()));
-//    numericMap.put(
-//        ValueEnum.YEARLY_INTEREST_RATE, 
-//        cv.getAsFloat(ValueEnum.YEARLY_INTEREST_RATE.name()));
-//    numericMap.put(
-//        ValueEnum.BUILDING_VALUE, 
-//        cv.getAsFloat(ValueEnum.BUILDING_VALUE.name()));
-//    numericMap.put(
-//        ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS, 360f);
-//    numericMap.put(
-//        ValueEnum.INFLATION_RATE, 
-//        cv.getAsFloat(ValueEnum.INFLATION_RATE.name()));
-//    numericMap.put(
-//        ValueEnum.DOWN_PAYMENT, 
-//        cv.getAsFloat(ValueEnum.DOWN_PAYMENT.name()));
-
-//    numericMap.put(
-//        ValueEnum.ESTIMATED_RENT_PAYMENTS, 
-//        cv.getAsFloat(ValueEnum.ESTIMATED_RENT_PAYMENTS.name()));
-//    numericMap.put(
-//        ValueEnum.REAL_ESTATE_APPRECIATION_RATE, 
-//        cv.getAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE.name()));
-//    numericMap.put(
-//        ValueEnum.YEARLY_HOME_INSURANCE, 
-//        cv.getAsFloat(ValueEnum.YEARLY_HOME_INSURANCE.name()));
-//    numericMap.put(
-//        ValueEnum.PROPERTY_TAX_RATE, 
-//        cv.getAsFloat(ValueEnum.PROPERTY_TAX_RATE.name()));
-//    numericMap.put(
-//        ValueEnum.LOCAL_MUNICIPAL_FEES, 
-//        cv.getAsFloat(ValueEnum.LOCAL_MUNICIPAL_FEES.name()));
-//    numericMap.put(
-//        ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE, 
-//        cv.getAsFloat(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE.name()));
-//    numericMap.put(
-//        ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES, 
-//        cv.getAsFloat(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES.name()));
-//    numericMap.put(
-//        ValueEnum.MARGINAL_TAX_RATE, 
-//        cv.getAsFloat(ValueEnum.MARGINAL_TAX_RATE.name()));
-//    numericMap.put(
-//        ValueEnum.SELLING_BROKER_RATE, 
-//        cv.getAsFloat(ValueEnum.SELLING_BROKER_RATE.name()));
-//    numericMap.put(
-//        ValueEnum.GENERAL_SALE_EXPENSES, 
-//        cv.getAsFloat(ValueEnum.GENERAL_SALE_EXPENSES.name()));
-//    numericMap.put(
-//        ValueEnum.REQUIRED_RATE_OF_RETURN, 
-//        cv.getAsFloat(ValueEnum.REQUIRED_RATE_OF_RETURN.name()));
-//    numericMap.put(
-//        ValueEnum.FIX_UP_COSTS, 
-//        cv.getAsFloat(ValueEnum.FIX_UP_COSTS.name()));
-//    numericMap.put(
-//        ValueEnum.CLOSING_COSTS, 
-//        cv.getAsFloat(ValueEnum.CLOSING_COSTS.name()));
-
-//    numericValues.put(DEFAULT_YEAR, numericMap);
-//    textValues.put(DEFAULT_YEAR, textMap);
   }
 
   public boolean removeDatabaseEntry(int rowIndex) {
@@ -365,6 +283,20 @@ public class DataController {
 
   public void setViewableDataTableRows(Set<ValueEnum> viewableDataTableRows) {
     DataController.viewableDataTableRows = viewableDataTableRows;
+  }
+
+  public static void setCurrentDivisionForWriting (Integer currentDivisionForWriting) {
+    DataController.currentDivisionForWriting = currentDivisionForWriting;
+  }
+
+  public static Integer getCurrentDivisionForReading() {
+    return currentDivisionForReading;
+  }
+
+  //is this method ever used?
+  public static void setCurrentDivisionForReading(
+      Integer currentDivisionForReading) {
+    DataController.currentDivisionForReading = currentDivisionForReading;
   }
 
 
