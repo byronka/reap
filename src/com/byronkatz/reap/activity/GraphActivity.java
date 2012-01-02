@@ -12,8 +12,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-//import android.os.Handler;
-//import android.os.Message;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -34,7 +32,6 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
-import android.widget.Toast;
 
 import com.byronkatz.R;
 import com.byronkatz.reap.customview.AnalysisGraph;
@@ -86,6 +83,7 @@ public class GraphActivity extends Activity {
   public static final int TOGGLE_BUTTON_INDEX = 2;
   public static final int CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE = 1;
 
+
   ValueEnum[] dataTableItems = ValueEnum.values();
   Float percentageSlid;
   Float newCurrentValue;
@@ -103,34 +101,8 @@ public class GraphActivity extends Activity {
   @Override
   public boolean onOptionsItemSelected (MenuItem item) {
     super.onOptionsItemSelected(item);
-    Intent intent = null;
-    //which item is selected?
-    switch (item.getItemId()) {
-
-    case R.id.configureGraphPageMenuItem:
-
-      intent = new Intent(GraphActivity.this, ConfigureDataTablesActivity.class);
-      startActivityForResult(intent, CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE);
-      break;
-    case R.id.editValuesMenuItem:
-      intent = new Intent(GraphActivity.this, DataPagesActivity.class);
-      startActivity(intent); 
-      break;
-
-    case R.id.saveCurrentValuesMenuItem:
-      dataController.saveValues();
-      Toast toast = Toast.makeText(GraphActivity.this, "Data saved", Toast.LENGTH_SHORT);
-      toast.show();
-      break;
-
-    case R.id.databaseMenuItem:
-      intent = new Intent(GraphActivity.this, SavedDataBrowserActivity.class);
-      startActivity(intent); 
-      break;
-    default:
-      //select nothing / do nothing
-      return true;
-    }
+    
+    GraphActivityFunctions.switchForMenuItem(item, GraphActivity.this);
 
     return false;
   }
@@ -189,16 +161,6 @@ public class GraphActivity extends Activity {
     currentSliderKey = spinnerArrayAdapter.getItem(0);
     DataController.setDataChanged(true);
   }
-
-//  private void setupHandler() {
-//    handler = new Handler() {
-//
-//      @Override
-//      public void handleMessage (Message msg) {
-//        progressDialog.setProgress(msg.arg1);
-//      }
-//    };
-//  }
 
   private void invalidateGraphs() {
     atcfGraph.invalidate();
@@ -681,9 +643,6 @@ public class GraphActivity extends Activity {
 
     @Override
     protected void onProgressUpdate(Integer... progress) {
-      //      Message msg = Message.obtain();
-      //      msg.arg1 = progress[0];
-      //      handler.dispatchMessage(msg);
       progressDialog.setProgress(progress[0]);
     }
 
@@ -720,25 +679,5 @@ public class GraphActivity extends Activity {
       dataController.setValueAsFloat(currentSliderKey, newCurrentValue);
       CalculatedVariables.crunchCalculation();
     }
-
-
-
-
   }
-
-
-  //  public void showWelcomeScreen() {
-  //    Dialog dialog = new Dialog(GraphActivity.this);
-  //    Window window = dialog.getWindow();
-  //    window.setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND, 
-  //        WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
-  //    window.setFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM, 
-  //        WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
-  //    dialog.setContentView(R.layout.welcome_dialog_view);
-  //    
-  //    TextView textView = (TextView)dialog.findViewById(R.id.welcome_text);
-  //    textView.setText("HELLO");
-  //    dialog.setTitle("WELCOME");
-  //    dialog.show();
-  //  }
 }
