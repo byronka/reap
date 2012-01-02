@@ -12,7 +12,7 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".GraphActivity" android:label="@string/entryScreenActivityTitleText"
+		<activity android:name=".reap.activity.GraphActivity" android:label="@string/entryScreenActivityTitleText"
 			android:screenOrientation="portrait">
 		</activity>
 		<activity android:name=".reap.activity.RentalActivity" android:theme="@android:style/Theme.Dialog"

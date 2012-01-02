@@ -1,4 +1,4 @@
-package com.byronkatz;
+package com.byronkatz.reap.activity;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -36,9 +36,11 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
-import com.byronkatz.reap.activity.ConfigureDataTablesActivity;
-import com.byronkatz.reap.activity.DataPagesActivity;
-import com.byronkatz.reap.activity.SavedDataBrowserActivity;
+import com.byronkatz.R;
+import com.byronkatz.R.color;
+import com.byronkatz.R.id;
+import com.byronkatz.R.layout;
+import com.byronkatz.R.menu;
 import com.byronkatz.reap.customview.AnalysisGraph;
 
 import com.byronkatz.reap.general.CalculatedVariables;

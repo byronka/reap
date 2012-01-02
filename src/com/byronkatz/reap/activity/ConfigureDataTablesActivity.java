@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import com.byronkatz.GraphActivity;
 import com.byronkatz.R;
 import com.byronkatz.R.color;
 import com.byronkatz.R.id;

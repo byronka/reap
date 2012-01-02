@@ -1,6 +1,5 @@
 package com.byronkatz.reap.activity;
 
-import com.byronkatz.GraphActivity;
 import com.byronkatz.R;
 import com.byronkatz.R.id;
 import com.byronkatz.R.layout;
