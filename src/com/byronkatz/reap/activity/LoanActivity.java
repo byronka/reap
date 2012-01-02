@@ -1,4 +1,4 @@
-package com.byronkatz;
+package com.byronkatz.reap.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,6 +13,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
+import com.byronkatz.DataController;
+import com.byronkatz.R;
+import com.byronkatz.RealEstateMarketAnalysisApplication;
+import com.byronkatz.Utility;
+import com.byronkatz.ValueEnum;
+import com.byronkatz.R.array;
+import com.byronkatz.R.id;
+import com.byronkatz.R.layout;
+import com.byronkatz.R.string;
 import com.byronkatz.ValueEnum.ValueType;
 
 public class LoanActivity extends Activity {
