@@ -27,7 +27,7 @@
 		<activity android:name=".reap.activity.ConfigureDataTablesActivity"
 			android:theme="@android:style/Theme.Dialog" android:label="@string/configureDataTableTitleText"
 			android:screenOrientation="portrait" />
-		<activity android:name=".FinancialEnvironmentActivity"
+		<activity android:name=".reap.activity.FinancialEnvironmentActivity"
 			android:label="@string/financialEnvironmentActivityTitleText"
 			android:theme="@android:style/Theme.Dialog"
 			android:screenOrientation="portrait" />

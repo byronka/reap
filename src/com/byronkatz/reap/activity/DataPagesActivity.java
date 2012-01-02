@@ -1,6 +1,5 @@
 package com.byronkatz.reap.activity;
 
-import com.byronkatz.FinancialEnvironmentActivity;
 import com.byronkatz.LoanActivity;
 import com.byronkatz.R;
 import com.byronkatz.R.id;
