@@ -1,11 +1,11 @@
 package com.byronkatz.reap.activity;
 
 import com.byronkatz.DataController;
-import com.byronkatz.DatabaseAdapter;
 import com.byronkatz.R;
 import com.byronkatz.RealEstateMarketAnalysisApplication;
 import com.byronkatz.R.id;
 import com.byronkatz.R.layout;
+import com.byronkatz.reap.general.DatabaseAdapter;
 import com.byronkatz.reap.general.ValueEnum;
 
 import android.app.Dialog;
