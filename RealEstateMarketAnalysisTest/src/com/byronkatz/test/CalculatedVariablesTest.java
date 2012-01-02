@@ -1,6 +1,6 @@
 package com.byronkatz.test;
 
-import com.byronkatz.CalculatedVariables;
+import com.byronkatz.reap.general.CalculatedVariables;
 
 
 import static org.junit.Assert.assertEquals;

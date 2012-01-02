@@ -12,7 +12,6 @@ import android.database.Cursor;
 import android.view.View;
 import android.widget.EditText;
 
-import com.byronkatz.CalculatedVariables;
 import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 public class DataController {
