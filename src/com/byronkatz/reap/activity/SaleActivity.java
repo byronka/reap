@@ -1,5 +1,13 @@
-package com.byronkatz;
+package com.byronkatz.reap.activity;
 
+import com.byronkatz.DataController;
+import com.byronkatz.R;
+import com.byronkatz.RealEstateMarketAnalysisApplication;
+import com.byronkatz.Utility;
+import com.byronkatz.ValueEnum;
+import com.byronkatz.R.id;
+import com.byronkatz.R.layout;
+import com.byronkatz.R.string;
 import com.byronkatz.ValueEnum.ValueType;
 
 import android.app.Activity;

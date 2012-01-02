@@ -34,7 +34,7 @@
 		<activity android:name=".LoanActivity" android:theme="@android:style/Theme.Dialog"
 			android:label="@string/loanActivityTitleText"
 			android:screenOrientation="portrait" />
-		<activity android:name=".SaleActivity" android:label="@string/saleActivityTitleText"
+		<activity android:name=".reap.activity.SaleActivity" android:label="@string/saleActivityTitleText"
 			android:theme="@android:style/Theme.Dialog"
 			android:screenOrientation="portrait" />
 		<activity android:name=".reap.activity.TaxesActivity" android:theme="@android:style/Theme.Dialog"
