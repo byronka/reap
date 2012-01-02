@@ -34,7 +34,6 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 import com.byronkatz.R;
-import com.byronkatz.reap.customview.AnalysisGraph;
 
 import com.byronkatz.reap.general.CalculatedVariables;
 import com.byronkatz.reap.general.DataController;
@@ -56,7 +55,6 @@ public class GraphActivity extends Activity {
   static final DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
   Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence;
-  Set<ValueEnum> viewableDataTableRows;
 
   ProgressDialog progressDialog;
 
@@ -69,8 +67,6 @@ public class GraphActivity extends Activity {
   Float deltaValueNumeric;
   Float currentValueNumeric;
   boolean isConfigurationDisplayMode;
-  Context context;
-
 
   TableLayout dataTableLayout;
 
@@ -85,7 +81,6 @@ public class GraphActivity extends Activity {
   Float percentageSlid;
   Float newCurrentValue;
   public static AsyncTask<Void, Integer, Void> calculateInBackgroundTask;
-//  Handler handler;
 
   @Override
   public boolean onCreateOptionsMenu (Menu menu){
@@ -140,11 +135,7 @@ public class GraphActivity extends Activity {
     super.onCreate(savedState);
     setContentView(R.layout.graph);
 
-    context = GraphActivity.this;
-    viewableDataTableRows = new HashSet<ValueEnum>();
-    dataController.setViewableDataTableRows(viewableDataTableRows);
-    dataTableLayout = (TableLayout) findViewById(R.id.dataTableLayout);        
-    valueToDataTableItemCorrespondence = new HashMap<ValueEnum, TableRow> ();
+//    valueToDataTableItemCorrespondence = new HashMap<ValueEnum, TableRow> ();
 
     currentYearMaximum = Utility.getNumOfCompoundingPeriods();
     setupValueSpinner();
@@ -152,7 +143,7 @@ public class GraphActivity extends Activity {
     setupValueSlider();
     setupGraphs();
     setupCurrentValueFields();
-    createDataTableItems();
+    valueToDataTableItemCorrespondence = GraphActivityFunctions.createDataTableItems(GraphActivity.this);
     setupProgressGraphDialog();
     currentSliderKey = spinnerArrayAdapter.getItem(0);
     DataController.setDataChanged(true);
@@ -333,7 +324,7 @@ public class GraphActivity extends Activity {
   }
 
   private void setupProgressGraphDialog() {
-    progressDialog = new ProgressDialog(context);
+    progressDialog = new ProgressDialog(GraphActivity.this);
     progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
     progressDialog.setMax(DIVISIONS_OF_VALUE_SLIDER);
     progressDialog.setMessage("Loading...");
@@ -507,56 +498,61 @@ public class GraphActivity extends Activity {
 
   }
 
-  private void createDataTableItems() {
-
-
-
-    TextView dataTablePropertyName;
-
-    LayoutInflater inflater = (LayoutInflater)GraphActivity.this.getSystemService
-        (Context.LAYOUT_INFLATER_SERVICE);
-    ValueEnum[] dataTableValues = ValueEnum.values();
-
-
-    //This is where we create the TableLayout
-    //set alternate colors by row
-    boolean alternateColor = true;
-    //main loop to create the data table rows
-
-    for (ValueEnum ve : dataTableValues) {
-
-      //set up the correspondence between the table index and the valueEnums
-      TableRow newTableRow = (TableRow) inflater.inflate(R.layout.data_table_tablerow, null);
-      valueToDataTableItemCorrespondence.put(ve, newTableRow);
-
-      //make every row viewable by default
-      viewableDataTableRows.add(ve);
-
-      if (alternateColor) {
-        newTableRow.setBackgroundResource(R.color.data_table_row_color_alternate_a);
-        alternateColor = ! alternateColor;
-      } else {
-        newTableRow.setBackgroundResource(R.color.data_table_row_color_alternate_b);
-        alternateColor = ! alternateColor;
-      }
-
-      dataTablePropertyName = (TextView) newTableRow.getChildAt(PROPERTY_LABEL_INDEX);
-
-      //the property name is always a string
-      dataTablePropertyName.setText(ve.toString());
-
-      /* set value based on what type of number it is, or string if 
-       * applicable if it is saved to database, that 
-       * means we only need the first year, or 
-       * "getValueAsFloat(key)" rather than "getValueAsFloat(key, year)"
-       */
-
-      //set the map to find these later
-      dataTableLayout.addView(newTableRow);
-    } //end of main for loop to set dataTableItems
-
-    dataController.setViewableDataTableRows(viewableDataTableRows);
-  }
+//  private void createDataTableItems() {
+//
+//
+//
+//    TextView dataTablePropertyName;
+//
+//    LayoutInflater inflater = (LayoutInflater)GraphActivity.this.getSystemService
+//        (Context.LAYOUT_INFLATER_SERVICE);
+//    ValueEnum[] dataTableValues = ValueEnum.values();
+//
+//    //initialize variable
+//    Set<ValueEnum> viewableDataTableRows = new HashSet<ValueEnum>();
+//    TableLayout dataTableLayout = (TableLayout) findViewById(R.id.dataTableLayout);      
+//    //This is where we create the TableLayout
+//    //set alternate colors by row
+//    boolean alternateColor = true;
+//    //main loop to create the data table rows
+//
+//    for (ValueEnum ve : dataTableValues) {
+//
+//      //set up the correspondence between the table index and the valueEnums
+//      TableRow newTableRow = (TableRow) inflater.inflate(R.layout.data_table_tablerow, null);
+//      valueToDataTableItemCorrespondence.put(ve, newTableRow);
+//
+//
+//      //make every row viewable by default
+//      viewableDataTableRows.add(ve);
+//
+//      if (alternateColor) {
+//        newTableRow.setBackgroundResource(R.color.data_table_row_color_alternate_a);
+//        alternateColor = ! alternateColor;
+//      } else {
+//        newTableRow.setBackgroundResource(R.color.data_table_row_color_alternate_b);
+//        alternateColor = ! alternateColor;
+//      }
+//
+//      dataTablePropertyName = (TextView) newTableRow.getChildAt(PROPERTY_LABEL_INDEX);
+//
+//      //the property name is always a string
+//      dataTablePropertyName.setText(ve.toString());
+//
+//      /* set value based on what type of number it is, or string if 
+//       * applicable if it is saved to database, that 
+//       * means we only need the first year, or 
+//       * "getValueAsFloat(key)" rather than "getValueAsFloat(key, year)"
+//       */
+//
+//      //set the map to find these later
+//  
+//
+//      dataTableLayout.addView(newTableRow);
+//    } //end of main for loop to set dataTableItems
+//
+//    dataController.setViewableDataTableRows(viewableDataTableRows);
+//  }
 
   private void setDataTableItems(ValueEnum[] items, Integer year) {
     ValueEnum ve;
