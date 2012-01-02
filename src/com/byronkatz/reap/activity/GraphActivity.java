@@ -150,7 +150,7 @@ public class GraphActivity extends Activity {
     
     if (DataController.isDataChanged()) {
     //necessary in case the user switches between loan types (15 vs. 30 year)
-    getNumOfCompoundingPeriods();
+    Utility.getNumOfCompoundingPeriods();
 
     currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
     setMinAndMaxFromCurrent();
@@ -178,7 +178,7 @@ public class GraphActivity extends Activity {
     valueToDataTableItemCorrespondence = new HashMap<ValueEnum, TableRow> ();
 
 //    setupHandler();
-    getNumOfCompoundingPeriods();
+    currentYearMaximum = Utility.getNumOfCompoundingPeriods();
     setupValueSpinner();
     setupTimeSlider();
     setupValueSlider();
@@ -216,16 +216,11 @@ public class GraphActivity extends Activity {
     npvGraph = (com.byronkatz.reap.customview.AnalysisGraph) findViewById(R.id.npvFrameLayout);
 
     invalidateGraphs();
+    currentYearSelected = currentYearMaximum;
     highlightCurrentYearOnGraph(currentYearSelected);
 
   }
 
-  private void getNumOfCompoundingPeriods() {
-    Float tempFloatValue = dataController.
-        getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS) / CalculatedVariables.NUM_OF_MONTHS_IN_YEAR;
-    currentYearMaximum = tempFloatValue.intValue();
-    currentYearSelected = currentYearMaximum.intValue();
-  }
 
   private void setupCurrentValueFields() {
 
@@ -283,9 +278,7 @@ public class GraphActivity extends Activity {
           setMinAndMaxFromCurrent();
           valueSlider.setProgress(valueSlider.getMax() / 2);
           calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
-          //          invalidateGraphs();
-          //
-          //          setDataTableItems(dataTableItems, currentYearSelected);
+
         }
 
 

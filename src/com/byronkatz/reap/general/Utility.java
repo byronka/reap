@@ -22,6 +22,8 @@ public class Utility {
   private static Window window = null;
   private static TextView helpTextView = null;
   private static String result = null;
+  private static final DataController dataController = RealEstateMarketAnalysisApplication
+      .getInstance().getDataController();
   
 public static void showHelpDialog(int helpText, int helpTitle, Context context) {
     helpDialog = new Dialog(context);
@@ -34,6 +36,17 @@ public static void showHelpDialog(int helpText, int helpTitle, Context context) 
     helpDialog.setTitle(helpTitle);
     helpDialog.show();
   }
+
+public static Integer getNumOfCompoundingPeriods() {
+  
+  Integer currentYearMaximum = 0;
+  
+  Float tempFloatValue = dataController.
+      getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS) / CalculatedVariables.NUM_OF_MONTHS_IN_YEAR;
+  currentYearMaximum = tempFloatValue.intValue();
+  return currentYearMaximum;
+}
+
 
 public static String displayCurrency(Float value) {
   currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
