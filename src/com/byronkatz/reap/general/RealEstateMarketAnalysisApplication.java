@@ -1,6 +1,5 @@
-package com.byronkatz;
+package com.byronkatz.reap.general;
 
-import com.byronkatz.reap.general.DataController;
 
 import android.app.Application;
 

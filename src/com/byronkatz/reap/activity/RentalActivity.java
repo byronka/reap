@@ -9,11 +9,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.byronkatz.R;
-import com.byronkatz.RealEstateMarketAnalysisApplication;
 import com.byronkatz.R.id;
 import com.byronkatz.R.layout;
 import com.byronkatz.R.string;
 import com.byronkatz.reap.general.DataController;
+import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
 import com.byronkatz.reap.general.ValueEnum.ValueType;
