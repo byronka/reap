@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.byronkatz.reap.general.Utility;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;

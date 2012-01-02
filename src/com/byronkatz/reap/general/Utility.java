@@ -1,8 +1,12 @@
-package com.byronkatz;
+package com.byronkatz.reap.general;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
+
+import com.byronkatz.R;
+import com.byronkatz.R.id;
+import com.byronkatz.R.layout;
 
 import android.app.Dialog;
 import android.content.Context;

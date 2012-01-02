@@ -40,6 +40,7 @@ import com.byronkatz.ValueEnum.ValueType;
 import com.byronkatz.reap.activity.ConfigureDataTablesActivity;
 import com.byronkatz.reap.activity.DataPagesActivity;
 import com.byronkatz.reap.activity.SavedDataBrowserActivity;
+import com.byronkatz.reap.general.Utility;
 
 public class GraphActivity extends Activity {
 
