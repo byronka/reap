@@ -40,7 +40,7 @@
 		<activity android:name=".reap.activity.TaxesActivity" android:theme="@android:style/Theme.Dialog"
 			android:label="@string/taxesActivityTitleText"
 			android:screenOrientation="portrait" />
-		<activity android:name=".SavedDataBrowserActivity"
+		<activity android:name=".reap.activity.SavedDataBrowserActivity"
 			android:theme="@android:style/Theme.Dialog" android:label="@string/savedDataBrowserActivityTitleText"
 			android:screenOrientation="portrait" />
 
