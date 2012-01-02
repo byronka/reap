@@ -5,8 +5,6 @@ import java.text.ParseException;
 import java.util.Locale;
 
 import com.byronkatz.R;
-import com.byronkatz.R.id;
-import com.byronkatz.R.layout;
 
 import android.app.Dialog;
 import android.content.Context;

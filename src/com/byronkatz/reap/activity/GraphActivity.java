@@ -37,10 +37,6 @@ import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import com.byronkatz.R;
-import com.byronkatz.R.color;
-import com.byronkatz.R.id;
-import com.byronkatz.R.layout;
-import com.byronkatz.R.menu;
 import com.byronkatz.reap.customview.AnalysisGraph;
 
 import com.byronkatz.reap.general.CalculatedVariables;

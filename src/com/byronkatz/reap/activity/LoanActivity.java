@@ -14,10 +14,6 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import com.byronkatz.R;
-import com.byronkatz.R.array;
-import com.byronkatz.R.id;
-import com.byronkatz.R.layout;
-import com.byronkatz.R.string;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.Utility;

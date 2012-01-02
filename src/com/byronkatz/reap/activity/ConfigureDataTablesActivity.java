@@ -7,9 +7,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import com.byronkatz.R;
-import com.byronkatz.R.color;
-import com.byronkatz.R.id;
-import com.byronkatz.R.layout;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.ValueEnum;

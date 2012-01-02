@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.byronkatz.R;
-import com.byronkatz.R.styleable;
 import com.byronkatz.reap.activity.GraphActivity;
 import com.byronkatz.reap.general.CalculatedVariables;
 import com.byronkatz.reap.general.DataController;
