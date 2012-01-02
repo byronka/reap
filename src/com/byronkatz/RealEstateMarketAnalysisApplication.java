@@ -1,5 +1,7 @@
 package com.byronkatz;
 
+import com.byronkatz.reap.general.DataController;
+
 import android.app.Application;
 
 public class RealEstateMarketAnalysisApplication extends Application {
