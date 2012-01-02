@@ -79,7 +79,7 @@ public enum ValueEnum {
   private Boolean isSavedToDatabase;
   private Boolean isVaryingByYear;
   
-  enum ValueType {
+  public enum ValueType {
     PERCENTAGE,
     CURRENCY,
     INTEGER,

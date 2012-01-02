@@ -14,11 +14,6 @@ import android.widget.EditText;
 
 import com.byronkatz.ValueEnum.ValueType;
 
-/**
- * 
- * @author byron
- *
- */
 public class DataController {
 
   //variable below is to hold the pointer to which set (division) of data we want.
@@ -32,6 +27,7 @@ public class DataController {
   private static Map<Integer, Map<Integer, Map<ValueEnum, Float>>> multiDivisionNumericValues;
   private static Map<Integer, Map<ValueEnum, String>> textValues;
   private static Set<ValueEnum> viewableDataTableRows;
+  private static Boolean dataChanged;
 
   //DEFAULT_YEAR is for which year to store values that don't change per year.
   public static final Integer DEFAULT_YEAR = 1;
@@ -44,30 +40,9 @@ public class DataController {
     multiDivisionNumericValues = new HashMap<Integer, Map<Integer, Map<ValueEnum, Float>>>();
     textValues = new HashMap<Integer, Map<ValueEnum, String>>();
     setViewableDataTableRows(new HashSet<ValueEnum>());
-//    initializeCalculatedValuesArray();
+    dataChanged = false;
     loadFieldValues();
   }
-
-//  private Map<ValueEnum, Float> initAllValuesForOneYearToZero(Map<ValueEnum, Float> numericMap) {
-//    for (ValueEnum ve : ValueEnum.values()) {
-//      //as long as the value is not a string, enter it.
-//      if (ve.getType() != ValueEnum.ValueType.STRING) {
-//        numericMap = new HashMap<ValueEnum, Float> (); 
-//        numericMap.put(ve, 0f);
-//      }
-//    }
-//  }
-//  private void initializeCalculatedValuesArray() {
-//    numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
-//    numericMap = new HashMap<ValueEnum, Float> ();
-//    multiDivisionNumericValues = new HashMap<Integer, Map<Integer, Map<ValueEnum, Float>>> ();
-//
-//    ///WORK ZONE
-//    
-//    for ()
-//    numericMap = initAllValuesForOneYearToZero(numericMap);
-//
-//  }
 
   private void loadFieldValues() {
 
@@ -104,6 +79,7 @@ public class DataController {
   }
 
   public void setValueAsFloat(ValueEnum key, Float value) {
+    dataChanged = true;
 
     //get the default division
     numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
@@ -114,6 +90,7 @@ public class DataController {
   }
 
   public void setValueAsFloat(ValueEnum key, Float value, Integer year) {
+    dataChanged = true;
 
     //TODO: add code to check that the year parameter is kosher
 
@@ -151,6 +128,7 @@ public class DataController {
 
 
   public void setValueAsString(ValueEnum key, String value) {
+    dataChanged = true;
 
     //get the Map for this year
     Map<ValueEnum, String> textMap = textValues.get(DEFAULT_YEAR);
@@ -299,6 +277,14 @@ public class DataController {
   public static void setCurrentDivisionForReading(
       Integer currentDivisionForReading) {
     DataController.currentDivisionForReading = currentDivisionForReading;
+  }
+
+  public static Boolean isDataChanged() {
+    return dataChanged;
+  }
+
+  public static void setDataChanged(Boolean dataChanged) {
+    DataController.dataChanged = dataChanged;
   }
 
 
