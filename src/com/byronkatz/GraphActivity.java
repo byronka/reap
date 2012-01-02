@@ -39,6 +39,8 @@ import android.widget.Toast;
 import com.byronkatz.reap.activity.ConfigureDataTablesActivity;
 import com.byronkatz.reap.activity.DataPagesActivity;
 import com.byronkatz.reap.activity.SavedDataBrowserActivity;
+import com.byronkatz.reap.customview.AnalysisGraph;
+
 import com.byronkatz.reap.general.CalculatedVariables;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.OnItemSelectedListenerWrapper;
@@ -89,7 +91,7 @@ public class GraphActivity extends Activity {
   ValueEnum[] dataTableItems = ValueEnum.values();
   Float percentageSlid;
   Float newCurrentValue;
-  static AsyncTask<Void, Integer, Void> calculateInBackgroundTask;
+  public static AsyncTask<Void, Integer, Void> calculateInBackgroundTask;
 //  Handler handler;
 
   @Override
@@ -212,8 +214,8 @@ public class GraphActivity extends Activity {
 
   private void setupGraphs() {
 
-    atcfGraph = (com.byronkatz.AnalysisGraph) findViewById(R.id.atcfFrameLayout);
-    npvGraph = (com.byronkatz.AnalysisGraph) findViewById(R.id.npvFrameLayout);
+    atcfGraph = (com.byronkatz.reap.customview.AnalysisGraph) findViewById(R.id.atcfFrameLayout);
+    npvGraph = (com.byronkatz.reap.customview.AnalysisGraph) findViewById(R.id.npvFrameLayout);
 
     invalidateGraphs();
     highlightCurrentYearOnGraph(currentYearSelected);

@@ -1,10 +1,13 @@
-package com.byronkatz;
+package com.byronkatz.reap.customview;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.byronkatz.GraphActivity;
+import com.byronkatz.R;
+import com.byronkatz.R.styleable;
 import com.byronkatz.reap.general.CalculatedVariables;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
@@ -21,7 +24,7 @@ import android.os.AsyncTask;
 import android.util.AttributeSet;
 import android.view.View;
 
-class AnalysisGraph extends View {
+public class AnalysisGraph extends View {
 
   private static final int NPV = 0;
   private static final int ATER = 1;
