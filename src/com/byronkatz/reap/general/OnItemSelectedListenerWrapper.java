@@ -1,4 +1,4 @@
-package com.byronkatz;
+package com.byronkatz.reap.general;
 
 import android.util.Log;
 import android.view.View;
