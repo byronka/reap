@@ -11,12 +11,12 @@ import android.widget.ImageButton;
 import com.byronkatz.DataController;
 import com.byronkatz.R;
 import com.byronkatz.RealEstateMarketAnalysisApplication;
-import com.byronkatz.ValueEnum;
 import com.byronkatz.R.id;
 import com.byronkatz.R.layout;
 import com.byronkatz.R.string;
-import com.byronkatz.ValueEnum.ValueType;
 import com.byronkatz.reap.general.Utility;
+import com.byronkatz.reap.general.ValueEnum;
+import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 public class RentalActivity extends Activity {
 

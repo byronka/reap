@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.byronkatz.reap.general.Utility;
+import com.byronkatz.reap.general.ValueEnum;
 
 import android.content.Context;
 import android.content.res.TypedArray;

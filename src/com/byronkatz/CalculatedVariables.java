@@ -1,5 +1,7 @@
 package com.byronkatz;
 
+import com.byronkatz.reap.general.ValueEnum;
+
 
 public class CalculatedVariables {
 

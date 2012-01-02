@@ -1,4 +1,4 @@
-package com.byronkatz;
+package com.byronkatz.reap.general;
 
 public enum ValueEnum {
 

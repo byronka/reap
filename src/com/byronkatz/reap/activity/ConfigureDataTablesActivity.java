@@ -10,10 +10,10 @@ import com.byronkatz.DataController;
 import com.byronkatz.GraphActivity;
 import com.byronkatz.R;
 import com.byronkatz.RealEstateMarketAnalysisApplication;
-import com.byronkatz.ValueEnum;
 import com.byronkatz.R.color;
 import com.byronkatz.R.id;
 import com.byronkatz.R.layout;
+import com.byronkatz.reap.general.ValueEnum;
 
 import android.app.Activity;
 import android.content.Context;

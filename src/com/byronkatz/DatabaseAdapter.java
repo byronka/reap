@@ -3,6 +3,8 @@ package com.byronkatz;
 //** Listing 7-1: Skeleton code for a standard database adapter implementation
 import java.util.HashMap;
 
+import com.byronkatz.reap.general.ValueEnum;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

@@ -36,11 +36,12 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
-import com.byronkatz.ValueEnum.ValueType;
 import com.byronkatz.reap.activity.ConfigureDataTablesActivity;
 import com.byronkatz.reap.activity.DataPagesActivity;
 import com.byronkatz.reap.activity.SavedDataBrowserActivity;
 import com.byronkatz.reap.general.Utility;
+import com.byronkatz.reap.general.ValueEnum;
+import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 public class GraphActivity extends Activity {
 
