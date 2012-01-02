@@ -47,9 +47,6 @@ import com.byronkatz.reap.general.ValueEnum.ValueType;
 public class GraphActivity extends Activity {
 
   ValueEnum currentSliderKey;
-  AnalysisGraph npvGraph;
-  //  AnalysisGraph aterGraph;
-  AnalysisGraph atcfGraph;
   EditText currentValueEditText;
   SeekBar valueSlider;
   SeekBar timeSlider;
@@ -149,7 +146,6 @@ public class GraphActivity extends Activity {
     dataTableLayout = (TableLayout) findViewById(R.id.dataTableLayout);        
     valueToDataTableItemCorrespondence = new HashMap<ValueEnum, TableRow> ();
 
-//    setupHandler();
     currentYearMaximum = Utility.getNumOfCompoundingPeriods();
     setupValueSpinner();
     setupTimeSlider();
@@ -162,24 +158,16 @@ public class GraphActivity extends Activity {
     DataController.setDataChanged(true);
   }
 
-  private void invalidateGraphs() {
-    atcfGraph.invalidate();
-    npvGraph.invalidate();
-  }
 
-  private void highlightCurrentYearOnGraph(Integer currentYearHighlight) {
-    atcfGraph.setCurrentYearHighlighted(currentYearHighlight);
-    npvGraph.setCurrentYearHighlighted(currentYearHighlight);
-  }
 
   private void setupGraphs() {
 
-    atcfGraph = (com.byronkatz.reap.customview.AnalysisGraph) findViewById(R.id.atcfFrameLayout);
-    npvGraph = (com.byronkatz.reap.customview.AnalysisGraph) findViewById(R.id.npvFrameLayout);
+//    atcfGraph = (com.byronkatz.reap.customview.AnalysisGraph) findViewById(R.id.atcfFrameLayout);
+//    npvGraph = (com.byronkatz.reap.customview.AnalysisGraph) findViewById(R.id.npvFrameLayout);
 
-    invalidateGraphs();
+    GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
     currentYearSelected = currentYearMaximum;
-    highlightCurrentYearOnGraph(currentYearSelected);
+    GraphActivityFunctions.highlightCurrentYearOnGraph(currentYearSelected, GraphActivity.this);
 
   }
 
@@ -407,7 +395,7 @@ public class GraphActivity extends Activity {
         }
 
         //set the values for use by the graphs and data tables
-        invalidateGraphs();
+        GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
         setDataTableItems(dataTableItems, currentYearSelected);
 
       }
@@ -441,8 +429,8 @@ public class GraphActivity extends Activity {
 
           currentYearSelected = progress;
           setDataTableItems(dataTableItems, currentYearSelected);
-          highlightCurrentYearOnGraph(currentYearSelected);
-          invalidateGraphs();
+          GraphActivityFunctions.highlightCurrentYearOnGraph(currentYearSelected, GraphActivity.this);
+          GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
         }
       }
     });
@@ -649,7 +637,7 @@ public class GraphActivity extends Activity {
     @Override
     protected void onPostExecute(Void result) {
       progressDialog.dismiss();
-      invalidateGraphs();
+      GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
       setDataTableItems(dataTableItems, currentYearSelected);
       DataController.setDataChanged(false);
     }

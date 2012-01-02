@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.byronkatz.R;
+import com.byronkatz.reap.customview.AnalysisGraph;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 
@@ -45,5 +46,26 @@ public class GraphActivityFunctions {
     }
   }
 
+  static void invalidateGraphs(Activity activity) {
+    
+    AnalysisGraph graph;
+    graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.atcfFrameLayout);
+    graph.invalidate();
+    
+    graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.npvFrameLayout);
+    graph.invalidate();
+  }
+
+  static void highlightCurrentYearOnGraph(Integer currentYearHighlight, Activity activity) {
+    
+    AnalysisGraph graph;
+    
+    graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.atcfFrameLayout);
+    graph.setCurrentYearHighlighted(currentYearHighlight);
+    
+    graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.npvFrameLayout);
+    graph.setCurrentYearHighlighted(currentYearHighlight);
+
+  }
   
 }
