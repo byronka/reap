@@ -48,7 +48,7 @@ public class RentalActivity extends Activity {
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
-          DataController.setSelectionOnView(v, ValueType.CURRENCY);
+          Utility.setSelectionOnView(v, ValueType.CURRENCY);
         }     
       }
     });
@@ -70,7 +70,7 @@ public class RentalActivity extends Activity {
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
-          DataController.setSelectionOnView(v, ValueType.CURRENCY);
+          Utility.setSelectionOnView(v, ValueType.CURRENCY);
         }     
       }
     });
@@ -92,7 +92,7 @@ public class RentalActivity extends Activity {
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
-          DataController.setSelectionOnView(v, ValueType.PERCENTAGE);
+          Utility.setSelectionOnView(v, ValueType.PERCENTAGE);
         }     
       }
     });
@@ -114,7 +114,7 @@ public class RentalActivity extends Activity {
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
-          DataController.setSelectionOnView(v, ValueType.CURRENCY);
+          Utility.setSelectionOnView(v, ValueType.CURRENCY);
         }     
       }
     });
@@ -135,7 +135,7 @@ public class RentalActivity extends Activity {
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
-          DataController.setSelectionOnView(v, ValueType.CURRENCY);
+          Utility.setSelectionOnView(v, ValueType.CURRENCY);
         }     
       }
     });
@@ -157,7 +157,7 @@ public class RentalActivity extends Activity {
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
-          DataController.setSelectionOnView(v, ValueType.PERCENTAGE);
+          Utility.setSelectionOnView(v, ValueType.PERCENTAGE);
         }     
       }
     });

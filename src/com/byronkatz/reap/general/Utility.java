@@ -5,11 +5,14 @@ import java.text.ParseException;
 import java.util.Locale;
 
 import com.byronkatz.R;
+import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class Utility {
@@ -47,6 +50,30 @@ public static Integer getNumOfCompoundingPeriods() {
   return currentYearMaximum;
 }
 
+
+public static void setSelectionOnView(View v, ValueType valueType) {
+  EditText editText = (EditText) v;
+  //we'll use textInEditText to measure the string for the selection
+  String textInEditText = editText.getText().toString();
+  int textLength = textInEditText.length();
+
+  switch (valueType) {
+  case CURRENCY:
+    editText.setSelection(1, textLength);
+    break;
+  case PERCENTAGE:
+    editText.setSelection(0, textLength - 1);
+    break;
+  case INTEGER:
+    editText.setSelection(0, textLength);
+    break;
+  case STRING:
+    editText.setSelection(0, textLength);
+    break;
+  default:
+    System.err.println("shouldn't get here in setSelectionOnView");
+  }
+}
 
 public static String displayCurrency(Float value) {
   currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);

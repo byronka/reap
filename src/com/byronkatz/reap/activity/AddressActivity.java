@@ -1,11 +1,5 @@
 package com.byronkatz.reap.activity;
 
-import com.byronkatz.R;
-import com.byronkatz.reap.general.DataController;
-import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
-import com.byronkatz.reap.general.ValueEnum;
-import com.byronkatz.reap.general.ValueEnum.ValueType;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +9,13 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.byronkatz.R;
+import com.byronkatz.reap.general.DataController;
+import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
+import com.byronkatz.reap.general.Utility;
+import com.byronkatz.reap.general.ValueEnum;
+import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 public class AddressActivity extends Activity {
 
@@ -69,7 +70,7 @@ public class AddressActivity extends Activity {
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
-          DataController.setSelectionOnView(v, ValueType.STRING);
+          Utility.setSelectionOnView(v, ValueType.STRING);
         }     
       }
     });
@@ -79,7 +80,7 @@ public class AddressActivity extends Activity {
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
-          DataController.setSelectionOnView(v, ValueType.STRING);
+          Utility.setSelectionOnView(v, ValueType.STRING);
         }     
       }
     });

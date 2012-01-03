@@ -213,33 +213,9 @@ public class DataController {
     return cursor;
   }
 
-  public static void setSelectionOnView(View v, ValueType valueType) {
-    EditText editText = (EditText) v;
-    //we'll use textInEditText to measure the string for the selection
-    String textInEditText = editText.getText().toString();
-    int textLength = textInEditText.length();
 
-    switch (valueType) {
-    case CURRENCY:
-      editText.setSelection(1, textLength);
-      break;
-    case PERCENTAGE:
-      editText.setSelection(0, textLength - 1);
-      break;
-    case INTEGER:
-      editText.setSelection(0, textLength);
-      break;
-    case STRING:
-      editText.setSelection(0, textLength);
-      break;
-    default:
-      System.err.println("shouldn't get here in setSelectionOnView");
-    }
-  }
 
   public void setCurrentData(ContentValues cv) {
-    //    Map<ValueEnum, String> textMap = textValues.get(DEFAULT_YEAR);
-    //    Map<ValueEnum, Float> numericMap = numericValues.get(DEFAULT_YEAR);
 
     for (ValueEnum inputEnum : ValueEnum.values()) {
       if (inputEnum.isSavedToDatabase() && (inputEnum.getType() != ValueEnum.ValueType.STRING)) {

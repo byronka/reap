@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -19,9 +20,13 @@ import com.byronkatz.R;
 import com.byronkatz.reap.customview.AnalysisGraph;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
+import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
 
 public class GraphActivityFunctions {
+
+  private static final Float INCREASE_PERCENTAGE = 1.5F;
+  private static final Float DECREASE_PERCENTAGE = 0.5F;
 
   private static final DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
@@ -57,27 +62,27 @@ public class GraphActivityFunctions {
   }
 
   static void invalidateGraphs(Activity activity) {
-    
+
     AnalysisGraph graph;
     graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.atcfFrameLayout);
     graph.invalidate();
-    
+
     graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.npvFrameLayout);
     graph.invalidate();
   }
 
   static void highlightCurrentYearOnGraph(Integer currentYearHighlight, Activity activity) {
-    
+
     AnalysisGraph graph;
-    
+
     graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.atcfFrameLayout);
     graph.setCurrentYearHighlighted(currentYearHighlight);
-    
+
     graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.npvFrameLayout);
     graph.setCurrentYearHighlighted(currentYearHighlight);
 
   }
-  
+
   static Map<ValueEnum, TableRow> createDataTableItems(GraphActivity graphActivity) {
 
 
@@ -127,7 +132,7 @@ public class GraphActivityFunctions {
        */
 
       //set the map to find these later
-  
+
 
       dataTableLayout.addView(newTableRow);
     } //end of main for loop to set dataTableItems
@@ -136,4 +141,75 @@ public class GraphActivityFunctions {
     return valueToDataTableItemCorrespondence;
 
   }
+
+
+  static Float calculateMaxFromCurrent(Float currentValueNumeric) {
+
+    return currentValueNumeric * INCREASE_PERCENTAGE;
+
+  }
+
+  static Float calculateMinFromCurrent(Float currentValueNumeric) {
+
+    return currentValueNumeric * DECREASE_PERCENTAGE;
+
+  }
+
+  static Float calculateCurrentFromMax(Float maxValueNumeric) {
+
+    return maxValueNumeric / INCREASE_PERCENTAGE; 
+  }
+
+  static Float calculateCurrentFromMin(Float minValueNumeric) {
+    return minValueNumeric / DECREASE_PERCENTAGE;
+  }
+  
+  static Float calculateMinMaxDelta(Float minValueNumeric, Float maxValueNumeric) {
+    return maxValueNumeric - minValueNumeric;
+  }
+
+
+  static Float parseEditText(EditText editText, ValueEnum currentSliderKey) {
+    Float returnValue = 0.0f;
+    
+    switch (currentSliderKey.getType()) {
+    case CURRENCY:
+      returnValue = Utility.parseCurrency(editText.getText().toString());
+      break;
+    case PERCENTAGE:
+      returnValue = Utility.parsePercentage(editText.getText().toString());
+      break;
+    case INTEGER:
+    default:
+      break;
+    }
+    
+    return returnValue;
+  }
+  
+  static void displayValue(EditText editText, Float valueNumeric, 
+      ValueEnum currentSliderKey) {
+
+    switch (currentSliderKey.getType()) {
+    case CURRENCY:
+
+      editText.setText(Utility.displayCurrency(valueNumeric));
+      break;
+    case PERCENTAGE:
+
+      editText.setText(Utility.displayPercentage(valueNumeric));
+
+      break;
+    case INTEGER:
+
+      editText.setText(String.valueOf(valueNumeric));
+      break;
+    default:
+      //do nothing
+      break;  
+    }
+  }
+
+
+
 }

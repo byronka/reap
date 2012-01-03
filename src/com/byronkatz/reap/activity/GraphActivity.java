@@ -1,19 +1,16 @@
 package com.byronkatz.reap.activity;
 
-import java.util.HashMap;
-import java.util.HashSet;
+
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,7 +38,6 @@ import com.byronkatz.reap.general.OnItemSelectedListenerWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
-import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 public class GraphActivity extends Activity {
 
@@ -79,7 +75,6 @@ public class GraphActivity extends Activity {
 
   ValueEnum[] dataTableItems = ValueEnum.values();
   Float percentageSlid;
-  Float newCurrentValue;
   public static AsyncTask<Void, Integer, Void> calculateInBackgroundTask;
 
   @Override
@@ -113,16 +108,22 @@ public class GraphActivity extends Activity {
     super.onResume();
     
     if (DataController.isDataChanged()) {
-    //necessary in case the user switches between loan types (15 vs. 30 year)
-    Utility.getNumOfCompoundingPeriods();
 
     currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
-    setMinAndMaxFromCurrent();
+    minValueNumeric = GraphActivityFunctions.calculateMinFromCurrent(currentValueNumeric);
+    maxValueNumeric = GraphActivityFunctions.calculateMaxFromCurrent(currentValueNumeric);
+    deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
+    GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
+    GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
+    GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
+    
     valueSlider.setProgress(valueSlider.getMax() / 2);
     DataController.setCurrentDivisionForReading(valueSlider.getMax() / 2);
 
+    //necessary in case the user switches between loan types (15 vs. 30 year)
+    currentYearMaximum = Utility.getNumOfCompoundingPeriods();
     timeSlider.setMax(currentYearMaximum);
-    timeSlider.setProgress(timeSlider.getMax());
+    timeSlider.setProgress(currentYearMaximum);
     yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(timeSlider.getProgress()));
 
     calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
@@ -134,8 +135,6 @@ public class GraphActivity extends Activity {
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
     setContentView(R.layout.graph);
-
-//    valueToDataTableItemCorrespondence = new HashMap<ValueEnum, TableRow> ();
 
     currentYearMaximum = Utility.getNumOfCompoundingPeriods();
     setupValueSpinner();
@@ -152,9 +151,6 @@ public class GraphActivity extends Activity {
 
 
   private void setupGraphs() {
-
-//    atcfGraph = (com.byronkatz.reap.customview.AnalysisGraph) findViewById(R.id.atcfFrameLayout);
-//    npvGraph = (com.byronkatz.reap.customview.AnalysisGraph) findViewById(R.id.npvFrameLayout);
 
     GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
     currentYearSelected = currentYearMaximum;
@@ -191,39 +187,28 @@ public class GraphActivity extends Activity {
     });
 
     currentValueEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
-
+      
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
-        ValueType test = currentSliderKey.getType(); 
-        String value = null;
 
         if (hasFocus) {
-          DataController.setSelectionOnView(v, test);
+          Utility.setSelectionOnView(v, currentSliderKey.getType());
         } else if (! hasFocus) {
-          switch (test) {
-          case CURRENCY:
-            value = currentValueEditText.getText().toString();
-            currentValueNumeric = Utility.parseCurrency(value);
-            currentValueEditText.setText(Utility.displayCurrency(currentValueNumeric));
-            break;
-          case PERCENTAGE:
-            value = currentValueEditText.getText().toString();
-            currentValueNumeric = Utility.parsePercentage(value);
-            currentValueEditText.setText(Utility.displayPercentage(currentValueNumeric));
-            break;
-          case INTEGER:
-          default:
-            //do nothing
-            break;
-          }
-          setMinAndMaxFromCurrent();
+          
+          currentValueNumeric = GraphActivityFunctions.parseEditText(currentValueEditText, currentSliderKey);
+          GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
+          dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
+
+          minValueNumeric = GraphActivityFunctions.calculateMinFromCurrent(currentValueNumeric);
+          GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
+
+          maxValueNumeric = GraphActivityFunctions.calculateMaxFromCurrent(currentValueNumeric);
+          GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
+
           valueSlider.setProgress(valueSlider.getMax() / 2);
           calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
-
+          deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
         }
-
-
-
       }
     });
 
@@ -241,42 +226,29 @@ public class GraphActivity extends Activity {
 
     minValueEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
 
+      Float tempMinValue = 0.0f;
+      
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
-        ValueType test = currentSliderKey.getType(); 
-        String value = null;
 
         if (hasFocus) {
-          switch (test) {
-          case CURRENCY:
-            DataController.setSelectionOnView(v, ValueType.CURRENCY);
-            break;
-          case PERCENTAGE:
-            DataController.setSelectionOnView(v, ValueType.PERCENTAGE);
-            break;
-          default:
-            System.err.println("Should not get here in currentValueEditText.setOnFocusChangeListener");
-            break;
-          }
+          Utility.setSelectionOnView(v, currentSliderKey.getType());
+        } else if (! hasFocus) {
+          
+          tempMinValue = GraphActivityFunctions.parseEditText(minValueEditText, currentSliderKey);
+          GraphActivityFunctions.displayValue(minValueEditText, tempMinValue, currentSliderKey);
 
-        } else {
-          switch (test) {
-          case CURRENCY:
-            value = minValueEditText.getText().toString();
-            minValueNumeric = Utility.parseCurrency(value);
-            minValueEditText.setText(Utility.displayCurrency(minValueNumeric));
-            break;
-          case PERCENTAGE:
-            value = minValueEditText.getText().toString();
-            minValueNumeric = Utility.parsePercentage(value);
-            minValueEditText.setText(Utility.displayPercentage(minValueNumeric));
-            break;
-          default:
-            System.err.println("Should not get here in minValueEditText.setOnFocusChangeListener");
-            break;
-          }
+          currentValueNumeric = GraphActivityFunctions.calculateCurrentFromMin(tempMinValue);
+          GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
+          dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
+
+          maxValueNumeric = GraphActivityFunctions.calculateMaxFromCurrent(currentValueNumeric);
+          GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
+          
+          deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
         }
-        deltaValueNumeric = maxValueNumeric - minValueNumeric;
+        
+
       }
     });
 
@@ -293,31 +265,27 @@ public class GraphActivity extends Activity {
 
     maxValueEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
 
+      Float tempMaxValue = 0.0f;
+      
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
-        ValueType test = currentSliderKey.getType(); 
-        String value = null;
 
         if (hasFocus) {
-          DataController.setSelectionOnView(v, test);
+          Utility.setSelectionOnView(v, currentSliderKey.getType());
         } else if (! hasFocus) {
-          switch (test) {
-          case CURRENCY:
-            value = maxValueEditText.getText().toString();
-            maxValueNumeric = Utility.parseCurrency(value);
-            maxValueEditText.setText(Utility.displayCurrency(maxValueNumeric));
-            break;
-          case PERCENTAGE:
-            value = maxValueEditText.getText().toString();
-            maxValueNumeric = Utility.parsePercentage(value);
-            maxValueEditText.setText(Utility.displayPercentage(maxValueNumeric));
-            break;
-          default:
-            System.err.println("Should not get here in maxValueEditText.setOnFocusChangeListener");
-            break;
-          }
+          
+          tempMaxValue = GraphActivityFunctions.parseEditText(minValueEditText, currentSliderKey);
+          GraphActivityFunctions.displayValue(minValueEditText, tempMaxValue, currentSliderKey);
+
+          currentValueNumeric = GraphActivityFunctions.calculateCurrentFromMax(tempMaxValue);
+          GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
+          dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
+          
+          minValueNumeric = GraphActivityFunctions.calculateMinFromCurrent(currentValueNumeric);
+          GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
+          
+          deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
         }
-        deltaValueNumeric = maxValueNumeric - minValueNumeric;
       }
     });
 
@@ -346,7 +314,6 @@ public class GraphActivity extends Activity {
 
     valueSlider.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
-      Float newCurrentValue;
       Float percentageSlid;
 
       @Override
@@ -368,17 +335,17 @@ public class GraphActivity extends Activity {
 
         //set the value in the current value field:
         percentageSlid = (progress / (float) DIVISIONS_OF_VALUE_SLIDER);
-        newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
+        currentValueNumeric = minValueNumeric + (percentageSlid * deltaValueNumeric);
 
         switch (currentSliderKey.getType()) {
         case CURRENCY:
-          currentValueEditText.setText(Utility.displayCurrency(newCurrentValue));
+          currentValueEditText.setText(Utility.displayCurrency(currentValueNumeric));
           break;
         case PERCENTAGE:
-          currentValueEditText.setText(Utility.displayPercentage(newCurrentValue));
+          currentValueEditText.setText(Utility.displayPercentage(currentValueNumeric));
           break;
         case INTEGER:
-          currentValueEditText.setText(String.valueOf(newCurrentValue));
+          currentValueEditText.setText(String.valueOf(currentValueNumeric));
           break;
         default:
           System.err.println("Should not get here in valueSlider.setOnSeekBarChangeListener");
@@ -448,17 +415,16 @@ public class GraphActivity extends Activity {
     valueSpinner.setAdapter(spinnerArrayAdapter);
 
 
-    valueSpinner.setOnItemSelectedListener(new OnItemSelectedListenerWrapper(new OnItemSelectedListener() {
-
-
+    valueSpinner.setOnItemSelectedListener(
+        new OnItemSelectedListenerWrapper(new OnItemSelectedListener() {
 
       @Override
       public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
           long arg3) {
         currentSliderKey = spinnerArrayAdapter.getItem(pos);
         currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
-
-        setMinAndMaxFromCurrent();
+        minValueNumeric = GraphActivityFunctions.calculateMinFromCurrent(currentValueNumeric);
+        maxValueNumeric = GraphActivityFunctions.calculateMaxFromCurrent(currentValueNumeric);
         calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
 
       }
@@ -472,87 +438,33 @@ public class GraphActivity extends Activity {
 
   }
 
-  private void setMinAndMaxFromCurrent() {
-    minValueNumeric = currentValueNumeric / 2;
-    maxValueNumeric = currentValueNumeric + (currentValueNumeric - minValueNumeric);
-    deltaValueNumeric = maxValueNumeric - minValueNumeric;
-    ValueType test = currentSliderKey.getType(); 
-
-    switch (test) {
-    case CURRENCY:
-
-      maxValueEditText.setText(Utility.displayCurrency(maxValueNumeric));
-      minValueEditText.setText(Utility.displayCurrency(minValueNumeric));
-      currentValueEditText.setText(Utility.displayCurrency(currentValueNumeric));
-      break;
-    case PERCENTAGE:
-
-      maxValueEditText.setText(Utility.displayPercentage(maxValueNumeric));
-      minValueEditText.setText(Utility.displayPercentage(minValueNumeric));
-      currentValueEditText.setText(Utility.displayPercentage(currentValueNumeric));
-      break;
-    default:
-      System.err.println("Should not get here in maxValueEditText.setOnFocusChangeListener");
-      break;
-    }
-
-  }
-
-//  private void createDataTableItems() {
+//  private void setMinAndMaxFromCurrent(Float currentValueNumeric) {
+//    minValueNumeric = currentValueNumeric / 2;
+//    maxValueNumeric = currentValueNumeric + (currentValueNumeric - minValueNumeric);
+//    deltaValueNumeric = maxValueNumeric - minValueNumeric;
+//    ValueType test = currentSliderKey.getType(); 
 //
+//    switch (test) {
+//    case CURRENCY:
 //
+//      maxValueEditText.setText(Utility.displayCurrency(maxValueNumeric));
+//      minValueEditText.setText(Utility.displayCurrency(minValueNumeric));
+//      currentValueEditText.setText(Utility.displayCurrency(currentValueNumeric));
+//      break;
+//    case PERCENTAGE:
 //
-//    TextView dataTablePropertyName;
+//      maxValueEditText.setText(Utility.displayPercentage(maxValueNumeric));
+//      minValueEditText.setText(Utility.displayPercentage(minValueNumeric));
+//      currentValueEditText.setText(Utility.displayPercentage(currentValueNumeric));
+//      break;
+//    default:
+//      System.err.println("Should not get here in maxValueEditText.setOnFocusChangeListener");
+//      break;
+//    }
 //
-//    LayoutInflater inflater = (LayoutInflater)GraphActivity.this.getSystemService
-//        (Context.LAYOUT_INFLATER_SERVICE);
-//    ValueEnum[] dataTableValues = ValueEnum.values();
-//
-//    //initialize variable
-//    Set<ValueEnum> viewableDataTableRows = new HashSet<ValueEnum>();
-//    TableLayout dataTableLayout = (TableLayout) findViewById(R.id.dataTableLayout);      
-//    //This is where we create the TableLayout
-//    //set alternate colors by row
-//    boolean alternateColor = true;
-//    //main loop to create the data table rows
-//
-//    for (ValueEnum ve : dataTableValues) {
-//
-//      //set up the correspondence between the table index and the valueEnums
-//      TableRow newTableRow = (TableRow) inflater.inflate(R.layout.data_table_tablerow, null);
-//      valueToDataTableItemCorrespondence.put(ve, newTableRow);
-//
-//
-//      //make every row viewable by default
-//      viewableDataTableRows.add(ve);
-//
-//      if (alternateColor) {
-//        newTableRow.setBackgroundResource(R.color.data_table_row_color_alternate_a);
-//        alternateColor = ! alternateColor;
-//      } else {
-//        newTableRow.setBackgroundResource(R.color.data_table_row_color_alternate_b);
-//        alternateColor = ! alternateColor;
-//      }
-//
-//      dataTablePropertyName = (TextView) newTableRow.getChildAt(PROPERTY_LABEL_INDEX);
-//
-//      //the property name is always a string
-//      dataTablePropertyName.setText(ve.toString());
-//
-//      /* set value based on what type of number it is, or string if 
-//       * applicable if it is saved to database, that 
-//       * means we only need the first year, or 
-//       * "getValueAsFloat(key)" rather than "getValueAsFloat(key, year)"
-//       */
-//
-//      //set the map to find these later
-//  
-//
-//      dataTableLayout.addView(newTableRow);
-//    } //end of main for loop to set dataTableItems
-//
-//    dataController.setViewableDataTableRows(viewableDataTableRows);
 //  }
+
+  
 
   private void setDataTableItems(ValueEnum[] items, Integer year) {
     ValueEnum ve;
@@ -623,6 +535,7 @@ public class GraphActivity extends Activity {
 
 
   private class CalculateInBackgroundTask extends AsyncTask<Void, Integer, Void> {
+    Float newCurrentValue = 0.0f;
 
 
     @Override
