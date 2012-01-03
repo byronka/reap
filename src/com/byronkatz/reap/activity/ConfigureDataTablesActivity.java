@@ -122,6 +122,28 @@ public class ConfigureDataTablesActivity extends Activity {
     } //end of main for loop to set dataTableItems
   }
 
+  public void turnAllButtonsOn(View v) {
+    TableRow tempTableRow;
+    ToggleButton tempToggleButton;
+
+    for (Entry<ValueEnum, TableRow> entry  : valueToDataTableItemCorrespondence.entrySet()) {
+      tempTableRow = entry.getValue();
+      tempToggleButton = (ToggleButton) tempTableRow.getChildAt(GraphActivity.TOGGLE_BUTTON_INDEX);
+      tempToggleButton.setChecked(true);
+    }
+  }
+
+  public void turnAllButtonsOff(View v) {
+    TableRow tempTableRow;
+    ToggleButton tempToggleButton;
+
+    for (Entry<ValueEnum, TableRow> entry  : valueToDataTableItemCorrespondence.entrySet()) {
+      tempTableRow = entry.getValue();
+      tempToggleButton = (ToggleButton) tempTableRow.getChildAt(GraphActivity.TOGGLE_BUTTON_INDEX);
+      tempToggleButton.setChecked(false);
+    }
+  }
+
 
 
 

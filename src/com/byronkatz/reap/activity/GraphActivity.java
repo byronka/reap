@@ -55,18 +55,18 @@ public class GraphActivity extends Activity {
   ProgressDialog progressDialog;
 
   ArrayAdapter<ValueEnum> spinnerArrayAdapter;
-  Integer currentYearMaximum;
   Integer currentYearSelected;
   Button resetButton;
   Float minValueNumeric;
   Float maxValueNumeric;
   Float deltaValueNumeric;
   Float currentValueNumeric;
+  Float originalCurrentValueNumeric;
   boolean isConfigurationDisplayMode;
 
   TableLayout dataTableLayout;
 
-  public static final int DIVISIONS_OF_VALUE_SLIDER = 15;
+  public static final int DIVISIONS_OF_VALUE_SLIDER = 40;
   public static final int PROPERTY_LABEL_INDEX = 0;
   public static final int PROPERTY_VALUE_INDEX = 1;
   public static final int TOGGLE_BUTTON_INDEX = 2;
@@ -110,6 +110,8 @@ public class GraphActivity extends Activity {
     if (DataController.isDataChanged()) {
 
     currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
+    //following is for the reset button
+    originalCurrentValueNumeric = currentValueNumeric;
     minValueNumeric = GraphActivityFunctions.calculateMinFromCurrent(currentValueNumeric);
     maxValueNumeric = GraphActivityFunctions.calculateMaxFromCurrent(currentValueNumeric);
     deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
@@ -117,30 +119,34 @@ public class GraphActivity extends Activity {
     GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
     GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
     
-    valueSlider.setProgress(valueSlider.getMax() / 2);
-    DataController.setCurrentDivisionForReading(valueSlider.getMax() / 2);
+    Integer valueSliderMax = valueSlider.getMax();
+    valueSlider.setProgress(valueSliderMax / 2);
+    DataController.setCurrentDivisionForReading(valueSliderMax / 2);
 
     //necessary in case the user switches between loan types (15 vs. 30 year)
-    currentYearMaximum = Utility.getNumOfCompoundingPeriods();
-    timeSlider.setMax(currentYearMaximum);
-    timeSlider.setProgress(currentYearMaximum);
-    yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(timeSlider.getProgress()));
+    Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods();
+    GraphActivityFunctions.updateTimeSliderAfterChange (timeSlider, currentYearMaximum);
+    currentYearSelected = currentYearMaximum;
+    //necessary to do the following or else the Year will not update right after the change
+    yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(currentYearMaximum));
 
     calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
     }
   }
 
+
+  
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
     setContentView(R.layout.graph);
 
-    currentYearMaximum = Utility.getNumOfCompoundingPeriods();
+    Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods();
     setupValueSpinner();
-    setupTimeSlider();
-    setupValueSlider();
-    setupGraphs();
+    setupTimeSlider(currentYearMaximum);
+    setupValueSlider(currentYearMaximum);
+    setupGraphs(currentYearMaximum);
     setupCurrentValueFields();
     valueToDataTableItemCorrespondence = GraphActivityFunctions.createDataTableItems(GraphActivity.this);
     setupProgressGraphDialog();
@@ -150,7 +156,7 @@ public class GraphActivity extends Activity {
 
 
 
-  private void setupGraphs() {
+  private void setupGraphs(Integer currentYearMaximum) {
 
     GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
     currentYearSelected = currentYearMaximum;
@@ -170,7 +176,19 @@ public class GraphActivity extends Activity {
 
       @Override
       public void onClick(View v) {
+        
+        currentValueNumeric = originalCurrentValueNumeric;
+        
+        minValueNumeric = GraphActivityFunctions.calculateMinFromCurrent(currentValueNumeric);
+        maxValueNumeric = GraphActivityFunctions.calculateMaxFromCurrent(currentValueNumeric);
+        deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
+        GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
+        GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
+        GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
+        
         valueSlider.setProgress(valueSlider.getMax() / 2);
+        
+        calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
 
       }
     });
@@ -195,19 +213,27 @@ public class GraphActivity extends Activity {
           Utility.setSelectionOnView(v, currentSliderKey.getType());
         } else if (! hasFocus) {
           
-          currentValueNumeric = GraphActivityFunctions.parseEditText(currentValueEditText, currentSliderKey);
-          GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
-          dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
+          Float tempCurrentValue = GraphActivityFunctions.parseEditText(currentValueEditText, currentSliderKey);
 
+          if (tempCurrentValue > minValueNumeric && tempCurrentValue < maxValueNumeric) {
+            currentValueNumeric = tempCurrentValue;
+          
           minValueNumeric = GraphActivityFunctions.calculateMinFromCurrent(currentValueNumeric);
-          GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
-
           maxValueNumeric = GraphActivityFunctions.calculateMaxFromCurrent(currentValueNumeric);
+          deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
+
+          GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
+          GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
           GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
 
-          valueSlider.setProgress(valueSlider.getMax() / 2);
+          dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
+
+          valueSlider.setProgress(valueSlider.getMax() / 2);       
           calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
-          deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
+          }
+          
+          GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
+
         }
       }
     });
@@ -226,7 +252,6 @@ public class GraphActivity extends Activity {
 
     minValueEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
 
-      Float tempMinValue = 0.0f;
       
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
@@ -234,21 +259,21 @@ public class GraphActivity extends Activity {
         if (hasFocus) {
           Utility.setSelectionOnView(v, currentSliderKey.getType());
         } else if (! hasFocus) {
-          
-          tempMinValue = GraphActivityFunctions.parseEditText(minValueEditText, currentSliderKey);
-          GraphActivityFunctions.displayValue(minValueEditText, tempMinValue, currentSliderKey);
 
-          currentValueNumeric = GraphActivityFunctions.calculateCurrentFromMin(tempMinValue);
-          GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
-          dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
+          Float tempMinValue = GraphActivityFunctions.parseEditText(minValueEditText, currentSliderKey);
+          if (tempMinValue < currentValueNumeric) {
+            minValueNumeric = tempMinValue;
 
-          maxValueNumeric = GraphActivityFunctions.calculateMaxFromCurrent(currentValueNumeric);
-          GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
-          
           deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
-        }
-        
+          
+          GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
+          
+          calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
+          }
+          
+          GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
 
+        }
       }
     });
 
@@ -265,7 +290,6 @@ public class GraphActivity extends Activity {
 
     maxValueEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
 
-      Float tempMaxValue = 0.0f;
       
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
@@ -273,18 +297,18 @@ public class GraphActivity extends Activity {
         if (hasFocus) {
           Utility.setSelectionOnView(v, currentSliderKey.getType());
         } else if (! hasFocus) {
-          
-          tempMaxValue = GraphActivityFunctions.parseEditText(minValueEditText, currentSliderKey);
-          GraphActivityFunctions.displayValue(minValueEditText, tempMaxValue, currentSliderKey);
 
-          currentValueNumeric = GraphActivityFunctions.calculateCurrentFromMax(tempMaxValue);
-          GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
-          dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
-          
-          minValueNumeric = GraphActivityFunctions.calculateMinFromCurrent(currentValueNumeric);
-          GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
-          
+          Float tempMaxValue = GraphActivityFunctions.parseEditText(maxValueEditText, currentSliderKey);
+          if (tempMaxValue > currentValueNumeric) {
+            maxValueNumeric = tempMaxValue;
+
           deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
+          
+          GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
+          
+          calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
+          }
+          GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
         }
       }
     });
@@ -301,7 +325,7 @@ public class GraphActivity extends Activity {
   }
 
 
-  private void setupValueSlider() {
+  private void setupValueSlider(Integer currentYearMaximum) {
 
 
     valueSlider = (SeekBar) findViewById(R.id.valueSlider);
@@ -318,12 +342,12 @@ public class GraphActivity extends Activity {
 
       @Override
       public void onStopTrackingTouch(SeekBar seekBar) {
-
+        //empty - do nothing
       }
 
       @Override
       public void onStartTrackingTouch(SeekBar seekBar) {
-
+        //empty - do nothing
       }
 
       @Override
@@ -336,21 +360,8 @@ public class GraphActivity extends Activity {
         //set the value in the current value field:
         percentageSlid = (progress / (float) DIVISIONS_OF_VALUE_SLIDER);
         currentValueNumeric = minValueNumeric + (percentageSlid * deltaValueNumeric);
-
-        switch (currentSliderKey.getType()) {
-        case CURRENCY:
-          currentValueEditText.setText(Utility.displayCurrency(currentValueNumeric));
-          break;
-        case PERCENTAGE:
-          currentValueEditText.setText(Utility.displayPercentage(currentValueNumeric));
-          break;
-        case INTEGER:
-          currentValueEditText.setText(String.valueOf(currentValueNumeric));
-          break;
-        default:
-          System.err.println("Should not get here in valueSlider.setOnSeekBarChangeListener");
-          break;
-        }
+        dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
+        GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
 
         //set the values for use by the graphs and data tables
         GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
@@ -361,7 +372,7 @@ public class GraphActivity extends Activity {
 
   }
 
-  private void setupTimeSlider() {
+  private void setupTimeSlider(Integer currentYearMaximum) {
 
 
     timeSlider = (SeekBar) findViewById(R.id.timeSlider);
@@ -383,11 +394,12 @@ public class GraphActivity extends Activity {
       @Override
       public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if ( progress > 0 ) {
+          currentYearSelected = progress;
+          
           yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(progress));
 
-          currentYearSelected = progress;
-          setDataTableItems(dataTableItems, currentYearSelected);
-          GraphActivityFunctions.highlightCurrentYearOnGraph(currentYearSelected, GraphActivity.this);
+          setDataTableItems(dataTableItems, progress);
+          GraphActivityFunctions.highlightCurrentYearOnGraph(progress, GraphActivity.this);
           GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
         }
       }
@@ -399,6 +411,8 @@ public class GraphActivity extends Activity {
     Spinner valueSpinner = (Spinner) findViewById(R.id.valueSpinner);
 
     //  ArrayList<ValueEnum> spinnerValuesArray = new ArrayList<ValueEnum>(Arrays.asList(ValueEnum.values()));
+    //TODO: set up for loop to select Enums that don't vary by year and aren't strings
+    
     ValueEnum[] selectionValues = {
         ValueEnum.DOWN_PAYMENT,
         ValueEnum.ESTIMATED_RENT_PAYMENTS,
@@ -423,10 +437,21 @@ public class GraphActivity extends Activity {
           long arg3) {
         currentSliderKey = spinnerArrayAdapter.getItem(pos);
         currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
+        
+        //following is for the reset button
+        originalCurrentValueNumeric = currentValueNumeric;
+        
         minValueNumeric = GraphActivityFunctions.calculateMinFromCurrent(currentValueNumeric);
         maxValueNumeric = GraphActivityFunctions.calculateMaxFromCurrent(currentValueNumeric);
+        deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
+        GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
+        GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
+        GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
+        
+        valueSlider.setProgress(valueSlider.getMax() / 2);
+        
         calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
-
+        
       }
 
       @Override
@@ -437,39 +462,14 @@ public class GraphActivity extends Activity {
     }));
 
   }
-
-//  private void setMinAndMaxFromCurrent(Float currentValueNumeric) {
-//    minValueNumeric = currentValueNumeric / 2;
-//    maxValueNumeric = currentValueNumeric + (currentValueNumeric - minValueNumeric);
-//    deltaValueNumeric = maxValueNumeric - minValueNumeric;
-//    ValueType test = currentSliderKey.getType(); 
-//
-//    switch (test) {
-//    case CURRENCY:
-//
-//      maxValueEditText.setText(Utility.displayCurrency(maxValueNumeric));
-//      minValueEditText.setText(Utility.displayCurrency(minValueNumeric));
-//      currentValueEditText.setText(Utility.displayCurrency(currentValueNumeric));
-//      break;
-//    case PERCENTAGE:
-//
-//      maxValueEditText.setText(Utility.displayPercentage(maxValueNumeric));
-//      minValueEditText.setText(Utility.displayPercentage(minValueNumeric));
-//      currentValueEditText.setText(Utility.displayPercentage(currentValueNumeric));
-//      break;
-//    default:
-//      System.err.println("Should not get here in maxValueEditText.setOnFocusChangeListener");
-//      break;
-//    }
-//
-//  }
-
   
 
   private void setDataTableItems(ValueEnum[] items, Integer year) {
+    
     ValueEnum ve;
     TableRow tempTableRow;
     TextView tempDataTablePropertyValue;
+    
     for (Entry<ValueEnum, TableRow> entry : valueToDataTableItemCorrespondence.entrySet()) {
 
       ve = entry.getKey();
@@ -545,6 +545,10 @@ public class GraphActivity extends Activity {
 
     @Override
     protected void onPostExecute(Void result) {
+      
+      //restore the original current value to the array
+      dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
+      
       progressDialog.dismiss();
       GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
       setDataTableItems(dataTableItems, currentYearSelected);
@@ -558,6 +562,7 @@ public class GraphActivity extends Activity {
 
     @Override
     protected Void doInBackground(Void... arg0) {
+            
       for (int division = 0; division <= DIVISIONS_OF_VALUE_SLIDER; division++) {
         calculateEachDivision(division);
         publishProgress(division);

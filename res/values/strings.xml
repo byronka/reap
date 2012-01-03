@@ -25,6 +25,11 @@
 	<string name="currentValueLabel">Current Value</string>
 	<string name="resetButton">Reset</string>
 
+	<!-- configure data tables activity -->
+	<string name="allButtonsOnText">All buttons on</string>
+	<string name="allButtonsOffText">All buttons off</string>
+	
+
 	<!-- Data table -->
 	<string name="defaultZeroPercentage">0%</string>
 	<string name="defaultZeroCurrency">$0.00</string>

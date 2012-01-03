@@ -9,10 +9,6 @@ import java.util.Set;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.view.View;
-import android.widget.EditText;
-
-import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 public class DataController {
 

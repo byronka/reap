@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -210,6 +211,12 @@ public class GraphActivityFunctions {
     }
   }
 
+  static void updateTimeSliderAfterChange(SeekBar timeSlider, Integer currentYearMaximum) {
 
+
+    timeSlider.setMax(currentYearMaximum);
+    timeSlider.setProgress(currentYearMaximum);
+//    yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(timeSlider.getProgress()));
+  }
 
 }
