@@ -62,7 +62,6 @@ public class GraphActivity extends Activity {
   Float deltaValueNumeric;
   Float currentValueNumeric;
   Float originalCurrentValueNumeric;
-  boolean isConfigurationDisplayMode;
 
   TableLayout dataTableLayout;
 
