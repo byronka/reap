@@ -61,8 +61,6 @@ public class GraphActivity extends Activity {
   Float currentValueNumeric;
   Float originalCurrentValueNumeric;
 
-  TableLayout dataTableLayout;
-
   public static final int DIVISIONS_OF_VALUE_SLIDER = 40;
   public static final int PROPERTY_LABEL_INDEX = 0;
   public static final int PROPERTY_VALUE_INDEX = 1;
@@ -104,6 +102,8 @@ public class GraphActivity extends Activity {
   public void onResume() {
     super.onResume();
 
+    colorTheDataTables();
+    
     if (DataController.isDataChanged()) {
 
       currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
@@ -500,6 +500,12 @@ public class GraphActivity extends Activity {
     }
   }
 
+  private void colorTheDataTables() {
+    TableLayout dataTableLayout = (TableLayout) findViewById(R.id.dataTableLayout);
+    Set<ValueEnum> viewableDataTableRows = dataController.getViewableDataTableRows();
+    
+    GraphActivityFunctions.setColorDataTableRows(dataTableLayout, viewableDataTableRows, valueToDataTableItemCorrespondence);
+  }
 
 
   private class CalculateInBackgroundTask extends AsyncTask<Void, Integer, Void> {
@@ -522,6 +528,7 @@ public class GraphActivity extends Activity {
       progressDialog.dismiss();
       GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
       setDataTableItems(dataTableItems, currentYearSelected);
+
       DataController.setDataChanged(false);
     }
 

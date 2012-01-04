@@ -69,10 +69,10 @@ public class GraphActivityFunctions {
     progressDialog.setMax(GraphActivity.DIVISIONS_OF_VALUE_SLIDER);
     progressDialog.setMessage("Loading...");
     progressDialog.setCancelable(false);
-    
+
     return progressDialog;
   }
-  
+
   static void invalidateGraphs(Activity activity) {
 
     AnalysisGraph graph;
@@ -111,7 +111,7 @@ public class GraphActivityFunctions {
     TableLayout dataTableLayout = (TableLayout) graphActivity.findViewById(R.id.dataTableLayout);      
     //This is where we create the TableLayout
     //set alternate colors by row
-    boolean alternateColor = true;
+    //    boolean alternateColor = true;
     //main loop to create the data table rows
 
     for (ValueEnum ve : dataTableValues) {
@@ -124,13 +124,13 @@ public class GraphActivityFunctions {
       //make every row viewable by default
       viewableDataTableRows.add(ve);
 
-      if (alternateColor) {
-        newTableRow.setBackgroundResource(R.color.data_table_row_color_alternate_a);
-        alternateColor = ! alternateColor;
-      } else {
-        newTableRow.setBackgroundResource(R.color.data_table_row_color_alternate_b);
-        alternateColor = ! alternateColor;
-      }
+      //      if (alternateColor) {
+      //        newTableRow.setBackgroundResource(R.color.data_table_row_color_alternate_a);
+      //        alternateColor = ! alternateColor;
+      //      } else {
+      //        newTableRow.setBackgroundResource(R.color.data_table_row_color_alternate_b);
+      //        alternateColor = ! alternateColor;
+      //      }
 
       dataTablePropertyName = (TextView) newTableRow.getChildAt(GraphActivity.PROPERTY_LABEL_INDEX);
 
@@ -149,11 +149,37 @@ public class GraphActivityFunctions {
       dataTableLayout.addView(newTableRow);
     } //end of main for loop to set dataTableItems
 
+    setColorDataTableRows(dataTableLayout, viewableDataTableRows, valueToDataTableItemCorrespondence);
+
     dataController.setViewableDataTableRows(viewableDataTableRows);
     return valueToDataTableItemCorrespondence;
 
   }
 
+
+  static void setColorDataTableRows(TableLayout dataTableLayout, Set<ValueEnum> viewableDataTableRows,
+      Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence) {
+
+    boolean alternateColor = true;
+    TableRow tempRow = null;
+
+     for (int i = 0; i < dataTableLayout.getChildCount(); i++) {
+
+      tempRow = (TableRow) dataTableLayout.getChildAt(i);
+      
+      
+      if (tempRow.isShown()) {
+
+        if (alternateColor) {
+          tempRow.setBackgroundResource(R.color.data_table_row_color_alternate_a);
+          alternateColor = ! alternateColor;
+        } else {
+          tempRow.setBackgroundResource(R.color.data_table_row_color_alternate_b);
+          alternateColor = ! alternateColor;
+        }
+      }
+    }
+  }
 
   static Float calculateMaxFromCurrent(Float currentValueNumeric) {
 
@@ -175,7 +201,7 @@ public class GraphActivityFunctions {
   static Float calculateCurrentFromMin(Float minValueNumeric) {
     return minValueNumeric / DECREASE_PERCENTAGE;
   }
-  
+
   static Float calculateMinMaxDelta(Float minValueNumeric, Float maxValueNumeric) {
     return maxValueNumeric - minValueNumeric;
   }
@@ -183,7 +209,7 @@ public class GraphActivityFunctions {
 
   static Float parseEditText(EditText editText, ValueEnum currentSliderKey) {
     Float returnValue = 0.0f;
-    
+
     switch (currentSliderKey.getType()) {
     case CURRENCY:
       returnValue = Utility.parseCurrency(editText.getText().toString());
@@ -195,10 +221,10 @@ public class GraphActivityFunctions {
     default:
       break;
     }
-    
+
     return returnValue;
   }
-  
+
   static void displayValue(EditText editText, Float valueNumeric, 
       ValueEnum currentSliderKey) {
 
@@ -227,7 +253,7 @@ public class GraphActivityFunctions {
 
     timeSlider.setMax(currentYearMaximum);
     timeSlider.setProgress(currentYearMaximum);
-//    yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(timeSlider.getProgress()));
+    //    yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(timeSlider.getProgress()));
   }
 
 }
