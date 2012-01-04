@@ -52,7 +52,6 @@ public class GraphActivity extends Activity {
       .getInstance().getDataController();
   Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence;
 
-  ProgressDialog progressDialog;
 
   ArrayAdapter<ValueEnum> spinnerArrayAdapter;
   Integer currentYearSelected;
@@ -137,7 +136,6 @@ public class GraphActivity extends Activity {
     setupGraphs(currentYearMaximum);
     setupCurrentValueFields();
     valueToDataTableItemCorrespondence = GraphActivityFunctions.createDataTableItems(GraphActivity.this);
-    setupProgressGraphDialog();
     currentSliderKey = spinnerArrayAdapter.getItem(0);
     DataController.setDataChanged(true);
   }
@@ -301,14 +299,7 @@ public class GraphActivity extends Activity {
 
   }
 
-  private void setupProgressGraphDialog() {
-    progressDialog = new ProgressDialog(GraphActivity.this);
-    progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-    progressDialog.setMax(DIVISIONS_OF_VALUE_SLIDER);
-    progressDialog.setMessage("Loading...");
-    progressDialog.setCancelable(false);
-    progressDialog.show();
-  }
+
 
 
   private void setupValueSlider(Integer currentYearMaximum) {
@@ -514,6 +505,8 @@ public class GraphActivity extends Activity {
   private class CalculateInBackgroundTask extends AsyncTask<Void, Integer, Void> {
     Float newCurrentValue = 0.0f;
 
+    ProgressDialog progressDialog;
+
 
     @Override
     protected void onProgressUpdate(Integer... progress) {
@@ -534,6 +527,9 @@ public class GraphActivity extends Activity {
 
     @Override
     protected void onPreExecute() {
+      
+      progressDialog = GraphActivityFunctions.setupProgressGraphDialog(GraphActivity.this);
+
       progressDialog.show();
     }
 

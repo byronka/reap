@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -62,6 +63,16 @@ public class GraphActivityFunctions {
     }
   }
 
+  static ProgressDialog setupProgressGraphDialog(GraphActivity graphActivity) {
+    ProgressDialog progressDialog = new ProgressDialog(graphActivity);
+    progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+    progressDialog.setMax(GraphActivity.DIVISIONS_OF_VALUE_SLIDER);
+    progressDialog.setMessage("Loading...");
+    progressDialog.setCancelable(false);
+    
+    return progressDialog;
+  }
+  
   static void invalidateGraphs(Activity activity) {
 
     AnalysisGraph graph;
