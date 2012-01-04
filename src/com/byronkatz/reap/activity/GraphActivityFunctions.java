@@ -181,6 +181,30 @@ public class GraphActivityFunctions {
     }
   }
 
+  static void setDataTableValueByInteger(TextView t, ValueEnum ve, Integer year) {
+    if (ve.isVaryingByYear()) {
+      t.setText(String.valueOf(dataController.getValueAsFloat(ve, year).intValue()));
+    } else if (! ve.isVaryingByYear()) {
+      t.setText(String.valueOf(dataController.getValueAsFloat(ve).intValue()));
+    }
+  }
+  
+  static void setDataTableValueByCurrency(TextView t, ValueEnum ve, Integer year) {
+    if (ve.isVaryingByYear()) {
+      t.setText(Utility.displayCurrency(dataController.getValueAsFloat(ve, year)));
+    } else if (! ve.isVaryingByYear()) {
+      t.setText(Utility.displayCurrency(dataController.getValueAsFloat(ve)));
+    }
+  }
+
+  static void setDataTableValueByPercentage(TextView t, ValueEnum ve, Integer year) {
+    if (ve.isVaryingByYear()) {
+      t.setText(Utility.displayPercentage(dataController.getValueAsFloat(ve, year)));
+    } else if (! ve.isVaryingByYear()) {
+      t.setText(Utility.displayPercentage(dataController.getValueAsFloat(ve)));
+    }
+  }
+  
   static Float calculateMaxFromCurrent(Float currentValueNumeric) {
 
     return currentValueNumeric * INCREASE_PERCENTAGE;

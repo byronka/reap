@@ -115,13 +115,16 @@ public class GraphActivity extends Activity {
       GraphActivityFunctions.updateTimeSliderAfterChange (timeSlider, currentYearMaximum);
       currentYearSelected = currentYearMaximum;
       //necessary to do the following or else the Year will not update right after the change
-      yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(currentYearMaximum));
+      updateYearDisplayAtSeekBar(currentYearMaximum);
       
       setCurrentValueHeaderDataValues();
     }
   }
 
+  private void updateYearDisplayAtSeekBar(Integer year) {
+    yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(year));
 
+  }
 
   /** Called when the activity is first created. */
   @Override
@@ -373,7 +376,7 @@ public class GraphActivity extends Activity {
         if ( progress > 0 ) {
           currentYearSelected = progress;
 
-          yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(progress));
+          updateYearDisplayAtSeekBar(progress);
 
           setDataTableItems(dataTableItems, progress);
           GraphActivityFunctions.highlightCurrentYearOnGraph(progress, GraphActivity.this);
@@ -448,22 +451,14 @@ public class GraphActivity extends Activity {
       switch (ve.getType()) {
       case CURRENCY:
 
-        if (ve.isVaryingByYear()) {
-          tempDataTablePropertyValue.setText(Utility.displayCurrency(dataController.getValueAsFloat(ve, year)));
-        } else if (! ve.isVaryingByYear()) {
-          tempDataTablePropertyValue.setText(Utility.displayCurrency(dataController.getValueAsFloat(ve)));
-        }
-        break;
+        GraphActivityFunctions.setDataTableValueByCurrency(tempDataTablePropertyValue, ve, year);
 
+        break;
 
       case PERCENTAGE:
 
+        GraphActivityFunctions.setDataTableValueByPercentage(tempDataTablePropertyValue, ve, year);
 
-        if (ve.isVaryingByYear()) {
-          tempDataTablePropertyValue.setText(Utility.displayPercentage(dataController.getValueAsFloat(ve, year)));
-        } else if (! ve.isVaryingByYear()) {
-          tempDataTablePropertyValue.setText(Utility.displayPercentage(dataController.getValueAsFloat(ve)));
-        }
         break;
 
 
@@ -473,12 +468,8 @@ public class GraphActivity extends Activity {
         break;
 
       case INTEGER:
+        GraphActivityFunctions.setDataTableValueByInteger(tempDataTablePropertyValue, ve, year);
 
-        if (ve.isVaryingByYear()) {
-          tempDataTablePropertyValue.setText(String.valueOf(dataController.getValueAsFloat(ve, year).intValue()));
-        } else if (! ve.isVaryingByYear()) {
-          tempDataTablePropertyValue.setText(String.valueOf(dataController.getValueAsFloat(ve).intValue()));
-        }
         break;        
       default:
         break;
@@ -486,7 +477,9 @@ public class GraphActivity extends Activity {
     }
 
   }
+  
 
+  
   public void makeSelectedRowsVisible(Set<ValueEnum> values) {
     TableRow tempTableRow;
 
