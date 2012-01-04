@@ -139,8 +139,17 @@ public class GraphActivity extends Activity {
     setupGraphs(currentYearMaximum);
     setupCurrentValueFields();
     valueToDataTableItemCorrespondence = GraphActivityFunctions.createDataTableItems(GraphActivity.this);
+    initializeValueSpinnerToFirstValue();
+    setDataChangedToggle(true);
+  }
+  
+  private void initializeValueSpinnerToFirstValue() {
     currentSliderKey = spinnerArrayAdapter.getItem(0);
-    DataController.setDataChanged(true);
+
+  }
+  
+  private void setDataChangedToggle(boolean toggle) {
+    DataController.setDataChanged(toggle);
   }
 
 
@@ -522,7 +531,7 @@ public class GraphActivity extends Activity {
       GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
       setDataTableItems(dataTableItems, currentYearSelected);
 
-      DataController.setDataChanged(false);
+      setDataChangedToggle(false);
     }
 
     @Override
