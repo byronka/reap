@@ -110,8 +110,6 @@ public class GraphActivityFunctions {
     Set<ValueEnum> viewableDataTableRows = new HashSet<ValueEnum>();
     TableLayout dataTableLayout = (TableLayout) graphActivity.findViewById(R.id.dataTableLayout);      
     //This is where we create the TableLayout
-    //set alternate colors by row
-    //    boolean alternateColor = true;
     //main loop to create the data table rows
 
     for (ValueEnum ve : dataTableValues) {
@@ -124,27 +122,10 @@ public class GraphActivityFunctions {
       //make every row viewable by default
       viewableDataTableRows.add(ve);
 
-      //      if (alternateColor) {
-      //        newTableRow.setBackgroundResource(R.color.data_table_row_color_alternate_a);
-      //        alternateColor = ! alternateColor;
-      //      } else {
-      //        newTableRow.setBackgroundResource(R.color.data_table_row_color_alternate_b);
-      //        alternateColor = ! alternateColor;
-      //      }
-
       dataTablePropertyName = (TextView) newTableRow.getChildAt(GraphActivity.PROPERTY_LABEL_INDEX);
 
       //the property name is always a string
       dataTablePropertyName.setText(ve.toString());
-
-      /* set value based on what type of number it is, or string if 
-       * applicable if it is saved to database, that 
-       * means we only need the first year, or 
-       * "getValueAsFloat(key)" rather than "getValueAsFloat(key, year)"
-       */
-
-      //set the map to find these later
-
 
       dataTableLayout.addView(newTableRow);
     } //end of main for loop to set dataTableItems

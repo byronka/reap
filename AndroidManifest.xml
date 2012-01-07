@@ -15,13 +15,13 @@
 		<activity android:name=".reap.activity.GraphActivity" android:label="@string/entryScreenActivityTitleText"
 			android:screenOrientation="portrait">
 		</activity>
-		<activity android:name=".reap.activity.RentalActivity" android:theme="@android:style/Theme.Dialog"
+		<activity android:name=".reap.activity.RentalActivity" 
 			android:label="@string/rentalActivityTitleText"
 			android:screenOrientation="portrait" />
 		<activity android:name=".reap.activity.DataPagesActivity" android:theme="@android:style/Theme.Dialog"
 			android:label="@string/dataPagesActivityTitleText"
 			android:screenOrientation="portrait" />
-		<activity android:name=".reap.activity.AddressActivity" android:theme="@android:style/Theme.Dialog"
+		<activity android:name=".reap.activity.AddressActivity"
 			android:label="@string/addressActivityTitleText"
 			android:screenOrientation="portrait" />
 		<activity android:name=".reap.activity.ConfigureDataTablesActivity"
@@ -29,15 +29,14 @@
 			android:screenOrientation="portrait" />
 		<activity android:name=".reap.activity.FinancialEnvironmentActivity"
 			android:label="@string/financialEnvironmentActivityTitleText"
-			android:theme="@android:style/Theme.Dialog"
 			android:screenOrientation="portrait" />
-		<activity android:name=".reap.activity.LoanActivity" android:theme="@android:style/Theme.Dialog"
+		<activity android:name=".reap.activity.LoanActivity"
 			android:label="@string/loanActivityTitleText"
 			android:screenOrientation="portrait" />
-		<activity android:name=".reap.activity.SaleActivity" android:label="@string/saleActivityTitleText"
-			android:theme="@android:style/Theme.Dialog"
+		<activity android:name=".reap.activity.SaleActivity" 
+					android:label="@string/saleActivityTitleText"
 			android:screenOrientation="portrait" />
-		<activity android:name=".reap.activity.TaxesActivity" android:theme="@android:style/Theme.Dialog"
+		<activity android:name=".reap.activity.TaxesActivity"
 			android:label="@string/taxesActivityTitleText"
 			android:screenOrientation="portrait" />
 		<activity android:name=".reap.activity.SavedDataBrowserActivity"

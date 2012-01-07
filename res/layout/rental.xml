@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/overallRentalScrollView" android:layout_width="300dip"
+	android:id="@+id/overallRentalScrollView" android:layout_width="fill_parent"
 	android:layout_height="wrap_content">
 	<LinearLayout android:layout_height="wrap_content"
 		android:id="@+id/overallFinancialEnvironmentLinearLayout"
@@ -46,8 +46,8 @@
 			<TextView android:text="@string/vacancyAndCreditLossTitleText"
 				android:textAppearance="?android:attr/textAppearanceMedium"
 				android:layout_height="wrap_content" android:id="@+id/vacancyAndCreditLossTitle"
-				android:layout_width="132dp"></TextView>
-			<EditText android:layout_weight="1" android:layout_width="fill_parent"
+				android:layout_width="0dip" android:layout_weight="0.70" ></TextView>
+			<EditText android:layout_weight="0.30" android:layout_width="0dip"
 				android:id="@+id/vacancyAndCreditLossEditText"
 				android:layout_height="wrap_content" android:inputType="numberDecimal"></EditText>
 			<ImageButton android:id="@+id/vacancyAndCreditLossHelpButton"
@@ -57,11 +57,12 @@
 		</LinearLayout>
 
 		<LinearLayout android:layout_height="wrap_content"
-			android:layout_width="fill_parent" android:id="@+id/fixupCostsLinearLayout">
+			android:layout_width="fill_parent" android:id="@+id/fixupCostsLinearLayout" android:baselineAligned="false">
 			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_width="0dip" android:layout_height="wrap_content"
+				android:layout_weight="0.70"
 				android:id="@+id/fixupCostsTitle" android:text="@string/fixupCostsTitleText"></TextView>
-			<EditText android:layout_weight="1" android:layout_width="fill_parent"
+			<EditText android:layout_weight="0.30" android:layout_width="0dip"
 				android:layout_height="wrap_content" android:id="@+id/fixupCostsEditText"
 				android:inputType="numberDecimal"></EditText>
 			<ImageButton android:id="@+id/fixupCostsHelpButton"

@@ -54,41 +54,38 @@ public class AnalysisGraph extends View {
   private Paint highlightPaint;
   private int currentYearHighlighted;
   
-  /////////////////
   
-  Float functionMinY;
-  Float functionMaxY;
-  Integer functionMinX;
-  Integer functionMaxX;
-  Integer deltaGraphY;
-  Integer deltaGraphX;
-  Float deltaFunctionY;
-  Integer deltaFunctionX;
-  Float marginWidthX;
-  Float marginWidthY;
-  Float twiceXMargin;
-  Float twiceYMargin;
-  Float betweenMarginsOnX;
-  Float betweenMarginsOnY;
-  Float xGraphCoefficient;
-  Float yGraphCoefficient;
-  Float xGraphValue;
-  Float yGraphValue;
-  Integer xValue;
-  Float yValue;
-  String maxYString;
-  Float maxX;
-  Float maxY;
-  String minYString;
-  Float minX;
-  Float minY;
-  Integer widthOfGraph;
-  Float halfwayPoint;
-  Float bottom;
-  Float distFromMarginToXAxis;
-  Float startX;
-  Float stopX;
-  //////////////
+  private Float functionMinY;
+  private Float functionMaxY;
+  private Integer functionMinX;
+  private Integer functionMaxX;
+  private Integer deltaGraphY;
+  private Integer deltaGraphX;
+  private Float deltaFunctionY;
+  private Float marginWidthX;
+  private Float marginWidthY;
+  private Float twiceXMargin;
+  private Float twiceYMargin;
+  private Float betweenMarginsOnX;
+  private Float betweenMarginsOnY;
+  private Float xGraphCoefficient;
+  private Float yGraphCoefficient;
+  private Float xGraphValue;
+  private Float yGraphValue;
+  private Integer xValue;
+  private Float yValue;
+  private String maxYString;
+  private Float maxX;
+  private Float maxY;
+  private String minYString;
+  private Float minX;
+  private Float minY;
+  private Integer widthOfGraph;
+  private Float halfwayPoint;
+  private Float bottom;
+  private Float distFromMarginToXAxis;
+  private Float startX;
+  private Float stopX;
 
   //singleton with data
   private final DataController dataController = 

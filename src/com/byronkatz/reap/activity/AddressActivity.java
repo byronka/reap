@@ -33,7 +33,7 @@ public class AddressActivity extends Activity {
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
     setContentView(R.layout.address);
-
+    
     statePosition = new String[STATE_ARRAY_SIZE];
     streetAddressEditText = (EditText) findViewById(R.id.streetAddressEditText);
     cityEditText = (EditText) findViewById(R.id.cityEditText);
