@@ -53,7 +53,6 @@ public class GraphActivity extends Activity {
   Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence;
 
 
-  ArrayAdapter<ValueEnum> spinnerArrayAdapter;
   Integer currentYearSelected;
   Float minValueNumeric;
   Float maxValueNumeric;
@@ -139,14 +138,9 @@ public class GraphActivity extends Activity {
     setupGraphs(currentYearMaximum);
     setupCurrentValueFields();
     valueToDataTableItemCorrespondence = GraphActivityFunctions.createDataTableItems(GraphActivity.this);
-    initializeValueSpinnerToFirstValue();
     setDataChangedToggle(true);
   }
-  
-  private void initializeValueSpinnerToFirstValue() {
-    currentSliderKey = spinnerArrayAdapter.getItem(0);
 
-  }
   
   private void setDataChangedToggle(boolean toggle) {
     DataController.setDataChanged(toggle);
@@ -413,10 +407,12 @@ public class GraphActivity extends Activity {
         ValueEnum.YEARLY_INTEREST_RATE
     };
 
+    final ArrayAdapter<ValueEnum> spinnerArrayAdapter;
     spinnerArrayAdapter = new ArrayAdapter<ValueEnum>(this,
         android.R.layout.simple_spinner_dropdown_item, selectionValues);
     valueSpinner.setAdapter(spinnerArrayAdapter);
 
+    currentSliderKey = spinnerArrayAdapter.getItem(0);
 
     valueSpinner.setOnItemSelectedListener(
         new OnItemSelectedListenerWrapper(new OnItemSelectedListener() {

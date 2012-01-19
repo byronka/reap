@@ -38,7 +38,7 @@ public enum ValueEnum {
   YEARLY_PRINCIPAL_PAID ("yearly principal paid", ValueType.CURRENCY, false, true), 
   CURRENT_AMOUNT_OUTSTANDING ("current amount outstanding", ValueType.CURRENCY, false, true), 
   YEARLY_GENERAL_EXPENSES ("yearly general expenses", ValueType.CURRENCY, false, true), 
-  YEARLY_INCOME ("yearly taxable income", ValueType.CURRENCY, false, true),  
+  YEARLY_INCOME ("yearly rent income", ValueType.CURRENCY, false, true),  
   YEARLY_PROPERTY_TAX ("yearly property tax", ValueType.CURRENCY, false, true),  
   YEARLY_MORTGAGE_PAYMENT ("yearly mortgage payment", ValueType.CURRENCY, false, false),  
   MONTHLY_MORTGAGE_PAYMENT ("monthly mortgage payment", ValueType.CURRENCY, false, false),  

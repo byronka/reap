@@ -9,9 +9,6 @@ public class CalculatedVariables {
   public static final int YEARLY = 1;
   public static final int MONTHLY = 2;
   
-  
-  //// WORK AREA
-  
   private static Float firstDay = 0.0f;
   private static Float yearlyNPVSummation = 0.0f;
   private static Float yearlyAfterTaxCashFlow = 0.0f;
@@ -50,9 +47,6 @@ public class CalculatedVariables {
   private static Float accumulatedInterest = 0.0f;
   private static Float accumulatedInterestPreviousYear = 0.0f;
   private static Float yearlyInterestPaid = 0.0f;
-  ///WORK AREA END
-  
-  
 
   private static final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();

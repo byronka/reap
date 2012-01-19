@@ -14,10 +14,10 @@
 		<LinearLayout android:layout_height="wrap_content"
 			android:id="@+id/inflationRateLinearLayout" android:layout_width="fill_parent" android:baselineAligned="false">
 			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
-				android:layout_weight="0.70" android:layout_width="0dip"
+				android:layout_weight="0.60" android:layout_width="0dip"
 				android:layout_height="wrap_content" android:id="@+id/estimatedRentPaymentsTitle"
 				android:text="@string/estimatedRentPaymentsTitleText"></TextView>
-			<EditText android:layout_weight="0.30" android:layout_width="0dip"
+			<EditText android:layout_weight="0.40" android:layout_width="0dip"
 				android:layout_height="wrap_content" android:id="@+id/estimatedRentPaymentsEditText"
 				android:inputType="numberDecimal">
 			</EditText>
@@ -29,10 +29,10 @@
 		<LinearLayout android:layout_height="wrap_content"
 			android:id="@+id/realEstateAppreciationRateLinearLayout"
 			android:layout_width="fill_parent" android:baselineAligned="false">
-			<TextView android:textAppearance="?android:attr/textAppearanceMedium" android:layout_weight="0.70"
+			<TextView android:textAppearance="?android:attr/textAppearanceMedium" android:layout_weight="0.60"
 				android:layout_width="0dip" android:layout_height="wrap_content"
 				android:id="@+id/yearlyHomeInsuranceTitle" android:text="@string/yearlyHomeInsuranceTitleText"></TextView>
-			<EditText android:layout_weight="0.30" android:layout_width="0dip"
+			<EditText android:layout_weight="0.40" android:layout_width="0dip"
 				android:layout_height="wrap_content" android:id="@+id/yearlyHomeInsuranceEditText"
 				android:inputType="numberDecimal"></EditText>
 			<ImageButton android:id="@+id/yearlyHomeInsuranceHelpButton"
@@ -46,8 +46,8 @@
 			<TextView android:text="@string/vacancyAndCreditLossTitleText"
 				android:textAppearance="?android:attr/textAppearanceMedium"
 				android:layout_height="wrap_content" android:id="@+id/vacancyAndCreditLossTitle"
-				android:layout_width="0dip" android:layout_weight="0.70" ></TextView>
-			<EditText android:layout_weight="0.30" android:layout_width="0dip"
+				android:layout_width="0dip" android:layout_weight="0.60" ></TextView>
+			<EditText android:layout_weight="0.40" android:layout_width="0dip"
 				android:id="@+id/vacancyAndCreditLossEditText"
 				android:layout_height="wrap_content" android:inputType="numberDecimal"></EditText>
 			<ImageButton android:id="@+id/vacancyAndCreditLossHelpButton"
@@ -60,9 +60,9 @@
 			android:layout_width="fill_parent" android:id="@+id/fixupCostsLinearLayout" android:baselineAligned="false">
 			<TextView android:textAppearance="?android:attr/textAppearanceMedium"
 				android:layout_width="0dip" android:layout_height="wrap_content"
-				android:layout_weight="0.70"
+				android:layout_weight="0.60"
 				android:id="@+id/fixupCostsTitle" android:text="@string/fixupCostsTitleText"></TextView>
-			<EditText android:layout_weight="0.30" android:layout_width="0dip"
+			<EditText android:layout_weight="0.40" android:layout_width="0dip"
 				android:layout_height="wrap_content" android:id="@+id/fixupCostsEditText"
 				android:inputType="numberDecimal"></EditText>
 			<ImageButton android:id="@+id/fixupCostsHelpButton"
@@ -73,11 +73,11 @@
 		<LinearLayout android:layout_height="wrap_content"
 			android:layout_width="fill_parent" android:id="@+id/initialYearlyGeneralExpensesLinearLayout"
 			android:baselineAligned="false">
-			<TextView android:textAppearance="?android:attr/textAppearanceMedium" android:layout_weight="0.70" 
+			<TextView android:textAppearance="?android:attr/textAppearanceMedium" android:layout_weight="0.60" 
 				android:layout_height="wrap_content" android:id="@+id/TextView02"
 				android:text="@string/initialYearlyGeneralExpensesTitleText"
 				android:layout_width="0dp"></TextView>
-			<EditText android:layout_weight="0.30" android:layout_width="0dp"
+			<EditText android:layout_weight="0.40" android:layout_width="0dp"
 				android:layout_height="wrap_content" android:id="@+id/initialYearlyGeneralExpensesEditText"
 				android:inputType="numberDecimal"></EditText>
 			<ImageButton android:id="@+id/initialYearlyGeneralExpensesHelpButton"
@@ -88,11 +88,11 @@
 		<LinearLayout android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:id="@+id/requiredRateOfReturnLinearLayout" android:baselineAligned="false">
 			<TextView android:layout_width="0dip"
-				android:textAppearance="?android:attr/textAppearanceMedium" android:layout_weight="0.70"
+				android:textAppearance="?android:attr/textAppearanceMedium" android:layout_weight="0.60"
 				android:layout_height="wrap_content" android:id="@+id/requiredRateOfReturnTitle"
 				android:text="@string/requiredRateOfReturnTitleText"></TextView>
 			<EditText android:layout_width="0dip"
-				android:layout_weight="0.30" android:layout_height="wrap_content"
+				android:layout_weight="0.40" android:layout_height="wrap_content"
 				android:id="@+id/requiredRateOfReturnEditText" android:inputType="numberDecimal"></EditText>
 			<ImageButton android:id="@+id/requiredRateOfReturnHelpButton"
 				android:layout_height="fill_parent" android:src="@drawable/question_mark"
