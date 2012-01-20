@@ -45,6 +45,7 @@ public class DataController {
     numericMap = new HashMap<ValueEnum, Float> ();    
     Map<ValueEnum, String> textFieldValues = new HashMap<ValueEnum, String> ();
 
+    numericMap.put(ValueEnum.PRIVATE_MORTGAGE_INSURANCE, 0f);
     numericMap.put(ValueEnum.TOTAL_PURCHASE_VALUE,0f);
     numericMap.put(ValueEnum.YEARLY_INTEREST_RATE, 0f);
     numericMap.put(ValueEnum.BUILDING_VALUE, 0f);

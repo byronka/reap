@@ -1,6 +1,9 @@
 package com.byronkatz.reap.activity;
 
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -31,13 +34,13 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 import com.byronkatz.R;
-
 import com.byronkatz.reap.general.CalculatedVariables;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.OnItemSelectedListenerWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
+import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 public class GraphActivity extends Activity {
 
@@ -46,14 +49,12 @@ public class GraphActivity extends Activity {
   SeekBar valueSlider;
   SeekBar timeSlider;
   TextView yearDisplayAtSeekBar;
-  EditText minValueEditText;
-  EditText maxValueEditText;
+//  EditText minValueEditText;
+//  EditText maxValueEditText;
   static final DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
   Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence;
 
-
-  Integer currentYearSelected;
   Float minValueNumeric;
   Float maxValueNumeric;
   Float deltaValueNumeric;
@@ -112,7 +113,7 @@ public class GraphActivity extends Activity {
       //necessary in case the user switches between loan types (15 vs. 30 year)
       Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods();
       GraphActivityFunctions.updateTimeSliderAfterChange (timeSlider, currentYearMaximum);
-      currentYearSelected = currentYearMaximum;
+//      currentYearSelected = currentYearMaximum;
       //necessary to do the following or else the Year will not update right after the change
       updateYearDisplayAtSeekBar(currentYearMaximum);
       
@@ -151,12 +152,15 @@ public class GraphActivity extends Activity {
   private void setupGraphs(Integer currentYearMaximum) {
 
     GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
-    currentYearSelected = currentYearMaximum;
-    GraphActivityFunctions.highlightCurrentYearOnGraph(currentYearSelected, GraphActivity.this);
+//    currentYearSelected = currentYearMaximum;
+    GraphActivityFunctions.highlightCurrentYearOnGraph(currentYearMaximum, GraphActivity.this);
 
   }
 
   private void setCurrentValueHeaderDataValues() {
+    EditText maxValueEditText = (EditText) findViewById (R.id.maxValueEditText);
+    EditText minValueEditText = (EditText) findViewById (R.id.minValueEditText);
+
 
     minValueNumeric = GraphActivityFunctions.calculateMinFromCurrent(currentValueNumeric);
     maxValueNumeric = GraphActivityFunctions.calculateMaxFromCurrent(currentValueNumeric);
@@ -181,8 +185,8 @@ public class GraphActivity extends Activity {
 
     resetButton          = (Button)   findViewById(R.id.resetButton);
     currentValueEditText = (EditText) findViewById(R.id.currentValueEditText);
-    minValueEditText     = (EditText) findViewById(R.id.minValueEditText);
-    maxValueEditText     = (EditText) findViewById(R.id.maxValueEditText);
+    final EditText minValueEditText     = (EditText) findViewById(R.id.minValueEditText);
+    final EditText maxValueEditText     = (EditText) findViewById(R.id.maxValueEditText);
 
     resetButton.setOnClickListener(new OnClickListener() {
 
@@ -316,9 +320,9 @@ public class GraphActivity extends Activity {
     valueSlider.setProgress(valueSlider.getMax() / 2);
 
     yearDisplayAtSeekBar = (TextView) findViewById(R.id.yearLabel);
-    yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(currentYearMaximum));
+    updateYearDisplayAtSeekBar(currentYearMaximum);
 
-
+    
     valueSlider.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
       Float percentageSlid;
@@ -346,8 +350,10 @@ public class GraphActivity extends Activity {
         dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
         GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
 
-        //set the values for use by the graphs and data tables
         GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
+        
+        SeekBar timeSlider = (SeekBar) findViewById(R.id.timeSlider);
+        Integer currentYearSelected = timeSlider.getProgress();
         setDataTableItems(dataTableItems, currentYearSelected);
 
       }
@@ -377,7 +383,7 @@ public class GraphActivity extends Activity {
       @Override
       public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if ( progress > 0 ) {
-          currentYearSelected = progress;
+//          currentYearSelected = progress;
 
           updateYearDisplayAtSeekBar(progress);
 
@@ -393,19 +399,21 @@ public class GraphActivity extends Activity {
 
     Spinner valueSpinner = (Spinner) findViewById(R.id.valueSpinner);
 
-    //  ArrayList<ValueEnum> spinnerValuesArray = new ArrayList<ValueEnum>(Arrays.asList(ValueEnum.values()));
-    //TODO: set up for loop to select Enums that don't vary by year and aren't strings
 
-    ValueEnum[] selectionValues = {
-        ValueEnum.DOWN_PAYMENT,
-        ValueEnum.ESTIMATED_RENT_PAYMENTS,
-        ValueEnum.FIX_UP_COSTS,
-        ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES,
-        ValueEnum.REAL_ESTATE_APPRECIATION_RATE,
-        ValueEnum.REQUIRED_RATE_OF_RETURN,
-        ValueEnum.TOTAL_PURCHASE_VALUE,
-        ValueEnum.YEARLY_INTEREST_RATE
-    };
+    List<ValueEnum> selectionValues = new ArrayList<ValueEnum>();
+    
+    ValueEnum.ValueType vt;
+    for (ValueEnum v : ValueEnum.values()) {
+      
+      vt = v.getType();
+      if (!v.isVaryingByYear() && !(vt == ValueType.STRING)) {
+        selectionValues.add(v);
+      }
+    }
+    
+    //sort the list
+    //this will sort by how it is listed in the ValueEnum class.
+    Collections.sort(selectionValues);
 
     final ArrayAdapter<ValueEnum> spinnerArrayAdapter;
     spinnerArrayAdapter = new ArrayAdapter<ValueEnum>(this,
@@ -525,6 +533,9 @@ public class GraphActivity extends Activity {
 
       progressDialog.dismiss();
       GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
+      
+      SeekBar timeSlider = (SeekBar) findViewById(R.id.timeSlider);
+      Integer currentYearSelected = timeSlider.getProgress();
       setDataTableItems(dataTableItems, currentYearSelected);
 
       setDataChangedToggle(false);

@@ -143,6 +143,12 @@
 		incurred in addition to the down payment. This may include home
 		inspection, title insurance, surveying costs, or discount point costs.
 	</string>
+	
+	<string name="privateMortgageInsuranceTitleText">Private Mortgage Insurance cost per month</string>
+	<string name="privateMortgageInsuranceDescriptionText">This is the amount charged by lenders to 
+		offset their costs in the case of a default on a loan.  It it typically charged when
+		the borrower puts up less than 20% of their own money as a down payment (That is the
+		assumed amount in this program)</string>
 
 	<!-- sale expenses -->
 	<string name="generalSaleExpensesDescriptionText">These are the expenses incurred during the sale of

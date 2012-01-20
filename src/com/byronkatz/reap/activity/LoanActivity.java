@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import com.byronkatz.R;
+import com.byronkatz.reap.general.CalculatedVariables;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.Utility;
@@ -24,7 +25,7 @@ public class LoanActivity extends Activity {
 
 
   private EditText yearlyInterestRate;
-  //  private ImageButton yearlyInterestRateHelpButton;
+  private EditText privateMortgageInsurance;
   private EditText downPayment;
   private Spinner loanTerm;
   private EditText totalPurchasePrice;
@@ -48,6 +49,7 @@ public class LoanActivity extends Activity {
     downPayment        = (EditText)findViewById(R.id.downPaymentEditText);
     loanTerm           = (Spinner) findViewById(R.id.numOfCompoundingPeriodsSpinner);
     totalPurchasePrice = (EditText)findViewById(R.id.totalPurchasePriceEditText);
+    privateMortgageInsurance = (EditText) findViewById(R.id.privateMortgageInsuranceEditText);
     closingCosts       = (EditText)findViewById(R.id.closingCostsEditText);
     pmiButton          = (Button)findViewById(R.id.calcPMIDownPaymentButton);
 
@@ -65,7 +67,7 @@ public class LoanActivity extends Activity {
       public void onClick(View v) {
         Float totalPurchasevalue = 
             Utility.parseCurrency(totalPurchasePrice.getText().toString());
-        Float pmiDownPayment = totalPurchasevalue * 0.20f;
+        Float pmiDownPayment = totalPurchasevalue * CalculatedVariables.PMI_PERCENTAGE;
         String pmiDownPaymentText = Utility.displayCurrency(pmiDownPayment);
         downPayment.setText(pmiDownPaymentText);
 
@@ -201,6 +203,30 @@ public class LoanActivity extends Activity {
             R.string.numOfCompoundingPeriodsTitleText, LoanActivity.this);
       }
     });
+    
+    privateMortgageInsurance.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          Utility.setSelectionOnView(v, ValueType.CURRENCY);
+        }     
+      }
+    });
+    
+    ImageButton privateMortgageInsuranceHelpButton = 
+        (ImageButton)findViewById(R.id.numOfCompoundingPeriodsHelpButton);
+    privateMortgageInsuranceHelpButton.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        Utility.showHelpDialog(
+            R.string.privateMortgageInsuranceDescriptionText, 
+            R.string.privateMortgageInsuranceTitleText, LoanActivity.this);
+      }
+    });
+    
+    
   }
 
 
@@ -248,6 +274,9 @@ public class LoanActivity extends Activity {
 
     tempVariable = dataController.getValueAsFloat(ValueEnum.CLOSING_COSTS);
     closingCosts.setText(Utility.displayCurrency(tempVariable));
+    
+    tempVariable = dataController.getValueAsFloat(ValueEnum.PRIVATE_MORTGAGE_INSURANCE);
+    privateMortgageInsurance.setText(Utility.displayCurrency(tempVariable));
   }
 
   @Override
@@ -268,6 +297,10 @@ public class LoanActivity extends Activity {
 
     key = ValueEnum.CLOSING_COSTS;
     value = Utility.parseCurrency(closingCosts.getText().toString());
+    dataController.setValueAsFloat(key, value);
+    
+    key = ValueEnum.PRIVATE_MORTGAGE_INSURANCE;
+    value = Utility.parseCurrency(privateMortgageInsurance.getText().toString());
     dataController.setValueAsFloat(key, value);
   }
 

@@ -1,14 +1,19 @@
 package com.byronkatz.reap.general;
 
+import com.byronkatz.reap.activity.LoanActivity;
+
 
 
 public class CalculatedVariables {
 
   public static final int NUM_OF_MONTHS_IN_YEAR = 12;
   public static final Float RESIDENTIAL_DEPRECIATION_YEARS = 27.5f;
+  public static final Float TAX_ON_CAPITAL_GAINS = 0.15f;
   public static final int YEARLY = 1;
   public static final int MONTHLY = 2;
-  
+  public static final Float PMI_PERCENTAGE = 0.20f;
+
+  private static Float monthWhenPmiStopsApplying = 0.0f;
   private static Float firstDay = 0.0f;
   private static Float yearlyNPVSummation = 0.0f;
   private static Float yearlyAfterTaxCashFlow = 0.0f;
@@ -52,10 +57,12 @@ public class CalculatedVariables {
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
   //calculated variables
-//  private static Map<Integer, Map<String, Float>> calculatedValuesMap;
-//  private static Map<String, Float> calculatedContentValues;
+  //  private static Map<Integer, Map<String, Float>> calculatedValuesMap;
+  //  private static Map<String, Float> calculatedContentValues;
 
   //input variables
+  private static Float monthlyPrivateMortgageInsurance;
+  private static Float yearlyPrivateMortgageInsurance;
   private static Float totalPurchaseValue;
   private static Float estimatedRentPayments;
   private static Float realEstateAppreciationRate;
@@ -75,8 +82,8 @@ public class CalculatedVariables {
   private static Float principalOwed;
   private static Float initialYearlyPropertyTax;
   private static Float monthlyInterestRate;
-  
-  
+
+
 
   private static void assignVariables() {
     firstDay = 0.0f;
@@ -117,7 +124,8 @@ public class CalculatedVariables {
     accumulatedInterest = 0.0f;
     accumulatedInterestPreviousYear = 0.0f;
     yearlyInterestPaid = 0.0f;
-    
+
+    monthlyPrivateMortgageInsurance = dataController.getValueAsFloat(ValueEnum.PRIVATE_MORTGAGE_INSURANCE);
     totalPurchaseValue = dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE);
     estimatedRentPayments = dataController.getValueAsFloat(ValueEnum.ESTIMATED_RENT_PAYMENTS);
     realEstateAppreciationRate = dataController.getValueAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE);
@@ -139,16 +147,23 @@ public class CalculatedVariables {
     monthlyInterestRate = yearlyInterestRate / NUM_OF_MONTHS_IN_YEAR;
     firstDay = downPayment + generalSaleExpenses + fixupCosts;
     yearlyDepreciation = buildingValue / RESIDENTIAL_DEPRECIATION_YEARS;
+    
+    monthWhenPmiStopsApplying = 
+        getMonthWhenPMIstopsApplying(numOfCompoundingPeriods, totalPurchaseValue);
+    
     monthlyMortgagePayment = getMortgagePayment();
     yearlyMortgagePayment = NUM_OF_MONTHS_IN_YEAR * monthlyMortgagePayment;
+    
     dataController.setValueAsFloat(ValueEnum.MONTHLY_MORTGAGE_PAYMENT, monthlyMortgagePayment);
     dataController.setValueAsFloat(ValueEnum.YEARLY_MORTGAGE_PAYMENT, yearlyMortgagePayment);
+    
     yearlyCompoundingPeriods = numOfCompoundingPeriods / NUM_OF_MONTHS_IN_YEAR;
     monthlyRealEstateAppreciationRate = realEstateAppreciationRate / NUM_OF_MONTHS_IN_YEAR;
     monthlyRequiredRateOfReturn = requiredRateOfReturn / NUM_OF_MONTHS_IN_YEAR;
     monthlyInflationRate = inflationRate / NUM_OF_MONTHS_IN_YEAR;
     grossYearlyIncome = estimatedRentPayments * NUM_OF_MONTHS_IN_YEAR;
     netYearlyIncome = (1 - vacancyRate) * grossYearlyIncome;
+
   }
 
   public static void crunchCalculation() {
@@ -164,26 +179,40 @@ public class CalculatedVariables {
 
     for (int year = 1; year <= yearlyCompoundingPeriods; year++) {
 
-      
+      if ((year - monthWhenPmiStopsApplying) < 0.0f ) {     
+        yearlyPrivateMortgageInsurance = monthlyPrivateMortgageInsurance * NUM_OF_MONTHS_IN_YEAR;
+        dataController.setValueAsFloat(ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, yearlyPrivateMortgageInsurance);
+      } else if ((year - monthWhenPmiStopsApplying) > 0.0f && 
+                 (year - monthWhenPmiStopsApplying) < 1.0f) {
+        yearlyPrivateMortgageInsurance = monthlyPrivateMortgageInsurance *
+            (year - monthWhenPmiStopsApplying);
+        dataController.setValueAsFloat(ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, yearlyPrivateMortgageInsurance);
+
+      }
+
       // cashflowIn - cashflowOut
       monthCPModifier = year * NUM_OF_MONTHS_IN_YEAR;
       prevYearMonthCPModifier = (year - 1) * NUM_OF_MONTHS_IN_YEAR;
       monthlyREARIncrementer = (float) Math.pow(1 + monthlyRealEstateAppreciationRate,prevYearMonthCPModifier);
+
       yearlyPropertyTax = initialYearlyPropertyTax * monthlyREARIncrementer; 
       dataController.setValueAsFloat(ValueEnum.YEARLY_PROPERTY_TAX, yearlyPropertyTax, year);
 
       yearlyIncome = netYearlyIncome * monthlyREARIncrementer; 
       dataController.setValueAsFloat(ValueEnum.YEARLY_INCOME, yearlyIncome, year);
-      
+
       monthlyIRIncrementer = (float) Math.pow(1 + monthlyInflationRate, prevYearMonthCPModifier); 
       yearlyGeneralExpenses = initialYearlyGeneralExpenses * monthlyIRIncrementer;
       dataController.setValueAsFloat(ValueEnum.YEARLY_GENERAL_EXPENSES, yearlyGeneralExpenses, year);
 
-      yearlyOutlay = yearlyPropertyTax + yearlyMortgagePayment + yearlyGeneralExpenses;
+      
+      
+      yearlyOutlay = yearlyPropertyTax + yearlyMortgagePayment + yearlyGeneralExpenses + yearlyPrivateMortgageInsurance;
       yearlyBeforeTaxCashFlow = yearlyIncome - yearlyOutlay;
 
       //next year's yearlyAmountOutstanding minus this year's
       pastYearAmountOutstanding = getPrincipalOutstandingAtPoint(prevYearMonthCPModifier);
+
       currentYearAmountOutstanding = getPrincipalOutstandingAtPoint(monthCPModifier);
       dataController.setValueAsFloat(ValueEnum.CURRENT_AMOUNT_OUTSTANDING,
           currentYearAmountOutstanding, year);
@@ -192,11 +221,12 @@ public class CalculatedVariables {
       dataController.setValueAsFloat(ValueEnum.YEARLY_PRINCIPAL_PAID, yearlyPrincipalPaid, year);
 
       taxableIncome = (yearlyBeforeTaxCashFlow + yearlyPrincipalPaid - yearlyDepreciation);
-      
+
       // doesn't make sense to tax negative income...but should this be used to offset taxes? hmmm...
       if (taxableIncome <= 0) {
         taxableIncome = 0.0f;
       }
+
       dataController.setValueAsFloat(ValueEnum.TAXABLE_INCOME, taxableIncome, year);
 
       yearlyTaxes = taxableIncome * marginalTaxRate;
@@ -225,7 +255,7 @@ public class CalculatedVariables {
       //How many years do I take depreciation?
       accumulatingDepreciation = yearlyDepreciation * year;
       taxesDueAtSale = (projectedValueOfHomeAtSale - totalPurchaseValue + accumulatingDepreciation)
-          * marginalTaxRate;
+          * TAX_ON_CAPITAL_GAINS;
       dataController.setValueAsFloat(ValueEnum.TAXES_DUE_AT_SALE, taxesDueAtSale, year);
 
       ater = projectedValueOfHomeAtSale - brokerCut - 
@@ -237,10 +267,10 @@ public class CalculatedVariables {
 
       //add this year's NPV to the graph data object
       dataController.setValueAsFloat(ValueEnum.NPV, npvAccumulator, year);
-      
+
       accumulatedInterest = getAccumulatedInterestPaymentsAtPoint(monthCPModifier);
       dataController.setValueAsFloat(ValueEnum.ACCUM_INTEREST, accumulatedInterest, year);
-      
+
       accumulatedInterestPreviousYear = getAccumulatedInterestPaymentsAtPoint(prevYearMonthCPModifier);
       yearlyInterestPaid = accumulatedInterest - accumulatedInterestPreviousYear;
       dataController.setValueAsFloat(ValueEnum.YEARLY_INTEREST_PAID, yearlyInterestPaid, year);
@@ -249,8 +279,22 @@ public class CalculatedVariables {
 
   }
 
- 
 
+  public static Float getMonthWhenPMIstopsApplying(int numOfCompoundingPeriods, 
+      Float totalPurchaseValue) {
+    //TODO - come up with a function for this rather than a loop.
+
+    Float pointAtWhichPmiIsNoLongerApplied = (1 - PMI_PERCENTAGE) * totalPurchaseValue;
+
+    for (int i = 0; i < numOfCompoundingPeriods; i++) {
+
+      if (getPrincipalOutstandingAtPoint(i) < pointAtWhichPmiIsNoLongerApplied) {
+        return (float) (i / NUM_OF_MONTHS_IN_YEAR);
+      }
+    }
+    
+    return 0.0f;
+  }
 
   public static Float getMortgagePayment() {
     Float a = (monthlyInterestRate + 1);
