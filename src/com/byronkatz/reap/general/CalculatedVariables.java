@@ -124,6 +124,7 @@ public class CalculatedVariables {
     accumulatedInterest = 0.0f;
     accumulatedInterestPreviousYear = 0.0f;
     yearlyInterestPaid = 0.0f;
+    yearlyPrivateMortgageInsurance = 0.0f;
 
     monthlyPrivateMortgageInsurance = dataController.getValueAsFloat(ValueEnum.PRIVATE_MORTGAGE_INSURANCE);
     totalPurchaseValue = dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE);
@@ -181,12 +182,17 @@ public class CalculatedVariables {
 
       if ((year - monthWhenPmiStopsApplying) < 0.0f ) {     
         yearlyPrivateMortgageInsurance = monthlyPrivateMortgageInsurance * NUM_OF_MONTHS_IN_YEAR;
-        dataController.setValueAsFloat(ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, yearlyPrivateMortgageInsurance);
+        dataController.setValueAsFloat(ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, yearlyPrivateMortgageInsurance, year);
       } else if ((year - monthWhenPmiStopsApplying) > 0.0f && 
                  (year - monthWhenPmiStopsApplying) < 1.0f) {
         yearlyPrivateMortgageInsurance = monthlyPrivateMortgageInsurance *
             (year - monthWhenPmiStopsApplying);
-        dataController.setValueAsFloat(ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, yearlyPrivateMortgageInsurance);
+        dataController.setValueAsFloat(ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, yearlyPrivateMortgageInsurance, year);
+
+      } else {
+
+        yearlyPrivateMortgageInsurance = 0.0f;
+        dataController.setValueAsFloat(ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, yearlyPrivateMortgageInsurance, year);
 
       }
 

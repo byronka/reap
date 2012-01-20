@@ -47,6 +47,7 @@ public class DatabaseAdapter {
       ValueEnum.GENERAL_SALE_EXPENSES.name()              + " REAL"    +     ", " +
       ValueEnum.REQUIRED_RATE_OF_RETURN.name()            + " REAL"    +     ", " +
       ValueEnum.FIX_UP_COSTS.name()                       + " REAL"    +     ","  +
+      ValueEnum.PRIVATE_MORTGAGE_INSURANCE.name()         + " REAL"    +     ","  +
       ValueEnum.CLOSING_COSTS.name()                      + " REAL"    +
       		" );";
 
