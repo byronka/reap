@@ -365,6 +365,7 @@ public class GraphActivity extends Activity {
 
 
     timeSlider = (SeekBar) findViewById(R.id.timeSlider);
+    ///////////////WORK ZONE WORK ZONE
     timeSlider.setMax(currentYearMaximum);
     timeSlider.setProgress(timeSlider.getMax());
 
@@ -382,15 +383,13 @@ public class GraphActivity extends Activity {
 
       @Override
       public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        if ( progress > 0 ) {
-//          currentYearSelected = progress;
-
+//////////////////////WORK ZONE WORK ZONE
           updateYearDisplayAtSeekBar(progress);
 
           setDataTableItems(dataTableItems, progress);
           GraphActivityFunctions.highlightCurrentYearOnGraph(progress, GraphActivity.this);
           GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
-        }
+        
       }
     });
   }
@@ -450,6 +449,7 @@ public class GraphActivity extends Activity {
 
   private void setDataTableItems(ValueEnum[] items, Integer year) {
 
+    
     ValueEnum ve;
     TableRow tempTableRow;
     TextView tempDataTablePropertyValue;

@@ -1,8 +1,5 @@
 package com.byronkatz.reap.general;
 
-import com.byronkatz.reap.activity.LoanActivity;
-
-
 
 public class CalculatedVariables {
 
@@ -13,7 +10,6 @@ public class CalculatedVariables {
   public static final int MONTHLY = 2;
   public static final Float PMI_PERCENTAGE = 0.20f;
 
-  private static Float monthWhenPmiStopsApplying = 0.0f;
   private static Float firstDay = 0.0f;
   private static Float yearlyNPVSummation = 0.0f;
   private static Float yearlyAfterTaxCashFlow = 0.0f;
@@ -149,9 +145,6 @@ public class CalculatedVariables {
     firstDay = downPayment + generalSaleExpenses + fixupCosts;
     yearlyDepreciation = buildingValue / RESIDENTIAL_DEPRECIATION_YEARS;
     
-    monthWhenPmiStopsApplying = 
-        getMonthWhenPMIstopsApplying(numOfCompoundingPeriods, totalPurchaseValue);
-    
     monthlyMortgagePayment = getMortgagePayment();
     yearlyMortgagePayment = NUM_OF_MONTHS_IN_YEAR * monthlyMortgagePayment;
     
@@ -180,22 +173,9 @@ public class CalculatedVariables {
 
     for (int year = 1; year <= yearlyCompoundingPeriods; year++) {
 
-      if ((year - monthWhenPmiStopsApplying) < 0.0f ) {     
-        yearlyPrivateMortgageInsurance = monthlyPrivateMortgageInsurance * NUM_OF_MONTHS_IN_YEAR;
-        dataController.setValueAsFloat(ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, yearlyPrivateMortgageInsurance, year);
-      } else if ((year - monthWhenPmiStopsApplying) > 0.0f && 
-                 (year - monthWhenPmiStopsApplying) < 1.0f) {
-        yearlyPrivateMortgageInsurance = monthlyPrivateMortgageInsurance *
-            (year - monthWhenPmiStopsApplying);
-        dataController.setValueAsFloat(ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, yearlyPrivateMortgageInsurance, year);
-
-      } else {
-
-        yearlyPrivateMortgageInsurance = 0.0f;
-        dataController.setValueAsFloat(ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, yearlyPrivateMortgageInsurance, year);
-
-      }
-
+      yearlyPrivateMortgageInsurance = getYearlyPmi(year, totalPurchaseValue);
+      dataController.setValueAsFloat(ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, yearlyPrivateMortgageInsurance, year);
+      
       // cashflowIn - cashflowOut
       monthCPModifier = year * NUM_OF_MONTHS_IN_YEAR;
       prevYearMonthCPModifier = (year - 1) * NUM_OF_MONTHS_IN_YEAR;
@@ -286,20 +266,22 @@ public class CalculatedVariables {
   }
 
 
-  public static Float getMonthWhenPMIstopsApplying(int numOfCompoundingPeriods, 
+  public static Float getYearlyPmi(int year, 
       Float totalPurchaseValue) {
     //TODO - come up with a function for this rather than a loop.
+    
+    Float pmiThisYear = 0.0f;
+    int begOfYear = (year - 1) * NUM_OF_MONTHS_IN_YEAR;
+    int endOfYear = year * NUM_OF_MONTHS_IN_YEAR;
 
-    Float pointAtWhichPmiIsNoLongerApplied = (1 - PMI_PERCENTAGE) * totalPurchaseValue;
+    for (int i = begOfYear; i < endOfYear; i++) {
 
-    for (int i = 0; i < numOfCompoundingPeriods; i++) {
-
-      if (getPrincipalOutstandingAtPoint(i) < pointAtWhichPmiIsNoLongerApplied) {
-        return (float) (i / NUM_OF_MONTHS_IN_YEAR);
+      if (getPrincipalOutstandingAtPoint(i) > ((1 - PMI_PERCENTAGE) * totalPurchaseValue)) {
+        pmiThisYear += monthlyPrivateMortgageInsurance;
       }
     }
     
-    return 0.0f;
+    return pmiThisYear;
   }
 
   public static Float getMortgagePayment() {
