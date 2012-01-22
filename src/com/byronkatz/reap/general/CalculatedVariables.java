@@ -52,10 +52,6 @@ public class CalculatedVariables {
   private static final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
-  //calculated variables
-  //  private static Map<Integer, Map<String, Float>> calculatedValuesMap;
-  //  private static Map<String, Float> calculatedContentValues;
-
   //input variables
   private static Float monthlyPrivateMortgageInsurance;
   private static Float yearlyPrivateMortgageInsurance;

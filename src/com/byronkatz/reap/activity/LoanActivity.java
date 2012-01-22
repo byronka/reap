@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.byronkatz.R;
 import com.byronkatz.reap.general.CalculatedVariables;
@@ -81,7 +82,9 @@ public class LoanActivity extends Activity {
         if (hasFocus) {
           
           Utility.setSelectionOnView(v, ValueType.PERCENTAGE);
-        }     
+        } else if (!hasFocus) {
+          Utility.parseThenDisplayPercentage(v);
+        }
       }
     });
 
@@ -104,7 +107,9 @@ public class LoanActivity extends Activity {
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
           Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        }     
+        } else if (!hasFocus) {
+          Utility.parseThenDisplayCurrency(v);
+        }  
       }
     });
 
@@ -126,7 +131,9 @@ public class LoanActivity extends Activity {
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
           Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        }     
+        } else if (!hasFocus) {
+          Utility.parseThenDisplayCurrency(v);
+        }
       }
     });
 
@@ -148,7 +155,9 @@ public class LoanActivity extends Activity {
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
           Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        }     
+        } else if (!hasFocus) {
+          Utility.parseThenDisplayCurrency(v);
+        }    
       }
     });
 
@@ -210,12 +219,14 @@ public class LoanActivity extends Activity {
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
           Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        }     
+        } else if (!hasFocus) {
+          Utility.parseThenDisplayCurrency(v);
+        }    
       }
     });
     
     ImageButton privateMortgageInsuranceHelpButton = 
-        (ImageButton)findViewById(R.id.numOfCompoundingPeriodsHelpButton);
+        (ImageButton)findViewById(R.id.privateMortgageInsuranceHelpButton);
     privateMortgageInsuranceHelpButton.setOnClickListener(new OnClickListener() {
 
       @Override
@@ -225,27 +236,8 @@ public class LoanActivity extends Activity {
             R.string.privateMortgageInsuranceTitleText, LoanActivity.this);
       }
     });
-    
-    
+
   }
-
-
-
-
-
-
-  //  private void showHelpDialog(int helpText, int helpTitle) {
-  //    Dialog helpDialog = new Dialog(LoanActivity.this);
-  //    Window window = helpDialog.getWindow();
-  //    window.setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND, 
-  //        WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
-  //    helpDialog.setContentView(R.layout.help_dialog_view);
-  //    
-  //    TextView helpTextView = (TextView)helpDialog.findViewById(R.id.help_text);
-  //    helpTextView.setText(helpText);
-  //    helpDialog.setTitle(helpTitle);
-  //    helpDialog.show();
-  //  }
 
   private void assignValuesToFields() {
 

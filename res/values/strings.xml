@@ -88,7 +88,7 @@
 	</string>
 	<string name="backButtonText">Back</string>
 	<string name="buildingValueTitleText">Building Value: </string>
-	<string name="propertyTaxRateTitleText">Property Tax Rate: </string>
+	<string name="propertyTaxRateTitleText">Yearly Property Tax Rate: </string>
 	<string name="localMunicipalFeesTitleText">Local Municipal Fees: </string>
 	<string name="buildingValueDescriptionText">the value of the building, as opposed to the land
 		value.
@@ -152,7 +152,8 @@
 
 	<!-- sale expenses -->
 	<string name="generalSaleExpensesDescriptionText">These are the expenses incurred during the sale of
-		the property- final fixup, any legal fees, etc., all in present value
+		the property- final fixup, any legal fees, etc., all in present value, when *you* sell it.  This is
+		not for when you purchase the property.
 	</string>
 	<string name="generalSaleExpensesTitleText">General Sale Expenses: </string>
 	<string name="sellingBrokerRateDescriptionText">The percentage of the sale price taken by the
@@ -230,7 +231,7 @@
 	<string name="saveButtonText">Save</string>
 	<string name="valueSliderText">Value Slider</string>
 	<string name="timeSliderText">Time Slider</string>
-	<string name="realEstateMarketAnalysisSplashPageDescription">This program does the following ... touch the screen or click enter to contirue</string>
+	<string name="realEstateMarketAnalysisSplashPageDescription">This program does the following ... touch the screen or click enter to continue</string>
 	<string name="databaseItemTextViewDesc1">Street Address: </string>
 	<string name="databaseItemTextViewDesc2">Total Purchase Value: </string>
 	<string name="databaseItemTextViewDesc3">Yearly Interest Rate: </string>

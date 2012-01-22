@@ -40,7 +40,9 @@ public class FinancialEnvironmentActivity extends Activity {
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
           Utility.setSelectionOnView(v, ValueType.PERCENTAGE);
-        }     
+        } else if (!hasFocus) {
+          Utility.parseThenDisplayPercentage(v);
+        }
       }
     });
     
@@ -63,7 +65,9 @@ public class FinancialEnvironmentActivity extends Activity {
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
           Utility.setSelectionOnView(v, ValueType.PERCENTAGE);
-        }     
+        } else if (!hasFocus) {
+          Utility.parseThenDisplayPercentage(v);
+        }
       }
     });
     

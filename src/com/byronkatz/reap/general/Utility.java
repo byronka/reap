@@ -99,6 +99,19 @@ public static Float parseCurrency(String value) {
   return returnValue;
 }
 
+public static void parseThenDisplayCurrency(View v) {
+  
+  ((EditText) v).setText (Utility.displayCurrency(
+      Utility.parseCurrency(((EditText) v).getText().toString())));
+  
+}
+
+public static void parseThenDisplayPercentage(View v) {
+  
+  ((EditText) v).setText (Utility.displayPercentage(
+      Utility.parsePercentage(((EditText) v).getText().toString())));
+}
+
 public static String displayPercentage(Float value) {
   percentFormat = NumberFormat.getPercentInstance(Locale.US);
   percentFormat.setMaximumFractionDigits(4);

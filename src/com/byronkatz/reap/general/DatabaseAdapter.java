@@ -16,15 +16,20 @@ import android.util.Log;
 public class DatabaseAdapter {
   private static final String DATABASE_NAME                    = "investmentValues";
 
-  private static final String DATABASE_TABLE = "mainTable";
+  private static final String LOCATIONS_DATABASE_TABLE = "mainTable";
+//  private static final String VIEWABLE_ROWS_DATABASE_TABLE = "viewable_rows";
   private static final int DATABASE_VERSION = 1;
 
   // The index (key) column name for use in where clauses.
   public static final String KEY_ID="_id";
 
+  ///WORK ZONE WORK ZONE
+//  private static final String VIEWABLE_DATA_TABLE_ROWS_DATABASE_CREATE = create table " +" +
+//  		VIEWABLE_ROWS_DATABASE_TABLE + " (" +
+//      KEY_ID + " integer primary key autoincrement" + ", " +
 
-  private static final String DATABASE_CREATE = "create table " + 
-      DATABASE_TABLE + " ("     + 
+  private static final String LOCATIONS_DATABASE_CREATE = "create table " + 
+      LOCATIONS_DATABASE_TABLE + " ("     + 
       KEY_ID + " integer primary key autoincrement" + ", " +
       ValueEnum.TOTAL_PURCHASE_VALUE.name()               + " REAL"    +     ", " +
       ValueEnum.YEARLY_INTEREST_RATE.name()               + " REAL"    +     ", " +
@@ -69,18 +74,18 @@ public class DatabaseAdapter {
   }
 
   public int insertEntry(ContentValues contentValues) {
-    int index = (int) db.insertOrThrow(DATABASE_TABLE, null, contentValues);
+    int index = (int) db.insertOrThrow(LOCATIONS_DATABASE_TABLE, null, contentValues);
 
     return index;
   }
 
   public boolean removeEntry(long rowIndex) {
-    return db.delete(DATABASE_TABLE, KEY_ID + "=" + rowIndex, null) > 0;
+    return db.delete(LOCATIONS_DATABASE_TABLE, KEY_ID + "=" + rowIndex, null) > 0;
   }
 
   public Cursor getAllEntries () {
     
-    return db.query(DATABASE_TABLE, null, null, null, null, null, null);
+    return db.query(LOCATIONS_DATABASE_TABLE, null, null, null, null, null, null);
   }
 
   public HashMap<String, String> getEntry(long rowIndex) {
@@ -107,7 +112,9 @@ public class DatabaseAdapter {
     // to create a new one. 
     @Override
     public void onCreate(SQLiteDatabase db) {
-      db.execSQL(DATABASE_CREATE);
+      db.execSQL(LOCATIONS_DATABASE_CREATE);
+      //////WORK ZONE!!
+//      db.execSQL(VIEWABLE_DATA_TABLE_ROWS_DATABASE_CREATE);
     }
 
     // Called when there is a database version mismatch meaning that the version
@@ -124,7 +131,7 @@ public class DatabaseAdapter {
       // values.
 
       // The simplest case is to drop the old table and create a new one.
-      db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
+      db.execSQL("DROP TABLE IF EXISTS " + LOCATIONS_DATABASE_TABLE);
       // Create a new one.
       onCreate(db);
     }

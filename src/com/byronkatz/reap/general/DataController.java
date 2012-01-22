@@ -237,6 +237,10 @@ public class DataController {
   public void setViewableDataTableRows(Set<ValueEnum> viewableDataTableRows) {
     DataController.viewableDataTableRows = viewableDataTableRows;
   }
+  
+  public void saveViewableDataTableRows() {
+    
+  }
 
   public static void setCurrentDivisionForWriting (Integer currentDivisionForWriting) {
     DataController.currentDivisionForWriting = currentDivisionForWriting;

@@ -3,7 +3,7 @@
 	android:name="Data pages menu">
 	<item android:id="@+id/configureGraphPageMenuItem" android:title="Configure graph page"
 		android:icon="@drawable/icon" />
-	<item android:id="@+id/databaseMenuItem" android:title="Database"
+	<item android:id="@+id/databaseMenuItem" android:title="Saved locations"
 		android:icon="@drawable/icon" />
 	<item android:id="@+id/editValuesMenuItem" android:title="Edit data values"
 		android:icon="@drawable/icon" />

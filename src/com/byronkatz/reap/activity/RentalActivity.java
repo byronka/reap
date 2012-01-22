@@ -49,7 +49,9 @@ public class RentalActivity extends Activity {
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
           Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        }     
+        } else if (!hasFocus) {
+          Utility.parseThenDisplayCurrency(v);
+        }
       }
     });
 
@@ -71,7 +73,9 @@ public class RentalActivity extends Activity {
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
           Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        }     
+        } else if (!hasFocus) {
+          Utility.parseThenDisplayCurrency(v);
+        }
       }
     });
 
@@ -93,7 +97,9 @@ public class RentalActivity extends Activity {
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
           Utility.setSelectionOnView(v, ValueType.PERCENTAGE);
-        }     
+        } else if (!hasFocus) {
+          Utility.parseThenDisplayPercentage(v);
+        }
       }
     });
 
@@ -115,7 +121,9 @@ public class RentalActivity extends Activity {
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
           Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        }     
+        } else if (!hasFocus) {
+          Utility.parseThenDisplayCurrency(v);
+        }
       }
     });
 
@@ -136,7 +144,9 @@ public class RentalActivity extends Activity {
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
           Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        }     
+        } else if (!hasFocus) {
+          Utility.parseThenDisplayCurrency(v);
+        }
       }
     });
 
@@ -158,7 +168,9 @@ public class RentalActivity extends Activity {
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
           Utility.setSelectionOnView(v, ValueType.PERCENTAGE);
-        }     
+        } else if (!hasFocus) {
+          Utility.parseThenDisplayPercentage(v);
+        }
       }
     });
 
