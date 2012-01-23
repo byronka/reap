@@ -54,6 +54,7 @@ public class GraphActivity extends Activity {
       .getInstance().getDataController();
   Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence;
 
+  Integer currentYearSelected;
   Float minValueNumeric;
   Float maxValueNumeric;
   Float deltaValueNumeric;
@@ -110,6 +111,8 @@ public class GraphActivity extends Activity {
 
       //necessary in case the user switches between loan types (15 vs. 30 year)
       Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods();
+      //initialize currentYearSelected
+      currentYearSelected = currentYearMaximum;
       GraphActivityFunctions.updateTimeSliderAfterChange (timeSlider, currentYearMaximum);
       //necessary to do the following or else the Year will not update right after the change
       updateYearDisplayAtSeekBar(currentYearMaximum);
@@ -366,8 +369,6 @@ public class GraphActivity extends Activity {
 
         GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
 
-        SeekBar timeSlider = (SeekBar) findViewById(R.id.timeSlider);
-        Integer currentYearSelected = timeSlider.getProgress();
         setDataTableItems(dataTableItems, currentYearSelected);
 
       }
@@ -397,10 +398,11 @@ public class GraphActivity extends Activity {
       @Override
       public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (progress > 0) {
-          updateYearDisplayAtSeekBar(progress);
+          currentYearSelected = progress;
+          updateYearDisplayAtSeekBar(currentYearSelected);
 
-          setDataTableItems(dataTableItems, progress);
-          GraphActivityFunctions.highlightCurrentYearOnGraph(progress, GraphActivity.this);
+          setDataTableItems(dataTableItems, currentYearSelected);
+          GraphActivityFunctions.highlightCurrentYearOnGraph(currentYearSelected, GraphActivity.this);
           GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
         }
       }
@@ -514,6 +516,9 @@ public class GraphActivity extends Activity {
         tempTableRow.setVisibility(View.GONE);
       }
     }
+    
+    colorTheDataTables();
+
   }
 
   private void colorTheDataTables() {
@@ -544,8 +549,6 @@ public class GraphActivity extends Activity {
       progressDialog.dismiss();
       GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
 
-      SeekBar timeSlider = (SeekBar) findViewById(R.id.timeSlider);
-      Integer currentYearSelected = timeSlider.getProgress();
       setDataTableItems(dataTableItems, currentYearSelected);
 
       setDataChangedToggle(false);

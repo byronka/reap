@@ -17,16 +17,12 @@ public class DatabaseAdapter {
   private static final String DATABASE_NAME                    = "investmentValues";
 
   private static final String LOCATIONS_DATABASE_TABLE = "mainTable";
-//  private static final String VIEWABLE_ROWS_DATABASE_TABLE = "viewable_rows";
   private static final int DATABASE_VERSION = 1;
 
   // The index (key) column name for use in where clauses.
   public static final String KEY_ID="_id";
 
-  ///WORK ZONE WORK ZONE
-//  private static final String VIEWABLE_DATA_TABLE_ROWS_DATABASE_CREATE = create table " +" +
-//  		VIEWABLE_ROWS_DATABASE_TABLE + " (" +
-//      KEY_ID + " integer primary key autoincrement" + ", " +
+
 
   private static final String LOCATIONS_DATABASE_CREATE = "create table " + 
       LOCATIONS_DATABASE_TABLE + " ("     + 
@@ -113,8 +109,7 @@ public class DatabaseAdapter {
     @Override
     public void onCreate(SQLiteDatabase db) {
       db.execSQL(LOCATIONS_DATABASE_CREATE);
-      //////WORK ZONE!!
-//      db.execSQL(VIEWABLE_DATA_TABLE_ROWS_DATABASE_CREATE);
+
     }
 
     // Called when there is a database version mismatch meaning that the version
