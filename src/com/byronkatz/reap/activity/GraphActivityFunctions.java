@@ -256,9 +256,8 @@ public class GraphActivityFunctions {
   static void updateTimeSliderAfterChange(SeekBar timeSlider, Integer currentYearMaximum) {
 
 
-    timeSlider.setMax(currentYearMaximum);
-    timeSlider.setProgress(currentYearMaximum);
-    //    yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(timeSlider.getProgress()));
+    timeSlider.setMax(currentYearMaximum - 1);
+    timeSlider.setProgress(currentYearMaximum - 1);
   }
 
 }

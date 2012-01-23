@@ -54,7 +54,6 @@ public class GraphActivity extends Activity {
       .getInstance().getDataController();
   Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence;
 
-  Integer currentYearSelected;
   Float minValueNumeric;
   Float maxValueNumeric;
   Float deltaValueNumeric;
@@ -111,8 +110,6 @@ public class GraphActivity extends Activity {
 
       //necessary in case the user switches between loan types (15 vs. 30 year)
       Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods();
-      //initialize currentYearSelected
-      currentYearSelected = currentYearMaximum;
       GraphActivityFunctions.updateTimeSliderAfterChange (timeSlider, currentYearMaximum);
       //necessary to do the following or else the Year will not update right after the change
       updateYearDisplayAtSeekBar(currentYearMaximum);
@@ -369,6 +366,7 @@ public class GraphActivity extends Activity {
 
         GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
 
+        Integer currentYearSelected = getCurrentYearSelected();
         setDataTableItems(dataTableItems, currentYearSelected);
 
       }
@@ -397,14 +395,13 @@ public class GraphActivity extends Activity {
 
       @Override
       public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        if (progress > 0) {
-          currentYearSelected = progress;
+
+          Integer currentYearSelected = progress + 1;
           updateYearDisplayAtSeekBar(currentYearSelected);
 
           setDataTableItems(dataTableItems, currentYearSelected);
           GraphActivityFunctions.highlightCurrentYearOnGraph(currentYearSelected, GraphActivity.this);
           GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
-        }
       }
     });
   }
@@ -528,6 +525,10 @@ public class GraphActivity extends Activity {
     GraphActivityFunctions.setColorDataTableRows(dataTableLayout, viewableDataTableRows, valueToDataTableItemCorrespondence);
   }
 
+  private Integer getCurrentYearSelected() {
+    return ((SeekBar) findViewById(R.id.timeSlider)).getProgress() + 1;
+
+  }
 
   private class CalculateInBackgroundTask extends AsyncTask<Void, Integer, Void> {
     Float newCurrentValue = 0.0f;
@@ -549,11 +550,12 @@ public class GraphActivity extends Activity {
       progressDialog.dismiss();
       GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
 
+      Integer currentYearSelected = getCurrentYearSelected();
       setDataTableItems(dataTableItems, currentYearSelected);
 
       setDataChangedToggle(false);
     }
-
+    
     @Override
     protected void onPreExecute() {
 
