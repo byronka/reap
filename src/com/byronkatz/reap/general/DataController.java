@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.byronkatz.reap.activity.GraphActivity;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -13,8 +15,8 @@ import android.database.Cursor;
 public class DataController {
 
   //variable below is to hold the pointer to which set (division) of data we want.
-  private static Integer currentDivisionForWriting;
-  private static Integer currentDivisionForReading;
+  private static Integer currentDivisionForWriting = 0;
+  private static Integer currentDivisionForReading = 0;
   private static DatabaseAdapter databaseAdapter;
   private static Map<Integer, Map<ValueEnum, Float>> numericValues;
   private static Map<ValueEnum, Float> numericMap;
@@ -72,6 +74,7 @@ public class DataController {
     numericValues.put(DEFAULT_YEAR, numericMap);
     multiDivisionNumericValues.put(DEFAULT_DIVISION, numericValues);
 
+
     textValues.put(DEFAULT_YEAR, textFieldValues);
   }
 
@@ -84,6 +87,8 @@ public class DataController {
     Map<ValueEnum, Float> numericMap = numericValues.get(DEFAULT_YEAR);
 
     numericMap.put(key, value);
+    
+ 
   }
 
   public void setValueAsFloat(ValueEnum key, Float value, Integer year) {
@@ -214,13 +219,12 @@ public class DataController {
 
   public void setCurrentData(ContentValues cv) {
 
+    //either a string or not a string
     for (ValueEnum inputEnum : ValueEnum.values()) {
       if (inputEnum.isSavedToDatabase() && (inputEnum.getType() != ValueEnum.ValueType.STRING)) {
-        setValueAsFloat(inputEnum,
-            cv.getAsFloat(inputEnum.name()));
+        setValueAsFloat(inputEnum, cv.getAsFloat(inputEnum.name()));
       } else if (inputEnum.isSavedToDatabase() && (inputEnum.getType() == ValueEnum.ValueType.STRING)) {
-        setValueAsString(inputEnum,
-            cv.getAsString(inputEnum.name()));
+        setValueAsString(inputEnum, cv.getAsString(inputEnum.name()));
       }
     }
   }

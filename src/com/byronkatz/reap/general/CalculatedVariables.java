@@ -1,5 +1,7 @@
 package com.byronkatz.reap.general;
 
+import com.byronkatz.reap.activity.LoanActivity;
+
 
 public class CalculatedVariables {
 
@@ -9,50 +11,30 @@ public class CalculatedVariables {
   public static final int YEARLY = 1;
   public static final int MONTHLY = 2;
   public static final Float PMI_PERCENTAGE = 0.20f;
-
   private static Float firstDay = 0.0f;
   private static Float yearlyNPVSummation = 0.0f;
-//  private static Float yearlyAfterTaxCashFlow = 0.0f;
-//  private static Float yearlyBeforeTaxCashFlow = 0.0f;
-//  private static Float yearlyTaxes = 0.0f;
-//  private static Float yearlyPrincipalPaid = 0.0f;
   private static Float yearlyDepreciation = 0.0f;
   private static Float monthlyMortgagePayment = 0.0f;
   private static Float yearlyMortgagePayment = 0.0f;
-//  private static Float taxableIncome = 0.0f;
   private static Integer yearlyCompoundingPeriods = 0;
-//  private static Float yearlyPropertyTax = 0.0f;
-  private static Float currentYearAmountOutstanding = 0.0f;
-//  private static Float pastYearAmountOutstanding = 0.0f;
-//  private static Float yearlyIncome = 0.0f;
-//  private static Float yearlyOutlay = 0.0f;
-//  private static Float monthlyREARIncrementer = 0.0f;
   private static Float grossYearlyIncome = 0.0f;
   private static Float netYearlyIncome = 0.0f;
-//  private static Float monthlyIRIncrementer = 0.0f;
-//  private static Float yearlyGeneralExpenses = 0.0f;
   private static Float monthlyRealEstateAppreciationRate = 0.0f;
   private static Float monthlyRequiredRateOfReturn = 0.0f;
   private static Float monthlyInflationRate = 0.0f;
-//  private static Float yearlyDiscountRateDivisor = 0.0f;
-//  private static Float projectedValueOfHomeAtSale = 0.0f;
-//  private static Float brokerCut = 0.0f;
-//  private static Float inflationAdjustedSellingExpenses = 0.0f;
   private static Float accumulatingDepreciation = 0.0f;
-//  private static Float taxesDueAtSale = 0.0f;
-//  private static Float ater = 0.0f;
-//  private static Float adjustedAter = 0.0f;
   private static Float npvAccumulator = 0.0f;
-//  private static Float accumulatedInterest = 0.0f;
-//  private static Float accumulatedInterestPreviousYear = 0.0f;
-//  private static Float yearlyInterestPaid = 0.0f;
+  private static Float futureValuePositiveCashFlowsAccumulator = 0.0f;
+  private static Float presentValueNegativeCashFlowsAccumulator = 0.0f;
+  private static Float modifiedInternalRateOfReturn = 0.0f;
+
+
 
   private static final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
   //input variables
   private static Float monthlyPrivateMortgageInsurance;
-//  private static Float yearlyPrivateMortgageInsurance;
   private static Float totalPurchaseValue;
   private static Float estimatedRentPayments;
   private static Float realEstateAppreciationRate;
@@ -78,41 +60,16 @@ public class CalculatedVariables {
   private static void assignVariables() {
     firstDay = 0.0f;
     yearlyNPVSummation = 0.0f;
-//    yearlyAfterTaxCashFlow = 0.0f;
-//    yearlyBeforeTaxCashFlow = 0.0f;
-//    yearlyTaxes = 0.0f;
-//    yearlyPrincipalPaid = 0.0f;
     yearlyDepreciation = 0.0f;
     monthlyMortgagePayment = 0.0f;
     yearlyMortgagePayment = 0.0f;
-//    taxableIncome = 0.0f;
     yearlyCompoundingPeriods = 0;
-//    yearlyPropertyTax = 0.0f;
-    currentYearAmountOutstanding = 0.0f;
-//    pastYearAmountOutstanding = 0.0f;
-//    yearlyIncome = 0.0f;
-//    yearlyOutlay = 0.0f;
-//    monthlyREARIncrementer = 0.0f;
     grossYearlyIncome = 0.0f;
     netYearlyIncome = 0.0f;
-//    monthlyIRIncrementer = 0.0f;
-//    yearlyGeneralExpenses = 0.0f;
     monthlyRealEstateAppreciationRate = 0.0f;
     monthlyRequiredRateOfReturn = 0.0f;
     monthlyInflationRate = 0.0f;
-//    yearlyDiscountRateDivisor = 0.0f;
-//    projectedValueOfHomeAtSale = 0.0f;
-//    brokerCut = 0.0f;
-//    inflationAdjustedSellingExpenses = 0.0f;
-//    accumulatingDepreciation = 0.0f;
-//    taxesDueAtSale = 0.0f;
-//    ater = 0.0f;
-//    adjustedAter = 0.0f;
     npvAccumulator = 0.0f;
-//    accumulatedInterest = 0.0f;
-//    accumulatedInterestPreviousYear = 0.0f;
-//    yearlyInterestPaid = 0.0f;
-//    yearlyPrivateMortgageInsurance = 0.0f;
 
     monthlyPrivateMortgageInsurance = dataController.getValueAsFloat(ValueEnum.PRIVATE_MORTGAGE_INSURANCE);
     totalPurchaseValue = dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE);
@@ -135,13 +92,13 @@ public class CalculatedVariables {
     initialYearlyPropertyTax = totalPurchaseValue * propertyTaxRate;
     monthlyInterestRate = yearlyInterestRate / NUM_OF_MONTHS_IN_YEAR;
     yearlyDepreciation = buildingValue / RESIDENTIAL_DEPRECIATION_YEARS;
-    
+
     monthlyMortgagePayment = getMortgagePayment();
     yearlyMortgagePayment = NUM_OF_MONTHS_IN_YEAR * monthlyMortgagePayment;
-    
+
     dataController.setValueAsFloat(ValueEnum.MONTHLY_MORTGAGE_PAYMENT, monthlyMortgagePayment);
     dataController.setValueAsFloat(ValueEnum.YEARLY_MORTGAGE_PAYMENT, yearlyMortgagePayment);
-    
+
     yearlyCompoundingPeriods = numOfCompoundingPeriods / NUM_OF_MONTHS_IN_YEAR;
     monthlyRealEstateAppreciationRate = realEstateAppreciationRate / NUM_OF_MONTHS_IN_YEAR;
     monthlyRequiredRateOfReturn = requiredRateOfReturn / NUM_OF_MONTHS_IN_YEAR;
@@ -163,6 +120,7 @@ public class CalculatedVariables {
     assignVariables();
 
     firstDay = downPayment + generalSaleExpenses + fixupCosts;
+    modifiedInternalRateOfReturn = calculateMirr(0, requiredRateOfReturn, yearlyInterestRate, -firstDay);
 
     for (int year = 1; year <= yearlyCompoundingPeriods; year++) {
 
@@ -171,8 +129,19 @@ public class CalculatedVariables {
 
       final Float yearlyNPVSummation = calculateYearlyRentalIncomeNPV(year, monthCPModifier, prevYearMonthCPModifier);
       final Float adjustedAter = calculateAter(year, monthCPModifier);  
+
+
+      if (year == yearlyCompoundingPeriods) {
+        modifiedInternalRateOfReturn = calculateMirr(year, requiredRateOfReturn, yearlyInterestRate, adjustedAter);
+        for (int i = 1; i <= year; i++) {
+          //note: putting in this value on each year because otherwise it will remain static when I move the sliders.  
+          //See data setup. and dataController.
+          dataController.setValueAsFloat(ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN, modifiedInternalRateOfReturn, i);
+        }
+      }
+
       npvAccumulator = -firstDay + yearlyNPVSummation + adjustedAter;
-      
+
       dataController.setValueAsFloat(ValueEnum.NPV, npvAccumulator, year);
 
       final Float accumulatedInterest = getAccumulatedInterestPaymentsAtPoint(monthCPModifier);
@@ -186,27 +155,30 @@ public class CalculatedVariables {
   }
 
   private static Float calculateYearlyRentalIncomeNPV(int year, int monthCPModifier, int prevYearMonthCPModifier) {
-    
-    
+
+
     final Float yearlyAfterTaxCashFlow = calculateYearlyAfterTaxCashFlow(year, monthCPModifier, prevYearMonthCPModifier);
+    modifiedInternalRateOfReturn = calculateMirr(year, requiredRateOfReturn, yearlyInterestRate, yearlyAfterTaxCashFlow);
+
+
     final Float yearlyDiscountRateDivisor = (float) Math.pow(1 + monthlyRequiredRateOfReturn, monthCPModifier);
     yearlyNPVSummation += yearlyAfterTaxCashFlow / yearlyDiscountRateDivisor;
-    
+
     return yearlyNPVSummation;
   }
-  
+
   private static Float calculateYearlyAfterTaxCashFlow(int year, int monthCPModifier, int prevYearMonthCPModifier) {
-    
+
     final Float yearlyBeforeTaxCashFlow = calculateYearlyBeforeTaxCashFlow(year, prevYearMonthCPModifier);
     final Float taxableIncome = calculateTaxableIncome(year, monthCPModifier, prevYearMonthCPModifier, yearlyBeforeTaxCashFlow);
-    
+
     final Float yearlyTaxes = taxableIncome * marginalTaxRate;
     final Float yearlyAfterTaxCashFlow = yearlyBeforeTaxCashFlow - yearlyTaxes;
     dataController.setValueAsFloat(ValueEnum.ATCF, yearlyAfterTaxCashFlow, year);
-    
+
     return yearlyAfterTaxCashFlow;
   }
-  
+
   private static Float calculateAter(int year, int monthCPModifier) {
     //equity reversion portion
     final Float thisYearMonthlyREARIncrementer = (float) Math.pow(1 + monthlyRealEstateAppreciationRate, monthCPModifier);
@@ -233,25 +205,25 @@ public class CalculatedVariables {
 
     final Float adjustedAter = (float) (ater / Math.pow(1 + monthlyRequiredRateOfReturn,monthCPModifier));
     dataController.setValueAsFloat(ValueEnum.ATER, adjustedAter, year);
-    
+
     return adjustedAter;
   }
-  
+
   private static Float calculateTaxableIncome(int year, int monthCPModifier, int prevYearMonthCPModifier, Float yearlyBeforeTaxCashFlow) {
-    
+
     final Float yearlyPrincipalPaid = calculateYearlyPrincipalPaid(year, monthCPModifier, prevYearMonthCPModifier);
-    
+
     Float taxableIncome = (yearlyBeforeTaxCashFlow + yearlyPrincipalPaid - yearlyDepreciation);
 
     // doesn't make sense to tax negative income...but should this be used to offset taxes? hmmm...
     if (taxableIncome <= 0) {
       taxableIncome = 0.0f;
     }
-    
+
     dataController.setValueAsFloat(ValueEnum.TAXABLE_INCOME, taxableIncome, year);
     return taxableIncome;
   }
-  
+
   private static Float calculateYearlyPrincipalPaid(int year, int monthCPModifier, int prevYearMonthCPModifier) {
     //next year's yearlyAmountOutstanding minus this year's
     final Float pastYearAmountOutstanding = getPrincipalOutstandingAtPoint(prevYearMonthCPModifier);
@@ -262,16 +234,16 @@ public class CalculatedVariables {
 
     final Float yearlyPrincipalPaid = pastYearAmountOutstanding - currentYearAmountOutstanding;
     dataController.setValueAsFloat(ValueEnum.YEARLY_PRINCIPAL_PAID, yearlyPrincipalPaid, year);
-    
+
     return yearlyPrincipalPaid;
   }
-  
+
   private static Float calculateYearlyBeforeTaxCashFlow(int year, int prevYearMonthCPModifier) {
     // cashflowIn - cashflowOut
 
     final Float yearlyPrivateMortgageInsurance = getYearlyPmi(year, totalPurchaseValue);
     dataController.setValueAsFloat(ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, yearlyPrivateMortgageInsurance, year);
-    
+
     final Float prevYearMonthlyREARIncrementer = (float) Math.pow(1 + monthlyRealEstateAppreciationRate,prevYearMonthCPModifier);
 
     final Float yearlyPropertyTax = initialYearlyPropertyTax * prevYearMonthlyREARIncrementer; 
@@ -286,13 +258,13 @@ public class CalculatedVariables {
 
     final Float yearlyOutlay = yearlyPropertyTax + yearlyMortgagePayment + yearlyGeneralExpenses + yearlyPrivateMortgageInsurance;
     final Float yearlyBeforeTaxCashFlow = yearlyIncome - yearlyOutlay;
-    
+
     return yearlyBeforeTaxCashFlow;
   }
 
-  public static Float getYearlyPmi(int year, Float totalPurchaseValue) {
+  private static Float getYearlyPmi(int year, Float totalPurchaseValue) {
     //TODO - come up with a function for this rather than a loop.
-    
+
     Float pmiThisYear = 0.0f;
     int begOfYear = (year - 1) * NUM_OF_MONTHS_IN_YEAR;
     int endOfYear = year * NUM_OF_MONTHS_IN_YEAR;
@@ -304,11 +276,11 @@ public class CalculatedVariables {
         pmiThisYear += monthlyPrivateMortgageInsurance;
       }
     }
-    
+
     return pmiThisYear;
   }
 
-  public static Float getMortgagePayment() {
+  private static Float getMortgagePayment() {
     Float a = (monthlyInterestRate + 1);
     Float b = (float) Math.pow(a, numOfCompoundingPeriods);
 
@@ -317,12 +289,7 @@ public class CalculatedVariables {
     return principalOwed * mortgageEquation;
   }
 
-  public static Float getInterestPaymentAtPoint() {
-
-    return principalOwed * monthlyInterestRate;
-  }
-
-  public static Float getAccumulatedInterestPaymentsAtPoint (int compoundingPeriodDesired) {
+  private static Float getAccumulatedInterestPaymentsAtPoint (int compoundingPeriodDesired) {
     Float monthlyInterestRate = yearlyInterestRate / NUM_OF_MONTHS_IN_YEAR;
 
     Float mp = getMortgagePayment();
@@ -350,17 +317,7 @@ public class CalculatedVariables {
     return accumInterestPaymentAtPoint;
   }
 
-
-  public static Float getPrincipalPaymentAtPoint (int compoundingPeriodDesired) {
-
-    Float mp = getMortgagePayment();
-
-    Float pOutstanding = getPrincipalOutstandingAtPoint(compoundingPeriodDesired);
-    Float principalPaymentAtPoint = mp - (pOutstanding * monthlyInterestRate);
-    return principalPaymentAtPoint;
-  }
-
-  public static Float getPrincipalOutstandingAtPoint (int compoundingPeriodDesired) {
+  private static Float getPrincipalOutstandingAtPoint (int compoundingPeriodDesired) {
 
     Float mp = monthlyMortgagePayment;
     Float a = monthlyInterestRate+1;
@@ -371,19 +328,23 @@ public class CalculatedVariables {
     return princpalOutstandingAtPoint;
   }
 
-  public static Float getTotalPaymentsMadeAtPoint (int compoundingPeriodDesired) {
+  private static Float calculateMirr(int year, Float reinvestmentRate, Float financeRate, Float cashFlow) {
 
-    return compoundingPeriodDesired * getMortgagePayment();
+    Float mirr = 0.0f;
+
+    if (cashFlow < 0.0f) {
+      presentValueNegativeCashFlowsAccumulator += cashFlow / (float) Math.pow(1 + financeRate, year);
+    } else if (cashFlow > 0.0f) {
+      futureValuePositiveCashFlowsAccumulator += cashFlow * (float) Math.pow(1 + reinvestmentRate, yearlyCompoundingPeriods - year);
+    }
+
+    //we don't want divide by zero errors.
+    if (!(presentValueNegativeCashFlowsAccumulator == 0f) || !(year == 0f)) {
+      mirr = (float) Math.pow(futureValuePositiveCashFlowsAccumulator / - presentValueNegativeCashFlowsAccumulator, (1.0f/year)) - 1;
+    }
+
+    return mirr;
   }
-
-  public static Float getMonthlyRentalIncomeAtPoint (int compoundingPeriod) {
-    return (float) (estimatedRentPayments * Math.pow((1 + inflationRate),((compoundingPeriod / NUM_OF_MONTHS_IN_YEAR)-1)));
-  }
-
-  public static Float getPropertyTaxAtPoint (int compoundingPeriod) {
-    return (float) (initialYearlyPropertyTax * Math.pow((1 + realEstateAppreciationRate),(compoundingPeriod-1)));
-  }
-
 
 }
 

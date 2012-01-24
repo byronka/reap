@@ -84,7 +84,6 @@ public class GraphActivity extends Activity {
     super.onOptionsItemSelected(item);
 
     GraphActivityFunctions.switchForMenuItem(item, GraphActivity.this);
-
     return false;
   }
 

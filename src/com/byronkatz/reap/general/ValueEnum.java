@@ -18,6 +18,7 @@ public enum ValueEnum {
   INITIAL_YEARLY_GENERAL_EXPENSES("initial yearly general expenses", ValueType.CURRENCY, true, false),
   LOCAL_MUNICIPAL_FEES("local municipal fees", ValueType.CURRENCY, true, false),
   MARGINAL_TAX_RATE("marginal tax rate", ValueType.PERCENTAGE, true, false),
+  MODIFIED_INTERNAL_RATE_OF_RETURN("modified internal rate of return", ValueType.PERCENTAGE, false, true),
   MONTHLY_MORTGAGE_PAYMENT ("monthly mortgage payment", ValueType.CURRENCY, false, false),  
   NPV  ("Net present value", ValueType.CURRENCY, false, true),
   NUMBER_OF_COMPOUNDING_PERIODS("number of compounding periods", ValueType.INTEGER, true, false),
