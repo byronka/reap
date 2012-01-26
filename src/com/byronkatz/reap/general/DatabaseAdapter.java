@@ -39,7 +39,7 @@ public class DatabaseAdapter {
       ValueEnum.ESTIMATED_RENT_PAYMENTS.name()            + " REAL"    +     ", " +
       ValueEnum.REAL_ESTATE_APPRECIATION_RATE.name()      + " REAL"    +     ", " +
       ValueEnum.YEARLY_HOME_INSURANCE.name()              + " REAL"    +     ", " +
-      ValueEnum.PROPERTY_TAX_RATE.name()                  + " REAL"    +     ", " +
+      ValueEnum.PROPERTY_TAX.name()                       + " REAL"    +     ", " +
       ValueEnum.LOCAL_MUNICIPAL_FEES.name()               + " REAL"    +     ", " +
       ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE.name()       + " REAL"    +     ", " +
       ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES.name()    + " REAL"    +     ", " +

@@ -4,6 +4,8 @@ public enum ValueEnum {
 
   ACCUM_INTEREST ("accumulated interest paid", ValueType.CURRENCY, false, true),
   ATCF ("After Tax Cash Flow", ValueType.CURRENCY, false, true),
+  ATCF_ACCUMULATOR ("After Tax Cash Flow Accumulator", ValueType.CURRENCY, false, true),
+  ATCF_NPV ("After Tax Cash Flow NPV", ValueType.CURRENCY, false, true),
   ATER ("After Tax Equity Reversion", ValueType.CURRENCY, false, true),
   BROKER_CUT_OF_SALE ("Broker cut at sale", ValueType.CURRENCY, false, true), 
   BUILDING_VALUE("building value", ValueType.CURRENCY, true, false),
@@ -24,7 +26,7 @@ public enum ValueEnum {
   NUMBER_OF_COMPOUNDING_PERIODS("number of compounding periods", ValueType.INTEGER, true, false),
   PRIVATE_MORTGAGE_INSURANCE ("Private mortgage insurance", ValueType.CURRENCY, true, false),
   PROJECTED_HOME_VALUE ("projected home value at sale time", ValueType.CURRENCY, false, true), 
-  PROPERTY_TAX_RATE("property tax rate", ValueType.PERCENTAGE, true, false),
+  PROPERTY_TAX("property tax", ValueType.CURRENCY, true, false),
   REAL_ESTATE_APPRECIATION_RATE("real estate appreciation rate", ValueType.PERCENTAGE, true, false),
   REQUIRED_RATE_OF_RETURN("required rate of return", ValueType.PERCENTAGE, true, false),
   SELLING_BROKER_RATE("selling broker rate", ValueType.PERCENTAGE, true, false),

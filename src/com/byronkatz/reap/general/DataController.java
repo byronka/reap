@@ -6,8 +6,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import com.byronkatz.reap.activity.GraphActivity;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -60,7 +58,7 @@ public class DataController {
     numericMap.put(ValueEnum.ESTIMATED_RENT_PAYMENTS, 0f);
     numericMap.put(ValueEnum.REAL_ESTATE_APPRECIATION_RATE, 0f);
     numericMap.put(ValueEnum.YEARLY_HOME_INSURANCE, 0f);
-    numericMap.put(ValueEnum.PROPERTY_TAX_RATE, 0f);
+    numericMap.put(ValueEnum.PROPERTY_TAX, 0f);
     numericMap.put(ValueEnum.LOCAL_MUNICIPAL_FEES, 0f);
     numericMap.put(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE, 0f);
     numericMap.put(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES, 0f);
@@ -73,8 +71,6 @@ public class DataController {
 
     numericValues.put(DEFAULT_YEAR, numericMap);
     multiDivisionNumericValues.put(DEFAULT_DIVISION, numericValues);
-
-
     textValues.put(DEFAULT_YEAR, textFieldValues);
   }
 
@@ -240,10 +236,6 @@ public class DataController {
 
   public void setViewableDataTableRows(Set<ValueEnum> viewableDataTableRows) {
     DataController.viewableDataTableRows = viewableDataTableRows;
-  }
-  
-  public void saveViewableDataTableRows() {
-    
   }
 
   public static void setCurrentDivisionForWriting (Integer currentDivisionForWriting) {

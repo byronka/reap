@@ -51,7 +51,7 @@
 	<string name="estRentPaymentsDataTableItem">Estimated rent payments</string>
 	<string name="realEstateApprRateDataTableItem">Real Estate Appreciation Rate</string>
 	<string name="yearlyHomeInsuranceDataTableItem">Yearly Home Insurance</string>
-	<string name="propertyTaxRateDataTableItem">Property Tax Rate</string>
+	<string name="propertyTaxDataTableItem">Property Tax</string>
 	<string name="localMuniFeesDataTableItem">Local Municipal Fees</string>
 	<string name="vacancyRateDataTableItem">Vacancy and Credit Loss Rate</string>
 	<string name="initialYearlyGenExpensesDataTableItem">Initial Yearly General Expenses</string>
@@ -88,12 +88,12 @@
 	</string>
 	<string name="backButtonText">Back</string>
 	<string name="buildingValueTitleText">Building Value: </string>
-	<string name="propertyTaxRateTitleText">Yearly Property Tax Rate: </string>
+	<string name="propertyTaxTitleText">Yearly Property Tax: </string>
 	<string name="localMunicipalFeesTitleText">Local Municipal Fees: </string>
 	<string name="buildingValueDescriptionText">the value of the building, as opposed to the land
 		value.
 	</string>
-	<string name="propertyTaxRateDescriptionText">this coefficient is multipiled by the house value
+	<string name="propertyTaxDescriptionText">this coefficient is multipiled by the house value
 		to obtain the yearly property tax
 	</string>
 	<string name="localMunicipalFeesDescriptionText">Fees assessed by the local municipality in addition

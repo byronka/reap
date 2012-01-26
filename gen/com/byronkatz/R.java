@@ -121,7 +121,7 @@ containing a value of this type.
         public static final int linearLayoutDatabaseButtons=0x7f050027;
         public static final int linearLayoutLocalMunicipalFees=0x7f050099;
         public static final int linearLayoutMarginalTaxRate=0x7f05008d;
-        public static final int linearLayoutPropertyTaxRate=0x7f050095;
+        public static final int linearLayoutPropertyTax=0x7f050095;
         public static final int linearLayoutStreetAddress=0x7f05000a;
         public static final int loanButton=0x7f050012;
         public static final int loanScrollView=0x7f05004d;
@@ -152,9 +152,9 @@ containing a value of this type.
         public static final int privateMortgageInsuranceHelpButton=0x7f050059;
         public static final int privateMortgageInsuranceLinearLayout=0x7f050056;
         public static final int privateMortgageInsuranceTitle=0x7f050057;
-        public static final int propertyTaxRateEditText=0x7f050097;
-        public static final int propertyTaxRateHelpButton=0x7f050098;
-        public static final int propertyTaxRateTitle=0x7f050096;
+        public static final int propertyTaxEditText=0x7f050097;
+        public static final int propertyTaxHelpButton=0x7f050098;
+        public static final int propertyTaxTitle=0x7f050096;
         public static final int realEstateAppreciationRateDescription=0x7f050031;
         public static final int realEstateAppreciationRateEditText=0x7f050034;
         public static final int realEstateAppreciationRateHelpButton=0x7f050035;
@@ -329,9 +329,9 @@ containing a value of this type.
         public static final int privateMortgageInsuranceDescriptionText=0x7f070061;
         public static final int privateMortgageInsuranceTitleText=0x7f070060;
         public static final int projectedHomeValueDataTableItem=0x7f070033;
-        public static final int propertyTaxRateDataTableItem=0x7f070025;
-        public static final int propertyTaxRateDescriptionText=0x7f070046;
-        public static final int propertyTaxRateTitleText=0x7f070043;
+        public static final int propertyTaxDataTableItem=0x7f070025;
+        public static final int propertyTaxDescriptionText=0x7f070046;
+        public static final int propertyTaxTitleText=0x7f070043;
         public static final int realEstateApprRateDataTableItem=0x7f070023;
         public static final int realEstateAppreciationRateDescriptionText=0x7f07006b;
         public static final int realEstateAppreciationRateTitleText=0x7f07006a;

@@ -136,23 +136,22 @@ public class GraphActivity extends Activity {
   }
 
   @Override
-  public void onSaveInstanceState(Bundle outState) {
-    super.onSaveInstanceState(outState);
+  public void onRestoreInstanceState(Bundle outState) {
     
-    saveState();
+    super.onRestoreInstanceState(outState);
+    dataController.setViewableDataTableRows(
+        GraphActivityFunctions.restoreViewableDataTableRows(outState));
   }
   
   @Override
-  public void onPause() {
-    super.onPause();
-
-    saveState();
-
-  }
-
-  private void saveState() {
+  public void onSaveInstanceState(Bundle outState) {
     
+    super.onSaveInstanceState(outState);
+    
+    GraphActivityFunctions.saveViewableDataTableRows(
+        outState, dataController.getViewableDataTableRows() );
   }
+
   
   private void updateYearDisplayAtSeekBar(Integer year) {
     yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(year));
@@ -377,7 +376,7 @@ public class GraphActivity extends Activity {
 
 
     timeSlider = (SeekBar) findViewById(R.id.timeSlider);
-    timeSlider.setMax(currentYearMaximum);
+    timeSlider.setMax(currentYearMaximum - 1);
     timeSlider.setProgress(timeSlider.getMax());
 
     timeSlider.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -559,7 +558,6 @@ public class GraphActivity extends Activity {
     protected void onPreExecute() {
 
       progressDialog = GraphActivityFunctions.setupProgressGraphDialog(GraphActivity.this);
-
       progressDialog.show();
     }
 

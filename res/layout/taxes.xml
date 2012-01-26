@@ -40,15 +40,15 @@
 				android:scaleType="centerInside" android:layout_width="55dp"
 				android:minWidth="55dip" android:minHeight="55dip" />
 		</LinearLayout>
-		<LinearLayout android:id="@+id/linearLayoutPropertyTaxRate"
+		<LinearLayout android:id="@+id/linearLayoutPropertyTax"
 			android:layout_width="fill_parent" android:layout_height="wrap_content" android:baselineAligned="false">
-			<TextView android:text="@string/propertyTaxRateTitleText" android:layout_weight="0.60"
+			<TextView android:text="@string/propertyTaxTitleText" android:layout_weight="0.60"
 				android:layout_width="0dip" android:layout_height="wrap_content"
-				android:id="@+id/propertyTaxRateTitle" android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+				android:id="@+id/propertyTaxTitle" android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
 			<EditText android:layout_width="0dip"
 				android:layout_weight="0.40" android:layout_height="wrap_content"
-				android:inputType="numberDecimal" android:id="@+id/propertyTaxRateEditText"></EditText>
-			<ImageButton android:id="@+id/propertyTaxRateHelpButton"
+				android:inputType="numberDecimal" android:id="@+id/propertyTaxEditText"></EditText>
+			<ImageButton android:id="@+id/propertyTaxHelpButton"
 				android:layout_height="fill_parent" android:src="@drawable/question_mark"
 				android:scaleType="centerInside" android:layout_width="55dp"
 				android:minWidth="55dip" android:minHeight="55dip" />

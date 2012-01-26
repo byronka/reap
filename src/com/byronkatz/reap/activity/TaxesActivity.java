@@ -19,7 +19,7 @@ public class TaxesActivity extends Activity {
   
   private EditText marginalTaxRate;
   private EditText buildingValue;
-  private EditText propertyTaxRate;
+  private EditText propertyTax;
   private EditText localMunicipalFees;
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
@@ -32,7 +32,7 @@ public class TaxesActivity extends Activity {
     
     marginalTaxRate    = (EditText)findViewById(R.id.marginalTaxRateEditText);
     buildingValue      = (EditText)findViewById(R.id.buildingValueEditText);
-    propertyTaxRate    = (EditText)findViewById(R.id.propertyTaxRateEditText);
+    propertyTax    = (EditText)findViewById(R.id.propertyTaxEditText);
     localMunicipalFees = (EditText)findViewById(R.id.localMunicipalFeesEditText);
     
     assignValuesToFields();
@@ -85,27 +85,27 @@ public class TaxesActivity extends Activity {
       }
     });
     
-    propertyTaxRate.setOnFocusChangeListener(new OnFocusChangeListener() {
+    propertyTax.setOnFocusChangeListener(new OnFocusChangeListener() {
       
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.PERCENTAGE);
+          Utility.setSelectionOnView(v, ValueType.CURRENCY);
         } else if (!hasFocus) {
-          Utility.parseThenDisplayPercentage(v);
+          Utility.parseThenDisplayCurrency(v);
         }
       }
     });
     
-    ImageButton propertyTaxRateHelpButton = 
-        (ImageButton)findViewById(R.id.propertyTaxRateHelpButton);
-    propertyTaxRateHelpButton.setOnClickListener(new OnClickListener() {
+    ImageButton propertyTaxHelpButton = 
+        (ImageButton)findViewById(R.id.propertyTaxHelpButton);
+    propertyTaxHelpButton.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.propertyTaxRateDescriptionText, 
-            R.string.propertyTaxRateTitleText, TaxesActivity.this);
+            R.string.propertyTaxDescriptionText, 
+            R.string.propertyTaxTitleText, TaxesActivity.this);
       }
     });
     
@@ -149,8 +149,8 @@ public class TaxesActivity extends Activity {
     value = Utility.parseCurrency(buildingValue.getText().toString());
     dataController.setValueAsFloat(key, value);
     
-    key = ValueEnum.PROPERTY_TAX_RATE;
-    value = Utility.parsePercentage(propertyTaxRate.getText().toString());
+    key = ValueEnum.PROPERTY_TAX;
+    value = Utility.parsePercentage(propertyTax.getText().toString());
     dataController.setValueAsFloat(key, value);
     
     key = ValueEnum.LOCAL_MUNICIPAL_FEES;
@@ -166,8 +166,8 @@ public class TaxesActivity extends Activity {
     Float bv = dataController.getValueAsFloat(ValueEnum.BUILDING_VALUE);
     buildingValue.setText(Utility.displayCurrency(bv));
     
-    Float ptr = dataController.getValueAsFloat(ValueEnum.PROPERTY_TAX_RATE);
-    propertyTaxRate.setText(Utility.displayPercentage(ptr));
+    Float ptr = dataController.getValueAsFloat(ValueEnum.PROPERTY_TAX);
+    propertyTax.setText(Utility.displayCurrency(ptr));
     
     Float lmf = dataController.getValueAsFloat(ValueEnum.LOCAL_MUNICIPAL_FEES);
     localMunicipalFees.setText(Utility.displayCurrency(lmf));

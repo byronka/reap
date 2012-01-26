@@ -1,7 +1,9 @@
 package com.byronkatz.reap.activity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -9,6 +11,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -72,7 +75,34 @@ public class GraphActivityFunctions {
 
     return progressDialog;
   }
+  
+  static void saveViewableDataTableRows(Bundle b, Set<ValueEnum> hs ) {
+    
+    String[] stringArray = new String[hs.size()];
 
+    int i = 0;
+    for (ValueEnum ve : hs) {
+      stringArray[i] = ve.name();
+      i++;
+    }
+      
+    b.putStringArray("viewableDataTableRows", stringArray);
+    
+  }
+  
+  static Set<ValueEnum> restoreViewableDataTableRows(Bundle b) {
+
+    Set<ValueEnum> tempSet = new HashSet<ValueEnum>();
+    
+    String[] stringArray = b.getStringArray("viewableDataTableRows");
+
+    for (String s : stringArray) {
+      tempSet.add(ValueEnum.valueOf(s));
+    }
+    
+    return tempSet;
+  }
+  
   static void invalidateGraphs(Activity activity) {
 
     AnalysisGraph graph;
@@ -254,7 +284,6 @@ public class GraphActivityFunctions {
   }
 
   static void updateTimeSliderAfterChange(SeekBar timeSlider, Integer currentYearMaximum) {
-
 
     timeSlider.setMax(currentYearMaximum - 1);
     timeSlider.setProgress(currentYearMaximum - 1);
