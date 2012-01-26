@@ -150,7 +150,7 @@ public class TaxesActivity extends Activity {
     dataController.setValueAsFloat(key, value);
     
     key = ValueEnum.PROPERTY_TAX;
-    value = Utility.parsePercentage(propertyTax.getText().toString());
+    value = Utility.parseCurrency(propertyTax.getText().toString());
     dataController.setValueAsFloat(key, value);
     
     key = ValueEnum.LOCAL_MUNICIPAL_FEES;
