@@ -51,11 +51,12 @@ public static Integer getNumOfCompoundingPeriods() {
 }
 
 
-public static void setSelectionOnView(View v, ValueType valueType) {
+public static void setSelectionOnView(View v, ValueEnum ve) {
   EditText editText = (EditText) v;
   //we'll use textInEditText to measure the string for the selection
   String textInEditText = editText.getText().toString();
   int textLength = textInEditText.length();
+  ValueType valueType = ve.getType();
 
   switch (valueType) {
   case CURRENCY:
@@ -99,14 +100,22 @@ public static Float parseCurrency(String value) {
   return returnValue;
 }
 
-public static void parseThenDisplayCurrency(View v) {
+public static void parseThenDisplayValue(View v, ValueEnum ve) {
+  if (ve.getType() == ValueType.CURRENCY) {
+    parseThenDisplayCurrency(v);
+  } else if (ve.getType() == ValueType.PERCENTAGE) {
+    parseThenDisplayPercentage(v);
+  }
+}
+
+private static void parseThenDisplayCurrency(View v) {
   
   ((EditText) v).setText (Utility.displayCurrency(
       Utility.parseCurrency(((EditText) v).getText().toString())));
   
 }
 
-public static void parseThenDisplayPercentage(View v) {
+private static void parseThenDisplayPercentage(View v) {
   
   ((EditText) v).setText (Utility.displayPercentage(
       Utility.parsePercentage(((EditText) v).getText().toString())));

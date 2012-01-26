@@ -4,16 +4,15 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
+import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
-import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 public class RentalActivity extends Activity {
 
@@ -43,17 +42,7 @@ public class RentalActivity extends Activity {
 
     assignValuesToFields();
 
-    estimatedRentPayments.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayCurrency(v);
-        }
-      }
-    });
+    estimatedRentPayments.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.ESTIMATED_RENT_PAYMENTS));
 
     ImageButton estimatedRentPaymentsHelpButton = 
         (ImageButton)findViewById(R.id.estimatedRentPaymentsHelpButton);
@@ -67,17 +56,7 @@ public class RentalActivity extends Activity {
       }
     });
 
-    yearlyHomeInsurance.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayCurrency(v);
-        }
-      }
-    });
+    yearlyHomeInsurance.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.YEARLY_HOME_INSURANCE));
 
     ImageButton yearlyHomeInsuranceHelpButton = 
         (ImageButton)findViewById(R.id.yearlyHomeInsuranceHelpButton);
@@ -91,17 +70,7 @@ public class RentalActivity extends Activity {
       }
     });
 
-    vacancyAndCreditLoss.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.PERCENTAGE);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayPercentage(v);
-        }
-      }
-    });
+    vacancyAndCreditLoss.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE));
 
     ImageButton vacancyAndCreditLossHelpButton = 
         (ImageButton)findViewById(R.id.vacancyAndCreditLossHelpButton);
@@ -115,17 +84,7 @@ public class RentalActivity extends Activity {
       }
     });
 
-    fixupCosts.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayCurrency(v);
-        }
-      }
-    });
+    fixupCosts.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.FIX_UP_COSTS));
 
     ImageButton fixupCostsHelpButton =
         (ImageButton)findViewById(R.id.fixupCostsHelpButton);
@@ -138,17 +97,7 @@ public class RentalActivity extends Activity {
       }
     });
 
-    initialYearlyGeneralExpenses.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayCurrency(v);
-        }
-      }
-    });
+    initialYearlyGeneralExpenses.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES));
 
     ImageButton initialYearlyGeneralExpensesHelpButton =
         (ImageButton)findViewById(R.id.initialYearlyGeneralExpensesHelpButton);
@@ -162,17 +111,7 @@ public class RentalActivity extends Activity {
       }
     });
 
-    requiredRateOfReturn.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.PERCENTAGE);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayPercentage(v);
-        }
-      }
-    });
+    requiredRateOfReturn.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.REQUIRED_RATE_OF_RETURN));
 
     ImageButton requiredRateOfReturnHelpButton = 
         (ImageButton)findViewById(R.id.requiredRateOfReturnHelpButton);

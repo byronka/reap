@@ -1,20 +1,18 @@
 package com.byronkatz.reap.activity;
 
-import com.byronkatz.R;
-
-import com.byronkatz.reap.general.DataController;
-import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
-import com.byronkatz.reap.general.Utility;
-import com.byronkatz.reap.general.ValueEnum;
-import com.byronkatz.reap.general.ValueEnum.ValueType;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import com.byronkatz.R;
+import com.byronkatz.reap.general.DataController;
+import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;
+import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
+import com.byronkatz.reap.general.Utility;
+import com.byronkatz.reap.general.ValueEnum;
 
 public class SaleActivity extends Activity {
   
@@ -35,17 +33,7 @@ public class SaleActivity extends Activity {
     
     assignValuesToFields();
 
-    generalSaleExpenses.setOnFocusChangeListener(new OnFocusChangeListener() {
-      
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayCurrency(v);
-        }
-      }
-    });
+    generalSaleExpenses.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.GENERAL_SALE_EXPENSES));
     
     ImageButton generalSaleExpensesHelpButton = 
         (ImageButton)findViewById(R.id.generalSaleExpensesHelpButton);
@@ -60,17 +48,7 @@ public class SaleActivity extends Activity {
     });
 
   
-    sellingBrokerRate.setOnFocusChangeListener(new OnFocusChangeListener() {
-      
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.PERCENTAGE);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayPercentage(v);
-        }
-      }
-    });
+    sellingBrokerRate.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.SELLING_BROKER_RATE));
     
     ImageButton sellingBrokerRateHelpButton = 
         (ImageButton)findViewById(R.id.sellingBrokerRateHelpButton);

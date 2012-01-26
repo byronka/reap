@@ -3,7 +3,6 @@ package com.byronkatz.reap.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -12,10 +11,9 @@ import android.widget.Spinner;
 
 import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
+import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
-import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
-import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 public class AddressActivity extends Activity {
 
@@ -65,25 +63,9 @@ public class AddressActivity extends Activity {
       }
     });
 
-    streetAddressEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
-      
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.STRING);
-        }     
-      }
-    });
+    streetAddressEditText.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.STREET_ADDRESS));
     
-    cityEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
-      
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.STRING);
-        }     
-      }
-    });
+    cityEditText.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.CITY));
 
   }
 

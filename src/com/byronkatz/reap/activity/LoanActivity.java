@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -16,10 +15,10 @@ import android.widget.Spinner;
 import com.byronkatz.R;
 import com.byronkatz.reap.general.CalculatedVariables;
 import com.byronkatz.reap.general.DataController;
+import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
-import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 public class LoanActivity extends Activity {
 
@@ -74,18 +73,7 @@ public class LoanActivity extends Activity {
       }
     });
 
-    yearlyInterestRate.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          
-          Utility.setSelectionOnView(v, ValueType.PERCENTAGE);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayPercentage(v);
-        }
-      }
-    });
+    yearlyInterestRate.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.YEARLY_INTEREST_RATE));
 
     ImageButton yearlyInterestRateHelpButton = 
         (ImageButton)findViewById(R.id.yearlyInterestRateHelpButton);
@@ -100,17 +88,7 @@ public class LoanActivity extends Activity {
       }
     });
 
-    downPayment.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayCurrency(v);
-        }  
-      }
-    });
+    downPayment.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.DOWN_PAYMENT));
 
     ImageButton downPaymentHelpButton = 
         (ImageButton)findViewById(R.id.downPaymentHelpButton);
@@ -124,17 +102,7 @@ public class LoanActivity extends Activity {
       }
     });
 
-    totalPurchasePrice.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayCurrency(v);
-        }
-      }
-    });
+    totalPurchasePrice.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.TOTAL_PURCHASE_VALUE));
 
     ImageButton totalPurchasePriceHelpButton = 
         (ImageButton)findViewById(R.id.totalPurchasePriceHelpButton);
@@ -148,17 +116,7 @@ public class LoanActivity extends Activity {
       }
     });
 
-    closingCosts.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayCurrency(v);
-        }    
-      }
-    });
+    closingCosts.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.CLOSING_COSTS));
 
     ImageButton closingCostsHelpButton = 
         (ImageButton)findViewById(R.id.closingCostsHelpButton);
@@ -212,17 +170,7 @@ public class LoanActivity extends Activity {
       }
     });
     
-    privateMortgageInsurance.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayCurrency(v);
-        }    
-      }
-    });
+    privateMortgageInsurance.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.PRIVATE_MORTGAGE_INSURANCE));
     
     ImageButton privateMortgageInsuranceHelpButton = 
         (ImageButton)findViewById(R.id.privateMortgageInsuranceHelpButton);

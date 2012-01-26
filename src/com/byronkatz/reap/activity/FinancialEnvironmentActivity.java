@@ -1,19 +1,18 @@
 package com.byronkatz.reap.activity;
 
-import com.byronkatz.R;
-import com.byronkatz.reap.general.DataController;
-import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
-import com.byronkatz.reap.general.Utility;
-import com.byronkatz.reap.general.ValueEnum;
-import com.byronkatz.reap.general.ValueEnum.ValueType;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import com.byronkatz.R;
+import com.byronkatz.reap.general.DataController;
+import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;
+import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
+import com.byronkatz.reap.general.Utility;
+import com.byronkatz.reap.general.ValueEnum;
 
 public class FinancialEnvironmentActivity extends Activity {
 
@@ -34,17 +33,7 @@ public class FinancialEnvironmentActivity extends Activity {
     
     assignValuesToFields();
    
-    inflationRate.setOnFocusChangeListener(new OnFocusChangeListener() {
-      
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.PERCENTAGE);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayPercentage(v);
-        }
-      }
-    });
+    inflationRate.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.INFLATION_RATE));
     
     ImageButton inflationRateHelpButton = 
         (ImageButton)findViewById(R.id.inflationRateHelpButton);
@@ -59,17 +48,7 @@ public class FinancialEnvironmentActivity extends Activity {
       }
     });
     
-    realEstateAppreciationRate.setOnFocusChangeListener(new OnFocusChangeListener() {
-      
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.PERCENTAGE);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayPercentage(v);
-        }
-      }
-    });
+    realEstateAppreciationRate.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.REAL_ESTATE_APPRECIATION_RATE));
     
     ImageButton realEstateAppreciationRateHelpButton = 
         (ImageButton)findViewById(R.id.realEstateAppreciationRateHelpButton);

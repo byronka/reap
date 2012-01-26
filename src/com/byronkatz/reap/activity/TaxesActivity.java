@@ -2,16 +2,15 @@ package com.byronkatz.reap.activity;
 
 import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
+import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
-import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -36,19 +35,10 @@ public class TaxesActivity extends Activity {
     localMunicipalFees = (EditText)findViewById(R.id.localMunicipalFeesEditText);
     
     assignValuesToFields();
-
-    marginalTaxRate.setOnFocusChangeListener(new OnFocusChangeListener() {
-      
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.PERCENTAGE);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayPercentage(v);
-        } 
-      }
-    });
     
+    marginalTaxRate.setOnFocusChangeListener(
+        new OnFocusChangeListenerWrapper(ValueEnum.MARGINAL_TAX_RATE));
+
     ImageButton marginalTaxRateHelpButton = 
         (ImageButton)findViewById(R.id.marginalTaxRateHelpButton);
     marginalTaxRateHelpButton.setOnClickListener(new OnClickListener() {
@@ -61,17 +51,9 @@ public class TaxesActivity extends Activity {
       }
     });
     
-    buildingValue.setOnFocusChangeListener(new OnFocusChangeListener() {
-      
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayCurrency(v);
-        }
-      }
-    });
+    buildingValue.setOnFocusChangeListener(
+        new OnFocusChangeListenerWrapper(ValueEnum.BUILDING_VALUE));
+
     
     ImageButton buildingValueHelpButton = 
         (ImageButton)findViewById(R.id.buildingValueHelpButton);
@@ -85,17 +67,8 @@ public class TaxesActivity extends Activity {
       }
     });
     
-    propertyTax.setOnFocusChangeListener(new OnFocusChangeListener() {
-      
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayCurrency(v);
-        }
-      }
-    });
+    propertyTax.setOnFocusChangeListener(
+        new OnFocusChangeListenerWrapper(ValueEnum.PROPERTY_TAX));
     
     ImageButton propertyTaxHelpButton = 
         (ImageButton)findViewById(R.id.propertyTaxHelpButton);
@@ -109,17 +82,8 @@ public class TaxesActivity extends Activity {
       }
     });
     
-    localMunicipalFees.setOnFocusChangeListener(new OnFocusChangeListener() {
-      
-      @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-          Utility.setSelectionOnView(v, ValueType.CURRENCY);
-        } else if (!hasFocus) {
-          Utility.parseThenDisplayCurrency(v);
-        }   
-      }
-    });
+    localMunicipalFees.setOnFocusChangeListener(
+        new OnFocusChangeListenerWrapper(ValueEnum.LOCAL_MUNICIPAL_FEES));
     
     ImageButton localMunicipalFeesHelpButton = 
         (ImageButton)findViewById(R.id.localMunicipalFeesHelpButton);

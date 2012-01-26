@@ -26,6 +26,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TableLayout;
@@ -236,7 +237,7 @@ public class GraphActivity extends Activity {
       public void onFocusChange(View v, boolean hasFocus) {
 
         if (hasFocus) {
-          Utility.setSelectionOnView(v, currentSliderKey.getType());
+          Utility.setSelectionOnView(v, currentSliderKey);
         } else if (! hasFocus) {
 
           currentValueNumeric = GraphActivityFunctions.parseEditText(currentValueEditText, currentSliderKey);
@@ -266,18 +267,18 @@ public class GraphActivity extends Activity {
       public void onFocusChange(View v, boolean hasFocus) {
 
         if (hasFocus) {
-          Utility.setSelectionOnView(v, currentSliderKey.getType());
+          Utility.setSelectionOnView(v, currentSliderKey);
         } else if (! hasFocus) {
 
           Float tempMinValue = GraphActivityFunctions.parseEditText(minValueEditText, currentSliderKey);
           if (tempMinValue < currentValueNumeric) {
             minValueNumeric = tempMinValue;
-
             deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
-
             GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
-
             calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
+          } else {
+            Toast toast = Toast.makeText(GraphActivity.this, "new min value must be less than current value", Toast.LENGTH_SHORT);
+            toast.show();
           }
 
           GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
@@ -303,7 +304,7 @@ public class GraphActivity extends Activity {
       public void onFocusChange(View v, boolean hasFocus) {
 
         if (hasFocus) {
-          Utility.setSelectionOnView(v, currentSliderKey.getType());
+          Utility.setSelectionOnView(v, currentSliderKey);
         } else if (! hasFocus) {
 
           Float tempMaxValue = GraphActivityFunctions.parseEditText(maxValueEditText, currentSliderKey);
@@ -313,7 +314,12 @@ public class GraphActivity extends Activity {
             deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
             GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
             calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
+          } else {
+            Toast toast = Toast.makeText(GraphActivity.this, "new max value must be greater than current value", Toast.LENGTH_SHORT);
+            toast.show();
           }
+          
+          
           GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
         }
       }
