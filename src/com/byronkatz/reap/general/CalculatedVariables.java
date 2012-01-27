@@ -26,6 +26,7 @@ public class CalculatedVariables {
   private static Float accumulatingDepreciation = 0.0f;
   private static Float npvAccumulator = 0.0f;
   private static Float atcfAccumulator = 0.0f;
+  private static Float netCashOutValue = 0.0f;
 
   private static Float modifiedInternalRateOfReturn = 0.0f;
   private static Vector<Float> cashFlowVector = new Vector<Float>();
@@ -130,6 +131,7 @@ public class CalculatedVariables {
 
     for (int year = 1; year <= yearlyCompoundingPeriods; year++) {
 
+      netCashOutValue = 0.0f;
       final Integer monthCPModifier = year * NUM_OF_MONTHS_IN_YEAR;
       final Integer prevYearMonthCPModifier = (year - 1) * NUM_OF_MONTHS_IN_YEAR;
 
@@ -158,6 +160,9 @@ public class CalculatedVariables {
     final Float yearlyAfterTaxCashFlow = calculateYearlyAfterTaxCashFlow(year, monthCPModifier, prevYearMonthCPModifier);
     atcfAccumulator += yearlyAfterTaxCashFlow;
     dataController.setValueAsFloat(ValueEnum.ATCF_ACCUMULATOR, atcfAccumulator, year);
+    
+    netCashOutValue += atcfAccumulator;
+    
     modifiedInternalRateOfReturn = calculateMirr(
         year, requiredRateOfReturn, yearlyInterestRate, yearlyAfterTaxCashFlow, null);
 
@@ -203,11 +208,15 @@ public class CalculatedVariables {
 
     final Float ater = projectedValueOfHomeAtSale - brokerCut - 
         inflationAdjustedSellingExpenses - getPrincipalOutstandingAtPoint(monthCPModifier) - taxesDueAtSale;
-
+    dataController.setValueAsFloat(ValueEnum.ATER, ater, year);
+    
+    netCashOutValue += ater;
+    dataController.setValueAsFloat(ValueEnum.NET_CASH_OUT_VALUE, netCashOutValue, year);
+    
     calculateMirr(year, requiredRateOfReturn, yearlyInterestRate, null, ater);
 
     final Float adjustedAter = (float) (ater / Math.pow(1 + monthlyRequiredRateOfReturn,monthCPModifier));
-    dataController.setValueAsFloat(ValueEnum.ATER, adjustedAter, year);
+    dataController.setValueAsFloat(ValueEnum.ATER_PV, adjustedAter, year);
 
     return adjustedAter;
   }

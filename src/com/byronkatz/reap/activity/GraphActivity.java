@@ -11,6 +11,7 @@ import java.util.Set;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -26,13 +27,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
-import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
 import com.byronkatz.R;
 import com.byronkatz.reap.general.CalculatedVariables;
@@ -67,7 +68,6 @@ public class GraphActivity extends Activity {
   public static final int TOGGLE_BUTTON_INDEX = 2;
   public static final int CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE = 1;
 
-
   ValueEnum[] dataTableItems = ValueEnum.values();
   Float percentageSlid;
   public static AsyncTask<Void, Integer, Void> calculateInBackgroundTask;
@@ -101,7 +101,6 @@ public class GraphActivity extends Activity {
   public void onResume() {
     super.onResume();
 
-
     if (DataController.isDataChanged()) {
 
       currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
@@ -114,7 +113,7 @@ public class GraphActivity extends Activity {
       //necessary to do the following or else the Year will not update right after the change
       updateYearDisplayAtSeekBar(currentYearMaximum);
       colorTheDataTables();
-      setCurrentValueHeaderDataValues();
+      recalcGraphPage();
     }
   }
 
@@ -124,6 +123,16 @@ public class GraphActivity extends Activity {
   @Override
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
+    
+    if (savedState != null) {
+      dataController.setViewableDataTableRows(
+          GraphActivityFunctions.restoreViewableDataTableRows(savedState));
+    }
+    
+    SharedPreferences sp = getPreferences(MODE_PRIVATE);
+    dataController.setViewableDataTableRows(
+        GraphActivityFunctions.restoreViewableDataTableRows(sp));
+    
     setContentView(R.layout.graph);
 
     Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods();
@@ -135,7 +144,16 @@ public class GraphActivity extends Activity {
     valueToDataTableItemCorrespondence = GraphActivityFunctions.createDataTableItems(GraphActivity.this);
     setDataChangedToggle(true);
   }
+  
+  @Override
+  public void onPause() {
+    super.onPause();
+    
+    SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
 
+    GraphActivityFunctions.saveViewableDataTableRows(sharedPreferences);
+  }
+  
   @Override
   public void onRestoreInstanceState(Bundle outState) {
     
@@ -146,11 +164,9 @@ public class GraphActivity extends Activity {
   
   @Override
   public void onSaveInstanceState(Bundle outState) {
-    
+
+    GraphActivityFunctions.saveViewableDataTableRows(outState);
     super.onSaveInstanceState(outState);
-    
-    GraphActivityFunctions.saveViewableDataTableRows(
-        outState, dataController.getViewableDataTableRows() );
   }
 
   
@@ -172,7 +188,7 @@ public class GraphActivity extends Activity {
 
   }
 
-  private void setCurrentValueHeaderDataValues() {
+  private void recalcGraphPage() {
     EditText maxValueEditText = (EditText) findViewById (R.id.maxValueEditText);
     EditText minValueEditText = (EditText) findViewById (R.id.minValueEditText);
 
@@ -214,7 +230,7 @@ public class GraphActivity extends Activity {
       public void onClick(View v) {
 
         currentValueNumeric = originalCurrentValueNumeric;
-        setCurrentValueHeaderDataValues();
+        recalcGraphPage();
 
       }
     });
@@ -241,7 +257,7 @@ public class GraphActivity extends Activity {
         } else if (! hasFocus) {
 
           currentValueNumeric = GraphActivityFunctions.parseEditText(currentValueEditText, currentSliderKey);
-          setCurrentValueHeaderDataValues();
+          recalcGraphPage();
           GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
 
         }
@@ -449,7 +465,7 @@ public class GraphActivity extends Activity {
             //following is for the reset button
             originalCurrentValueNumeric = currentValueNumeric;
 
-            setCurrentValueHeaderDataValues();
+            recalcGraphPage();
 
           }
 
@@ -526,7 +542,7 @@ public class GraphActivity extends Activity {
     TableLayout dataTableLayout = (TableLayout) findViewById(R.id.dataTableLayout);
     Set<ValueEnum> viewableDataTableRows = dataController.getViewableDataTableRows();
 
-    GraphActivityFunctions.setColorDataTableRows(dataTableLayout, viewableDataTableRows, valueToDataTableItemCorrespondence);
+    GraphActivityFunctions.setColorDataTableRows(dataTableLayout, viewableDataTableRows);
   }
 
   private Integer getCurrentYearSelected() {
