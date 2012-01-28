@@ -29,8 +29,7 @@ public class CalculatedVariables {
   private static Float netCashOutValue = 0.0f;
 
   private static Float modifiedInternalRateOfReturn = 0.0f;
-//  private static Vector<Float> cashFlowVector = new Vector<Float>();
-//  private static Float aterValueForMirr = 0.0f;
+
   private static ModifiedInternalRateOfReturn mirr;
 
 
@@ -76,10 +75,9 @@ public class CalculatedVariables {
 
     modifiedInternalRateOfReturn = 0.0f;
     atcfAccumulator = 0.0f;
-//    cashFlowVector = new Vector<Float>();
-//    aterValueForMirr = 0.0f;
+
     mirr = new ModifiedInternalRateOfReturn();
-    
+
 
     monthlyPrivateMortgageInsurance = dataController.getValueAsFloat(ValueEnum.PRIVATE_MORTGAGE_INSURANCE);
     totalPurchaseValue = dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE);
@@ -163,9 +161,9 @@ public class CalculatedVariables {
     final Float yearlyAfterTaxCashFlow = calculateYearlyAfterTaxCashFlow(year, monthCPModifier, prevYearMonthCPModifier);
     atcfAccumulator += yearlyAfterTaxCashFlow;
     dataController.setValueAsFloat(ValueEnum.ATCF_ACCUMULATOR, atcfAccumulator, year);
-    
+
     netCashOutValue += atcfAccumulator;
-    
+
     modifiedInternalRateOfReturn = mirr.calculateMirr(
         year, requiredRateOfReturn, yearlyInterestRate, yearlyAfterTaxCashFlow, null);
 
@@ -188,23 +186,47 @@ public class CalculatedVariables {
     return yearlyAfterTaxCashFlow;
   }
 
-  private static Float calculateAter(int year, int monthCPModifier) {
-    //equity reversion portion
-    final Float thisYearMonthlyREARIncrementer = (float) Math.pow(1 + monthlyRealEstateAppreciationRate, monthCPModifier);
-    final Float projectedValueOfHomeAtSale = totalPurchaseValue * thisYearMonthlyREARIncrementer;
-    dataController.setValueAsFloat(ValueEnum.PROJECTED_HOME_VALUE, 
-        projectedValueOfHomeAtSale, year);
+  private static Float futureValue (final Float numberOfCompoundingPeriods, 
+      final Float rate, final Float originalValue) {
+
+    return (float) (originalValue * Math.pow((1 + rate), numberOfCompoundingPeriods));
+  }
+
+  private static Float calculateHomeFutureValue (final int year,
+      final Float rate, final Float originalValue) {
+    final Float homeFutureValue = futureValue(((float) year * NUM_OF_MONTHS_IN_YEAR), (rate / NUM_OF_MONTHS_IN_YEAR), originalValue);
+    dataController.setValueAsFloat(ValueEnum.PROJECTED_HOME_VALUE, homeFutureValue, year);
+    return homeFutureValue;
+  }
+
+  private static Float calculateBrokerCutOfSale(Float projectedValueOfHomeAtSale, 
+      Float sellingBrokerRate, int year) {
 
     final Float brokerCut = projectedValueOfHomeAtSale * sellingBrokerRate;
     dataController.setValueAsFloat(ValueEnum.BROKER_CUT_OF_SALE, brokerCut, year);
 
-    final Float monthlyIRIncrementer = (float) Math.pow(1 + monthlyInflationRate, monthCPModifier);
-    final Float inflationAdjustedSellingExpenses = generalSaleExpenses * monthlyIRIncrementer;
+    return brokerCut;
+  }
+
+  private static Float calculateSellingExpensesFutureValue(final int year,
+      final Float rate, final Float originalValue) {
+
+    final Float sellingExpensesFutureValue = 
+        futureValue((float) year * NUM_OF_MONTHS_IN_YEAR, rate / NUM_OF_MONTHS_IN_YEAR, originalValue);
     dataController.setValueAsFloat(ValueEnum.SELLING_EXPENSES, 
-        inflationAdjustedSellingExpenses, year);
+        sellingExpensesFutureValue, year);
+
+    return sellingExpensesFutureValue;
+  }
+
+  private static Float calculateAter(int year, int monthCPModifier) {
+    final Float projectedValueOfHomeAtSale = calculateHomeFutureValue(year, realEstateAppreciationRate, totalPurchaseValue);
+    final Float brokerCut = calculateBrokerCutOfSale(projectedValueOfHomeAtSale, sellingBrokerRate, year);
+    final Float inflationAdjustedSellingExpenses = calculateSellingExpensesFutureValue(
+        year, inflationRate, generalSaleExpenses);
 
     //How many years do I take depreciation?
-    accumulatingDepreciation = yearlyDepreciation * year;
+        accumulatingDepreciation = yearlyDepreciation * year;
     final Float taxesDueAtSale = (projectedValueOfHomeAtSale - totalPurchaseValue + accumulatingDepreciation)
         * TAX_ON_CAPITAL_GAINS;
     dataController.setValueAsFloat(ValueEnum.TAXES_DUE_AT_SALE, taxesDueAtSale, year);
@@ -212,10 +234,10 @@ public class CalculatedVariables {
     final Float ater = projectedValueOfHomeAtSale - brokerCut - 
         inflationAdjustedSellingExpenses - getPrincipalOutstandingAtPoint(monthCPModifier) - taxesDueAtSale;
     dataController.setValueAsFloat(ValueEnum.ATER, ater, year);
-    
+
     netCashOutValue += ater;
     dataController.setValueAsFloat(ValueEnum.NET_CASH_OUT_VALUE, netCashOutValue, year);
-    
+
     mirr.calculateMirr(year, requiredRateOfReturn, yearlyInterestRate, null, ater);
 
     final Float adjustedAter = (float) (ater / Math.pow(1 + monthlyRequiredRateOfReturn,monthCPModifier));
@@ -332,7 +354,7 @@ public class CalculatedVariables {
     return accumInterestPaymentAtPoint;
   }
 
-  private static Float getPrincipalOutstandingAtPoint (int compoundingPeriodDesired) {
+  public static Float getPrincipalOutstandingAtPoint (int compoundingPeriodDesired) {
 
     Float mp = monthlyMortgagePayment;
     Float a = monthlyInterestRate+1;
@@ -342,52 +364,6 @@ public class CalculatedVariables {
 
     return princpalOutstandingAtPoint;
   }
-
-//  private static Float calculateMirr(
-//      int year, Float reinvestmentRate, Float financeRate, Float cashFlow, Float ater) {
-//
-//    Float mirr = 0.0f;
-//    int internalYear = 0;
-//    Float futureValuePositiveCashFlowsAccumulator = 0.0f;
-//    Float presentValueNegativeCashFlowsAccumulator = 0.0f;
-//    if (cashFlow != null) {
-//      cashFlowVector.add(cashFlow);
-//    }
-//
-//    aterValueForMirr = 0.0f;
-//    if (ater != null) {
-//      aterValueForMirr = ater;
-//    }
-//
-//
-//      for (Float flow : cashFlowVector) {
-//
-//        if (flow < 0.0f) {
-//          presentValueNegativeCashFlowsAccumulator += flow / (float) Math.pow(1 + financeRate, internalYear);
-//        } else if (flow > 0.0f) {
-//          futureValuePositiveCashFlowsAccumulator += flow * (float) Math.pow(1 + reinvestmentRate, year - internalYear);
-//        }
-//
-//        internalYear++;
-//      }
-//
-//
-//    //special case for ater, since by definition it always happens in last year
-//
-//      if (aterValueForMirr < 0.0f) {
-//        presentValueNegativeCashFlowsAccumulator += aterValueForMirr / (float) Math.pow(1 + financeRate, year);
-//      } else if (aterValueForMirr > 0.0f) {
-//        futureValuePositiveCashFlowsAccumulator += aterValueForMirr * (float) Math.pow(1 + reinvestmentRate, 0);
-//      }
-//
-//
-//    //we don't want divide by zero errors.
-//    if (!(presentValueNegativeCashFlowsAccumulator == 0f) || !(year == 0)) {
-//      mirr = (float) Math.pow(futureValuePositiveCashFlowsAccumulator / - presentValueNegativeCashFlowsAccumulator, (1.0f/year)) - 1;
-//    }
-//
-//    return mirr;
-//  }
 
 }
 
