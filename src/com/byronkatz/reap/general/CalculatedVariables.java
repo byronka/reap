@@ -23,7 +23,6 @@ public class CalculatedVariables {
   private static Float monthlyRealEstateAppreciationRate = 0.0f;
   private static Float monthlyRequiredRateOfReturn = 0.0f;
   private static Float monthlyInflationRate = 0.0f;
-  private static Float accumulatingDepreciation = 0.0f;
   private static Float npvAccumulator = 0.0f;
   private static Float atcfAccumulator = 0.0f;
   private static Float netCashOutValue = 0.0f;
@@ -199,8 +198,8 @@ public class CalculatedVariables {
     return homeFutureValue;
   }
 
-  private static Float calculateBrokerCutOfSale(Float projectedValueOfHomeAtSale, 
-      Float sellingBrokerRate, int year) {
+  private static Float calculateBrokerCutOfSale(final Float projectedValueOfHomeAtSale, 
+      final Float sellingBrokerRate, final int year) {
 
     final Float brokerCut = projectedValueOfHomeAtSale * sellingBrokerRate;
     dataController.setValueAsFloat(ValueEnum.BROKER_CUT_OF_SALE, brokerCut, year);
@@ -219,18 +218,23 @@ public class CalculatedVariables {
     return sellingExpensesFutureValue;
   }
 
+  private static Float calculateTaxesDueAtSale(final Float projectedValueOfHomeAtSale, 
+      final Float totalPurchaseValue, final Float accumulatingDepreciation, final int year) {
+    final Float taxesDueAtSale = (projectedValueOfHomeAtSale - totalPurchaseValue + accumulatingDepreciation)
+        * TAX_ON_CAPITAL_GAINS;
+    dataController.setValueAsFloat(ValueEnum.TAXES_DUE_AT_SALE, taxesDueAtSale, year);
+
+    return taxesDueAtSale;
+  }
+
   private static Float calculateAter(int year, int monthCPModifier) {
     final Float projectedValueOfHomeAtSale = calculateHomeFutureValue(year, realEstateAppreciationRate, totalPurchaseValue);
     final Float brokerCut = calculateBrokerCutOfSale(projectedValueOfHomeAtSale, sellingBrokerRate, year);
     final Float inflationAdjustedSellingExpenses = calculateSellingExpensesFutureValue(
         year, inflationRate, generalSaleExpenses);
 
-    //How many years do I take depreciation?
-        accumulatingDepreciation = yearlyDepreciation * year;
-    final Float taxesDueAtSale = (projectedValueOfHomeAtSale - totalPurchaseValue + accumulatingDepreciation)
-        * TAX_ON_CAPITAL_GAINS;
-    dataController.setValueAsFloat(ValueEnum.TAXES_DUE_AT_SALE, taxesDueAtSale, year);
-
+    final Float taxesDueAtSale = calculateTaxesDueAtSale(
+        projectedValueOfHomeAtSale, totalPurchaseValue, (yearlyDepreciation * year), year);
     final Float ater = projectedValueOfHomeAtSale - brokerCut - 
         inflationAdjustedSellingExpenses - getPrincipalOutstandingAtPoint(monthCPModifier) - taxesDueAtSale;
     dataController.setValueAsFloat(ValueEnum.ATER, ater, year);
