@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/addressOverallLinearLayout" android:orientation="vertical"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+	<!-- the following is just to catch the focus and do nothing with it -->
+
+	<LinearLayout android:focusable="true"
+		android:focusableInTouchMode="true" android:layout_width="0px"
+		android:layout_height="0px" />
+
+
+
+	<LinearLayout android:id="@+id/LinearLayoutStreetAddress"
+		android:layout_height="wrap_content" android:layout_width="fill_parent" android:baselineAligned="false">
+		<TextView android:text="@string/streetAddressTitleText" android:layout_weight="0.20"
+			android:layout_width="0dip" android:layout_height="wrap_content"
+			android:id="@+id/streetAddress" android:gravity="center_vertical"></TextView>
+		<EditText android:layout_width="0dip" android:layout_height="wrap_content" android:id="@+id/streetAddressEditText"
+			android:inputType="textCapWords" android:layout_weight="0.80">
+		</EditText>
+	</LinearLayout>
+	<LinearLayout android:layout_height="wrap_content" 
+		android:id="@+id/LinearLayoutCity" android:layout_width="fill_parent">
+		<TextView android:text="@string/cityTitleText" android:layout_weight="0.20"
+			android:layout_width="0dip" android:layout_height="wrap_content"
+			android:id="@+id/cityTitle"></TextView>
+		<EditText android:layout_width="0dip" android:layout_weight="0.80"
+			android:layout_height="wrap_content" android:id="@+id/cityEditText"
+			android:inputType="textCapWords|textPersonName"></EditText>
+	</LinearLayout>
+	<LinearLayout android:layout_height="wrap_content"
+		android:id="@+id/linearLayoutStreetAddress" android:layout_width="fill_parent">
+		<TextView android:text="@string/stateTitleText"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:id="@+id/stateTitle" android:layout_weight="0.20" ></TextView>
+		<Spinner android:layout_height="wrap_content"
+			android:layout_width="wrap_content" android:entries="@array/states_array"
+			android:id="@+id/stateTitleSpinner" android:layout_weight="0.80" ></Spinner>
+	</LinearLayout>
+</LinearLayout>
+

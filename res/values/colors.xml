@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="data_table_row_color_alternate_a">#FF909090</color>
+    <color name="data_table_row_color_alternate_b">#afe6e7</color>
+    <color name="data_table_row_text_color">#000000</color>
+    
+</resources>
