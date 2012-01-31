@@ -3,6 +3,7 @@ package com.byronkatz.reap.general;
 import com.byronkatz.reap.calculations.EstateValue;
 import com.byronkatz.reap.calculations.GeneralCalculations;
 import com.byronkatz.reap.calculations.ModifiedInternalRateOfReturn;
+import com.byronkatz.reap.calculations.Mortgage;
 import com.byronkatz.reap.calculations.MortgagePayment;
 
 
@@ -33,6 +34,7 @@ public class CalculatedVariables {
   private static ModifiedInternalRateOfReturn mirr;
   private static MortgagePayment mp;
   private static EstateValue estateValue;
+  private static Mortgage mortgage;
 
 
   private static final DataController dataController = 
@@ -77,11 +79,17 @@ public class CalculatedVariables {
     atcfAccumulator = 0.0f;
 
     mirr = new ModifiedInternalRateOfReturn();
-    mp = new MortgagePayment();
     estateValue = new EstateValue();
+    mortgage = new Mortgage(estateValue);
+    yearlyInterestRate = mortgage.getYearlyInterestRate();
+    downPayment = mortgage.getDownPayment();
+    principalOwed = mortgage.getLoanAmount();
+    numOfCompoundingPeriods = mortgage.getNumberOfCompoundingPeriods();
+    mp = mortgage.getMortgagePayment();
 
+    
     monthlyPrivateMortgageInsurance = dataController.getValueAsFloat(ValueEnum.PRIVATE_MORTGAGE_INSURANCE);
-    totalPurchaseValue = dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE);
+    totalPurchaseValue = estateValue.getEstateValue(0);
     estimatedRentPayments = dataController.getValueAsFloat(ValueEnum.ESTIMATED_RENT_PAYMENTS);
     realEstateAppreciationRate = dataController.getValueAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE);
     vacancyRate = dataController.getValueAsFloat(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE);
@@ -90,14 +98,10 @@ public class CalculatedVariables {
     marginalTaxRate = dataController.getValueAsFloat(ValueEnum.MARGINAL_TAX_RATE);
     buildingValue = dataController.getValueAsFloat(ValueEnum.BUILDING_VALUE);
     requiredRateOfReturn = dataController.getValueAsFloat(ValueEnum.REQUIRED_RATE_OF_RETURN);
-    yearlyInterestRate = dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE);
-    numOfCompoundingPeriods = dataController.getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue();
     sellingBrokerRate = dataController.getValueAsFloat(ValueEnum.SELLING_BROKER_RATE);
     generalSaleExpenses = dataController.getValueAsFloat(ValueEnum.GENERAL_SALE_EXPENSES);
-    downPayment = dataController.getValueAsFloat(ValueEnum.DOWN_PAYMENT);
     fixupCosts = dataController.getValueAsFloat(ValueEnum.FIX_UP_COSTS);
     propertyTax = dataController.getValueAsFloat(ValueEnum.PROPERTY_TAX);
-    principalOwed = totalPurchaseValue - downPayment;
     monthlyInterestRate = yearlyInterestRate / NUM_OF_MONTHS_IN_YEAR;
     yearlyDepreciation = buildingValue / RESIDENTIAL_DEPRECIATION_YEARS;
 

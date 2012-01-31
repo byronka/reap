@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="app_name">Real Estate Market Analysis</string>
+	<string name="app_name">Real Estate Assessment Program</string>
 
 	<!-- entry page text -->
 	<string name="useCalcWithoutDefaultValues">generic default values</string>
@@ -211,7 +211,7 @@
 	<string name="saveCurrentValuesToDatabaseButtonText">Save current values to database</string>
 
 	<!-- Activity title value- -->
-	<string name="entryScreenActivityTitleText">Real Estate Market Analysis</string>
+	<string name="entryScreenActivityTitleText">Real Estate Assessment Program</string>
 	<string name="rentalActivityTitleText">Rental</string>
 	<string name="dataPagesActivityTitleText">Data pages</string>
 	<string name="addressActivityTitleText">Address</string>

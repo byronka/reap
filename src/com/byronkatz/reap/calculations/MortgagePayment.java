@@ -6,24 +6,21 @@ import com.byronkatz.reap.general.ValueEnum;
 
 public class MortgagePayment {
 
-  private Float totalPurchaseValue;
-  private Float interestRate;
-  private Float numOfCompoundingPeriods;
-  private Float downPayment;
-  private Float principal;
+  private Float monthlyInterestRate;
+  private Integer numOfCompoundingPeriods;
+  private Float loanAmount;
   private Float monthlyMortgagePayment;
   private Float yearlyMortgagePayment;
-
   private static final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
-  public MortgagePayment() {
 
-    totalPurchaseValue = dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE);
-    interestRate = dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE) / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
-    numOfCompoundingPeriods = dataController.getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS);
-    downPayment = dataController.getValueAsFloat(ValueEnum.DOWN_PAYMENT);
-    principal = totalPurchaseValue - downPayment;
+  public MortgagePayment(Integer numOfCompoundingPeriods, Float loanAmount, 
+      Float yearlyInterestRate) {
+
+    this.numOfCompoundingPeriods = numOfCompoundingPeriods;
+    this.loanAmount = loanAmount;
+    monthlyInterestRate = yearlyInterestRate / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
     calculateMortgagePayment();
     saveValues();
 
@@ -46,11 +43,11 @@ public class MortgagePayment {
 
   private void calculateMortgagePayment() {
     //to avoid divide by zero error
-    if (interestRate == 0.0f) {
+    if (monthlyInterestRate == 0.0f) {
       monthlyMortgagePayment = 0.0f;
     } else {
-      monthlyMortgagePayment = (float) ((principal * interestRate) / 
-          (1 - (Math.pow(1 + interestRate, -numOfCompoundingPeriods))));
+      monthlyMortgagePayment = (float) ((loanAmount * monthlyInterestRate) / 
+          (1 - (Math.pow(1 + monthlyInterestRate, -numOfCompoundingPeriods))));
     }
     yearlyMortgagePayment = GeneralCalculations.NUM_OF_MONTHS_IN_YEAR * monthlyMortgagePayment;
 
