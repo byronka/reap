@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">Real Estate Market Analysis</string>
+
+	<!-- entry page text -->
+	<string name="useCalcWithoutDefaultValues">generic default values</string>
+	<string name="useCalcWithDefaultValues">default values from address</string>
+	<string name="helpButtonText">Help</string>
+	<string name="viewDataValuesText">View data values</string>
+	<string name="viewGraphButtonText">View graph</string>
+	<string name="setDataValuesButtonText">Set Data Values</string>
+
+	<!-- setting default values page -->
+	<string name="useGPSButtonText">Use GPS to set current location</string>
+	<string name="loadSavedValuesButtonText">load saved values from database</string>
+
+	<!-- load saved values -->
+	<string name="browseDatabaseButtonText">Browse the saved data</string>
+	<string name="searchDatabaseButtonText">Search the database</string>
+
+	<!-- Graph Activity page -->
+	<string name="minValueLabel">Minimum Value</string>
+	<string name="maxValueLabel">Maximum Value</string>
+	<string name="currentValueLabel">Current Value</string>
+	<string name="resetButton">Reset</string>
+
+	<!-- configure data tables activity -->
+	<string name="allButtonsOnText">All buttons on</string>
+	<string name="allButtonsOffText">All buttons off</string>
+	
+
+	<!-- Data table -->
+	<string name="defaultZeroPercentage">0%</string>
+	<string name="defaultZeroCurrency">$0.00</string>
+	<string name="yearDataTableItem">Year</string>
+	<string name="defaultStreetAddress">1234 Anywhere Street</string>
+	<string name="defaultCity">Memphis</string>
+	<string name="defaultState">Tennessee</string>
+	<string name="aterDataTableItem">Adjusted ATER</string>
+	<string name="atcfDataTableItem">After Tax Cash Flow</string>
+	<string name="npvDataTableItem">Net Present Value</string>
+	<string name="totalPurchaseValueDataTableItem">Total Purchase Value</string>
+	<string name="yearlyInterestRateDataTableItem">Yearly Interest Rate</string>
+	<string name="buildingValueDataTableItem">Building Value</string>
+	<string name="numOfCompPeriodsDataTableItem"># of compounding periods</string>
+	<string name="inflationRateDataTableItem">Inflation Rate</string>
+	<string name="streetAddressDataTableItem">Street Address</string>
+	<string name="cityDataTableITem">City</string>
+	<string name="stateDataTableItem">State</string>
+	<string name="estRentPaymentsDataTableItem">Estimated rent payments</string>
+	<string name="realEstateApprRateDataTableItem">Real Estate Appreciation Rate</string>
+	<string name="yearlyHomeInsuranceDataTableItem">Yearly Home Insurance</string>
+	<string name="propertyTaxDataTableItem">Property Tax</string>
+	<string name="localMuniFeesDataTableItem">Local Municipal Fees</string>
+	<string name="vacancyRateDataTableItem">Vacancy and Credit Loss Rate</string>
+	<string name="initialYearlyGenExpensesDataTableItem">Initial Yearly General Expenses</string>
+	<string name="marginalTaxRateDataTableITem">Marginal Tax Rate</string>
+	<string name="sellingBrokerRateDataTableItem">Selling Broker Rate</string>
+	<string name="generalSaleExpensesDataTableItem">General Sale Expenses</string>
+	<string name="reqRateOfReturnDataTableItem">Required Rate of Return</string>
+	<string name="fixUpCostsDataTableItem">Fix-up Costs</string>
+	<string name="closingCostsDataTableItem">Closing Costs</string>
+	<string name="downPaymentDataTableItem">Down Payment</string>
+	<string name="taxesDueAtSaleDataTableItem">Taxes due at sale</string>
+	<string name="sellingExpensesDataTableItem">Selling Expenses</string>
+	<string name="brokerCutDataTableItem">Broker cut at sale</string>
+	<string name="projectedHomeValueDataTableItem">Projected home value</string>
+	<string name="taxableIncomeDataTableItem">Yearly taxable income</string>
+	<string name="yearlyPrincipalPaidDataTableItem">Yearly principal paid</string>
+	<string name="currentAmountOutstandingDataTableItem">Yearly principal outstanding</string>
+	<string name="yearlyGeneralExpensesDataTableItem">Yearly general expenses</string>
+	<string name="yearlyIncomeDataTableItem">Yearly Income</string>
+	<string name="yearlyPropertyTaxDataTableItem">Yearly property tax</string>
+	<string name="yearlyMortgagePaymentDataTableItem">Yearly mortgage payment</string>
+	<string name="monthlyMortgagePaymentDataTableItem">Monthly mortgage payment</string>
+	<string name="accumulatedInterestPaidDataTableItem">Accumulated interest paid to date</string>
+	<string name="yearlyInterestPaidDataTableItem">Yearly interest paid</string>
+
+
+
+
+	<!-- taxes -->
+	<string name="TaxesScreenHeaderText">Taxes</string>
+	<string name="marginalTaxRateTitleText">Marginal Tax Rate: </string>
+	<string name="marginalTaxRateDescriptionText">The marginal tax rate is the tax rate that is
+		expected for the amount of adjusted gross income for the year
+	</string>
+	<string name="backButtonText">Back</string>
+	<string name="buildingValueTitleText">Building Value: </string>
+	<string name="propertyTaxTitleText">Yearly Property Tax: </string>
+	<string name="localMunicipalFeesTitleText">Local Municipal Fees: </string>
+	<string name="buildingValueDescriptionText">the value of the building, as opposed to the land
+		value.
+	</string>
+	<string name="propertyTaxDescriptionText">this coefficient is multipiled by the house value
+		to obtain the yearly property tax
+	</string>
+	<string name="localMunicipalFeesDescriptionText">Fees assessed by the local municipality in addition
+		to the property tax (such as solid waste or water taxes)
+	</string>
+
+	<!-- address -->
+	<string name="streetAddressHeaderText">Address</string>
+	<string name="streetAddressTitleText">Street Address: </string>
+	<string name="cityTitleText">City: </string>
+	<string name="stateTitleText">State: </string>
+	<string name="state_prompt">Choose a State: </string>
+
+
+	<!-- data pages -->
+	<string name="dataPagesHeaderText">Data Pages</string>
+	<string name="taxesCompleteText">Complete</string>
+	<string name="taxesButtonText">Taxes</string>
+	<string name="loanButtonText">Loan</string>
+	<string name="saleButtonText">Sale</string>
+	<string name="financialEnvironmentButtonText">Financial Environment</string>
+	<string name="rentalButtonText">Rental</string>
+	<string name="loanScreenHeaderText">Loan</string>
+
+	<!-- Loan page -->
+	<string name="yearlyInterestRateTitleText">Yearly interest rate: </string>
+	<string name="yearlyInterestRateDescriptionText">The yearly interest rate is the yearly percentage
+		of the amount borrowed which is owed to the lender
+	</string>
+	<string name="downPaymentDescriptionText">The down payment is the amount of money given to
+		the lender as collateral to secure the loan against default
+	</string>
+	<string name="downPaymentTitleText">Down payment: </string>
+	<string name="numOfCompoundingPeriodsDescriptionText">The number of compounding periods on the loan. This
+		may be monthly or yearly. Typical residential loans are 180 months (15
+		years) or 360 months (30 years)
+	</string>
+	<string name="numOfCompoundingPeriodsTitleText">Num. of compounding periods:</string>
+	<string name="calcPMIDownPaymentButtonText">Set down payment by PMI</string>
+
+	<string name="totalPurchaseValueDescriptionText">This value is the total purchase price, including
+		the land and building
+	</string>
+	<string name="totalPurchasePriceTitleText">Total purchase price</string>
+	<string name="closingCostsTitleText">Closing costs: </string>
+	<string name="closingCostsDescriptionText">The closing costs are the miscellaneous expenses
+		incurred in addition to the down payment. This may include home
+		inspection, title insurance, surveying costs, or discount point costs.
+	</string>
+	
+	<string name="privateMortgageInsuranceTitleText">Private Mortgage Insurance cost per month</string>
+	<string name="privateMortgageInsuranceDescriptionText">This is the amount charged by lenders to 
+		offset their costs in the case of a default on a loan.  It it typically charged when
+		the borrower puts up less than 20% of their own money as a down payment (That is the
+		assumed amount in this program)</string>
+
+	<!-- sale expenses -->
+	<string name="generalSaleExpensesDescriptionText">These are the expenses incurred during the sale of
+		the property- final fixup, any legal fees, etc., all in present value, when *you* sell it.  This is
+		not for when you purchase the property.
+	</string>
+	<string name="generalSaleExpensesTitleText">General Sale Expenses: </string>
+	<string name="sellingBrokerRateDescriptionText">The percentage of the sale price taken by the
+		selling broker
+	</string>
+	<string name="sellingBrokerRateTitleText">Selling Broker Rate: </string>
+	<string name="saleScreenHeaderText">Sale</string>
+
+	<!-- financial environment -->
+	<string name="financialEnvironmentHeaderText">Financial Environment</string>
+	<string name="inflationRateDescriptionText">The inflation rate is the expected average yearly
+		rate at which money loses value
+	</string>
+	<string name="inflationRateTitleText">Inflation Rate: </string>
+	<string name="realEstateAppreciationRateTitleText">Real Estate Appreciation Rate: </string>
+	<string name="realEstateAppreciationRateDescriptionText">This value is the expected average annual rate at
+		which the capital value of the investment appreciates (increases)
+	</string>
+
+	<!-- rental -->
+	<string name="rentalHeaderText">Rental</string>
+	<string name="estimatedRentPaymentsDescriptionText">This is the initial rent payments expected for the
+		property
+	</string>
+	<string name="estimatedRentPaymentsTitleText">Estimated Rent Payments: </string>
+	<string name="yearlyHomeInsuranceDescriptionText">This is the initial yearly cost of home insurance.
+	</string>
+	<string name="yearlyHomeInsuranceTitleText">Yearly Home Insurance: </string>
+	<string name="vacancyAndCreditLossDescriptionText">This is the average yearly amount lost through
+		tenants not paying their rent for whatever reason, as a percentage of
+		total rental income
+	</string>
+	<string name="vacancyAndCreditLossTitleText">Vacancy and Credit Loss: </string>
+	<string name="fixupCostsDescriptionText">Cost to fix up the property to a rentable state as
+		a one-time dollar amount
+	</string>
+	<string name="fixupCostsTitleText">Fix-up costs: </string>
+	<string name="initialYearlyGeneralExpensesDescriptionText">These are the initial expenses, as a yearly dollar
+		amount, to maintain the property. They include the costs of saving for
+		big-ticket repairs, management costs, minor repair costs, advertising,
+		and other miscellaneous expenses
+	</string>
+	<string name="initialYearlyGeneralExpensesTitleText">Initial Yearly General Expenses: </string>
+	<string name="requiredRateOfReturnDescriptionText">The required rate of return is the minimum rate of
+		return, as a yearly percentage, expected as the average yearly return.
+		It is used in the net present value equation to bring all future
+		values into the present value.
+	</string>
+	<string name="requiredRateOfReturnTitleText">Required Rate of Return: </string>
+
+	<!-- set data values activity -->
+	<string name="editValuesButtonText">Edit values</string>
+	<string name="genericDefaultValues">Use generic default values</string>
+	<string name="defaultValuesFromAddress">Use default values from address</string>
+	<string name="saveCurrentValuesToDatabaseButtonText">Save current values to database</string>
+
+	<!-- Activity title value- -->
+	<string name="entryScreenActivityTitleText">Real Estate Market Analysis</string>
+	<string name="rentalActivityTitleText">Rental</string>
+	<string name="dataPagesActivityTitleText">Data pages</string>
+	<string name="addressActivityTitleText">Address</string>
+	<string name="configureDataTableTitleText">Configure data tables</string>
+	<string name="financialEnvironmentActivityTitleText">Financial Environment</string>
+	<string name="graphActivityTitleText">Graph</string>
+	<string name="loadSavedValuesActivityTitleText">Load saved values</string>
+	<string name="loanActivityTitleText">Loan</string>
+	<string name="saleActivityTitleText">Sale</string>
+	<string name="setDataValuesActivityTitleText">Set data values</string>
+	<string name="taxesActivityTitleText">Taxes</string>
+	<string name="savedDataBrowserActivityTitleText">Saved Data Browser</string>
+	<string name="databaseSearchActivityTitleText">Database Search</string>
+	<string name="saveCurrentValuesActivityTitleText">Save Current Values</string>
+
+	<!-- Save current values activity -->
+	<string name="saveButtonText">Save</string>
+	<string name="valueSliderText">Value Slider</string>
+	<string name="timeSliderText">Time Slider</string>
+	<string name="realEstateMarketAnalysisSplashPageDescription">This program does the following ... touch the screen or click enter to continue</string>
+	<string name="databaseItemTextViewDesc1">Street Address: </string>
+	<string name="databaseItemTextViewDesc2">Total Purchase Value: </string>
+	<string name="databaseItemTextViewDesc3">Yearly Interest Rate: </string>
+	<string name="databaseItemTextViewDesc4">Down Payment: </string>
+	<string name="databaseItemTextViewDesc5">Required Rate of Return: </string>
+
+</resources>

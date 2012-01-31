@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="300dip"
+	android:layout_height="fill_parent">
+	<LinearLayout android:id="@+id/dataPagesButtonsLinearLayout"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:orientation="vertical" android:layout_marginTop="20dip"
+		android:layout_marginBottom="20dip">
+		<Button android:text="@string/addressActivityTitleText"
+			android:layout_height="wrap_content" android:layout_width="fill_parent"
+			android:id="@+id/addressButton"></Button>
+		<Button android:text="@string/loanButtonText"
+			android:layout_height="wrap_content" android:layout_width="fill_parent"
+			android:id="@+id/loanButton"></Button>
+		<Button android:id="@+id/taxesButton" android:text="@string/taxesButtonText"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+		<Button android:id="@+id/saleButton" android:text="@string/saleButtonText"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+		<Button android:id="@+id/financialEnvironmentButton"
+			android:text="@string/financialEnvironmentButtonText"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+		<Button android:text="@string/rentalButtonText" android:id="@+id/rentalButton"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+	</LinearLayout>
+
+
+</LinearLayout>

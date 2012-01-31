@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/overallLinearLayoutDatabaseBrowser"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" android:orientation="vertical">
+    <RelativeLayout android:id="@+id/LinearLayout1"
+    	android:orientation="vertical" android:layout_width="fill_parent"
+    	android:layout_height="fill_parent" android:layout_marginLeft="8dip" android:layout_marginRight="8dip" android:layout_marginBottom="8dip">
+    	<TextView android:layout_height="wrap_content" android:text="TextView"
+    		android:layout_width="wrap_content" android:id="@+id/databaseItemTextView1"
+    		android:layout_alignParentTop="true" android:layout_alignParentRight="true"></TextView>
+    	<TextView android:layout_height="wrap_content" android:text="TextView"
+    		android:layout_width="wrap_content" android:id="@+id/databaseItemTextView2"
+    		android:layout_below="@+id/databaseItemTextView1"
+    		android:layout_alignParentRight="true"></TextView>
+    	<TextView android:layout_height="wrap_content" android:text="TextView"
+    		android:layout_width="wrap_content" android:id="@+id/databaseItemTextView3"
+    		android:layout_below="@+id/databaseItemTextView2"
+    		android:layout_alignParentRight="true"></TextView>
+    	<TextView android:layout_height="wrap_content" android:text="TextView"
+    		android:layout_width="wrap_content" android:id="@+id/databaseItemTextView4"
+    		android:layout_below="@+id/databaseItemTextView3"
+    		android:layout_alignParentRight="true"></TextView>
+    	<TextView android:layout_height="wrap_content" android:text="TextView"
+    		android:layout_width="wrap_content" android:id="@+id/databaseItemTextView5"
+    		android:layout_below="@+id/databaseItemTextView4"
+    		android:layout_alignParentRight="true"></TextView>
+    	<TextView android:layout_height="wrap_content"
+    		android:text="@string/databaseItemTextViewDesc2" android:layout_width="wrap_content"
+    		android:id="@+id/databaseItemTextViewLabel2" android:layout_above="@+id/databaseItemTextView4"
+    		android:layout_alignParentLeft="true"></TextView>
+    	<TextView android:layout_height="wrap_content"
+    		android:text="@string/databaseItemTextViewDesc3" android:layout_width="wrap_content"
+    		android:id="@+id/databaseItemTextViewLabel3" android:layout_above="@+id/databaseItemTextViewLabel2"
+    		android:layout_alignParentLeft="true"></TextView>
+    	<TextView android:layout_height="wrap_content"
+    		android:text="@string/databaseItemTextViewDesc4" android:layout_width="wrap_content"
+    		android:id="@+id/databaseItemTextViewLabel4" android:layout_below="@+id/databaseItemTextViewLabel2"
+    		android:layout_alignParentLeft="true"></TextView>
+    	<TextView android:layout_height="wrap_content"
+    		android:text="@string/databaseItemTextViewDesc5" android:layout_width="wrap_content"
+    		android:id="@+id/databaseItemTextViewLabel5" android:layout_below="@+id/databaseItemTextViewLabel4"
+    		android:layout_alignParentLeft="true"></TextView>
+    	<TextView android:layout_height="wrap_content"
+    		android:text="@string/databaseItemTextViewDesc1" android:layout_width="wrap_content"
+    		android:id="@+id/databaseItemTextViewLabel1" android:layout_above="@+id/databaseItemTextViewLabel3"
+    		android:layout_alignParentLeft="true"></TextView>
+    
+    </RelativeLayout>
+</LinearLayout>

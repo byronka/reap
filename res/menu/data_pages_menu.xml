@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	android:name="Data pages menu">
+	<item android:id="@+id/configureGraphPageMenuItem" android:title="Configure graph page"
+		android:icon="@drawable/icon" />
+	<item android:id="@+id/databaseMenuItem" android:title="Saved locations"
+		android:icon="@drawable/icon" />
+	<item android:id="@+id/editValuesMenuItem" android:title="Edit data values"
+		android:icon="@drawable/icon" />
+	<item android:id="@+id/saveCurrentValuesMenuItem" android:title="Save current"
+		android:icon="@drawable/icon" />
+
+</menu>
