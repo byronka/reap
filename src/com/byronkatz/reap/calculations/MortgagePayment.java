@@ -16,11 +16,11 @@ public class MortgagePayment {
 
 
   public MortgagePayment(Integer numOfCompoundingPeriods, Float loanAmount, 
-      Float yearlyInterestRate) {
+      Float monthlyInterestRate) {
 
     this.numOfCompoundingPeriods = numOfCompoundingPeriods;
     this.loanAmount = loanAmount;
-    monthlyInterestRate = yearlyInterestRate / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
+    this.monthlyInterestRate = monthlyInterestRate;
     calculateMortgagePayment();
     saveValues();
 
