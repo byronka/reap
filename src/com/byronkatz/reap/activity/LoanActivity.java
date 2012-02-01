@@ -13,7 +13,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import com.byronkatz.R;
-import com.byronkatz.reap.general.CalculatedVariables;
+import com.byronkatz.reap.calculations.Mortgage;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
@@ -66,7 +66,7 @@ public class LoanActivity extends Activity {
       public void onClick(View v) {
         Float totalPurchasevalue = 
             Utility.parseCurrency(totalPurchasePrice.getText().toString());
-        Float pmiDownPayment = totalPurchasevalue * CalculatedVariables.PMI_PERCENTAGE;
+        Float pmiDownPayment = totalPurchasevalue * Mortgage.PMI_PERCENTAGE;
         String pmiDownPaymentText = Utility.displayCurrency(pmiDownPayment);
         downPayment.setText(pmiDownPaymentText);
 

@@ -70,7 +70,7 @@ public class GraphActivityFunctions {
     ProgressDialog progressDialog = new ProgressDialog(graphActivity);
     progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
     progressDialog.setMax(GraphActivity.DIVISIONS_OF_VALUE_SLIDER);
-    progressDialog.setMessage("Loading...");
+    progressDialog.setMessage("Calculating...");
     progressDialog.setCancelable(false);
 
     return progressDialog;

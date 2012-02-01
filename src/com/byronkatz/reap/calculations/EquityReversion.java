@@ -9,17 +9,19 @@ public class EquityReversion {
   private Float sellingBrokerRate;
   private EstateValue estateValue; 
   private Float sellingExpenses;
+  private RentalUnitOwnership rentalUnitOwnership;
   public static final Float TAX_ON_CAPITAL_GAINS = 0.15f;
 
   
   private static final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
   
-  public EquityReversion(EstateValue estateValue) {
+  public EquityReversion(EstateValue estateValue, RentalUnitOwnership rentalUnitOwnership) {
     
     sellingExpenses = dataController.getValueAsFloat(ValueEnum.GENERAL_SALE_EXPENSES);
     sellingBrokerRate = dataController.getValueAsFloat(ValueEnum.SELLING_BROKER_RATE);
     this.estateValue = estateValue;
+    this.rentalUnitOwnership = rentalUnitOwnership;
   }
   
   public Float calculateBrokerCutOfSale(final int year) {
@@ -30,13 +32,14 @@ public class EquityReversion {
     return brokerCut;
   }
   
-  public Float calculateSellingExpensesFutureValue(final int year, final Float rate) {
+  public Float getFVSellingExpenses(final int year) {
 
-    final Float sellingExpensesFutureValue = 
-        GeneralCalculations.futureValue((float) year * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR, rate / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR, sellingExpenses);
-    dataController.setValueAsFloat(ValueEnum.SELLING_EXPENSES, sellingExpensesFutureValue, year);
+    Integer compoundingPeriodDesired = (year - 1) * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
+    Float fvSellingExpenses = 0.0f;
+    fvSellingExpenses = sellingExpenses * rentalUnitOwnership.getFVMir(compoundingPeriodDesired);
+    dataController.setValueAsFloat(ValueEnum.SELLING_EXPENSES, fvSellingExpenses, year);
 
-    return sellingExpensesFutureValue;
+    return fvSellingExpenses;
   }
   
   public Float calculateTaxesDueAtSale(final Float accumulatingDepreciation, final int year) {

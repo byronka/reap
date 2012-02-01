@@ -6,6 +6,7 @@ import com.byronkatz.reap.general.ValueEnum;
 
 public class Mortgage {
 
+  private Float closingCosts;
   private Float downPayment;
   private Float loanAmount;
   private MortgagePayment mortgagePayment;
@@ -21,6 +22,7 @@ public class Mortgage {
   
   public Mortgage(EstateValue estateValue) {
 
+    closingCosts = dataController.getValueAsFloat(ValueEnum.CLOSING_COSTS);
     numberOfCompoundingPeriods = dataController.getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue();
     downPayment = dataController.getValueAsFloat(ValueEnum.DOWN_PAYMENT);
     loanAmount = estateValue.getEstateValue(0) - downPayment;
@@ -41,6 +43,10 @@ public class Mortgage {
 
   public Float getDownPayment() {
     return downPayment;
+  }
+  
+  public Float getClosingCosts() {
+    return closingCosts;
   }
   
   public Float getYearlyInterestRate() {
@@ -69,6 +75,7 @@ public class Mortgage {
       }
     }
 
+    dataController.setValueAsFloat(ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, pmiThisYear, year);
     return pmiThisYear;
   }
   
