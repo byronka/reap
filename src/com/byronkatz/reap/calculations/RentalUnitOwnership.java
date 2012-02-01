@@ -6,12 +6,19 @@ import com.byronkatz.reap.general.ValueEnum;
 
 public class RentalUnitOwnership {
   
+  private Float marginalTaxRate;
+  private Float buildingValue;
+  private Float yearlyDepreciation = 0.0f;
+
   private Float propertyTax;
   private Float fixupCosts;
   private Float yearlyRealEstateAppreciationRate;
   private Float yearlyInflationRate;
   private Float monthlyInflationRate;
   private Float monthlyRealEstateAppreciationRate;
+  
+  public static final Float RESIDENTIAL_DEPRECIATION_YEARS = 27.5f;
+
   
   private static final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
@@ -23,7 +30,18 @@ public class RentalUnitOwnership {
     monthlyRealEstateAppreciationRate = yearlyRealEstateAppreciationRate / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
     yearlyInflationRate = dataController.getValueAsFloat(ValueEnum.INFLATION_RATE);
     monthlyInflationRate = yearlyInflationRate / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
+    marginalTaxRate = dataController.getValueAsFloat(ValueEnum.MARGINAL_TAX_RATE);
+    buildingValue = dataController.getValueAsFloat(ValueEnum.BUILDING_VALUE);
+    yearlyDepreciation = buildingValue / RESIDENTIAL_DEPRECIATION_YEARS;
 
+  }
+  
+  public Float getYearlyDepreciation() {
+    return yearlyDepreciation;
+  }
+  
+  public Float getMarginalTaxRate() {
+    return marginalTaxRate;
   }
   
   public Float getYearlyRealEstateAppreciationRate() {

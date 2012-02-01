@@ -13,15 +13,12 @@ import com.byronkatz.reap.calculations.RentalUnitOwnership;
 public class CalculatedVariables {
 
   public static final int NUM_OF_MONTHS_IN_YEAR = 12;
-  public static final Float RESIDENTIAL_DEPRECIATION_YEARS = 27.5f;
   public static final int YEARLY = 1;
   public static final int MONTHLY = 2;
   private static Float firstDay = 0.0f;
   private static Float yearlyNPVSummation = 0.0f;
-  private static Float yearlyDepreciation = 0.0f;
   private static Integer yearlyCompoundingPeriods = 0;
   private static Float monthlyRequiredRateOfReturn = 0.0f;
-//  private static Float monthlyInflationRate = 0.0f;
   private static Float npvAccumulator = 0.0f;
   private static Float atcfAccumulator = 0.0f;
   private static Float netCashOutValue = 0.0f;
@@ -41,8 +38,6 @@ public class CalculatedVariables {
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
   //input variables
-  private static Float marginalTaxRate;
-  private static Float buildingValue;
   private static Float requiredRateOfReturn;
   private static Float yearlyInterestRate;
   private static int numOfCompoundingPeriods;
@@ -52,7 +47,6 @@ public class CalculatedVariables {
   private static void assignVariables() {
     firstDay = 0.0f;
     yearlyNPVSummation = 0.0f;
-    yearlyDepreciation = 0.0f;
     yearlyCompoundingPeriods = 0;
     monthlyRequiredRateOfReturn = 0.0f;
     npvAccumulator = 0.0f;
@@ -72,10 +66,7 @@ public class CalculatedVariables {
 
 
     
-    marginalTaxRate = dataController.getValueAsFloat(ValueEnum.MARGINAL_TAX_RATE);
-    buildingValue = dataController.getValueAsFloat(ValueEnum.BUILDING_VALUE);
     requiredRateOfReturn = dataController.getValueAsFloat(ValueEnum.REQUIRED_RATE_OF_RETURN);
-    yearlyDepreciation = buildingValue / RESIDENTIAL_DEPRECIATION_YEARS;
     yearlyCompoundingPeriods = numOfCompoundingPeriods / NUM_OF_MONTHS_IN_YEAR;
     monthlyRequiredRateOfReturn = requiredRateOfReturn / NUM_OF_MONTHS_IN_YEAR;
 
@@ -146,7 +137,7 @@ public class CalculatedVariables {
     final Float yearlyBeforeTaxCashFlow = calculateYearlyBeforeTaxCashFlow(year, prevYearMonthCPModifier);
     final Float taxableIncome = calculateTaxableIncome(year, monthCPModifier, prevYearMonthCPModifier, yearlyBeforeTaxCashFlow);
 
-    final Float yearlyTaxes = taxableIncome * marginalTaxRate;
+    final Float yearlyTaxes = taxableIncome * rentalUnitOwnership.getMarginalTaxRate();
     final Float yearlyAfterTaxCashFlow = yearlyBeforeTaxCashFlow - yearlyTaxes;
     dataController.setValueAsFloat(ValueEnum.ATCF, yearlyAfterTaxCashFlow, year);
 
@@ -171,7 +162,7 @@ public class CalculatedVariables {
     
     final Float brokerCut = equityReversion.calculateBrokerCutOfSale(year);
 
-    final Float taxesDueAtSale = equityReversion.calculateTaxesDueAtSale((yearlyDepreciation * year), year);
+    final Float taxesDueAtSale = equityReversion.calculateTaxesDueAtSale((rentalUnitOwnership.getYearlyDepreciation() * year), year);
     final Float principalOutstandingAtSale = mortgage.getPrincipalOutstandingAtPoint(monthCPModifier);
 
     final Float ater = calculateValueOfAter(estateValue.getEstateValue(year), brokerCut, 
@@ -191,7 +182,7 @@ public class CalculatedVariables {
 
     final Float yearlyPrincipalPaid = mortgage.calculateYearlyPrincipalPaid(year, monthCPModifier, prevYearMonthCPModifier);
 
-    Float taxableIncome = (yearlyBeforeTaxCashFlow + yearlyPrincipalPaid - yearlyDepreciation);
+    Float taxableIncome = (yearlyBeforeTaxCashFlow + yearlyPrincipalPaid - rentalUnitOwnership.getYearlyDepreciation());
 
     // doesn't make sense to tax negative income...but should this be used to offset taxes? hmmm...
     if (taxableIncome <= 0) {
