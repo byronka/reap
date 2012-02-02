@@ -28,7 +28,7 @@ public class ConfigureDataTablesActivity extends Activity {
   Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence;
 
 
-  static final DataController dataController = RealEstateMarketAnalysisApplication
+  private DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
 
 
@@ -54,7 +54,7 @@ public class ConfigureDataTablesActivity extends Activity {
 
     for (Entry<ValueEnum, TableRow> entry  : valueToDataTableItemCorrespondence.entrySet()) {
       tempTableRow = entry.getValue();
-      tempToggleButton = (ToggleButton) tempTableRow.getChildAt(GraphActivity.TOGGLE_BUTTON_INDEX);
+      tempToggleButton = (ToggleButton) tempTableRow.getChildAt(DataTable.TOGGLE_BUTTON_INDEX);
       if (tempToggleButton.isChecked()) {
         viewableDataTableRows.add(entry.getKey());
       }
@@ -85,7 +85,7 @@ public class ConfigureDataTablesActivity extends Activity {
       TableRow newTableRow = (TableRow) inflater.inflate(R.layout.data_table_tablerow, null);
       valueToDataTableItemCorrespondence.put(ve, newTableRow);
 
-      ToggleButton toggleButton = (ToggleButton) newTableRow.getChildAt(GraphActivity.TOGGLE_BUTTON_INDEX);
+      ToggleButton toggleButton = (ToggleButton) newTableRow.getChildAt(DataTable.TOGGLE_BUTTON_INDEX);
       //set toggle buttons by what is in the Set<ValueEnum> viewableDataTableRows
       if (viewableDataTableRows.contains(ve)) {
         toggleButton.setChecked(true);
@@ -102,13 +102,13 @@ public class ConfigureDataTablesActivity extends Activity {
       }
 
       //the property name is always a string
-      dataTablePropertyName = (TextView) newTableRow.getChildAt(GraphActivity.PROPERTY_LABEL_INDEX);
+      dataTablePropertyName = (TextView) newTableRow.getChildAt(DataTable.PROPERTY_LABEL_INDEX);
       dataTablePropertyName.setText(ve.toString());
 
-      tempDataTablePropertyValue = (TextView) newTableRow.getChildAt(GraphActivity.PROPERTY_VALUE_INDEX);
+      tempDataTablePropertyValue = (TextView) newTableRow.getChildAt(DataTable.PROPERTY_VALUE_INDEX);
       tempDataTablePropertyValue.setVisibility(View.GONE);
 
-      tempDataTableToggleButton = (ToggleButton) newTableRow.getChildAt(GraphActivity.TOGGLE_BUTTON_INDEX);
+      tempDataTableToggleButton = (ToggleButton) newTableRow.getChildAt(DataTable.TOGGLE_BUTTON_INDEX);
       tempDataTableToggleButton.setVisibility(View.VISIBLE);
 
       /* set value based on what type of number it is, or string if 
@@ -128,7 +128,7 @@ public class ConfigureDataTablesActivity extends Activity {
 
     for (Entry<ValueEnum, TableRow> entry  : valueToDataTableItemCorrespondence.entrySet()) {
       tempTableRow = entry.getValue();
-      tempToggleButton = (ToggleButton) tempTableRow.getChildAt(GraphActivity.TOGGLE_BUTTON_INDEX);
+      tempToggleButton = (ToggleButton) tempTableRow.getChildAt(DataTable.TOGGLE_BUTTON_INDEX);
       tempToggleButton.setChecked(true);
     }
   }
@@ -139,7 +139,7 @@ public class ConfigureDataTablesActivity extends Activity {
 
     for (Entry<ValueEnum, TableRow> entry  : valueToDataTableItemCorrespondence.entrySet()) {
       tempTableRow = entry.getValue();
-      tempToggleButton = (ToggleButton) tempTableRow.getChildAt(GraphActivity.TOGGLE_BUTTON_INDEX);
+      tempToggleButton = (ToggleButton) tempTableRow.getChildAt(DataTable.TOGGLE_BUTTON_INDEX);
       tempToggleButton.setChecked(false);
     }
   }

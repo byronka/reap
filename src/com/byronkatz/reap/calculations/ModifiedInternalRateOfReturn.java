@@ -13,7 +13,7 @@ public class ModifiedInternalRateOfReturn {
   private Float yearlyRequiredRateOfReturn;
   private Float mirrValueAccumulator;
 
-  private static final DataController dataController = 
+  private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
   public ModifiedInternalRateOfReturn(Float yearlyInterestRate, Float yearlyRequiredRateOfReturn) {

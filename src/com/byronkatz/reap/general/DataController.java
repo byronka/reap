@@ -236,7 +236,7 @@ public class DataController {
     return viewableDataTableRows;
   }
 
-  public void setViewableDataTableRows(Set<ValueEnum> viewableDataTableRows) {
+  public final void setViewableDataTableRows(Set<ValueEnum> viewableDataTableRows) {
     DataController.viewableDataTableRows = viewableDataTableRows;
   }
 

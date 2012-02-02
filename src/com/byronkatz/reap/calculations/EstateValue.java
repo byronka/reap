@@ -13,7 +13,7 @@ public class EstateValue {
   private Boolean cached;
   private int cachedYear;
 
-  private static final DataController dc = 
+  private final DataController dc = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
   public EstateValue() {

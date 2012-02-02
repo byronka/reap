@@ -13,7 +13,7 @@ public class EquityReversion {
   public static final Float TAX_ON_CAPITAL_GAINS = 0.15f;
 
   
-  private static final DataController dataController = 
+  private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
   
   public EquityReversion(EstateValue estateValue, RentalUnitOwnership rentalUnitOwnership) {

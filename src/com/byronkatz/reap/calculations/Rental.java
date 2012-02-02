@@ -7,7 +7,7 @@ import com.byronkatz.reap.general.ValueEnum;
 public class Rental {
 
   private Float estimatedRentPayments;
-  private static final DataController dataController = 
+  private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
   private Float grossYearlyIncome;
   private Float vacancyAndCreditLossRate;

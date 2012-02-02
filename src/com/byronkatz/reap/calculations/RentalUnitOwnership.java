@@ -32,7 +32,7 @@ public class RentalUnitOwnership {
   public static final Float RESIDENTIAL_DEPRECIATION_YEARS = 27.5f;
 
   
-  private static final DataController dataController = 
+  private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
   
   public RentalUnitOwnership() {

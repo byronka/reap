@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -50,7 +49,7 @@ public class GraphActivity extends Activity {
   TextView yearDisplayAtSeekBar;
   DataTable dataTable;
 
-  static final DataController dataController = RealEstateMarketAnalysisApplication
+  private final DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
   Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence;
 
@@ -61,9 +60,6 @@ public class GraphActivity extends Activity {
   Float originalCurrentValueNumeric;
 
   public static final int DIVISIONS_OF_VALUE_SLIDER = 40;
-  public static final int PROPERTY_LABEL_INDEX = 0;
-  public static final int PROPERTY_VALUE_INDEX = 1;
-  public static final int TOGGLE_BUTTON_INDEX = 2;
   public static final int CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE = 1;
 
   ValueEnum[] dataTableItems = ValueEnum.values();

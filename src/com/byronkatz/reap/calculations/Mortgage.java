@@ -17,7 +17,7 @@ public class Mortgage {
   private Float monthlyPrivateMortgageInsurance;
   private EstateValue estateValue;
   
-  private static final DataController dataController = 
+  private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
   
   public Mortgage(EstateValue estateValue) {

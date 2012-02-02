@@ -28,7 +28,7 @@ public class DataTable {
   public static final int TOGGLE_BUTTON_INDEX = 2;
   
   GraphActivity graphActivity;
-  static final DataController dataController = RealEstateMarketAnalysisApplication
+  private final DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
   
   public DataTable(GraphActivity graphActivity) {
@@ -85,7 +85,7 @@ public class DataTable {
       
       valueToDataTableItemCorrespondence.put(ve, newTableRow);
 
-      dataTablePropertyName = (TextView) newTableRow.getChildAt(GraphActivity.PROPERTY_LABEL_INDEX);
+      dataTablePropertyName = (TextView) newTableRow.getChildAt(PROPERTY_LABEL_INDEX);
 
       //the property name is always a string
       dataTablePropertyName.setText(ve.toString());
@@ -108,7 +108,7 @@ public class DataTable {
       tempRow = (TableRow) dataTableLayout.getChildAt(i);
 
       //Get the ValueEnum associated with the label string
-      TextView tempTextView = (TextView) tempRow.getChildAt(GraphActivity.PROPERTY_LABEL_INDEX);
+      TextView tempTextView = (TextView) tempRow.getChildAt(PROPERTY_LABEL_INDEX);
       String tempString = tempTextView.getText().toString();
 
       for (ValueEnum ve : viewableDataTableRows) {

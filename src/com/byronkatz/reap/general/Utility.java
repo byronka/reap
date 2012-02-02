@@ -26,7 +26,7 @@ public class Utility {
   private static Window window = null;
   private static TextView helpTextView = null;
   private static String result = null;
-  private static final DataController dataController = RealEstateMarketAnalysisApplication
+  private static DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
   
 public static void showHelpDialog(int helpText, int helpTitle, Context context) {

@@ -11,7 +11,7 @@ public class MortgagePayment {
   private Float loanAmount;
   private Float monthlyMortgagePayment;
   private Float yearlyMortgagePayment;
-  private static final DataController dataController = 
+  private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
 

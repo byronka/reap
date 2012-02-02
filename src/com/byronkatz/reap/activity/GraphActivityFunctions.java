@@ -19,7 +19,7 @@ public class GraphActivityFunctions {
   private static final Float INCREASE_PERCENTAGE = 1.5F;
   private static final Float DECREASE_PERCENTAGE = 0.5F;
 
-  private static final DataController dataController = RealEstateMarketAnalysisApplication
+  private static DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
 
   static void switchForMenuItem(MenuItem item, GraphActivity graphActivity) {
@@ -61,60 +61,6 @@ public class GraphActivityFunctions {
 
     return progressDialog;
   }
-
-//  static void saveViewableDataTableRows(Bundle b) {
-//
-//    Set<ValueEnum> vdtr = dataController.getViewableDataTableRows(); 
-//    String[] stringArray = new String[vdtr.size()];
-//
-//    int i = 0;
-//    for (ValueEnum ve : vdtr) {
-//      stringArray[i] = ve.name();
-//      i++;
-//    }
-//
-//    b.putStringArray("viewableDataTableRows", stringArray);
-//
-//  }
-//  
-//  static void saveViewableDataTableRows (SharedPreferences sp) {
-//    
-//    SharedPreferences.Editor editor = sp.edit();
-//    
-//    Set<ValueEnum> vdtr = dataController.getViewableDataTableRows(); 
-//    
-//    for (ValueEnum ve : vdtr) {
-//      editor.putBoolean(ve.name(), true);
-//    }
-//    editor.commit();
-//  }
-//
-//  static Set<ValueEnum> restoreViewableDataTableRows(SharedPreferences sp) {
-//    
-//    Set<ValueEnum> vdtr = new HashSet<ValueEnum>();
-//    Map<String, ?> entries = sp.getAll();
-//    
-//    for (ValueEnum ve : ValueEnum.values()) {
-//      if (entries.containsKey(ve.name())) {
-//        vdtr.add(ve);
-//      }
-//    }
-//
-//    return vdtr;
-//  }
-//  
-//  static Set<ValueEnum> restoreViewableDataTableRows(Bundle b) {
-//
-//    Set<ValueEnum> tempSet = new HashSet<ValueEnum>();
-//
-//    String[] stringArray = b.getStringArray("viewableDataTableRows");
-//
-//    for (String s : stringArray) {
-//      tempSet.add(ValueEnum.valueOf(s));
-//    }
-//
-//    return tempSet;
-//  }
 
   static void invalidateGraphs(Activity activity) {
 
