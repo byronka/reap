@@ -10,6 +10,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.byronkatz.reap.calculations.GeneralCalculations;
+
 public class DataController {
 
   //variable below is to hold the pointer to which set (division) of data we want.
@@ -169,7 +171,7 @@ public class DataController {
     Float yValue;
 
     int yearsOfCompounding = getValueAsFloat(
-        ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue() / CalculatedVariables.NUM_OF_MONTHS_IN_YEAR;
+        ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue() / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
 
     for (int year = 1; year <= yearsOfCompounding; year++) {
       yValue = getValueAsFloat(graphKeyValue, year);

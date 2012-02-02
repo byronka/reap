@@ -56,8 +56,13 @@ public class Mortgage {
   public Float getMonthlyInterestRate() {
     return monthlyInterestRate;
   }
+  
   public Integer getNumberOfCompoundingPeriods() {
     return numberOfCompoundingPeriods;
+  }
+  
+  public Integer getYearlyNumberOfCompoundingPeriods() {
+    return numberOfCompoundingPeriods / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
   }
   
   public Float getYearlyPmi(int year) {
@@ -79,10 +84,11 @@ public class Mortgage {
     return pmiThisYear;
   }
   
-  public Float getAccumulatedInterestPaymentsAtPoint (int compoundingPeriodDesired) {
+  public Float getAccumulatedInterestPaymentsAtPoint (int year) {
     Float monthlyInterestRate = yearlyInterestRate / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
 
     Float f = 0.0f;
+    Integer compoundingPeriodDesired = year * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
     
     if (loanAmount < 0.0) {
       loanAmount = 0.0f;
@@ -108,17 +114,21 @@ public class Mortgage {
 
     Float accumInterestPaymentAtPoint = monthlyInterestRate*(loanAmount*(e+d)+(f)*(c*g-(e + d))-(mortgagePayment.getMonthlyMortgagePayment()*g));
 
+    dataController.setValueAsFloat(ValueEnum.ACCUM_INTEREST, accumInterestPaymentAtPoint, year);
     return accumInterestPaymentAtPoint;
   }
   
   public Float getPrincipalOutstandingAtPoint (int compoundingPeriodDesired) {
 
+    Float principalOutstandingAtPoint = 0.0f;
     Float a = monthlyInterestRate + 1;
 
-    Float princpalOutstandingAtPoint = (float) ((Math.pow(a,compoundingPeriodDesired) * loanAmount) -
+    if (monthlyInterestRate != 0.0f) {
+      principalOutstandingAtPoint = (float) ((Math.pow(a,compoundingPeriodDesired) * loanAmount) -
         ( mortgagePayment.getMonthlyMortgagePayment() *  (((a - Math.pow(a,compoundingPeriodDesired) )/ -monthlyInterestRate) + 1)));
-
-    return princpalOutstandingAtPoint;
+    }
+    
+    return principalOutstandingAtPoint;
   }
   
   public Float calculateYearlyPrincipalPaid(int year, int monthCPModifier, int prevYearMonthCPModifier) {

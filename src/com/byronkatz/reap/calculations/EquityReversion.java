@@ -42,12 +42,38 @@ public class EquityReversion {
     return fvSellingExpenses;
   }
   
-  public Float calculateTaxesDueAtSale(final Float accumulatingDepreciation, final int year) {
-    final Float taxesDueAtSale = (estateValue.getEstateValue(year) - estateValue.getEstateValue(0) + accumulatingDepreciation)
+  public Float calculateTaxesDueAtSale(final int year) {
+    final Float taxesDueAtSale = ((estateValue.getEstateValue(year) - calculateBrokerCutOfSale(year))
+        - estateValue.getEstateValue(0) + (rentalUnitOwnership.getYearlyDepreciation() * year))
         * TAX_ON_CAPITAL_GAINS;
     dataController.setValueAsFloat(ValueEnum.TAXES_DUE_AT_SALE, taxesDueAtSale, year);
 
     return taxesDueAtSale;
+  }
+  
+  public Float calculateValueOfAter(int year) {
+    
+    final Float principalOutstandingAtSale = rentalUnitOwnership.getMortgage().getPrincipalOutstandingAtPoint(year * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR);
+    Float ater = 0.0f;
+    
+    ater = estateValue.getEstateValue(year) - calculateBrokerCutOfSale(year) - 
+        getFVSellingExpenses(year) - principalOutstandingAtSale - calculateTaxesDueAtSale(year);
+    dataController.setValueAsFloat(ValueEnum.ATER, ater, year);
+    
+    return ater;
+  }
+  
+  public Float calculateAter(int year) {
+    
+
+    final Float ater = calculateValueOfAter(year);
+
+    rentalUnitOwnership.getModifiedInternalRateOfReturn().calculateMirr(year, null, ater);
+    
+    final Float adjustedAter = (float) (ater / Math.pow(1 + rentalUnitOwnership.getMonthlyRequiredRateOfReturn(), year * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR));
+    dataController.setValueAsFloat(ValueEnum.ATER_PV, adjustedAter, year);
+
+    return adjustedAter;
   }
 
 }

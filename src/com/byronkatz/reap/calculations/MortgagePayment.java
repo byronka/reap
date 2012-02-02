@@ -43,7 +43,7 @@ public class MortgagePayment {
 
   private void calculateMortgagePayment() {
     //to avoid divide by zero error
-    if (monthlyInterestRate == 0.0f) {
+    if (monthlyInterestRate == 0.0f || numOfCompoundingPeriods == 0) {
       monthlyMortgagePayment = 0.0f;
     } else {
       monthlyMortgagePayment = (float) ((loanAmount * monthlyInterestRate) / 

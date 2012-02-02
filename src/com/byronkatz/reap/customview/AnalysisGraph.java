@@ -18,7 +18,6 @@ import android.view.View;
 
 import com.byronkatz.R;
 import com.byronkatz.reap.activity.GraphActivity;
-import com.byronkatz.reap.general.CalculatedVariables;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.Utility;
@@ -37,8 +36,6 @@ public class AnalysisGraph extends View {
   public static final Float TEXT_SIZE = 10.0f;
   public static final Float DEFAULT_GRAPH_STROKE_WIDTH = 1.8f;
   public static final String X_AXIS_STRING = "0";
-
-  public static final CalculatedVariables calculatedVariables = new CalculatedVariables();
 
   //local graph math variables
   private int graphMaxY;

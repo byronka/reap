@@ -23,7 +23,6 @@ public enum ValueEnum {
   MARGINAL_TAX_RATE("marginal tax rate", ValueType.PERCENTAGE, true, false),
   MODIFIED_INTERNAL_RATE_OF_RETURN("modified internal rate of return", ValueType.PERCENTAGE, false, true),
   MONTHLY_MORTGAGE_PAYMENT ("monthly mortgage payment", ValueType.CURRENCY, false, false),  
-  NET_CASH_OUT_VALUE ("Net cash-out value", ValueType.CURRENCY, false, true),
   NPV  ("Net present value", ValueType.CURRENCY, false, true),
   NUMBER_OF_COMPOUNDING_PERIODS("number of compounding periods", ValueType.INTEGER, true, false),
   PRIVATE_MORTGAGE_INSURANCE ("Private mortgage insurance", ValueType.CURRENCY, true, false),

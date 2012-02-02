@@ -2,18 +2,32 @@ package com.byronkatz.reap.calculations;
 
 import java.util.Vector;
 
+import com.byronkatz.reap.general.DataController;
+import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
+import com.byronkatz.reap.general.ValueEnum;
+
 public class ModifiedInternalRateOfReturn {
 
-  private Float aterValueForMirr;
   private Vector<Float> cashFlowVector;
+  private Float yearlyInterestRate;
+  private Float yearlyRequiredRateOfReturn;
+  private Float mirrValueAccumulator;
 
-  public ModifiedInternalRateOfReturn() {
-    aterValueForMirr = 0.0f;
+  private static final DataController dataController = 
+      RealEstateMarketAnalysisApplication.getInstance().getDataController();
+
+  public ModifiedInternalRateOfReturn(Float yearlyInterestRate, Float yearlyRequiredRateOfReturn) {
+    mirrValueAccumulator = 0.0f;
     cashFlowVector = new Vector<Float>();
+    this.yearlyInterestRate = yearlyInterestRate;
+    this.yearlyRequiredRateOfReturn = yearlyRequiredRateOfReturn;
   }
-  
-  public Float calculateMirr(
-      int year, Float reinvestmentRate, Float financeRate, Float cashFlow, Float ater) {
+
+  private void saveValue(int year) {
+    dataController.setValueAsFloat(ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN, mirrValueAccumulator, year);
+  }
+
+  public void calculateMirr(int year, Float cashFlow, Float ater) {
 
     Float mirr = 0.0f;
     int internalYear = 0;
@@ -23,31 +37,27 @@ public class ModifiedInternalRateOfReturn {
       cashFlowVector.add(cashFlow);
     }
 
-    aterValueForMirr = 0.0f;
-    if (ater != null) {
-      aterValueForMirr = ater;
+    for (Float flow : cashFlowVector) {
+
+      if (flow < 0.0f) {
+        presentValueNegativeCashFlowsAccumulator += flow / (float) Math.pow(1 + yearlyInterestRate, internalYear);
+      } else if (flow > 0.0f) {
+        futureValuePositiveCashFlowsAccumulator += flow * (float) Math.pow(1 + yearlyRequiredRateOfReturn, year - internalYear);
+      }
+
+      internalYear++;
     }
 
 
-      for (Float flow : cashFlowVector) {
-
-        if (flow < 0.0f) {
-          presentValueNegativeCashFlowsAccumulator += flow / (float) Math.pow(1 + financeRate, internalYear);
-        } else if (flow > 0.0f) {
-          futureValuePositiveCashFlowsAccumulator += flow * (float) Math.pow(1 + reinvestmentRate, year - internalYear);
-        }
-
-        internalYear++;
-      }
-
-
     //special case for ater, since by definition it always happens in last year
-
-      if (aterValueForMirr < 0.0f) {
-        presentValueNegativeCashFlowsAccumulator += aterValueForMirr / (float) Math.pow(1 + financeRate, year);
-      } else if (aterValueForMirr > 0.0f) {
-        futureValuePositiveCashFlowsAccumulator += aterValueForMirr * (float) Math.pow(1 + reinvestmentRate, 0);
+    if (ater != null) {
+      if (ater < 0.0f) {
+        presentValueNegativeCashFlowsAccumulator += ater / (float) Math.pow(1 + yearlyInterestRate, year);
+      } else if (ater > 0.0f) {
+        futureValuePositiveCashFlowsAccumulator += ater * (float) Math.pow(1 + yearlyRequiredRateOfReturn, 0);
       }
+    }
+
 
 
     //we don't want divide by zero errors.
@@ -55,7 +65,12 @@ public class ModifiedInternalRateOfReturn {
       mirr = (float) Math.pow(futureValuePositiveCashFlowsAccumulator / - presentValueNegativeCashFlowsAccumulator, (1.0f/year)) - 1;
     }
 
-    return mirr;
+    mirrValueAccumulator += mirr;
+
+    //save value if we are calculating ater
+    if (ater != null) {
+      saveValue(year);
+    }
   }
-  
+
 }

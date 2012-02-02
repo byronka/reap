@@ -36,7 +36,7 @@ import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import com.byronkatz.R;
-import com.byronkatz.reap.general.CalculatedVariables;
+import com.byronkatz.reap.calculations.RentalUnitOwnership;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.OnItemSelectedListenerWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
@@ -602,7 +602,7 @@ public class GraphActivity extends Activity {
       percentageSlid = (division / (float) DIVISIONS_OF_VALUE_SLIDER);
       newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
       dataController.setValueAsFloat(currentSliderKey, newCurrentValue);
-      CalculatedVariables.crunchCalculation();
+      new RentalUnitOwnership().crunchCalculation();
     }
   }
 }

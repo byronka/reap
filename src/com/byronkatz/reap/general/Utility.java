@@ -4,9 +4,6 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
 
-import com.byronkatz.R;
-import com.byronkatz.reap.general.ValueEnum.ValueType;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
@@ -14,6 +11,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.byronkatz.R;
+import com.byronkatz.reap.calculations.GeneralCalculations;
+import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 public class Utility {
 
@@ -45,7 +46,7 @@ public static Integer getNumOfCompoundingPeriods() {
   Integer currentYearMaximum = 0;
   
   Float tempFloatValue = dataController.
-      getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS) / CalculatedVariables.NUM_OF_MONTHS_IN_YEAR;
+      getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS) / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
   currentYearMaximum = tempFloatValue.intValue();
   return currentYearMaximum;
 }
