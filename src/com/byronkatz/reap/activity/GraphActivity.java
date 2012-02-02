@@ -6,8 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -29,7 +27,6 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
-import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
@@ -51,6 +48,7 @@ public class GraphActivity extends Activity {
   SeekBar valueSlider;
   SeekBar timeSlider;
   TextView yearDisplayAtSeekBar;
+  DataTable dataTable;
 
   static final DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
@@ -93,7 +91,7 @@ public class GraphActivity extends Activity {
     super.onActivityResult(requestCode, resultCode, data);
 
     if (requestCode == CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE) {
-      makeSelectedRowsVisible(dataController.getViewableDataTableRows());
+      dataTable.makeSelectedRowsVisible(dataController.getViewableDataTableRows(), valueToDataTableItemCorrespondence);
     }
   }
 
@@ -112,7 +110,7 @@ public class GraphActivity extends Activity {
       GraphActivityFunctions.updateTimeSliderAfterChange (timeSlider, currentYearMaximum);
       //necessary to do the following or else the Year will not update right after the change
       updateYearDisplayAtSeekBar(currentYearMaximum);
-      colorTheDataTables();
+      dataTable.colorTheDataTables();
       recalcGraphPage();
     }
   }
@@ -123,15 +121,16 @@ public class GraphActivity extends Activity {
   @Override
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
-    
+    dataTable = new DataTable(this);
+
     if (savedState != null) {
       dataController.setViewableDataTableRows(
-          GraphActivityFunctions.restoreViewableDataTableRows(savedState));
+          dataTable.restoreViewableDataTableRows(savedState));
     }
     
     SharedPreferences sp = getPreferences(MODE_PRIVATE);
     dataController.setViewableDataTableRows(
-        GraphActivityFunctions.restoreViewableDataTableRows(sp));
+        dataTable.restoreViewableDataTableRows(sp));
     
     setContentView(R.layout.graph);
 
@@ -141,7 +140,7 @@ public class GraphActivity extends Activity {
     setupValueSlider(currentYearMaximum);
     setupGraphs(currentYearMaximum);
     setupCurrentValueFields();
-    valueToDataTableItemCorrespondence = GraphActivityFunctions.createDataTableItems(GraphActivity.this);
+    valueToDataTableItemCorrespondence = dataTable.createDataTableItems(GraphActivity.this);
     setDataChangedToggle(true);
   }
   
@@ -151,7 +150,7 @@ public class GraphActivity extends Activity {
     
     SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
 
-    GraphActivityFunctions.saveViewableDataTableRows(sharedPreferences);
+    dataTable.saveViewableDataTableRows(sharedPreferences);
   }
   
   @Override
@@ -159,13 +158,13 @@ public class GraphActivity extends Activity {
     
     super.onRestoreInstanceState(outState);
     dataController.setViewableDataTableRows(
-        GraphActivityFunctions.restoreViewableDataTableRows(outState));
+        dataTable.restoreViewableDataTableRows(outState));
   }
   
   @Override
   public void onSaveInstanceState(Bundle outState) {
 
-    GraphActivityFunctions.saveViewableDataTableRows(outState);
+    dataTable.saveViewableDataTableRows(outState);
     super.onSaveInstanceState(outState);
   }
 
@@ -387,7 +386,7 @@ public class GraphActivity extends Activity {
         GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
 
         Integer currentYearSelected = getCurrentYearSelected();
-        setDataTableItems(dataTableItems, currentYearSelected);
+        dataTable.setDataTableItems(dataTableItems, currentYearSelected, valueToDataTableItemCorrespondence);
 
       }
     });
@@ -419,7 +418,7 @@ public class GraphActivity extends Activity {
           Integer currentYearSelected = progress + 1;
           updateYearDisplayAtSeekBar(currentYearSelected);
 
-          setDataTableItems(dataTableItems, currentYearSelected);
+          dataTable.setDataTableItems(dataTableItems, currentYearSelected, valueToDataTableItemCorrespondence);
           GraphActivityFunctions.highlightCurrentYearOnGraph(currentYearSelected, GraphActivity.this);
           GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
       }
@@ -478,73 +477,6 @@ public class GraphActivity extends Activity {
 
   }
 
-
-  private void setDataTableItems(ValueEnum[] items, Integer year) {
-
-
-    ValueEnum ve;
-    TableRow tempTableRow;
-    TextView tempDataTablePropertyValue;
-
-    for (Entry<ValueEnum, TableRow> entry : valueToDataTableItemCorrespondence.entrySet()) {
-
-      ve = entry.getKey();
-      tempTableRow = entry.getValue();
-      tempDataTablePropertyValue = (TextView) tempTableRow.getChildAt(PROPERTY_VALUE_INDEX);
-
-
-      switch (ve.getType()) {
-      case CURRENCY:
-
-        GraphActivityFunctions.setDataTableValueByCurrency(tempDataTablePropertyValue, ve, year);
-        break;
-
-      case PERCENTAGE:
-
-        GraphActivityFunctions.setDataTableValueByPercentage(tempDataTablePropertyValue, ve, year);
-        break;
-
-      case STRING:
-
-        tempDataTablePropertyValue.setText(dataController.getValueAsString(ve));
-        break;
-
-      case INTEGER:
-        GraphActivityFunctions.setDataTableValueByInteger(tempDataTablePropertyValue, ve, year);
-
-        break;        
-      default:
-        break;
-      }
-    }
-
-  }
-
-
-
-  public void makeSelectedRowsVisible(Set<ValueEnum> values) {
-    TableRow tempTableRow;
-
-    for (Entry<ValueEnum, TableRow> entry : valueToDataTableItemCorrespondence.entrySet()) {
-      tempTableRow = entry.getValue();
-      if (values.contains(entry.getKey())) {
-        tempTableRow.setVisibility(View.VISIBLE);
-      } else if (! values.contains(entry.getKey())) {
-        tempTableRow.setVisibility(View.GONE);
-      }
-    }
-    
-    colorTheDataTables();
-
-  }
-
-  private void colorTheDataTables() {
-    TableLayout dataTableLayout = (TableLayout) findViewById(R.id.dataTableLayout);
-    Set<ValueEnum> viewableDataTableRows = dataController.getViewableDataTableRows();
-
-    GraphActivityFunctions.setColorDataTableRows(dataTableLayout, viewableDataTableRows);
-  }
-
   private Integer getCurrentYearSelected() {
     return ((SeekBar) findViewById(R.id.timeSlider)).getProgress() + 1;
 
@@ -571,7 +503,7 @@ public class GraphActivity extends Activity {
       GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
 
       Integer currentYearSelected = getCurrentYearSelected();
-      setDataTableItems(dataTableItems, currentYearSelected);
+      dataTable.setDataTableItems(dataTableItems, currentYearSelected, valueToDataTableItemCorrespondence);
 
       setDataChangedToggle(false);
     }
