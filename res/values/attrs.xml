@@ -6,6 +6,7 @@
     	<enum name="NPV" value="0" />
     	<enum name="ATER" value="1" />
     	<enum name="ATCF" value="2" />	
+    	<enum name="MIRR" value="3" />
     </attr>	
   </declare-styleable>
     

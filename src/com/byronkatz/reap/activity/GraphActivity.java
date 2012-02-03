@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -26,6 +27,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
+import android.widget.TabHost;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
@@ -138,6 +140,34 @@ public class GraphActivity extends Activity {
     setupCurrentValueFields();
     valueToDataTableItemCorrespondence = dataTable.createDataTableItems(GraphActivity.this);
     setDataChangedToggle(true);
+    
+    
+    //NEW WORK BELOW
+    
+    TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);        
+    tabs.setup();
+
+    TabHost.TabSpec spec = tabs.newTabSpec("NPV");
+    spec.setContent(R.id.tab1);
+    spec.setIndicator("NPV");
+    tabs.addTab(spec);
+
+    spec = tabs.newTabSpec("ATCF");
+    spec.setContent(R.id.tab2);
+    spec.setIndicator("ATCF");
+    tabs.addTab(spec);
+
+    spec = tabs.newTabSpec("ATER");
+    spec.setContent(R.id.tab3);
+    spec.setIndicator("ATER");
+    tabs.addTab(spec);
+    
+    spec = tabs.newTabSpec("MIRR");
+    spec.setContent(R.id.tab4);
+    spec.setIndicator("MIRR");
+    tabs.addTab(spec);
+    
+    //NEW WORK ENDS
   }
   
   @Override
