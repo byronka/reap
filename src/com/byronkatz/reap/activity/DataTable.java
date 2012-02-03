@@ -11,12 +11,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
+import com.byronkatz.reap.general.HelpButtonOnClickWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
@@ -24,8 +26,9 @@ import com.byronkatz.reap.general.ValueEnum;
 public class DataTable {
 
   public static final int PROPERTY_LABEL_INDEX = 0;
-  public static final int PROPERTY_VALUE_INDEX = 1;
-  public static final int TOGGLE_BUTTON_INDEX = 2;
+  public static final int HELP_BUTTON_INDEX = 1;
+  public static final int PROPERTY_VALUE_INDEX = 2;
+  public static final int TOGGLE_BUTTON_INDEX = 3;
   
   GraphActivity graphActivity;
   private final DataController dataController = RealEstateMarketAnalysisApplication
@@ -62,6 +65,7 @@ public class DataTable {
 
 
 
+    ImageButton helpButton;
     TextView dataTablePropertyName;
     Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence = new HashMap<ValueEnum, TableRow> ();
 
@@ -90,6 +94,9 @@ public class DataTable {
       //the property name is always a string
       dataTablePropertyName.setText(ve.toString());
 
+      helpButton = (ImageButton) newTableRow.getChildAt(HELP_BUTTON_INDEX);
+      helpButton.setOnClickListener(new HelpButtonOnClickWrapper(ve));
+      
       dataTableLayout.addView(newTableRow);
     } //end of main for loop to set dataTableItems
 

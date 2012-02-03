@@ -89,7 +89,7 @@
 							android:orientation="vertical">
 							<com.byronkatz.reap.customview.AnalysisGraph
 								android:layout_width="fill_parent" android:layout_height="fill_parent"
-								android:id="@+id/atcfFrameLayout" katz:graphType="ATER" />
+								android:id="@+id/aterFrameLayout" katz:graphType="ATER" />
 						</LinearLayout>
 
 						<LinearLayout android:id="@+id/tab4"
@@ -97,7 +97,7 @@
 							android:orientation="vertical">
 							<com.byronkatz.reap.customview.AnalysisGraph
 								android:layout_width="fill_parent" android:layout_height="fill_parent"
-								android:id="@+id/atcfFrameLayout" katz:graphType="MIRR" />
+								android:id="@+id/mirrFrameLayout" katz:graphType="MIRR" />
 						</LinearLayout>
 
 
@@ -123,8 +123,13 @@
 				android:layout_height="100dip" android:id="@+id/atcfFrameLayout" katz:graphType="ATCF" 
 				/> </LinearLayout> -->
 
+<!-- 			<TableLayout android:layout_height="0dp" android:id="@+id/dataTableLayout" -->
+<!-- 				android:shrinkColumns="0" android:stretchColumns="1" -->
+<!-- 				android:layout_width="fill_parent" android:gravity="clip_vertical" -->
+<!-- 				android:layout_weight="0.40"> -->
+
 			<TableLayout android:layout_height="0dp" android:id="@+id/dataTableLayout"
-				android:shrinkColumns="0" android:stretchColumns="1"
+				android:shrinkColumns="0" android:stretchColumns="2,3"
 				android:layout_width="fill_parent" android:gravity="clip_vertical"
 				android:layout_weight="0.40">
 
