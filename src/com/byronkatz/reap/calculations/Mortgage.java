@@ -104,7 +104,13 @@ public class Mortgage {
     }
     Float c = monthlyInterestRate+1;
     Float d = (float) Math.pow(c, compoundingPeriodDesired);
-    Float e = (1-d)/(1-c);
+    
+    Float e = 0f;
+    
+    if (c != 0f) {
+      e = (1-d)/(1-c);
+
+    }
     if (monthlyInterestRate == 0) {
       f = 0.0f;
     } else {

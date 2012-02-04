@@ -55,8 +55,8 @@ public class DataController {
     numericMap.put(ValueEnum.INFLATION_RATE, 0f);
     numericMap.put(ValueEnum.DOWN_PAYMENT, 0f);
     textFieldValues.put(ValueEnum.STREET_ADDRESS, "1234 Anywhere Street");
-    textFieldValues.put(ValueEnum.CITY, "Memphis");
-    textFieldValues.put(ValueEnum.STATE_INITIALS, "Tennessee");
+    textFieldValues.put(ValueEnum.CITY, "Anytown");
+    textFieldValues.put(ValueEnum.STATE_INITIALS, "Alabama");
     numericMap.put(ValueEnum.ESTIMATED_RENT_PAYMENTS, 0f);
     numericMap.put(ValueEnum.REAL_ESTATE_APPRECIATION_RATE, 0f);
     numericMap.put(ValueEnum.YEARLY_HOME_INSURANCE, 0f);

@@ -1,59 +1,72 @@
 package com.byronkatz.reap.general;
 
+import com.byronkatz.R.string;
+
 public enum ValueEnum {
 
-  ACCUM_INTEREST ("accumulated interest paid", ValueType.CURRENCY, false, true),
-  ATCF ("After Tax Cash Flow", ValueType.CURRENCY, false, true),
-  ATCF_ACCUMULATOR ("After Tax Cash Flow Accumulator", ValueType.CURRENCY, false, true),
-  ATCF_NPV ("After Tax Cash Flow NPV", ValueType.CURRENCY, false, true),
-  ATER ("After Tax Equity Reversion", ValueType.CURRENCY, false, true),
-  ATER_PV ("Present Value ATER", ValueType.CURRENCY, false, true),
-  BROKER_CUT_OF_SALE ("Broker cut at sale", ValueType.CURRENCY, false, true), 
-  BUILDING_VALUE("building value", ValueType.CURRENCY, true, false),
-  CITY("city", ValueType.STRING, true, false),
-  CLOSING_COSTS("closing costs", ValueType.CURRENCY, true, false), 
-  CURRENT_AMOUNT_OUTSTANDING ("current amount outstanding", ValueType.CURRENCY, false, true), 
-  DOWN_PAYMENT("down payment", ValueType.CURRENCY, true, false),
-  ESTIMATED_RENT_PAYMENTS("estimated rent payments", ValueType.CURRENCY, true, false),
-  FIX_UP_COSTS("fix up costs", ValueType.CURRENCY, true, false),
-  GENERAL_SALE_EXPENSES("general sale expenses", ValueType.CURRENCY, true, false),
-  INFLATION_RATE("inflation rate", ValueType.PERCENTAGE, true, false),
-  INITIAL_YEARLY_GENERAL_EXPENSES("initial yearly general expenses", ValueType.CURRENCY, true, false),
-  LOCAL_MUNICIPAL_FEES("local municipal fees", ValueType.CURRENCY, true, false),
-  MARGINAL_TAX_RATE("marginal tax rate", ValueType.PERCENTAGE, true, false),
-  MODIFIED_INTERNAL_RATE_OF_RETURN("modified internal rate of return", ValueType.PERCENTAGE, false, true),
-  MONTHLY_MORTGAGE_PAYMENT ("monthly mortgage payment", ValueType.CURRENCY, false, false),  
-  NPV  ("Net present value", ValueType.CURRENCY, false, true),
-  NUMBER_OF_COMPOUNDING_PERIODS("number of compounding periods", ValueType.INTEGER, true, false),
-  PRIVATE_MORTGAGE_INSURANCE ("Private mortgage insurance", ValueType.CURRENCY, true, false),
-  PROJECTED_HOME_VALUE ("projected home value at sale time", ValueType.CURRENCY, false, true), 
-  PROPERTY_TAX("property tax", ValueType.CURRENCY, true, false),
-  REAL_ESTATE_APPRECIATION_RATE("real estate appreciation rate", ValueType.PERCENTAGE, true, false),
-  REQUIRED_RATE_OF_RETURN("required rate of return", ValueType.PERCENTAGE, true, false),
-  SELLING_BROKER_RATE("selling broker rate", ValueType.PERCENTAGE, true, false),
-  SELLING_EXPENSES ("inflation adjusted selling expenses", ValueType.CURRENCY, false, true), 
-  STATE_INITIALS("State", ValueType.STRING, true, false),
-  STREET_ADDRESS("street address", ValueType.STRING, true, false),
-  TAXABLE_INCOME ("yearly taxable income", ValueType.CURRENCY, false, true), 
-  TAXES_DUE_AT_SALE ("taxes due at sale", ValueType.CURRENCY, false, true), 
-  TOTAL_PURCHASE_VALUE ("total purchase value", ValueType.CURRENCY, true, false),
-  VACANCY_AND_CREDIT_LOSS_RATE("vacancy and credit loss rate", ValueType.PERCENTAGE, true, false),
-  YEARLY_GENERAL_EXPENSES ("yearly general expenses", ValueType.CURRENCY, false, true), 
-  YEARLY_HOME_INSURANCE("yearly home insurance", ValueType.CURRENCY, true, false),
-  YEARLY_INCOME ("yearly rent income", ValueType.CURRENCY, false, true),  
-  YEARLY_INTEREST_PAID ("yearly interest paid", ValueType.CURRENCY, false, true),
-  YEARLY_INTEREST_RATE("yearly interest rate", ValueType.PERCENTAGE, true, false),
-  YEARLY_MORTGAGE_PAYMENT ("yearly mortgage payment", ValueType.CURRENCY, false, false), 
-  YEARLY_PRIVATE_MORTGAGE_INSURANCE ("yearly private mortgage insurance", ValueType.CURRENCY, false, true),
-  YEARLY_PRINCIPAL_PAID ("yearly principal paid", ValueType.CURRENCY, false, true), 
-  YEARLY_PROPERTY_TAX ("yearly property tax", ValueType.CURRENCY, false, true);
+  ACCUM_INTEREST ("Accumulated interest paid", ValueType.CURRENCY, false, true, string.accumulatedInterestPaidHelpText, string.accumulatedInterestPaidTitleText),
+  ATCF ("After tax cash flow", ValueType.CURRENCY, false, true, string.atcfHelpText , string.atcfTitleText),
+  ATCF_ACCUMULATOR ("After tax cash flow accumulator", ValueType.CURRENCY, false, true, string.atcfAccumulatorHelpText, string.atcfAccumulatorTitleText),
+  ATCF_NPV ("After tax cash flow NPV", ValueType.CURRENCY, false, true, string.atcfNetPresentValueHelpText, string.atcfNetPresentValueTitleText),
+  ATER ("After tax equity reversion", ValueType.CURRENCY, false, true, string.aterHelpText, string.aterTitleText),
+  ATER_PV ("Present value ATER", ValueType.CURRENCY, false, true, string.aterPresentValueHelpText, string.aterPresentValueTitleText),
+  BROKER_CUT_OF_SALE ("Broker cut at sale", ValueType.CURRENCY, false, true, string.brokerCutHelpText, string.brokerCutTitleText), 
+  BUILDING_VALUE("Building value", ValueType.CURRENCY, true, false, string.buildingValueHelpText, string.buildingValueTitleText),
+  CITY("City", ValueType.STRING, true, false, string.cityHelpText, string.cityTitleText),
+  CLOSING_COSTS("Closing costs", ValueType.CURRENCY, true, false, string.closingCostsHelpText, string.closingCostsTitleText), 
+  CURRENT_AMOUNT_OUTSTANDING ("Current amount outstanding", ValueType.CURRENCY, false, true, string.currentAmountOutstandingHelpText, string.currentAmountOutstandingTitleText), 
+  DOWN_PAYMENT("Down payment", ValueType.CURRENCY, true, false, string.downPaymentHelpText, string.downPaymentTitleText),
+  ESTIMATED_RENT_PAYMENTS("Estimated rent payments", ValueType.CURRENCY, true, false, string.estimatedRentPaymentsHelpText, string.estimatedRentPaymentsTitleText),
+  FIX_UP_COSTS("Fix-up costs", ValueType.CURRENCY, true, false, string.fixupCostsHelpText, string.fixupCostsTitleText),
+  GENERAL_SALE_EXPENSES("General sale expenses", ValueType.CURRENCY, true, false, string.generalSaleExpensesHelpText, string.generalSaleExpensesTitleText),
+  INFLATION_RATE("Inflation rate", ValueType.PERCENTAGE, true, false, string.inflationRateHelpText, string.inflationRateTitleText),
+  INITIAL_YEARLY_GENERAL_EXPENSES("Initial yearly general expenses", ValueType.CURRENCY, true, false, string.initialYearlyGeneralExpensesHelpText, string.initialYearlyGeneralExpensesTitleText),
+  LOCAL_MUNICIPAL_FEES("Local municipal fees", ValueType.CURRENCY, true, false, string.localMunicipalFeesHelpText, string.localMunicipalFeesTitleText),
+  MARGINAL_TAX_RATE("Marginal tax rate", ValueType.PERCENTAGE, true, false, string.marginalTaxRateHelpText, string.marginalTaxRateTitleText),
+  MODIFIED_INTERNAL_RATE_OF_RETURN("Modified internal rate of return", ValueType.PERCENTAGE, false, true, string.modifiedInternalRateOfReturnHelpText, string.modifiedInternalRateOfReturnTitleText),
+  MONTHLY_MORTGAGE_PAYMENT ("Monthly mortgage payment", ValueType.CURRENCY, false, false, string.monthlyMortgagePaymentHelpText, string.monthlyMortgagePaymentTitleText),  
+  NPV  ("Net present value", ValueType.CURRENCY, false, true, string.netPresentValueHelpText, string.netPresentValueTitleText),
+  NUMBER_OF_COMPOUNDING_PERIODS("Number of compounding periods", ValueType.INTEGER, true, false, string.numberOfCompoundingPeriodsHelpText, string.numberOfCompoundingPeriodsTitleText),
+  PRIVATE_MORTGAGE_INSURANCE ("Private mortgage insurance", ValueType.CURRENCY, true, false, string.privateMortgageInsuranceHelpText, string.privateMortgageInsuranceTitleText),
+  PROJECTED_HOME_VALUE ("Projected home value at sale time", ValueType.CURRENCY, false, true, string.projectedHomeValueHelpText, string.projectedHomeValueTitleText), 
+  PROPERTY_TAX("Property tax", ValueType.CURRENCY, true, false, string.propertyTaxHelpText, string.propertyTaxTitleText),
+  REAL_ESTATE_APPRECIATION_RATE("Real estate appreciation rate", ValueType.PERCENTAGE, true, false, string.realEstateAppreciationRateHelpText, string.realEstateAppreciationRateTitleText),
+  REQUIRED_RATE_OF_RETURN("Required rate of return", ValueType.PERCENTAGE, true, false, string.requiredRateOfReturnHelpText, string.requiredRateOfReturnTitleText),
+  SELLING_BROKER_RATE("Selling broker rate", ValueType.PERCENTAGE, true, false, string.sellingBrokerRateHelpText, string.sellingBrokerRateTitleText),
+  SELLING_EXPENSES ("Inflation adjusted selling expenses", ValueType.CURRENCY, false, true, string.sellingExpensesHelpText, string.sellingExpensesTitleText), 
+  STATE_INITIALS("State", ValueType.STRING, true, false, string.stateInitialsHelpText, string.stateInitialsTitleText),
+  STREET_ADDRESS("street address", ValueType.STRING, true, false, string.streetAddressHelpText, string.streetAddressTitleText),
+  TAXABLE_INCOME ("Yearly taxable income", ValueType.CURRENCY, false, true, string.taxableIncomeHelpText, string.taxableIncomeTitleText), 
+  TAXES_DUE_AT_SALE ("Taxes due at sale", ValueType.CURRENCY, false, true, string.taxesDueAtSaleHelpText, string.taxesDueAtSaleTitleText), 
+  TOTAL_PURCHASE_VALUE ("Total purchase value", ValueType.CURRENCY, true, false, string.totalPurchaseValueHelpText, string.totalPurchaseValueTitleText),
+  VACANCY_AND_CREDIT_LOSS_RATE("Vacancy and credit loss rate", ValueType.PERCENTAGE, true, false, string.vacancyAndCreditLossRateHelpText, string.vacancyAndCreditLossRateTitleText),
+  YEARLY_GENERAL_EXPENSES ("Yearly general expenses", ValueType.CURRENCY, false, true, string.yearlyGeneralExpensesHelpText, string.yearlyGeneralExpensesTitleText), 
+  YEARLY_HOME_INSURANCE("Yearly home insurance", ValueType.CURRENCY, true, false, string.yearlyHomeInsuranceHelpText, string.yearlyHomeInsuranceTitleText),
+  YEARLY_INCOME ("Yearly rent income", ValueType.CURRENCY, false, true, string.yearlyIncomeHelpText, string.yearlyIncomeTitleText),  
+  YEARLY_INTEREST_PAID ("Yearly interest paid", ValueType.CURRENCY, false, true, string.yearlyInterestPaidHelpText, string.yearlyInterestPaidTitleText),
+  YEARLY_INTEREST_RATE("Yearly interest rate", ValueType.PERCENTAGE, true, false, string.yearlyInterestRateHelpText, string.yearlyInterestRateTitleText),
+  YEARLY_MORTGAGE_PAYMENT ("Yearly mortgage payment", ValueType.CURRENCY, false, false, string.yearlyMortgagePaymentHelpText, string.yearlyMortgagePaymentTitleText), 
+  YEARLY_PRIVATE_MORTGAGE_INSURANCE ("Yearly private mortgage insurance", ValueType.CURRENCY, false, true, string.yearlyPrivateMortgageInsuranceHelpText, string.yearlyPrivateMortgageInsuranceTitleText),
+  YEARLY_PRINCIPAL_PAID ("Yearly principal paid", ValueType.CURRENCY, false, true, string.yearlyPrincipalPaidHelpText, string.yearlyPrincipalPaidTitleText), 
+  YEARLY_PROPERTY_TAX ("Yearly property tax", ValueType.CURRENCY, false, true, string.yearlyPropertyTaxHelpText, string.yearlyPropertyTaxTitleText);
 
+//  private ValueEnum(String valueText, ValueType valueType, 
+//      Boolean isSavedToDatabase, Boolean isVaryingByYear) {
+//    this.valueText = valueText;
+//    this.valueType = valueType;
+//    this.isSavedToDatabase = isSavedToDatabase;
+//    this.isVaryingByYear = isVaryingByYear;
+//  }
+  
   private ValueEnum(String valueText, ValueType valueType, 
-      Boolean isSavedToDatabase, Boolean isVaryingByYear) {
+      Boolean isSavedToDatabase, Boolean isVaryingByYear,
+      Integer helpText, Integer titleText) {
     this.valueText = valueText;
     this.valueType = valueType;
     this.isSavedToDatabase = isSavedToDatabase;
     this.isVaryingByYear = isVaryingByYear;
+    this.helpText = helpText;
+    this.titleText = titleText;
   }
   
   public String toString() {
@@ -64,6 +77,13 @@ public enum ValueEnum {
     return valueType;
   }
 
+  public Integer getTitleText() {
+    return titleText;
+  }
+  
+  public Integer getHelpText() {
+    return helpText;
+  }
   
   public Boolean isSavedToDatabase() {
     return isSavedToDatabase;
@@ -77,6 +97,8 @@ public enum ValueEnum {
     return isVaryingByYear;
   }
 
+  private Integer helpText;
+  private Integer titleText;
   private String valueText;
   private ValueType valueType;
   private Boolean isSavedToDatabase;

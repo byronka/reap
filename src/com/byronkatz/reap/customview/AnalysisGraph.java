@@ -78,8 +78,6 @@ public class AnalysisGraph extends View {
   private String minYString;
   private Float minX;
   private Float minY;
-  private Integer widthOfGraph;
-  private Float halfwayPoint;
   private Float bottom;
   private Float distFromMarginToXAxis;
   private Float startX;
@@ -224,8 +222,6 @@ public class AnalysisGraph extends View {
       canvas.drawText(minYString, minX, minY, textPaint);
 
       //draw GraphName and current value
-      widthOfGraph = graphMaxX - GRAPH_MIN_X;
-      halfwayPoint = widthOfGraph / 2.0f;
       bottom = marginWidthY + betweenMarginsOnY + (marginWidthY/2);
       
       String currentValue = graphKeyValue.toString() + ": " + Utility.displayValue(

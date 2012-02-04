@@ -1,8 +1,5 @@
 package com.byronkatz.reap.general;
 
-import com.byronkatz.R;
-import com.byronkatz.reap.activity.LoanActivity;
-
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -17,8 +14,7 @@ public class HelpButtonOnClickWrapper implements OnClickListener {
   @Override
   public void onClick(View v) {
     Utility.showHelpDialog(
-        R.string.numOfCompoundingPeriodsDescriptionText, 
-        R.string.numOfCompoundingPeriodsTitleText, v.getContext());
+        ve.getHelpText(), ve.getTitleText(), v.getContext());
   }
 
 

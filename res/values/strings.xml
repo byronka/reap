@@ -3,6 +3,126 @@
 
 	<string name="app_name">Real Estate Assessment Program</string>
 
+
+	<!-- Help text for calculated values -->
+	<string name="accumulatedInterestPaidTitleText">Accumulated interest paid</string>
+	<string name="accumulatedInterestPaidHelpText">This is the help for accumulated interest paid</string>
+
+	<string name="atcfTitleText">After tax cash flow</string>
+	<string name="atcfHelpText">This is the net balance for the year - income - outlay</string>
+	
+	<string name="atcfAccumulatorTitleText">After tax cash flow accumulator</string>
+	<string name="atcfAccumulatorHelpText">This value is the accumulating after tax cash flow from year to year</string>
+	
+	<string name="atcfNetPresentValueTitleText">After tax cash flow NPV</string>
+	<string name="atcfNetPresentValueHelpText">This is the summation of the present values of after tax cash flows to date</string>
+	
+	<string name="aterTitleText">After tax equity reversion</string>
+	<string name="aterHelpText">Amount received from sale of house, minus broker fees and inflation-adjusted miscellaneous fees</string>
+		
+	<string name="aterPresentValueTitleText">Present value ATER</string>
+	<string name="aterPresentValueHelpText">This is the after tax equity reversion in present value dollars</string>
+		
+	<string name="brokerCutTitleText">Broker cut at sale</string>
+	<string name="brokerCutHelpText">This is the amount the broker receives at the time when you sell the investment, based on the percentage set</string>
+		
+	<string name="buildingValueHelpText">The value of the building itself, not the total estate (which includes land)</string>
+		
+	<string name="cityHelpText">City of investment</string>
+		
+	<string name="closingCostsHelpText">costs incurred at the time of purchase of investment, such as surveyor fees, home inspection, title insurance, termite bond, and any other miscellaneous fees *other* than the amount owed to the broker at the time of purchase</string>
+	
+	<string name="currentAmountOutstandingHelpText"></string>
+	<string name="currentAmountOutstandingTitleText">current amount outstanding</string>
+	
+	<string name="downPaymentHelpText"></string>
+	
+	<string name="estimatedRentPaymentsHelpText"></string>
+	
+	<string name="fixupCostsHelpText"></string>
+	
+	<string name="generalSaleExpensesHelpText"></string>
+	
+	<string name="inflationRateHelpText"></string>
+	
+	<string name="initialYearlyGeneralExpensesHelpText"></string>
+	
+	<string name="localMunicipalFeesHelpText"></string>
+	
+	<string name="marginalTaxRateHelpText"></string>
+	
+	<string name="modifiedInternalRateOfReturnHelpText"></string>
+	<string name="modifiedInternalRateOfReturnTitleText"></string>
+	
+	<string name="monthlyMortgagePaymentHelpText"></string>
+	<string name="monthlyMortgagePaymentTitleText"></string>
+	
+	<string name="netPresentValueHelpText"></string>
+	<string name="netPresentValueTitleText"></string>
+	
+	<string name="numberOfCompoundingPeriodsHelpText"></string>
+	<string name="numberOfCompoundingPeriodsTitleText"></string>
+	
+	<string name="privateMortgageInsuranceHelpText"></string>
+	
+	<string name="projectedHomeValueHelpText"></string>
+	<string name="projectedHomeValueTitleText"></string>
+	
+	<string name="propertyTaxHelpText"></string>
+	
+	<string name="realEstateAppreciationRateHelpText"></string>
+	
+	<string name="requiredRateOfReturnHelpText"></string>
+	
+	<string name="sellingBrokerRateHelpText"></string>
+	
+	<string name="sellingExpensesHelpText"></string>
+	<string name="sellingExpensesTitleText"></string>
+	
+	<string name="stateInitialsHelpText"></string>
+	<string name="stateInitialsTitleText"></string>
+	
+	<string name="streetAddressHelpText"></string>
+	
+	<string name="taxableIncomeHelpText"></string>
+	<string name="taxableIncomeTitleText"></string>
+	
+	<string name="taxesDueAtSaleHelpText"></string>
+	<string name="taxesDueAtSaleTitleText"></string>
+	
+	<string name="totalPurchaseValueHelpText"></string>
+	<string name="totalPurchaseValueTitleText"></string>
+	
+	<string name="vacancyAndCreditLossRateHelpText"></string>
+	<string name="vacancyAndCreditLossRateTitleText"></string>
+	
+	<string name="yearlyGeneralExpensesHelpText"></string>
+	<string name="yearlyGeneralExpensesTitleText"></string>
+	
+	<string name="yearlyHomeInsuranceHelpText"></string>
+
+    <string name="yearlyIncomeHelpText"></string>
+    <string name="yearlyIncomeTitleText"></string>	
+	
+	<string name="yearlyInterestPaidHelpText"></string>
+    <string name="yearlyInterestPaidTitleText"></string>
+    
+    <string name="yearlyInterestRateHelpText"></string>
+    
+    <string name="yearlyMortgagePaymentHelpText"></string>
+    <string name="yearlyMortgagePaymentTitleText"></string>
+    
+    <string name="yearlyPrivateMortgageInsuranceHelpText"></string>
+    <string name="yearlyPrivateMortgageInsuranceTitleText"></string>
+	
+	<string name="yearlyPrincipalPaidHelpText"></string>
+	<string name="yearlyPrincipalPaidTitleText"></string>
+
+	<string name="yearlyPropertyTaxHelpText"></string>
+	<string name="yearlyPropertyTaxTitleText"></string>
+	
+	
+	
 	<!-- entry page text -->
 	<string name="useCalcWithoutDefaultValues">generic default values</string>
 	<string name="useCalcWithDefaultValues">default values from address</string>
@@ -82,14 +202,14 @@
 
 	<!-- taxes -->
 	<string name="TaxesScreenHeaderText">Taxes</string>
-	<string name="marginalTaxRateTitleText">Marginal Tax Rate: </string>
+	<string name="marginalTaxRateTitleText">Marginal Tax Rate</string>
 	<string name="marginalTaxRateDescriptionText">The marginal tax rate is the tax rate that is
 		expected for the amount of adjusted gross income for the year
 	</string>
 	<string name="backButtonText">Back</string>
-	<string name="buildingValueTitleText">Building Value: </string>
-	<string name="propertyTaxTitleText">Yearly Property Tax: </string>
-	<string name="localMunicipalFeesTitleText">Municipal Fees: </string>
+	<string name="buildingValueTitleText">Building value</string>
+	<string name="propertyTaxTitleText">Property Tax</string>
+	<string name="localMunicipalFeesTitleText">Municipal Fees</string>
 	<string name="buildingValueDescriptionText">the value of the building, as opposed to the land
 		value.
 	</string>
@@ -102,9 +222,9 @@
 
 	<!-- address -->
 	<string name="streetAddressHeaderText">Address</string>
-	<string name="streetAddressTitleText">Street Address: </string>
-	<string name="cityTitleText">City: </string>
-	<string name="stateTitleText">State: </string>
+	<string name="streetAddressTitleText">Street Address</string>
+	<string name="cityTitleText">City</string>
+	<string name="stateTitleText">State</string>
 	<string name="state_prompt">Choose a State: </string>
 
 
@@ -119,19 +239,19 @@
 	<string name="loanScreenHeaderText">Loan</string>
 
 	<!-- Loan page -->
-	<string name="yearlyInterestRateTitleText">Yearly interest rate: </string>
+	<string name="yearlyInterestRateTitleText">Yearly interest rate</string>
 	<string name="yearlyInterestRateDescriptionText">The yearly interest rate is the yearly percentage
 		of the amount borrowed which is owed to the lender
 	</string>
 	<string name="downPaymentDescriptionText">The down payment is the amount of money given to
 		the lender as collateral to secure the loan against default
 	</string>
-	<string name="downPaymentTitleText">Down payment: </string>
+	<string name="downPaymentTitleText">Down payment</string>
 	<string name="numOfCompoundingPeriodsDescriptionText">The number of compounding periods on the loan. This
 		may be monthly or yearly. Typical residential loans are 180 months (15
 		years) or 360 months (30 years)
 	</string>
-	<string name="numOfCompoundingPeriodsTitleText">Num. of compounding periods:</string>
+	<string name="numOfCompoundingPeriodsTitleText">Number of compounding periods</string>
 	<string name="calcPMIDownPaymentButtonText">Set down payment by PMI</string>
 	<string name="calcPMITitleText">PMI Button Help</string>
 	<string name="calcPMIDescriptionText">Pressing this button will set the down payment to 20% of the currently entered Total Purchase Price value</string>
@@ -140,7 +260,7 @@
 		the land and building
 	</string>
 	<string name="totalPurchasePriceTitleText">Total purchase price</string>
-	<string name="closingCostsTitleText">Closing costs: </string>
+	<string name="closingCostsTitleText">Closing costs</string>
 	<string name="closingCostsDescriptionText">The closing costs are the miscellaneous expenses
 		incurred in addition to the down payment. This may include home
 		inspection, title insurance, surveying costs, or discount point costs.
@@ -157,11 +277,11 @@
 		the property- final fixup, any legal fees, etc., all in present value, when *you* sell it.  This is
 		not for when you purchase the property.
 	</string>
-	<string name="generalSaleExpensesTitleText">General Sale Expenses: </string>
+	<string name="generalSaleExpensesTitleText">General sale expenses</string>
 	<string name="sellingBrokerRateDescriptionText">The percentage of the sale price taken by the
 		selling broker
 	</string>
-	<string name="sellingBrokerRateTitleText">Selling Broker Rate: </string>
+	<string name="sellingBrokerRateTitleText">Selling broker rate</string>
 	<string name="saleScreenHeaderText">Sale</string>
 
 	<!-- financial environment -->
@@ -169,8 +289,8 @@
 	<string name="inflationRateDescriptionText">The inflation rate is the expected average yearly
 		rate at which money loses value
 	</string>
-	<string name="inflationRateTitleText">Inflation Rate: </string>
-	<string name="realEstateAppreciationRateTitleText">Real Estate Appreciation Rate: </string>
+	<string name="inflationRateTitleText">Inflation rate</string>
+	<string name="realEstateAppreciationRateTitleText">Real estate appreciation rate</string>
 	<string name="realEstateAppreciationRateDescriptionText">This value is the expected average annual rate at
 		which the capital value of the investment appreciates (increases)
 	</string>
@@ -180,31 +300,31 @@
 	<string name="estimatedRentPaymentsDescriptionText">This is the initial rent payments expected for the
 		property
 	</string>
-	<string name="estimatedRentPaymentsTitleText">Estimated Rent Payments: </string>
+	<string name="estimatedRentPaymentsTitleText">Estimated rent payments</string>
 	<string name="yearlyHomeInsuranceDescriptionText">This is the initial yearly cost of home insurance.
 	</string>
-	<string name="yearlyHomeInsuranceTitleText">Yearly Home Insurance: </string>
+	<string name="yearlyHomeInsuranceTitleText">Yearly home insurance</string>
 	<string name="vacancyAndCreditLossDescriptionText">This is the average yearly amount lost through
 		tenants not paying their rent for whatever reason, as a percentage of
 		total rental income
 	</string>
-	<string name="vacancyAndCreditLossTitleText">Vacancy and Credit Loss: </string>
+	<string name="vacancyAndCreditLossTitleText">Vacancy and credit loss</string>
 	<string name="fixupCostsDescriptionText">Cost to fix up the property to a rentable state as
 		a one-time dollar amount
 	</string>
-	<string name="fixupCostsTitleText">Fix-up costs: </string>
+	<string name="fixupCostsTitleText">Fix-up costs</string>
 	<string name="initialYearlyGeneralExpensesDescriptionText">These are the initial expenses, as a yearly dollar
 		amount, to maintain the property. They include the costs of saving for
 		big-ticket repairs, management costs, minor repair costs, advertising,
 		and other miscellaneous expenses
 	</string>
-	<string name="initialYearlyGeneralExpensesTitleText">Yearly General Expenses: </string>
+	<string name="initialYearlyGeneralExpensesTitleText">Yearly general expenses</string>
 	<string name="requiredRateOfReturnDescriptionText">The required rate of return is the minimum rate of
 		return, as a yearly percentage, expected as the average yearly return.
 		It is used in the net present value equation to bring all future
 		values into the present value.
 	</string>
-	<string name="requiredRateOfReturnTitleText">Required Rate of Return: </string>
+	<string name="requiredRateOfReturnTitleText">Required rate of return</string>
 
 	<!-- set data values activity -->
 	<string name="editValuesButtonText">Edit values</string>
