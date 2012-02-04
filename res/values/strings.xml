@@ -89,7 +89,7 @@
 	<string name="backButtonText">Back</string>
 	<string name="buildingValueTitleText">Building Value: </string>
 	<string name="propertyTaxTitleText">Yearly Property Tax: </string>
-	<string name="localMunicipalFeesTitleText">Local Municipal Fees: </string>
+	<string name="localMunicipalFeesTitleText">Municipal Fees: </string>
 	<string name="buildingValueDescriptionText">the value of the building, as opposed to the land
 		value.
 	</string>
@@ -133,6 +133,8 @@
 	</string>
 	<string name="numOfCompoundingPeriodsTitleText">Num. of compounding periods:</string>
 	<string name="calcPMIDownPaymentButtonText">Set down payment by PMI</string>
+	<string name="calcPMITitleText">PMI Button Help</string>
+	<string name="calcPMIDescriptionText">Pressing this button will set the down payment to 20% of the currently entered Total Purchase Price value</string>
 
 	<string name="totalPurchaseValueDescriptionText">This value is the total purchase price, including
 		the land and building
@@ -144,7 +146,7 @@
 		inspection, title insurance, surveying costs, or discount point costs.
 	</string>
 	
-	<string name="privateMortgageInsuranceTitleText">Private Mortgage Insurance cost per month</string>
+	<string name="privateMortgageInsuranceTitleText">Monthly PMI</string>
 	<string name="privateMortgageInsuranceDescriptionText">This is the amount charged by lenders to 
 		offset their costs in the case of a default on a loan.  It it typically charged when
 		the borrower puts up less than 20% of their own money as a down payment (That is the
@@ -196,7 +198,7 @@
 		big-ticket repairs, management costs, minor repair costs, advertising,
 		and other miscellaneous expenses
 	</string>
-	<string name="initialYearlyGeneralExpensesTitleText">Initial Yearly General Expenses: </string>
+	<string name="initialYearlyGeneralExpensesTitleText">Yearly General Expenses: </string>
 	<string name="requiredRateOfReturnDescriptionText">The required rate of return is the minimum rate of
 		return, as a yearly percentage, expected as the average yearly return.
 		It is used in the net present value equation to bring all future

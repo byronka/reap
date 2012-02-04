@@ -230,7 +230,7 @@ public class AnalysisGraph extends View {
       
       String currentValue = graphKeyValue.toString() + ": " + Utility.displayValue(
           dataController.getValueAsFloat(graphKeyValue, currentYearHighlighted), graphKeyValue);
-      canvas.drawText(currentValue, halfwayPoint, bottom, textPaint);
+      canvas.drawText(currentValue, minX, bottom, textPaint);
     }
   }
 

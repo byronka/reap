@@ -72,6 +72,18 @@ public class LoanActivity extends Activity {
 
       }
     });
+    
+    ImageButton pmiCalcHelpButton = 
+        (ImageButton)findViewById(R.id.pmiCalcHelpButton);
+    pmiCalcHelpButton.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        Utility.showHelpDialog(
+            R.string.calcPMIDescriptionText, 
+            R.string.calcPMITitleText, LoanActivity.this);
+      }
+    });
 
     yearlyInterestRate.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.YEARLY_INTEREST_RATE));
 
