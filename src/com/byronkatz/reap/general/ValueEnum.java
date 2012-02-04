@@ -1,10 +1,13 @@
 package com.byronkatz.reap.general;
 
+import android.content.res.Resources;
+
+import com.byronkatz.R;
 import com.byronkatz.R.string;
 
 public enum ValueEnum {
 
-  ACCUM_INTEREST ("Accumulated interest paid", ValueType.CURRENCY, false, true, string.accumulatedInterestPaidHelpText, string.accumulatedInterestPaidTitleText),
+  ACCUM_INTEREST ("Accumulated interest paid", ValueType.CURRENCY, false, true, string.accumulatedInterestPaidHelpText, string.accumulatedInterestPaidTitleText), 
   ATCF ("After tax cash flow", ValueType.CURRENCY, false, true, string.atcfHelpText , string.atcfTitleText),
   ATCF_ACCUMULATOR ("After tax cash flow accumulator", ValueType.CURRENCY, false, true, string.atcfAccumulatorHelpText, string.atcfAccumulatorTitleText),
   ATCF_NPV ("After tax cash flow NPV", ValueType.CURRENCY, false, true, string.atcfNetPresentValueHelpText, string.atcfNetPresentValueTitleText),
@@ -33,7 +36,7 @@ public enum ValueEnum {
   REAL_ESTATE_APPRECIATION_RATE("Real estate appreciation rate", ValueType.PERCENTAGE, true, false, string.realEstateAppreciationRateHelpText, string.realEstateAppreciationRateTitleText),
   REQUIRED_RATE_OF_RETURN("Required rate of return", ValueType.PERCENTAGE, true, false, string.requiredRateOfReturnHelpText, string.requiredRateOfReturnTitleText),
   SELLING_BROKER_RATE("Selling broker rate", ValueType.PERCENTAGE, true, false, string.sellingBrokerRateHelpText, string.sellingBrokerRateTitleText),
-  SELLING_EXPENSES ("Inflation adjusted selling expenses", ValueType.CURRENCY, false, true, string.sellingExpensesHelpText, string.sellingExpensesTitleText), 
+  SELLING_EXPENSES ("Selling expenses", ValueType.CURRENCY, false, true, string.sellingExpensesHelpText, string.sellingExpensesTitleText), 
   STATE_INITIALS("State", ValueType.STRING, true, false, string.stateInitialsHelpText, string.stateInitialsTitleText),
   STREET_ADDRESS("street address", ValueType.STRING, true, false, string.streetAddressHelpText, string.streetAddressTitleText),
   TAXABLE_INCOME ("Yearly taxable income", ValueType.CURRENCY, false, true, string.taxableIncomeHelpText, string.taxableIncomeTitleText), 
@@ -49,14 +52,6 @@ public enum ValueEnum {
   YEARLY_PRIVATE_MORTGAGE_INSURANCE ("Yearly private mortgage insurance", ValueType.CURRENCY, false, true, string.yearlyPrivateMortgageInsuranceHelpText, string.yearlyPrivateMortgageInsuranceTitleText),
   YEARLY_PRINCIPAL_PAID ("Yearly principal paid", ValueType.CURRENCY, false, true, string.yearlyPrincipalPaidHelpText, string.yearlyPrincipalPaidTitleText), 
   YEARLY_PROPERTY_TAX ("Yearly property tax", ValueType.CURRENCY, false, true, string.yearlyPropertyTaxHelpText, string.yearlyPropertyTaxTitleText);
-
-//  private ValueEnum(String valueText, ValueType valueType, 
-//      Boolean isSavedToDatabase, Boolean isVaryingByYear) {
-//    this.valueText = valueText;
-//    this.valueType = valueType;
-//    this.isSavedToDatabase = isSavedToDatabase;
-//    this.isVaryingByYear = isVaryingByYear;
-//  }
   
   private ValueEnum(String valueText, ValueType valueType, 
       Boolean isSavedToDatabase, Boolean isVaryingByYear,
@@ -72,6 +67,11 @@ public enum ValueEnum {
   public String toString() {
     return valueText;
   }
+  
+  //the following should work but is crashing.  Need to test.  Uncomment when all the title texts are correct, then remove the old toString()
+//  public String toString() {
+//    return Resources.getSystem().getString(titleText);
+//  }
   
   public ValueType getType() {
     return valueType;
