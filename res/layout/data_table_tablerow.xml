@@ -8,8 +8,10 @@
 		android:textColor="@color/data_table_row_text_color" android:padding="3dip" />
 
 	<ImageButton 
-		android:layout_width="fill_parent" android:layout_height="fill_parent"
-		android:padding="3dip" android:visibility="visible" android:scaleType="centerInside"
+		android:layout_width="30dip" android:layout_height="30dip"
+		 android:layout_gravity="center_vertical" android:scaleType="fitXY"
+		  android:background="@null"
+		android:padding="3dip" android:visibility="visible" 
 		android:src="@drawable/question_mark" />
 
 
@@ -18,7 +20,7 @@
 		android:layout_height="wrap_content" android:textColor="@color/data_table_row_text_color"
 		android:padding="3dip" />
 
-	<ToggleButton android:gravity="right"
+	<ToggleButton android:gravity="center|top"
 		android:layout_width="wrap_content" android:layout_height="wrap_content"
 		android:padding="3dip" android:visibility="gone" />
 

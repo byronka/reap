@@ -212,22 +212,25 @@ public class AnalysisGraph extends View {
 
 
       //draw top number text
-      maxYString = Utility.displayCurrency (functionMaxY);
+      maxYString = Utility.displayValue (functionMaxY, graphKeyValue);
       maxX = (Float) marginWidthX / 4;
       maxY = (Float) marginWidthY;
       canvas.drawText(maxYString, maxX, maxY, textPaint);
 
       //draw bottom number text
-      minYString = Utility.displayCurrency (functionMinY);
+      minYString = Utility.displayValue (functionMinY, graphKeyValue);
       minX = (Float) marginWidthX / 4;
       minY = (Float) (marginWidthY + betweenMarginsOnY);
       canvas.drawText(minYString, minX, minY, textPaint);
 
-      //draw GraphName
+      //draw GraphName and current value
       widthOfGraph = graphMaxX - GRAPH_MIN_X;
       halfwayPoint = widthOfGraph / 2.0f;
       bottom = marginWidthY + betweenMarginsOnY + (marginWidthY/2);
-      canvas.drawText(graphKeyValue.toString(), halfwayPoint, bottom, textPaint);
+      
+      String currentValue = graphKeyValue.toString() + ": " + Utility.displayValue(
+          dataController.getValueAsFloat(graphKeyValue, currentYearHighlighted), graphKeyValue);
+      canvas.drawText(currentValue, halfwayPoint, bottom, textPaint);
     }
   }
 

@@ -82,6 +82,21 @@ public static String displayCurrency(Float value) {
   return currencyFormatter.format(value);
 }
 
+public static String displayValue(Float value, ValueEnum ve) {
+  String type = ve.getType().name();
+  String outputValue = "nothing";
+  
+  if (type == "CURRENCY") {
+    outputValue = displayCurrency(value);
+  } else if (type == "PERCENTAGE") {
+    outputValue = displayPercentage(value);
+  } else if (type == "INTEGER") {
+    outputValue = String.valueOf(value.intValue());
+  }
+  
+  return outputValue;
+}
+
 public static Float parseCurrency(String value) {
   returnValue = 0.0f;
   currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
@@ -115,6 +130,8 @@ private static void parseThenDisplayCurrency(View v) {
       Utility.parseCurrency(((EditText) v).getText().toString())));
   
 }
+
+
 
 private static void parseThenDisplayPercentage(View v) {
   

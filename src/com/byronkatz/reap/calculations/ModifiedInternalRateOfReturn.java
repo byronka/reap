@@ -16,7 +16,8 @@ public class ModifiedInternalRateOfReturn {
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
-  public ModifiedInternalRateOfReturn(Float yearlyInterestRate, Float yearlyRequiredRateOfReturn) {
+  public ModifiedInternalRateOfReturn(Float yearlyInterestRate, 
+      Float yearlyRequiredRateOfReturn) {
     mirrValueAccumulator = 0.0f;
     cashFlowVector = new Vector<Float>();
     this.yearlyInterestRate = yearlyInterestRate;
@@ -40,9 +41,11 @@ public class ModifiedInternalRateOfReturn {
     for (Float flow : cashFlowVector) {
 
       if (flow < 0.0f) {
-        presentValueNegativeCashFlowsAccumulator += flow / (float) Math.pow(1 + yearlyInterestRate, internalYear);
+        presentValueNegativeCashFlowsAccumulator += 
+            flow / (float) Math.pow(1 + yearlyInterestRate, internalYear);
       } else if (flow > 0.0f) {
-        futureValuePositiveCashFlowsAccumulator += flow * (float) Math.pow(1 + yearlyRequiredRateOfReturn, year - internalYear);
+        futureValuePositiveCashFlowsAccumulator += 
+            flow * (float) Math.pow(1 + yearlyRequiredRateOfReturn, year - internalYear);
       }
 
       internalYear++;
@@ -52,9 +55,11 @@ public class ModifiedInternalRateOfReturn {
     //special case for ater, since by definition it always happens in last year
     if (ater != null) {
       if (ater < 0.0f) {
-        presentValueNegativeCashFlowsAccumulator += ater / (float) Math.pow(1 + yearlyInterestRate, year);
+        presentValueNegativeCashFlowsAccumulator += 
+            ater / (float) Math.pow(1 + yearlyInterestRate, year);
       } else if (ater > 0.0f) {
-        futureValuePositiveCashFlowsAccumulator += ater * (float) Math.pow(1 + yearlyRequiredRateOfReturn, 0);
+        futureValuePositiveCashFlowsAccumulator += 
+            ater * (float) Math.pow(1 + yearlyRequiredRateOfReturn, 0);
       }
     }
 
@@ -70,6 +75,9 @@ public class ModifiedInternalRateOfReturn {
     //save value if we are calculating ater
     if (ater != null) {
       saveValue(year);
+      
+      //reset the accumulator after a save
+      mirrValueAccumulator = 0f;
     }
   }
 

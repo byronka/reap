@@ -6,20 +6,21 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import com.byronkatz.R;
-import com.byronkatz.reap.general.DataController;
-import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
-import com.byronkatz.reap.general.ValueEnum;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import com.byronkatz.R;
+import com.byronkatz.reap.general.DataController;
+import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
+import com.byronkatz.reap.general.ValueEnum;
 
 public class ConfigureDataTablesActivity extends Activity {
 
@@ -68,6 +69,7 @@ public class ConfigureDataTablesActivity extends Activity {
     TextView tempDataTablePropertyValue;
     ToggleButton tempDataTableToggleButton;
     TextView dataTablePropertyName;
+    ImageButton tempImageButton;
 
     LayoutInflater inflater = (LayoutInflater)ConfigureDataTablesActivity.this.getSystemService
         (Context.LAYOUT_INFLATER_SERVICE);
@@ -110,6 +112,9 @@ public class ConfigureDataTablesActivity extends Activity {
 
       tempDataTableToggleButton = (ToggleButton) newTableRow.getChildAt(DataTable.TOGGLE_BUTTON_INDEX);
       tempDataTableToggleButton.setVisibility(View.VISIBLE);
+      
+      tempImageButton = (ImageButton) newTableRow.getChildAt(DataTable.HELP_BUTTON_INDEX);
+      tempImageButton.setVisibility(View.GONE);
 
       /* set value based on what type of number it is, or string if 
        * applicable if it is saved to database, that 
