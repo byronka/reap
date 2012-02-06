@@ -50,6 +50,8 @@ public class GraphActivity extends Activity {
   SeekBar timeSlider;
   TextView yearDisplayAtSeekBar;
   DataTable dataTable;
+  public static final String PREFS_NAME = "MyPrefsFile";
+
 
   private final DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
@@ -124,12 +126,12 @@ public class GraphActivity extends Activity {
     if (savedState != null) {
       dataController.setViewableDataTableRows(
           dataTable.restoreViewableDataTableRows(savedState));
-    }
+    } else {
     
-    SharedPreferences sp = getPreferences(MODE_PRIVATE);
+    SharedPreferences sp = getSharedPreferences(PREFS_NAME, 0);
     dataController.setViewableDataTableRows(
         dataTable.restoreViewableDataTableRows(sp));
-    
+    }
     setContentView(R.layout.graph);
 
     Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods();
@@ -174,7 +176,7 @@ public class GraphActivity extends Activity {
   public void onPause() {
     super.onPause();
     
-    SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+    SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
 
     dataTable.saveViewableDataTableRows(sharedPreferences);
   }
@@ -462,7 +464,8 @@ public class GraphActivity extends Activity {
     for (ValueEnum v : ValueEnum.values()) {
 
       vt = v.getType();
-      if (!v.isVaryingByYear() && !(vt == ValueType.STRING)) {
+      
+      if (!(vt == ValueType.STRING) && (v.isSavedToDatabase())) {
         selectionValues.add(v);
       }
     }

@@ -101,7 +101,7 @@
 	
 	<string name="yearlyHomeInsuranceHelpText">The yearly general insurance rate.  Note that rental property insurance rates are typically higher than normal homeowner rates.  Check with your insurance agent.</string>
 
-    <string name="yearlyIncomeHelpText">This is the income gained each year through the rent.  This application assumes that the rate you charge will increase once a year at the rate of real estate appreciation.  the equation for next year's rent is: this_year_monthly_rent * (1 + real_estate_appreciation_rate / 12)</string>
+    <string name="yearlyIncomeHelpText">This is the income gained each year through the rent.  This application assumes that the rate you charge will increase once a year at the rate of real estate appreciation.  the equation for next year\'s rent is: this_year_monthly_rent * (1 + real_estate_appreciation_rate / 12)</string>
     <string name="yearlyIncomeTitleText">Yearly rent income</string>	
 	
 	<string name="yearlyInterestPaidHelpText">The amount of interest paid this year in the mortgage payments.  This application assumes a standard loan amortization</string>
