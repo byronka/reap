@@ -45,13 +45,14 @@ public class SavedDataBrowserActivity extends ListActivity {
         R.layout.database_item_browser_layout, 
         cursor,                                              // Pass in the cursor to bind to.
         new String[] {ValueEnum.STREET_ADDRESS.name(), 
+            ValueEnum.CITY.name(),
             ValueEnum.TOTAL_PURCHASE_VALUE.name(),
             ValueEnum.YEARLY_INTEREST_RATE.name(), 
             ValueEnum.DOWN_PAYMENT.name(), 
             ValueEnum.REQUIRED_RATE_OF_RETURN.name()},           // Array of cursor columns to bind to.
             new int[] {R.id.databaseItemTextView1, R.id.databaseItemTextView2, 
             R.id.databaseItemTextView3, R.id.databaseItemTextView4,
-            R.id.databaseItemTextView5 });  // Parallel array of which template objects to bind to those columns.
+            R.id.databaseItemTextView5, R.id.databaseItemTextView6 });  // Parallel array of which template objects to bind to those columns.
 
 
 

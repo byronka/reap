@@ -90,35 +90,35 @@
 	<string name="taxesDueAtSaleHelpText">Taxes taken at the sale of the investment. This is currently 15%% (all capital gains are 15%%) in 2012</string>
 	<string name="taxesDueAtSaleTitleText">Taxes due at sale</string>
 	
-	<string name="totalPurchaseValueHelpText">REPLACEME</string>
+	<string name="totalPurchaseValueHelpText">The value of the entire estate; building, land, and all</string>
 	<string name="totalPurchaseValueTitleText">Total purchase value</string>
 	
-	<string name="vacancyAndCreditLossRateHelpText">REPLACEME</string>
+	<string name="vacancyAndCreditLossRateHelpText">This is the estimated average yearly loss due to either of the following: tenants failing to pay their rent, or not having someone in the unit.</string>
 	<string name="vacancyAndCreditLossRateTitleText">Vacancy and credit loss rate</string>
 	
-	<string name="yearlyGeneralExpensesHelpText">REPLACEME</string>
+	<string name="yearlyGeneralExpensesHelpText">Estimated yearly expenses for things such as management costs, lawn care (if the contract requires it), miscellaneous building repair, and so on.  Note that it also includes saving up for big ticket items such as replacing the roof or HVAC.  So, for example, you may save an extra $30 per month each year towards the future roof replacement.</string>
 	<string name="yearlyGeneralExpensesTitleText">Yearly general expenses</string>
 	
-	<string name="yearlyHomeInsuranceHelpText">REPLACEME</string>
+	<string name="yearlyHomeInsuranceHelpText">The yearly general insurance rate.  Note that rental property insurance rates are typically higher than normal homeowner rates.  Check with your insurance agent.</string>
 
-    <string name="yearlyIncomeHelpText">REPLACEME</string>
+    <string name="yearlyIncomeHelpText">This is the income gained each year through the rent.  This application assumes that the rate you charge will increase once a year at the rate of real estate appreciation.  the equation for next year's rent is: this_year_monthly_rent * (1 + real_estate_appreciation_rate / 12)</string>
     <string name="yearlyIncomeTitleText">Yearly rent income</string>	
 	
-	<string name="yearlyInterestPaidHelpText">REPLACEME</string>
+	<string name="yearlyInterestPaidHelpText">The amount of interest paid this year in the mortgage payments.  This application assumes a standard loan amortization</string>
     <string name="yearlyInterestPaidTitleText">Yearly interest paid</string>
     
-    <string name="yearlyInterestRateHelpText">REPLACEME</string>
+    <string name="yearlyInterestRateHelpText">The interest rate charged by the lender for the loan.</string>
     
-    <string name="yearlyMortgagePaymentHelpText">REPLACEME</string>
+    <string name="yearlyMortgagePaymentHelpText">The monthly mortgage payment * 12</string>
     <string name="yearlyMortgagePaymentTitleText">Yearly mortgage payment</string>
     
-    <string name="yearlyPrivateMortgageInsuranceHelpText">REPLACEME</string>
+    <string name="yearlyPrivateMortgageInsuranceHelpText">The amount paid this year in private mortgage insurance.  The monthly amount is set in the loan edit dialog.  If the amount outstanding on the loan is more than 80%% of the total value, the monthly private mortgage insurance amount will be charged each month until it reaches 80%%</string>
     <string name="yearlyPrivateMortgageInsuranceTitleText">Yearly private mortgage insurance</string>
 	
-	<string name="yearlyPrincipalPaidHelpText">REPLACEME</string>
+	<string name="yearlyPrincipalPaidHelpText">The amount of principal paid in the mortgage payments for this year</string>
 	<string name="yearlyPrincipalPaidTitleText">Yearly principal paid</string>
 
-	<string name="yearlyPropertyTaxHelpText">REPLACEME</string>
+	<string name="yearlyPropertyTaxHelpText">The amount of property tax paid this year.  This application calculates each year\'s property tax by a future value equation using real estate appreciation as the rate of compounding</string>
 	<string name="yearlyPropertyTaxTitleText">Yearly property tax</string>
 	
 	
@@ -355,9 +355,10 @@
 	<string name="timeSliderText">Time Slider</string>
 	<string name="realEstateMarketAnalysisSplashPageDescription">This program does the following ... touch the screen or click enter to continue</string>
 	<string name="databaseItemTextViewDesc1">Street Address: </string>
-	<string name="databaseItemTextViewDesc2">Total Purchase Value: </string>
-	<string name="databaseItemTextViewDesc3">Yearly Interest Rate: </string>
-	<string name="databaseItemTextViewDesc4">Down Payment: </string>
-	<string name="databaseItemTextViewDesc5">Required Rate of Return: </string>
+	<string name="databaseItemTextViewDesc2">City: </string>
+	<string name="databaseItemTextViewDesc3">Total Purchase Value: </string>
+	<string name="databaseItemTextViewDesc4">Yearly Interest Rate: </string>
+	<string name="databaseItemTextViewDesc5">Down Payment: </string>
+	<string name="databaseItemTextViewDesc6">Required Rate of Return: </string>
 
 </resources>

@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.AttributeSet;
 import android.view.View;
@@ -33,10 +34,13 @@ public class AnalysisGraph extends View {
   public static final Float GRAPH_MARGIN = 0.20f;
   public static final int GRAPH_MIN_X = 0;
   public static final int GRAPH_MIN_Y = 0;
-  public static final Float CIRCLE_RADIUS = 3.0f;
-  public static final Float TEXT_SIZE = 10.0f;
-  public static final Float DEFAULT_GRAPH_STROKE_WIDTH = 1.8f;
-  public static final String X_AXIS_STRING = "0";
+  public static final Float CIRCLE_RADIUS = 5.0f;
+  public static final Float TEXT_SIZE = 14.0f;
+  public static final Float GRAPH_LINE_STROKE_WIDTH = 3f;
+  public static final Float CICLE_STROKE_WIDTH = 1.5f;
+  public static final Float HIGHLIGHT_STROKE_WIDTH = 5F;
+  public static final Float HIGHLIGHT_CIRCLE_RADIUS = 10.0f;
+  public static final String X_AXIS_STRING = "0.0";
 
   //local graph math variables
   private int graphMaxY;
@@ -46,13 +50,14 @@ public class AnalysisGraph extends View {
   private Integer graphTypeAttribute;
   private ValueEnum graphKeyValue;
 
-  private Paint defaultPaint;
+  private Paint graphLinetPaint;
+  private Paint graphCirclePaint;
   private Paint textPaint;
   private Paint borderPaint;
   private Paint highlightPaint;
   private int currentYearHighlighted;
   
-  
+  private Boolean isFirstPoint;
   private Float functionMinY;
   private Float functionMaxY;
   private Integer functionMinX;
@@ -82,7 +87,7 @@ public class AnalysisGraph extends View {
   private Float distFromMarginToXAxis;
   private Float startX;
   private Float stopX;
-
+  
   //singleton with data
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
@@ -93,11 +98,13 @@ public class AnalysisGraph extends View {
     if (! isInEditMode()) {
 
       //set up defaults for the drawing - canvas size, paint color, stroke width.
-      defaultPaint = createPaint(Color.BLUE, DEFAULT_GRAPH_STROKE_WIDTH, Paint.Style.STROKE, TEXT_SIZE);
+      graphLinetPaint = createPaint(Color.BLUE, GRAPH_LINE_STROKE_WIDTH, Paint.Style.STROKE, TEXT_SIZE);
+      graphCirclePaint = createPaint(Color.LTGRAY, CICLE_STROKE_WIDTH, Paint.Style.STROKE, TEXT_SIZE);
       textPaint    = createPaint(Color.WHITE, 0.0f, Paint.Style.STROKE, TEXT_SIZE);
       borderPaint = createPaint(Color.GRAY, 3.0f, Paint.Style.STROKE, TEXT_SIZE);
       highlightPaint = createPaint(Color.YELLOW, 4.0f, Paint.Style.STROKE, TEXT_SIZE);
       
+     
       initView(attrs);
     }
   }
@@ -116,6 +123,8 @@ public class AnalysisGraph extends View {
   
   private void initView(AttributeSet attrs) {
 
+    setBackgroundResource(R.drawable.graph_background);
+    
     //following line gets custom attribute from xml file
     TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.AnalysisGraph);
     graphTypeAttribute = a.getInt(R.styleable.AnalysisGraph_graphType, 0);
@@ -176,7 +185,10 @@ public class AnalysisGraph extends View {
 
       xGraphValue = 0.0f;
       yGraphValue = 0.0f;
-
+      
+      isFirstPoint = true;
+      Float oldXGraphValue = 0.0f;
+      Float oldYGraphValue = 0.0f;
       for (Entry<Integer, Float> entry : dataPoints.entrySet()) {  
         xValue = entry.getKey();
         yValue = entry.getValue();
@@ -185,9 +197,17 @@ public class AnalysisGraph extends View {
 
         //draw the points on the graph
         if (xValue == currentYearHighlighted) {
-          canvas.drawCircle(xGraphValue, yGraphValue, CIRCLE_RADIUS, highlightPaint);
+          canvas.drawCircle(xGraphValue, yGraphValue, HIGHLIGHT_CIRCLE_RADIUS, highlightPaint);
         }
-        canvas.drawCircle(xGraphValue, yGraphValue, CIRCLE_RADIUS, defaultPaint);
+//        canvas.drawCircle(xGraphValue, yGraphValue, CIRCLE_RADIUS, graphCirclePaint);
+       
+        if (!isFirstPoint) {
+          canvas.drawLine(oldXGraphValue, oldYGraphValue, xGraphValue, yGraphValue, graphLinetPaint);
+        }
+        isFirstPoint = false;
+        oldXGraphValue = xGraphValue;
+        oldYGraphValue = yGraphValue;
+        
       }
 
       //draw the frame
@@ -203,7 +223,7 @@ public class AnalysisGraph extends View {
         startX = (float) GRAPH_MIN_X;
         stopX  = (float) graphMaxX;
         canvas.drawLine(startX, distFromMarginToXAxis, stopX, 
-            distFromMarginToXAxis, defaultPaint);
+            distFromMarginToXAxis, graphLinetPaint);
         canvas.drawText(X_AXIS_STRING, (Float) (marginWidthX / 8), 
             distFromMarginToXAxis, textPaint);
       } 
