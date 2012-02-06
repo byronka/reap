@@ -5,43 +5,45 @@
 
 	<application android:icon="@drawable/house" android:label="@string/app_name"
 		android:name=".reap.general.RealEstateMarketAnalysisApplication">
-		<activity android:name=".reap.activity.SplashScreenActivity" android:label="@string/entryScreenActivityTitleText"
+		<activity android:name=".reap.activity.SplashScreenActivity"
+			android:label="@string/entryScreenActivityTitleText"
 			android:screenOrientation="portrait" android:theme="@android:style/Theme.Dialog">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".reap.activity.GraphActivity" android:label="@string/entryScreenActivityTitleText"
+		<activity android:name=".reap.activity.GraphActivity"
+			android:label="@string/entryScreenActivityTitleText"
 			android:screenOrientation="portrait">
 		</activity>
-		<activity android:name=".reap.activity.RentalActivity" 
+		<activity android:name=".reap.activity.RentalActivity"
 			android:label="@string/rentalActivityTitleText"
-			android:screenOrientation="portrait" />
-		<activity android:name=".reap.activity.DataPagesActivity" android:theme="@android:style/Theme.Dialog"
-			android:label="@string/dataPagesActivityTitleText"
-			android:screenOrientation="portrait" />
+			android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan" />
+		<activity android:name=".reap.activity.DataPagesActivity"
+			android:theme="@android:style/Theme.Dialog" android:label="@string/dataPagesActivityTitleText"
+			android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan" />
 		<activity android:name=".reap.activity.AddressActivity"
 			android:label="@string/addressActivityTitleText"
-			android:screenOrientation="portrait" />
+			android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan" />
 		<activity android:name=".reap.activity.ConfigureDataTablesActivity"
 			android:theme="@android:style/Theme.Dialog" android:label="@string/configureDataTableTitleText"
-			android:screenOrientation="portrait" />
+			android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan" />
 		<activity android:name=".reap.activity.FinancialEnvironmentActivity"
 			android:label="@string/financialEnvironmentActivityTitleText"
-			android:screenOrientation="portrait" />
+			android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan" />
 		<activity android:name=".reap.activity.LoanActivity"
 			android:label="@string/loanActivityTitleText"
-			android:screenOrientation="portrait" />
-		<activity android:name=".reap.activity.SaleActivity" 
-					android:label="@string/saleActivityTitleText"
-			android:screenOrientation="portrait" />
+			android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan" />
+		<activity android:name=".reap.activity.SaleActivity"
+			android:label="@string/saleActivityTitleText"
+			android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan" />
 		<activity android:name=".reap.activity.TaxesActivity"
 			android:label="@string/taxesActivityTitleText"
-			android:screenOrientation="portrait" />
+			android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan" />
 		<activity android:name=".reap.activity.SavedDataBrowserActivity"
 			android:theme="@android:style/Theme.Dialog" android:label="@string/savedDataBrowserActivityTitleText"
-			android:screenOrientation="portrait" />
+			android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan" />
 
 
 	</application>
