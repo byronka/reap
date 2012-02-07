@@ -24,7 +24,7 @@ public class RentalUnitOwnership {
   
   private Mortgage mortgage;
   private Rental rental;
-  private MortgagePayment mp;
+  private Float monthlyMortgagePayment;
   private EstateValue estateValue;
   private ModifiedInternalRateOfReturn mirr;
   private EquityReversion equityReversion;
@@ -32,21 +32,21 @@ public class RentalUnitOwnership {
   public static final Float RESIDENTIAL_DEPRECIATION_YEARS = 27.5f;
 
   
-  private final DataController dataController = 
-      RealEstateMarketAnalysisApplication.getInstance().getDataController();
+  private DataController dataController;
   
-  public RentalUnitOwnership() {
+  public RentalUnitOwnership(DataController dataController) {
     
-    estateValue = new EstateValue();
-    mortgage = new Mortgage(estateValue);
-    mp = mortgage.getMortgagePayment();
+    this.dataController = dataController;
+    estateValue = new EstateValue(dataController);
+    mortgage = new Mortgage(dataController, estateValue.getEstateValue(0));
+    monthlyMortgagePayment = mortgage.getMonthlyMortgagePayment();
     
     yearlyRequiredRateOfReturn = dataController.getValueAsFloat(ValueEnum.REQUIRED_RATE_OF_RETURN);
-    mirr = new ModifiedInternalRateOfReturn(
+    mirr = new ModifiedInternalRateOfReturn( dataController,
         mortgage.getYearlyInterestRate(), yearlyRequiredRateOfReturn);
-    equityReversion = new EquityReversion(estateValue, this);
+    equityReversion = new EquityReversion(dataController, estateValue, this);
 
-    rental = new Rental(this);
+    rental = new Rental(dataController, this);
 
     
     fixupCosts = dataController.getValueAsFloat(ValueEnum.FIX_UP_COSTS);
@@ -140,7 +140,7 @@ public class RentalUnitOwnership {
 
     final Float yearlyPrivateMortgageInsurance = mortgage.getYearlyPmi(year);
 
-    final Float yearlyOutlay = getFVPropertyTax(year) + mp.getYearlyMortgagePayment() + rental.getFVYearlyGeneralExpenses(year) + yearlyPrivateMortgageInsurance;
+    final Float yearlyOutlay = getFVPropertyTax(year) + (monthlyMortgagePayment * 12) + rental.getFVYearlyGeneralExpenses(year) + yearlyPrivateMortgageInsurance;
     final Float yearlyBeforeTaxCashFlow = rental.getFVNetYearlyIncome(year) - yearlyOutlay;
 
     return yearlyBeforeTaxCashFlow;

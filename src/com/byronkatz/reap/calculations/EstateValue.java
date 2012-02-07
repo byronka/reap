@@ -13,10 +13,10 @@ public class EstateValue {
   private Boolean cached;
   private int cachedYear;
 
-  private final DataController dc = 
-      RealEstateMarketAnalysisApplication.getInstance().getDataController();
+  private DataController dc;
 
-  public EstateValue() {
+  public EstateValue(DataController dc) {
+    this.dc = dc;
     originalEstateValue = dc.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE);
     realEstateAppreciationRate = dc.getValueAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE);
     cached = false;

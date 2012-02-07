@@ -224,7 +224,7 @@ public class AnalysisGraph extends View {
         stopX  = (float) graphMaxX;
         canvas.drawLine(startX, distFromMarginToXAxis, stopX, 
             distFromMarginToXAxis, graphLinetPaint);
-        canvas.drawText(X_AXIS_STRING, (Float) (marginWidthX / 8), 
+        canvas.drawText(X_AXIS_STRING, (Float) (stopX - marginWidthX / 2), 
             distFromMarginToXAxis, textPaint);
       } 
 

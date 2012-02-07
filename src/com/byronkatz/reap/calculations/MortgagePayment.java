@@ -11,13 +11,13 @@ public class MortgagePayment {
   private Float loanAmount;
   private Float monthlyMortgagePayment;
   private Float yearlyMortgagePayment;
-  private final DataController dataController = 
-      RealEstateMarketAnalysisApplication.getInstance().getDataController();
+  private DataController dataController;
 
 
-  public MortgagePayment(Integer numOfCompoundingPeriods, Float loanAmount, 
+  public MortgagePayment(DataController dataController, 
+      Integer numOfCompoundingPeriods, Float loanAmount, 
       Float monthlyInterestRate) {
-
+    this.dataController = dataController;
     this.numOfCompoundingPeriods = numOfCompoundingPeriods;
     this.loanAmount = loanAmount;
     this.monthlyInterestRate = monthlyInterestRate;

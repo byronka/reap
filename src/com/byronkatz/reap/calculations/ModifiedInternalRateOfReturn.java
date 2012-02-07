@@ -13,11 +13,12 @@ public class ModifiedInternalRateOfReturn {
   private Float yearlyRequiredRateOfReturn;
   private Float mirrValueAccumulator;
 
-  private final DataController dataController = 
-      RealEstateMarketAnalysisApplication.getInstance().getDataController();
+  private DataController dataController;
 
-  public ModifiedInternalRateOfReturn(Float yearlyInterestRate, 
+  public ModifiedInternalRateOfReturn(DataController dataController,
+      Float yearlyInterestRate, 
       Float yearlyRequiredRateOfReturn) {
+    this.dataController = dataController;
     mirrValueAccumulator = 0.0f;
     cashFlowVector = new Vector<Float>();
     this.yearlyInterestRate = yearlyInterestRate;

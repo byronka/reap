@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:katz="http://schemas.android.com/apk/res/com.byronkatz"
 	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:weightSum="1">
+	android:layout_height="fill_parent" android:weightSum="1" >
 	<!-- the following is just to catch the focus and do nothing with it -->
 	<LinearLayout android:focusable="true" android:id="@+id/focusJail"
 		android:focusableInTouchMode="true" android:layout_width="0px"

@@ -468,6 +468,8 @@ public class GraphActivity extends Activity {
       if (!(vt == ValueType.STRING) && (v.isSavedToDatabase())) {
         selectionValues.add(v);
       }
+      
+      selectionValues.remove(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS);
     }
 
     //sort the list
@@ -563,7 +565,7 @@ public class GraphActivity extends Activity {
       percentageSlid = (division / (float) DIVISIONS_OF_VALUE_SLIDER);
       newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
       dataController.setValueAsFloat(currentSliderKey, newCurrentValue);
-      new RentalUnitOwnership().crunchCalculation();
+      new RentalUnitOwnership(dataController).crunchCalculation();
     }
   }
 }
