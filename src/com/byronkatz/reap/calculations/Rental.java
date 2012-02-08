@@ -13,6 +13,7 @@ public class Rental {
   private Float netYearlyIncome;
   private RentalUnitOwnership rentalUnitOwnership;
   private Float initialYearlyGeneralExpenses;
+  private Float yearlyHomeInsurance;
 
   
   public Rental(DataController dataController, RentalUnitOwnership rentalUnitOwnership) {
@@ -20,7 +21,7 @@ public class Rental {
     vacancyAndCreditLossRate = dataController.getValueAsFloat(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE);
     estimatedRentPayments = dataController.getValueAsFloat(ValueEnum.ESTIMATED_RENT_PAYMENTS);
     initialYearlyGeneralExpenses = dataController.getValueAsFloat(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES);
-
+    yearlyHomeInsurance = dataController.getValueAsFloat(ValueEnum.YEARLY_HOME_INSURANCE);
     grossYearlyIncome = estimatedRentPayments * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
     netYearlyIncome = (1 - vacancyAndCreditLossRate) * grossYearlyIncome;
     this.rentalUnitOwnership = rentalUnitOwnership;
@@ -43,6 +44,14 @@ public class Rental {
     return fvYearlyGeneralExpenses;
   }
   
+  public Float getFVYearlyHomeInsurance(int year) {
+
+	    Integer compoundingPeriodDesired = (year - 1) * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
+	    Float fvYearlyHomeInsurance = 0.0f;
+	    fvYearlyHomeInsurance = yearlyHomeInsurance * rentalUnitOwnership.getFVMir(compoundingPeriodDesired);
+	    return fvYearlyHomeInsurance;
+	  }
+  
   public Float getNetYearlyIncome() {
     return netYearlyIncome;
   }
@@ -55,5 +64,13 @@ public class Rental {
     dataController.setValueAsFloat(ValueEnum.YEARLY_INCOME, fvNetYearlyIncome, year);
     return fvNetYearlyIncome;
   }
+
+public Float getYearlyHomeInsurance() {
+	return yearlyHomeInsurance;
+}
+
+public void setYearlyHomeInsurance(Float yearlyHomeInsurance) {
+	this.yearlyHomeInsurance = yearlyHomeInsurance;
+}
 
 }

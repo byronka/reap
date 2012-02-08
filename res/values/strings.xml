@@ -345,7 +345,7 @@
 	<string name="saleActivityTitleText">Sale</string>
 	<string name="setDataValuesActivityTitleText">Set data values</string>
 	<string name="taxesActivityTitleText">Taxes</string>
-	<string name="savedDataBrowserActivityTitleText">Saved Data Browser</string>
+	<string name="savedDataBrowserActivityTitleText">Saved Data Browser - press and hold to delete</string>
 	<string name="databaseSearchActivityTitleText">Database Search</string>
 	<string name="saveCurrentValuesActivityTitleText">Save Current Values</string>
 

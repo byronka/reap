@@ -9,7 +9,7 @@
 		android:layout_height="0px" />
 
 	<LinearLayout android:orientation="vertical"
-		android:layout_width="fill_parent" android:layout_height="75dp">
+		android:layout_width="fill_parent" android:layout_height="95dp">
 		<LinearLayout android:layout_height="0dip"
 			android:layout_weight="0.20" android:layout_width="fill_parent">
 			<TextView android:textSize="10dp" android:layout_width="0dip"
@@ -47,6 +47,7 @@
 		</LinearLayout>
 		<Spinner android:layout_height="0dp" android:layout_weight="0.40"
 			android:id="@+id/valueSpinner" android:layout_width="fill_parent"></Spinner>
+
 	</LinearLayout>
 
 	<ScrollView android:id="@+id/graphDataScrollView"

@@ -1,11 +1,6 @@
 package com.byronkatz.reap.activity;
 
-import com.byronkatz.R;
-import com.byronkatz.reap.general.DataController;
-import com.byronkatz.reap.general.DatabaseAdapter;
-import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
-import com.byronkatz.reap.general.ValueEnum;
-
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.ContentValues;
@@ -22,6 +17,12 @@ import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.byronkatz.R;
+import com.byronkatz.reap.general.DataController;
+import com.byronkatz.reap.general.DatabaseAdapter;
+import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
+import com.byronkatz.reap.general.ValueEnum;
 
 
 public class SavedDataBrowserActivity extends ListActivity {
@@ -91,6 +92,7 @@ public class SavedDataBrowserActivity extends ListActivity {
 
   private void createDialog() {
     final Dialog deleteDialog = new Dialog(SavedDataBrowserActivity.this);
+
     Window window = deleteDialog.getWindow();
     window.setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND, 
         WindowManager.LayoutParams.FLAG_BLUR_BEHIND);

@@ -12,6 +12,7 @@ public class RentalUnitOwnership {
   private Float firstDay;
   private Float npvAccumulator;
 
+  private Float municipalFees;
   private Float propertyTax;
   private Float fixupCosts;
   private Float yearlyRealEstateAppreciationRate;
@@ -50,6 +51,7 @@ public class RentalUnitOwnership {
 
     
     fixupCosts = dataController.getValueAsFloat(ValueEnum.FIX_UP_COSTS);
+    municipalFees = dataController.getValueAsFloat(ValueEnum.LOCAL_MUNICIPAL_FEES);
     propertyTax = dataController.getValueAsFloat(ValueEnum.PROPERTY_TAX);
     yearlyRealEstateAppreciationRate = dataController.getValueAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE);
     monthlyRealEstateAppreciationRate = yearlyRealEstateAppreciationRate / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
@@ -127,6 +129,14 @@ public class RentalUnitOwnership {
     return yearlyPropertyTax;
   }
   
+  public Float getFVMunicipalFees(int year) {
+	    
+	    Integer compoundingPeriodDesired = (year - 1) * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
+	    final Float yearlyMunicipalFees = municipalFees * getFVMir(compoundingPeriodDesired); 
+	  
+	    return yearlyMunicipalFees;
+	  }
+  
   public Float getFVRear(int compoundingPeriodDesired) {
     return (float) Math.pow(1 + monthlyRealEstateAppreciationRate, (float) compoundingPeriodDesired);
   }
@@ -140,7 +150,9 @@ public class RentalUnitOwnership {
 
     final Float yearlyPrivateMortgageInsurance = mortgage.getYearlyPmi(year);
 
-    final Float yearlyOutlay = getFVPropertyTax(year) + (monthlyMortgagePayment * 12) + rental.getFVYearlyGeneralExpenses(year) + yearlyPrivateMortgageInsurance;
+    final Float yearlyOutlay = getFVPropertyTax(year) + getFVMunicipalFees(year) + 
+    		(monthlyMortgagePayment * 12) + rental.getFVYearlyGeneralExpenses(year) + 
+    		rental.getFVYearlyHomeInsurance(year) + yearlyPrivateMortgageInsurance;
     final Float yearlyBeforeTaxCashFlow = rental.getFVNetYearlyIncome(year) - yearlyOutlay;
 
     return yearlyBeforeTaxCashFlow;
@@ -224,5 +236,13 @@ public class RentalUnitOwnership {
 
     }
   }
+
+public Float getMunicipalFees() {
+	return municipalFees;
+}
+
+public void setMunicipalFees(Float municipalFees) {
+	this.municipalFees = municipalFees;
+}
 
 }
