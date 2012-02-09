@@ -21,6 +21,7 @@ public class AddressActivity extends Activity {
   String[] statePosition;
   private EditText streetAddressEditText;
   private EditText cityEditText;
+  private EditText commentsEditText;
   private Spinner stateSpinner;
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
@@ -36,6 +37,7 @@ public class AddressActivity extends Activity {
     streetAddressEditText = (EditText) findViewById(R.id.streetAddressEditText);
     cityEditText = (EditText) findViewById(R.id.cityEditText);
     stateSpinner = (Spinner) findViewById(R.id.stateTitleSpinner);
+    commentsEditText = (EditText) findViewById (R.id.commentsText);
 
     adapter = ArrayAdapter.createFromResource(this, R.array.states_array, 
         android.R.layout.simple_spinner_item);
@@ -67,6 +69,7 @@ public class AddressActivity extends Activity {
     
     cityEditText.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.CITY));
 
+    commentsEditText.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.COMMENTS));
   }
 
   @Override
@@ -77,6 +80,10 @@ public class AddressActivity extends Activity {
     
     key = ValueEnum.CITY;
     value = cityEditText.getText().toString();
+    dataController.setValueAsString(key, value);
+    
+    key = ValueEnum.COMMENTS;
+    value = commentsEditText.getText().toString();
     dataController.setValueAsString(key, value);
     
     super.onPause();
@@ -95,6 +102,10 @@ public class AddressActivity extends Activity {
 
     int statePosition = adapter.getPosition(stateInitials);
     stateSpinner.setSelection(statePosition);
+    
+    String comments = 
+        dataController.getValueAsString(ValueEnum.COMMENTS);
+    commentsEditText.setText(comments);
 
   }
 

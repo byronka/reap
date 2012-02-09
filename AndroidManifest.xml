@@ -42,7 +42,7 @@
 			android:label="@string/taxesActivityTitleText"
 			android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan" />
 		<activity android:name=".reap.activity.SavedDataBrowserActivity"
-			android:theme="@android:style/Theme.Dialog" android:label="@string/savedDataBrowserActivityTitleText"
+			android:label="@string/savedDataBrowserActivityTitleText"
 			android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan" />
 
 

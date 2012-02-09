@@ -21,7 +21,7 @@
 				android:layout_width="0dip" android:layout_height="wrap_content"
 				android:id="@+id/yearlyInterestRateTitle"></TextView>
 			<EditText android:layout_weight="0.50" android:layout_width="0dip"
-				android:id="@+id/yearlyInterestRateEditText" android:inputType="numberDecimal"
+				android:id="@+id/yearlyInterestRateEditText" android:inputType="numberDecimal" android:maxLength="20"
 
 				android:layout_height="wrap_content"></EditText>
 			<ImageButton android:id="@+id/yearlyInterestRateHelpButton"
@@ -39,7 +39,7 @@
 				android:layout_width="0dip" android:layout_weight="0.50"></TextView>
 			<EditText android:layout_height="wrap_content"
 				android:inputType="numberDecimal" android:id="@+id/totalPurchasePriceEditText"
-				android:layout_width="0dip" android:layout_weight="0.50">
+				android:layout_width="0dip" android:layout_weight="0.50" android:maxLength="20">
 			</EditText>
 			<ImageButton android:id="@+id/totalPurchasePriceHelpButton"
 				android:background="@null" android:layout_height="fill_parent"
@@ -56,7 +56,7 @@
 				android:layout_width="0dip" android:layout_weight="0.50"></TextView>
 			<EditText android:layout_height="wrap_content"
 				android:inputType="numberDecimal" android:id="@+id/privateMortgageInsuranceEditText"
-				android:layout_width="0dip" android:layout_weight="0.50">
+				android:layout_width="0dip" android:layout_weight="0.50" android:maxLength="20">
 			</EditText>
 			<ImageButton android:id="@+id/privateMortgageInsuranceHelpButton"
 				android:background="@null" android:layout_height="fill_parent"

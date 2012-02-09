@@ -36,6 +36,7 @@ public class DatabaseAdapter {
       ValueEnum.STREET_ADDRESS.name()                     + " TEXT"    +     ", " +
       ValueEnum.CITY.name()                               + " TEXT"    +     ", " +
       ValueEnum.STATE_INITIALS.name()                     + " TEXT"    +     ", " +
+      ValueEnum.COMMENTS.name()                           + " TEXT"    +     ", " +
       ValueEnum.ESTIMATED_RENT_PAYMENTS.name()            + " REAL"    +     ", " +
       ValueEnum.REAL_ESTATE_APPRECIATION_RATE.name()      + " REAL"    +     ", " +
       ValueEnum.YEARLY_HOME_INSURANCE.name()              + " REAL"    +     ", " +

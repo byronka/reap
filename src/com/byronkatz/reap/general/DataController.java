@@ -57,6 +57,7 @@ public class DataController {
     textFieldValues.put(ValueEnum.STREET_ADDRESS, "1234 Anywhere Street");
     textFieldValues.put(ValueEnum.CITY, "Anytown");
     textFieldValues.put(ValueEnum.STATE_INITIALS, "Alabama");
+    textFieldValues.put(ValueEnum.COMMENTS, "");
     numericMap.put(ValueEnum.ESTIMATED_RENT_PAYMENTS, 0f);
     numericMap.put(ValueEnum.REAL_ESTATE_APPRECIATION_RATE, 0f);
     numericMap.put(ValueEnum.YEARLY_HOME_INSURANCE, 0f);

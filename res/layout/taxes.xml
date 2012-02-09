@@ -21,7 +21,7 @@
 				android:text="@string/marginalTaxRateTitleText"></TextView>
 			<EditText android:layout_width="0dip" android:layout_weight="0.50"
 				android:layout_height="wrap_content" android:id="@+id/marginalTaxRateEditText"
-				android:inputType="numberDecimal">
+				android:inputType="numberDecimal" android:maxLength="20">
 			</EditText>
 			<ImageButton android:id="@+id/marginalTaxRateHelpButton"
 				android:background="@null" android:scaleType="fitCenter"
@@ -37,7 +37,7 @@
 				android:textAppearance="?android:attr/textAppearanceSmall"></TextView>
 			<EditText android:layout_width="0dip" android:layout_weight="0.50"
 				android:layout_height="wrap_content" android:inputType="numberDecimal"
-				android:id="@+id/buildingValueEditText"></EditText>
+				android:id="@+id/buildingValueEditText" android:maxLength="20"></EditText>
 			<ImageButton android:id="@+id/buildingValueHelpButton"
 				android:background="@null" android:scaleType="fitCenter"
 				android:layout_height="fill_parent" android:src="@drawable/question_mark"
@@ -52,7 +52,7 @@
 				android:textAppearance="?android:attr/textAppearanceSmall"></TextView>
 			<EditText android:layout_width="0dip" android:layout_weight="0.50"
 				android:layout_height="wrap_content" android:inputType="numberDecimal"
-				android:id="@+id/propertyTaxEditText"></EditText>
+				android:id="@+id/propertyTaxEditText" android:maxLength="20"></EditText>
 			<ImageButton android:id="@+id/propertyTaxHelpButton"
 				android:background="@null" android:scaleType="fitCenter"
 				android:layout_height="fill_parent" android:src="@drawable/question_mark"
@@ -66,7 +66,7 @@
 				android:layout_height="wrap_content" android:id="@+id/localMunicipalFeesTitle"
 				android:textAppearance="?android:attr/textAppearanceSmall"></TextView>
 			<EditText android:layout_width="0dip" android:layout_height="wrap_content"
-				android:inputType="numberDecimal" android:layout_weight="0.50"
+				android:inputType="numberDecimal" android:layout_weight="0.50" android:maxLength="20"
 				android:id="@+id/localMunicipalFeesEditText"></EditText>
 			<ImageButton android:id="@+id/localMunicipalFeesHelpButton"
 				android:background="@null" android:scaleType="fitCenter"

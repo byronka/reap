@@ -22,23 +22,26 @@ public class MortgagePayment {
     this.loanAmount = loanAmount;
     this.monthlyInterestRate = monthlyInterestRate;
     calculateMortgagePayment();
-    saveValues();
 
   }
 
-  private void saveValues() {
+  private void saveValues(int year) {
 
-    dataController.setValueAsFloat(ValueEnum.MONTHLY_MORTGAGE_PAYMENT, monthlyMortgagePayment);
-    dataController.setValueAsFloat(ValueEnum.YEARLY_MORTGAGE_PAYMENT, yearlyMortgagePayment);
+    dataController.setValueAsFloat(ValueEnum.MONTHLY_MORTGAGE_PAYMENT, monthlyMortgagePayment, year);
+    dataController.setValueAsFloat(ValueEnum.YEARLY_MORTGAGE_PAYMENT, yearlyMortgagePayment, year);
 
   }
 
-  public Float getYearlyMortgagePayment() {
-    return yearlyMortgagePayment;
-  }
+//  public Float getYearlyMortgagePayment() {
+//    return yearlyMortgagePayment;
+//  }
 
-  public Float getMonthlyMortgagePayment() {
+  public Float getMonthlyMortgagePayment(int year) {
+
+    saveValues(year);
+
     return monthlyMortgagePayment;
+
   }
 
   private void calculateMortgagePayment() {

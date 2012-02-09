@@ -25,7 +25,6 @@ public class RentalUnitOwnership {
   
   private Mortgage mortgage;
   private Rental rental;
-  private Float monthlyMortgagePayment;
   private EstateValue estateValue;
   private ModifiedInternalRateOfReturn mirr;
   private EquityReversion equityReversion;
@@ -40,7 +39,6 @@ public class RentalUnitOwnership {
     this.dataController = dataController;
     estateValue = new EstateValue(dataController);
     mortgage = new Mortgage(dataController, estateValue.getEstateValue(0));
-    monthlyMortgagePayment = mortgage.getMonthlyMortgagePayment();
     
     yearlyRequiredRateOfReturn = dataController.getValueAsFloat(ValueEnum.REQUIRED_RATE_OF_RETURN);
     mirr = new ModifiedInternalRateOfReturn( dataController,
@@ -149,6 +147,7 @@ public class RentalUnitOwnership {
     // cashflowIn - cashflowOut
 
     final Float yearlyPrivateMortgageInsurance = mortgage.getYearlyPmi(year);
+    final Float monthlyMortgagePayment = mortgage.getMonthlyMortgagePayment(year);
 
     final Float yearlyOutlay = getFVPropertyTax(year) + getFVMunicipalFees(year) + 
     		(monthlyMortgagePayment * 12) + rental.getFVYearlyGeneralExpenses(year) + 

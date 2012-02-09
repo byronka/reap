@@ -6,7 +6,7 @@
 
 	<!-- Help text for calculated values -->
 	<string name="accumulatedInterestPaidTitleText">Accumulated interest paid</string>
-	<string name="accumulatedInterestPaidHelpText">This is the help for accumulated interest paid</string>
+	<string name="accumulatedInterestPaidHelpText">The accumulated intered paid to date</string>
 
 	<string name="atcfTitleText">After tax cash flow</string>
 	<string name="atcfHelpText">This is the net balance for the year - income - outlay</string>
@@ -226,6 +226,8 @@
 	<string name="cityTitleText">City</string>
 	<string name="stateTitleText">State</string>
 	<string name="state_prompt">Choose a State: </string>
+	<string name="commentsTitleText">Comments</string>
+	<string name="commentsHelpText">General comments related to the property</string>
 
 
 	<!-- data pages -->
@@ -336,7 +338,7 @@
 	<string name="entryScreenActivityTitleText">Real Estate Assessment Program</string>
 	<string name="rentalActivityTitleText">Rental</string>
 	<string name="dataPagesActivityTitleText">Data pages</string>
-	<string name="addressActivityTitleText">Address</string>
+	<string name="addressActivityTitleText">Address and comments</string>
 	<string name="configureDataTableTitleText">Configure data tables</string>
 	<string name="financialEnvironmentActivityTitleText">Financial Environment</string>
 	<string name="graphActivityTitleText">Graph</string>

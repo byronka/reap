@@ -9,6 +9,7 @@ public class Mortgage {
   private Float closingCosts;
   private Float downPayment;
   private Float loanAmount;
+  private MortgagePayment mortgagePayment;
   private Float monthlyMortgagePayment;
   private Float yearlyInterestRate;
   private Float monthlyInterestRate;
@@ -31,8 +32,9 @@ public class Mortgage {
     yearlyInterestRate =  dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE);
     monthlyInterestRate = yearlyInterestRate / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
 
-    monthlyMortgagePayment = new MortgagePayment( dataController,
-        numberOfCompoundingPeriods, loanAmount, monthlyInterestRate).getMonthlyMortgagePayment();
+    mortgagePayment = new MortgagePayment( dataController,
+        numberOfCompoundingPeriods, loanAmount, monthlyInterestRate);
+    monthlyMortgagePayment = getMonthlyMortgagePayment(1);
     monthlyPrivateMortgageInsurance = dataController.getValueAsFloat(ValueEnum.PRIVATE_MORTGAGE_INSURANCE);
 
   }
@@ -217,8 +219,8 @@ public class Mortgage {
     this.totalPurchaseValue = totalPurchaseValue;
   }
 
-  public Float getMonthlyMortgagePayment() {
-    return monthlyMortgagePayment;
+  public Float getMonthlyMortgagePayment(int year) {
+    return mortgagePayment.getMonthlyMortgagePayment(year);
   }
 
   public void setMonthlyMortgagePayment(Float monthlyMortgagePayment) {

@@ -1,6 +1,5 @@
 package com.byronkatz.reap.activity;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.ContentValues;
@@ -67,12 +66,7 @@ public class SavedDataBrowserActivity extends ListActivity {
         //set cursor to row that we clicked on
         cursor.moveToPosition(position);
 
-        DatabaseUtils.cursorRowToContentValues(cursor, contentValues);
-        dataController.setCurrentData(contentValues);
-
-        Toast toast = Toast.makeText(SavedDataBrowserActivity.this, "Data loaded", Toast.LENGTH_SHORT);
-        toast.show();
-        finish();
+        createLoadDialog();
       }
     });
     
@@ -82,7 +76,7 @@ public class SavedDataBrowserActivity extends ListActivity {
       public boolean onItemLongClick(AdapterView<?> arg0, View view, int position,
           long id) {
         cursor.moveToPosition(position);
-        createDialog();
+        createDeleteDialog();
 
         return true;
       } 
@@ -90,7 +84,7 @@ public class SavedDataBrowserActivity extends ListActivity {
         
   }
 
-  private void createDialog() {
+  private void createDeleteDialog() {
     final Dialog deleteDialog = new Dialog(SavedDataBrowserActivity.this);
 
     Window window = deleteDialog.getWindow();
@@ -130,6 +124,49 @@ public class SavedDataBrowserActivity extends ListActivity {
     });
     
     deleteDialog.show();
+  }
+  
+  private void createLoadDialog() {
+    final Dialog loadDialog = new Dialog(SavedDataBrowserActivity.this);
+
+    Window window = loadDialog.getWindow();
+    window.setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND, 
+        WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+    loadDialog.setContentView(R.layout.load_database_item_dialog_view);
+    TextView deleteTextView = (TextView)loadDialog.findViewById(R.id.delete_text);
+
+    deleteTextView.setText("Would you like to load this entry?");
+    loadDialog.setTitle("Load database item");
+    
+    Button loadButton = (Button)loadDialog.findViewById(R.id.loadDatabaseItemButton);
+    loadButton.setOnClickListener(new OnClickListener() {
+      
+      @Override
+      public void onClick(View v) {
+//        int columnIndex = cursor.getColumnIndex(DatabaseAdapter.KEY_ID);
+//        int rowId = cursor.getInt(columnIndex);
+//        dataController.removeDatabaseEntry(rowId);
+        
+        DatabaseUtils.cursorRowToContentValues(cursor, contentValues);
+        dataController.setCurrentData(contentValues);
+        Toast toast = Toast.makeText(SavedDataBrowserActivity.this, "Data Loaded", Toast.LENGTH_SHORT);
+        toast.show();
+        
+        finish();
+      }
+    });
+    
+    Button cancelButton = (Button)loadDialog.findViewById(R.id.cancelButton);
+    cancelButton.setOnClickListener(new OnClickListener() {
+      
+      @Override
+      public void onClick(View v) {
+        loadDialog.cancel();
+        
+      }
+    });
+    
+    loadDialog.show();
   }
 
 }

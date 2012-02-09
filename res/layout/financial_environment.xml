@@ -1,48 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/overallFinancialEnvironmentScrollView"
-	android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/input_background">
-	<LinearLayout android:id="@+id/overallFinancialEnvironmentLinearLayout"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:orientation="vertical">
+    android:id="@+id/overallFinancialEnvironmentScrollView"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/input_background" >
 
-		<!-- the following is just to catch the focus and do nothing with it -->
-		<LinearLayout android:focusable="true"
-			android:focusableInTouchMode="true" android:layout_width="0px"
-			android:layout_height="0px" />
+    <LinearLayout
+        android:id="@+id/overallFinancialEnvironmentLinearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
+        <!-- the following is just to catch the focus and do nothing with it -->
 
-		<LinearLayout android:layout_height="wrap_content"
-			android:layout_width="fill_parent" android:id="@+id/inflationRateLinearLayout">
-			<TextView android:textAppearance="?android:attr/textAppearanceSmall" android:layout_weight="0.50"
-				android:layout_width="0dip" android:layout_height="wrap_content"
-				android:id="@+id/inflationRateTitle" android:text="@string/inflationRateTitleText"></TextView>
-			<EditText android:layout_weight="0.50" android:layout_width="0dip"
-				android:layout_height="wrap_content" android:id="@+id/inflationRateEditText"
-				android:inputType="numberDecimal">
-			</EditText>
-			<ImageButton android:id="@+id/inflationRateHelpButton"
-				android:background="@null" android:layout_height="fill_parent"
-				android:src="@drawable/question_mark" android:scaleType="fitCenter"
-				android:layout_width="wrap_content" android:padding="3dip" />
-		</LinearLayout>
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
 
+        <LinearLayout
+            android:id="@+id/inflationRateLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
 
+            <TextView
+                android:id="@+id/inflationRateTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/inflationRateTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall" >
+            </TextView>
 
-		<LinearLayout android:layout_height="wrap_content"
-			android:layout_width="fill_parent" android:id="@+id/realEstateAppreciationRateLinearLayout"
-			android:baselineAligned="false">
-			<TextView android:textAppearance="?android:attr/textAppearanceSmall" android:layout_weight="0.50"
-				android:layout_width="0dip" android:layout_height="wrap_content"
-				android:id="@+id/realEstateAppreciationRateTitle" android:text="@string/realEstateAppreciationRateTitleText"></TextView>
-			<EditText android:layout_weight="0.50" android:layout_width="0dip"
-				android:layout_height="wrap_content" android:id="@+id/realEstateAppreciationRateEditText"
-				android:inputType="numberDecimal"></EditText>
-			<ImageButton android:id="@+id/realEstateAppreciationRateHelpButton"
-				android:background="@null" android:layout_height="fill_parent"
-				android:src="@drawable/question_mark" android:scaleType="fitCenter"
-				android:layout_width="wrap_content" android:padding="3dip" />
-		</LinearLayout>
-	</LinearLayout>
+            <EditText
+                android:id="@+id/inflationRateEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50" android:maxLength="20"
+                android:inputType="numberDecimal" >
+            </EditText>
+
+            <ImageButton
+                android:id="@+id/inflationRateHelpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@null"
+                android:padding="3dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/question_mark" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/realEstateAppreciationRateLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <TextView
+                android:id="@+id/realEstateAppreciationRateTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/realEstateAppreciationRateTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/realEstateAppreciationRateEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50" android:maxLength="20"
+                android:inputType="numberDecimal" >
+            </EditText>
+
+            <ImageButton
+                android:id="@+id/realEstateAppreciationRateHelpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@null"
+                android:padding="3dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/question_mark" />
+        </LinearLayout>
+    </LinearLayout>
+
 </ScrollView>
-

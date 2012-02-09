@@ -1,48 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/overallSaleScrollView" android:layout_width="fill_parent"
-	android:layout_height="wrap_content" android:background="@drawable/input_background">
+    android:id="@+id/overallSaleScrollView"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/input_background" >
 
+    <LinearLayout
+        android:id="@+id/overallSaleLinearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
+        <!-- the following is just to catch the focus and do nothing with it -->
 
-	<LinearLayout android:id="@+id/overallSaleLinearLayout"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
 
-		<!-- the following is just to catch the focus and do nothing with it -->
-		<LinearLayout android:focusable="true"
-			android:focusableInTouchMode="true" android:layout_width="0px"
-			android:layout_height="0px" />
-		<LinearLayout android:layout_height="wrap_content"
-			android:layout_width="fill_parent" android:id="@+id/generalSaleExpensesLinearLayout"
-			android:baselineAligned="false">
-			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_weight="0.50" android:layout_width="0dip"
-				android:layout_height="wrap_content" android:id="@+id/generalSaleExpensesTitle"
-				android:text="@string/generalSaleExpensesTitleText"></TextView>
-			<EditText android:layout_weight="0.50" android:layout_width="0dip"
-				android:layout_height="wrap_content" android:id="@+id/generalSaleExpensesEditText"
-				android:inputType="numberDecimal">
-			</EditText>
-			<ImageButton android:id="@+id/generalSaleExpensesHelpButton"
-				android:background="@null" android:layout_height="fill_parent"
-				android:src="@drawable/question_mark" android:layout_width="wrap_content"
-				android:scaleType="fitCenter" android:padding="3dip" />
-		</LinearLayout>
-		<LinearLayout android:layout_height="wrap_content"
-			android:layout_width="fill_parent" android:id="@+id/sellingBrokerRateLinearLayout" android:baselineAligned="false">
-			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="0dip" android:layout_weight="0.50" android:layout_height="wrap_content"
-				android:id="@+id/sellingBrokerRateTitle" android:text="@string/sellingBrokerRateTitleText"></TextView>
-			<EditText android:layout_weight="0.50" android:layout_width="0dip"
-				android:layout_height="wrap_content" android:id="@+id/sellingBrokerRateEditText"
-				android:inputType="numberDecimal"></EditText>
-			<ImageButton android:id="@+id/sellingBrokerRateHelpButton"
-				android:background="@null" android:layout_height="fill_parent"
-				android:src="@drawable/question_mark" android:layout_width="wrap_content"
-				android:scaleType="fitCenter" android:padding="3dip" />
-		</LinearLayout>
-	</LinearLayout>
+        <LinearLayout
+            android:id="@+id/generalSaleExpensesLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <TextView
+                android:id="@+id/generalSaleExpensesTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/generalSaleExpensesTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/generalSaleExpensesEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50" android:maxLength="20"
+                android:inputType="numberDecimal" >
+            </EditText>
+
+            <ImageButton
+                android:id="@+id/generalSaleExpensesHelpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@null"
+                android:padding="3dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/question_mark" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sellingBrokerRateLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <TextView
+                android:id="@+id/sellingBrokerRateTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/sellingBrokerRateTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/sellingBrokerRateEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50" android:maxLength="20"
+                android:inputType="numberDecimal" >
+            </EditText>
+
+            <ImageButton
+                android:id="@+id/sellingBrokerRateHelpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@null"
+                android:padding="3dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/question_mark" />
+        </LinearLayout>
+    </LinearLayout>
+
 </ScrollView>
-
