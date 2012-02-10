@@ -3,7 +3,14 @@
 
 	<string name="app_name">Real Estate Analysis Processor</string>
 
-
+	<!-- Menu items -->
+	<string name="configureGraphMenuTitle">Configure graph page</string>
+	<string name="savedLocationsMenuTitle">Saved locations</string>
+	<string name="editValuesMenuTitle">Edit data values</string>
+	<string name="saveCurrentValuesMenuTitle">Save current</string>
+	<string name="mathCheckMenuTitle">Check math</string>
+	
+		
 	<!-- Help text for calculated values -->
 	<string name="helpButtonContentDescription">Help button</string>
 	<string name="accumulatedInterestPaidTitleText">Accumulated interest paid</string>
@@ -48,6 +55,9 @@
 	
 	<string name="initialYearlyGeneralExpensesHelpText">This is the expected yearly amount to put aside for general expenses necessary to keep the investment in good repair without losing value.  Examples may include having to repair the HVAC, paying for lawn care, retaining a management company or handyman, or other general yearly expenses.</string>
 	
+	<string name="initialHomeInsuranceHelpText">This is the initial yearly cost of home insurance</string>
+	<string name="initialHomeInsuranceTitleText">Home Insurance</string>
+	
 	<string name="localMunicipalFeesHelpText">These fees are yearly assessments on property owners for such things as environment fees, sewer fees, or other fees which are frequently included in the yearly property tax bill</string>
 	
 	<string name="marginalTaxRateHelpText">The percentage rate that the investment amount is taxed.  The reason this is called ""marginal" tax rate is because it is assumed that you have other income and this is on top of that.  So, due to the different tax brackets, the best way to determine your tax rate is to find what is the top bracket you are currently in for your other income, and then apply that to the rental income on this property.  Note that this value does not apply to the equity reversion (investment sale).  In that case the rate is the capital gains rate, which as of 2012 is 15%</string>
@@ -58,6 +68,9 @@
 	<string name="monthlyMortgagePaymentHelpText">The monthly mortgage payment.  This is calculated by the following formula: AMT_BORROWED * ( (INT_RATE / 12) / (1 - (1 / (1 + INT_RATE)^(YEARS * 12)  )  )</string>
 	<string name="monthlyMortgagePaymentTitleText">Monthly mortgage payment</string>
 	
+	<string name="monthlyRentFVHelpText">The monthly rent for this year</string>
+	<string name="monthlyRentFVTitleText">Monthly rent charged</string>
+		
 	<string name="netPresentValueHelpText">The net present value is the sum of the present values for each year\'s final balance.  In this application, this means it is the first payment (down payment, fix-up costs, and general purchase expenses) plus the yearly after tax cash flows (all in present value by the required rate of return as a discount rate) and finally the present value of the after-tax equity reversion (the sale of the purchase)</string>
 	<string name="netPresentValueTitleText">Net present value</string>
 	
@@ -97,6 +110,9 @@
 	<string name="vacancyAndCreditLossRateHelpText">This is the estimated average yearly loss due to either of the following: tenants failing to pay their rent, or not having someone in the unit.</string>
 	<string name="vacancyAndCreditLossRateTitleText">Vacancy and credit loss rate</string>
 	
+	<string name="yearlyBeforeTaxCashFlowHelpText">All income - all expenses, before tax</string>
+	<string name="yearlyBeforeTaxCashFlowTitleText">Yearly before tax cash flow</string>
+		
 	<string name="yearlyGeneralExpensesHelpText">Estimated yearly expenses for things such as management costs, lawn care (if the contract requires it), miscellaneous building repair, and so on.  Note that it also includes saving up for big ticket items such as replacing the roof or HVAC.  So, for example, you may save an extra $30 per month each year towards the future roof replacement.</string>
 	<string name="yearlyGeneralExpensesTitleText">Yearly general expenses</string>
 	
@@ -112,6 +128,12 @@
     
     <string name="yearlyMortgagePaymentHelpText">The monthly mortgage payment * 12</string>
     <string name="yearlyMortgagePaymentTitleText">Yearly mortgage payment</string>
+    
+    <string name="yearlyMunicipalFeesHelpText">The future value yearly municipal fees</string>
+    <string name="yearlyMunicipalFeesTitleText">Yearly municipal fees</string>
+
+    <string name="yearlyOutlayHelpText">All expenses for the year - debt service, home insurance, property tax, municipal fees, general expenses (maintenance), and private mortgage insurance</string>
+    <string name="yearlyOutlayTitleText">Yearly outlay</string>
     
     <string name="yearlyPrivateMortgageInsuranceHelpText">The amount paid this year in private mortgage insurance.  The monthly amount is set in the loan edit dialog.  If the amount outstanding on the loan is more than 80% of the total value, the monthly private mortgage insurance amount will be charged each month until it reaches 80%</string>
     <string name="yearlyPrivateMortgageInsuranceTitleText">Yearly private mortgage insurance</string>
@@ -309,6 +331,7 @@
 		property
 	</string>
 	<string name="estimatedRentPaymentsTitleText">Estimated rent payments</string>
+
 	<string name="yearlyHomeInsuranceDescriptionText">This is the initial yearly cost of home insurance.
 	</string>
 	<string name="yearlyHomeInsuranceTitleText">Yearly home insurance</string>
@@ -354,6 +377,7 @@
 	<string name="setDataValuesActivityTitleText">Set data values</string>
 	<string name="taxesActivityTitleText">Taxes</string>
 	<string name="savedDataBrowserActivityTitleText">Saved Data Browser - press and hold to delete</string>
+	<string name="mathCheckActivityTitleText">Math check screen</string>
 	<string name="databaseSearchActivityTitleText">Database Search</string>
 	<string name="saveCurrentValuesActivityTitleText">Save Current Values</string>
 
@@ -362,11 +386,13 @@
 	<string name="valueSliderText">Value Slider</string>
 	<string name="timeSliderText">Time Slider</string>
 	<string name="realEstateMarketAnalysisSplashPageDescription">Real Estate Analysis Processor</string>
+	<string name="databaseItemTextViewDesc0">Data Row: </string>
 	<string name="databaseItemTextViewDesc1">Street Address: </string>
 	<string name="databaseItemTextViewDesc2">City: </string>
 	<string name="databaseItemTextViewDesc3">Total Purchase Value: </string>
 	<string name="databaseItemTextViewDesc4">Yearly Interest Rate: </string>
 	<string name="databaseItemTextViewDesc5">Down Payment: </string>
 	<string name="databaseItemTextViewDesc6">Required Rate of Return: </string>
-
+	<string name="databaseItemTextViewDesc7">Estimated rent: </string>
+	
 </resources>

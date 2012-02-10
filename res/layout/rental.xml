@@ -61,7 +61,7 @@
             android:baselineAligned="false" >
 
             <TextView
-                android:id="@+id/yearlyHomeInsuranceTitle"
+                android:id="@+id/initialHomeInsuranceTitle"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.50"
@@ -70,7 +70,7 @@
             </TextView>
 
             <EditText
-                android:id="@+id/yearlyHomeInsuranceEditText"
+                android:id="@+id/initialHomeInsuranceEditText"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.50"
