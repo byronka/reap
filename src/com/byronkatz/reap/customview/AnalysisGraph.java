@@ -12,7 +12,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.AttributeSet;
 import android.view.View;
@@ -51,7 +50,6 @@ public class AnalysisGraph extends View {
   private ValueEnum graphKeyValue;
 
   private Paint graphLinetPaint;
-  private Paint graphCirclePaint;
   private Paint textPaint;
   private Paint borderPaint;
   private Paint highlightPaint;
@@ -99,7 +97,6 @@ public class AnalysisGraph extends View {
 
       //set up defaults for the drawing - canvas size, paint color, stroke width.
       graphLinetPaint = createPaint(Color.BLUE, GRAPH_LINE_STROKE_WIDTH, Paint.Style.STROKE, TEXT_SIZE);
-      graphCirclePaint = createPaint(Color.LTGRAY, CICLE_STROKE_WIDTH, Paint.Style.STROKE, TEXT_SIZE);
       textPaint    = createPaint(Color.WHITE, 0.0f, Paint.Style.STROKE, TEXT_SIZE);
       borderPaint = createPaint(Color.GRAY, 3.0f, Paint.Style.STROKE, TEXT_SIZE);
       highlightPaint = createPaint(Color.YELLOW, 4.0f, Paint.Style.STROKE, TEXT_SIZE);

@@ -24,6 +24,7 @@
 				android:inputType="numberDecimal" android:maxLength="20">
 			</EditText>
 			<ImageButton android:id="@+id/marginalTaxRateHelpButton"
+			    android:contentDescription="@string/helpButtonContentDescription"
 				android:background="@null" android:scaleType="fitCenter"
 				android:layout_height="fill_parent" android:src="@drawable/question_mark"
 				android:layout_width="wrap_content" android:padding="3dip"/>
@@ -39,6 +40,7 @@
 				android:layout_height="wrap_content" android:inputType="numberDecimal"
 				android:id="@+id/buildingValueEditText" android:maxLength="20"></EditText>
 			<ImageButton android:id="@+id/buildingValueHelpButton"
+			    android:contentDescription="@string/helpButtonContentDescription"
 				android:background="@null" android:scaleType="fitCenter"
 				android:layout_height="fill_parent" android:src="@drawable/question_mark"
 				android:layout_width="wrap_content" android:padding="3dip" />
@@ -54,6 +56,7 @@
 				android:layout_height="wrap_content" android:inputType="numberDecimal"
 				android:id="@+id/propertyTaxEditText" android:maxLength="20"></EditText>
 			<ImageButton android:id="@+id/propertyTaxHelpButton"
+			    android:contentDescription="@string/helpButtonContentDescription"
 				android:background="@null" android:scaleType="fitCenter"
 				android:layout_height="fill_parent" android:src="@drawable/question_mark"
 				android:layout_width="wrap_content" android:padding="3dip"/>
@@ -69,10 +72,21 @@
 				android:inputType="numberDecimal" android:layout_weight="0.50" android:maxLength="20"
 				android:id="@+id/localMunicipalFeesEditText"></EditText>
 			<ImageButton android:id="@+id/localMunicipalFeesHelpButton"
+			    android:contentDescription="@string/helpButtonContentDescription"
 				android:background="@null" android:scaleType="fitCenter"
 				android:src="@drawable/question_mark" android:layout_height="fill_parent"
 				android:layout_width="wrap_content" android:padding="3dip"/>
 		</LinearLayout>
+		
+		        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:onClick="callCalculator"
+            android:padding="10dip"
+            android:src="@drawable/calc_icon" />
+		        
 	</LinearLayout>
 </ScrollView>
 

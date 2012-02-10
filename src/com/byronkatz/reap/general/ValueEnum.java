@@ -1,8 +1,5 @@
 package com.byronkatz.reap.general;
 
-import android.content.res.Resources;
-
-import com.byronkatz.R;
 import com.byronkatz.R.string;
 
 public enum ValueEnum {
@@ -25,7 +22,7 @@ public enum ValueEnum {
   GENERAL_SALE_EXPENSES("General sale expenses", ValueType.CURRENCY, true, false, string.generalSaleExpensesHelpText, string.generalSaleExpensesTitleText),
   INFLATION_RATE("Inflation rate", ValueType.PERCENTAGE, true, false, string.inflationRateHelpText, string.inflationRateTitleText),
   INITIAL_YEARLY_GENERAL_EXPENSES("Initial yearly general expenses", ValueType.CURRENCY, true, false, string.initialYearlyGeneralExpensesHelpText, string.initialYearlyGeneralExpensesTitleText),
-  LOCAL_MUNICIPAL_FEES("Local municipal fees", ValueType.CURRENCY, true, false, string.localMunicipalFeesHelpText, string.localMunicipalFeesTitleText),
+  LOCAL_MUNICIPAL_FEES("Initial local municipal fees", ValueType.CURRENCY, true, false, string.localMunicipalFeesHelpText, string.localMunicipalFeesTitleText),
   MARGINAL_TAX_RATE("Marginal tax rate", ValueType.PERCENTAGE, true, false, string.marginalTaxRateHelpText, string.marginalTaxRateTitleText),
   MODIFIED_INTERNAL_RATE_OF_RETURN("Modified internal rate of return", ValueType.PERCENTAGE, false, true, string.modifiedInternalRateOfReturnHelpText, string.modifiedInternalRateOfReturnTitleText),
   MONTHLY_MORTGAGE_PAYMENT ("Monthly mortgage payment", ValueType.CURRENCY, false, true, string.monthlyMortgagePaymentHelpText, string.monthlyMortgagePaymentTitleText),  
@@ -33,7 +30,7 @@ public enum ValueEnum {
   NUMBER_OF_COMPOUNDING_PERIODS("Number of compounding periods", ValueType.INTEGER, true, false, string.numberOfCompoundingPeriodsHelpText, string.numberOfCompoundingPeriodsTitleText),
   PRIVATE_MORTGAGE_INSURANCE ("Private mortgage insurance", ValueType.CURRENCY, true, false, string.privateMortgageInsuranceHelpText, string.privateMortgageInsuranceTitleText),
   PROJECTED_HOME_VALUE ("Projected home value at sale time", ValueType.CURRENCY, false, true, string.projectedHomeValueHelpText, string.projectedHomeValueTitleText), 
-  PROPERTY_TAX("Property tax", ValueType.CURRENCY, true, false, string.propertyTaxHelpText, string.propertyTaxTitleText),
+  PROPERTY_TAX("Initial property tax", ValueType.CURRENCY, true, false, string.propertyTaxHelpText, string.propertyTaxTitleText),
   REAL_ESTATE_APPRECIATION_RATE("Real estate appreciation rate", ValueType.PERCENTAGE, true, false, string.realEstateAppreciationRateHelpText, string.realEstateAppreciationRateTitleText),
   REQUIRED_RATE_OF_RETURN("Required rate of return", ValueType.PERCENTAGE, true, false, string.requiredRateOfReturnHelpText, string.requiredRateOfReturnTitleText),
   SELLING_BROKER_RATE("Selling broker rate", ValueType.PERCENTAGE, true, false, string.sellingBrokerRateHelpText, string.sellingBrokerRateTitleText),

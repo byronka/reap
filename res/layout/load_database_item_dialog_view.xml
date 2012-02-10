@@ -19,14 +19,14 @@
             android:id="@+id/loadDatabaseItemButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="load item" >
+            android:text="@string/loadItemText" >
         </Button>
 
         <Button
             android:id="@+id/cancelButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="cancel" >
+            android:text="@string/cancelButtonText" >
         </Button>
         
     </LinearLayout>

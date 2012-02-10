@@ -3,7 +3,6 @@ package com.byronkatz.reap.calculations;
 import java.util.Vector;
 
 import com.byronkatz.reap.general.DataController;
-import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.ValueEnum;
 
 public class ModifiedInternalRateOfReturn {

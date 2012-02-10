@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="app_name">Real Estate Assessment Program</string>
+	<string name="app_name">Real Estate Analysis Processor</string>
 
 
 	<!-- Help text for calculated values -->
+	<string name="helpButtonContentDescription">Help button</string>
 	<string name="accumulatedInterestPaidTitleText">Accumulated interest paid</string>
 	<string name="accumulatedInterestPaidHelpText">The accumulated intered paid to date</string>
 
@@ -112,7 +113,7 @@
     <string name="yearlyMortgagePaymentHelpText">The monthly mortgage payment * 12</string>
     <string name="yearlyMortgagePaymentTitleText">Yearly mortgage payment</string>
     
-    <string name="yearlyPrivateMortgageInsuranceHelpText">The amount paid this year in private mortgage insurance.  The monthly amount is set in the loan edit dialog.  If the amount outstanding on the loan is more than 80%% of the total value, the monthly private mortgage insurance amount will be charged each month until it reaches 80%%</string>
+    <string name="yearlyPrivateMortgageInsuranceHelpText">The amount paid this year in private mortgage insurance.  The monthly amount is set in the loan edit dialog.  If the amount outstanding on the loan is more than 80% of the total value, the monthly private mortgage insurance amount will be charged each month until it reaches 80%</string>
     <string name="yearlyPrivateMortgageInsuranceTitleText">Yearly private mortgage insurance</string>
 	
 	<string name="yearlyPrincipalPaidHelpText">The amount of principal paid in the mortgage payments for this year</string>
@@ -144,12 +145,17 @@
 	<string name="maxValueLabel">Maximum Value</string>
 	<string name="currentValueLabel">Current Value</string>
 	<string name="resetButton">Reset</string>
+	<string name="yearValueText">Year: </string>
 
 	<!-- configure data tables activity -->
 	<string name="allButtonsOnText">All buttons on</string>
 	<string name="allButtonsOffText">All buttons off</string>
 	
 
+	<!-- load database item -->
+	<string name="cancelButtonText">Cancel</string>
+	<string name="loadItemText">Load item</string>
+	
 	<!-- Data table -->
 	<string name="defaultZeroPercentage">0%</string>
 	<string name="defaultZeroCurrency">$0.00</string>
@@ -335,7 +341,7 @@
 	<string name="saveCurrentValuesToDatabaseButtonText">Save current values to database</string>
 
 	<!-- Activity title value- -->
-	<string name="entryScreenActivityTitleText">Real Estate Assessment Program</string>
+	<string name="entryScreenActivityTitleText">Real Estate Analysis Processor</string>
 	<string name="rentalActivityTitleText">Rental</string>
 	<string name="dataPagesActivityTitleText">Data pages</string>
 	<string name="addressActivityTitleText">Address and comments</string>
@@ -355,7 +361,7 @@
 	<string name="saveButtonText">Save</string>
 	<string name="valueSliderText">Value Slider</string>
 	<string name="timeSliderText">Time Slider</string>
-	<string name="realEstateMarketAnalysisSplashPageDescription">This program does the following ... touch the screen or click enter to continue</string>
+	<string name="realEstateMarketAnalysisSplashPageDescription">Real Estate Analysis Processor</string>
 	<string name="databaseItemTextViewDesc1">Street Address: </string>
 	<string name="databaseItemTextViewDesc2">City: </string>
 	<string name="databaseItemTextViewDesc3">Total Purchase Value: </string>

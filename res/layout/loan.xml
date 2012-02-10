@@ -1,139 +1,275 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/loanScrollView" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:background="@drawable/input_background">
+    android:id="@+id/loanScrollView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/input_background" >
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1" >
 
-	<LinearLayout android:orientation="vertical"
-		android:layout_width="fill_parent" android:layout_height="fill_parent"
-		android:weightSum="1">
+        <!-- the following is just to catch the focus and do nothing with it -->
 
-		<!-- the following is just to catch the focus and do nothing with it -->
-		<LinearLayout android:focusable="true"
-			android:focusableInTouchMode="true" android:layout_width="0px"
-			android:layout_height="0px" />
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
 
-		<LinearLayout android:layout_height="wrap_content"
-			android:id="@+id/yearlyInterestRateLinearLayout"
-			android:layout_width="fill_parent" android:baselineAligned="false">
-			<TextView android:text="@string/yearlyInterestRateTitleText"
-				android:layout_weight="0.50" android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="0dip" android:layout_height="wrap_content"
-				android:id="@+id/yearlyInterestRateTitle"></TextView>
-			<EditText android:layout_weight="0.50" android:layout_width="0dip"
-				android:id="@+id/yearlyInterestRateEditText" android:inputType="numberDecimal" android:maxLength="20"
+        <LinearLayout
+            android:id="@+id/yearlyInterestRateLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
 
-				android:layout_height="wrap_content"></EditText>
-			<ImageButton android:id="@+id/yearlyInterestRateHelpButton"
-				android:background="@null" android:layout_height="fill_parent"
-				android:src="@drawable/question_mark" android:scaleType="fitCenter"
-				android:layout_width="wrap_content" android:padding="3dip" />
+            <TextView
+                android:id="@+id/yearlyInterestRateTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/yearlyInterestRateTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall" >
+            </TextView>
 
-		</LinearLayout>
-		<LinearLayout android:layout_width="fill_parent"
-			android:id="@+id/totalPurchasePriceLinearLayout"
-			android:layout_height="wrap_content" android:baselineAligned="false">
-			<TextView android:text="@string/totalPurchasePriceTitleText"
-				android:id="@+id/totalPurchasePriceTitle" android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="0dip" android:layout_weight="0.50"></TextView>
-			<EditText android:layout_height="wrap_content"
-				android:inputType="numberDecimal" android:id="@+id/totalPurchasePriceEditText"
-				android:layout_width="0dip" android:layout_weight="0.50" android:maxLength="20">
-			</EditText>
-			<ImageButton android:id="@+id/totalPurchasePriceHelpButton"
-				android:background="@null" android:layout_height="fill_parent"
-				android:src="@drawable/question_mark" android:scaleType="fitCenter"
-				android:layout_width="wrap_content" android:padding="3dip" />
+            <EditText
+                android:id="@+id/yearlyInterestRateEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:inputType="numberDecimal"
+                android:maxLength="20" >
+            </EditText>
 
-		</LinearLayout>
-		<LinearLayout android:layout_width="fill_parent"
-			android:id="@+id/privateMortgageInsuranceLinearLayout"
-			android:layout_height="wrap_content" android:baselineAligned="false">
-			<TextView android:text="@string/privateMortgageInsuranceTitleText"
-				android:id="@+id/privateMortgageInsuranceTitle"
-				android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="0dip" android:layout_weight="0.50"></TextView>
-			<EditText android:layout_height="wrap_content"
-				android:inputType="numberDecimal" android:id="@+id/privateMortgageInsuranceEditText"
-				android:layout_width="0dip" android:layout_weight="0.50" android:maxLength="20">
-			</EditText>
-			<ImageButton android:id="@+id/privateMortgageInsuranceHelpButton"
-				android:background="@null" android:layout_height="fill_parent"
-				android:src="@drawable/question_mark" android:scaleType="fitCenter"
-				android:padding="3dip" android:layout_width="wrap_content" />
-		</LinearLayout>
+            <ImageButton
+                android:id="@+id/yearlyInterestRateHelpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@null"
+                android:contentDescription="@string/helpButtonContentDescription"
+                android:padding="3dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/question_mark" />
+        </LinearLayout>
 
-		<LinearLayout android:layout_height="wrap_content"
-			android:id="@+id/downPaymentLinearLayout" android:layout_width="fill_parent">
+        <LinearLayout
+            android:id="@+id/totalPurchasePriceLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
 
-			<Button android:layout_height="wrap_content" android:id="@+id/calcPMIDownPaymentButton"
-				android:text="@string/calcPMIDownPaymentButtonText"
-				android:layout_gravity="center" android:layout_width="wrap_content"
-				android:layout_weight="0.70"></Button>
+            <TextView
+                android:id="@+id/totalPurchasePriceTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/totalPurchasePriceTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall" >
+            </TextView>
 
-			<ImageButton android:id="@+id/pmiCalcHelpButton"
-				android:layout_gravity="right" android:background="@null"
-				android:layout_height="fill_parent" android:src="@drawable/question_mark"
-				android:scaleType="fitCenter" android:padding="3dip"
-				android:layout_width="wrap_content" />
+            <EditText
+                android:id="@+id/totalPurchasePriceEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:inputType="numberDecimal"
+                android:maxLength="20" >
+            </EditText>
 
-		</LinearLayout>
+            <ImageButton
+                android:id="@+id/totalPurchasePriceHelpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@null"
+                android:contentDescription="@string/helpButtonContentDescription"
+                android:padding="3dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/question_mark" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/privateMortgageInsuranceLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
 
-		<LinearLayout android:layout_height="wrap_content"
-			android:id="@+id/downPaymentLinearLayout" android:layout_width="fill_parent">
-			<TextView android:text="@string/downPaymentTitleText"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:id="@+id/downPaymentTitle"></TextView>
-			<EditText android:inputType="numberDecimal"
-				android:layout_weight="1" android:layout_width="fill_parent"
-				android:id="@+id/downPaymentEditText" android:layout_height="wrap_content"></EditText>
-			<ImageButton android:id="@+id/downPaymentHelpButton"
-				android:background="@null" android:layout_height="fill_parent"
-				android:src="@drawable/question_mark" android:scaleType="fitCenter"
-				android:padding="3dip" android:layout_width="wrap_content" />
+            <TextView
+                android:id="@+id/privateMortgageInsuranceTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/privateMortgageInsuranceTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall" >
+            </TextView>
 
-		</LinearLayout>
+            <EditText
+                android:id="@+id/privateMortgageInsuranceEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:inputType="numberDecimal"
+                android:maxLength="20" >
+            </EditText>
 
-		<LinearLayout android:layout_height="wrap_content"
-			android:layout_width="fill_parent" android:id="@+id/numOfCompoundingPeriodsLinearLayout">
-			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_height="wrap_content" android:id="@+id/numOfCompoundingPeriodsTitle"
-				android:text="@string/numOfCompoundingPeriodsTitleText"
-				android:layout_width="0dip" android:layout_weight="0.50"></TextView>
-			<EditText android:layout_weight="0.50" android:layout_width="fill_parent"
-				android:layout_height="wrap_content" android:inputType="number|numberDecimal"
-				android:visibility="gone" android:id="@+id/numOfCompoundingPeriodsEditText"></EditText>
+            <ImageButton
+                android:id="@+id/privateMortgageInsuranceHelpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@null"
+                android:contentDescription="@string/helpButtonContentDescription"
+                android:padding="3dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/question_mark" />
+        </LinearLayout>
 
-		</LinearLayout>
+        <LinearLayout
+            android:id="@+id/calcPMILinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
 
-		<LinearLayout android:layout_height="wrap_content"
-			android:layout_width="fill_parent" >
-			<Spinner android:layout_height="wrap_content"
-				android:layout_width="0dip" android:layout_weight="0.70"  android:id="@+id/numOfCompoundingPeriodsSpinner"
-				android:entries="@array/numOfCompoundingPeriodsArray"></Spinner>
-			<ImageButton android:id="@+id/numOfCompoundingPeriodsHelpButton"
-				android:background="@null" android:src="@drawable/question_mark"
-				android:scaleType="fitCenter" android:layout_width="wrap_content"
-				android:padding="3dip" android:layout_height="fill_parent" />
-		</LinearLayout>
+            <Button
+                android:id="@+id/calcPMIDownPaymentButton"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.70"
+                android:text="@string/calcPMIDownPaymentButtonText" >
+            </Button>
 
-		<LinearLayout android:id="@+id/closingCostsLinearLayout"
-			android:layout_width="fill_parent" android:layout_height="wrap_content">
-			<TextView android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:id="@+id/closingCostsTitle" android:text="@string/closingCostsTitleText"></TextView>
-			<EditText android:layout_weight="1" android:layout_width="fill_parent"
-				android:layout_height="wrap_content" android:id="@+id/closingCostsEditText"
-				android:inputType="numberDecimal"></EditText>
-			<ImageButton android:id="@+id/closingCostsHelpButton"
-				android:background="@null" android:layout_height="fill_parent"
-				android:src="@drawable/question_mark" android:scaleType="fitCenter"
-				android:padding="3dip" android:layout_width="wrap_content" />
+            <ImageButton
+                android:id="@+id/pmiCalcHelpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="right"
+                android:background="@null"
+                android:contentDescription="@string/helpButtonContentDescription"
+                android:padding="3dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/question_mark" />
+        </LinearLayout>
 
-		</LinearLayout>
-	</LinearLayout>
+        <LinearLayout
+            android:id="@+id/downPaymentLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/downPaymentTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/downPaymentTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/downPaymentEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="numberDecimal" >
+            </EditText>
+
+            <ImageButton
+                android:id="@+id/downPaymentHelpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@null"
+                android:contentDescription="@string/helpButtonContentDescription"
+                android:padding="3dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/question_mark" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/numOfCompoundingPeriodsLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/numOfCompoundingPeriodsTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/numOfCompoundingPeriodsTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/numOfCompoundingPeriodsEditText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:inputType="number|numberDecimal"
+                android:visibility="gone" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <Spinner
+                android:id="@+id/numOfCompoundingPeriodsSpinner"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.70"
+                android:entries="@array/numOfCompoundingPeriodsArray" >
+            </Spinner>
+
+            <ImageButton
+                android:id="@+id/numOfCompoundingPeriodsHelpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@null"
+                android:contentDescription="@string/helpButtonContentDescription"
+                android:padding="3dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/question_mark" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/closingCostsLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/closingCostsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/closingCostsTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/closingCostsEditText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="numberDecimal" >
+            </EditText>
+
+            <ImageButton
+                android:id="@+id/closingCostsHelpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@null"
+                android:contentDescription="@string/helpButtonContentDescription"
+                android:padding="3dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/question_mark" />
+        </LinearLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:onClick="callCalculator"
+            android:padding="10dip"
+            android:src="@drawable/calc_icon" />
+
+    </LinearLayout>
+
 </ScrollView>
-

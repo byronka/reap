@@ -1,7 +1,6 @@
 package com.byronkatz.reap.calculations;
 
 import com.byronkatz.reap.general.DataController;
-import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.ValueEnum;
 
 public class MortgagePayment {
@@ -31,10 +30,6 @@ public class MortgagePayment {
     dataController.setValueAsFloat(ValueEnum.YEARLY_MORTGAGE_PAYMENT, yearlyMortgagePayment, year);
 
   }
-
-//  public Float getYearlyMortgagePayment() {
-//    return yearlyMortgagePayment;
-//  }
 
   public Float getMonthlyMortgagePayment(int year) {
 

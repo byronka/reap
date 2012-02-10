@@ -1,6 +1,7 @@
 package com.byronkatz.reap.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -126,6 +127,13 @@ public class RentalActivity extends Activity {
 
   }
 
+  public void callCalculator(View v) {
+    Intent i = new Intent();
+    i.setClassName("com.android.calculator2",
+    "com.android.calculator2.Calculator");
+    startActivity(i);
+  }
+  
   @Override
   public void onPause() {
     super.onPause();

@@ -291,7 +291,7 @@
                 android:layout_width="40dip"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="year: 0"
+                android:text="@string/yearValueText"
                 android:textAppearance="?android:attr/textAppearanceSmall" >
             </TextView>
         </LinearLayout>

@@ -38,8 +38,9 @@
                 android:id="@+id/generalSaleExpensesEditText"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.50" android:maxLength="20"
-                android:inputType="numberDecimal" >
+                android:layout_weight="0.50"
+                android:inputType="numberDecimal"
+                android:maxLength="20" >
             </EditText>
 
             <ImageButton
@@ -47,6 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:background="@null"
+                android:contentDescription="@string/helpButtonContentDescription"
                 android:padding="3dip"
                 android:scaleType="fitCenter"
                 android:src="@drawable/question_mark" />
@@ -71,8 +73,9 @@
                 android:id="@+id/sellingBrokerRateEditText"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.50" android:maxLength="20"
-                android:inputType="numberDecimal" >
+                android:layout_weight="0.50"
+                android:inputType="numberDecimal"
+                android:maxLength="20" >
             </EditText>
 
             <ImageButton
@@ -80,10 +83,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:background="@null"
+                android:contentDescription="@string/helpButtonContentDescription"
                 android:padding="3dip"
                 android:scaleType="fitCenter"
                 android:src="@drawable/question_mark" />
         </LinearLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:onClick="callCalculator"
+            android:padding="10dip"
+            android:src="@drawable/calc_icon" />
     </LinearLayout>
 
 </ScrollView>

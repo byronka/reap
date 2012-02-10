@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="300dip"
-	android:layout_height="400dip" android:gravity="fill">
-	<TextView android:layout_height="wrap_content"
-		android:layout_width="wrap_content" android:id="@+id/textView1"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:layout_gravity="center" android:text="@string/app_name"></TextView>
-	<Button android:id="@+id/splashScreenButton" android:layout_width="fill_parent"
-		android:text="@string/realEstateMarketAnalysisSplashPageDescription"
-		android:layout_height="fill_parent"></Button>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/splashScreenButton"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:contentDescription="@string/helpButtonContentDescription"
+    android:src="@drawable/arc"
+    android:text="@string/realEstateMarketAnalysisSplashPageDescription"
+    android:background="@drawable/arc"
+    android:textColor="@android:color/white" 
+    android:textSize="40dip">
 
-</LinearLayout>
+</Button>

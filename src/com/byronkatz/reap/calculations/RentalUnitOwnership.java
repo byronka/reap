@@ -1,7 +1,6 @@
 package com.byronkatz.reap.calculations;
 
 import com.byronkatz.reap.general.DataController;
-import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.ValueEnum;
 
 public class RentalUnitOwnership {
@@ -229,7 +228,7 @@ public class RentalUnitOwnership {
 
       final Float accumulatedInterest = mortgage.getAccumulatedInterestPaymentsAtPoint(year);
 
-      final Float accumulatedInterestPreviousYear = mortgage.getAccumulatedInterestPaymentsAtPoint(prevYearMonthCPModifier);
+      final Float accumulatedInterestPreviousYear = mortgage.getAccumulatedInterestPaymentsAtPoint(year - 1);
       final Float yearlyInterestPaid = accumulatedInterest - accumulatedInterestPreviousYear;
       dataController.setValueAsFloat(ValueEnum.YEARLY_INTEREST_PAID, yearlyInterestPaid, year);
 
