@@ -84,7 +84,7 @@ public class GraphActivity extends Activity {
   public boolean onOptionsItemSelected (MenuItem item) {
     super.onOptionsItemSelected(item);
 
-    GraphActivityFunctions.switchForMenuItem(item, GraphActivity.this);
+    GraphActivityFunctions.switchForMenuItem(item, GraphActivity.this, getCurrentYearSelected());
     return false;
   }
 
@@ -101,8 +101,6 @@ public class GraphActivity extends Activity {
   public void onResume() {
     super.onResume();
 
-
-    
     if (DataController.isDataChanged()) {
 
       currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
@@ -135,8 +133,6 @@ public class GraphActivity extends Activity {
     sp = getSharedPreferences(PREFS_NAME, 0);
     dataController.setViewableDataTableRows(
         dataTable.restoreViewableDataTableRows(sp));
-
-
     }
     setContentView(R.layout.graph);
 
@@ -147,7 +143,7 @@ public class GraphActivity extends Activity {
     setupGraphs(currentYearMaximum);
     setupCurrentValueFields();
     valueToDataTableItemCorrespondence = dataTable.createDataTableItems(GraphActivity.this);
-    setDataChangedToggle(true);
+//    setDataChangedToggle(true);
     
     
     //NEW WORK BELOW

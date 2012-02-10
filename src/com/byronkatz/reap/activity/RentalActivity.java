@@ -18,7 +18,7 @@ import com.byronkatz.reap.general.ValueEnum;
 public class RentalActivity extends Activity {
 
   private EditText estimatedRentPayments;
-  private EditText yearlyHomeInsurance;
+  private EditText initialHomeInsurance;
   private EditText vacancyAndCreditLoss;
   private EditText fixupCosts;
   private EditText initialYearlyGeneralExpenses;
@@ -35,7 +35,7 @@ public class RentalActivity extends Activity {
 
     //Hook up the components from the GUI to some variables here
     estimatedRentPayments         = (EditText)findViewById(R.id.estimatedRentPaymentsEditText);
-    yearlyHomeInsurance           = (EditText)findViewById(R.id.yearlyHomeInsuranceEditText);
+    initialHomeInsurance           = (EditText)findViewById(R.id.initialHomeInsuranceEditText);
     vacancyAndCreditLoss          = (EditText)findViewById(R.id.vacancyAndCreditLossEditText);
     fixupCosts                    = (EditText)findViewById(R.id.fixupCostsEditText);
     initialYearlyGeneralExpenses  = (EditText)findViewById(R.id.initialYearlyGeneralExpensesEditText);
@@ -57,7 +57,7 @@ public class RentalActivity extends Activity {
       }
     });
 
-    yearlyHomeInsurance.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.YEARLY_HOME_INSURANCE));
+    initialHomeInsurance.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.INITIAL_HOME_INSURANCE));
 
     ImageButton yearlyHomeInsuranceHelpButton = 
         (ImageButton)findViewById(R.id.yearlyHomeInsuranceHelpButton);
@@ -66,8 +66,8 @@ public class RentalActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.yearlyHomeInsuranceDescriptionText, 
-            R.string.yearlyHomeInsuranceTitleText, RentalActivity.this);
+            R.string.initialHomeInsuranceHelpText, 
+            R.string.initialHomeInsuranceTitleText, RentalActivity.this);
       }
     });
 
@@ -128,10 +128,7 @@ public class RentalActivity extends Activity {
   }
 
   public void callCalculator(View v) {
-    Intent i = new Intent();
-    i.setClassName("com.android.calculator2",
-    "com.android.calculator2.Calculator");
-    startActivity(i);
+    Utility.callCalc(this);
   }
   
   @Override
@@ -142,8 +139,8 @@ public class RentalActivity extends Activity {
     Float value = Utility.parseCurrency(estimatedRentPayments.getText().toString());
     dataController.setValueAsFloat(key, value);
 
-    key = ValueEnum.YEARLY_HOME_INSURANCE;
-    value = Utility.parseCurrency(yearlyHomeInsurance.getText().toString());
+    key = ValueEnum.INITIAL_HOME_INSURANCE;
+    value = Utility.parseCurrency(initialHomeInsurance.getText().toString());
     dataController.setValueAsFloat(key, value);
 
     key = ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE;
@@ -169,8 +166,8 @@ public class RentalActivity extends Activity {
     Float erp = dataController.getValueAsFloat(ValueEnum.ESTIMATED_RENT_PAYMENTS);
     estimatedRentPayments.setText(Utility.displayCurrency(erp));
 
-    Float yhi = dataController.getValueAsFloat(ValueEnum.YEARLY_HOME_INSURANCE);
-    yearlyHomeInsurance.setText(Utility.displayCurrency(yhi));
+    Float yhi = dataController.getValueAsFloat(ValueEnum.INITIAL_HOME_INSURANCE);
+    initialHomeInsurance.setText(Utility.displayCurrency(yhi));
 
     Float vacl = dataController.getValueAsFloat(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE);
     vacancyAndCreditLoss.setText(Utility.displayPercentage(vacl));

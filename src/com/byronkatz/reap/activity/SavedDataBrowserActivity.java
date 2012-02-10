@@ -44,15 +44,24 @@ public class SavedDataBrowserActivity extends ListActivity {
         this, // Context.
         R.layout.database_item_browser_layout, 
         cursor,                                              // Pass in the cursor to bind to.
-        new String[] {ValueEnum.STREET_ADDRESS.name(), 
+        new String[] {
+            DatabaseAdapter.KEY_ID,
+            ValueEnum.STREET_ADDRESS.name(), 
             ValueEnum.CITY.name(),
             ValueEnum.TOTAL_PURCHASE_VALUE.name(),
             ValueEnum.YEARLY_INTEREST_RATE.name(), 
             ValueEnum.DOWN_PAYMENT.name(), 
-            ValueEnum.REQUIRED_RATE_OF_RETURN.name()},           // Array of cursor columns to bind to.
-            new int[] {R.id.databaseItemTextView1, R.id.databaseItemTextView2, 
-            R.id.databaseItemTextView3, R.id.databaseItemTextView4,
-            R.id.databaseItemTextView5, R.id.databaseItemTextView6 });  // Parallel array of which template objects to bind to those columns.
+            ValueEnum.REQUIRED_RATE_OF_RETURN.name(),
+            ValueEnum.ESTIMATED_RENT_PAYMENTS.name()
+            },                                          // Array of cursor columns to bind to.
+            new int[] {R.id.databaseItemTextView0,
+                       R.id.databaseItemTextView1, 
+                       R.id.databaseItemTextView2, 
+                       R.id.databaseItemTextView3, 
+                       R.id.databaseItemTextView4,
+                       R.id.databaseItemTextView5,
+                       R.id.databaseItemTextView6,
+                       R.id.databaseItemTextView7 });  // Parallel array of which template objects to bind to those columns.
 
 
 
@@ -66,7 +75,7 @@ public class SavedDataBrowserActivity extends ListActivity {
         //set cursor to row that we clicked on
         cursor.moveToPosition(position);
 
-        createLoadDialog();
+        createLoadDialog(position);
       }
     });
     
@@ -126,7 +135,7 @@ public class SavedDataBrowserActivity extends ListActivity {
     deleteDialog.show();
   }
   
-  private void createLoadDialog() {
+  private void createLoadDialog(final int position) {
     final Dialog loadDialog = new Dialog(SavedDataBrowserActivity.this);
 
     Window window = loadDialog.getWindow();
@@ -143,12 +152,10 @@ public class SavedDataBrowserActivity extends ListActivity {
       
       @Override
       public void onClick(View v) {
-//        int columnIndex = cursor.getColumnIndex(DatabaseAdapter.KEY_ID);
-//        int rowId = cursor.getInt(columnIndex);
-//        dataController.removeDatabaseEntry(rowId);
         
         DatabaseUtils.cursorRowToContentValues(cursor, contentValues);
         dataController.setCurrentData(contentValues);
+        dataController.setCurrentDatabaseRow(position + 1);
         Toast toast = Toast.makeText(SavedDataBrowserActivity.this, "Data Loaded", Toast.LENGTH_SHORT);
         toast.show();
         

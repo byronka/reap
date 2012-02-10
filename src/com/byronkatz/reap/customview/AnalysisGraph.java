@@ -54,7 +54,7 @@ public class AnalysisGraph extends View {
   private Paint borderPaint;
   private Paint highlightPaint;
   private int currentYearHighlighted;
-  
+
   private Boolean isFirstPoint;
   private Float functionMinY;
   private Float functionMaxY;
@@ -85,7 +85,7 @@ public class AnalysisGraph extends View {
   private Float distFromMarginToXAxis;
   private Float startX;
   private Float stopX;
-  
+
   //singleton with data
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
@@ -100,28 +100,28 @@ public class AnalysisGraph extends View {
       textPaint    = createPaint(Color.WHITE, 0.0f, Paint.Style.STROKE, TEXT_SIZE);
       borderPaint = createPaint(Color.GRAY, 3.0f, Paint.Style.STROKE, TEXT_SIZE);
       highlightPaint = createPaint(Color.YELLOW, 4.0f, Paint.Style.STROKE, TEXT_SIZE);
-      
-     
+
+
       initView(attrs);
     }
   }
 
   private Paint createPaint (int color, Float strokeWidth, Style styleStroke, Float textSize) {
-    
+
     Paint returnValuePaint = new Paint();
-    
+
     returnValuePaint.setColor(color);
     returnValuePaint.setStrokeWidth(strokeWidth);
     returnValuePaint.setStyle(styleStroke);
     returnValuePaint.setTextSize(textSize);
-    
+
     return returnValuePaint;
   }
-  
+
   private void initView(AttributeSet attrs) {
 
     setBackgroundResource(R.drawable.graph_background);
-    
+
     //following line gets custom attribute from xml file
     TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.AnalysisGraph);
     graphTypeAttribute = a.getInt(R.styleable.AnalysisGraph_graphType, 0);
@@ -144,23 +144,28 @@ public class AnalysisGraph extends View {
     }
     setFocusable(true);
   }
-  
+
   public void onDraw(Canvas canvas) {
+
+    AsyncTask.Status threadStatus = null;
     
-    AsyncTask.Status threadStatus = GraphActivity.calculateInBackgroundTask.getStatus();
+    if (GraphActivity.calculateInBackgroundTask != null) { 
+      threadStatus = GraphActivity.calculateInBackgroundTask.getStatus();
+
+    
     if (
         (! isInEditMode()) 
-      && 
+        && 
         (threadStatus != AsyncTask.Status.RUNNING)
-      ) {
-      
+        ) {
+
       dataPoints = dataController.getPlotPoints(graphKeyValue);
-      
+
       graphMaxY = getMeasuredHeight();
       graphMaxX = getMeasuredWidth();
 
       Collection<Float> tempCollection = dataPoints.values();
-      
+
       functionMinY = Collections.min(tempCollection);
       functionMaxY = Collections.max(tempCollection);
       functionMinX = Collections.min(dataPoints.keySet());
@@ -182,7 +187,7 @@ public class AnalysisGraph extends View {
 
       xGraphValue = 0.0f;
       yGraphValue = 0.0f;
-      
+
       isFirstPoint = true;
       Float oldXGraphValue = 0.0f;
       Float oldYGraphValue = 0.0f;
@@ -196,15 +201,15 @@ public class AnalysisGraph extends View {
         if (xValue == currentYearHighlighted) {
           canvas.drawCircle(xGraphValue, yGraphValue, HIGHLIGHT_CIRCLE_RADIUS, highlightPaint);
         }
-//        canvas.drawCircle(xGraphValue, yGraphValue, CIRCLE_RADIUS, graphCirclePaint);
-       
+        //        canvas.drawCircle(xGraphValue, yGraphValue, CIRCLE_RADIUS, graphCirclePaint);
+
         if (!isFirstPoint) {
           canvas.drawLine(oldXGraphValue, oldYGraphValue, xGraphValue, yGraphValue, graphLinetPaint);
         }
         isFirstPoint = false;
         oldXGraphValue = xGraphValue;
         oldYGraphValue = yGraphValue;
-        
+
       }
 
       //draw the frame
@@ -240,10 +245,11 @@ public class AnalysisGraph extends View {
 
       //draw GraphName and current value
       bottom = marginWidthY + betweenMarginsOnY + (marginWidthY/2);
-      
+
       String currentValue = graphKeyValue.toString() + ": " + Utility.displayValue(
           dataController.getValueAsFloat(graphKeyValue, currentYearHighlighted), graphKeyValue);
       canvas.drawText(currentValue, minX, bottom, textPaint);
+    }
     }
   }
 

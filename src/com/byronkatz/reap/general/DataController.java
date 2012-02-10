@@ -15,6 +15,7 @@ import com.byronkatz.reap.calculations.GeneralCalculations;
 public class DataController {
 
   //variable below is to hold the pointer to which set (division) of data we want.
+  private Integer currentRowIndex;
   private static Integer currentDivisionForWriting = 0;
   private static Integer currentDivisionForReading = 0;
   private static DatabaseAdapter databaseAdapter;
@@ -31,6 +32,8 @@ public class DataController {
   public static final Integer DEFAULT_YEAR = 1;
   public static final Integer DEFAULT_DIVISION = 0;
 
+  public static final Float EPSILON = 0.00001f;
+
   public DataController(Context context) {
 
     databaseAdapter = new DatabaseAdapter(context);
@@ -40,6 +43,7 @@ public class DataController {
     setViewableDataTableRows(new HashSet<ValueEnum>());
     dataChanged = false;
     loadFieldValues();
+    currentRowIndex = -1;
   }
 
   private void loadFieldValues() {
@@ -60,7 +64,7 @@ public class DataController {
     textFieldValues.put(ValueEnum.COMMENTS, "");
     numericMap.put(ValueEnum.ESTIMATED_RENT_PAYMENTS, 0f);
     numericMap.put(ValueEnum.REAL_ESTATE_APPRECIATION_RATE, 0.04f);
-    numericMap.put(ValueEnum.YEARLY_HOME_INSURANCE, 0f);
+    numericMap.put(ValueEnum.INITIAL_HOME_INSURANCE, 0f);
     numericMap.put(ValueEnum.PROPERTY_TAX, 0f);
     numericMap.put(ValueEnum.LOCAL_MUNICIPAL_FEES, 0f);
     numericMap.put(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE, 0f);
@@ -78,20 +82,25 @@ public class DataController {
   }
 
   public void setValueAsFloat(ValueEnum key, Float value) {
-    dataChanged = true;
+    //    dataChanged = true;
 
     //get the default division
     numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
     //get the Map for this year
     Map<ValueEnum, Float> numericMap = numericValues.get(DEFAULT_YEAR);
 
-    numericMap.put(key, value);
-    
- 
+    //if the same value as what is already there, don't put the value
+    if (Math.abs(numericMap.get(key) - value) < EPSILON) {
+      //do nothing
+    } else {
+      dataChanged = true;
+      numericMap.put(key, value);
+    }   
+
   }
 
   public void setValueAsFloat(ValueEnum key, Float value, Integer year) {
-    dataChanged = true;
+    //    dataChanged = true;
 
     //TODO: add code to check that the year parameter is kosher
 
@@ -103,33 +112,32 @@ public class DataController {
      * check to see if this division's Map has been initialized.
      * If not, create a new Map and sub-map for it.
      */
-        if (numericValues == null) {
-          //if numericValues is null, then create it and its numeric map
-          numericMap = new HashMap<ValueEnum, Float>();
-          numericMap.put(key, value);
-    
-          numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
-          numericValues.put(year, numericMap);
-    
-          multiDivisionNumericValues.put(currentDivisionForWriting, numericValues);
-        } else {
-          numericMap = numericValues.get(year);
-        }
-    
-        if (numericMap == null) {
-          numericMap = new HashMap<ValueEnum, Float>();
-          numericMap.put(key, value);
-          numericValues.put(year, numericMap);
-        } else {
-          numericMap.put(key, value);
-        }
+    if (numericValues == null) {
+      //if numericValues is null, then create it and its numeric map
+      numericMap = new HashMap<ValueEnum, Float>();
+      numericMap.put(key, value);
+
+      numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
+      numericValues.put(year, numericMap);
+
+      multiDivisionNumericValues.put(currentDivisionForWriting, numericValues);
+    } else {
+      numericMap = numericValues.get(year);
+    }
+
+    if (numericMap == null) {
+      numericMap = new HashMap<ValueEnum, Float>();
+      numericMap.put(key, value);
+      numericValues.put(year, numericMap);
+    } else {
+      numericMap.put(key, value);
+    }
 
   }
 
 
 
   public void setValueAsString(ValueEnum key, String value) {
-    dataChanged = true;
 
     //get the Map for this year
     Map<ValueEnum, String> textMap = textValues.get(DEFAULT_YEAR);
@@ -167,7 +175,7 @@ public class DataController {
   }
 
   public Map<Integer, Float> getPlotPoints(ValueEnum graphKeyValue) {
-    
+
     Map<Integer, Float> dataPoints = new HashMap<Integer, Float>();
     Float yValue;
 
@@ -182,13 +190,12 @@ public class DataController {
     return dataPoints;
   }
 
-  public void saveValues() {
+  public int saveValues() {
     ContentValues cv = new ContentValues();
-    // get year 1
 
     numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
     numericMap = numericValues.get(DEFAULT_YEAR);
-    
+
     for (Entry<ValueEnum, Float> m: numericMap.entrySet()) {
       if (m.getKey().isSavedToDatabase()) {
         String key = m.getKey().name();
@@ -206,12 +213,47 @@ public class DataController {
       }
     }
 
-    databaseAdapter.insertEntry(cv);
+    return databaseAdapter.insertEntry(cv);
   }
 
   public Cursor getAllDatabaseValues() {
     Cursor cursor = databaseAdapter.getAllEntries();
     return cursor;
+  }
+
+  public void setCurrentDatabaseRow(int currentRowIndex) {
+    this.currentRowIndex = currentRowIndex;
+  }
+
+  public int getCurrentDatabaseRow() {
+    return currentRowIndex;
+  }
+
+  public void updateRow() {
+
+    ContentValues cv = new ContentValues();
+
+    numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
+    numericMap = numericValues.get(DEFAULT_YEAR);
+
+    for (Entry<ValueEnum, Float> m: numericMap.entrySet()) {
+      if (m.getKey().isSavedToDatabase()) {
+        String key = m.getKey().name();
+        Float value = m.getValue();
+        cv.put(key, value);
+      }
+    }
+
+    Map<ValueEnum, String> textMap = textValues.get(DEFAULT_YEAR);
+    for (Entry<ValueEnum, String> m: textMap.entrySet()) {
+      if (m.getKey().isSavedToDatabase()) {
+        String key = m.getKey().name();
+        String value = m.getValue();
+        cv.put(key, value);
+      }
+    }
+
+    databaseAdapter.updateEntry((long)currentRowIndex, cv);
   }
 
 

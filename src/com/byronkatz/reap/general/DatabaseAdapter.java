@@ -39,7 +39,7 @@ public class DatabaseAdapter {
       ValueEnum.COMMENTS.name()                           + " TEXT"    +     ", " +
       ValueEnum.ESTIMATED_RENT_PAYMENTS.name()            + " REAL"    +     ", " +
       ValueEnum.REAL_ESTATE_APPRECIATION_RATE.name()      + " REAL"    +     ", " +
-      ValueEnum.YEARLY_HOME_INSURANCE.name()              + " REAL"    +     ", " +
+      ValueEnum.INITIAL_HOME_INSURANCE.name()             + " REAL"    +     ", " +
       ValueEnum.PROPERTY_TAX.name()                       + " REAL"    +     ", " +
       ValueEnum.LOCAL_MUNICIPAL_FEES.name()               + " REAL"    +     ", " +
       ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE.name()       + " REAL"    +     ", " +
@@ -92,9 +92,10 @@ public class DatabaseAdapter {
     return fieldValues;
   }
 
-  public boolean updateEntry(long rowIndex, HashMap<String, String> fieldValues) {
-    // TODO: Create a new ContentValues based on the new object
-    // and use it to update a row in the database.
+  public boolean updateEntry(long rowIndex, ContentValues contentValue) {
+
+    db.update(LOCATIONS_DATABASE_TABLE, contentValue, 
+        KEY_ID + "=" + rowIndex, null);
     return true;
   }
 

@@ -101,10 +101,7 @@ public class TaxesActivity extends Activity {
   }
   
   public void callCalculator(View v) {
-    Intent i = new Intent();
-    i.setClassName("com.android.calculator2",
-    "com.android.calculator2.Calculator");
-    startActivity(i);
+    Utility.callCalc(this);
   }
   
   @Override

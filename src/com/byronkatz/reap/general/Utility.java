@@ -4,8 +4,10 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -51,6 +53,12 @@ public static Integer getNumOfCompoundingPeriods() {
   return currentYearMaximum;
 }
 
+public static void callCalc(Activity a) {
+  Intent i = new Intent();
+  i.setClassName("com.android.calculator2",
+  "com.android.calculator2.Calculator");
+  a.startActivity(i);
+}
 
 public static void setSelectionOnView(View v, ValueEnum ve) {
   EditText editText = (EditText) v;

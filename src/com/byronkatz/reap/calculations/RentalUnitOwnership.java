@@ -130,7 +130,7 @@ public class RentalUnitOwnership {
 	    
 	    Integer compoundingPeriodDesired = (year - 1) * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
 	    final Float yearlyMunicipalFees = municipalFees * getFVMir(compoundingPeriodDesired); 
-	  
+	    dataController.setValueAsFloat(ValueEnum.YEARLY_MUNICIPAL_FEES, yearlyMunicipalFees, year);
 	    return yearlyMunicipalFees;
 	  }
   
@@ -151,8 +151,12 @@ public class RentalUnitOwnership {
     final Float yearlyOutlay = getFVPropertyTax(year) + getFVMunicipalFees(year) + 
     		(monthlyMortgagePayment * 12) + rental.getFVYearlyGeneralExpenses(year) + 
     		rental.getFVYearlyHomeInsurance(year) + yearlyPrivateMortgageInsurance;
+    dataController.setValueAsFloat(ValueEnum.YEARLY_OUTLAY, yearlyOutlay, year);
+    
     final Float yearlyBeforeTaxCashFlow = rental.getFVNetYearlyIncome(year) - yearlyOutlay;
-
+    
+    dataController.setValueAsFloat(
+        ValueEnum.YEARLY_BEFORE_TAX_CASH_FLOW, yearlyBeforeTaxCashFlow, year);
     return yearlyBeforeTaxCashFlow;
   }
   
