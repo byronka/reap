@@ -62,6 +62,8 @@ public class GraphActivity extends Activity {
   Float deltaValueNumeric;
   Float currentValueNumeric;
   Float originalCurrentValueNumeric;
+  
+  SharedPreferences sp;
 
   public static final int DIVISIONS_OF_VALUE_SLIDER = 40;
   public static final int CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE = 1;
@@ -99,6 +101,8 @@ public class GraphActivity extends Activity {
   public void onResume() {
     super.onResume();
 
+
+    
     if (DataController.isDataChanged()) {
 
       currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
@@ -128,9 +132,11 @@ public class GraphActivity extends Activity {
           dataTable.restoreViewableDataTableRows(savedState));
     } else {
     
-    SharedPreferences sp = getSharedPreferences(PREFS_NAME, 0);
+    sp = getSharedPreferences(PREFS_NAME, 0);
     dataController.setViewableDataTableRows(
         dataTable.restoreViewableDataTableRows(sp));
+
+
     }
     setContentView(R.layout.graph);
 
@@ -187,6 +193,7 @@ public class GraphActivity extends Activity {
     super.onRestoreInstanceState(outState);
     dataController.setViewableDataTableRows(
         dataTable.restoreViewableDataTableRows(outState));
+
   }
   
   @Override

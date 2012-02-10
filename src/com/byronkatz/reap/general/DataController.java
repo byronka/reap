@@ -52,14 +52,14 @@ public class DataController {
     numericMap.put(ValueEnum.YEARLY_INTEREST_RATE, 0f);
     numericMap.put(ValueEnum.BUILDING_VALUE, 0f);
     numericMap.put(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS, 360f);
-    numericMap.put(ValueEnum.INFLATION_RATE, 0f);
+    numericMap.put(ValueEnum.INFLATION_RATE, 0.03f);
     numericMap.put(ValueEnum.DOWN_PAYMENT, 0f);
     textFieldValues.put(ValueEnum.STREET_ADDRESS, "1234 Anywhere Street");
     textFieldValues.put(ValueEnum.CITY, "Anytown");
     textFieldValues.put(ValueEnum.STATE_INITIALS, "Alabama");
     textFieldValues.put(ValueEnum.COMMENTS, "");
     numericMap.put(ValueEnum.ESTIMATED_RENT_PAYMENTS, 0f);
-    numericMap.put(ValueEnum.REAL_ESTATE_APPRECIATION_RATE, 0f);
+    numericMap.put(ValueEnum.REAL_ESTATE_APPRECIATION_RATE, 0.04f);
     numericMap.put(ValueEnum.YEARLY_HOME_INSURANCE, 0f);
     numericMap.put(ValueEnum.PROPERTY_TAX, 0f);
     numericMap.put(ValueEnum.LOCAL_MUNICIPAL_FEES, 0f);

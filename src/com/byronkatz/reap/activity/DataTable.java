@@ -174,6 +174,7 @@ public class DataTable {
 
     b.putStringArray("viewableDataTableRows", stringArray);
 
+
   }
   
   public void saveViewableDataTableRows (SharedPreferences sp) {
@@ -185,6 +186,7 @@ public class DataTable {
     for (ValueEnum ve : vdtr) {
       editor.putBoolean(ve.name(), true);
     }
+
     editor.commit();
   }
 
