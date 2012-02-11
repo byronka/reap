@@ -394,5 +394,6 @@
 	<string name="databaseItemTextViewDesc5">Down Payment: </string>
 	<string name="databaseItemTextViewDesc6">Required Rate of Return: </string>
 	<string name="databaseItemTextViewDesc7">Estimated rent: </string>
+	<string name="graphVisibilityCheckboxTitle">Graph visibility</string>
 	
 </resources>

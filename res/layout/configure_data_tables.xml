@@ -19,6 +19,12 @@
 			android:stretchColumns="1" android:layout_width="fill_parent"
 			android:gravity="clip_vertical" android:layout_weight="0.40">
 
+			<CheckBox
+			    android:id="@+id/graphVisibilityCheckbox"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="@string/graphVisibilityCheckboxTitle" />
+
 		</TableLayout>
 
 	</LinearLayout>
