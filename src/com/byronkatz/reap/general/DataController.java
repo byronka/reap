@@ -46,7 +46,7 @@ public class DataController {
     textValues = new HashMap<ValueEnum, String>();
     setViewableDataTableRows(new HashSet<ValueEnum>());
     //datachanged is to tell graphactivity when it's time to recalculate
-    dataChanged = false;
+    dataChanged = true;
     loadFieldValues(sp);
     //set to -1 when the system start to flag that it is not set
     currentRowIndex = -1;
