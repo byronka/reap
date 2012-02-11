@@ -9,6 +9,7 @@ import java.util.Set;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.database.Cursor;
 
 import com.byronkatz.reap.calculations.GeneralCalculations;
@@ -32,11 +33,13 @@ public class DataController {
   //DEFAULT_YEAR is for which year to store values that don't change per year.
   public static final Integer DEFAULT_YEAR = 1;
   public static final Integer DEFAULT_DIVISION = 0;
+  public static Resources resources;
 
   public static final Float EPSILON = 0.00001f;
 
-  public DataController(Context context, SharedPreferences sp) {
+  public DataController(Context context, SharedPreferences sp, Resources resources) {
 
+    this.resources = resources;
     databaseAdapter = new DatabaseAdapter(context);
     numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
     multiDivisionNumericValues = new HashMap<Integer, Map<Integer, Map<ValueEnum, Float>>>();
@@ -47,6 +50,10 @@ public class DataController {
     loadFieldValues(sp);
     //set to -1 when the system start to flag that it is not set
     currentRowIndex = -1;
+  }
+  
+  public static Resources getAppResources() {
+    return resources;
   }
 
   public void loadFieldValues(SharedPreferences sp) {

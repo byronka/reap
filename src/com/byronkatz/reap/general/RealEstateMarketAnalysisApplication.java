@@ -4,6 +4,7 @@ package com.byronkatz.reap.general;
 import android.app.Application;
 import android.content.ContextWrapper;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 
 public class RealEstateMarketAnalysisApplication extends Application {
 
@@ -23,11 +24,10 @@ public class RealEstateMarketAnalysisApplication extends Application {
     
     sharedPreferences = getSharedPreferences(BASE_VALUES, ContextWrapper.MODE_PRIVATE);
 
-    setDataController(new DataController(this, sharedPreferences));
+    setDataController(new DataController(this, sharedPreferences, getResources()));
     singleton = this;
     
   }
-
     
   public DataController getDataController() {
     return dataController;

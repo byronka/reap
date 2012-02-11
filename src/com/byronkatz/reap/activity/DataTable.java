@@ -159,9 +159,7 @@ public class DataTable {
     }
   }
 
-  
-  //NEW STUFF BELOW!!!
-  public void saveViewableDataTableRows(Bundle b) {
+    public void saveViewableDataTableRows(Bundle b) {
 
     Set<ValueEnum> vdtr = dataController.getViewableDataTableRows(); 
     String[] stringArray = new String[vdtr.size()];
