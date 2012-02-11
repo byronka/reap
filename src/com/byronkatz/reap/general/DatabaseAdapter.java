@@ -14,7 +14,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DatabaseAdapter {
-  private static final String DATABASE_NAME                    = "investmentValues";
+  private static final String DATABASE_NAME            = "investmentValues";
 
   private static final String LOCATIONS_DATABASE_TABLE = "mainTable";
   private static final int DATABASE_VERSION = 1;

@@ -134,6 +134,7 @@ public class GraphActivity extends Activity {
     dataController.setViewableDataTableRows(
         dataTable.restoreViewableDataTableRows(sp));
     }
+    
     setContentView(R.layout.graph);
 
     Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods();
@@ -143,11 +144,8 @@ public class GraphActivity extends Activity {
     setupGraphs(currentYearMaximum);
     setupCurrentValueFields();
     valueToDataTableItemCorrespondence = dataTable.createDataTableItems(GraphActivity.this);
-//    setDataChangedToggle(true);
     
-    
-    //NEW WORK BELOW
-    
+
     TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);        
     tabs.setup();
 
@@ -171,7 +169,6 @@ public class GraphActivity extends Activity {
     spec.setIndicator("MIRR");
     tabs.addTab(spec);
     
-    //NEW WORK ENDS
   }
   
   @Override
@@ -179,6 +176,8 @@ public class GraphActivity extends Activity {
     super.onPause();
     
     SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
+    SharedPreferences baseValuesPrefs = 
+        getSharedPreferences(RealEstateMarketAnalysisApplication.BASE_VALUES, 0);
 
     dataTable.saveViewableDataTableRows(sharedPreferences);
   }

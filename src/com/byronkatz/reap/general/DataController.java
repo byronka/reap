@@ -8,6 +8,7 @@ import java.util.Set;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 
 import com.byronkatz.reap.calculations.GeneralCalculations;
@@ -24,7 +25,7 @@ public class DataController {
   //below data structure holds a whole set of calculated values 
   //for each division of the progress slider
   private static Map<Integer, Map<Integer, Map<ValueEnum, Float>>> multiDivisionNumericValues;
-  private static Map<Integer, Map<ValueEnum, String>> textValues;
+  private static Map<ValueEnum, String> textValues;
   private static Set<ValueEnum> viewableDataTableRows;
   private static Boolean dataChanged;
 
@@ -34,73 +35,99 @@ public class DataController {
 
   public static final Float EPSILON = 0.00001f;
 
-  public DataController(Context context) {
+  public DataController(Context context, SharedPreferences sp) {
 
     databaseAdapter = new DatabaseAdapter(context);
     numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
     multiDivisionNumericValues = new HashMap<Integer, Map<Integer, Map<ValueEnum, Float>>>();
-    textValues = new HashMap<Integer, Map<ValueEnum, String>>();
+    textValues = new HashMap<ValueEnum, String>();
     setViewableDataTableRows(new HashSet<ValueEnum>());
+    //datachanged is to tell graphactivity when it's time to recalculate
     dataChanged = false;
-    loadFieldValues();
+    loadFieldValues(sp);
+    //set to -1 when the system start to flag that it is not set
     currentRowIndex = -1;
   }
 
-  private void loadFieldValues() {
+  public void loadFieldValues(SharedPreferences sp) {
 
-    numericMap = new HashMap<ValueEnum, Float> ();    
-    Map<ValueEnum, String> textFieldValues = new HashMap<ValueEnum, String> ();
-
-    numericMap.put(ValueEnum.PRIVATE_MORTGAGE_INSURANCE, 0f);
-    numericMap.put(ValueEnum.TOTAL_PURCHASE_VALUE,0f);
-    numericMap.put(ValueEnum.YEARLY_INTEREST_RATE, 0f);
-    numericMap.put(ValueEnum.BUILDING_VALUE, 0f);
-    numericMap.put(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS, 360f);
-    numericMap.put(ValueEnum.INFLATION_RATE, 0.03f);
-    numericMap.put(ValueEnum.DOWN_PAYMENT, 0f);
-    textFieldValues.put(ValueEnum.STREET_ADDRESS, "1234 Anywhere Street");
-    textFieldValues.put(ValueEnum.CITY, "Anytown");
-    textFieldValues.put(ValueEnum.STATE_INITIALS, "Alabama");
-    textFieldValues.put(ValueEnum.COMMENTS, "");
-    numericMap.put(ValueEnum.ESTIMATED_RENT_PAYMENTS, 0f);
-    numericMap.put(ValueEnum.REAL_ESTATE_APPRECIATION_RATE, 0.04f);
-    numericMap.put(ValueEnum.INITIAL_HOME_INSURANCE, 0f);
-    numericMap.put(ValueEnum.PROPERTY_TAX, 0f);
-    numericMap.put(ValueEnum.LOCAL_MUNICIPAL_FEES, 0f);
-    numericMap.put(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE, 0f);
-    numericMap.put(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES, 0f);
-    numericMap.put(ValueEnum.MARGINAL_TAX_RATE, 0f);
-    numericMap.put(ValueEnum.SELLING_BROKER_RATE, 0f);
-    numericMap.put(ValueEnum.GENERAL_SALE_EXPENSES, 0f);
-    numericMap.put(ValueEnum.REQUIRED_RATE_OF_RETURN, 0f);
-    numericMap.put(ValueEnum.FIX_UP_COSTS, 0f);
-    numericMap.put(ValueEnum.CLOSING_COSTS, 0f);
-
-    numericValues.put(DEFAULT_YEAR, numericMap);
-    multiDivisionNumericValues.put(DEFAULT_DIVISION, numericValues);
-    textValues.put(DEFAULT_YEAR, textFieldValues);
+    //either a string or not a string
+    for (ValueEnum inputEnum : ValueEnum.values()) {
+      if (inputEnum == ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS) {
+        setValueAsFloat(inputEnum, sp.getFloat(inputEnum.name(), 360f));
+      } else if (inputEnum.isSavedToDatabase() && (inputEnum.getType() != ValueEnum.ValueType.STRING)) {
+        setValueAsFloat(inputEnum, sp.getFloat(inputEnum.name(), 0f));
+      } else if (inputEnum.isSavedToDatabase() && (inputEnum.getType() == ValueEnum.ValueType.STRING)) {
+        setValueAsString(inputEnum, sp.getString(inputEnum.name(), ""));
+      }
+    }
+  }
+  
+  public void saveFieldValues(SharedPreferences sp) {
+    
+    SharedPreferences.Editor editor = sp.edit();
+    
+    //either a string or not a string
+    for (ValueEnum inputEnum : ValueEnum.values()) {
+      if (inputEnum.isSavedToDatabase() && (inputEnum.getType() != ValueEnum.ValueType.STRING)) {
+        editor.putFloat(inputEnum.name(), getValueAsFloat(inputEnum));    
+      } else if (inputEnum.isSavedToDatabase() && (inputEnum.getType() == ValueEnum.ValueType.STRING)) {
+        editor.putString(inputEnum.name(), getValueAsString(inputEnum));
+      }
+    }
+    
+    editor.commit();
   }
 
   public void setValueAsFloat(ValueEnum key, Float value) {
-    //    dataChanged = true;
 
-    //get the default division
+    //get the current division
     numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
-    //get the Map for this year
-    Map<ValueEnum, Float> numericMap = numericValues.get(DEFAULT_YEAR);
 
-    //if the same value as what is already there, don't put the value
-    if (Math.abs(numericMap.get(key) - value) < EPSILON) {
-      //do nothing
+    //prime candidate for refactoring below.
+    /*
+     * check to see if this division's Map has been initialized.
+     * If not, create a new Map and sub-map for it.
+     */
+    if (numericValues == null) {
+      //if numericValues is null, then create it and its numeric map
+      numericMap = new HashMap<ValueEnum, Float>();
+      numericMapPut(numericMap, key, value);
+
+
+      numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
+      numericValues.put(DEFAULT_YEAR, numericMap);
+
+      multiDivisionNumericValues.put(DEFAULT_DIVISION, numericValues);
     } else {
+      numericMap = numericValues.get(DEFAULT_YEAR);
+    }
+
+    if (numericMap == null) {
+      numericMap = new HashMap<ValueEnum, Float>();
+      numericMapPut(numericMap, key, value);
+
+      numericValues.put(DEFAULT_YEAR, numericMap);
+    } else {
+      numericMapPut(numericMap, key, value);
+    }
+  }
+
+  private void numericMapPut(Map<ValueEnum, Float> numericMap, 
+      ValueEnum key, Float value) {
+    //if the same value as what is already there, don't put the value
+    Float existingValue = numericMap.get(key);
+    
+    if ((existingValue == null) || (Math.abs(existingValue - value) > EPSILON)) {
       dataChanged = true;
       numericMap.put(key, value);
-    }   
+    } else {
+      //do nothing
+    } 
 
   }
 
   public void setValueAsFloat(ValueEnum key, Float value, Integer year) {
-    //    dataChanged = true;
 
     //TODO: add code to check that the year parameter is kosher
 
@@ -136,19 +163,15 @@ public class DataController {
   }
 
 
-
   public void setValueAsString(ValueEnum key, String value) {
 
-    //get the Map for this year
-    Map<ValueEnum, String> textMap = textValues.get(DEFAULT_YEAR);
-
-    textMap.put(key, value);
+    textValues.put(key, value);
   }
 
   public String getValueAsString(ValueEnum key) {
 
-    Map<ValueEnum, String> m = textValues.get(DEFAULT_YEAR);
-    String returnValue = m.get(key);
+    //    Map<ValueEnum, String> m = textValues.get(DEFAULT_YEAR);
+    String returnValue = textValues.get(key);
     return returnValue;
   }
 
@@ -204,8 +227,7 @@ public class DataController {
       }
     }
 
-    Map<ValueEnum, String> textMap = textValues.get(DEFAULT_YEAR);
-    for (Entry<ValueEnum, String> m: textMap.entrySet()) {
+    for (Entry<ValueEnum, String> m: textValues.entrySet()) {
       if (m.getKey().isSavedToDatabase()) {
         String key = m.getKey().name();
         String value = m.getValue();
@@ -213,6 +235,7 @@ public class DataController {
       }
     }
 
+    //insert into database and return the last rowindex
     return databaseAdapter.insertEntry(cv);
   }
 
@@ -244,8 +267,7 @@ public class DataController {
       }
     }
 
-    Map<ValueEnum, String> textMap = textValues.get(DEFAULT_YEAR);
-    for (Entry<ValueEnum, String> m: textMap.entrySet()) {
+    for (Entry<ValueEnum, String> m: textValues.entrySet()) {
       if (m.getKey().isSavedToDatabase()) {
         String key = m.getKey().name();
         String value = m.getValue();
