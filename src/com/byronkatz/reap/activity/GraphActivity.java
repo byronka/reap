@@ -51,6 +51,7 @@ public class GraphActivity extends Activity {
   TextView yearDisplayAtSeekBar;
   DataTable dataTable;
   public static final String PREFS_NAME = "MyPrefsFile";
+  private Boolean graphVisibility;
 
 
   private final DataController dataController = RealEstateMarketAnalysisApplication
@@ -94,6 +95,7 @@ public class GraphActivity extends Activity {
 
     if (requestCode == CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE) {
       dataTable.makeSelectedRowsVisible(dataController.getViewableDataTableRows(), valueToDataTableItemCorrespondence);
+ //WORK AREA WORK AREA WORK AREA WORK AREA WORK AREA WORK AREA 
     }
   }
 
@@ -145,29 +147,29 @@ public class GraphActivity extends Activity {
     setupCurrentValueFields();
     valueToDataTableItemCorrespondence = dataTable.createDataTableItems(GraphActivity.this);
     
-
-    TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);        
-    tabs.setup();
-
-    TabHost.TabSpec spec = tabs.newTabSpec("NPV");
-    spec.setContent(R.id.tab1);
-    spec.setIndicator("NPV");
-    tabs.addTab(spec);
-
-    spec = tabs.newTabSpec("ATCF");
-    spec.setContent(R.id.tab2);
-    spec.setIndicator("ATCF");
-    tabs.addTab(spec);
-
-    spec = tabs.newTabSpec("ATER");
-    spec.setContent(R.id.tab3);
-    spec.setIndicator("ATER");
-    tabs.addTab(spec);
-    
-    spec = tabs.newTabSpec("MIRR");
-    spec.setContent(R.id.tab4);
-    spec.setIndicator("MIRR");
-    tabs.addTab(spec);
+    setupGraphTabs();
+//    TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);        
+//    tabs.setup();
+//
+//    TabHost.TabSpec spec = tabs.newTabSpec("NPV");
+//    spec.setContent(R.id.tab1);
+//    spec.setIndicator("NPV");
+//    tabs.addTab(spec);
+//
+//    spec = tabs.newTabSpec("ATCF");
+//    spec.setContent(R.id.tab2);
+//    spec.setIndicator("ATCF");
+//    tabs.addTab(spec);
+//
+//    spec = tabs.newTabSpec("ATER");
+//    spec.setContent(R.id.tab3);
+//    spec.setIndicator("ATER");
+//    tabs.addTab(spec);
+//    
+//    spec = tabs.newTabSpec("MIRR");
+//    spec.setContent(R.id.tab4);
+//    spec.setIndicator("MIRR");
+//    tabs.addTab(spec);
     
   }
   
@@ -198,6 +200,32 @@ public class GraphActivity extends Activity {
     super.onSaveInstanceState(outState);
   }
 
+  private void setupGraphTabs() {
+    TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);        
+    tabs.setup();
+
+    TabHost.TabSpec spec = tabs.newTabSpec("NPV");
+    spec.setContent(R.id.tab1);
+    spec.setIndicator("NPV");
+    tabs.addTab(spec);
+
+    spec = tabs.newTabSpec("ATCF");
+    spec.setContent(R.id.tab2);
+    spec.setIndicator("ATCF");
+    tabs.addTab(spec);
+
+    spec = tabs.newTabSpec("ATER");
+    spec.setContent(R.id.tab3);
+    spec.setIndicator("ATER");
+    tabs.addTab(spec);
+    
+    spec = tabs.newTabSpec("MIRR");
+    spec.setContent(R.id.tab4);
+    spec.setIndicator("MIRR");
+    tabs.addTab(spec);
+    
+    tabs.setVisibility(View.GONE);
+  }
   
   private void updateYearDisplayAtSeekBar(Integer year) {
     yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(year));

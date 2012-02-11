@@ -11,6 +11,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -27,7 +30,8 @@ public class ConfigureDataTablesActivity extends Activity {
   private TableLayout configDataTableLayout;
   private Set<ValueEnum> viewableDataTableRows;
   Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence;
-
+  private Boolean isGraphVisible;
+  
 
   private DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
@@ -43,6 +47,22 @@ public class ConfigureDataTablesActivity extends Activity {
     valueToDataTableItemCorrespondence = new HashMap<ValueEnum, TableRow> ();
     configDataTableLayout = (TableLayout) findViewById(R.id.dataTableLayoutConfiguration);
     createDataTableConfiguration();
+    
+    isGraphVisible = savedState.getBoolean("GRAPH_VISIBILITY", false);
+    CheckBox graphVisibilityCheckbox = (CheckBox) findViewById (R.id.graphVisibilityCheckbox);
+    graphVisibilityCheckbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+      
+      @Override
+      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+          isGraphVisible = true;
+        } else {
+          isGraphVisible = false;
+        }
+        
+      }
+    });
+    
   }
 
   @Override
@@ -61,6 +81,8 @@ public class ConfigureDataTablesActivity extends Activity {
       }
     }
     dataController.setViewableDataTableRows(viewableDataTableRows);
+    
+    //WORK AREA WORK AREA WORK AREA WORK AREA WORK AREA WORK AREA WORK AREA 
   }
 
   private void createDataTableConfiguration() {
