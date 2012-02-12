@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/dataTableRowLayout">
+    android:id="@+id/dataTableRowLayout" >
 
-	<TextView android:id="@+id/dataTablePropertyName"
-		android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:textColor="@color/data_table_row_text_color" android:padding="3dip" />
+    <TextView
+        android:id="@+id/dataTablePropertyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dip"
+        android:textColor="@color/data_table_row_text_color" />
 
-	<ImageButton 
-		android:layout_width="30dip" android:layout_height="30dip"
-		 android:layout_gravity="center_vertical" android:scaleType="fitXY"
-		  android:background="@null"
-		android:padding="3dip" android:visibility="visible" 
-		android:src="@drawable/question_mark" />
+    <TextView
+        android:id="@+id/dataTablePropertyValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:padding="3dip"
+        android:textColor="@color/data_table_row_text_color" />
 
-
-	<TextView android:id="@+id/dataTablePropertyValue" android:gravity="right"
-	    android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:textColor="@color/data_table_row_text_color"
-		android:padding="3dip" />
-
-	<ToggleButton android:gravity="center|top"
-		android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:padding="3dip" android:visibility="gone" />
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center|top"
+        android:padding="3dip"
+        android:visibility="gone" />
 
 </TableRow>
-

@@ -104,7 +104,10 @@ public class GraphActivity extends Activity {
 
     if (requestCode == CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE) {
       dataTable.makeSelectedRowsVisible(dataController.getViewableDataTableRows(), valueToDataTableItemCorrespondence);
+     
+      if (data != null) {
       isGraphVisible = data.getExtras().getBoolean(IS_GRAPH_VISIBLE, true);
+      }
 
       if (isGraphVisible) {
         tabs.setVisibility(View.VISIBLE);
@@ -536,7 +539,10 @@ public class GraphActivity extends Activity {
   }
 
   private Integer getCurrentYearSelected() {
-    return ((SeekBar) findViewById(R.id.timeSlider)).getProgress() + 1;
+    Integer currentYearSelected = ((SeekBar) findViewById(R.id.timeSlider)).getProgress() + 1;
+    dataController.setCurrentYearSelected(currentYearSelected);
+    
+    return currentYearSelected;
 
   }
 

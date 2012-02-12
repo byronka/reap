@@ -2,7 +2,6 @@ package com.byronkatz.reap.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,7 +19,7 @@ public class SplashScreenActivity extends Activity {
 
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
-  
+
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedState) {
@@ -37,33 +36,35 @@ public class SplashScreenActivity extends Activity {
 
       @Override
       public void onClick(View v) {
-        
+
         Float enteredValue = Utility.parseCurrency(splashScreenValueEntry.getText().toString());
-        
-        if (enteredValue != 0) {
+
+        if (enteredValue == 0) {
+          Utility.showToast(SplashScreenActivity.this, "Must enter a value greater than 0");
+        } else {
+
           setAssumedValues(enteredValue);
+          DataController.setDataChanged(true);
+          Intent intent = new Intent(SplashScreenActivity.this, GraphActivity.class);
+          startActivity(intent); 
         }
-        
-        DataController.setDataChanged(true);
-        Intent intent = new Intent(SplashScreenActivity.this, GraphActivity.class);
-        startActivity(intent); 
       }
     });
-    
+
     Button splashScreenSkipButton = 
         (Button)findViewById(R.id.splashScreenSkipButton);
     splashScreenSkipButton.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
-        
+
         DataController.setDataChanged(true);
         Intent intent = new Intent(SplashScreenActivity.this, GraphActivity.class);
         startActivity(intent); 
       }
     });
   }
-  
+
   private void setAssumedValues(final Float totalValue) {
 
     final Float yearlyInterestRate = 0.055f;
@@ -86,6 +87,6 @@ public class SplashScreenActivity extends Activity {
     dataController.setValueAsFloat(ValueEnum.FIX_UP_COSTS, 0f);
     dataController.setValueAsFloat(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES, 1000f);
     dataController.setValueAsFloat(ValueEnum.REQUIRED_RATE_OF_RETURN, yearlyInterestRate);
-    
+
   }
 }

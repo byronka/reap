@@ -4,7 +4,6 @@ import com.byronkatz.R.string;
 
 public enum ValueEnum {
 
-  ACCUM_INTEREST ( ValueType.CURRENCY, false, true, string.accumulatedInterestPaidHelpText, string.accumulatedInterestPaidTitleText), 
   ATCF ( ValueType.CURRENCY, false, true, string.atcfHelpText , string.atcfTitleText),
   ATCF_ACCUMULATOR ( ValueType.CURRENCY, false, true, string.atcfAccumulatorHelpText, string.atcfAccumulatorTitleText),
   ATCF_NPV ( ValueType.CURRENCY, false, true, string.atcfNetPresentValueHelpText, string.atcfNetPresentValueTitleText),
@@ -14,7 +13,6 @@ public enum ValueEnum {
   BUILDING_VALUE(ValueType.CURRENCY, true, false, string.buildingValueHelpText, string.buildingValueTitleText),
   CLOSING_COSTS( ValueType.CURRENCY, true, false, string.closingCostsHelpText, string.closingCostsTitleText), 
   COMMENTS( ValueType.STRING, true, false, string.commentsHelpText, string.commentsTitleText),
-  CURRENT_AMOUNT_OUTSTANDING ( ValueType.CURRENCY, false, true, string.currentAmountOutstandingHelpText, string.currentAmountOutstandingTitleText), 
   DOWN_PAYMENT( ValueType.CURRENCY, true, false, string.downPaymentHelpText, string.downPaymentTitleText),
   ESTIMATED_RENT_PAYMENTS( ValueType.CURRENCY, true, false, string.estimatedRentPaymentsHelpText, string.estimatedRentPaymentsTitleText),
   FIX_UP_COSTS( ValueType.CURRENCY, true, false, string.fixupCostsHelpText, string.fixupCostsTitleText),
@@ -23,6 +21,7 @@ public enum ValueEnum {
   INITIAL_YEARLY_GENERAL_EXPENSES( ValueType.CURRENCY, true, false, string.initialYearlyGeneralExpensesHelpText, string.initialYearlyGeneralExpensesTitleText),
   INITIAL_HOME_INSURANCE( ValueType.CURRENCY, true, false, string.initialHomeInsuranceHelpText, string.initialHomeInsuranceTitleText),
   LOCAL_MUNICIPAL_FEES( ValueType.CURRENCY, true, false, string.localMunicipalFeesHelpText, string.localMunicipalFeesTitleText),
+  CURRENT_AMOUNT_OUTSTANDING ( ValueType.CURRENCY, false, true, string.currentAmountOutstandingHelpText, string.currentAmountOutstandingTitleText), 
   MARGINAL_TAX_RATE( ValueType.PERCENTAGE, true, false, string.marginalTaxRateHelpText, string.marginalTaxRateTitleText),
   MODIFIED_INTERNAL_RATE_OF_RETURN( ValueType.PERCENTAGE, false, true, string.modifiedInternalRateOfReturnHelpText, string.modifiedInternalRateOfReturnTitleText),
   MONTHLY_MORTGAGE_PAYMENT ( ValueType.CURRENCY, false, true, string.monthlyMortgagePaymentHelpText, string.monthlyMortgagePaymentTitleText),  
@@ -48,6 +47,7 @@ public enum ValueEnum {
   YEARLY_HOME_INSURANCE( ValueType.CURRENCY, false, true, string.yearlyHomeInsuranceHelpText, string.yearlyHomeInsuranceTitleText),
   YEARLY_INCOME ( ValueType.CURRENCY, false, true, string.yearlyIncomeHelpText, string.yearlyIncomeTitleText),  
   YEARLY_INTEREST_PAID ( ValueType.CURRENCY, false, true, string.yearlyInterestPaidHelpText, string.yearlyInterestPaidTitleText),
+  ACCUM_INTEREST ( ValueType.CURRENCY, false, true, string.accumulatedInterestPaidHelpText, string.accumulatedInterestPaidTitleText), 
   YEARLY_INTEREST_RATE( ValueType.PERCENTAGE, true, false, string.yearlyInterestRateHelpText, string.yearlyInterestRateTitleText),
   YEARLY_MORTGAGE_PAYMENT (ValueType.CURRENCY, false, true, string.yearlyMortgagePaymentHelpText, string.yearlyMortgagePaymentTitleText), 
   YEARLY_MUNICIPAL_FEES (ValueType.CURRENCY, false, true, string.yearlyMunicipalFeesHelpText, string.yearlyMunicipalFeesTitleText),

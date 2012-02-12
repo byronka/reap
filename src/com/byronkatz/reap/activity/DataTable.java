@@ -1,7 +1,10 @@
 package com.byronkatz.reap.activity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -11,12 +14,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.byronkatz.R;
+import com.byronkatz.reap.general.CheckMathOnClickWrapper;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.HelpButtonOnClickWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
@@ -26,9 +29,8 @@ import com.byronkatz.reap.general.ValueEnum;
 public class DataTable {
 
   public static final int PROPERTY_LABEL_INDEX = 0;
-  public static final int HELP_BUTTON_INDEX = 1;
-  public static final int PROPERTY_VALUE_INDEX = 2;
-  public static final int TOGGLE_BUTTON_INDEX = 3;
+  public static final int PROPERTY_VALUE_INDEX = 1;
+  public static final int TOGGLE_BUTTON_INDEX = 2;
 
   GraphActivity graphActivity;
   private final DataController dataController = RealEstateMarketAnalysisApplication
@@ -63,19 +65,22 @@ public class DataTable {
 
   public Map<ValueEnum, TableRow> createDataTableItems(GraphActivity graphActivity) {
 
-
-
-    ImageButton helpButton;
     TextView dataTablePropertyName;
     Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence = new HashMap<ValueEnum, TableRow> ();
 
     LayoutInflater inflater = (LayoutInflater) graphActivity.getSystemService
         (Context.LAYOUT_INFLATER_SERVICE);
-    ValueEnum[] dataTableValues = ValueEnum.values();
+    List<ValueEnum> dataTableValues = new ArrayList<ValueEnum>(Arrays.asList(ValueEnum.values()));
+    
+    //remove the following values, unneeded in the table
+    dataTableValues.remove(ValueEnum.COMMENTS);
+    dataTableValues.remove(ValueEnum.CITY);
+    dataTableValues.remove(ValueEnum.STATE_INITIALS);
+    dataTableValues.remove(ValueEnum.STREET_ADDRESS);
 
-    //get variable
     Set<ValueEnum> viewableDataTableRows = dataController.getViewableDataTableRows();
     TableLayout dataTableLayout = (TableLayout) graphActivity.findViewById(R.id.dataTableLayout);      
+    
     //This is where we create the TableLayout
     //main loop to create the data table rows
 
@@ -93,9 +98,19 @@ public class DataTable {
 
       //the property name is always a string
       dataTablePropertyName.setText(ve.toString());
+      
+      dataTablePropertyName.setOnClickListener(new HelpButtonOnClickWrapper(ve));
 
-      helpButton = (ImageButton) newTableRow.getChildAt(HELP_BUTTON_INDEX);
-      helpButton.setOnClickListener(new HelpButtonOnClickWrapper(ve));
+      //WORK AREA BEGIN
+      
+      if (ve == ValueEnum.MONTHLY_RENT_FV) {
+        TextView dataTablePropertyValue = (TextView) newTableRow.getChildAt(PROPERTY_VALUE_INDEX); 
+        dataTablePropertyValue.setOnClickListener(new CheckMathOnClickWrapper(ve));
+      }
+      
+      
+      //WORK AREA END
+
 
       dataTableLayout.addView(newTableRow);
     } //end of main for loop to set dataTableItems
@@ -141,6 +156,8 @@ public class DataTable {
     } else if (! ve.isVaryingByYear()) {
       t.setText(String.valueOf(dataController.getValueAsFloat(ve).intValue()));
     }
+    
+
   }
 
   public void setDataTableValueByCurrency(TextView t, ValueEnum ve, Integer year) {
@@ -149,6 +166,7 @@ public class DataTable {
     } else if (! ve.isVaryingByYear()) {
       t.setText(Utility.displayCurrency(dataController.getValueAsFloat(ve)));
     }
+    
   }
 
   public void setDataTableValueByPercentage(TextView t, ValueEnum ve, Integer year) {
@@ -157,6 +175,8 @@ public class DataTable {
     } else if (! ve.isVaryingByYear()) {
       t.setText(Utility.displayPercentage(dataController.getValueAsFloat(ve)));
     }
+    
+
   }
 
   public void saveViewableDataTableRows(Bundle b) {
@@ -231,6 +251,7 @@ public class DataTable {
     return tempSet;
   }
 
+  
   public void setDataTableItems(ValueEnum[] items, Integer year, Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence ) {
 
 
@@ -259,6 +280,7 @@ public class DataTable {
       case STRING:
 
         tempDataTablePropertyValue.setText(dataController.getValueAsString(ve));
+
         break;
 
       case INTEGER:

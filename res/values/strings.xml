@@ -13,11 +13,11 @@
 		
 	<!-- Help text for calculated values -->
 	<string name="helpButtonContentDescription">Help button</string>
-	<string name="accumulatedInterestPaidTitleText">Accumulated interest paid</string>
-	<string name="accumulatedInterestPaidHelpText">The accumulated intered paid to date</string>
+	<string name="accumulatedInterestPaidTitleText">Yearly interest paid accumulator</string>
+	<string name="accumulatedInterestPaidHelpText">The accumulated interest paid to date</string>
 
 	<string name="atcfTitleText">After tax cash flow</string>
-	<string name="atcfHelpText">This is the net balance for the year - income - outlay</string>
+	<string name="atcfHelpText">This is the net balance for the year: f(x)=income - outlay</string>
 	
 	<string name="atcfAccumulatorTitleText">After tax cash flow accumulator</string>
 	<string name="atcfAccumulatorHelpText">This value is the accumulating after tax cash flow from year to year</string>
@@ -41,7 +41,7 @@
 	<string name="closingCostsHelpText">costs incurred at the time of purchase of investment, such as surveyor fees, home inspection, title insurance, termite bond, and any other miscellaneous fees *other* than the amount owed to the broker at the time of purchase</string>
 	
 	<string name="currentAmountOutstandingHelpText">The amount of principal left to pay off on the loan</string>
-	<string name="currentAmountOutstandingTitleText">current amount outstanding</string>
+	<string name="currentAmountOutstandingTitleText">Loan amount outstanding</string>
 	
 	<string name="downPaymentHelpText">The amount of money given by the investor towards the purchase price of the investment</string>
 	
@@ -56,7 +56,7 @@
 	<string name="initialYearlyGeneralExpensesHelpText">This is the expected yearly amount to put aside for general expenses necessary to keep the investment in good repair without losing value.  Examples may include having to repair the HVAC, paying for lawn care, retaining a management company or handyman, or other general yearly expenses.</string>
 	
 	<string name="initialHomeInsuranceHelpText">This is the initial yearly cost of home insurance</string>
-	<string name="initialHomeInsuranceTitleText">Home Insurance</string>
+	<string name="initialHomeInsuranceTitleText">Initial home Insurance</string>
 	
 	<string name="localMunicipalFeesHelpText">These fees are yearly assessments on property owners for such things as environment fees, sewer fees, or other fees which are frequently included in the yearly property tax bill</string>
 	
@@ -181,52 +181,6 @@
 	<!-- Data table -->
 	<string name="defaultZeroPercentage">0%</string>
 	<string name="defaultZeroCurrency">$0.00</string>
-	<string name="yearDataTableItem">Year</string>
-	<string name="defaultStreetAddress">1234 Anywhere Street</string>
-	<string name="defaultCity">Memphis</string>
-	<string name="defaultState">Tennessee</string>
-	<string name="aterDataTableItem">Adjusted ATER</string>
-	<string name="atcfDataTableItem">After Tax Cash Flow</string>
-	<string name="npvDataTableItem">Net Present Value</string>
-	<string name="totalPurchaseValueDataTableItem">Total Purchase Value</string>
-	<string name="yearlyInterestRateDataTableItem">Yearly Interest Rate</string>
-	<string name="buildingValueDataTableItem">Building Value</string>
-	<string name="numOfCompPeriodsDataTableItem"># of compounding periods</string>
-	<string name="inflationRateDataTableItem">Inflation Rate</string>
-	<string name="streetAddressDataTableItem">Street Address</string>
-	<string name="cityDataTableITem">City</string>
-	<string name="stateDataTableItem">State</string>
-	<string name="estRentPaymentsDataTableItem">Estimated rent payments</string>
-	<string name="realEstateApprRateDataTableItem">Real Estate Appreciation Rate</string>
-	<string name="yearlyHomeInsuranceDataTableItem">Yearly Home Insurance</string>
-	<string name="propertyTaxDataTableItem">Property Tax</string>
-	<string name="localMuniFeesDataTableItem">Local Municipal Fees</string>
-	<string name="vacancyRateDataTableItem">Vacancy and Credit Loss Rate</string>
-	<string name="initialYearlyGenExpensesDataTableItem">Initial Yearly General Expenses</string>
-	<string name="marginalTaxRateDataTableITem">Marginal Tax Rate</string>
-	<string name="sellingBrokerRateDataTableItem">Selling Broker Rate</string>
-	<string name="generalSaleExpensesDataTableItem">General Sale Expenses</string>
-	<string name="reqRateOfReturnDataTableItem">Required Rate of Return</string>
-	<string name="fixUpCostsDataTableItem">Fix-up Costs</string>
-	<string name="closingCostsDataTableItem">Closing Costs</string>
-	<string name="downPaymentDataTableItem">Down Payment</string>
-	<string name="taxesDueAtSaleDataTableItem">Taxes due at sale</string>
-	<string name="sellingExpensesDataTableItem">Selling Expenses</string>
-	<string name="brokerCutDataTableItem">Broker cut at sale</string>
-	<string name="projectedHomeValueDataTableItem">Projected home value</string>
-	<string name="taxableIncomeDataTableItem">Yearly taxable income</string>
-	<string name="yearlyPrincipalPaidDataTableItem">Yearly principal paid</string>
-	<string name="currentAmountOutstandingDataTableItem">Yearly principal outstanding</string>
-	<string name="yearlyGeneralExpensesDataTableItem">Yearly general expenses</string>
-	<string name="yearlyIncomeDataTableItem">Yearly Income</string>
-	<string name="yearlyPropertyTaxDataTableItem">Yearly property tax</string>
-	<string name="yearlyMortgagePaymentDataTableItem">Yearly mortgage payment</string>
-	<string name="monthlyMortgagePaymentDataTableItem">Monthly mortgage payment</string>
-	<string name="accumulatedInterestPaidDataTableItem">Accumulated interest paid to date</string>
-	<string name="yearlyInterestPaidDataTableItem">Yearly interest paid</string>
-
-
-
 
 	<!-- taxes -->
 	<string name="TaxesScreenHeaderText">Taxes</string>
@@ -235,14 +189,13 @@
 		expected for the amount of adjusted gross income for the year
 	</string>
 	<string name="backButtonText">Back</string>
-	<string name="buildingValueTitleText">Building value</string>
-	<string name="propertyTaxTitleText">Property Tax</string>
-	<string name="localMunicipalFeesTitleText">Municipal Fees</string>
+	<string name="buildingValueTitleText">Initial building value</string>
+	<string name="propertyTaxTitleText">Initial property Tax</string>
+	<string name="localMunicipalFeesTitleText">Initial municipal Fees</string>
 	<string name="buildingValueDescriptionText">the value of the building, as opposed to the land
 		value.
 	</string>
-	<string name="propertyTaxDescriptionText">this coefficient is multipiled by the house value
-		to obtain the yearly property tax
+	<string name="propertyTaxDescriptionText">The dollar amount of the yearly property tax assessed on the property by the local jurisdiction
 	</string>
 	<string name="localMunicipalFeesDescriptionText">Fees assessed by the local municipality in addition
 		to the property tax (such as solid waste or water taxes)
@@ -307,7 +260,7 @@
 		the property- final fixup, any legal fees, etc., all in present value, when *you* sell it.  This is
 		not for when you purchase the property.
 	</string>
-	<string name="generalSaleExpensesTitleText">General sale expenses</string>
+	<string name="generalSaleExpensesTitleText">Initial general sale expenses</string>
 	<string name="sellingBrokerRateDescriptionText">The percentage of the sale price taken by the
 		selling broker
 	</string>
@@ -330,7 +283,7 @@
 	<string name="estimatedRentPaymentsDescriptionText">This is the initial rent payments expected for the
 		property
 	</string>
-	<string name="estimatedRentPaymentsTitleText">Estimated rent payments</string>
+	<string name="estimatedRentPaymentsTitleText">Initial estimated rent payments</string>
 
 	<string name="yearlyHomeInsuranceDescriptionText">This is the initial yearly cost of home insurance.
 	</string>
@@ -349,11 +302,14 @@
 		big-ticket repairs, management costs, minor repair costs, advertising,
 		and other miscellaneous expenses
 	</string>
-	<string name="initialYearlyGeneralExpensesTitleText">Yearly general expenses</string>
+	<string name="initialYearlyGeneralExpensesTitleText">initial yearly general expenses</string>
 	<string name="requiredRateOfReturnDescriptionText">The required rate of return is the minimum rate of
 		return, as a yearly percentage, expected as the average yearly return.
 		It is used in the net present value equation to bring all future
-		values into the present value.
+		values into the present value.  It is probably best to set this to the cost
+		of capital a.k.a. the interest rate on loans.  That is because you will want
+		to get a return on investment at least equal to what it takes to get the money
+		in the first place.
 	</string>
 	<string name="requiredRateOfReturnTitleText">Required rate of return</string>
 
@@ -376,7 +332,7 @@
 	<string name="saleActivityTitleText">Sale</string>
 	<string name="setDataValuesActivityTitleText">Set data values</string>
 	<string name="taxesActivityTitleText">Taxes</string>
-	<string name="savedDataBrowserActivityTitleText">Saved Data Browser - press and hold to delete</string>
+	<string name="savedDataBrowserActivityTitleText">Saved data browser</string>
 	<string name="mathCheckActivityTitleText">Math check screen</string>
 	<string name="databaseSearchActivityTitleText">Database Search</string>
 	<string name="saveCurrentValuesActivityTitleText">Save Current Values</string>
@@ -394,10 +350,14 @@
 	<string name="databaseItemTextViewDesc5">Down Payment: </string>
 	<string name="databaseItemTextViewDesc6">Required Rate of Return: </string>
 	<string name="databaseItemTextViewDesc7">Estimated rent: </string>
+	<string name="databaseItemTextViewDesc8">Comments: </string>
+		
+	
 	<string name="graphVisibilityCheckboxTitle">Graph visibility</string>
-	<string name="splashScreenEntryHelpText">Enter the total purchase value.  This application will then make assumptions of the other numbers and provide an analysis.  You can then modify the default values as necessary for a more precise result</string>
-	<string name="reapFeatureList">REAP has the following features: \n* ease of use \n* succinct representation of complex system \n* able to model with a variety of inputs</string>
+	<string name="splashScreenEntryHelpText">Enter the total purchase value for the investment.  This application will then make assumptions of the other numbers and provide an analysis.  You can then modify the default values as necessary for a more precise result</string>
+	<string name="reapFeatureList">REAP has the following features: \n* ease of use \n* succinct representation of complex investments \n* ability to model a variety of investment values \n* ability to alter values and see results in real time</string>
 	<string name="go">Go</string>
-	<string name="skip">Expert Mode</string>
+	<string name="skip">Expert - do not use value above</string>
+	<string name="deleteHelpMessageText">Press and hold on an entry to delete</string>
 	
 </resources>

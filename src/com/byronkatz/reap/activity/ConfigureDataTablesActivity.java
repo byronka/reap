@@ -1,7 +1,10 @@
 package com.byronkatz.reap.activity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -101,12 +104,16 @@ public class ConfigureDataTablesActivity extends Activity {
     TextView tempDataTablePropertyValue;
     ToggleButton tempDataTableToggleButton;
     TextView dataTablePropertyName;
-    ImageButton tempImageButton;
 
     LayoutInflater inflater = (LayoutInflater)ConfigureDataTablesActivity.this.getSystemService
         (Context.LAYOUT_INFLATER_SERVICE);
-    ValueEnum[] dataTableValues = ValueEnum.values();
 
+    List<ValueEnum> dataTableValues = new ArrayList<ValueEnum>(Arrays.asList(ValueEnum.values()));
+    //remove the following values, unneeded in the table
+    dataTableValues.remove(ValueEnum.COMMENTS);
+    dataTableValues.remove(ValueEnum.CITY);
+    dataTableValues.remove(ValueEnum.STATE_INITIALS);
+    dataTableValues.remove(ValueEnum.STREET_ADDRESS);
 
     //This is where we create the TableLayout
     //set alternate colors by row
@@ -144,9 +151,6 @@ public class ConfigureDataTablesActivity extends Activity {
 
       tempDataTableToggleButton = (ToggleButton) newTableRow.getChildAt(DataTable.TOGGLE_BUTTON_INDEX);
       tempDataTableToggleButton.setVisibility(View.VISIBLE);
-
-      tempImageButton = (ImageButton) newTableRow.getChildAt(DataTable.HELP_BUTTON_INDEX);
-      tempImageButton.setVisibility(View.GONE);
 
       /* set value based on what type of number it is, or string if 
        * applicable if it is saved to database, that 

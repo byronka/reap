@@ -200,23 +200,6 @@
                 </LinearLayout>
             </TabHost>
 
-            <!-- new stuff ends here -->
-            <!--
-                 <LinearLayout android:id="@+id/graphLinearLayout" android:layout_width="fill_parent" 
-				android:layout_height="0dp" android:orientation="vertical" android:layout_weight="0.60"> 
-				<com.byronkatz.reap.customview.AnalysisGraph android:layout_width="fill_parent" 
-				katz:graphType="NPV" android:id="@+id/npvFrameLayout" android:layout_height="100dp" 
-				/> <com.byronkatz.reap.customview.AnalysisGraph android:layout_width="fill_parent" 
-				android:layout_height="100dip" android:id="@+id/atcfFrameLayout" katz:graphType="ATCF" 
-				/> </LinearLayout>
-            -->
-
-
-            <!-- <TableLayout android:layout_height="0dp" android:id="@+id/dataTableLayout" -->
-            <!-- android:shrinkColumns="0" android:stretchColumns="1" -->
-            <!-- android:layout_width="fill_parent" android:gravity="clip_vertical" -->
-            <!-- android:layout_weight="0.40"> -->
-
             <TableLayout
                 android:id="@+id/dataTableLayout"
                 android:layout_width="fill_parent"
@@ -224,7 +207,7 @@
                 android:layout_weight="0.40"
                 android:gravity="clip_vertical"
                 android:shrinkColumns="0"
-                android:stretchColumns="2,3" >
+                android:stretchColumns="1,2" >
             </TableLayout>
         </LinearLayout>
     </ScrollView>

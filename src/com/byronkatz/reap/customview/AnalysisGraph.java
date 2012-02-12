@@ -49,7 +49,7 @@ public class AnalysisGraph extends View {
   private Integer graphTypeAttribute;
   private ValueEnum graphKeyValue;
 
-  private Paint graphLinetPaint;
+  private Paint graphLinePaint;
   private Paint textPaint;
   private Paint borderPaint;
   private Paint highlightPaint;
@@ -96,7 +96,7 @@ public class AnalysisGraph extends View {
     if (! isInEditMode()) {
 
       //set up defaults for the drawing - canvas size, paint color, stroke width.
-      graphLinetPaint = createPaint(Color.BLUE, GRAPH_LINE_STROKE_WIDTH, Paint.Style.STROKE, TEXT_SIZE);
+      graphLinePaint = createPaint(Color.BLUE, GRAPH_LINE_STROKE_WIDTH, Paint.Style.STROKE, TEXT_SIZE);
       textPaint    = createPaint(Color.WHITE, 0.0f, Paint.Style.STROKE, TEXT_SIZE);
       borderPaint = createPaint(Color.GRAY, 3.0f, Paint.Style.STROKE, TEXT_SIZE);
       highlightPaint = createPaint(Color.YELLOW, 4.0f, Paint.Style.STROKE, TEXT_SIZE);
@@ -197,14 +197,13 @@ public class AnalysisGraph extends View {
         xGraphValue = (marginWidthX +  xGraphCoefficient * (xValue - functionMinX));
         yGraphValue = (marginWidthY + yGraphCoefficient * (functionMaxY - yValue));
 
-        //draw the points on the graph
         if (xValue == currentYearHighlighted) {
           canvas.drawCircle(xGraphValue, yGraphValue, HIGHLIGHT_CIRCLE_RADIUS, highlightPaint);
         }
-        //        canvas.drawCircle(xGraphValue, yGraphValue, CIRCLE_RADIUS, graphCirclePaint);
 
+        //draw the points on the graph
         if (!isFirstPoint) {
-          canvas.drawLine(oldXGraphValue, oldYGraphValue, xGraphValue, yGraphValue, graphLinetPaint);
+          canvas.drawLine(oldXGraphValue, oldYGraphValue, xGraphValue, yGraphValue, graphLinePaint);
         }
         isFirstPoint = false;
         oldXGraphValue = xGraphValue;
@@ -225,7 +224,7 @@ public class AnalysisGraph extends View {
         startX = (float) GRAPH_MIN_X;
         stopX  = (float) graphMaxX;
         canvas.drawLine(startX, distFromMarginToXAxis, stopX, 
-            distFromMarginToXAxis, graphLinetPaint);
+            distFromMarginToXAxis, graphLinePaint);
         canvas.drawText(X_AXIS_STRING, (Float) (stopX - marginWidthX / 2), 
             distFromMarginToXAxis, textPaint);
       } 

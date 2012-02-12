@@ -64,8 +64,9 @@ public class GraphActivityFunctions {
   }
 
   public static void saveValueDialog(final GraphActivity graphActivity) {
+    
     AlertDialog.Builder builder = new AlertDialog.Builder(graphActivity);
-
+    
     builder.setPositiveButton("Add new entry", new DialogInterface.OnClickListener() {
 
       @Override
@@ -78,6 +79,8 @@ public class GraphActivityFunctions {
 
       }
     } );
+    
+    //following is so the "update" button only appears if there is a row to update
     Integer currentDataRow = dataController.getCurrentDatabaseRow();
     if ( currentDataRow != -1) {
     String message = "Current data row is " + currentDataRow;

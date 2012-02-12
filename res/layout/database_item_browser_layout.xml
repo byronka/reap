@@ -157,6 +157,24 @@
             android:layout_below="@+id/databaseItemTextViewLabel6"
             android:text="@string/databaseItemTextViewDesc7" >
         </TextView>
+
+        <TextView
+            android:id="@+id/databaseItemTextViewLabel8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/databaseItemTextViewLabel7"
+            android:text="@string/databaseItemTextViewDesc8" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/databaseItemTextView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/databaseItemTextViewLabel8"
+            android:text="No comment" />
+
     </RelativeLayout>
 
 </LinearLayout>

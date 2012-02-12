@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 	android:name="Data pages menu">
 	<item android:id="@+id/configureGraphPageMenuItem" android:title="@string/configureGraphMenuTitle"
-		android:icon="@drawable/icon" />
+		android:icon="@drawable/settings" />
 	<item android:id="@+id/databaseMenuItem" android:title="@string/savedLocationsMenuTitle"
-		android:icon="@drawable/icon" />
+		android:icon="@drawable/load_values" />
 	<item android:id="@+id/editValuesMenuItem" android:title="@string/editValuesMenuTitle"
-		android:icon="@drawable/icon" />
+		android:icon="@drawable/plus" />
 	<item android:id="@+id/saveCurrentValuesMenuItem" android:title="@string/saveCurrentValuesMenuTitle"
-		android:icon="@drawable/icon" />
+		android:icon="@drawable/save" />
 	<item android:id="@+id/checkMathMenuItem" android:title="@string/mathCheckMenuTitle"
-		android:icon="@drawable/icon" />
+		android:icon="@drawable/check_math" />
 </menu>

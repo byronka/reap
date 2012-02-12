@@ -35,7 +35,9 @@ public class SavedDataBrowserActivity extends ListActivity {
   @Override
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
-
+    setContentView(R.layout.saved_data_browser_container);
+    
+    
     contentValues = new ContentValues();
     cursor = dataController.getAllDatabaseValues();
     startManagingCursor(cursor);
@@ -52,7 +54,8 @@ public class SavedDataBrowserActivity extends ListActivity {
             ValueEnum.YEARLY_INTEREST_RATE.name(), 
             ValueEnum.DOWN_PAYMENT.name(), 
             ValueEnum.REQUIRED_RATE_OF_RETURN.name(),
-            ValueEnum.ESTIMATED_RENT_PAYMENTS.name()
+            ValueEnum.ESTIMATED_RENT_PAYMENTS.name(),
+            ValueEnum.COMMENTS.name()
             },                                          // Array of cursor columns to bind to.
             new int[] {R.id.databaseItemTextView0,
                        R.id.databaseItemTextView1, 
@@ -61,7 +64,9 @@ public class SavedDataBrowserActivity extends ListActivity {
                        R.id.databaseItemTextView4,
                        R.id.databaseItemTextView5,
                        R.id.databaseItemTextView6,
-                       R.id.databaseItemTextView7 });  // Parallel array of which template objects to bind to those columns.
+                       R.id.databaseItemTextView7,
+                       R.id.databaseItemTextView8,
+                       });  // Parallel array of which template objects to bind to those columns.
 
 
 

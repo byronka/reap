@@ -17,6 +17,7 @@ import com.byronkatz.reap.calculations.GeneralCalculations;
 public class DataController {
 
   //variable below is to hold the pointer to which set (division) of data we want.
+  private Integer currentYearSelected;
   private Integer currentRowIndex;
   private static Integer currentDivisionForWriting = 0;
   private static Integer currentDivisionForReading = 0;
@@ -332,6 +333,14 @@ public class DataController {
 
   public static void setDataChanged(Boolean dataChanged) {
     DataController.dataChanged = dataChanged;
+  }
+
+  public Integer getCurrentYearSelected() {
+    return currentYearSelected;
+  }
+
+  public void setCurrentYearSelected(Integer currentYearSelected) {
+    this.currentYearSelected = currentYearSelected;
   }
 
 
