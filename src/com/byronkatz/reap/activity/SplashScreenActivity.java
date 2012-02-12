@@ -38,8 +38,13 @@ public class SplashScreenActivity extends Activity {
       @Override
       public void onClick(View v) {
         
-        setAssumedValues(Utility.parseCurrency(splashScreenValueEntry.getText().toString()));
+        Float enteredValue = Utility.parseCurrency(splashScreenValueEntry.getText().toString());
         
+        if (enteredValue != 0) {
+          setAssumedValues(enteredValue);
+        }
+        
+        DataController.setDataChanged(true);
         Intent intent = new Intent(SplashScreenActivity.this, GraphActivity.class);
         startActivity(intent); 
       }
@@ -51,8 +56,8 @@ public class SplashScreenActivity extends Activity {
 
       @Override
       public void onClick(View v) {
-        DataController.setDataChanged(true);
         
+        DataController.setDataChanged(true);
         Intent intent = new Intent(SplashScreenActivity.this, GraphActivity.class);
         startActivity(intent); 
       }

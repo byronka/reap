@@ -65,7 +65,7 @@ public class GraphActivity extends Activity {
   Float deltaValueNumeric;
   Float currentValueNumeric;
   Float originalCurrentValueNumeric;
-  
+
   SharedPreferences sp;
 
   public static final int DIVISIONS_OF_VALUE_SLIDER = 40;
@@ -92,7 +92,7 @@ public class GraphActivity extends Activity {
     } else {
       isGraphVisible = true;
     }
-    
+
     GraphActivityFunctions.switchForMenuItem(item, GraphActivity.this, 
         getCurrentYearSelected(), isGraphVisible);
     return false;
@@ -105,7 +105,7 @@ public class GraphActivity extends Activity {
     if (requestCode == CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE) {
       dataTable.makeSelectedRowsVisible(dataController.getViewableDataTableRows(), valueToDataTableItemCorrespondence);
       isGraphVisible = data.getExtras().getBoolean(IS_GRAPH_VISIBLE, true);
-      
+
       if (isGraphVisible) {
         tabs.setVisibility(View.VISIBLE);
       } else {
@@ -146,13 +146,14 @@ public class GraphActivity extends Activity {
       dataController.setViewableDataTableRows(
           dataTable.restoreViewableDataTableRows(savedState));
     } else {
-    
-    sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-    dataController.setViewableDataTableRows(
-        dataTable.restoreViewableDataTableRows(sp));
-    isGraphVisible = sp.getBoolean(IS_GRAPH_VISIBLE, false);
+
+      sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+      dataController.setViewableDataTableRows(
+          dataTable.restoreViewableDataTableRows(sp));
+      isGraphVisible = sp.getBoolean(IS_GRAPH_VISIBLE, false);
+
     }
-    
+
     setContentView(R.layout.graph);
 
     Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods();
@@ -162,29 +163,29 @@ public class GraphActivity extends Activity {
     setupGraphs(currentYearMaximum);
     setupCurrentValueFields();
     valueToDataTableItemCorrespondence = dataTable.createDataTableItems(GraphActivity.this);
-    
+
     setupGraphTabs();
 
   }
-  
+
   @Override
   public void onPause() {
     super.onPause();
-    
+
     SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
 
     dataTable.saveGraphPageData(sharedPreferences, isGraphVisible);
   }
-  
+
   @Override
   public void onRestoreInstanceState(Bundle outState) {
-    
+
     super.onRestoreInstanceState(outState);
     dataController.setViewableDataTableRows(
         dataTable.restoreViewableDataTableRows(outState));
 
   }
-  
+
   @Override
   public void onSaveInstanceState(Bundle outState) {
 
@@ -210,16 +211,19 @@ public class GraphActivity extends Activity {
     spec.setContent(R.id.tab3);
     spec.setIndicator("ATER");
     tabs.addTab(spec);
-    
+
     spec = tabs.newTabSpec("MIRR");
     spec.setContent(R.id.tab4);
     spec.setIndicator("MIRR");
     tabs.addTab(spec);
 
-    tabs.setVisibility(View.GONE);
-    isGraphVisible = false;
+    if (isGraphVisible) {
+      tabs.setVisibility(View.VISIBLE);
+    } else {
+      tabs.setVisibility(View.GONE);
+    }
   }
-  
+
   private void updateYearDisplayAtSeekBar(Integer year) {
     yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(year));
 
@@ -384,8 +388,8 @@ public class GraphActivity extends Activity {
             Toast toast = Toast.makeText(GraphActivity.this, "new max value must be greater than current value", Toast.LENGTH_SHORT);
             toast.show();
           }
-          
-          
+
+
           GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
         }
       }
@@ -466,12 +470,12 @@ public class GraphActivity extends Activity {
       @Override
       public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-          Integer currentYearSelected = progress + 1;
-          updateYearDisplayAtSeekBar(currentYearSelected);
+        Integer currentYearSelected = progress + 1;
+        updateYearDisplayAtSeekBar(currentYearSelected);
 
-          dataTable.setDataTableItems(dataTableItems, currentYearSelected, valueToDataTableItemCorrespondence);
-          GraphActivityFunctions.highlightCurrentYearOnGraph(currentYearSelected, GraphActivity.this);
-          GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
+        dataTable.setDataTableItems(dataTableItems, currentYearSelected, valueToDataTableItemCorrespondence);
+        GraphActivityFunctions.highlightCurrentYearOnGraph(currentYearSelected, GraphActivity.this);
+        GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
       }
     });
   }
@@ -487,11 +491,11 @@ public class GraphActivity extends Activity {
     for (ValueEnum v : ValueEnum.values()) {
 
       vt = v.getType();
-      
+
       if (!(vt == ValueType.STRING) && (v.isSavedToDatabase())) {
         selectionValues.add(v);
       }
-      
+
       selectionValues.remove(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS);
     }
 
@@ -561,7 +565,7 @@ public class GraphActivity extends Activity {
 
       setDataChangedToggle(false);
     }
-    
+
     @Override
     protected void onPreExecute() {
 

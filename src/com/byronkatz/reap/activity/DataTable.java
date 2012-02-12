@@ -202,6 +202,7 @@ public class DataTable {
           vdtr.add(ve);
         }
       }
+      //following are the standards for newbies to the program
     } else {
       vdtr.add(ValueEnum.MONTHLY_MORTGAGE_PAYMENT);
       vdtr.add(ValueEnum.ACCUM_INTEREST);
