@@ -395,5 +395,9 @@
 	<string name="databaseItemTextViewDesc6">Required Rate of Return: </string>
 	<string name="databaseItemTextViewDesc7">Estimated rent: </string>
 	<string name="graphVisibilityCheckboxTitle">Graph visibility</string>
+	<string name="splashScreenEntryHelpText">Enter the total purchase value.  This application will then make assumptions of the other numbers and provide an analysis.  You can then modify the default values as necessary for a more precise result</string>
+	<string name="reapFeatureList">REAP has the following features: \n* ease of use \n* succinct representation of complex system \n* able to model with a variety of inputs</string>
+	<string name="go">Go</string>
+	<string name="skip">Expert Mode</string>
 	
 </resources>

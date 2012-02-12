@@ -52,6 +52,7 @@ public class GraphActivity extends Activity {
   DataTable dataTable;
   public static final String PREFS_NAME = "MyPrefsFile";
   private Boolean isGraphVisible;
+  public static final String IS_GRAPH_VISIBLE = "IS_GRAPH_VISIBLE";
   private TabHost tabs;
 
 
@@ -86,7 +87,14 @@ public class GraphActivity extends Activity {
   public boolean onOptionsItemSelected (MenuItem item) {
     super.onOptionsItemSelected(item);
 
-    GraphActivityFunctions.switchForMenuItem(item, GraphActivity.this, getCurrentYearSelected());
+    if (tabs.getVisibility() == View.GONE) {
+      isGraphVisible = false;
+    } else {
+      isGraphVisible = true;
+    }
+    
+    GraphActivityFunctions.switchForMenuItem(item, GraphActivity.this, 
+        getCurrentYearSelected(), isGraphVisible);
     return false;
   }
 
@@ -96,15 +104,13 @@ public class GraphActivity extends Activity {
 
     if (requestCode == CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE) {
       dataTable.makeSelectedRowsVisible(dataController.getViewableDataTableRows(), valueToDataTableItemCorrespondence);
-      isGraphVisible = data.getExtras().getBoolean("com.byronkatz.reap.activity.GraphVisibility", true);
+      isGraphVisible = data.getExtras().getBoolean(IS_GRAPH_VISIBLE, true);
       
       if (isGraphVisible) {
         tabs.setVisibility(View.VISIBLE);
       } else {
         tabs.setVisibility(View.GONE);
       }
-      //TODO
-//      WORK AREA WORK AREA WORK AREA WORK AREA WORK AREA WORK AREA 
     }
   }
 
@@ -141,9 +147,10 @@ public class GraphActivity extends Activity {
           dataTable.restoreViewableDataTableRows(savedState));
     } else {
     
-    sp = getSharedPreferences(PREFS_NAME, 0);
+    sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
     dataController.setViewableDataTableRows(
         dataTable.restoreViewableDataTableRows(sp));
+    isGraphVisible = sp.getBoolean(IS_GRAPH_VISIBLE, false);
     }
     
     setContentView(R.layout.graph);
@@ -157,29 +164,7 @@ public class GraphActivity extends Activity {
     valueToDataTableItemCorrespondence = dataTable.createDataTableItems(GraphActivity.this);
     
     setupGraphTabs();
-//    TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);        
-//    tabs.setup();
-//
-//    TabHost.TabSpec spec = tabs.newTabSpec("NPV");
-//    spec.setContent(R.id.tab1);
-//    spec.setIndicator("NPV");
-//    tabs.addTab(spec);
-//
-//    spec = tabs.newTabSpec("ATCF");
-//    spec.setContent(R.id.tab2);
-//    spec.setIndicator("ATCF");
-//    tabs.addTab(spec);
-//
-//    spec = tabs.newTabSpec("ATER");
-//    spec.setContent(R.id.tab3);
-//    spec.setIndicator("ATER");
-//    tabs.addTab(spec);
-//    
-//    spec = tabs.newTabSpec("MIRR");
-//    spec.setContent(R.id.tab4);
-//    spec.setIndicator("MIRR");
-//    tabs.addTab(spec);
-    
+
   }
   
   @Override
@@ -187,10 +172,8 @@ public class GraphActivity extends Activity {
     super.onPause();
     
     SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
-    SharedPreferences baseValuesPrefs = 
-        getSharedPreferences(RealEstateMarketAnalysisApplication.BASE_VALUES, 0);
 
-    dataTable.saveViewableDataTableRows(sharedPreferences);
+    dataTable.saveGraphPageData(sharedPreferences, isGraphVisible);
   }
   
   @Override
@@ -232,10 +215,9 @@ public class GraphActivity extends Activity {
     spec.setContent(R.id.tab4);
     spec.setIndicator("MIRR");
     tabs.addTab(spec);
-    
-    //TODO
-    //WORK AREA WORK AREA
+
     tabs.setVisibility(View.GONE);
+    isGraphVisible = false;
   }
   
   private void updateYearDisplayAtSeekBar(Integer year) {

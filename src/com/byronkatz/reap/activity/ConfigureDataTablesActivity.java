@@ -50,7 +50,6 @@ public class ConfigureDataTablesActivity extends Activity {
     configDataTableLayout = (TableLayout) findViewById(R.id.dataTableLayoutConfiguration);
     createDataTableConfiguration();
 
-    //    isGraphVisible = false;
     graphVisibilityCheckbox = (CheckBox) findViewById (R.id.graphVisibilityCheckbox);
     graphVisibilityCheckbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -59,7 +58,7 @@ public class ConfigureDataTablesActivity extends Activity {
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         isGraphVisible = isChecked;
         Intent data = new Intent();
-        data.putExtra("com.byronkatz.reap.activity.GraphVisibility", isGraphVisible);
+        data.putExtra(GraphActivity.IS_GRAPH_VISIBLE, isGraphVisible);
         setResult(RESULT_OK, data);
       }
     });
@@ -70,8 +69,7 @@ public class ConfigureDataTablesActivity extends Activity {
   public void onResume() {
     super.onResume();
 
-    SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-    isGraphVisible = sharedPreferences.getBoolean("IS_GRAPH_VISIBLE", false);
+    isGraphVisible = getIntent().getExtras().getBoolean(GraphActivity.IS_GRAPH_VISIBLE);
     graphVisibilityCheckbox.setChecked(isGraphVisible);
   }
 
@@ -93,9 +91,8 @@ public class ConfigureDataTablesActivity extends Activity {
     dataController.setViewableDataTableRows(viewableDataTableRows);
 
     SharedPreferences.Editor editor = getPreferences(0).edit();
-    editor.putBoolean("IS_GRAPH_VISIBLE", isGraphVisible);
+    editor.putBoolean(GraphActivity.IS_GRAPH_VISIBLE, isGraphVisible);
     editor.commit();
-    //WORK AREA WORK AREA WORK AREA WORK AREA WORK AREA WORK AREA WORK AREA 
   }
 
   private void createDataTableConfiguration() {

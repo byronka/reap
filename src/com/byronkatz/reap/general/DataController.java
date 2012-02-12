@@ -39,7 +39,7 @@ public class DataController {
 
   public DataController(Context context, SharedPreferences sp, Resources resources) {
 
-    this.resources = resources;
+    DataController.resources = resources;
     databaseAdapter = new DatabaseAdapter(context);
     numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
     multiDivisionNumericValues = new HashMap<Integer, Map<Integer, Map<ValueEnum, Float>>>();

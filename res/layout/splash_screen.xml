@@ -1,13 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Button xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/splashScreenButton"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/splashScreenLayout"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:contentDescription="@string/helpButtonContentDescription"
-    android:src="@drawable/arc"
-    android:text="@string/realEstateMarketAnalysisSplashPageDescription"
-    android:background="@drawable/arc"
-    android:textColor="@android:color/white" 
-    android:textSize="40dip">
+    android:layout_height="wrap_content"
+    android:background="@drawable/input_background" >
 
-</Button>
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/realEstateMarketAnalysisSplashPageDescription"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:text="@string/splashScreenEntryHelpText" />
+
+    <EditText
+        android:id="@+id/splashScreenValueEntry"
+        android:layout_width="200dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:inputType="number"
+        android:text="$0" />
+
+    <Button
+        android:id="@+id/splashScreenGoButton"
+        android:layout_width="100dip"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/splashScreenValueEntry"
+        android:layout_below="@+id/splashScreenValueEntry"
+        android:text="@string/go" />
+
+    <Button
+        android:id="@+id/splashScreenSkipButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/splashScreenValueEntry"
+        android:layout_below="@+id/splashScreenValueEntry"
+        android:layout_toRightOf="@+id/splashScreenGoButton"
+        android:text="@string/skip" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/splashScreenGoButton"
+        android:layout_centerHorizontal="true"
+        android:text="@string/reapFeatureList" />
+
+</RelativeLayout>

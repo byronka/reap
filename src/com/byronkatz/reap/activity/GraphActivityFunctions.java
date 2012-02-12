@@ -25,7 +25,8 @@ public class GraphActivityFunctions {
   private static DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
 
-  static void switchForMenuItem(MenuItem item, GraphActivity graphActivity, int currentYear) {
+  static void switchForMenuItem(MenuItem item, GraphActivity graphActivity,
+      int currentYear, boolean isGraphVisible) {
     Intent intent = null;
     //which item is selected?
     switch (item.getItemId()) {
@@ -33,6 +34,7 @@ public class GraphActivityFunctions {
     case R.id.configureGraphPageMenuItem:
 
       intent = new Intent(graphActivity, ConfigureDataTablesActivity.class);
+      intent.putExtra("IS_GRAPH_VISIBLE", isGraphVisible);
       graphActivity.startActivityForResult(intent, GraphActivity.CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE);
       break;
     case R.id.editValuesMenuItem:

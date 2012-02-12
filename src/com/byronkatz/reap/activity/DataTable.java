@@ -29,15 +29,15 @@ public class DataTable {
   public static final int HELP_BUTTON_INDEX = 1;
   public static final int PROPERTY_VALUE_INDEX = 2;
   public static final int TOGGLE_BUTTON_INDEX = 3;
-  
+
   GraphActivity graphActivity;
   private final DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
-  
+
   public DataTable(GraphActivity graphActivity) {
     this.graphActivity = graphActivity;
   }
-  
+
   public void makeSelectedRowsVisible(Set<ValueEnum> values, Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence) {
     TableRow tempTableRow;
 
@@ -49,18 +49,18 @@ public class DataTable {
         tempTableRow.setVisibility(View.GONE);
       }
     }
-    
+
     colorTheDataTables();
 
   }
-  
+
   public void colorTheDataTables() {
     TableLayout dataTableLayout = (TableLayout) graphActivity.findViewById(R.id.dataTableLayout);
     Set<ValueEnum> viewableDataTableRows = dataController.getViewableDataTableRows();
 
     setColorDataTableRows(dataTableLayout, viewableDataTableRows);
   }
-  
+
   public Map<ValueEnum, TableRow> createDataTableItems(GraphActivity graphActivity) {
 
 
@@ -83,10 +83,10 @@ public class DataTable {
 
       //set up the correspondence between the table index and the valueEnums
       TableRow newTableRow = (TableRow) inflater.inflate(R.layout.data_table_tablerow, null);
-      
+
       //make it invisible to start
       newTableRow.setVisibility(View.GONE);
-      
+
       valueToDataTableItemCorrespondence.put(ve, newTableRow);
 
       dataTablePropertyName = (TextView) newTableRow.getChildAt(PROPERTY_LABEL_INDEX);
@@ -96,7 +96,7 @@ public class DataTable {
 
       helpButton = (ImageButton) newTableRow.getChildAt(HELP_BUTTON_INDEX);
       helpButton.setOnClickListener(new HelpButtonOnClickWrapper(ve));
-      
+
       dataTableLayout.addView(newTableRow);
     } //end of main for loop to set dataTableItems
 
@@ -104,7 +104,7 @@ public class DataTable {
     return valueToDataTableItemCorrespondence;
 
   }
-  
+
   public void setColorDataTableRows(TableLayout dataTableLayout, Set<ValueEnum> viewableDataTableRows) {
 
     boolean alternateColor = true;
@@ -133,8 +133,8 @@ public class DataTable {
       }
     }
   }
-  
-  
+
+
   public void setDataTableValueByInteger(TextView t, ValueEnum ve, Integer year) {
     if (ve.isVaryingByYear()) {
       t.setText(String.valueOf(dataController.getValueAsFloat(ve, year).intValue()));
@@ -159,7 +159,7 @@ public class DataTable {
     }
   }
 
-    public void saveViewableDataTableRows(Bundle b) {
+  public void saveViewableDataTableRows(Bundle b) {
 
     Set<ValueEnum> vdtr = dataController.getViewableDataTableRows(); 
     String[] stringArray = new String[vdtr.size()];
@@ -174,34 +174,49 @@ public class DataTable {
 
 
   }
-  
-  public void saveViewableDataTableRows (SharedPreferences sp) {
-    
+
+  public void saveGraphPageData (SharedPreferences sp, Boolean isGraphVisible) {
+
     SharedPreferences.Editor editor = sp.edit();
-    
+
     Set<ValueEnum> vdtr = dataController.getViewableDataTableRows(); 
-    
+
     for (ValueEnum ve : vdtr) {
       editor.putBoolean(ve.name(), true);
     }
 
+    editor.putBoolean("IS_GRAPH_VISIBLE", isGraphVisible);
+
     editor.commit();
   }
 
-  public Set<ValueEnum> restoreViewableDataTableRows(SharedPreferences sp) {
-    
+  public Set<ValueEnum> restoreViewableDataTableRows(final SharedPreferences sp) {
+
     Set<ValueEnum> vdtr = new HashSet<ValueEnum>();
     Map<String, ?> entries = sp.getAll();
-    
-    for (ValueEnum ve : ValueEnum.values()) {
-      if (entries.containsKey(ve.name())) {
-        vdtr.add(ve);
+
+    if (entries.size() != 0) {
+
+      for (ValueEnum ve : ValueEnum.values()) {
+        if (entries.containsKey(ve.name())) {
+          vdtr.add(ve);
+        }
       }
+    } else {
+      vdtr.add(ValueEnum.MONTHLY_MORTGAGE_PAYMENT);
+      vdtr.add(ValueEnum.ACCUM_INTEREST);
+      vdtr.add(ValueEnum.TOTAL_PURCHASE_VALUE);
+      vdtr.add(ValueEnum.YEARLY_INTEREST_RATE);
+      vdtr.add(ValueEnum.BROKER_CUT_OF_SALE);
+      vdtr.add(ValueEnum.PROJECTED_HOME_VALUE);
+      vdtr.add(ValueEnum.YEARLY_PRINCIPAL_PAID);
+      vdtr.add(ValueEnum.YEARLY_INTEREST_PAID);
+      
     }
 
     return vdtr;
   }
-  
+
   public Set<ValueEnum> restoreViewableDataTableRows(Bundle b) {
 
     Set<ValueEnum> tempSet = new HashSet<ValueEnum>();
@@ -214,7 +229,7 @@ public class DataTable {
 
     return tempSet;
   }
-  
+
   public void setDataTableItems(ValueEnum[] items, Integer year, Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence ) {
 
 
@@ -256,5 +271,5 @@ public class DataTable {
 
   }
 
-  
+
 }
