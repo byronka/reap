@@ -51,7 +51,8 @@ public class GraphActivity extends Activity {
   TextView yearDisplayAtSeekBar;
   DataTable dataTable;
   public static final String PREFS_NAME = "MyPrefsFile";
-  private Boolean graphVisibility;
+  private Boolean isGraphVisible;
+  private TabHost tabs;
 
 
   private final DataController dataController = RealEstateMarketAnalysisApplication
@@ -95,7 +96,15 @@ public class GraphActivity extends Activity {
 
     if (requestCode == CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE) {
       dataTable.makeSelectedRowsVisible(dataController.getViewableDataTableRows(), valueToDataTableItemCorrespondence);
- //WORK AREA WORK AREA WORK AREA WORK AREA WORK AREA WORK AREA 
+      isGraphVisible = data.getExtras().getBoolean("com.byronkatz.reap.activity.GraphVisibility", true);
+      
+      if (isGraphVisible) {
+        tabs.setVisibility(View.VISIBLE);
+      } else {
+        tabs.setVisibility(View.GONE);
+      }
+      //TODO
+//      WORK AREA WORK AREA WORK AREA WORK AREA WORK AREA WORK AREA 
     }
   }
 
@@ -201,7 +210,7 @@ public class GraphActivity extends Activity {
   }
 
   private void setupGraphTabs() {
-    TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);        
+    tabs = (TabHost) findViewById(android.R.id.tabhost);        
     tabs.setup();
 
     TabHost.TabSpec spec = tabs.newTabSpec("NPV");
@@ -224,6 +233,8 @@ public class GraphActivity extends Activity {
     spec.setIndicator("MIRR");
     tabs.addTab(spec);
     
+    //TODO
+    //WORK AREA WORK AREA
     tabs.setVisibility(View.GONE);
   }
   

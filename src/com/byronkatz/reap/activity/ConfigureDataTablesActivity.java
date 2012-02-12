@@ -8,6 +8,8 @@ import java.util.Set;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +33,7 @@ public class ConfigureDataTablesActivity extends Activity {
   private Set<ValueEnum> viewableDataTableRows;
   Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence;
   private Boolean isGraphVisible;
-  
+  CheckBox graphVisibilityCheckbox;
 
   private DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
@@ -47,22 +49,30 @@ public class ConfigureDataTablesActivity extends Activity {
     valueToDataTableItemCorrespondence = new HashMap<ValueEnum, TableRow> ();
     configDataTableLayout = (TableLayout) findViewById(R.id.dataTableLayoutConfiguration);
     createDataTableConfiguration();
-    
-    isGraphVisible = savedState.getBoolean("GRAPH_VISIBILITY", false);
-    CheckBox graphVisibilityCheckbox = (CheckBox) findViewById (R.id.graphVisibilityCheckbox);
+
+    //    isGraphVisible = false;
+    graphVisibilityCheckbox = (CheckBox) findViewById (R.id.graphVisibilityCheckbox);
     graphVisibilityCheckbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-      
+
+
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if (isChecked) {
-          isGraphVisible = true;
-        } else {
-          isGraphVisible = false;
-        }
-        
+        isGraphVisible = isChecked;
+        Intent data = new Intent();
+        data.putExtra("com.byronkatz.reap.activity.GraphVisibility", isGraphVisible);
+        setResult(RESULT_OK, data);
       }
     });
-    
+
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+
+    SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+    isGraphVisible = sharedPreferences.getBoolean("IS_GRAPH_VISIBLE", false);
+    graphVisibilityCheckbox.setChecked(isGraphVisible);
   }
 
   @Override
@@ -81,7 +91,10 @@ public class ConfigureDataTablesActivity extends Activity {
       }
     }
     dataController.setViewableDataTableRows(viewableDataTableRows);
-    
+
+    SharedPreferences.Editor editor = getPreferences(0).edit();
+    editor.putBoolean("IS_GRAPH_VISIBLE", isGraphVisible);
+    editor.commit();
     //WORK AREA WORK AREA WORK AREA WORK AREA WORK AREA WORK AREA WORK AREA 
   }
 
@@ -134,7 +147,7 @@ public class ConfigureDataTablesActivity extends Activity {
 
       tempDataTableToggleButton = (ToggleButton) newTableRow.getChildAt(DataTable.TOGGLE_BUTTON_INDEX);
       tempDataTableToggleButton.setVisibility(View.VISIBLE);
-      
+
       tempImageButton = (ImageButton) newTableRow.getChildAt(DataTable.HELP_BUTTON_INDEX);
       tempImageButton.setVisibility(View.GONE);
 
