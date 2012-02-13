@@ -1,18 +1,18 @@
 package com.byronkatz.reap.activity;
 
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.EditText;
+import android.widget.TextView;
+
 import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.EditText;
-import android.widget.ImageButton;
 
 public class TaxesActivity extends Activity {
   
@@ -39,9 +39,9 @@ public class TaxesActivity extends Activity {
     marginalTaxRate.setOnFocusChangeListener(
         new OnFocusChangeListenerWrapper(ValueEnum.MARGINAL_TAX_RATE));
 
-    ImageButton marginalTaxRateHelpButton = 
-        (ImageButton)findViewById(R.id.marginalTaxRateHelpButton);
-    marginalTaxRateHelpButton.setOnClickListener(new OnClickListener() {
+    TextView marginalTaxRateTitle = 
+        (TextView)findViewById(R.id.marginalTaxRateTitle);
+    marginalTaxRateTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
@@ -55,9 +55,9 @@ public class TaxesActivity extends Activity {
         new OnFocusChangeListenerWrapper(ValueEnum.BUILDING_VALUE));
 
     
-    ImageButton buildingValueHelpButton = 
-        (ImageButton)findViewById(R.id.buildingValueHelpButton);
-    buildingValueHelpButton.setOnClickListener(new OnClickListener() {
+    TextView buildingValueTitle = 
+        (TextView)findViewById(R.id.buildingValueTitle);
+    buildingValueTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
@@ -70,9 +70,9 @@ public class TaxesActivity extends Activity {
     propertyTax.setOnFocusChangeListener(
         new OnFocusChangeListenerWrapper(ValueEnum.PROPERTY_TAX));
     
-    ImageButton propertyTaxHelpButton = 
-        (ImageButton)findViewById(R.id.propertyTaxHelpButton);
-    propertyTaxHelpButton.setOnClickListener(new OnClickListener() {
+    TextView propertyTaxTitle = 
+        (TextView)findViewById(R.id.propertyTaxTitle);
+    propertyTaxTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
@@ -85,9 +85,9 @@ public class TaxesActivity extends Activity {
     localMunicipalFees.setOnFocusChangeListener(
         new OnFocusChangeListenerWrapper(ValueEnum.LOCAL_MUNICIPAL_FEES));
     
-    ImageButton localMunicipalFeesHelpButton = 
-        (ImageButton)findViewById(R.id.localMunicipalFeesHelpButton);
-    localMunicipalFeesHelpButton.setOnClickListener(new OnClickListener() {
+    TextView localMunicipalFeesTitle = 
+        (TextView)findViewById(R.id.localMunicipalFeesTitle);
+    localMunicipalFeesTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {

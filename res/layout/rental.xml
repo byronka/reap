@@ -43,15 +43,6 @@
                 android:maxLength="20" >
             </EditText>
 
-            <ImageButton
-                android:id="@+id/estimatedRentPaymentsHelpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:background="@null"
-                android:contentDescription="@string/helpButtonContentDescription"
-                android:padding="3dip"
-                android:scaleType="fitCenter"
-                android:src="@drawable/question_mark" />
         </LinearLayout>
 
         <LinearLayout
@@ -78,15 +69,6 @@
                 android:maxLength="20" >
             </EditText>
 
-            <ImageButton
-                android:id="@+id/yearlyHomeInsuranceHelpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:background="@null"
-                android:contentDescription="@string/helpButtonContentDescription"
-                android:padding="3dip"
-                android:scaleType="fitCenter"
-                android:src="@drawable/question_mark" />
         </LinearLayout>
 
         <LinearLayout
@@ -113,15 +95,6 @@
                 android:maxLength="20" >
             </EditText>
 
-            <ImageButton
-                android:id="@+id/vacancyAndCreditLossHelpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:background="@null"
-                android:contentDescription="@string/helpButtonContentDescription"
-                android:padding="3dip"
-                android:scaleType="fitCenter"
-                android:src="@drawable/question_mark" />
         </LinearLayout>
 
         <LinearLayout
@@ -148,15 +121,6 @@
                 android:maxLength="20" >
             </EditText>
 
-            <ImageButton
-                android:id="@+id/fixupCostsHelpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:background="@null"
-                android:contentDescription="@string/helpButtonContentDescription"
-                android:padding="3dip"
-                android:scaleType="fitCenter"
-                android:src="@drawable/question_mark" />
         </LinearLayout>
 
         <LinearLayout
@@ -166,7 +130,7 @@
             android:baselineAligned="false" >
 
             <TextView
-                android:id="@+id/TextView02"
+                android:id="@+id/initialYearlyGeneralExpensesTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.50"
@@ -183,15 +147,6 @@
                 android:maxLength="20" >
             </EditText>
 
-            <ImageButton
-                android:id="@+id/initialYearlyGeneralExpensesHelpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:background="@null"
-                android:contentDescription="@string/helpButtonContentDescription"
-                android:padding="3dip"
-                android:scaleType="fitCenter"
-                android:src="@drawable/question_mark" />
         </LinearLayout>
 
         <LinearLayout
@@ -218,15 +173,6 @@
                 android:maxLength="20" >
             </EditText>
 
-            <ImageButton
-                android:id="@+id/requiredRateOfReturnHelpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:background="@null"
-                android:contentDescription="@string/helpButtonContentDescription"
-                android:padding="3dip"
-                android:scaleType="fitCenter"
-                android:src="@drawable/question_mark" />
         </LinearLayout>
 
         <ImageButton

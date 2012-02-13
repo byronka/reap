@@ -257,8 +257,8 @@ public class GraphActivity extends Activity {
     GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
     GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
 
-    valueSlider.setProgress(valueSlider.getMax() / 2);
-    DataController.setCurrentDivisionForReading(valueSlider.getMax() / 2);
+//    valueSlider.setProgress(valueSlider.getMax() / 2);
+//    DataController.setCurrentDivisionForReading(valueSlider.getMax() / 2);
 
     dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
 
@@ -473,7 +473,7 @@ public class GraphActivity extends Activity {
       @Override
       public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-        Integer currentYearSelected = progress + 1;
+        Integer currentYearSelected = getCurrentYearSelected();
         updateYearDisplayAtSeekBar(currentYearSelected);
 
         dataTable.setDataTableItems(dataTableItems, currentYearSelected, valueToDataTableItemCorrespondence);
@@ -486,8 +486,6 @@ public class GraphActivity extends Activity {
   private void setupValueSpinner() {
 
     Spinner valueSpinner = (Spinner) findViewById(R.id.valueSpinner);
-
-
     List<ValueEnum> selectionValues = new ArrayList<ValueEnum>();
 
     ValueEnum.ValueType vt;
@@ -569,6 +567,9 @@ public class GraphActivity extends Activity {
       Integer currentYearSelected = getCurrentYearSelected();
       dataTable.setDataTableItems(dataTableItems, currentYearSelected, valueToDataTableItemCorrespondence);
 
+      valueSlider.setProgress(valueSlider.getMax() / 2);
+      DataController.setCurrentDivisionForReading(valueSlider.getMax() / 2);
+      
       setDataChangedToggle(false);
     }
 

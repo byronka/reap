@@ -357,7 +357,8 @@
 	<string name="splashScreenEntryHelpText">Enter the total purchase value for the investment.  This application will then make assumptions of the other numbers and provide an analysis.  You can then modify the default values as necessary for a more precise result</string>
 	<string name="reapFeatureList">REAP has the following features: \n* ease of use \n* succinct representation of complex investments \n* ability to model a variety of investment values \n* ability to alter values and see results in real time</string>
 	<string name="go">Go</string>
-	<string name="skip">Expert - do not use value above</string>
+	<string name="skip">Expert - do not use above value</string>
 	<string name="deleteHelpMessageText">Press and hold on an entry to delete</string>
+	<string name="splashScreenRentCheckBox">Rental?</string>
 	
 </resources>

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
@@ -44,9 +44,9 @@ public class RentalActivity extends Activity {
 
     estimatedRentPayments.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.ESTIMATED_RENT_PAYMENTS));
 
-    ImageButton estimatedRentPaymentsHelpButton = 
-        (ImageButton)findViewById(R.id.estimatedRentPaymentsHelpButton);
-    estimatedRentPaymentsHelpButton.setOnClickListener(new OnClickListener() {
+    TextView estimatedRentPaymentsTitle = 
+        (TextView)findViewById(R.id.estimatedRentPaymentsTitle);
+    estimatedRentPaymentsTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
@@ -58,9 +58,9 @@ public class RentalActivity extends Activity {
 
     initialHomeInsurance.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.INITIAL_HOME_INSURANCE));
 
-    ImageButton yearlyHomeInsuranceHelpButton = 
-        (ImageButton)findViewById(R.id.yearlyHomeInsuranceHelpButton);
-    yearlyHomeInsuranceHelpButton.setOnClickListener(new OnClickListener() {
+    TextView initialHomeInsuranceTitle = 
+        (TextView)findViewById(R.id.initialHomeInsuranceTitle);
+    initialHomeInsuranceTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
@@ -72,9 +72,9 @@ public class RentalActivity extends Activity {
 
     vacancyAndCreditLoss.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE));
 
-    ImageButton vacancyAndCreditLossHelpButton = 
-        (ImageButton)findViewById(R.id.vacancyAndCreditLossHelpButton);
-    vacancyAndCreditLossHelpButton.setOnClickListener(new OnClickListener() {
+    TextView vacancyAndCreditLossTitle = 
+        (TextView)findViewById(R.id.vacancyAndCreditLossTitle);
+    vacancyAndCreditLossTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
@@ -86,9 +86,9 @@ public class RentalActivity extends Activity {
 
     fixupCosts.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.FIX_UP_COSTS));
 
-    ImageButton fixupCostsHelpButton =
-        (ImageButton)findViewById(R.id.fixupCostsHelpButton);
-    fixupCostsHelpButton.setOnClickListener(new OnClickListener() {
+    TextView fixupCostsTitle =
+        (TextView)findViewById(R.id.fixupCostsTitle);
+    fixupCostsTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
@@ -99,9 +99,9 @@ public class RentalActivity extends Activity {
 
     initialYearlyGeneralExpenses.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES));
 
-    ImageButton initialYearlyGeneralExpensesHelpButton =
-        (ImageButton)findViewById(R.id.initialYearlyGeneralExpensesHelpButton);
-    initialYearlyGeneralExpensesHelpButton.setOnClickListener(new OnClickListener() {
+    TextView initialYearlyGeneralExpensesTitle =
+        (TextView)findViewById(R.id.initialYearlyGeneralExpensesTitle);
+    initialYearlyGeneralExpensesTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
@@ -113,9 +113,9 @@ public class RentalActivity extends Activity {
 
     requiredRateOfReturn.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.REQUIRED_RATE_OF_RETURN));
 
-    ImageButton requiredRateOfReturnHelpButton = 
-        (ImageButton)findViewById(R.id.requiredRateOfReturnHelpButton);
-    requiredRateOfReturnHelpButton.setOnClickListener(new OnClickListener() {
+    TextView requiredRateOfReturnTitle = 
+        (TextView)findViewById(R.id.requiredRateOfReturnTitle);
+    requiredRateOfReturnTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {

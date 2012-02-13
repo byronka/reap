@@ -101,15 +101,14 @@ public class DataTable {
       
       dataTablePropertyName.setOnClickListener(new HelpButtonOnClickWrapper(ve));
 
-      //WORK AREA BEGIN
+      TextView dataTablePropertyValue = (TextView) newTableRow.getChildAt(PROPERTY_VALUE_INDEX); 
       
-      if (ve == ValueEnum.MONTHLY_RENT_FV) {
-        TextView dataTablePropertyValue = (TextView) newTableRow.getChildAt(PROPERTY_VALUE_INDEX); 
+      //if it is not saved to database, that means we calculated it. if non-calc'd, just provide help.
+      if (ve.isSavedToDatabase() == false) {
         dataTablePropertyValue.setOnClickListener(new CheckMathOnClickWrapper(ve));
+      } else {
+        dataTablePropertyValue.setOnClickListener(new HelpButtonOnClickWrapper(ve));
       }
-      
-      
-      //WORK AREA END
 
 
       dataTableLayout.addView(newTableRow);

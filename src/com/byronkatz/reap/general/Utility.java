@@ -99,6 +99,21 @@ public class Utility {
       } );
   }
   
+  public static void showAlertDialog(Context context, String message) {
+    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+      builder.setMessage(message);
+      String buttonText = context.getString(android.R.string.ok);
+      builder.setPositiveButton(buttonText, new DialogInterface.OnClickListener() {
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+
+          dialog.dismiss();
+        }
+      } );
+  }
+  
   public static void showToast(Activity activity, String message) {
     Toast toast = Toast.makeText(activity, message, Toast.LENGTH_SHORT);
     toast.show();

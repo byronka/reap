@@ -3,5 +3,14 @@
     <color name="data_table_row_color_alternate_a">#7f7f7f</color>
     <color name="data_table_row_color_alternate_b">#4c4c4c</color>
     <color name="data_table_row_text_color">#ffffff</color>
+    <color name="yellow01">#fdde23</color>
+    <color name="yellow02">#fff218</color>
+    <color name="grey01">#7f7f7f</color>
+    <color name="orange01">#ffa901</color>
+    <color name="orange02">#ff6501</color>
+    <color name="blue01">#0063bb</color>
+    <color name="blue02">#193982</color>
+    <color name="blue03">#181f65</color>
     
+            
 </resources>

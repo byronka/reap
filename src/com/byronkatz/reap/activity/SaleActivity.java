@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
@@ -35,9 +35,9 @@ public class SaleActivity extends Activity {
 
     generalSaleExpenses.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.GENERAL_SALE_EXPENSES));
     
-    ImageButton generalSaleExpensesHelpButton = 
-        (ImageButton)findViewById(R.id.generalSaleExpensesHelpButton);
-    generalSaleExpensesHelpButton.setOnClickListener(new OnClickListener() {
+    TextView generalSaleExpensesTitle = 
+        (TextView)findViewById(R.id.generalSaleExpensesTitle);
+    generalSaleExpensesTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
@@ -50,9 +50,9 @@ public class SaleActivity extends Activity {
   
     sellingBrokerRate.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.SELLING_BROKER_RATE));
     
-    ImageButton sellingBrokerRateHelpButton = 
-        (ImageButton)findViewById(R.id.sellingBrokerRateHelpButton);
-    sellingBrokerRateHelpButton.setOnClickListener(new OnClickListener() {
+    TextView sellingBrokerRateTitle = 
+        (TextView)findViewById(R.id.sellingBrokerRateTitle);
+    sellingBrokerRateTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {

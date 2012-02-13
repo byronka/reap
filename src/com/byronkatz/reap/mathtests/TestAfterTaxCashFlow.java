@@ -4,13 +4,14 @@ import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.ValueEnum;
 
-public class TestYearlyOutlay implements ItemTestInterface {
-  
-  public TestYearlyOutlay() {
+public class TestAfterTaxCashFlow implements ItemTestInterface {
+
+
+  public TestAfterTaxCashFlow() {
     
   }
 
-  private String getYearlyOutlay() {
+  private String getATCF() {
     // cashflowIn - cashflowOut
 
     StringBuffer s = new StringBuffer();
@@ -78,8 +79,7 @@ public class TestYearlyOutlay implements ItemTestInterface {
 
   @Override
   public String getValue() {
-    return getYearlyOutlay();
+    return getATCF();
   }
-
 
 }

@@ -42,15 +42,6 @@
                 android:maxLength="20" >
             </EditText>
 
-            <ImageButton
-                android:id="@+id/inflationRateHelpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:background="@null"
-                android:contentDescription="@string/helpButtonContentDescription"
-                android:padding="3dip"
-                android:scaleType="fitCenter"
-                android:src="@drawable/question_mark" />
         </LinearLayout>
 
         <LinearLayout
@@ -77,15 +68,6 @@
                 android:maxLength="20" >
             </EditText>
 
-            <ImageButton
-                android:id="@+id/realEstateAppreciationRateHelpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:background="@null"
-                android:contentDescription="@string/helpButtonContentDescription"
-                android:padding="3dip"
-                android:scaleType="fitCenter"
-                android:src="@drawable/question_mark" />
         </LinearLayout>
 
         <ImageButton

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.byronkatz.R;
@@ -81,7 +82,12 @@ public class SplashScreenActivity extends Activity {
     dataController.setValueAsFloat(ValueEnum.SELLING_BROKER_RATE, 0.06f);
     dataController.setValueAsFloat(ValueEnum.INFLATION_RATE, 0.03f);
     dataController.setValueAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE, 0.04f);
-    dataController.setValueAsFloat(ValueEnum.ESTIMATED_RENT_PAYMENTS, 0f);
+
+    if (((CheckBox) findViewById (R.id.splashScreenRentCheckBox)).isChecked()) {
+      dataController.setValueAsFloat(ValueEnum.ESTIMATED_RENT_PAYMENTS, totalValue * 0.005f);
+    } else {
+      dataController.setValueAsFloat(ValueEnum.ESTIMATED_RENT_PAYMENTS, 0f);
+    }
     dataController.setValueAsFloat(ValueEnum.INITIAL_HOME_INSURANCE, 1000f);
     dataController.setValueAsFloat(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE, 0.03f);
     dataController.setValueAsFloat(ValueEnum.FIX_UP_COSTS, 0f);

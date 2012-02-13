@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
@@ -35,9 +35,9 @@ public class FinancialEnvironmentActivity extends Activity {
    
     inflationRate.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.INFLATION_RATE));
     
-    ImageButton inflationRateHelpButton = 
-        (ImageButton)findViewById(R.id.inflationRateHelpButton);
-    inflationRateHelpButton.setOnClickListener(new OnClickListener() {
+    TextView inflationRateTitle = 
+        (TextView)findViewById(R.id.inflationRateTitle);
+    inflationRateTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
@@ -50,9 +50,9 @@ public class FinancialEnvironmentActivity extends Activity {
     
     realEstateAppreciationRate.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.REAL_ESTATE_APPRECIATION_RATE));
     
-    ImageButton realEstateAppreciationRateHelpButton = 
-        (ImageButton)findViewById(R.id.realEstateAppreciationRateHelpButton);
-    realEstateAppreciationRateHelpButton.setOnClickListener(new OnClickListener() {
+    TextView realEstateAppreciationRateTitle = 
+        (TextView)findViewById(R.id.realEstateAppreciationRateTitle);
+    realEstateAppreciationRateTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {

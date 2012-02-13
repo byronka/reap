@@ -9,8 +9,8 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.byronkatz.R;
 import com.byronkatz.reap.calculations.Mortgage;
@@ -44,7 +44,6 @@ public class LoanActivity extends Activity {
 
     //Hook up the components from the GUI to some variables here
     yearlyInterestRate = (EditText)findViewById(R.id.yearlyInterestRateEditText);
-    //    yearlyInterestRateHelpButton = (ImageButton)findViewById(R.id.yearlyInterestRateHelpButton);
     downPayment        = (EditText)findViewById(R.id.downPaymentEditText);
     loanTerm           = (Spinner) findViewById(R.id.numOfCompoundingPeriodsSpinner);
     totalPurchasePrice = (EditText)findViewById(R.id.totalPurchasePriceEditText);
@@ -72,24 +71,12 @@ public class LoanActivity extends Activity {
 
       }
     });
-    
-    ImageButton pmiCalcHelpButton = 
-        (ImageButton)findViewById(R.id.pmiCalcHelpButton);
-    pmiCalcHelpButton.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.calcPMIDescriptionText, 
-            R.string.calcPMITitleText, LoanActivity.this);
-      }
-    });
 
     yearlyInterestRate.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.YEARLY_INTEREST_RATE));
 
-    ImageButton yearlyInterestRateHelpButton = 
-        (ImageButton)findViewById(R.id.yearlyInterestRateHelpButton);
-    yearlyInterestRateHelpButton.setOnClickListener(new OnClickListener() {
+    TextView yearlyInterestRateTitle = 
+        (TextView)findViewById(R.id.yearlyInterestRateTitle);
+    yearlyInterestRateTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
@@ -102,9 +89,9 @@ public class LoanActivity extends Activity {
 
     downPayment.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.DOWN_PAYMENT));
 
-    ImageButton downPaymentHelpButton = 
-        (ImageButton)findViewById(R.id.downPaymentHelpButton);
-    downPaymentHelpButton.setOnClickListener(new OnClickListener() {
+    TextView downPaymentTitle = 
+        (TextView)findViewById(R.id.downPaymentTitle);
+    downPaymentTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
@@ -116,9 +103,9 @@ public class LoanActivity extends Activity {
 
     totalPurchasePrice.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.TOTAL_PURCHASE_VALUE));
 
-    ImageButton totalPurchasePriceHelpButton = 
-        (ImageButton)findViewById(R.id.totalPurchasePriceHelpButton);
-    totalPurchasePriceHelpButton.setOnClickListener(new OnClickListener() {
+    TextView totalPurchasePriceTitle = 
+        (TextView)findViewById(R.id.totalPurchasePriceTitle);
+    totalPurchasePriceTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
@@ -130,9 +117,9 @@ public class LoanActivity extends Activity {
 
     closingCosts.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.CLOSING_COSTS));
 
-    ImageButton closingCostsHelpButton = 
-        (ImageButton)findViewById(R.id.closingCostsHelpButton);
-    closingCostsHelpButton.setOnClickListener(new OnClickListener() {
+    TextView closingCostsTitle = 
+        (TextView)findViewById(R.id.closingCostsTitle);
+    closingCostsTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
@@ -168,25 +155,12 @@ public class LoanActivity extends Activity {
         // Do nothing.
       }
     });
-
-
-    ImageButton loanTermHelpButton = 
-        (ImageButton)findViewById(R.id.numOfCompoundingPeriodsHelpButton);
-    loanTermHelpButton.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.numOfCompoundingPeriodsDescriptionText, 
-            R.string.numOfCompoundingPeriodsTitleText, LoanActivity.this);
-      }
-    });
     
     privateMortgageInsurance.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.PRIVATE_MORTGAGE_INSURANCE));
     
-    ImageButton privateMortgageInsuranceHelpButton = 
-        (ImageButton)findViewById(R.id.privateMortgageInsuranceHelpButton);
-    privateMortgageInsuranceHelpButton.setOnClickListener(new OnClickListener() {
+    TextView privateMortgageInsuranceTitle = 
+        (TextView)findViewById(R.id.privateMortgageInsuranceTitle);
+    privateMortgageInsuranceTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
