@@ -4,7 +4,6 @@ package com.byronkatz.reap.general;
 import android.app.Application;
 import android.content.ContextWrapper;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 
 public class RealEstateMarketAnalysisApplication extends Application {
 
