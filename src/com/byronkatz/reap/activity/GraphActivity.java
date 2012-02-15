@@ -327,8 +327,9 @@ public class GraphActivity extends Activity {
             toast.show();
           } else {
             currentValueNumeric = tempValueNumeric;
+            recalcGraphPage();
+
           }
-          recalcGraphPage();
           GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
 
         }
