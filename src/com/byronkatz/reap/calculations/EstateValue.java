@@ -26,6 +26,11 @@ public class EstateValue {
     dc.setValueAsFloat(ValueEnum.PROJECTED_HOME_VALUE, futureEstateValue, year);
   }
 
+  /**
+   * returns current value for year 0 and future value for future years
+   * @param year current year.  0 is the year it was purchased
+   * @return the current or future value for the estate value
+   */
   public Float getEstateValue (final int year) {
     //if all the values are the same and the same year, use the cached data
     if ( !(   (cached == true) && (cachedYear == year)   ) ) {

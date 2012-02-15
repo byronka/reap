@@ -4,8 +4,8 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/dataPagesButtonsLinearLayout"
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dip"
@@ -16,6 +16,8 @@
             android:id="@+id/addressButton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
             android:background="@drawable/custom_button"
             android:text="@string/addressActivityTitleText"
             android:textColor="@android:color/white" >
@@ -25,6 +27,8 @@
             android:id="@+id/loanButton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/addressButton"
             android:background="@drawable/custom_button"
             android:text="@string/loanButtonText"
             android:textColor="@android:color/white" >
@@ -34,6 +38,8 @@
             android:id="@+id/taxesButton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/loanButton"
             android:background="@drawable/custom_button"
             android:text="@string/taxesButtonText"
             android:textColor="@android:color/white" >
@@ -43,6 +49,8 @@
             android:id="@+id/saleButton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/taxesButton"
             android:background="@drawable/custom_button"
             android:text="@string/saleButtonText"
             android:textColor="@android:color/white" >
@@ -52,6 +60,8 @@
             android:id="@+id/financialEnvironmentButton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/saleButton"
             android:background="@drawable/custom_button"
             android:text="@string/financialEnvironmentButtonText"
             android:textColor="@android:color/white" >
@@ -61,10 +71,12 @@
             android:id="@+id/rentalButton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/financialEnvironmentButton"
             android:background="@drawable/custom_button"
             android:text="@string/rentalButtonText"
             android:textColor="@android:color/white" >
         </Button>
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

@@ -57,6 +57,11 @@ public class Rental {
     return netYearlyIncome;
   }
   
+  /**
+   * Future value effective gross income (income - vacancy losses)
+   * @param year
+   * @return
+   */
   public Float getFVNetYearlyIncome(int year) {
     
     Integer compoundingPeriodDesired = (year - 1) * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;

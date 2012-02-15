@@ -3,6 +3,14 @@
 
 	<string name="app_name">Real Estate Analysis Processor</string>
 
+	<!-- Graph tab values -->
+	<string name="netPresentValueTabText">NPV</string>
+	<string name="atcfTabText">ATCF</string>
+	<string name="aterTabText">ATER</string>
+	<string name="modifiedInternalRateOfReturnTabText">MIRR</string>
+	<string name="capRateOnPurchaseValueTabText">CRPV</string>
+	<string name="capRateOnProjectedValueTabText">CRCV</string>
+				
 	<!-- Menu items -->
 	<string name="configureGraphMenuTitle">Configure graph page</string>
 	<string name="savedLocationsMenuTitle">Saved locations</string>
@@ -36,6 +44,13 @@
 		
 	<string name="buildingValueHelpText">The value of the building itself, not the total estate (which includes land)</string>
 		
+	<string name="capRateOnPurchaseValueHelpText">This is the cap rate based on the original purchase value of the investment.  The equation is yearly Net Operating Income (NOI) / purchase value</string>
+	<string name="capRateOnPurchaseValueTitleText">Cap rate (purchase value)</string>
+	
+	<string name="capRateOnProjectedValueHelpText">This is the cap rate based on the current estimated value of the investment.  The equation is yearly Net Operating Income (NOI) / current value</string>
+	<string name="capRateOnProjectedValueTitleText">Cap rate (current value)</string>
+		
+			
 	<string name="cityHelpText">City of investment</string>
 		
 	<string name="closingCostsHelpText">costs incurred at the time of purchase of investment, such as surveyor fees, home inspection, title insurance, termite bond, and any other miscellaneous fees *other* than the amount owed to the broker at the time of purchase</string>
@@ -132,6 +147,12 @@
     <string name="yearlyMunicipalFeesHelpText">The future value yearly municipal fees</string>
     <string name="yearlyMunicipalFeesTitleText">Yearly municipal fees</string>
 
+    <string name="yearlyOperatingExpensesHelpText">All expenses for the year except debt service (mortgage payment).  This includes property tax, management fees, insurance premiums, maintenance costs, utility fees, or other expenses made in the operation of the investment property</string>
+    <string name="yearlyOperatingExpensesTitleText">Yearly operating expenses</string>
+    
+    <string name="yearlyNetOperatingIncomeHelpText">The income for the year (rent) minus vacancy and credit losses, minus yearly operating expenses</string>
+    <string name="yearlyNetOperatingIncomeTitleText">Yearly net operating income</string>
+    
     <string name="yearlyOutlayHelpText">All expenses for the year - debt service, home insurance, property tax, municipal fees, general expenses (maintenance), and private mortgage insurance</string>
     <string name="yearlyOutlayTitleText">Yearly outlay</string>
     
@@ -144,6 +165,9 @@
 	<string name="yearlyPropertyTaxHelpText">The amount of property tax paid this year.  This application calculates each year\'s property tax by a future value equation using real estate appreciation as the rate of compounding</string>
 	<string name="yearlyPropertyTaxTitleText">Yearly property tax</string>
 	
+	<string name="yearlyTaxOnIncomeHelpText">Tax on the portion of income which is at the marginal tax rate, or in other words, the taxable income times the marginal tax rate</string>
+	<string name="yearlyTaxOnIncomeTitleText">Yearly tax on income</string>
+		    
 	
 	
 	<!-- entry page text -->

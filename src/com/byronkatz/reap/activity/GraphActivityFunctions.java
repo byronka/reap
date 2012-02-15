@@ -127,6 +127,12 @@ public class GraphActivityFunctions {
 
     graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.mirrFrameLayout);
     graph.invalidate();
+    
+    graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.crpvFrameLayout);
+    graph.invalidate();
+    
+    graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.crcvFrameLayout);
+    graph.invalidate();
   }
 
   static void highlightCurrentYearOnGraph(Integer currentYearHighlight, Activity activity) {
@@ -143,6 +149,12 @@ public class GraphActivityFunctions {
     graph.setCurrentYearHighlighted(currentYearHighlight);
 
     graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.mirrFrameLayout);
+    graph.setCurrentYearHighlighted(currentYearHighlight);
+    
+    graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.crpvFrameLayout);
+    graph.setCurrentYearHighlighted(currentYearHighlight);
+    
+    graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.crcvFrameLayout);
     graph.setCurrentYearHighlighted(currentYearHighlight);
   }
 

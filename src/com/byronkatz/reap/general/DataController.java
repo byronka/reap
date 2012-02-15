@@ -211,7 +211,8 @@ public class DataController {
     Float yValue;
 
     int yearsOfCompounding = getValueAsFloat(
-        ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue() / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
+        ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue() / 
+        GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
 
     for (int year = 1; year <= yearsOfCompounding; year++) {
       yValue = getValueAsFloat(graphKeyValue, year);

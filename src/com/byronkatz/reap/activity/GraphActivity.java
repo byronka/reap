@@ -202,22 +202,32 @@ public class GraphActivity extends Activity {
 
     TabHost.TabSpec spec = tabs.newTabSpec("NPV");
     spec.setContent(R.id.tab1);
-    spec.setIndicator("NPV");
+    spec.setIndicator(getText(R.string.netPresentValueTabText));
     tabs.addTab(spec);
 
     spec = tabs.newTabSpec("ATCF");
     spec.setContent(R.id.tab2);
-    spec.setIndicator("ATCF");
+    spec.setIndicator(getText(R.string.atcfTabText));
     tabs.addTab(spec);
 
     spec = tabs.newTabSpec("ATER");
     spec.setContent(R.id.tab3);
-    spec.setIndicator("ATER");
+    spec.setIndicator(getText(R.string.aterTabText));
     tabs.addTab(spec);
 
     spec = tabs.newTabSpec("MIRR");
     spec.setContent(R.id.tab4);
-    spec.setIndicator("MIRR");
+    spec.setIndicator(getText(R.string.modifiedInternalRateOfReturnTabText));
+    tabs.addTab(spec);
+    
+    spec = tabs.newTabSpec("CRPV");
+    spec.setContent(R.id.tab5);
+    spec.setIndicator(getText(R.string.capRateOnPurchaseValueTabText));
+    tabs.addTab(spec);
+    
+    spec = tabs.newTabSpec("CRCV");
+    spec.setContent(R.id.tab6);
+    spec.setIndicator(getText(R.string.capRateOnProjectedValueTabText));
     tabs.addTab(spec);
 
     if (isGraphVisible) {
@@ -257,8 +267,6 @@ public class GraphActivity extends Activity {
     GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
     GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
 
-//    valueSlider.setProgress(valueSlider.getMax() / 2);
-//    DataController.setCurrentDivisionForReading(valueSlider.getMax() / 2);
 
     dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
 
@@ -312,8 +320,14 @@ public class GraphActivity extends Activity {
         if (hasFocus) {
           Utility.setSelectionOnView(v, currentSliderKey);
         } else if (! hasFocus) {
-
-          currentValueNumeric = GraphActivityFunctions.parseEditText(currentValueEditText, currentSliderKey);
+          
+          Float tempValueNumeric = GraphActivityFunctions.parseEditText(currentValueEditText, currentSliderKey);
+          if (tempValueNumeric == currentValueNumeric) {
+            Toast toast = Toast.makeText(GraphActivity.this, "Enter a different number than the current", Toast.LENGTH_SHORT);
+            toast.show();
+          } else {
+            currentValueNumeric = tempValueNumeric;
+          }
           recalcGraphPage();
           GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
 
@@ -349,6 +363,9 @@ public class GraphActivity extends Activity {
             deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
             GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
             calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
+          } else if (tempMinValue == minValueNumeric) {
+            Toast toast = Toast.makeText(GraphActivity.this, "Enter a different number than the current", Toast.LENGTH_SHORT);
+            toast.show();
           } else {
             Toast toast = Toast.makeText(GraphActivity.this, "new min value must be less than current value", Toast.LENGTH_SHORT);
             toast.show();
@@ -387,6 +404,9 @@ public class GraphActivity extends Activity {
             deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
             GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
             calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
+          } else if (tempMaxValue == maxValueNumeric) {
+            Toast toast = Toast.makeText(GraphActivity.this, "Enter a different number than the current", Toast.LENGTH_SHORT);
+            toast.show();
           } else {
             Toast toast = Toast.makeText(GraphActivity.this, "new max value must be greater than current value", Toast.LENGTH_SHORT);
             toast.show();
@@ -563,7 +583,9 @@ public class GraphActivity extends Activity {
 
       progressDialog.dismiss();
       GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
+      GraphActivityFunctions.highlightCurrentYearOnGraph(getCurrentYearSelected(), GraphActivity.this);
 
+      
       Integer currentYearSelected = getCurrentYearSelected();
       dataTable.setDataTableItems(dataTableItems, currentYearSelected, valueToDataTableItemCorrespondence);
 

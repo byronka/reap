@@ -148,12 +148,24 @@ public class RentalUnitOwnership {
     final Float yearlyPrivateMortgageInsurance = mortgage.getYearlyPmi(year);
     final Float monthlyMortgagePayment = mortgage.getMonthlyMortgagePayment(year);
 
-    final Float yearlyOutlay = getFVPropertyTax(year) + getFVMunicipalFees(year) + 
-    		(monthlyMortgagePayment * 12) + rental.getFVYearlyGeneralExpenses(year) + 
+    final Float yearlyOperatingExpenses = getFVPropertyTax(year) + getFVMunicipalFees(year) + 
+    		 rental.getFVYearlyGeneralExpenses(year) + 
     		rental.getFVYearlyHomeInsurance(year) + yearlyPrivateMortgageInsurance;
+    dataController.setValueAsFloat(ValueEnum.YEARLY_OPERATING_EXPENSES, yearlyOperatingExpenses , year);
+    
+    final Float yearlyOutlay = yearlyOperatingExpenses + (monthlyMortgagePayment * 12);
+    
     dataController.setValueAsFloat(ValueEnum.YEARLY_OUTLAY, yearlyOutlay, year);
     
-    final Float yearlyBeforeTaxCashFlow = rental.getFVNetYearlyIncome(year) - yearlyOutlay;
+    final Float yearlyNetOperatingIncome = rental.getFVNetYearlyIncome(year) - yearlyOperatingExpenses;
+    dataController.setValueAsFloat(ValueEnum.YEARLY_NET_OPERATING_INCOME, yearlyNetOperatingIncome, year);
+    final Float yearlyBeforeTaxCashFlow = yearlyNetOperatingIncome - (monthlyMortgagePayment * 12);
+    
+    final Float capitalizationRateOnPurchaseValue = yearlyNetOperatingIncome / estateValue.getEstateValue(0);
+    dataController.setValueAsFloat(ValueEnum.CAP_RATE_ON_PURCHASE_VALUE, capitalizationRateOnPurchaseValue, year);
+    
+    final Float capitalizationRateOnProjectedValue = yearlyNetOperatingIncome / estateValue.getEstateValue(year);
+    dataController.setValueAsFloat(ValueEnum.CAP_RATE_ON_PROJECTED_VALUE, capitalizationRateOnProjectedValue, year);
     
     dataController.setValueAsFloat(
         ValueEnum.YEARLY_BEFORE_TAX_CASH_FLOW, yearlyBeforeTaxCashFlow, year);
@@ -166,6 +178,8 @@ public class RentalUnitOwnership {
     final Float taxableIncome = calculateTaxableIncome(year, monthCPModifier, prevYearMonthCPModifier, yearlyBeforeTaxCashFlow);
 
     final Float yearlyTaxes = taxableIncome * getMarginalTaxRate();
+    dataController.setValueAsFloat(ValueEnum.YEARLY_TAX_ON_INCOME, yearlyTaxes, year);
+    
     final Float yearlyAfterTaxCashFlow = yearlyBeforeTaxCashFlow - yearlyTaxes;
     dataController.setValueAsFloat(ValueEnum.ATCF, yearlyAfterTaxCashFlow, year);
 

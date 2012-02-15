@@ -29,6 +29,8 @@ public class AnalysisGraph extends View {
   private static final int ATER = 1;
   private static final int ATCF = 2;
   private static final int MIRR = 3;
+  private static final int CRPV = 4;
+  private static final int CRCV = 5;
 
   public static final Float GRAPH_MARGIN = 0.20f;
   public static final int GRAPH_MIN_X = 0;
@@ -139,6 +141,12 @@ public class AnalysisGraph extends View {
     case MIRR:
       graphKeyValue = ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN;
       break;
+    case CRPV:
+      graphKeyValue = ValueEnum.CAP_RATE_ON_PURCHASE_VALUE;
+      break;
+    case CRCV:
+      graphKeyValue = ValueEnum.CAP_RATE_ON_PROJECTED_VALUE;
+      break;
     default:
       System.err.println("You should not get here, in initView, in AnalysisGraph");
     }
@@ -244,9 +252,9 @@ public class AnalysisGraph extends View {
 
       //draw GraphName and current value
       bottom = marginWidthY + betweenMarginsOnY + (marginWidthY/2);
-
-      String currentValue = graphKeyValue.toString() + ": " + Utility.displayValue(
+      String currentValueNumerals = Utility.displayValue(
           dataController.getValueAsFloat(graphKeyValue, currentYearHighlighted), graphKeyValue);
+      String currentValue = graphKeyValue.toString() + ": " + currentValueNumerals;
       canvas.drawText(currentValue, minX, bottom, textPaint);
     }
     }
