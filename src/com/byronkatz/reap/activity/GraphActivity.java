@@ -322,7 +322,7 @@ public class GraphActivity extends Activity {
         } else if (! hasFocus) {
           
           Float tempValueNumeric = GraphActivityFunctions.parseEditText(currentValueEditText, currentSliderKey);
-          if (tempValueNumeric == currentValueNumeric) {
+          if (tempValueNumeric.equals(currentValueNumeric)) {
             Toast toast = Toast.makeText(GraphActivity.this, "Enter a different number than the current", Toast.LENGTH_SHORT);
             toast.show();
           } else {
@@ -359,15 +359,15 @@ public class GraphActivity extends Activity {
         } else if (! hasFocus) {
 
           Float tempMinValue = GraphActivityFunctions.parseEditText(minValueEditText, currentSliderKey);
-          if (tempMinValue < currentValueNumeric) {
+          if (tempMinValue.equals(minValueNumeric)) {
+            Toast toast = Toast.makeText(GraphActivity.this, "Enter a different number than the current", Toast.LENGTH_SHORT);
+            toast.show();
+          } else if (tempMinValue < currentValueNumeric) {
             minValueNumeric = tempMinValue;
             deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
             GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
             calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
-          } else if (tempMinValue == minValueNumeric) {
-            Toast toast = Toast.makeText(GraphActivity.this, "Enter a different number than the current", Toast.LENGTH_SHORT);
-            toast.show();
-          } else {
+          }  else {
             Toast toast = Toast.makeText(GraphActivity.this, "new min value must be less than current value", Toast.LENGTH_SHORT);
             toast.show();
           }
@@ -399,15 +399,16 @@ public class GraphActivity extends Activity {
         } else if (! hasFocus) {
 
           Float tempMaxValue = GraphActivityFunctions.parseEditText(maxValueEditText, currentSliderKey);
-          if (tempMaxValue > currentValueNumeric) {
+          
+          if (tempMaxValue.equals(maxValueNumeric)) {
+            Toast toast = Toast.makeText(GraphActivity.this, "Enter a different number than the current", Toast.LENGTH_SHORT);
+            toast.show();
+          } else if (tempMaxValue > currentValueNumeric) {
             maxValueNumeric = tempMaxValue;
 
             deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
             GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
             calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
-          } else if (tempMaxValue == maxValueNumeric) {
-            Toast toast = Toast.makeText(GraphActivity.this, "Enter a different number than the current", Toast.LENGTH_SHORT);
-            toast.show();
           } else {
             Toast toast = Toast.makeText(GraphActivity.this, "new max value must be greater than current value", Toast.LENGTH_SHORT);
             toast.show();

@@ -33,7 +33,6 @@
             android:name=".reap.activity.DataPagesActivity"
             android:label="@string/dataPagesActivityTitleText"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Dialog"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".reap.activity.AddressActivity"
