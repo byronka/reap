@@ -194,18 +194,20 @@ public class DataTable {
 
   }
 
-  public void saveGraphPageData (SharedPreferences sp, Boolean isGraphVisible) {
+  public void saveGraphPageData (SharedPreferences sp, Boolean isGraphVisible,
+      ValueEnum currentSliderKey) {
 
     SharedPreferences.Editor editor = sp.edit();
 
+    editor.clear();
     Set<ValueEnum> vdtr = dataController.getViewableDataTableRows(); 
 
     for (ValueEnum ve : vdtr) {
       editor.putBoolean(ve.name(), true);
     }
 
-    editor.putBoolean("IS_GRAPH_VISIBLE", isGraphVisible);
-
+    editor.putBoolean(GraphActivity.IS_GRAPH_VISIBLE, isGraphVisible);
+    editor.putString(GraphActivity.CURRENT_SLIDER_KEY, currentSliderKey.name());
     editor.commit();
   }
 

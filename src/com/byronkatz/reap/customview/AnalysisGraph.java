@@ -30,6 +30,7 @@ public class AnalysisGraph extends View {
   private static final int MIRR = 3;
   private static final int CRPV = 4;
   private static final int CRCV = 5;
+  private static final Float DIVISOR_MODIFIER = 0.75f;
 
   public static final Float GRAPH_MARGIN = 0.20f;
   public static final int GRAPH_MIN_X = 0;
@@ -37,6 +38,7 @@ public class AnalysisGraph extends View {
   public static final Float CIRCLE_RADIUS = 5.0f;
   public static final Float TEXT_SIZE = 14.0f;
   public static final Float GRAPH_LINE_STROKE_WIDTH = 3f;
+  public static final Float DIVISOR_LINE_STROKE_WIDTH = 1f;
   public static final Float CICLE_STROKE_WIDTH = 1.5f;
   public static final Float HIGHLIGHT_STROKE_WIDTH = 5F;
   public static final Float HIGHLIGHT_CIRCLE_RADIUS = 10.0f;
@@ -52,6 +54,7 @@ public class AnalysisGraph extends View {
   private ValueEnum graphKeyValue;
 
   private Paint graphLinePaint;
+  private Paint divisorPaint;
   private Paint textPaint;
   private Paint borderPaint;
   private Paint highlightPaint;
@@ -85,6 +88,7 @@ public class AnalysisGraph extends View {
   private Float minY;
   private Float bottom;
   private Float distFromMarginToXAxis;
+  private Float distFromMarginToDivisor;
   private Float startX;
   private Float stopX;
 
@@ -99,6 +103,7 @@ public class AnalysisGraph extends View {
 
       //set up defaults for the drawing - canvas size, paint color, stroke width.
       graphLinePaint = createPaint(Color.BLUE, GRAPH_LINE_STROKE_WIDTH, Paint.Style.STROKE, TEXT_SIZE);
+      divisorPaint = createPaint(Color.WHITE, DIVISOR_LINE_STROKE_WIDTH, Paint.Style.STROKE, TEXT_SIZE);
       textPaint    = createPaint(Color.WHITE, 0.0f, Paint.Style.STROKE, TEXT_SIZE);
       borderPaint = createPaint(Color.GRAY, 3.0f, Paint.Style.STROKE, TEXT_SIZE);
       highlightPaint = createPaint(Color.YELLOW, 4.0f, Paint.Style.STROKE, TEXT_SIZE);
@@ -156,125 +161,173 @@ public class AnalysisGraph extends View {
   public void onDraw(Canvas canvas) {
 
     AsyncTask.Status threadStatus = null;
-    
+
     if (GraphActivity.calculateInBackgroundTask != null) { 
       threadStatus = GraphActivity.calculateInBackgroundTask.getStatus();
 
-    
-    if (
-        (! isInEditMode()) 
-        && 
-        (threadStatus != AsyncTask.Status.RUNNING)
-        ) {
 
-      dataPoints = dataController.getPlotPoints(graphKeyValue);
-      graphMaxY = getMeasuredHeight();
-      graphMaxX = getMeasuredWidth();
+      if (
+          (! isInEditMode()) 
+          && 
+          (threadStatus != AsyncTask.Status.RUNNING)
+          ) {
 
-      
-      List<Float> tempList = Arrays.asList(dataPoints);
-      
-      functionMinY = Collections.min(tempList);
-      functionMaxY = Collections.max(tempList);
-      functionMinX = MINIMUM_YEAR;
-      functionMaxX = dataPoints.length;
-      deltaGraphY = graphMaxY - GRAPH_MIN_Y;
-      deltaGraphX = graphMaxX - GRAPH_MIN_X;
-      deltaFunctionY = functionMaxY - functionMinY;
-      Integer deltaFunctionX = functionMaxX - functionMinX;
-      marginWidthX = deltaGraphX * GRAPH_MARGIN;
-      marginWidthY = deltaGraphY * GRAPH_MARGIN;
-      //margin on left and right
-      twiceXMargin = marginWidthX * 2;
-      //for margin on top and bottom
-      twiceYMargin = marginWidthY * 2;
-      betweenMarginsOnX = deltaGraphX - twiceXMargin;
-      betweenMarginsOnY = deltaGraphY - twiceYMargin;
-      xGraphCoefficient = betweenMarginsOnX / deltaFunctionX;
-      yGraphCoefficient = betweenMarginsOnY / deltaFunctionY;
+        dataPoints = dataController.getPlotPoints(graphKeyValue);
+        graphMaxY = getMeasuredHeight();
+        graphMaxX = getMeasuredWidth();
 
-      xGraphValue = 0.0f;
-      yGraphValue = 0.0f;
 
-      isFirstPoint = true;
-      Float oldXGraphValue = 0.0f;
-      Float oldYGraphValue = 0.0f;
-      for (int i = 0; i < dataPoints.length; i++) {  
-        xValue = i + 1;
-        yValue = dataPoints[i];
-        xGraphValue = (marginWidthX +  xGraphCoefficient * (xValue - functionMinX));
-        yGraphValue = (marginWidthY + yGraphCoefficient * (functionMaxY - yValue));
+        List<Float> tempList = Arrays.asList(dataPoints);
 
-        if (xValue == currentYearHighlighted) {
-          canvas.drawCircle(xGraphValue, yGraphValue, HIGHLIGHT_CIRCLE_RADIUS, highlightPaint);
+        functionMinY = Collections.min(tempList);
+        functionMaxY = Collections.max(tempList);
+        functionMinX = MINIMUM_YEAR;
+        functionMaxX = dataPoints.length;
+        deltaGraphY = graphMaxY - GRAPH_MIN_Y;
+        deltaGraphX = graphMaxX - GRAPH_MIN_X;
+        deltaFunctionY = functionMaxY - functionMinY;
+        Integer deltaFunctionX = functionMaxX - functionMinX;
+        marginWidthX = deltaGraphX * GRAPH_MARGIN;
+        marginWidthY = deltaGraphY * GRAPH_MARGIN;
+        //margin on left and right
+        twiceXMargin = marginWidthX * 2;
+        //for margin on top and bottom
+        twiceYMargin = marginWidthY * 2;
+        betweenMarginsOnX = deltaGraphX - twiceXMargin;
+        betweenMarginsOnY = deltaGraphY - twiceYMargin;
+
+        //following values set ratio between actual (business) values and graph (pixel-based) values
+        xGraphCoefficient = betweenMarginsOnX / deltaFunctionX;
+        yGraphCoefficient = betweenMarginsOnY / deltaFunctionY;
+
+        xGraphValue = 0.0f;
+        yGraphValue = 0.0f;
+
+        isFirstPoint = true;
+        Float oldXGraphValue = 0.0f;
+        Float oldYGraphValue = 0.0f;
+        for (int i = 0; i < dataPoints.length; i++) {  
+          xValue = i + 1;
+          yValue = dataPoints[i];
+          xGraphValue = (marginWidthX +  xGraphCoefficient * (xValue - functionMinX));
+          yGraphValue = (marginWidthY + yGraphCoefficient * (functionMaxY - yValue));
+
+          if (xValue == currentYearHighlighted) {
+            canvas.drawCircle(xGraphValue, yGraphValue, HIGHLIGHT_CIRCLE_RADIUS, highlightPaint);
+          }
+
+          //draw the points on the graph
+          if (!isFirstPoint) {
+            //          Log.d(getClass().getName(), "xValue: " + xValue + " xGraphValue: " + xGraphValue +  " oldXGraphValue: " +
+            //              oldXGraphValue + " yGraphValue: " + yGraphValue +  " oldYGraphValue: " + oldYGraphValue );
+            canvas.drawLine(oldXGraphValue, oldYGraphValue, xGraphValue, yGraphValue, graphLinePaint);
+          }
+          isFirstPoint = false;
+
+
+          oldXGraphValue = xGraphValue;
+          oldYGraphValue = yGraphValue;
+
+
         }
 
-        //draw the points on the graph
-        if (!isFirstPoint) {
-//          Log.d(getClass().getName(), "xValue: " + xValue + " xGraphValue: " + xGraphValue +  " oldXGraphValue: " +
-//              oldXGraphValue + " yGraphValue: " + yGraphValue +  " oldYGraphValue: " + oldYGraphValue );
-          canvas.drawLine(oldXGraphValue, oldYGraphValue, xGraphValue, yGraphValue, graphLinePaint);
+        //draw the frame
+        Rect graphFrameRect = new Rect(GRAPH_MIN_X,GRAPH_MIN_Y, 
+            graphMaxX, graphMaxY);
+        canvas.drawRect(graphFrameRect, borderPaint);
+
+
+        //draw the 0 X-axis if the graph passes it.
+        //if the x-axis is between function max and min
+        if (functionMaxY > 0 && functionMinY < 0) {
+          drawZeroAxis(canvas);
+          drawPositiveDivisors(canvas);
+          drawNegativeDivisors(canvas);
+          //if max and min are positive
+        }  else if (functionMaxY > 0 && functionMinY > 0) {
+          drawPositiveDivisors(canvas);
+          //if max and min are negative
+        } else if (functionMaxY < 0 && functionMinY < 0) {
+          drawNegativeDivisors(canvas);
         }
-        isFirstPoint = false;
+
         
+        //draw top number text
+        maxYString = Utility.displayValue (functionMaxY, graphKeyValue);
+        maxX = (Float) marginWidthX / 4;
+        maxY = (Float) marginWidthY;
+        canvas.drawText(maxYString, maxX, maxY, textPaint);
 
-        oldXGraphValue = xGraphValue;
-        oldYGraphValue = yGraphValue;
- 
+        //draw bottom number text
+        minYString = Utility.displayValue (functionMinY, graphKeyValue);
+        minX = (Float) marginWidthX / 4;
+        minY = (Float) (marginWidthY + betweenMarginsOnY);
+        canvas.drawText(minYString, minX, minY, textPaint);
 
+        //draw GraphName and current value
+        bottom = marginWidthY + betweenMarginsOnY + (marginWidthY/2);
+        String currentValueNumerals = Utility.displayValue(
+            dataController.getValueAsFloat(graphKeyValue, currentYearHighlighted), graphKeyValue);
+        String currentValue = graphKeyValue.toString() + ": " + currentValueNumerals;
+        canvas.drawText(currentValue, minX, bottom, textPaint);
       }
-
-      //draw the frame
-      Rect graphFrameRect = new Rect(GRAPH_MIN_X,GRAPH_MIN_Y, 
-          graphMaxX, graphMaxY);
-      canvas.drawRect(graphFrameRect, borderPaint);
-
-
-      //draw the 0 X-axis if the graph passes it.
-      //if the x-axis is between function max and min
-      if (functionMaxY > 0 && functionMinY < 0) {
-        distFromMarginToXAxis = (marginWidthY + (yGraphCoefficient * functionMaxY));
-        startX = (float) GRAPH_MIN_X;
-        stopX  = (float) graphMaxX;
-        canvas.drawLine(startX, distFromMarginToXAxis, stopX, 
-            distFromMarginToXAxis, graphLinePaint);
-        canvas.drawText(X_AXIS_STRING, (Float) (stopX - marginWidthX / 2), 
-            distFromMarginToXAxis, textPaint);
-      } 
-      
-      //WORK WORK
-//      Float divisorLine = deltaFunctionY / 2
-//        distFromMarginToXAxis = (marginWidthY + (yGraphCoefficient * functionMaxY));
-//        startX = (float) GRAPH_MIN_X;
-//        stopX  = (float) graphMaxX;
-//        canvas.drawLine(startX, distFromMarginToXAxis, stopX, 
-//            distFromMarginToXAxis, graphLinePaint);
-//        canvas.drawText(X_AXIS_STRING, (Float) (stopX - marginWidthX / 2), 
-//            distFromMarginToXAxis, textPaint);
-
-      //WORK ENDS
-
-
-      //draw top number text
-      maxYString = Utility.displayValue (functionMaxY, graphKeyValue);
-      maxX = (Float) marginWidthX / 4;
-      maxY = (Float) marginWidthY;
-      canvas.drawText(maxYString, maxX, maxY, textPaint);
-
-      //draw bottom number text
-      minYString = Utility.displayValue (functionMinY, graphKeyValue);
-      minX = (Float) marginWidthX / 4;
-      minY = (Float) (marginWidthY + betweenMarginsOnY);
-      canvas.drawText(minYString, minX, minY, textPaint);
-
-      //draw GraphName and current value
-      bottom = marginWidthY + betweenMarginsOnY + (marginWidthY/2);
-      String currentValueNumerals = Utility.displayValue(
-          dataController.getValueAsFloat(graphKeyValue, currentYearHighlighted), graphKeyValue);
-      String currentValue = graphKeyValue.toString() + ": " + currentValueNumerals;
-      canvas.drawText(currentValue, minX, bottom, textPaint);
     }
+  }
+
+  private void drawPositiveDivisors(Canvas canvas) {
+
+    //    following creates the modulo 10 divisors between the current max and min
+    Float baseDivisorLine = (float) Math.pow(10, Math.floor(Math.log10(deltaFunctionY * DIVISOR_MODIFIER)));
+    startX = (float) graphMaxX - 150;
+    stopX  = (float) graphMaxX;
+
+
+    for (int i = 1; (baseDivisorLine * i) < functionMaxY; i++ ) {
+
+      Float divisorLineValue = baseDivisorLine * i;
+
+      //margin width plus (functionMaxY * graphcoefficient) takes us to the x-axis.  Go up from there.
+      distFromMarginToDivisor = (marginWidthY + (yGraphCoefficient * (functionMaxY - divisorLineValue)));
+
+      canvas.drawLine(startX, distFromMarginToDivisor, stopX, 
+          distFromMarginToDivisor, divisorPaint);
+      canvas.drawText(divisorLineValue.toString(), (Float) startX, 
+          distFromMarginToDivisor, textPaint);
     }
+  }
+  
+  private void drawNegativeDivisors(Canvas canvas) {
+
+    //    following creates the modulo 10 divisors between the current max and min
+    Float baseDivisorLine = (float) Math.pow(10, Math.floor(Math.log10(deltaFunctionY * DIVISOR_MODIFIER)));
+    baseDivisorLine = -baseDivisorLine;
+    startX = (float) graphMaxX - 150;
+    stopX  = (float) graphMaxX;
+
+
+    for (int i = 1; (baseDivisorLine * i) > functionMinY; i++ ) {
+
+      Float divisorLineValue = baseDivisorLine * i;
+
+      //margin width plus (functionMaxY * graphcoefficient) takes us to the x-axis.  Go down from there.
+      distFromMarginToDivisor = (marginWidthY + (yGraphCoefficient * (functionMaxY - divisorLineValue)));
+
+      canvas.drawLine(startX, distFromMarginToDivisor, stopX, 
+          distFromMarginToDivisor, divisorPaint);
+      canvas.drawText(divisorLineValue.toString(), (Float) startX, 
+          distFromMarginToDivisor, textPaint);
+    }
+  }
+
+  private void drawZeroAxis(Canvas canvas) {
+    //following is the distance from max value down to the zero line (the x-axis)
+    distFromMarginToXAxis = (marginWidthY + (yGraphCoefficient * functionMaxY));
+    startX = (float) GRAPH_MIN_X;
+    stopX  = (float) graphMaxX;
+    canvas.drawLine(startX, distFromMarginToXAxis, stopX, 
+        distFromMarginToXAxis, graphLinePaint);
+    canvas.drawText(X_AXIS_STRING, (Float) (stopX - marginWidthX / 2), 
+        distFromMarginToXAxis, textPaint);
   }
 
   public int getCurrentYearHighlighted() {

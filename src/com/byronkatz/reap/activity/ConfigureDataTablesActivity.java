@@ -93,6 +93,7 @@ public class ConfigureDataTablesActivity extends Activity {
     dataController.setViewableDataTableRows(viewableDataTableRows);
 
     SharedPreferences.Editor editor = getPreferences(0).edit();
+    editor.clear();
     editor.putBoolean(GraphActivity.IS_GRAPH_VISIBLE, isGraphVisible);
     editor.commit();
   }

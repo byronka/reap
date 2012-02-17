@@ -53,6 +53,7 @@ public class GraphActivity extends Activity {
   public static final String PREFS_NAME = "MyPrefsFile";
   private Boolean isGraphVisible;
   public static final String IS_GRAPH_VISIBLE = "IS_GRAPH_VISIBLE";
+  public static final String CURRENT_SLIDER_KEY = "CURRENT_SLIDER_KEY";
   private TabHost tabs;
 
 
@@ -140,17 +141,19 @@ public class GraphActivity extends Activity {
     super.onCreate(savedState);
     dataTable = new DataTable(this);
 
-    if (savedState != null) {
-      dataController.setViewableDataTableRows(
-          dataTable.restoreViewableDataTableRows(savedState));
-    } else {
+//    if (savedState != null) {
+//      dataController.setViewableDataTableRows(
+//          dataTable.restoreViewableDataTableRows(savedState));
+//    } else {
 
       sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
       dataController.setViewableDataTableRows(
           dataTable.restoreViewableDataTableRows(sp));
       isGraphVisible = sp.getBoolean(IS_GRAPH_VISIBLE, false);
-
-    }
+      String temp = sp.getString(CURRENT_SLIDER_KEY, ValueEnum.BUILDING_VALUE.name());
+      currentSliderKey = ValueEnum.valueOf(temp);
+      
+//    }
 
     setContentView(R.layout.graph);
 
@@ -173,7 +176,7 @@ public class GraphActivity extends Activity {
 
     SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
 
-    dataTable.saveGraphPageData(sharedPreferences, isGraphVisible);
+    dataTable.saveGraphPageData(sharedPreferences, isGraphVisible, currentSliderKey);
   }
 
   @Override
@@ -527,7 +530,8 @@ public class GraphActivity extends Activity {
         android.R.layout.simple_spinner_dropdown_item, selectionValues);
     valueSpinner.setAdapter(spinnerArrayAdapter);
 
-    currentSliderKey = spinnerArrayAdapter.getItem(0);
+    valueSpinner.setSelection(spinnerArrayAdapter.getPosition(currentSliderKey));
+//    currentSliderKey = spinnerArrayAdapter.getItem(0);
 
     valueSpinner.setOnItemSelectedListener(
         new OnItemSelectedListenerWrapper(new OnItemSelectedListener() {

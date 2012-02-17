@@ -75,7 +75,7 @@ public class DataController {
   public void saveFieldValues(SharedPreferences sp) {
     
     SharedPreferences.Editor editor = sp.edit();
-    
+    editor.clear();
     //either a string or not a string
     for (ValueEnum inputEnum : ValueEnum.values()) {
       if (inputEnum.isSavedToDatabase() && (inputEnum.getType() != ValueEnum.ValueType.STRING)) {

@@ -2,15 +2,14 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/input_background"
-     >
-
+    android:background="@drawable/input_background" >
+
     <TableRow
         android:id="@+id/tableRow1"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="0.3" >
-
+
         <Button
             android:id="@+id/addressButton"
             android:layout_width="0dip"
@@ -20,8 +19,9 @@
             android:layout_weight="0.5"
             android:background="@drawable/custom_button"
             android:text="@string/addressActivityTitleText"
+            android:textAppearance="@android:style/TextAppearance.Large"
             android:textColor="@android:color/white" />
-
+
         <Button
             android:id="@+id/loanButton"
             android:layout_width="0dip"
@@ -31,16 +31,16 @@
             android:layout_weight="0.5"
             android:background="@drawable/custom_button"
             android:text="@string/loanActivityTitleText"
+            android:textAppearance="@android:style/TextAppearance.Large"
             android:textColor="@android:color/white" />
-
     </TableRow>
-
+
     <TableRow
         android:id="@+id/tableRow2"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="0.3" >
-
+
         <Button
             android:id="@+id/saleButton"
             android:layout_width="0dip"
@@ -50,8 +50,9 @@
             android:layout_weight="0.5"
             android:background="@drawable/custom_button"
             android:text="@string/saleActivityTitleText"
+            android:textAppearance="@android:style/TextAppearance.Large"
             android:textColor="@android:color/white" />
-
+
         <Button
             android:id="@+id/financialEnvironmentButton"
             android:layout_width="0dip"
@@ -61,17 +62,16 @@
             android:layout_weight="0.5"
             android:background="@drawable/custom_button"
             android:text="@string/financialEnvironmentActivityTitleText"
+            android:textAppearance="@android:style/TextAppearance.Large"
             android:textColor="@android:color/white" />
-
     </TableRow>
 
     <TableRow
         android:id="@+id/tableRow3"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_weight="0.3"
-  >
-
+        android:layout_weight="0.3" >
+
         <Button
             android:id="@+id/rentalButton"
             android:layout_width="0dip"
@@ -80,8 +80,9 @@
             android:layout_weight="0.5"
             android:background="@drawable/custom_button"
             android:text="@string/rentalActivityTitleText"
+            android:textAppearance="@android:style/TextAppearance.Large"
             android:textColor="@android:color/white" />
-
+
         <Button
             android:id="@+id/taxesButton"
             android:layout_width="0dip"
@@ -90,8 +91,8 @@
             android:layout_weight="0.5"
             android:background="@drawable/custom_button"
             android:text="@string/taxesActivityTitleText"
+            android:textAppearance="@android:style/TextAppearance.Large"
             android:textColor="@android:color/white" />
-
     </TableRow>
 
 </TableLayout>
