@@ -14,6 +14,7 @@ import android.graphics.Paint.Style;
 import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.byronkatz.R;
@@ -168,7 +169,7 @@ public class AnalysisGraph extends View {
         ) {
 
       dataPoints = dataController.getPlotPoints(graphKeyValue);
-
+      //TODO - set up getPlotPoints as a regular array.  Right now it is messing up order of values!
       graphMaxY = getMeasuredHeight();
       graphMaxX = getMeasuredWidth();
 
@@ -211,11 +212,16 @@ public class AnalysisGraph extends View {
 
         //draw the points on the graph
         if (!isFirstPoint) {
+          Log.d(getClass().getName(), "xValue: " + xValue + " xGraphValue: " + xGraphValue +  " oldXGraphValue: " +
+              oldXGraphValue + " yGraphValue: " + yGraphValue +  " oldYGraphValue: " + oldYGraphValue );
           canvas.drawLine(oldXGraphValue, oldYGraphValue, xGraphValue, yGraphValue, graphLinePaint);
         }
         isFirstPoint = false;
+        
+
         oldXGraphValue = xGraphValue;
         oldYGraphValue = yGraphValue;
+ 
 
       }
 

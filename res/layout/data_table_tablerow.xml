@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="3dip"
-        android:textColor="@color/data_table_row_text_color" />
+        android:textColor="@color/tf_green3" />
 
     <TextView
         android:id="@+id/dataTablePropertyValue"
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:gravity="right"
         android:padding="3dip"
-        android:textColor="@color/data_table_row_text_color" />
+        android:textColor="@color/tf_blue1" />
 
     <ToggleButton
         android:layout_width="wrap_content"

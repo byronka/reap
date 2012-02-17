@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-	android:name="Data pages menu">
-	<item android:id="@+id/configureGraphPageMenuItem" android:title="@string/configureGraphMenuTitle"
-		android:icon="@drawable/settings" />
-	<item android:id="@+id/databaseMenuItem" android:title="@string/savedLocationsMenuTitle"
-		android:icon="@drawable/load_values" />
-	<item android:id="@+id/editValuesMenuItem" android:title="@string/editValuesMenuTitle"
-		android:icon="@drawable/plus" />
-	<item android:id="@+id/saveCurrentValuesMenuItem" android:title="@string/saveCurrentValuesMenuTitle"
-		android:icon="@drawable/save" />
-	<item android:id="@+id/checkMathMenuItem" android:title="@string/mathCheckMenuTitle"
-		android:icon="@drawable/check_math" />
+    android:name="Data pages menu"
+     >
+
+    <item
+        android:id="@+id/configureGraphPageMenuItem"
+        android:icon="@drawable/settings"
+        android:title="@string/configureGraphMenuTitle"
+
+        />
+    <item
+        android:id="@+id/databaseMenuItem"
+        android:icon="@drawable/load_values"
+        android:title="@string/savedLocationsMenuTitle"/>
+    <item
+        android:id="@+id/editValuesMenuItem"
+        android:icon="@drawable/plus"
+        android:title="@string/editValuesMenuTitle"/>
+    <item
+        android:id="@+id/saveCurrentValuesMenuItem"
+        android:icon="@drawable/save"
+        android:title="@string/saveCurrentValuesMenuTitle"/>
+    <item
+        android:id="@+id/checkMathMenuItem"
+        android:icon="@drawable/info"
+        android:title="@string/mathCheckMenuTitle"/>
+
 </menu>

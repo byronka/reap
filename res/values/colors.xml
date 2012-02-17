@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="data_table_row_color_alternate_a">#7f7f7f</color>
     <color name="data_table_row_color_alternate_b">#4c4c4c</color>
     <color name="data_table_row_text_color">#ffffff</color>
@@ -11,6 +12,22 @@
     <color name="blue01">#0063bb</color>
     <color name="blue02">#193982</color>
     <color name="blue03">#181f65</color>
-    
-            
+
+    <!-- triadic fantasy -->
+    <color name="tf_orange1">#FDC7AA</color>
+    <color name="tf_orange2">#FC8F54</color>
+    <color name="tf_orange3">#FB5B04</color>
+    <color name="tf_orange4">#A53B03</color>
+    <color name="tf_blue1">#D9C2E4</color>
+    <color name="tf_blue2">#B586CA</color>
+    <color name="tf_blue3">#934DB2</color>
+    <color name="tf_blue4">#603375</color>
+    <color name="tf_green1">#C0EDBA</color>
+    <color name="tf_green2">#81DC74</color>
+    <color name="tf_green3">#46CB33</color>
+    <color name="tf_green4">#2E8622</color>
+    <color name="gray80">#343434</color>
+    <color name="gray60">#666666</color>
+    <color name="gray40">#999999</color>
+
 </resources>

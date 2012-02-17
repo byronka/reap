@@ -25,6 +25,7 @@ public class LoanActivity extends Activity {
 
   private EditText yearlyInterestRate;
   private EditText privateMortgageInsurance;
+  private EditText extraYears;
   private EditText downPayment;
   private Spinner loanTerm;
   private EditText totalPurchasePrice;
@@ -48,6 +49,7 @@ public class LoanActivity extends Activity {
     loanTerm           = (Spinner) findViewById(R.id.numOfCompoundingPeriodsSpinner);
     totalPurchasePrice = (EditText)findViewById(R.id.totalPurchasePriceEditText);
     privateMortgageInsurance = (EditText) findViewById(R.id.privateMortgageInsuranceEditText);
+    extraYears         = (EditText)findViewById(R.id.extraYearsEditText);
     closingCosts       = (EditText)findViewById(R.id.closingCostsEditText);
     pmiButton          = (Button)findViewById(R.id.calcPMIDownPaymentButton);
 
@@ -91,6 +93,7 @@ public class LoanActivity extends Activity {
 
     TextView downPaymentTitle = 
         (TextView)findViewById(R.id.downPaymentTitle);
+
     downPaymentTitle.setOnClickListener(new OnClickListener() {
 
       @Override
@@ -100,12 +103,26 @@ public class LoanActivity extends Activity {
             R.string.downPaymentTitleText, LoanActivity.this);
       }
     });
+    
+    extraYears.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.EXTRA_YEARS));
 
+    TextView extraYearsTitle = 
+        (TextView)findViewById(R.id.extraYearsTitle);
+      extraYearsTitle.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(View v) {
+        Utility.showHelpDialog(
+            R.string.extraYearsHelpText, 
+            R.string.extraYearsTitleText, LoanActivity.this);
+      }
+    });
+    
     totalPurchasePrice.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.TOTAL_PURCHASE_VALUE));
 
     TextView totalPurchasePriceTitle = 
         (TextView)findViewById(R.id.totalPurchasePriceTitle);
-    totalPurchasePriceTitle.setOnClickListener(new OnClickListener() {
+      totalPurchasePriceTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
@@ -119,7 +136,7 @@ public class LoanActivity extends Activity {
 
     TextView closingCostsTitle = 
         (TextView)findViewById(R.id.closingCostsTitle);
-    closingCostsTitle.setOnClickListener(new OnClickListener() {
+      closingCostsTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
@@ -136,6 +153,7 @@ public class LoanActivity extends Activity {
           long arg3) {
 
         int THIRTY_YEARS  = adapter.getPosition("Fixed-rate mortgage - 30 years");
+        int TWENTY_YEARS =  adapter.getPosition("Fixed-rate mortgage - 20 years");
         int FIFTEEN_YEARS = adapter.getPosition("Fixed-rate mortgage - 15 years");
         Float value = null;
 
@@ -143,6 +161,8 @@ public class LoanActivity extends Activity {
           value = 360.0f;
         } else if (pos == FIFTEEN_YEARS) {
           value = 180.0f;
+        } else if (pos == TWENTY_YEARS) {
+          value = 240.0f;
         }
         ValueEnum key = ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS;
         dataController.setValueAsFloat(key, value);
@@ -160,7 +180,8 @@ public class LoanActivity extends Activity {
     
     TextView privateMortgageInsuranceTitle = 
         (TextView)findViewById(R.id.privateMortgageInsuranceTitle);
-    privateMortgageInsuranceTitle.setOnClickListener(new OnClickListener() {
+
+      privateMortgageInsuranceTitle.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(View v) {
@@ -180,8 +201,9 @@ public class LoanActivity extends Activity {
 
     //Have to do the following in order to pick item in array by number - see setSelection()
     int THIRTY_YEARS  = adapter.getPosition("Fixed-rate mortgage - 30 years");
+    int TWENTY_YEARS  = adapter.getPosition("Fixed-rate mortgage - 20 years");
     int FIFTEEN_YEARS = adapter.getPosition("Fixed-rate mortgage - 15 years");
-
+    
     Float numOfCompoundingPeriods = 
         dataController.getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS);
 
@@ -189,6 +211,8 @@ public class LoanActivity extends Activity {
       loanTerm.setSelection(THIRTY_YEARS);
     } else if (numOfCompoundingPeriods.intValue() == 180) {
       loanTerm.setSelection(FIFTEEN_YEARS);
+    } else if (numOfCompoundingPeriods.intValue() == 240) {
+      loanTerm.setSelection(TWENTY_YEARS);
     }
     Float tempVariable = null;
 
@@ -206,6 +230,9 @@ public class LoanActivity extends Activity {
     
     tempVariable = dataController.getValueAsFloat(ValueEnum.PRIVATE_MORTGAGE_INSURANCE);
     privateMortgageInsurance.setText(Utility.displayCurrency(tempVariable));
+    
+    Integer tempInt = dataController.getValueAsFloat(ValueEnum.EXTRA_YEARS).intValue();
+    extraYears.setText(tempInt.toString());
   }
 
   @Override
@@ -230,6 +257,10 @@ public class LoanActivity extends Activity {
     
     key = ValueEnum.PRIVATE_MORTGAGE_INSURANCE;
     value = Utility.parseCurrency(privateMortgageInsurance.getText().toString());
+    dataController.setValueAsFloat(key, value);
+    
+    key = ValueEnum.EXTRA_YEARS;
+    value = Float.valueOf(extraYears.getText().toString());
     dataController.setValueAsFloat(key, value);
   }
 

@@ -31,7 +31,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.50"
                 android:text="@string/generalSaleExpensesTitleText"
-                android:textAppearance="?android:attr/textAppearanceSmall" >
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/tf_green3" >
             </TextView>
 
             <EditText
@@ -42,7 +43,6 @@
                 android:inputType="numberDecimal"
                 android:maxLength="20" >
             </EditText>
-
         </LinearLayout>
 
         <LinearLayout
@@ -57,7 +57,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.50"
                 android:text="@string/sellingBrokerRateTitleText"
-                android:textAppearance="?android:attr/textAppearanceSmall" >
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/tf_green3" >
             </TextView>
 
             <EditText
@@ -68,7 +69,6 @@
                 android:inputType="numberDecimal"
                 android:maxLength="20" >
             </EditText>
-
         </LinearLayout>
 
         <ImageButton

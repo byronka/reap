@@ -126,14 +126,9 @@ public class GraphActivity extends Activity {
       currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
       //following is for the reset button
       originalCurrentValueNumeric = currentValueNumeric;
-
-      //necessary in case the user switches between loan types (15 vs. 30 year)
-      Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods();
-      GraphActivityFunctions.updateTimeSliderAfterChange (timeSlider, currentYearMaximum);
-      //necessary to do the following or else the Year will not update right after the change
-      updateYearDisplayAtSeekBar(currentYearMaximum);
       dataTable.colorTheDataTables();
       recalcGraphPage();
+      
     }
   }
 
@@ -159,7 +154,8 @@ public class GraphActivity extends Activity {
 
     setContentView(R.layout.graph);
 
-    Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods();
+    Integer extraYears = dataController.getValueAsFloat(ValueEnum.EXTRA_YEARS).intValue();
+    Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods() + extraYears ;
     setupValueSpinner();
     setupTimeSlider(currentYearMaximum);
     setupValueSlider(currentYearMaximum);
@@ -587,6 +583,16 @@ public class GraphActivity extends Activity {
       GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
       GraphActivityFunctions.highlightCurrentYearOnGraph(getCurrentYearSelected(), GraphActivity.this);
 
+
+      //WORK AREA BEGINS
+      //necessary in case the user switches between loan types (15 vs. 30 year)
+      Integer extraYears = dataController.getValueAsFloat(ValueEnum.EXTRA_YEARS).intValue();
+      Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods() + extraYears;
+      
+      GraphActivityFunctions.updateTimeSliderAfterChange (timeSlider, currentYearMaximum);
+      //necessary to do the following or else the Year will not update right after the change
+      updateYearDisplayAtSeekBar(currentYearMaximum);
+      //WORK AREA ENDS
       
       Integer currentYearSelected = getCurrentYearSelected();
       dataTable.setDataTableItems(dataTableItems, currentYearSelected, valueToDataTableItemCorrespondence);

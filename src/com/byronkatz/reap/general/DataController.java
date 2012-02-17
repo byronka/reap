@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.byronkatz.reap.calculations.GeneralCalculations;
 
@@ -196,6 +197,8 @@ public class DataController {
 
   public Float getValueAsFloat(ValueEnum key, Integer year) {
 
+    Log.d(getClass().getName(), "ValueEnum: " + key.toString() + " Year: " + year.toString());
+
     //unpack the numericValues for this division
     numericValues = multiDivisionNumericValues.get(currentDivisionForReading);
 
@@ -213,8 +216,11 @@ public class DataController {
     int yearsOfCompounding = getValueAsFloat(
         ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue() / 
         GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
+    
+    int extraYears = getValueAsFloat(
+        ValueEnum.EXTRA_YEARS).intValue();
 
-    for (int year = 1; year <= yearsOfCompounding; year++) {
+    for (int year = 1; year <= (yearsOfCompounding + extraYears); year++) {
       yValue = getValueAsFloat(graphKeyValue, year);
       dataPoints.put(year, yValue);
     }

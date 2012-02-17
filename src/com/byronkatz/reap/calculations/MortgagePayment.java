@@ -11,6 +11,7 @@ public class MortgagePayment {
   private Float monthlyMortgagePayment;
   private Float yearlyMortgagePayment;
   private DataController dataController;
+  private Integer numOfCompoundingPeriodYears;
 
 
   public MortgagePayment(DataController dataController, 
@@ -18,13 +19,14 @@ public class MortgagePayment {
       Float monthlyInterestRate) {
     this.dataController = dataController;
     this.numOfCompoundingPeriods = numOfCompoundingPeriods;
+    numOfCompoundingPeriodYears = numOfCompoundingPeriods / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
     this.loanAmount = loanAmount;
     this.monthlyInterestRate = monthlyInterestRate;
     calculateMortgagePayment();
 
   }
 
-  private void saveValues(int year) {
+  private void saveValues(int year, Float monthlyMortgagePayment, Float yearlyMortgagePayment) {
 
     dataController.setValueAsFloat(ValueEnum.MONTHLY_MORTGAGE_PAYMENT, monthlyMortgagePayment, year);
     dataController.setValueAsFloat(ValueEnum.YEARLY_MORTGAGE_PAYMENT, yearlyMortgagePayment, year);
@@ -33,9 +35,13 @@ public class MortgagePayment {
 
   public Float getMonthlyMortgagePayment(int year) {
 
-    saveValues(year);
-
-    return monthlyMortgagePayment;
+    if (year > numOfCompoundingPeriodYears) {
+      saveValues(year, 0f, 0f);
+      return 0f;
+    } else {
+      saveValues(year, monthlyMortgagePayment, yearlyMortgagePayment);
+      return monthlyMortgagePayment;
+    }
 
   }
 

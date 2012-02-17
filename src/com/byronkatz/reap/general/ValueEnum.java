@@ -17,6 +17,7 @@ public enum ValueEnum {
   COMMENTS( ValueType.STRING, true, false, string.commentsHelpText, string.commentsTitleText),
   DOWN_PAYMENT( ValueType.CURRENCY, true, false, string.downPaymentHelpText, string.downPaymentTitleText),
   ESTIMATED_RENT_PAYMENTS( ValueType.CURRENCY, true, false, string.estimatedRentPaymentsHelpText, string.estimatedRentPaymentsTitleText),
+  EXTRA_YEARS (ValueType.INTEGER, true, false, string.extraYearsHelpText, string.extraYearsTitleText),
   FIX_UP_COSTS( ValueType.CURRENCY, true, false, string.fixupCostsHelpText, string.fixupCostsTitleText),
   GENERAL_SALE_EXPENSES( ValueType.CURRENCY, true, false, string.generalSaleExpensesHelpText, string.generalSaleExpensesTitleText),
   INFLATION_RATE( ValueType.PERCENTAGE, true, false, string.inflationRateHelpText, string.inflationRateTitleText),

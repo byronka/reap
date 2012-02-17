@@ -21,7 +21,8 @@ public class RentalUnitOwnership {
   private Float yearlyRequiredRateOfReturn;
   private Float atcfAccumulator;
   private Float yearlyNPVSummation;
-  
+
+  private Integer extraYears;
   private Mortgage mortgage;
   private Rental rental;
   private EstateValue estateValue;
@@ -49,6 +50,7 @@ public class RentalUnitOwnership {
     
     fixupCosts = dataController.getValueAsFloat(ValueEnum.FIX_UP_COSTS);
     municipalFees = dataController.getValueAsFloat(ValueEnum.LOCAL_MUNICIPAL_FEES);
+    extraYears = dataController.getValueAsFloat(ValueEnum.EXTRA_YEARS).intValue();
     propertyTax = dataController.getValueAsFloat(ValueEnum.PROPERTY_TAX);
     yearlyRealEstateAppreciationRate = dataController.getValueAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE);
     monthlyRealEstateAppreciationRate = yearlyRealEstateAppreciationRate / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
@@ -232,7 +234,8 @@ public class RentalUnitOwnership {
 
     mirr.calculateMirr(0, -firstDay, null);
 
-    for (int year = 1; year <= mortgage.getYearlyNumberOfCompoundingPeriods(); year++) {
+    
+    for (int year = 1; year <=( mortgage.getYearlyNumberOfCompoundingPeriods() + extraYears); year++) {
 
       final Integer monthCPModifier = year * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
       final Integer prevYearMonthCPModifier = (year - 1) * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;

@@ -135,11 +135,11 @@ public class DataTable {
       for (ValueEnum ve : viewableDataTableRows) {
         if (ve.toString() == tempString) {
           if (alternateColor) {
-            tempRow.setBackgroundResource(R.color.data_table_row_color_alternate_a);
+            tempRow.setBackgroundResource(R.color.gray80);
             tempRow.setVisibility(View.VISIBLE);
             alternateColor = ! alternateColor;
           } else {
-            tempRow.setBackgroundResource(R.color.data_table_row_color_alternate_b);
+            tempRow.setBackgroundResource(R.color.gray60);
             tempRow.setVisibility(View.VISIBLE);
             alternateColor = ! alternateColor;
           }

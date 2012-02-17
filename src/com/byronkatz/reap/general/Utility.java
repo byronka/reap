@@ -148,7 +148,7 @@ public class Utility {
     currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
     return currencyFormatter.format(value);
   }
-
+  
   public static String displayValue(Float value, ValueEnum ve) {
     String type = ve.getType().name();
     String outputValue = "nothing";

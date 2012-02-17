@@ -31,6 +31,7 @@ public class DatabaseAdapter {
       ValueEnum.YEARLY_INTEREST_RATE.name()               + " REAL"    +     ", " +
       ValueEnum.BUILDING_VALUE.name()                     + " REAL"    +     ", " +
       ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS.name()      + " INTEGER" +     ", " +
+      ValueEnum.EXTRA_YEARS.name()                        + " INTEGER" +     ", " +
       ValueEnum.INFLATION_RATE.name()                     + " REAL"    +     ", " +
       ValueEnum.DOWN_PAYMENT.name()                       + " REAL"    +     ", " +
       ValueEnum.STREET_ADDRESS.name()                     + " TEXT"    +     ", " +

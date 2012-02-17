@@ -143,9 +143,13 @@ public class Mortgage {
     Float principalOutstandingAtPoint = 0.0f;
     Float a = monthlyInterestRate + 1;
 
-    if (monthlyInterestRate != 0.0f) {
+    if (monthlyInterestRate > 0.0f) {
       principalOutstandingAtPoint = (float) ((Math.pow(a,compoundingPeriodDesired) * loanAmount) -
         ( monthlyMortgagePayment *  (((a - Math.pow(a,compoundingPeriodDesired) )/ -monthlyInterestRate) + 1)));
+    }
+    
+    if (principalOutstandingAtPoint < 0.0f) {
+      principalOutstandingAtPoint = 0.0f;
     }
     
     return principalOutstandingAtPoint;
