@@ -16,7 +16,7 @@
 	<string formatted="false" name="savedLocationsMenuTitle">Saved locations</string>
 	<string formatted="false" name="editValuesMenuTitle">Edit data values</string>
 	<string formatted="false" name="saveCurrentValuesMenuTitle">Save current</string>
-	<string formatted="false" name="mathCheckMenuTitle">Check math</string>
+	<string formatted="false" name="mathCheckMenuTitle">Info</string>
 	
 		
 	<!-- Help text for calculated values -->
@@ -362,7 +362,7 @@
 	<string formatted="false" name="setDataValuesActivityTitleText">Set data values</string>
 	<string formatted="false" name="taxesActivityTitleText">Taxes</string>
 	<string formatted="false" name="savedDataBrowserActivityTitleText">Saved data browser</string>
-	<string formatted="false" name="mathCheckActivityTitleText">Math check screen</string>
+	<string formatted="false" name="appInfoActivityTitleText">app info page</string>
 	<string formatted="false" name="databaseSearchActivityTitleText">Database Search</string>
 	<string formatted="false" name="saveCurrentValuesActivityTitleText">Save Current Values</string>
 
@@ -414,4 +414,9 @@
 
 	     </string>
 
+	<string name="authorInfoText">Real Estate Analysis Processor
+	    \n\u00A9 2012 Byron Katz
+	    \nbyronka@msn.com
+	    </string>
+	
 </resources>

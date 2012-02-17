@@ -1,9 +1,8 @@
 package com.byronkatz.reap.customview;
 
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.List;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -14,7 +13,6 @@ import android.graphics.Paint.Style;
 import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.byronkatz.R;
@@ -43,11 +41,12 @@ public class AnalysisGraph extends View {
   public static final Float HIGHLIGHT_STROKE_WIDTH = 5F;
   public static final Float HIGHLIGHT_CIRCLE_RADIUS = 10.0f;
   public static final String X_AXIS_STRING = "0.0";
+  public static final Integer MINIMUM_YEAR = 1;
 
   //local graph math variables
   private int graphMaxY;
   private int graphMaxX;
-  private Map<Integer, Float> dataPoints;
+  private Float[] dataPoints;
 
   private Integer graphTypeAttribute;
   private ValueEnum graphKeyValue;
@@ -169,16 +168,16 @@ public class AnalysisGraph extends View {
         ) {
 
       dataPoints = dataController.getPlotPoints(graphKeyValue);
-      //TODO - set up getPlotPoints as a regular array.  Right now it is messing up order of values!
       graphMaxY = getMeasuredHeight();
       graphMaxX = getMeasuredWidth();
 
-      Collection<Float> tempCollection = dataPoints.values();
-
-      functionMinY = Collections.min(tempCollection);
-      functionMaxY = Collections.max(tempCollection);
-      functionMinX = Collections.min(dataPoints.keySet());
-      functionMaxX = Collections.max(dataPoints.keySet());
+      
+      List<Float> tempList = Arrays.asList(dataPoints);
+      
+      functionMinY = Collections.min(tempList);
+      functionMaxY = Collections.max(tempList);
+      functionMinX = MINIMUM_YEAR;
+      functionMaxX = dataPoints.length;
       deltaGraphY = graphMaxY - GRAPH_MIN_Y;
       deltaGraphX = graphMaxX - GRAPH_MIN_X;
       deltaFunctionY = functionMaxY - functionMinY;
@@ -200,9 +199,9 @@ public class AnalysisGraph extends View {
       isFirstPoint = true;
       Float oldXGraphValue = 0.0f;
       Float oldYGraphValue = 0.0f;
-      for (Entry<Integer, Float> entry : dataPoints.entrySet()) {  
-        xValue = entry.getKey();
-        yValue = entry.getValue();
+      for (int i = 0; i < dataPoints.length; i++) {  
+        xValue = i + 1;
+        yValue = dataPoints[i];
         xGraphValue = (marginWidthX +  xGraphCoefficient * (xValue - functionMinX));
         yGraphValue = (marginWidthY + yGraphCoefficient * (functionMaxY - yValue));
 
@@ -212,8 +211,8 @@ public class AnalysisGraph extends View {
 
         //draw the points on the graph
         if (!isFirstPoint) {
-          Log.d(getClass().getName(), "xValue: " + xValue + " xGraphValue: " + xGraphValue +  " oldXGraphValue: " +
-              oldXGraphValue + " yGraphValue: " + yGraphValue +  " oldYGraphValue: " + oldYGraphValue );
+//          Log.d(getClass().getName(), "xValue: " + xValue + " xGraphValue: " + xGraphValue +  " oldXGraphValue: " +
+//              oldXGraphValue + " yGraphValue: " + yGraphValue +  " oldYGraphValue: " + oldYGraphValue );
           canvas.drawLine(oldXGraphValue, oldYGraphValue, xGraphValue, yGraphValue, graphLinePaint);
         }
         isFirstPoint = false;
@@ -242,6 +241,18 @@ public class AnalysisGraph extends View {
         canvas.drawText(X_AXIS_STRING, (Float) (stopX - marginWidthX / 2), 
             distFromMarginToXAxis, textPaint);
       } 
+      
+      //WORK WORK
+//      Float divisorLine = deltaFunctionY / 2
+//        distFromMarginToXAxis = (marginWidthY + (yGraphCoefficient * functionMaxY));
+//        startX = (float) GRAPH_MIN_X;
+//        stopX  = (float) graphMaxX;
+//        canvas.drawLine(startX, distFromMarginToXAxis, stopX, 
+//            distFromMarginToXAxis, graphLinePaint);
+//        canvas.drawText(X_AXIS_STRING, (Float) (stopX - marginWidthX / 2), 
+//            distFromMarginToXAxis, textPaint);
+
+      //WORK ENDS
 
 
       //draw top number text

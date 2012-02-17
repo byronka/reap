@@ -53,7 +53,7 @@ public class GraphActivityFunctions {
       break;
 
     case R.id.checkMathMenuItem:
-      intent = new Intent(graphActivity, MathCheckActivity.class);
+      intent = new Intent(graphActivity, AppInfoActivity.class);
       intent.putExtra("year", currentYear );
       graphActivity.startActivity(intent) ;
       break;

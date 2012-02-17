@@ -9,7 +9,7 @@ import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.ValueEnum;
 
-public class MathCheckActivity extends Activity {
+public class AppInfoActivity extends Activity {
 
   private final DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();

@@ -71,8 +71,8 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".reap.activity.MathCheckActivity"
-            android:label="@string/mathCheckActivityTitleText"
+            android:name=".reap.activity.AppInfoActivity"
+            android:label="@string/appInfoActivityTitleText"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
     </application>

@@ -1,5 +1,6 @@
 package com.byronkatz.reap.general;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -11,7 +12,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.util.Log;
 
 import com.byronkatz.reap.calculations.GeneralCalculations;
 
@@ -45,7 +45,7 @@ public class DataController {
     databaseAdapter = new DatabaseAdapter(context);
     numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
     multiDivisionNumericValues = new HashMap<Integer, Map<Integer, Map<ValueEnum, Float>>>();
-    textValues = new HashMap<ValueEnum, String>();
+    textValues = new EnumMap<ValueEnum, String>(ValueEnum.class);
     setViewableDataTableRows(new HashSet<ValueEnum>());
     //datachanged is to tell graphactivity when it's time to recalculate
     dataChanged = true;
@@ -100,7 +100,7 @@ public class DataController {
      */
     if (numericValues == null) {
       //if numericValues is null, then create it and its numeric map
-      numericMap = new HashMap<ValueEnum, Float>();
+      numericMap = new EnumMap<ValueEnum, Float>(ValueEnum.class);
       numericMapPut(numericMap, key, value);
 
 
@@ -113,7 +113,7 @@ public class DataController {
     }
 
     if (numericMap == null) {
-      numericMap = new HashMap<ValueEnum, Float>();
+      numericMap = new EnumMap<ValueEnum, Float>(ValueEnum.class);
       numericMapPut(numericMap, key, value);
 
       numericValues.put(DEFAULT_YEAR, numericMap);
@@ -150,7 +150,7 @@ public class DataController {
      */
     if (numericValues == null) {
       //if numericValues is null, then create it and its numeric map
-      numericMap = new HashMap<ValueEnum, Float>();
+      numericMap = new EnumMap<ValueEnum, Float>(ValueEnum.class);
       numericMap.put(key, value);
 
       numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
@@ -162,7 +162,7 @@ public class DataController {
     }
 
     if (numericMap == null) {
-      numericMap = new HashMap<ValueEnum, Float>();
+      numericMap = new EnumMap<ValueEnum, Float>(ValueEnum.class);
       numericMap.put(key, value);
       numericValues.put(year, numericMap);
     } else {
@@ -197,7 +197,7 @@ public class DataController {
 
   public Float getValueAsFloat(ValueEnum key, Integer year) {
 
-    Log.d(getClass().getName(), "ValueEnum: " + key.toString() + " Year: " + year.toString());
+//    Log.d(getClass().getName(), "ValueEnum: " + key.toString() + " Year: " + year.toString());
 
     //unpack the numericValues for this division
     numericValues = multiDivisionNumericValues.get(currentDivisionForReading);
@@ -208,9 +208,9 @@ public class DataController {
     return returnValue;
   }
 
-  public Map<Integer, Float> getPlotPoints(ValueEnum graphKeyValue) {
+  public Float[] getPlotPoints(ValueEnum graphKeyValue) {
 
-    Map<Integer, Float> dataPoints = new HashMap<Integer, Float>();
+    Float[] dataPoints;
     Float yValue;
 
     int yearsOfCompounding = getValueAsFloat(
@@ -220,9 +220,10 @@ public class DataController {
     int extraYears = getValueAsFloat(
         ValueEnum.EXTRA_YEARS).intValue();
 
-    for (int year = 1; year <= (yearsOfCompounding + extraYears); year++) {
-      yValue = getValueAsFloat(graphKeyValue, year);
-      dataPoints.put(year, yValue);
+    dataPoints = new Float[yearsOfCompounding + extraYears];
+    for (int year = 0; year < (yearsOfCompounding + extraYears); year++) {
+      yValue = getValueAsFloat(graphKeyValue, year + 1);
+      dataPoints[year] = yValue;
     }
 
     return dataPoints;
