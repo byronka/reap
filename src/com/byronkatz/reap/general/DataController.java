@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.byronkatz.reap.calculations.GeneralCalculations;
 
@@ -224,6 +225,8 @@ public class DataController {
     for (int year = 0; year < (yearsOfCompounding + extraYears); year++) {
       yValue = getValueAsFloat(graphKeyValue, year + 1);
       dataPoints[year] = yValue;
+//      Log.d(getClass().getName(), "year: " + year + " yValue: " + yValue + " grapKeyValue: " + graphKeyValue.name());
+      
     }
 
     return dataPoints;

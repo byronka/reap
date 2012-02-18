@@ -13,6 +13,7 @@ import android.graphics.Paint.Style;
 import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.byronkatz.R;
@@ -252,7 +253,7 @@ public class AnalysisGraph extends View {
           drawNegativeDivisors(canvas);
         }
 
-        
+
         //draw top number text
         maxYString = Utility.displayValue (functionMaxY, graphKeyValue);
         maxX = (Float) marginWidthX / 4;
@@ -278,45 +279,55 @@ public class AnalysisGraph extends View {
   private void drawPositiveDivisors(Canvas canvas) {
 
     //    following creates the modulo 10 divisors between the current max and min
-    Float baseDivisorLine = (float) Math.pow(10, Math.floor(Math.log10(deltaFunctionY * DIVISOR_MODIFIER)));
-    startX = (float) graphMaxX - RIGHT_SIDE_MARGIN_PIXELS;
-    stopX  = (float) graphMaxX;
+    Float divisorRange = deltaFunctionY * DIVISOR_MODIFIER;
+
+    if (divisorRange > 50) {
+      Float baseDivisorLine = (float) Math.pow(10, Math.floor(Math.log10(divisorRange)));
+      startX = (float) graphMaxX - RIGHT_SIDE_MARGIN_PIXELS;
+      stopX  = (float) graphMaxX;
 
 
-    for (int i = 1; (baseDivisorLine * i) < functionMaxY; i++ ) {
+      for (int i = 1; (baseDivisorLine * i) < functionMaxY; i++ ) {
 
-      Float divisorLineValue = baseDivisorLine * i;
+        Float divisorLineValue = baseDivisorLine * i;
 
-      //margin width plus (functionMaxY * graphcoefficient) takes us to the x-axis.  Go up from there.
-      distFromMarginToDivisor = (marginWidthY + (yGraphCoefficient * (functionMaxY - divisorLineValue)));
+        //margin width plus (functionMaxY * graphcoefficient) takes us to the x-axis.  Go up from there.
+        distFromMarginToDivisor = (marginWidthY + (yGraphCoefficient * (functionMaxY - divisorLineValue)));
 
-      canvas.drawLine(startX, distFromMarginToDivisor, stopX, 
-          distFromMarginToDivisor, divisorPaint);
-      canvas.drawText(Utility.displayValue(divisorLineValue, graphKeyValue), (Float) startX, 
-          distFromMarginToDivisor, textPaint);
+        canvas.drawLine(startX, distFromMarginToDivisor, stopX, 
+            distFromMarginToDivisor, divisorPaint);
+        canvas.drawText(Utility.displayValue(divisorLineValue, graphKeyValue), (Float) startX, 
+            distFromMarginToDivisor, textPaint);
+
+      }
     }
   }
-  
+
   private void drawNegativeDivisors(Canvas canvas) {
 
     //    following creates the modulo 10 divisors between the current max and min
-    Float baseDivisorLine = (float) Math.pow(10, Math.floor(Math.log10(deltaFunctionY * DIVISOR_MODIFIER)));
-    baseDivisorLine = -baseDivisorLine;
-    startX = (float) graphMaxX - RIGHT_SIDE_MARGIN_PIXELS;
-    stopX  = (float) graphMaxX;
+    Float divisorRange = deltaFunctionY * DIVISOR_MODIFIER;
+
+    if (divisorRange > 50) {
+      Float baseDivisorLine = (float) Math.pow(10, Math.floor(Math.log10(divisorRange)));
+      baseDivisorLine = -baseDivisorLine;
+      startX = (float) graphMaxX - RIGHT_SIDE_MARGIN_PIXELS;
+      stopX  = (float) graphMaxX;
 
 
-    for (int i = 1; (baseDivisorLine * i) > functionMinY; i++ ) {
+      for (int i = 1; (baseDivisorLine * i) > functionMinY; i++ ) {
 
-      Float divisorLineValue = baseDivisorLine * i;
+        Float divisorLineValue = baseDivisorLine * i;
 
-      //margin width plus (functionMaxY * graphcoefficient) takes us to the x-axis.  Go down from there.
-      distFromMarginToDivisor = (marginWidthY + (yGraphCoefficient * (functionMaxY - divisorLineValue)));
+        //margin width plus (functionMaxY * graphcoefficient) takes us to the x-axis.  Go down from there.
+        distFromMarginToDivisor = (marginWidthY + (yGraphCoefficient * (functionMaxY - divisorLineValue)));
 
-      canvas.drawLine(startX, distFromMarginToDivisor, stopX, 
-          distFromMarginToDivisor, divisorPaint);
-      canvas.drawText(Utility.displayValue(divisorLineValue, graphKeyValue), (Float) startX, 
-          distFromMarginToDivisor, textPaint);
+        canvas.drawLine(startX, distFromMarginToDivisor, stopX, 
+            distFromMarginToDivisor, divisorPaint);
+        canvas.drawText(Utility.displayValue(divisorLineValue, graphKeyValue), (Float) startX, 
+            distFromMarginToDivisor, textPaint);
+
+      }
     }
   }
 
