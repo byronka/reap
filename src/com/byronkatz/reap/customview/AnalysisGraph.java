@@ -31,6 +31,7 @@ public class AnalysisGraph extends View {
   private static final int CRPV = 4;
   private static final int CRCV = 5;
   private static final Float DIVISOR_MODIFIER = 0.75f;
+  private static final Integer RIGHT_SIDE_MARGIN_PIXELS = 95;
 
   public static final Float GRAPH_MARGIN = 0.20f;
   public static final int GRAPH_MIN_X = 0;
@@ -278,7 +279,7 @@ public class AnalysisGraph extends View {
 
     //    following creates the modulo 10 divisors between the current max and min
     Float baseDivisorLine = (float) Math.pow(10, Math.floor(Math.log10(deltaFunctionY * DIVISOR_MODIFIER)));
-    startX = (float) graphMaxX - 150;
+    startX = (float) graphMaxX - RIGHT_SIDE_MARGIN_PIXELS;
     stopX  = (float) graphMaxX;
 
 
@@ -291,7 +292,7 @@ public class AnalysisGraph extends View {
 
       canvas.drawLine(startX, distFromMarginToDivisor, stopX, 
           distFromMarginToDivisor, divisorPaint);
-      canvas.drawText(divisorLineValue.toString(), (Float) startX, 
+      canvas.drawText(Utility.displayValue(divisorLineValue, graphKeyValue), (Float) startX, 
           distFromMarginToDivisor, textPaint);
     }
   }
@@ -301,7 +302,7 @@ public class AnalysisGraph extends View {
     //    following creates the modulo 10 divisors between the current max and min
     Float baseDivisorLine = (float) Math.pow(10, Math.floor(Math.log10(deltaFunctionY * DIVISOR_MODIFIER)));
     baseDivisorLine = -baseDivisorLine;
-    startX = (float) graphMaxX - 150;
+    startX = (float) graphMaxX - RIGHT_SIDE_MARGIN_PIXELS;
     stopX  = (float) graphMaxX;
 
 
@@ -314,7 +315,7 @@ public class AnalysisGraph extends View {
 
       canvas.drawLine(startX, distFromMarginToDivisor, stopX, 
           distFromMarginToDivisor, divisorPaint);
-      canvas.drawText(divisorLineValue.toString(), (Float) startX, 
+      canvas.drawText(Utility.displayValue(divisorLineValue, graphKeyValue), (Float) startX, 
           distFromMarginToDivisor, textPaint);
     }
   }

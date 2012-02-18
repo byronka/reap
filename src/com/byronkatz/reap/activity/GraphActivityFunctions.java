@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -64,9 +65,9 @@ public class GraphActivityFunctions {
   }
 
   public static void saveValueDialog(final GraphActivity graphActivity) {
-    
+
     AlertDialog.Builder builder = new AlertDialog.Builder(graphActivity);
-    
+
     builder.setPositiveButton("Add new entry", new DialogInterface.OnClickListener() {
 
       @Override
@@ -79,24 +80,24 @@ public class GraphActivityFunctions {
 
       }
     } );
-    
+
     //following is so the "update" button only appears if there is a row to update
     Integer currentDataRow = dataController.getCurrentDatabaseRow();
     if ( currentDataRow != -1) {
-    String message = "Current data row is " + currentDataRow;
-    builder.setMessage(message);
-    builder.setNegativeButton("Update current entry", new DialogInterface.OnClickListener() {
+      String message = "Current data row is " + currentDataRow;
+      builder.setMessage(message);
+      builder.setNegativeButton("Update current entry", new DialogInterface.OnClickListener() {
 
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
 
-  
+
           dataController.updateRow();
           Toast toast = Toast.makeText(graphActivity, "Data saved into current entry", Toast.LENGTH_SHORT);
           toast.show();
 
-      }
-    });
+        }
+      });
     }
     AlertDialog saveNewOrUpdate = builder.create();
     saveNewOrUpdate.show();
@@ -127,10 +128,10 @@ public class GraphActivityFunctions {
 
     graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.mirrFrameLayout);
     graph.invalidate();
-    
+
     graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.crpvFrameLayout);
     graph.invalidate();
-    
+
     graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.crcvFrameLayout);
     graph.invalidate();
   }
@@ -150,10 +151,10 @@ public class GraphActivityFunctions {
 
     graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.mirrFrameLayout);
     graph.setCurrentYearHighlighted(currentYearHighlight);
-    
+
     graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.crpvFrameLayout);
     graph.setCurrentYearHighlighted(currentYearHighlight);
-    
+
     graph = (com.byronkatz.reap.customview.AnalysisGraph) activity.findViewById(R.id.crcvFrameLayout);
     graph.setCurrentYearHighlighted(currentYearHighlight);
   }
@@ -226,10 +227,26 @@ public class GraphActivityFunctions {
     }
   }
 
-  static void updateTimeSliderAfterChange(SeekBar timeSlider, Integer currentYearMaximum) {
+  static Integer updateTimeSliderAfterChange(SeekBar timeSlider, Integer currentYearMaximum) {
 
+    //set the new max value on the progress bar
     timeSlider.setMax(currentYearMaximum - 1);
-    timeSlider.setProgress(currentYearMaximum - 1);
+    Integer oldCurrentValue = timeSlider.getProgress() + 1;
+    Integer newValue = 0;
+
+    //here we decide - do we need to change the currentYearSelected?  only if the new max
+    //is less than the old currentYearSelected
+    if (currentYearMaximum < oldCurrentValue) {
+      newValue = currentYearMaximum;
+    } else {
+      newValue = oldCurrentValue;
+    }
+
+    //necessary to setprogress twice here.  Bug in Android code.
+    timeSlider.setProgress(0);
+    timeSlider.setProgress(newValue - 1);
+    
+    return newValue;
   }
 
 }

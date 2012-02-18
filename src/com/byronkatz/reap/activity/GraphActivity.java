@@ -493,8 +493,9 @@ public class GraphActivity extends Activity {
 
       @Override
       public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
         Integer currentYearSelected = getCurrentYearSelected();
+        dataController.setCurrentYearSelected(currentYearSelected);
+
         updateYearDisplayAtSeekBar(currentYearSelected);
 
         dataTable.setDataTableItems(dataTableItems, currentYearSelected, valueToDataTableItemCorrespondence);
@@ -531,7 +532,6 @@ public class GraphActivity extends Activity {
     valueSpinner.setAdapter(spinnerArrayAdapter);
 
     valueSpinner.setSelection(spinnerArrayAdapter.getPosition(currentSliderKey));
-//    currentSliderKey = spinnerArrayAdapter.getItem(0);
 
     valueSpinner.setOnItemSelectedListener(
         new OnItemSelectedListenerWrapper(new OnItemSelectedListener() {
@@ -557,10 +557,9 @@ public class GraphActivity extends Activity {
         }));
 
   }
-
+  
   private Integer getCurrentYearSelected() {
     Integer currentYearSelected = ((SeekBar) findViewById(R.id.timeSlider)).getProgress() + 1;
-    dataController.setCurrentYearSelected(currentYearSelected);
     
     return currentYearSelected;
 
@@ -588,17 +587,16 @@ public class GraphActivity extends Activity {
       GraphActivityFunctions.highlightCurrentYearOnGraph(getCurrentYearSelected(), GraphActivity.this);
 
 
-      //WORK AREA BEGINS
+
       //necessary in case the user switches between loan types (15 vs. 30 year)
       Integer extraYears = dataController.getValueAsFloat(ValueEnum.EXTRA_YEARS).intValue();
       Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods() + extraYears;
       
-      GraphActivityFunctions.updateTimeSliderAfterChange (timeSlider, currentYearMaximum);
-      //necessary to do the following or else the Year will not update right after the change
-      updateYearDisplayAtSeekBar(currentYearMaximum);
-      //WORK AREA ENDS
-      
-      Integer currentYearSelected = getCurrentYearSelected();
+      Integer currentYearSelected = GraphActivityFunctions.updateTimeSliderAfterChange (timeSlider, currentYearMaximum);
+      updateYearDisplayAtSeekBar(currentYearSelected);
+//      timeSlider.setProgress(currentYearSelected - 1);
+      dataController.setCurrentYearSelected(currentYearSelected);
+
       dataTable.setDataTableItems(dataTableItems, currentYearSelected, valueToDataTableItemCorrespondence);
 
       valueSlider.setProgress(valueSlider.getMax() / 2);
