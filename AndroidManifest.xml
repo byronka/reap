@@ -22,7 +22,9 @@
         <activity
             android:name=".reap.activity.GraphActivity"
             android:label="@string/entryScreenActivityTitleText"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+             >
         </activity>
         <activity
             android:name=".reap.activity.RentalActivity"

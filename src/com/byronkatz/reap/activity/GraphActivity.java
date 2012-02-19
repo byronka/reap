@@ -105,9 +105,9 @@ public class GraphActivity extends Activity {
 
     if (requestCode == CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE) {
       dataTable.makeSelectedRowsVisible(dataController.getViewableDataTableRows(), valueToDataTableItemCorrespondence);
-     
+
       if (data != null) {
-      isGraphVisible = data.getExtras().getBoolean(IS_GRAPH_VISIBLE, true);
+        isGraphVisible = data.getExtras().getBoolean(IS_GRAPH_VISIBLE, true);
       }
 
       if (isGraphVisible) {
@@ -129,7 +129,7 @@ public class GraphActivity extends Activity {
       originalCurrentValueNumeric = currentValueNumeric;
       dataTable.colorTheDataTables();
       recalcGraphPage();
-      
+
     }
   }
 
@@ -141,19 +141,12 @@ public class GraphActivity extends Activity {
     super.onCreate(savedState);
     dataTable = new DataTable(this);
 
-//    if (savedState != null) {
-//      dataController.setViewableDataTableRows(
-//          dataTable.restoreViewableDataTableRows(savedState));
-//    } else {
-
-      sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-      dataController.setViewableDataTableRows(
-          dataTable.restoreViewableDataTableRows(sp));
-      isGraphVisible = sp.getBoolean(IS_GRAPH_VISIBLE, false);
-      String temp = sp.getString(CURRENT_SLIDER_KEY, ValueEnum.BUILDING_VALUE.name());
-      currentSliderKey = ValueEnum.valueOf(temp);
-      
-//    }
+    sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+    dataController.setViewableDataTableRows(
+        dataTable.restoreViewableDataTableRows(sp));
+    isGraphVisible = sp.getBoolean(IS_GRAPH_VISIBLE, false);
+    String temp = sp.getString(CURRENT_SLIDER_KEY, ValueEnum.BUILDING_VALUE.name());
+    currentSliderKey = ValueEnum.valueOf(temp);
 
     setContentView(R.layout.graph);
 
@@ -218,12 +211,12 @@ public class GraphActivity extends Activity {
     spec.setContent(R.id.tab4);
     spec.setIndicator(getText(R.string.modifiedInternalRateOfReturnTabText));
     tabs.addTab(spec);
-    
+
     spec = tabs.newTabSpec("CRPV");
     spec.setContent(R.id.tab5);
     spec.setIndicator(getText(R.string.capRateOnPurchaseValueTabText));
     tabs.addTab(spec);
-    
+
     spec = tabs.newTabSpec("CRCV");
     spec.setContent(R.id.tab6);
     spec.setIndicator(getText(R.string.capRateOnProjectedValueTabText));
@@ -269,10 +262,19 @@ public class GraphActivity extends Activity {
 
     dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
 
-    calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
+    executeCalculationBackgroundTask();
 
   }
 
+  private void executeCalculationBackgroundTask() {
+    if (calculateInBackgroundTask == null) {
+      calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
+      //separate these so it is not possible to try running a method on a null pointer
+    } else if (calculateInBackgroundTask.getStatus() != AsyncTask.Status.RUNNING) {
+      calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
+    }
+  }
+  
   private void sendFocusToJail() {
 
     findViewById(R.id.focusJail).requestFocus();
@@ -319,7 +321,7 @@ public class GraphActivity extends Activity {
         if (hasFocus) {
           Utility.setSelectionOnView(v, currentSliderKey);
         } else if (! hasFocus) {
-          
+
           Float tempValueNumeric = GraphActivityFunctions.parseEditText(currentValueEditText, currentSliderKey);
           if (tempValueNumeric.equals(currentValueNumeric)) {
             Toast toast = Toast.makeText(GraphActivity.this, "Enter a different number than the current", Toast.LENGTH_SHORT);
@@ -365,7 +367,7 @@ public class GraphActivity extends Activity {
             minValueNumeric = tempMinValue;
             deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
             GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
-            calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
+            executeCalculationBackgroundTask();
           }  else {
             Toast toast = Toast.makeText(GraphActivity.this, "new min value must be less than current value", Toast.LENGTH_SHORT);
             toast.show();
@@ -398,7 +400,7 @@ public class GraphActivity extends Activity {
         } else if (! hasFocus) {
 
           Float tempMaxValue = GraphActivityFunctions.parseEditText(maxValueEditText, currentSliderKey);
-          
+
           if (tempMaxValue.equals(maxValueNumeric)) {
             Toast toast = Toast.makeText(GraphActivity.this, "Enter a different number than the current", Toast.LENGTH_SHORT);
             toast.show();
@@ -407,7 +409,7 @@ public class GraphActivity extends Activity {
 
             deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(minValueNumeric, maxValueNumeric);
             GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
-            calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
+            executeCalculationBackgroundTask();
           } else {
             Toast toast = Toast.makeText(GraphActivity.this, "new max value must be greater than current value", Toast.LENGTH_SHORT);
             toast.show();
@@ -520,6 +522,7 @@ public class GraphActivity extends Activity {
       }
 
       selectionValues.remove(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS);
+      selectionValues.remove(ValueEnum.EXTRA_YEARS);
     }
 
     //sort the list
@@ -557,10 +560,10 @@ public class GraphActivity extends Activity {
         }));
 
   }
-  
+
   private Integer getCurrentYearSelected() {
     Integer currentYearSelected = ((SeekBar) findViewById(R.id.timeSlider)).getProgress() + 1;
-    
+
     return currentYearSelected;
 
   }
@@ -569,7 +572,6 @@ public class GraphActivity extends Activity {
     Float newCurrentValue = 0.0f;
 
     ProgressDialog progressDialog;
-
 
     @Override
     protected void onProgressUpdate(Integer... progress) {
@@ -586,22 +588,19 @@ public class GraphActivity extends Activity {
       GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
       GraphActivityFunctions.highlightCurrentYearOnGraph(getCurrentYearSelected(), GraphActivity.this);
 
-
-
       //necessary in case the user switches between loan types (15 vs. 30 year)
       Integer extraYears = dataController.getValueAsFloat(ValueEnum.EXTRA_YEARS).intValue();
       Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods() + extraYears;
-      
+
       Integer currentYearSelected = GraphActivityFunctions.updateTimeSliderAfterChange (timeSlider, currentYearMaximum);
       updateYearDisplayAtSeekBar(currentYearSelected);
-//      timeSlider.setProgress(currentYearSelected - 1);
       dataController.setCurrentYearSelected(currentYearSelected);
 
       dataTable.setDataTableItems(dataTableItems, currentYearSelected, valueToDataTableItemCorrespondence);
 
       valueSlider.setProgress(valueSlider.getMax() / 2);
       DataController.setCurrentDivisionForReading(valueSlider.getMax() / 2);
-      
+
       setDataChangedToggle(false);
     }
 
@@ -615,10 +614,12 @@ public class GraphActivity extends Activity {
     @Override
     protected Void doInBackground(Void... arg0) {
 
-      for (int division = 0; division <= DIVISIONS_OF_VALUE_SLIDER; division++) {
-        calculateEachDivision(division);
-        publishProgress(division);
-      }
+
+        for (int division = 0; division <= DIVISIONS_OF_VALUE_SLIDER; division++) {
+          calculateEachDivision(division);
+          publishProgress(division);
+        }
+      
       return null;
     }
 

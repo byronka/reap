@@ -33,6 +33,7 @@ public class AnalysisGraph extends View {
   private static final int CRCV = 5;
   private static final Float DIVISOR_MODIFIER = 0.75f;
   private static final Integer RIGHT_SIDE_MARGIN_PIXELS = 95;
+  private static final Float EPSILON = 0.00001f;
 
   public static final Float GRAPH_MARGIN = 0.20f;
   public static final int GRAPH_MIN_X = 0;
@@ -208,9 +209,17 @@ public class AnalysisGraph extends View {
         isFirstPoint = true;
         Float oldXGraphValue = 0.0f;
         Float oldYGraphValue = 0.0f;
+        
+        xValue = 0;
+        yValue = 0.0f;
+        
         for (int i = 0; i < dataPoints.length; i++) {  
           xValue = i + 1;
-          yValue = dataPoints[i];
+          if ((Math.abs(yValue - dataPoints[i])) > EPSILON) {
+            //only if new value and the previous value are essentially different, 
+            //otherwise use the old value
+            yValue = dataPoints[i];
+          } 
           xGraphValue = (marginWidthX +  xGraphCoefficient * (xValue - functionMinX));
           yGraphValue = (marginWidthY + yGraphCoefficient * (functionMaxY - yValue));
 
@@ -220,17 +229,12 @@ public class AnalysisGraph extends View {
 
           //draw the points on the graph
           if (!isFirstPoint) {
-            //          Log.d(getClass().getName(), "xValue: " + xValue + " xGraphValue: " + xGraphValue +  " oldXGraphValue: " +
-            //              oldXGraphValue + " yGraphValue: " + yGraphValue +  " oldYGraphValue: " + oldYGraphValue );
             canvas.drawLine(oldXGraphValue, oldYGraphValue, xGraphValue, yGraphValue, graphLinePaint);
           }
           isFirstPoint = false;
 
-
           oldXGraphValue = xGraphValue;
           oldYGraphValue = yGraphValue;
-
-
         }
 
         //draw the frame

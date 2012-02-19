@@ -44,6 +44,7 @@ public class Utility {
     helpTextView = (TextView)helpDialog.findViewById(R.id.help_text);
     helpTextView.setText(helpText);
     helpDialog.setTitle(helpTitle);
+    helpDialog.setCanceledOnTouchOutside(true);
     helpDialog.show();
   }
   
