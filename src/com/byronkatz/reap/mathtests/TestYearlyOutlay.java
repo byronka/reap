@@ -18,28 +18,28 @@ public class TestYearlyOutlay implements ItemTestInterface {
         .getInstance().getDataController();
     Integer year = dataController.getCurrentYearSelected();
     
-    final Float yearlyPrivateMortgageInsurance = dataController.getValueAsFloat(
+    final Double yearlyPrivateMortgageInsurance = dataController.getValueAsDouble(
         ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, year);
-    final Float yearlyMortgagePayment = dataController.getValueAsFloat(
+    final Double yearlyMortgagePayment = dataController.getValueAsDouble(
         ValueEnum.YEARLY_MORTGAGE_PAYMENT, year);
-    final Float fVPropertyTax = dataController.getValueAsFloat(
+    final Double fVPropertyTax = dataController.getValueAsDouble(
         ValueEnum.YEARLY_PROPERTY_TAX, year);
-    final Float fVMunicipalFees = dataController.getValueAsFloat(
+    final Double fVMunicipalFees = dataController.getValueAsDouble(
         ValueEnum.YEARLY_MUNICIPAL_FEES, year);
-    final Float fVYearlyGeneralExpenses = dataController.getValueAsFloat(
+    final Double fVYearlyGeneralExpenses = dataController.getValueAsDouble(
         ValueEnum.YEARLY_GENERAL_EXPENSES, year);
-    final Float fVYearlyHomeInsurance = dataController.getValueAsFloat(
+    final Double fVYearlyHomeInsurance = dataController.getValueAsDouble(
         ValueEnum.YEARLY_HOME_INSURANCE, year);
-    final Float fVNetYearlyIncome = dataController.getValueAsFloat(
+    final Double fVNetYearlyIncome = dataController.getValueAsDouble(
         ValueEnum.YEARLY_INCOME, year);
-    final Float yearlyOutlay = dataController.getValueAsFloat(
+    final Double yearlyOutlay = dataController.getValueAsDouble(
         ValueEnum.YEARLY_OUTLAY, year);
 
-    final Float actualYearlyOutlay = fVPropertyTax + fVMunicipalFees + 
+    final Double actualYearlyOutlay = fVPropertyTax + fVMunicipalFees + 
         yearlyMortgagePayment + fVYearlyGeneralExpenses + 
         fVYearlyHomeInsurance + yearlyPrivateMortgageInsurance;
-    final Float actualYearlyBeforeTaxCashFlow = fVNetYearlyIncome - actualYearlyOutlay;
-    final Float yearlyBeforeTaxCashFlow = dataController.getValueAsFloat(
+    final Double actualYearlyBeforeTaxCashFlow = fVNetYearlyIncome - actualYearlyOutlay;
+    final Double yearlyBeforeTaxCashFlow = dataController.getValueAsDouble(
         ValueEnum.YEARLY_BEFORE_TAX_CASH_FLOW, year);
 
     s.append("YEARLY OUTLAY (yO)");

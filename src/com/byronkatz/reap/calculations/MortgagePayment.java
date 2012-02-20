@@ -12,7 +12,7 @@ public class MortgagePayment {
 
 
   public MortgagePayment(DataController dataController, 
-      Integer numOfCompoundingPeriods, Float loanAmount, 
+      Integer numOfCompoundingPeriods, Double loanAmount, 
       Double yearlyInterestRate) {
     this.dataController = dataController;
     numOfCompoundingPeriodYears = numOfCompoundingPeriods / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
@@ -26,27 +26,27 @@ public class MortgagePayment {
    */
   public MortgagePayment() {}
 
-  private void saveValues(int year, Float monthlyMortgagePayment, Float yearlyMortgagePayment) {
+  private void saveValues(int year, Double monthlyMortgagePayment, Double yearlyMortgagePayment) {
 
-    dataController.setValueAsFloat(ValueEnum.MONTHLY_MORTGAGE_PAYMENT, monthlyMortgagePayment, year);
-    dataController.setValueAsFloat(ValueEnum.YEARLY_MORTGAGE_PAYMENT, yearlyMortgagePayment, year);
+    dataController.setValueAsDouble(ValueEnum.MONTHLY_MORTGAGE_PAYMENT, monthlyMortgagePayment, year);
+    dataController.setValueAsDouble(ValueEnum.YEARLY_MORTGAGE_PAYMENT, yearlyMortgagePayment, year);
 
   }
 
   public Double getMonthlyMortgagePayment(int year) {
 
     if (year > numOfCompoundingPeriodYears) {
-      saveValues(year, 0f, 0f);
+      saveValues(year, 0d, 0d);
       return 0d;
     } else {
-      saveValues(year, monthlyMortgagePayment.floatValue(), yearlyMortgagePayment.floatValue());
+      saveValues(year, monthlyMortgagePayment, yearlyMortgagePayment);
       return monthlyMortgagePayment;
     }
 
   }
 
   private Double calculateMortgagePayment(Double yearlyInterestRate, 
-      Integer numOfCompoundingPeriods, Float loanAmount) {
+      Integer numOfCompoundingPeriods, Double loanAmount) {
     
     Double mP = 0.0d;
     

@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.byronkatz.reap.calculations.GeneralCalculations;
 
@@ -23,11 +24,11 @@ public class DataController {
   private static Integer currentDivisionForWriting = 0;
   private static Integer currentDivisionForReading = 0;
   private static DatabaseAdapter databaseAdapter;
-  private static Map<Integer, Map<ValueEnum, Float>> numericValues;
-  private static Map<ValueEnum, Float> numericMap;
+  private static Map<Integer, Map<ValueEnum, Double>> numericValues;
+  private static Map<ValueEnum, Double> numericMap;
   //below data structure holds a whole set of calculated values 
   //for each division of the progress slider
-  private static Map<Integer, Map<Integer, Map<ValueEnum, Float>>> multiDivisionNumericValues;
+  private static Map<Integer, Map<Integer, Map<ValueEnum, Double>>> multiDivisionNumericValues;
   private static Map<ValueEnum, String> textValues;
   private static Set<ValueEnum> viewableDataTableRows;
   private static Boolean dataChanged;
@@ -37,14 +38,14 @@ public class DataController {
   public static final Integer DEFAULT_DIVISION = 0;
   public static Resources resources;
 
-  public static final Float EPSILON = 0.00001f;
+  public static final Double EPSILON = 0.00001d;
 
   public DataController(Context context, SharedPreferences sp, Resources resources) {
 
     DataController.resources = resources;
     databaseAdapter = new DatabaseAdapter(context);
-    numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
-    multiDivisionNumericValues = new HashMap<Integer, Map<Integer, Map<ValueEnum, Float>>>();
+    numericValues = new HashMap<Integer, Map<ValueEnum, Double>>();
+    multiDivisionNumericValues = new HashMap<Integer, Map<Integer, Map<ValueEnum, Double>>>();
     textValues = new EnumMap<ValueEnum, String>(ValueEnum.class);
     setViewableDataTableRows(new HashSet<ValueEnum>());
     //datachanged is to tell graphactivity when it's time to recalculate
@@ -63,9 +64,9 @@ public class DataController {
     //either a string or not a string
     for (ValueEnum inputEnum : ValueEnum.values()) {
       if (inputEnum == ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS) {
-        setValueAsFloat(inputEnum, sp.getFloat(inputEnum.name(), 360f));
+        setValueAsDouble(inputEnum, Double.valueOf(sp.getString(inputEnum.name(), "360")));
       } else if (inputEnum.isSavedToDatabase() && (inputEnum.getType() != ValueEnum.ValueType.STRING)) {
-        setValueAsFloat(inputEnum, sp.getFloat(inputEnum.name(), 0f));
+        setValueAsDouble(inputEnum, Double.valueOf(sp.getString(inputEnum.name(), "0")));
       } else if (inputEnum.isSavedToDatabase() && (inputEnum.getType() == ValueEnum.ValueType.STRING)) {
         setValueAsString(inputEnum, sp.getString(inputEnum.name(), ""));
       }
@@ -79,7 +80,7 @@ public class DataController {
     //either a string or not a string
     for (ValueEnum inputEnum : ValueEnum.values()) {
       if (inputEnum.isSavedToDatabase() && (inputEnum.getType() != ValueEnum.ValueType.STRING)) {
-        editor.putFloat(inputEnum.name(), getValueAsFloat(inputEnum));    
+        editor.putString(inputEnum.name(), String.valueOf(getValueAsDouble(inputEnum)));    
       } else if (inputEnum.isSavedToDatabase() && (inputEnum.getType() == ValueEnum.ValueType.STRING)) {
         editor.putString(inputEnum.name(), getValueAsString(inputEnum));
       }
@@ -88,7 +89,14 @@ public class DataController {
     editor.commit();
   }
 
+  //once done with conversion, remove this method
   public void setValueAsFloat(ValueEnum key, Float value) {
+
+  Log.d(getClass().getName(), key.name() + " tried to insert " + value.toString());
+  }
+
+  
+  public void setValueAsDouble(ValueEnum key, Double value) {
 
     //get the current division
     numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
@@ -100,11 +108,11 @@ public class DataController {
      */
     if (numericValues == null) {
       //if numericValues is null, then create it and its numeric map
-      numericMap = new EnumMap<ValueEnum, Float>(ValueEnum.class);
+      numericMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
       numericMapPut(numericMap, key, value);
 
 
-      numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
+      numericValues = new HashMap<Integer, Map<ValueEnum, Double>>();
       numericValues.put(DEFAULT_YEAR, numericMap);
 
       multiDivisionNumericValues.put(DEFAULT_DIVISION, numericValues);
@@ -113,7 +121,7 @@ public class DataController {
     }
 
     if (numericMap == null) {
-      numericMap = new EnumMap<ValueEnum, Float>(ValueEnum.class);
+      numericMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
       numericMapPut(numericMap, key, value);
 
       numericValues.put(DEFAULT_YEAR, numericMap);
@@ -122,10 +130,10 @@ public class DataController {
     }
   }
 
-  private void numericMapPut(Map<ValueEnum, Float> numericMap, 
-      ValueEnum key, Float value) {
+  private void numericMapPut(Map<ValueEnum, Double> numericMap, 
+      ValueEnum key, Double value) {
     //if the same value as what is already there, don't put the value
-    Float existingValue = numericMap.get(key);
+    Double existingValue = numericMap.get(key);
     
     if ((existingValue == null) || (Math.abs(existingValue - value) > EPSILON)) {
       dataChanged = true;
@@ -133,7 +141,13 @@ public class DataController {
     }
   }
 
+  //once done with conversion, remove this method
   public void setValueAsFloat(ValueEnum key, Float value, Integer year) {
+
+  Log.d(getClass().getName(), key.name() + " tried to insert " + value.toString());
+  }
+  
+  public void setValueAsDouble(ValueEnum key, Double value, Integer year) {
 
     //TODO: add code to check that the year parameter is kosher
 
@@ -147,10 +161,10 @@ public class DataController {
      */
     if (numericValues == null) {
       //if numericValues is null, then create it and its numeric map
-      numericMap = new EnumMap<ValueEnum, Float>(ValueEnum.class);
+      numericMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
       numericMap.put(key, value);
 
-      numericValues = new HashMap<Integer, Map<ValueEnum, Float>>();
+      numericValues = new HashMap<Integer, Map<ValueEnum, Double>>();
       numericValues.put(year, numericMap);
 
       multiDivisionNumericValues.put(currentDivisionForWriting, numericValues);
@@ -159,7 +173,7 @@ public class DataController {
     }
 
     if (numericMap == null) {
-      numericMap = new EnumMap<ValueEnum, Float>(ValueEnum.class);
+      numericMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
       numericMap.put(key, value);
       numericValues.put(year, numericMap);
     } else {
@@ -181,18 +195,27 @@ public class DataController {
     return returnValue;
   }
 
-  public Float getValueAsFloat(ValueEnum key) {
+  public Double getValueAsDouble(ValueEnum key) {
 
     //get the default division
     numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
 
-    Map<ValueEnum, Float> m = numericValues.get(DEFAULT_YEAR);
-    Float returnValue = m.get(key);
+    Map<ValueEnum, Double> m = numericValues.get(DEFAULT_YEAR);
+    Double returnValue = m.get(key);
     return returnValue;
   }
+  
+  public Float getValueAsFloat(ValueEnum key) {
+
+  Log.d(getClass().getName(), "ValueEnum: " + key.toString() + 
+      " failed to get correct value");
+
+  return 0f;
+}
 
 
-  public Float getValueAsFloat(ValueEnum key, Integer year) {
+
+  public Double getValueAsDouble(ValueEnum key, Integer year) {
 
 //    Log.d(getClass().getName(), "ValueEnum: " + key.toString() + " Year: " + year.toString());
 
@@ -200,26 +223,34 @@ public class DataController {
     numericValues = multiDivisionNumericValues.get(currentDivisionForReading);
 
     //unpack the map for this year
-    Map<ValueEnum, Float> m = numericValues.get(year);
-    Float returnValue = m.get(key);
+    Map<ValueEnum, Double> m = numericValues.get(year);
+    Double returnValue = m.get(key);
     return returnValue;
   }
+  
+  public Float getValueAsFloat(ValueEnum key, Integer year) {
 
-  public Float[] getPlotPoints(ValueEnum graphKeyValue) {
+  Log.d(getClass().getName(), "ValueEnum: " + key.toString() + " Year: " + year.toString() + 
+      " failed to get correct value");
 
-    Float[] dataPoints;
-    Float yValue;
+  return 0f;
+}
 
-    int yearsOfCompounding = getValueAsFloat(
+  public Double[] getPlotPoints(ValueEnum graphKeyValue) {
+
+    Double[] dataPoints;
+    Double yValue;
+
+    int yearsOfCompounding = getValueAsDouble(
         ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue() / 
         GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
     
-    int extraYears = getValueAsFloat(
+    int extraYears = getValueAsDouble(
         ValueEnum.EXTRA_YEARS).intValue();
 
-    dataPoints = new Float[yearsOfCompounding + extraYears];
+    dataPoints = new Double[yearsOfCompounding + extraYears];
     for (int year = 0; year < (yearsOfCompounding + extraYears); year++) {
-      yValue = getValueAsFloat(graphKeyValue, year + 1);
+      yValue = getValueAsDouble(graphKeyValue, year + 1);
       dataPoints[year] = yValue;
 //      Log.d(getClass().getName(), "year: " + year + " yValue: " + yValue + " grapKeyValue: " + graphKeyValue.name());
       
@@ -234,10 +265,10 @@ public class DataController {
     numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
     numericMap = numericValues.get(DEFAULT_YEAR);
 
-    for (Entry<ValueEnum, Float> m: numericMap.entrySet()) {
+    for (Entry<ValueEnum, Double> m: numericMap.entrySet()) {
       if (m.getKey().isSavedToDatabase()) {
         String key = m.getKey().name();
-        Float value = m.getValue();
+        Double value = m.getValue();
         cv.put(key, value);
       }
     }
@@ -274,10 +305,10 @@ public class DataController {
     numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
     numericMap = numericValues.get(DEFAULT_YEAR);
 
-    for (Entry<ValueEnum, Float> m: numericMap.entrySet()) {
+    for (Entry<ValueEnum, Double> m: numericMap.entrySet()) {
       if (m.getKey().isSavedToDatabase()) {
         String key = m.getKey().name();
-        Float value = m.getValue();
+        Double value = m.getValue();
         cv.put(key, value);
       }
     }
@@ -300,7 +331,7 @@ public class DataController {
     //either a string or not a string
     for (ValueEnum inputEnum : ValueEnum.values()) {
       if (inputEnum.isSavedToDatabase() && (inputEnum.getType() != ValueEnum.ValueType.STRING)) {
-        setValueAsFloat(inputEnum, cv.getAsFloat(inputEnum.name()));
+        setValueAsDouble(inputEnum, cv.getAsDouble(inputEnum.name()));
       } else if (inputEnum.isSavedToDatabase() && (inputEnum.getType() == ValueEnum.ValueType.STRING)) {
         setValueAsString(inputEnum, cv.getAsString(inputEnum.name()));
       }

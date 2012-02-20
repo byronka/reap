@@ -156,7 +156,7 @@ public class ConfigureDataTablesActivity extends Activity {
       /* set value based on what type of number it is, or string if 
        * applicable if it is saved to database, that 
        * means we only need the first year, or 
-       * "getValueAsFloat(key)" rather than "getValueAsFloat(key, year)"
+       * "getValueAsDouble(key)" rather than "getValueAsDouble(key, year)"
        */
 
       //set the map to find these later

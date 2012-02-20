@@ -50,7 +50,7 @@ public class AnalysisGraph extends View {
   //local graph math variables
   private int graphMaxY;
   private int graphMaxX;
-  private Float[] dataPoints;
+  private Double[] dataPoints;
 
   private Integer graphTypeAttribute;
   private ValueEnum graphKeyValue;
@@ -179,10 +179,10 @@ public class AnalysisGraph extends View {
         graphMaxX = getMeasuredWidth();
 
 
-        List<Float> tempList = Arrays.asList(dataPoints);
+        List<Double> tempList = Arrays.asList(dataPoints);
 
-        functionMinY = Collections.min(tempList);
-        functionMaxY = Collections.max(tempList);
+        functionMinY = Collections.min(tempList).floatValue();
+        functionMaxY = Collections.max(tempList).floatValue();
         functionMinX = MINIMUM_YEAR;
         functionMaxX = dataPoints.length;
         deltaGraphY = graphMaxY - GRAPH_MIN_Y;
@@ -217,10 +217,10 @@ public class AnalysisGraph extends View {
           if ((Math.abs(yValue - dataPoints[i])) > EPSILON) {
             //only if new value and the previous value are essentially different, 
             //otherwise use the old value
-            yValue = dataPoints[i];
+            yValue = dataPoints[i].floatValue();
           } 
-          xGraphValue = (marginWidthX +  xGraphCoefficient * (xValue - functionMinX));
-          yGraphValue = (marginWidthY + yGraphCoefficient * (functionMaxY - yValue));
+          xGraphValue = (float) (marginWidthX +  xGraphCoefficient * (xValue - functionMinX));
+          yGraphValue = (float) (marginWidthY + yGraphCoefficient * (functionMaxY - yValue));
 
           if (xValue == currentYearHighlighted) {
             canvas.drawCircle(xGraphValue, yGraphValue, HIGHLIGHT_CIRCLE_RADIUS, highlightPaint);
@@ -258,21 +258,21 @@ public class AnalysisGraph extends View {
 
 
         //draw top number text
-        maxYString = Utility.displayValue (functionMaxY, graphKeyValue);
-        maxX = (Float) marginWidthX / 4;
-        maxY = (Float) marginWidthY;
+        maxYString = Utility.displayValue ((double)functionMaxY, graphKeyValue);
+        maxX =  marginWidthX.floatValue() / 4;
+        maxY =  marginWidthY.floatValue();
         canvas.drawText(maxYString, maxX, maxY, textPaint);
 
         //draw bottom number text
-        minYString = Utility.displayValue (functionMinY, graphKeyValue);
-        minX = (Float) marginWidthX / 4;
-        minY = (Float) (marginWidthY + betweenMarginsOnY);
+        minYString = Utility.displayValue ((double)functionMinY, graphKeyValue);
+        minX = (float) marginWidthX.floatValue() / 4;
+        minY = (float) (marginWidthY + betweenMarginsOnY);
         canvas.drawText(minYString, minX, minY, textPaint);
 
         //draw GraphName and current value
         bottom = marginWidthY + betweenMarginsOnY + (marginWidthY/2);
         String currentValueNumerals = Utility.displayValue(
-            dataController.getValueAsFloat(graphKeyValue, currentYearHighlighted), graphKeyValue);
+            dataController.getValueAsDouble(graphKeyValue, currentYearHighlighted), graphKeyValue);
         String currentValue = graphKeyValue.toString() + ": " + currentValueNumerals;
         canvas.drawText(currentValue, minX, bottom, textPaint);
       }
@@ -299,7 +299,7 @@ public class AnalysisGraph extends View {
 
         canvas.drawLine(startX, distFromMarginToDivisor, stopX, 
             distFromMarginToDivisor, divisorPaint);
-        canvas.drawText(Utility.displayValue(divisorLineValue, graphKeyValue), (Float) startX, 
+        canvas.drawText(Utility.displayValue((double)divisorLineValue, graphKeyValue), (Float) startX, 
             distFromMarginToDivisor, textPaint);
 
       }
@@ -327,7 +327,7 @@ public class AnalysisGraph extends View {
 
         canvas.drawLine(startX, distFromMarginToDivisor, stopX, 
             distFromMarginToDivisor, divisorPaint);
-        canvas.drawText(Utility.displayValue(divisorLineValue, graphKeyValue), (Float) startX, 
+        canvas.drawText(Utility.displayValue((double)divisorLineValue, graphKeyValue), (Float) startX, 
             distFromMarginToDivisor, textPaint);
 
       }

@@ -22,13 +22,13 @@ public class TestYearlyInterestPaidAccumulator implements ItemTestInterface {
     Integer numOfCompoundingMonths = year * 12;
     s.append(String.format("\nnumOfCompoundingMonths = %d" , numOfCompoundingMonths));
     
-    Double monthlyInterestRate = dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE).doubleValue() / 12;
+    Double monthlyInterestRate = dataController.getValueAsDouble(ValueEnum.YEARLY_INTEREST_RATE).doubleValue() / 12;
     s.append(String.format("\nmonthlyInterestRate = %.4f" , monthlyInterestRate));
     
-    Float totalPurchaseValue = dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE);
+    Double totalPurchaseValue = dataController.getValueAsDouble(ValueEnum.TOTAL_PURCHASE_VALUE);
     s.append(String.format("\ntotalPurchaseValue = %.2f", totalPurchaseValue));
     
-    Float downPayment = dataController.getValueAsFloat(ValueEnum.DOWN_PAYMENT);
+    Double downPayment = dataController.getValueAsDouble(ValueEnum.DOWN_PAYMENT);
     s.append(String.format("\ndownPayment = %.2f", downPayment));
     
     Double amountOwed = (double) (totalPurchaseValue - downPayment);
@@ -39,7 +39,7 @@ public class TestYearlyInterestPaidAccumulator implements ItemTestInterface {
     Double monthlyInterestPaidAccumulator = 0d;
     Double monthlyInterestPaidAccumulatorPrevYear = 0d;
     
-    Float totalCompoundingPeriodMonths = dataController.getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS);
+    Double totalCompoundingPeriodMonths = dataController.getValueAsDouble(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS);
     s.append(String.format("\ntotalLoanCompoundingPeriods = %d", totalCompoundingPeriodMonths.intValue()));
     
     final Double mortgagePayment = amountOwed * (monthlyInterestRate / (1 - (1 / Math.pow(1 + monthlyInterestRate, totalCompoundingPeriodMonths))));
@@ -64,7 +64,7 @@ public class TestYearlyInterestPaidAccumulator implements ItemTestInterface {
     Double interestPaidThisYear = monthlyInterestPaidAccumulator - monthlyInterestPaidAccumulatorPrevYear;
     s.append(String.format("\ninterestPaidThisYear = %.2f", interestPaidThisYear));
     
-    Float yearlyInterestPaidAccumulatorCached = dataController.getValueAsFloat(ValueEnum.ACCUM_INTEREST, year);
+    Double yearlyInterestPaidAccumulatorCached = dataController.getValueAsDouble(ValueEnum.ACCUM_INTEREST, year);
     s.append(String.format("\nyearlyInterestPaidAccumulator in cache = %.2f", yearlyInterestPaidAccumulatorCached));
     
     if (Math.abs(yearlyInterestPaidAccumulatorCached - monthlyInterestPaidAccumulator) < EPSILON) {

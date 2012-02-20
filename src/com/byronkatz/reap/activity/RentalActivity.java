@@ -135,49 +135,49 @@ public class RentalActivity extends Activity {
     super.onPause();
 
     ValueEnum key = ValueEnum.ESTIMATED_RENT_PAYMENTS;
-    Float value = Utility.parseCurrency(estimatedRentPayments.getText().toString());
-    dataController.setValueAsFloat(key, value);
+    Double value = Utility.parseCurrency(estimatedRentPayments.getText().toString());
+    dataController.setValueAsDouble(key, value);
 
     key = ValueEnum.INITIAL_HOME_INSURANCE;
     value = Utility.parseCurrency(initialHomeInsurance.getText().toString());
-    dataController.setValueAsFloat(key, value);
+    dataController.setValueAsDouble(key, value);
 
     key = ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE;
     value = Utility.parsePercentage(vacancyAndCreditLoss.getText().toString());
-    dataController.setValueAsFloat(key, value);
+    dataController.setValueAsDouble(key, value);
 
     key = ValueEnum.FIX_UP_COSTS;
     value = Utility.parseCurrency(fixupCosts.getText().toString());
-    dataController.setValueAsFloat(key, value);
+    dataController.setValueAsDouble(key, value);
 
     key = ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES;
     value = Utility.parseCurrency(initialYearlyGeneralExpenses.getText().toString());
-    dataController.setValueAsFloat(key, value);
+    dataController.setValueAsDouble(key, value);
 
     key = ValueEnum.REQUIRED_RATE_OF_RETURN;
     value = Utility.parsePercentage(requiredRateOfReturn.getText().toString());
-    dataController.setValueAsFloat(key, value);
+    dataController.setValueAsDouble(key, value);
 
   }
 
   private void assignValuesToFields() {
 
-    Float erp = dataController.getValueAsFloat(ValueEnum.ESTIMATED_RENT_PAYMENTS);
+    Double erp = dataController.getValueAsDouble(ValueEnum.ESTIMATED_RENT_PAYMENTS);
     estimatedRentPayments.setText(Utility.displayCurrency(erp));
 
-    Float yhi = dataController.getValueAsFloat(ValueEnum.INITIAL_HOME_INSURANCE);
+    Double yhi = dataController.getValueAsDouble(ValueEnum.INITIAL_HOME_INSURANCE);
     initialHomeInsurance.setText(Utility.displayCurrency(yhi));
 
-    Float vacl = dataController.getValueAsFloat(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE);
+    Double vacl = dataController.getValueAsDouble(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE);
     vacancyAndCreditLoss.setText(Utility.displayPercentage(vacl));
 
-    Float fc = dataController.getValueAsFloat(ValueEnum.FIX_UP_COSTS);
+    Double fc = dataController.getValueAsDouble(ValueEnum.FIX_UP_COSTS);
     fixupCosts.setText(Utility.displayCurrency(fc));
 
-    Float iyge = dataController.getValueAsFloat(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES);
+    Double iyge = dataController.getValueAsDouble(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES);
     initialYearlyGeneralExpenses.setText(Utility.displayCurrency(iyge));
 
-    Float rrr = dataController.getValueAsFloat(ValueEnum.REQUIRED_RATE_OF_RETURN);
+    Double rrr = dataController.getValueAsDouble(ValueEnum.REQUIRED_RATE_OF_RETURN);
     requiredRateOfReturn.setText(Utility.displayPercentage(rrr));
   }
 }

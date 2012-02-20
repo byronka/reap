@@ -5,22 +5,22 @@ import com.byronkatz.reap.general.ValueEnum;
 
 public class RentalUnitOwnership {
   
-  private Float marginalTaxRate;
-  private Float buildingValue;
-  private Float yearlyDepreciation = 0.0f;
-  private Float firstDay;
-  private Float npvAccumulator;
+  private Double marginalTaxRate;
+  private Double buildingValue;
+  private Double yearlyDepreciation = 0.0d;
+  private Double firstDay;
+  private Double npvAccumulator;
 
-  private Float municipalFees;
-  private Float propertyTax;
-  private Float fixupCosts;
-  private Float yearlyRealEstateAppreciationRate;
-  private Float yearlyInflationRate;
-  private Float monthlyInflationRate;
-  private Float monthlyRealEstateAppreciationRate;
-  private Float yearlyRequiredRateOfReturn;
-  private Float atcfAccumulator;
-  private Float yearlyNPVSummation;
+  private Double municipalFees;
+  private Double propertyTax;
+  private Double fixupCosts;
+  private Double yearlyRealEstateAppreciationRate;
+  private Double yearlyInflationRate;
+  private Double monthlyInflationRate;
+  private Double monthlyRealEstateAppreciationRate;
+  private Double yearlyRequiredRateOfReturn;
+  private Double atcfAccumulator;
+  private Double yearlyNPVSummation;
 
   private Integer extraYears;
   private Mortgage mortgage;
@@ -29,7 +29,7 @@ public class RentalUnitOwnership {
   private ModifiedInternalRateOfReturn mirr;
   private EquityReversion equityReversion;
   
-  public static final Float RESIDENTIAL_DEPRECIATION_YEARS = 27.5f;
+  public static final Double RESIDENTIAL_DEPRECIATION_YEARS = 27.5d;
 
   
   private DataController dataController;
@@ -40,7 +40,7 @@ public class RentalUnitOwnership {
     estateValue = new EstateValue(dataController);
     mortgage = new Mortgage(dataController, estateValue.getEstateValue(0));
     
-    yearlyRequiredRateOfReturn = dataController.getValueAsFloat(ValueEnum.REQUIRED_RATE_OF_RETURN);
+    yearlyRequiredRateOfReturn = dataController.getValueAsDouble(ValueEnum.REQUIRED_RATE_OF_RETURN);
     mirr = new ModifiedInternalRateOfReturn( dataController,
         mortgage.getYearlyInterestRate(), yearlyRequiredRateOfReturn);
     equityReversion = new EquityReversion(dataController, estateValue, this);
@@ -48,22 +48,22 @@ public class RentalUnitOwnership {
     rental = new Rental(dataController, this);
 
     
-    fixupCosts = dataController.getValueAsFloat(ValueEnum.FIX_UP_COSTS);
-    municipalFees = dataController.getValueAsFloat(ValueEnum.LOCAL_MUNICIPAL_FEES);
-    extraYears = dataController.getValueAsFloat(ValueEnum.EXTRA_YEARS).intValue();
-    propertyTax = dataController.getValueAsFloat(ValueEnum.PROPERTY_TAX);
-    yearlyRealEstateAppreciationRate = dataController.getValueAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE);
+    fixupCosts = dataController.getValueAsDouble(ValueEnum.FIX_UP_COSTS);
+    municipalFees = dataController.getValueAsDouble(ValueEnum.LOCAL_MUNICIPAL_FEES);
+    extraYears = dataController.getValueAsDouble(ValueEnum.EXTRA_YEARS).intValue();
+    propertyTax = dataController.getValueAsDouble(ValueEnum.PROPERTY_TAX);
+    yearlyRealEstateAppreciationRate = dataController.getValueAsDouble(ValueEnum.REAL_ESTATE_APPRECIATION_RATE);
     monthlyRealEstateAppreciationRate = yearlyRealEstateAppreciationRate / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
-    yearlyInflationRate = dataController.getValueAsFloat(ValueEnum.INFLATION_RATE);
+    yearlyInflationRate = dataController.getValueAsDouble(ValueEnum.INFLATION_RATE);
     monthlyInflationRate = yearlyInflationRate / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
-    marginalTaxRate = dataController.getValueAsFloat(ValueEnum.MARGINAL_TAX_RATE);
-    buildingValue = dataController.getValueAsFloat(ValueEnum.BUILDING_VALUE);
+    marginalTaxRate = dataController.getValueAsDouble(ValueEnum.MARGINAL_TAX_RATE);
+    buildingValue = dataController.getValueAsDouble(ValueEnum.BUILDING_VALUE);
     yearlyDepreciation = buildingValue / RESIDENTIAL_DEPRECIATION_YEARS;
     
-    atcfAccumulator = 0.0f;
-    yearlyNPVSummation = 0.0f;
-    firstDay = 0.0f;
-    npvAccumulator = 0.0f;
+    atcfAccumulator = 0.0d;
+    yearlyNPVSummation = 0.0d;
+    firstDay = 0.0d;
+    npvAccumulator = 0.0d;
 
   }
   
@@ -87,136 +87,136 @@ public class RentalUnitOwnership {
     return rental;
   }
   
-  public Float getYearlyRequiredRateOfReturn() {
+  public Double getYearlyRequiredRateOfReturn() {
     return yearlyRequiredRateOfReturn;
   }
   
-  public Float getMonthlyRequiredRateOfReturn() {
+  public Double getMonthlyRequiredRateOfReturn() {
     return yearlyRequiredRateOfReturn / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
   }
   
-  public Float getYearlyDepreciation() {
+  public Double getYearlyDepreciation() {
     return yearlyDepreciation;
   }
   
-  public Float getMarginalTaxRate() {
+  public Double getMarginalTaxRate() {
     return marginalTaxRate;
   }
   
-  public Float getYearlyRealEstateAppreciationRate() {
+  public Double getYearlyRealEstateAppreciationRate() {
     return yearlyRealEstateAppreciationRate;
   }
   
-  public Float getMonthlyRealEstateAppreciationRate() {
+  public Double getMonthlyRealEstateAppreciationRate() {
     return monthlyRealEstateAppreciationRate;
   }
   
-  public Float getPropertyTax() {
+  public Double getPropertyTax() {
     return propertyTax;
   }
   
-  public Float getFixupCosts() {
+  public Double getFixupCosts() {
     return fixupCosts;
   }
   
-  public Float getFVPropertyTax(int year) {
+  public Double getFVPropertyTax(int year) {
     
     Integer compoundingPeriodDesired = (year - 1) * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
-    final Float yearlyPropertyTax = getPropertyTax() * getFVRear(compoundingPeriodDesired); 
-    dataController.setValueAsFloat(ValueEnum.YEARLY_PROPERTY_TAX, yearlyPropertyTax, year);  
+    final Double yearlyPropertyTax = getPropertyTax() * getFVRear(compoundingPeriodDesired); 
+    dataController.setValueAsDouble(ValueEnum.YEARLY_PROPERTY_TAX, yearlyPropertyTax, year);  
   
     return yearlyPropertyTax;
   }
   
-  public Float getFVMunicipalFees(int year) {
+  public Double getFVMunicipalFees(int year) {
 	    
 	    Integer compoundingPeriodDesired = (year - 1) * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
-	    final Float yearlyMunicipalFees = municipalFees * getFVMir(compoundingPeriodDesired); 
-	    dataController.setValueAsFloat(ValueEnum.YEARLY_MUNICIPAL_FEES, yearlyMunicipalFees, year);
+	    final Double yearlyMunicipalFees = municipalFees * getFVMir(compoundingPeriodDesired); 
+	    dataController.setValueAsDouble(ValueEnum.YEARLY_MUNICIPAL_FEES, yearlyMunicipalFees, year);
 	    return yearlyMunicipalFees;
 	  }
   
-  public Float getFVRear(int compoundingPeriodDesired) {
-    return (float) Math.pow(1 + monthlyRealEstateAppreciationRate, (float) compoundingPeriodDesired);
+  public Double getFVRear(int compoundingPeriodDesired) {
+    return Math.pow(1 + monthlyRealEstateAppreciationRate, compoundingPeriodDesired);
   }
   
-  public Float getFVMir(int compoundingPeriodDesired) {
-    return (float) Math.pow(1 + monthlyInflationRate, (float) compoundingPeriodDesired);
+  public Double getFVMir(int compoundingPeriodDesired) {
+    return Math.pow(1 + monthlyInflationRate, compoundingPeriodDesired);
   }
   
-  public Float calculateYearlyBeforeTaxCashFlow(int year) {
+  public Double calculateYearlyBeforeTaxCashFlow(int year) {
     // cashflowIn - cashflowOut
 
-    final Float yearlyPrivateMortgageInsurance = mortgage.getYearlyPmi(year);
+    final Double yearlyPrivateMortgageInsurance = mortgage.getYearlyPmi(year);
     final Double monthlyMortgagePayment = mortgage.getMonthlyMortgagePayment(year);
 
-    final Float yearlyOperatingExpenses = getFVPropertyTax(year) + getFVMunicipalFees(year) + 
+    final Double yearlyOperatingExpenses = getFVPropertyTax(year) + getFVMunicipalFees(year) + 
     		 rental.getFVYearlyGeneralExpenses(year) + 
     		rental.getFVYearlyHomeInsurance(year) + yearlyPrivateMortgageInsurance;
-    dataController.setValueAsFloat(ValueEnum.YEARLY_OPERATING_EXPENSES, yearlyOperatingExpenses , year);
+    dataController.setValueAsDouble(ValueEnum.YEARLY_OPERATING_EXPENSES, yearlyOperatingExpenses , year);
     
-    final Float yearlyOutlay = yearlyOperatingExpenses + (monthlyMortgagePayment.floatValue() * 12);
+    final Double yearlyOutlay = yearlyOperatingExpenses + (monthlyMortgagePayment * 12);
     
-    dataController.setValueAsFloat(ValueEnum.YEARLY_OUTLAY, yearlyOutlay, year);
+    dataController.setValueAsDouble(ValueEnum.YEARLY_OUTLAY, yearlyOutlay, year);
     
-    final Float yearlyNetOperatingIncome = rental.getFVNetYearlyIncome(year) - yearlyOperatingExpenses;
-    dataController.setValueAsFloat(ValueEnum.YEARLY_NET_OPERATING_INCOME, yearlyNetOperatingIncome, year);
-    final Float yearlyBeforeTaxCashFlow = yearlyNetOperatingIncome - (monthlyMortgagePayment.floatValue() * 12);
+    final Double yearlyNetOperatingIncome = rental.getFVNetYearlyIncome(year) - yearlyOperatingExpenses;
+    dataController.setValueAsDouble(ValueEnum.YEARLY_NET_OPERATING_INCOME, yearlyNetOperatingIncome, year);
+    final Double yearlyBeforeTaxCashFlow = yearlyNetOperatingIncome - (monthlyMortgagePayment * 12);
     
-    final Float capitalizationRateOnPurchaseValue = yearlyNetOperatingIncome / estateValue.getEstateValue(0);
-    dataController.setValueAsFloat(ValueEnum.CAP_RATE_ON_PURCHASE_VALUE, capitalizationRateOnPurchaseValue, year);
+    final Double capitalizationRateOnPurchaseValue = yearlyNetOperatingIncome / estateValue.getEstateValue(0);
+    dataController.setValueAsDouble(ValueEnum.CAP_RATE_ON_PURCHASE_VALUE, capitalizationRateOnPurchaseValue, year);
     
-    final Float capitalizationRateOnProjectedValue = yearlyNetOperatingIncome / estateValue.getEstateValue(year);
-    dataController.setValueAsFloat(ValueEnum.CAP_RATE_ON_PROJECTED_VALUE, capitalizationRateOnProjectedValue, year);
+    final Double capitalizationRateOnProjectedValue = yearlyNetOperatingIncome / estateValue.getEstateValue(year);
+    dataController.setValueAsDouble(ValueEnum.CAP_RATE_ON_PROJECTED_VALUE, capitalizationRateOnProjectedValue, year);
     
-    dataController.setValueAsFloat(
+    dataController.setValueAsDouble(
         ValueEnum.YEARLY_BEFORE_TAX_CASH_FLOW, yearlyBeforeTaxCashFlow, year);
     return yearlyBeforeTaxCashFlow;
   }
   
-  public Float calculateYearlyAfterTaxCashFlow(int year, int monthCPModifier, int prevYearMonthCPModifier) {
+  public Double calculateYearlyAfterTaxCashFlow(int year, int monthCPModifier, int prevYearMonthCPModifier) {
 
-    final Float yearlyBeforeTaxCashFlow = calculateYearlyBeforeTaxCashFlow(year);
-    final Float taxableIncome = calculateTaxableIncome(year, monthCPModifier, prevYearMonthCPModifier, yearlyBeforeTaxCashFlow);
+    final Double yearlyBeforeTaxCashFlow = calculateYearlyBeforeTaxCashFlow(year);
+    final Double taxableIncome = calculateTaxableIncome(year, monthCPModifier, prevYearMonthCPModifier, yearlyBeforeTaxCashFlow);
 
-    final Float yearlyTaxes = taxableIncome * getMarginalTaxRate();
-    dataController.setValueAsFloat(ValueEnum.YEARLY_TAX_ON_INCOME, yearlyTaxes, year);
+    final Double yearlyTaxes = taxableIncome * getMarginalTaxRate();
+    dataController.setValueAsDouble(ValueEnum.YEARLY_TAX_ON_INCOME, yearlyTaxes, year);
     
-    final Float yearlyAfterTaxCashFlow = yearlyBeforeTaxCashFlow - yearlyTaxes;
-    dataController.setValueAsFloat(ValueEnum.ATCF, yearlyAfterTaxCashFlow, year);
+    final Double yearlyAfterTaxCashFlow = yearlyBeforeTaxCashFlow - yearlyTaxes;
+    dataController.setValueAsDouble(ValueEnum.ATCF, yearlyAfterTaxCashFlow, year);
 
     return yearlyAfterTaxCashFlow;
   }
   
-  public Float calculateTaxableIncome(int year, int monthCPModifier, int prevYearMonthCPModifier, Float yearlyBeforeTaxCashFlow) {
+  public Double calculateTaxableIncome(int year, int monthCPModifier, int prevYearMonthCPModifier, Double yearlyBeforeTaxCashFlow) {
 
-    final Float yearlyPrincipalPaid = mortgage.calculateYearlyPrincipalPaid(year, monthCPModifier, prevYearMonthCPModifier);
+    final Double yearlyPrincipalPaid = mortgage.calculateYearlyPrincipalPaid(year, monthCPModifier, prevYearMonthCPModifier);
 
-    Float taxableIncome = (yearlyBeforeTaxCashFlow + yearlyPrincipalPaid - getYearlyDepreciation());
+    Double taxableIncome = (yearlyBeforeTaxCashFlow + yearlyPrincipalPaid - getYearlyDepreciation());
 
     // doesn't make sense to tax negative income...but should this be used to offset taxes? hmmm...
     if (taxableIncome <= 0) {
-      taxableIncome = 0.0f;
+      taxableIncome = 0.0d;
     }
 
-    dataController.setValueAsFloat(ValueEnum.TAXABLE_INCOME, taxableIncome, year);
+    dataController.setValueAsDouble(ValueEnum.TAXABLE_INCOME, taxableIncome, year);
     return taxableIncome;
   }
   
-  public Float calculateYearlyRentalIncomeNPV(int year, int monthCPModifier, int prevYearMonthCPModifier) {
+  public Double calculateYearlyRentalIncomeNPV(int year, int monthCPModifier, int prevYearMonthCPModifier) {
 
 
-    final Float yearlyAfterTaxCashFlow = calculateYearlyAfterTaxCashFlow(year, monthCPModifier, prevYearMonthCPModifier);
+    final Double yearlyAfterTaxCashFlow = calculateYearlyAfterTaxCashFlow(year, monthCPModifier, prevYearMonthCPModifier);
     atcfAccumulator += yearlyAfterTaxCashFlow;
-    dataController.setValueAsFloat(ValueEnum.ATCF_ACCUMULATOR, atcfAccumulator, year);
+    dataController.setValueAsDouble(ValueEnum.ATCF_ACCUMULATOR, atcfAccumulator, year);
 
     mirr.calculateMirr(year, yearlyAfterTaxCashFlow, null);
 
 
-    final Float yearlyDiscountRateDivisor = (float) Math.pow(1 + getMonthlyRequiredRateOfReturn(), monthCPModifier);
+    final Double yearlyDiscountRateDivisor = Math.pow(1 + getMonthlyRequiredRateOfReturn(), monthCPModifier);
     yearlyNPVSummation += yearlyAfterTaxCashFlow / yearlyDiscountRateDivisor;
 
-    dataController.setValueAsFloat(ValueEnum.ATCF_NPV, yearlyNPVSummation, year);
+    dataController.setValueAsDouble(ValueEnum.ATCF_NPV, yearlyNPVSummation, year);
     return yearlyNPVSummation;
   }
   
@@ -240,27 +240,27 @@ public class RentalUnitOwnership {
       final Integer monthCPModifier = year * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
       final Integer prevYearMonthCPModifier = (year - 1) * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
 
-      final Float atcfNPVSummation = calculateYearlyRentalIncomeNPV(year, monthCPModifier, prevYearMonthCPModifier);
+      final Double atcfNPVSummation = calculateYearlyRentalIncomeNPV(year, monthCPModifier, prevYearMonthCPModifier);
 
-      final Float adjustedAter = equityReversion.calculateAter(year);  
+      final Double adjustedAter = equityReversion.calculateAter(year);  
 
       npvAccumulator = -firstDay + atcfNPVSummation + adjustedAter;
-      dataController.setValueAsFloat(ValueEnum.NPV, npvAccumulator, year);
+      dataController.setValueAsDouble(ValueEnum.NPV, npvAccumulator, year);
 
-      final Float accumulatedInterest = mortgage.getAccumulatedInterestPaymentsAtPoint(year);
+      final Double accumulatedInterest = mortgage.getAccumulatedInterestPaymentsAtPoint(year);
 
-      final Float accumulatedInterestPreviousYear = mortgage.getAccumulatedInterestPaymentsAtPoint(year - 1);
-      final Float yearlyInterestPaid = accumulatedInterest - accumulatedInterestPreviousYear;
-      dataController.setValueAsFloat(ValueEnum.YEARLY_INTEREST_PAID, yearlyInterestPaid, year);
+      final Double accumulatedInterestPreviousYear = mortgage.getAccumulatedInterestPaymentsAtPoint(year - 1);
+      final Double yearlyInterestPaid = accumulatedInterest - accumulatedInterestPreviousYear;
+      dataController.setValueAsDouble(ValueEnum.YEARLY_INTEREST_PAID, yearlyInterestPaid, year);
 
     }
   }
 
-public Float getMunicipalFees() {
+public Double getMunicipalFees() {
 	return municipalFees;
 }
 
-public void setMunicipalFees(Float municipalFees) {
+public void setMunicipalFees(Double municipalFees) {
 	this.municipalFees = municipalFees;
 }
 

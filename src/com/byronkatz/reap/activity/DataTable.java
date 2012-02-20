@@ -151,9 +151,9 @@ public class DataTable {
 
   public void setDataTableValueByInteger(TextView t, ValueEnum ve, Integer year) {
     if (ve.isVaryingByYear()) {
-      t.setText(String.valueOf(dataController.getValueAsFloat(ve, year).intValue()));
+      t.setText(String.valueOf(dataController.getValueAsDouble(ve, year).intValue()));
     } else if (! ve.isVaryingByYear()) {
-      t.setText(String.valueOf(dataController.getValueAsFloat(ve).intValue()));
+      t.setText(String.valueOf(dataController.getValueAsDouble(ve).intValue()));
     }
     
 
@@ -162,18 +162,18 @@ public class DataTable {
   public void setDataTableValueByCurrency(TextView t, ValueEnum ve, Integer year) {
 //    Log.d(getClass().getName(), "ValueEnum: " + ve.name() + " Year: " + year);
     if (ve.isVaryingByYear()) {
-      t.setText(Utility.displayCurrency(dataController.getValueAsFloat(ve, year)));
+      t.setText(Utility.displayCurrency(dataController.getValueAsDouble(ve, year)));
     } else if (! ve.isVaryingByYear()) {
-      t.setText(Utility.displayCurrency(dataController.getValueAsFloat(ve)));
+      t.setText(Utility.displayCurrency(dataController.getValueAsDouble(ve)));
     }
     
   }
 
   public void setDataTableValueByPercentage(TextView t, ValueEnum ve, Integer year) {
     if (ve.isVaryingByYear()) {
-      t.setText(Utility.displayPercentage(dataController.getValueAsFloat(ve, year)));
+      t.setText(Utility.displayPercentage(dataController.getValueAsDouble(ve, year)));
     } else if (! ve.isVaryingByYear()) {
-      t.setText(Utility.displayPercentage(dataController.getValueAsFloat(ve)));
+      t.setText(Utility.displayPercentage(dataController.getValueAsDouble(ve)));
     }
     
 

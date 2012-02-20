@@ -108,34 +108,34 @@ public class TaxesActivity extends Activity {
     super.onPause();
     
     ValueEnum key = ValueEnum.MARGINAL_TAX_RATE;
-    Float value = Utility.parsePercentage(marginalTaxRate.getText().toString());
-    dataController.setValueAsFloat(key, value);
+    Double value = Utility.parsePercentage(marginalTaxRate.getText().toString());
+    dataController.setValueAsDouble(key, value);
     
     key = ValueEnum.BUILDING_VALUE;
     value = Utility.parseCurrency(buildingValue.getText().toString());
-    dataController.setValueAsFloat(key, value);
+    dataController.setValueAsDouble(key, value);
     
     key = ValueEnum.PROPERTY_TAX;
     value = Utility.parseCurrency(propertyTax.getText().toString());
-    dataController.setValueAsFloat(key, value);
+    dataController.setValueAsDouble(key, value);
     
     key = ValueEnum.LOCAL_MUNICIPAL_FEES;
     value = Utility.parseCurrency(localMunicipalFees.getText().toString());
-    dataController.setValueAsFloat(key, value);
+    dataController.setValueAsDouble(key, value);
   }
   
   private void assignValuesToFields() {
     
-    Float mtr = dataController.getValueAsFloat(ValueEnum.MARGINAL_TAX_RATE);
+    Double mtr = dataController.getValueAsDouble(ValueEnum.MARGINAL_TAX_RATE);
     marginalTaxRate.setText(Utility.displayPercentage(mtr));
     
-    Float bv = dataController.getValueAsFloat(ValueEnum.BUILDING_VALUE);
+    Double bv = dataController.getValueAsDouble(ValueEnum.BUILDING_VALUE);
     buildingValue.setText(Utility.displayCurrency(bv));
     
-    Float ptr = dataController.getValueAsFloat(ValueEnum.PROPERTY_TAX);
+    Double ptr = dataController.getValueAsDouble(ValueEnum.PROPERTY_TAX);
     propertyTax.setText(Utility.displayCurrency(ptr));
     
-    Float lmf = dataController.getValueAsFloat(ValueEnum.LOCAL_MUNICIPAL_FEES);
+    Double lmf = dataController.getValueAsDouble(ValueEnum.LOCAL_MUNICIPAL_FEES);
     localMunicipalFees.setText(Utility.displayCurrency(lmf));
   }
 }

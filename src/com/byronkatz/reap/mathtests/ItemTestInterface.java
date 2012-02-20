@@ -5,7 +5,7 @@ public interface ItemTestInterface {
 
   String INCORRECT = "\nINCORRECT!";
   String CORRECT = "\nchecks out\n\n";
-  Float EPSILON = 0.00001f;
+  Double EPSILON = 0.00001d;
   
   public String getValue();
 }

@@ -65,9 +65,9 @@ public class LoanActivity extends Activity {
 
       @Override
       public void onClick(View v) {
-        Float totalPurchasevalue = 
+        Double totalPurchasevalue = 
             Utility.parseCurrency(totalPurchasePrice.getText().toString());
-        Float pmiDownPayment = totalPurchasevalue * Mortgage.PMI_PERCENTAGE;
+        Double pmiDownPayment = totalPurchasevalue * Mortgage.PMI_PERCENTAGE;
         String pmiDownPaymentText = Utility.displayCurrency(pmiDownPayment);
         downPayment.setText(pmiDownPaymentText);
 
@@ -155,17 +155,17 @@ public class LoanActivity extends Activity {
         int THIRTY_YEARS  = adapter.getPosition("Fixed-rate mortgage - 30 years");
         int TWENTY_YEARS =  adapter.getPosition("Fixed-rate mortgage - 20 years");
         int FIFTEEN_YEARS = adapter.getPosition("Fixed-rate mortgage - 15 years");
-        Float value = null;
+        Double value = null;
 
         if (pos == THIRTY_YEARS) {
-          value = 360.0f;
+          value = 360.0d;
         } else if (pos == FIFTEEN_YEARS) {
-          value = 180.0f;
+          value = 180.0d;
         } else if (pos == TWENTY_YEARS) {
-          value = 240.0f;
+          value = 240.0d;
         }
         ValueEnum key = ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS;
-        dataController.setValueAsFloat(key, value);
+        dataController.setValueAsDouble(key, value);
 
       }
 
@@ -204,8 +204,8 @@ public class LoanActivity extends Activity {
     int TWENTY_YEARS  = adapter.getPosition("Fixed-rate mortgage - 20 years");
     int FIFTEEN_YEARS = adapter.getPosition("Fixed-rate mortgage - 15 years");
     
-    Float numOfCompoundingPeriods = 
-        dataController.getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS);
+    Double numOfCompoundingPeriods = 
+        dataController.getValueAsDouble(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS);
 
     if (numOfCompoundingPeriods.intValue() == 360) {
       loanTerm.setSelection(THIRTY_YEARS);
@@ -214,24 +214,24 @@ public class LoanActivity extends Activity {
     } else if (numOfCompoundingPeriods.intValue() == 240) {
       loanTerm.setSelection(TWENTY_YEARS);
     }
-    Float tempVariable = null;
+    Double tempVariable = null;
 
-    tempVariable = dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE);
+    tempVariable = dataController.getValueAsDouble(ValueEnum.YEARLY_INTEREST_RATE);
     yearlyInterestRate.setText(Utility.displayPercentage(tempVariable));
 
-    tempVariable = dataController.getValueAsFloat(ValueEnum.DOWN_PAYMENT);
+    tempVariable = dataController.getValueAsDouble(ValueEnum.DOWN_PAYMENT);
     downPayment.setText(Utility.displayCurrency(tempVariable));
 
-    tempVariable = dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE);
+    tempVariable = dataController.getValueAsDouble(ValueEnum.TOTAL_PURCHASE_VALUE);
     totalPurchasePrice.setText(Utility.displayCurrency(tempVariable));
 
-    tempVariable = dataController.getValueAsFloat(ValueEnum.CLOSING_COSTS);
+    tempVariable = dataController.getValueAsDouble(ValueEnum.CLOSING_COSTS);
     closingCosts.setText(Utility.displayCurrency(tempVariable));
     
-    tempVariable = dataController.getValueAsFloat(ValueEnum.PRIVATE_MORTGAGE_INSURANCE);
+    tempVariable = dataController.getValueAsDouble(ValueEnum.PRIVATE_MORTGAGE_INSURANCE);
     privateMortgageInsurance.setText(Utility.displayCurrency(tempVariable));
     
-    Integer tempInt = dataController.getValueAsFloat(ValueEnum.EXTRA_YEARS).intValue();
+    Integer tempInt = dataController.getValueAsDouble(ValueEnum.EXTRA_YEARS).intValue();
     extraYears.setText(tempInt.toString());
   }
 
@@ -240,28 +240,28 @@ public class LoanActivity extends Activity {
     super.onPause();
 
     ValueEnum key = ValueEnum.TOTAL_PURCHASE_VALUE;
-    Float value = Utility.parseCurrency(totalPurchasePrice.getText().toString());
-    dataController.setValueAsFloat(key, value);
+    Double value = Utility.parseCurrency(totalPurchasePrice.getText().toString());
+    dataController.setValueAsDouble(key, value);
 
     key = ValueEnum.DOWN_PAYMENT;
     value = Utility.parseCurrency(downPayment.getText().toString());
-    dataController.setValueAsFloat(key, value);
+    dataController.setValueAsDouble(key, value);
 
     key = ValueEnum.YEARLY_INTEREST_RATE;
     value = Utility.parsePercentage(yearlyInterestRate.getText().toString());
-    dataController.setValueAsFloat(key, value);
+    dataController.setValueAsDouble(key, value);
 
     key = ValueEnum.CLOSING_COSTS;
     value = Utility.parseCurrency(closingCosts.getText().toString());
-    dataController.setValueAsFloat(key, value);
+    dataController.setValueAsDouble(key, value);
     
     key = ValueEnum.PRIVATE_MORTGAGE_INSURANCE;
     value = Utility.parseCurrency(privateMortgageInsurance.getText().toString());
-    dataController.setValueAsFloat(key, value);
+    dataController.setValueAsDouble(key, value);
     
     key = ValueEnum.EXTRA_YEARS;
-    value = Float.valueOf(extraYears.getText().toString());
-    dataController.setValueAsFloat(key, value);
+    value = Double.valueOf(extraYears.getText().toString());
+    dataController.setValueAsDouble(key, value);
   }
 
   @Override

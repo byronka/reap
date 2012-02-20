@@ -54,7 +54,7 @@ public class SplashScreenActivity extends Activity {
       @Override
       public void onClick(View v) {
 
-        Float enteredValue = Utility.parseCurrency(splashScreenValueEntry.getText().toString());
+        Double enteredValue = Utility.parseCurrency(splashScreenValueEntry.getText().toString());
 
         if (enteredValue == 0) {
           Utility.showToast(SplashScreenActivity.this, "Must enter a value greater than 0");
@@ -136,33 +136,33 @@ public class SplashScreenActivity extends Activity {
     }
   }
   
-  private void setAssumedValues(final Float totalValue) {
+  private void setAssumedValues(final Double totalValue) {
 
-    final Float yearlyInterestRate = 0.055f;
-    dataController.setValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE, totalValue);
-    dataController.setValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE, yearlyInterestRate);
-    dataController.setValueAsFloat(ValueEnum.PRIVATE_MORTGAGE_INSURANCE, 100f);
-    dataController.setValueAsFloat(ValueEnum.DOWN_PAYMENT, totalValue * 0.20f);
-    dataController.setValueAsFloat(ValueEnum.CLOSING_COSTS, 1000f);
-    dataController.setValueAsFloat(ValueEnum.MARGINAL_TAX_RATE, 0.25f);
-    dataController.setValueAsFloat(ValueEnum.BUILDING_VALUE, totalValue * 0.80f);
-    dataController.setValueAsFloat(ValueEnum.PROPERTY_TAX, totalValue * 0.01f);
-    dataController.setValueAsFloat(ValueEnum.LOCAL_MUNICIPAL_FEES, 0f);
-    dataController.setValueAsFloat(ValueEnum.GENERAL_SALE_EXPENSES, 2000f);
-    dataController.setValueAsFloat(ValueEnum.SELLING_BROKER_RATE, 0.06f);
-    dataController.setValueAsFloat(ValueEnum.INFLATION_RATE, 0.03f);
-    dataController.setValueAsFloat(ValueEnum.REAL_ESTATE_APPRECIATION_RATE, 0.04f);
+    final Double yearlyInterestRate = 0.055d;
+    dataController.setValueAsDouble(ValueEnum.TOTAL_PURCHASE_VALUE, totalValue);
+    dataController.setValueAsDouble(ValueEnum.YEARLY_INTEREST_RATE, yearlyInterestRate);
+    dataController.setValueAsDouble(ValueEnum.PRIVATE_MORTGAGE_INSURANCE, 100d);
+    dataController.setValueAsDouble(ValueEnum.DOWN_PAYMENT, totalValue * 0.20d);
+    dataController.setValueAsDouble(ValueEnum.CLOSING_COSTS, 1000d);
+    dataController.setValueAsDouble(ValueEnum.MARGINAL_TAX_RATE, 0.25d);
+    dataController.setValueAsDouble(ValueEnum.BUILDING_VALUE, totalValue * 0.80d);
+    dataController.setValueAsDouble(ValueEnum.PROPERTY_TAX, totalValue * 0.01d);
+    dataController.setValueAsDouble(ValueEnum.LOCAL_MUNICIPAL_FEES, 0d);
+    dataController.setValueAsDouble(ValueEnum.GENERAL_SALE_EXPENSES, 2000d);
+    dataController.setValueAsDouble(ValueEnum.SELLING_BROKER_RATE, 0.06d);
+    dataController.setValueAsDouble(ValueEnum.INFLATION_RATE, 0.03d);
+    dataController.setValueAsDouble(ValueEnum.REAL_ESTATE_APPRECIATION_RATE, 0.04d);
 
     if (((CheckBox) findViewById (R.id.splashScreenRentCheckBox)).isChecked()) {
-      dataController.setValueAsFloat(ValueEnum.ESTIMATED_RENT_PAYMENTS, totalValue * 0.005f);
+      dataController.setValueAsDouble(ValueEnum.ESTIMATED_RENT_PAYMENTS, totalValue * 0.005d);
     } else {
-      dataController.setValueAsFloat(ValueEnum.ESTIMATED_RENT_PAYMENTS, 0f);
+      dataController.setValueAsDouble(ValueEnum.ESTIMATED_RENT_PAYMENTS, 0d);
     }
-    dataController.setValueAsFloat(ValueEnum.INITIAL_HOME_INSURANCE, 1000f);
-    dataController.setValueAsFloat(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE, 0.03f);
-    dataController.setValueAsFloat(ValueEnum.FIX_UP_COSTS, 0f);
-    dataController.setValueAsFloat(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES, 1000f);
-    dataController.setValueAsFloat(ValueEnum.REQUIRED_RATE_OF_RETURN, yearlyInterestRate);
+    dataController.setValueAsDouble(ValueEnum.INITIAL_HOME_INSURANCE, 1000d);
+    dataController.setValueAsDouble(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE, 0.03d);
+    dataController.setValueAsDouble(ValueEnum.FIX_UP_COSTS, 0d);
+    dataController.setValueAsDouble(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES, 1000d);
+    dataController.setValueAsDouble(ValueEnum.REQUIRED_RATE_OF_RETURN, yearlyInterestRate);
 
   }
 }

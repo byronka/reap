@@ -19,8 +19,8 @@ import com.byronkatz.reap.general.ValueEnum;
 
 public class GraphActivityFunctions {
 
-  private static final Float INCREASE_PERCENTAGE = 1.5F;
-  private static final Float DECREASE_PERCENTAGE = 0.5F;
+  private static final Double INCREASE_PERCENTAGE = 1.5d;
+  private static final Double DECREASE_PERCENTAGE = 0.5d;
 
   private static DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
@@ -159,34 +159,34 @@ public class GraphActivityFunctions {
   }
 
 
-  static Float calculateMaxFromCurrent(Float currentValueNumeric) {
+  static Double calculateMaxFromCurrent(Double currentValueNumeric) {
 
     return currentValueNumeric * INCREASE_PERCENTAGE;
 
   }
 
-  static Float calculateMinFromCurrent(Float currentValueNumeric) {
+  static Double calculateMinFromCurrent(Double currentValueNumeric) {
 
     return currentValueNumeric * DECREASE_PERCENTAGE;
 
   }
 
-  static Float calculateCurrentFromMax(Float maxValueNumeric) {
+  static Double calculateCurrentFromMax(Double maxValueNumeric) {
 
     return maxValueNumeric / INCREASE_PERCENTAGE; 
   }
 
-  static Float calculateCurrentFromMin(Float minValueNumeric) {
+  static Double calculateCurrentFromMin(Double minValueNumeric) {
     return minValueNumeric / DECREASE_PERCENTAGE;
   }
 
-  static Float calculateMinMaxDelta(Float minValueNumeric, Float maxValueNumeric) {
+  static Double calculateMinMaxDelta(Double minValueNumeric, Double maxValueNumeric) {
     return maxValueNumeric - minValueNumeric;
   }
 
 
-  static Float parseEditText(EditText editText, ValueEnum currentSliderKey) {
-    Float returnValue = 0.0f;
+  static Double parseEditText(EditText editText, ValueEnum currentSliderKey) {
+    Double returnValue = 0.0d;
 
     switch (currentSliderKey.getType()) {
     case CURRENCY:
@@ -203,7 +203,7 @@ public class GraphActivityFunctions {
     return returnValue;
   }
 
-  static void displayValue(EditText editText, Float valueNumeric, 
+  static void displayValue(EditText editText, Double valueNumeric, 
       ValueEnum currentSliderKey) {
 
     switch (currentSliderKey.getType()) {

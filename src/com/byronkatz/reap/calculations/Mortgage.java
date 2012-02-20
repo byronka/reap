@@ -7,17 +7,17 @@ import com.byronkatz.reap.general.ValueEnum;
 
 public class Mortgage {
 
-  private Float closingCosts;
-  private Float downPayment;
-  private Float loanAmount;
+  private Double closingCosts;
+  private Double downPayment;
+  private Double loanAmount;
   private MortgagePayment mortgagePayment;
   private Double monthlyMortgagePayment;
   private Double yearlyInterestRate;
   private Double monthlyInterestRate;
   private Integer numberOfCompoundingPeriods;
-  public static final Float PMI_PERCENTAGE = 0.20f;
-  private Float monthlyPrivateMortgageInsurance;
-  private Float totalPurchaseValue;
+  public static final Double PMI_PERCENTAGE = 0.20d;
+  private Double monthlyPrivateMortgageInsurance;
+  private Double totalPurchaseValue;
   private Double[] interestPaymentArray;
   private Double[] interestPaymentAccumulatorArray;
   private Double[] principalPaymentArray;
@@ -25,28 +25,28 @@ public class Mortgage {
   
   private DataController dataController;
   
-  public Mortgage(DataController dataController, Float totalPurchaseValue) {
+  public Mortgage(DataController dataController, Double totalPurchaseValue) {
 
     this.dataController = dataController;
-    closingCosts = dataController.getValueAsFloat(ValueEnum.CLOSING_COSTS);
-    numberOfCompoundingPeriods = dataController.getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue();
+    closingCosts = dataController.getValueAsDouble(ValueEnum.CLOSING_COSTS);
+    numberOfCompoundingPeriods = dataController.getValueAsDouble(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue();
     
     interestPaymentArray = new Double[numberOfCompoundingPeriods + 1];
     interestPaymentAccumulatorArray = new Double[numberOfCompoundingPeriods + 1];
     principalPaymentArray = new Double[numberOfCompoundingPeriods + 1];
     amountOwedArray = new Double[numberOfCompoundingPeriods + 1];
         
-    downPayment = dataController.getValueAsFloat(ValueEnum.DOWN_PAYMENT);
+    downPayment = dataController.getValueAsDouble(ValueEnum.DOWN_PAYMENT);
     this.totalPurchaseValue = totalPurchaseValue;
     loanAmount = totalPurchaseValue - downPayment;
 
-    yearlyInterestRate =  dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE).doubleValue();
+    yearlyInterestRate =  dataController.getValueAsDouble(ValueEnum.YEARLY_INTEREST_RATE).doubleValue();
     monthlyInterestRate = yearlyInterestRate / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
 
     mortgagePayment = new MortgagePayment( dataController,
         numberOfCompoundingPeriods, loanAmount, yearlyInterestRate);
     monthlyMortgagePayment = getMonthlyMortgagePayment(1);
-    monthlyPrivateMortgageInsurance = dataController.getValueAsFloat(ValueEnum.PRIVATE_MORTGAGE_INSURANCE);
+    monthlyPrivateMortgageInsurance = dataController.getValueAsDouble(ValueEnum.PRIVATE_MORTGAGE_INSURANCE);
 
     calculateMortgageArray();
   }
@@ -73,11 +73,11 @@ public class Mortgage {
   public Mortgage() {
      }
 
-  public Float getDownPayment() {
+  public Double getDownPayment() {
     return downPayment;
   }
   
-  public Float getClosingCosts() {
+  public Double getClosingCosts() {
     return closingCosts;
   }
   
@@ -111,10 +111,10 @@ public class Mortgage {
    * @param year the year for which we wish to obtain the PMI
    * @return the amount of money towards PMI for the year
    */
-  public Float getYearlyPmi(int year) {
+  public Double getYearlyPmi(int year) {
     //TODO - come up with a function for this rather than a loop.
 
-    Float pmiThisYear = 0.0f;
+    Double pmiThisYear = 0.0d;
     int begOfYear = (year - 1) * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
     int endOfYear = year * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
 
@@ -126,7 +126,7 @@ public class Mortgage {
       }
     }
 
-    dataController.setValueAsFloat(ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, pmiThisYear, year);
+    dataController.setValueAsDouble(ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, pmiThisYear, year);
     return pmiThisYear;
   }
   
@@ -135,47 +135,47 @@ public class Mortgage {
    * @param year is the year of the mortgage.  Year 0 represents the day the loan is received
    * @return the accumulated interest to that point in time
    */
-  public Float getAccumulatedInterestPaymentsAtPoint (int year) {
+  public Double getAccumulatedInterestPaymentsAtPoint (int year) {
 
-    Float accumInterestPaymentAtPoint = interestPaymentAccumulatorArray[year * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR].floatValue();
+    Double accumInterestPaymentAtPoint = interestPaymentAccumulatorArray[year * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR];
 
-    dataController.setValueAsFloat(ValueEnum.ACCUM_INTEREST, accumInterestPaymentAtPoint, year);
+    dataController.setValueAsDouble(ValueEnum.ACCUM_INTEREST, accumInterestPaymentAtPoint, year);
 
     return accumInterestPaymentAtPoint;
   }
   
-  public Float getPrincipalOutstandingAtPoint (int compoundingPeriodDesired) {
+  public Double getPrincipalOutstandingAtPoint (int compoundingPeriodDesired) {
 
-    return amountOwedArray[compoundingPeriodDesired].floatValue();
+    return amountOwedArray[compoundingPeriodDesired];
   }
   
-  public Float calculateYearlyPrincipalPaid(int year, int monthCPModifier, int prevYearMonthCPModifier) {
+  public Double calculateYearlyPrincipalPaid(int year, int monthCPModifier, int prevYearMonthCPModifier) {
     //next year's yearlyAmountOutstanding minus this year's
-    final Float pastYearAmountOutstanding = getPrincipalOutstandingAtPoint(prevYearMonthCPModifier);
+    final Double pastYearAmountOutstanding = getPrincipalOutstandingAtPoint(prevYearMonthCPModifier);
 
-    final Float currentYearAmountOutstanding = getPrincipalOutstandingAtPoint(monthCPModifier);
-    dataController.setValueAsFloat(ValueEnum.CURRENT_AMOUNT_OUTSTANDING,
+    final Double currentYearAmountOutstanding = getPrincipalOutstandingAtPoint(monthCPModifier);
+    dataController.setValueAsDouble(ValueEnum.CURRENT_AMOUNT_OUTSTANDING,
         currentYearAmountOutstanding, year);
 
-    final Float yearlyPrincipalPaid = pastYearAmountOutstanding - currentYearAmountOutstanding;
-    dataController.setValueAsFloat(ValueEnum.YEARLY_PRINCIPAL_PAID, yearlyPrincipalPaid, year);
+    final Double yearlyPrincipalPaid = pastYearAmountOutstanding - currentYearAmountOutstanding;
+    dataController.setValueAsDouble(ValueEnum.YEARLY_PRINCIPAL_PAID, yearlyPrincipalPaid, year);
 
     return yearlyPrincipalPaid;
   }
 
-  public Float getLoanAmount() {
+  public Double getLoanAmount() {
     return loanAmount;
   }
 
-  public void setLoanAmount(Float loanAmount) {
+  public void setLoanAmount(Double loanAmount) {
     this.loanAmount = loanAmount;
   }
 
-  public Float getMonthlyPrivateMortgageInsurance() {
+  public Double getMonthlyPrivateMortgageInsurance() {
     return monthlyPrivateMortgageInsurance;
   }
 
-  public void setMonthlyPrivateMortgageInsurance(Float monthlyPrivateMortgageInsurance) {
+  public void setMonthlyPrivateMortgageInsurance(Double monthlyPrivateMortgageInsurance) {
     this.monthlyPrivateMortgageInsurance = monthlyPrivateMortgageInsurance;
   }
 
@@ -187,11 +187,11 @@ public class Mortgage {
     this.dataController = dataController;
   }
 
-  public void setClosingCosts(Float closingCosts) {
+  public void setClosingCosts(Double closingCosts) {
     this.closingCosts = closingCosts;
   }
 
-  public void setDownPayment(Float downPayment) {
+  public void setDownPayment(Double downPayment) {
     this.downPayment = downPayment;
   }
 
@@ -207,11 +207,11 @@ public class Mortgage {
     this.numberOfCompoundingPeriods = numberOfCompoundingPeriods;
   }
 
-  public Float getTotalPurchaseValue() {
+  public Double getTotalPurchaseValue() {
     return totalPurchaseValue;
   }
 
-  public void setTotalPurchaseValue(Float totalPurchaseValue) {
+  public void setTotalPurchaseValue(Double totalPurchaseValue) {
     this.totalPurchaseValue = totalPurchaseValue;
   }
 

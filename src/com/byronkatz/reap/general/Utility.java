@@ -24,7 +24,7 @@ import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 public class Utility {
 
-  private static Float returnValue = 0.0f;
+//  private static Double returnValue = 0.0f;
   private static NumberFormat percentFormat = null;
   private static NumberFormat currencyFormat = null;
   private static NumberFormat currencyFormatter = null;
@@ -65,9 +65,9 @@ public class Utility {
 
     Integer currentYearMaximum = 0;
 
-    Float tempFloatValue = dataController.
-        getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS) / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
-    currentYearMaximum = tempFloatValue.intValue();
+    Double tempDoubleValue = dataController.
+        getValueAsDouble(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS) / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
+    currentYearMaximum = tempDoubleValue.intValue();
     return currentYearMaximum;
   }
 
@@ -146,12 +146,12 @@ public class Utility {
     }
   }
 
-  public static String displayCurrency(Float value) {
+  public static String displayCurrency(Double value) {
     currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
     return currencyFormatter.format(value);
   }
   
-  public static String displayValue(Float value, ValueEnum ve) {
+  public static String displayValue(Double value, ValueEnum ve) {
     String type = ve.getType().name();
     String outputValue = "nothing";
 
@@ -166,20 +166,20 @@ public class Utility {
     return outputValue;
   }
 
-  public static Float parseCurrency(String value) {
-    returnValue = 0.0f;
+  public static Double parseCurrency(String value) {
+    Double returnValue = 0.0d;
     currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
     if (value.contains("$")) {
       try {
-        returnValue = currencyFormat.parse(value).floatValue();
+        returnValue = currencyFormat.parse(value).doubleValue();
       } catch (ParseException e) {
         e.printStackTrace();
       }
     } else {
       try {
-        returnValue = Float.valueOf(value);
+        returnValue = Double.valueOf(value);
       } catch (NumberFormatException e) {
-        returnValue = 0.0f;
+        returnValue = 0.0d;
       }
     }
     return returnValue;
@@ -208,29 +208,29 @@ public class Utility {
         Utility.parsePercentage(((EditText) v).getText().toString())));
   }
 
-  public static String displayPercentage(Float value) {
+  public static String displayPercentage(Double value) {
     percentFormat = NumberFormat.getPercentInstance(Locale.US);
     percentFormat.setMaximumFractionDigits(4);
     result = percentFormat.format(value);
     return result;
   }
 
-  public static Float parsePercentage (String value) {
-    returnValue = 0.0f;
+  public static Double parsePercentage (String value) {
+    Double returnValue = 0.0d;
     percentFormat = NumberFormat.getPercentInstance(Locale.US);
     percentFormat.setMaximumFractionDigits(4);
     if (value.contains("%")) {
       try {
         Number n = percentFormat.parse(value);
-        returnValue = n.floatValue();
+        returnValue = n.doubleValue();
       } catch (ParseException e) {
         e.printStackTrace();
       }
     }else {
       try {
-        returnValue = Float.valueOf(value);
+        returnValue = Double.valueOf(value);
       } catch (NumberFormatException e) {
-        returnValue = 0.0f;
+        returnValue = 0.0d;
       }
     }
     return returnValue;

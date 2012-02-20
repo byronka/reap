@@ -22,27 +22,27 @@ public class TestYearlyInterestPaid implements ItemTestInterface {
     Integer numOfCompoundingMonths = year * 12;
     s.append(String.format("\nnumOfCompoundingMonths = %d" , numOfCompoundingMonths));
     
-    Float monthlyInterestRate = dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE) / 12;
+    Double monthlyInterestRate = dataController.getValueAsDouble(ValueEnum.YEARLY_INTEREST_RATE) / 12;
     s.append(String.format("\nmonthlyInterestRate = %.4f" , monthlyInterestRate));
     
-    Float totalPurchaseValue = dataController.getValueAsFloat(ValueEnum.TOTAL_PURCHASE_VALUE);
+    Double totalPurchaseValue = dataController.getValueAsDouble(ValueEnum.TOTAL_PURCHASE_VALUE);
     s.append(String.format("\ntotalPurchaseValue = %.2f", totalPurchaseValue));
     
-    Float downPayment = dataController.getValueAsFloat(ValueEnum.DOWN_PAYMENT);
+    Double downPayment = dataController.getValueAsDouble(ValueEnum.DOWN_PAYMENT);
     s.append(String.format("\ndownPayment = %.2f", downPayment));
     
-    Float amountOwed = totalPurchaseValue - downPayment;
+    Double amountOwed = totalPurchaseValue - downPayment;
     s.append(String.format("\namountOwed = %.2f", amountOwed));
     
-    Float monthlyInterestPaid = 0f;
-    Float monthlyPrincipalPaid = 0f;
-    Float monthlyInterestPaidAccumulator = 0f;
-    Float monthlyInterestPaidAccumulatorPrevYear = 0f;
+    Double monthlyInterestPaid = 0d;
+    Double monthlyPrincipalPaid = 0d;
+    Double monthlyInterestPaidAccumulator = 0d;
+    Double monthlyInterestPaidAccumulatorPrevYear = 0d;
     
-    Float totalCompoundingPeriodMonths = dataController.getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS);
+    Double totalCompoundingPeriodMonths = dataController.getValueAsDouble(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS);
     s.append(String.format("\ntotalLoanCompoundingPeriods = %d", totalCompoundingPeriodMonths.intValue()));
     
-    final Float mortgagePayment = (float) (amountOwed * (monthlyInterestRate / (1 - (1 / Math.pow(1 + monthlyInterestRate, totalCompoundingPeriodMonths)))));
+    final Double mortgagePayment = (amountOwed * (monthlyInterestRate / (1 - (1 / Math.pow(1 + monthlyInterestRate, totalCompoundingPeriodMonths)))));
     s.append(String.format("\nmortgagePayment = %.2f", mortgagePayment));
     
     for (int i = 0; i < numOfCompoundingMonths; i++) {
@@ -61,10 +61,10 @@ public class TestYearlyInterestPaid implements ItemTestInterface {
     s.append(String.format("\nmonthlyInterestPaidAccumulator = %.2f", monthlyInterestPaidAccumulator));
     s.append(String.format("\nmonthlyInterestPaidAccumulatorPrevYear = %.2f", monthlyInterestPaidAccumulatorPrevYear));
     
-    Float interestPaidThisYear = monthlyInterestPaidAccumulator - monthlyInterestPaidAccumulatorPrevYear;
+    Double interestPaidThisYear = monthlyInterestPaidAccumulator - monthlyInterestPaidAccumulatorPrevYear;
     s.append(String.format("\ninterestPaidThisYear = %.2f", interestPaidThisYear));
     
-    Float yearlyInterestPaidCached = dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_PAID, year);
+    Double yearlyInterestPaidCached = dataController.getValueAsDouble(ValueEnum.YEARLY_INTEREST_PAID, year);
     s.append(String.format("\nyearlyInterestPaid in cache = %.2f", yearlyInterestPaidCached));
     
     if (Math.abs(yearlyInterestPaidCached - interestPaidThisYear) < EPSILON) {

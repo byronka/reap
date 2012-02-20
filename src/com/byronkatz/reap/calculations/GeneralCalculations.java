@@ -5,16 +5,16 @@ public class GeneralCalculations {
   public final static int NUM_OF_MONTHS_IN_YEAR = 12;
 
   
-  public static Float futureValue (final Float numberOfCompoundingPeriods, 
-      final Float rate, final Float originalValue) {
+  public static Double futureValue (final Double numberOfCompoundingPeriods, 
+      final Double rate, final Double originalValue) {
 
-    return (float) (originalValue * Math.pow((1 + rate), numberOfCompoundingPeriods));
+    return(originalValue * Math.pow((1 + rate), numberOfCompoundingPeriods));
   }
   
-  public static Float presentValue(final int numberOfCompoundingPeriods, 
-      final Float rate, final Float futureValue) {
+  public static Double presentValue(final int numberOfCompoundingPeriods, 
+      final Double rate, final Double futureValue) {
     
-    return (float) (futureValue / Math.pow(1 + rate, numberOfCompoundingPeriods));
+    return (futureValue / Math.pow(1 + rate, numberOfCompoundingPeriods));
     
   }
 }

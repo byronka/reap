@@ -61,11 +61,11 @@ public class GraphActivity extends Activity {
       .getInstance().getDataController();
   Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence;
 
-  Float minValueNumeric;
-  Float maxValueNumeric;
-  Float deltaValueNumeric;
-  Float currentValueNumeric;
-  Float originalCurrentValueNumeric;
+  Double minValueNumeric;
+  Double maxValueNumeric;
+  Double deltaValueNumeric;
+  Double currentValueNumeric;
+  Double originalCurrentValueNumeric;
 
   SharedPreferences sp;
 
@@ -73,7 +73,7 @@ public class GraphActivity extends Activity {
   public static final int CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE = 1;
 
   ValueEnum[] dataTableItems = ValueEnum.values();
-  Float percentageSlid;
+  Double percentageSlid;
   public static AsyncTask<Void, Integer, Void> calculateInBackgroundTask;
 
   @Override
@@ -124,7 +124,7 @@ public class GraphActivity extends Activity {
 
     if (DataController.isDataChanged()) {
 
-      currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
+      currentValueNumeric = dataController.getValueAsDouble(currentSliderKey);
       //following is for the reset button
       originalCurrentValueNumeric = currentValueNumeric;
       dataTable.colorTheDataTables();
@@ -150,7 +150,7 @@ public class GraphActivity extends Activity {
 
     setContentView(R.layout.graph);
 
-    Integer extraYears = dataController.getValueAsFloat(ValueEnum.EXTRA_YEARS).intValue();
+    Integer extraYears = dataController.getValueAsDouble(ValueEnum.EXTRA_YEARS).intValue();
     Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods() + extraYears ;
     setupValueSpinner();
     setupTimeSlider(currentYearMaximum);
@@ -260,7 +260,7 @@ public class GraphActivity extends Activity {
     GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
 
 
-    dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
+    dataController.setValueAsDouble(currentSliderKey, currentValueNumeric);
 
     executeCalculationBackgroundTask();
 
@@ -322,7 +322,7 @@ public class GraphActivity extends Activity {
           Utility.setSelectionOnView(v, currentSliderKey);
         } else if (! hasFocus) {
 
-          Float tempValueNumeric = GraphActivityFunctions.parseEditText(currentValueEditText, currentSliderKey);
+          Double tempValueNumeric = GraphActivityFunctions.parseEditText(currentValueEditText, currentSliderKey);
           if (tempValueNumeric.equals(currentValueNumeric)) {
             Toast toast = Toast.makeText(GraphActivity.this, "Enter a different number than the current", Toast.LENGTH_SHORT);
             toast.show();
@@ -359,7 +359,7 @@ public class GraphActivity extends Activity {
           Utility.setSelectionOnView(v, currentSliderKey);
         } else if (! hasFocus) {
 
-          Float tempMinValue = GraphActivityFunctions.parseEditText(minValueEditText, currentSliderKey);
+          Double tempMinValue = GraphActivityFunctions.parseEditText(minValueEditText, currentSliderKey);
           if (tempMinValue.equals(minValueNumeric)) {
             Toast toast = Toast.makeText(GraphActivity.this, "Enter a different number than the current", Toast.LENGTH_SHORT);
             toast.show();
@@ -399,7 +399,7 @@ public class GraphActivity extends Activity {
           Utility.setSelectionOnView(v, currentSliderKey);
         } else if (! hasFocus) {
 
-          Float tempMaxValue = GraphActivityFunctions.parseEditText(maxValueEditText, currentSliderKey);
+          Double tempMaxValue = GraphActivityFunctions.parseEditText(maxValueEditText, currentSliderKey);
 
           if (tempMaxValue.equals(maxValueNumeric)) {
             Toast toast = Toast.makeText(GraphActivity.this, "Enter a different number than the current", Toast.LENGTH_SHORT);
@@ -439,7 +439,7 @@ public class GraphActivity extends Activity {
 
     valueSlider.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
-      Float percentageSlid;
+      Double percentageSlid;
 
       @Override
       public void onStopTrackingTouch(SeekBar seekBar) {
@@ -459,9 +459,9 @@ public class GraphActivity extends Activity {
         DataController.setCurrentDivisionForReading(progress);
 
         //set the value in the current value field:
-        percentageSlid = (progress / (float) DIVISIONS_OF_VALUE_SLIDER);
+        percentageSlid = (progress / (double) DIVISIONS_OF_VALUE_SLIDER);
         currentValueNumeric = minValueNumeric + (percentageSlid * deltaValueNumeric);
-        dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
+        dataController.setValueAsDouble(currentSliderKey, currentValueNumeric);
         GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
 
         GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
@@ -543,7 +543,7 @@ public class GraphActivity extends Activity {
           public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
               long arg3) {
             currentSliderKey = spinnerArrayAdapter.getItem(pos);
-            currentValueNumeric = dataController.getValueAsFloat(currentSliderKey);
+            currentValueNumeric = dataController.getValueAsDouble(currentSliderKey);
 
             //following is for the reset button
             originalCurrentValueNumeric = currentValueNumeric;
@@ -569,7 +569,7 @@ public class GraphActivity extends Activity {
   }
 
   private class CalculateInBackgroundTask extends AsyncTask<Void, Integer, Void> {
-    Float newCurrentValue = 0.0f;
+    Double newCurrentValue = 0.0d;
 
     ProgressDialog progressDialog;
 
@@ -582,14 +582,14 @@ public class GraphActivity extends Activity {
     protected void onPostExecute(Void result) {
 
       //restore the original current value to the array
-      dataController.setValueAsFloat(currentSliderKey, currentValueNumeric);
+      dataController.setValueAsDouble(currentSliderKey, currentValueNumeric);
 
       progressDialog.dismiss();
       GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
       GraphActivityFunctions.highlightCurrentYearOnGraph(getCurrentYearSelected(), GraphActivity.this);
 
       //necessary in case the user switches between loan types (15 vs. 30 year)
-      Integer extraYears = dataController.getValueAsFloat(ValueEnum.EXTRA_YEARS).intValue();
+      Integer extraYears = dataController.getValueAsDouble(ValueEnum.EXTRA_YEARS).intValue();
       Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods() + extraYears;
 
       Integer currentYearSelected = GraphActivityFunctions.updateTimeSliderAfterChange (timeSlider, currentYearMaximum);
@@ -629,9 +629,9 @@ public class GraphActivity extends Activity {
       //take those numbers and crunch them in the main equation, once for each division
       //then store them in a map of division numbers to crunched values
       DataController.setCurrentDivisionForWriting(division);
-      percentageSlid = (division / (float) DIVISIONS_OF_VALUE_SLIDER);
+      percentageSlid = (division / (double) DIVISIONS_OF_VALUE_SLIDER);
       newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
-      dataController.setValueAsFloat(currentSliderKey, newCurrentValue);
+      dataController.setValueAsDouble(currentSliderKey, newCurrentValue);
       new RentalUnitOwnership(dataController).crunchCalculation();
     }
   }
