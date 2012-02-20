@@ -1,5 +1,7 @@
 package com.byronkatz.reap.calculations;
 
+import android.util.Log;
+
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.ValueEnum;
 
@@ -9,13 +11,17 @@ public class Mortgage {
   private Float downPayment;
   private Float loanAmount;
   private MortgagePayment mortgagePayment;
-  private Float monthlyMortgagePayment;
-  private Float yearlyInterestRate;
-  private Float monthlyInterestRate;
+  private Double monthlyMortgagePayment;
+  private Double yearlyInterestRate;
+  private Double monthlyInterestRate;
   private Integer numberOfCompoundingPeriods;
   public static final Float PMI_PERCENTAGE = 0.20f;
   private Float monthlyPrivateMortgageInsurance;
   private Float totalPurchaseValue;
+  private Double[] interestPaymentArray;
+  private Double[] interestPaymentAccumulatorArray;
+  private Double[] principalPaymentArray;
+  private Double[] amountOwedArray;
   
   private DataController dataController;
   
@@ -24,18 +30,44 @@ public class Mortgage {
     this.dataController = dataController;
     closingCosts = dataController.getValueAsFloat(ValueEnum.CLOSING_COSTS);
     numberOfCompoundingPeriods = dataController.getValueAsFloat(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue();
+    
+    interestPaymentArray = new Double[numberOfCompoundingPeriods + 1];
+    interestPaymentAccumulatorArray = new Double[numberOfCompoundingPeriods + 1];
+    principalPaymentArray = new Double[numberOfCompoundingPeriods + 1];
+    amountOwedArray = new Double[numberOfCompoundingPeriods + 1];
+        
     downPayment = dataController.getValueAsFloat(ValueEnum.DOWN_PAYMENT);
     this.totalPurchaseValue = totalPurchaseValue;
     loanAmount = totalPurchaseValue - downPayment;
 
-    yearlyInterestRate =  dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE);
+    yearlyInterestRate =  dataController.getValueAsFloat(ValueEnum.YEARLY_INTEREST_RATE).doubleValue();
     monthlyInterestRate = yearlyInterestRate / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
 
     mortgagePayment = new MortgagePayment( dataController,
-        numberOfCompoundingPeriods, loanAmount, monthlyInterestRate);
+        numberOfCompoundingPeriods, loanAmount, yearlyInterestRate);
     monthlyMortgagePayment = getMonthlyMortgagePayment(1);
     monthlyPrivateMortgageInsurance = dataController.getValueAsFloat(ValueEnum.PRIVATE_MORTGAGE_INSURANCE);
 
+    calculateMortgageArray();
+  }
+  
+  private void calculateMortgageArray() {
+    amountOwedArray[0] = loanAmount.doubleValue();
+    principalPaymentArray[0] = 0d;
+    interestPaymentArray[0] = 0d;
+    interestPaymentAccumulatorArray[0] = 0.0d;
+    Double tempInterestPaymentAccumulator = 0d;
+    
+    for (int i = 1; i <= numberOfCompoundingPeriods; i++) {
+      
+      interestPaymentArray[i] = amountOwedArray[i - 1] * monthlyInterestRate;
+      tempInterestPaymentAccumulator += interestPaymentArray[i];
+      interestPaymentAccumulatorArray[i] = tempInterestPaymentAccumulator;
+      principalPaymentArray[i] = monthlyMortgagePayment - interestPaymentArray[i];
+      amountOwedArray[i] = amountOwedArray[i - 1] - principalPaymentArray[i];
+
+
+    }
   }
   
   public Mortgage() {
@@ -49,11 +81,11 @@ public class Mortgage {
     return closingCosts;
   }
   
-  public Float getYearlyInterestRate() {
+  public Double getYearlyInterestRate() {
     return yearlyInterestRate;
   }
 
-  public Float getMonthlyInterestRate() {
+  public Double getMonthlyInterestRate() {
     return monthlyInterestRate;
   }
   
@@ -98,61 +130,23 @@ public class Mortgage {
     return pmiThisYear;
   }
   
+  /**
+   * Determines the interest paid on the loan by the end of the year, year 1 being the first year
+   * @param year is the year of the mortgage.  Year 0 represents the day the loan is received
+   * @return the accumulated interest to that point in time
+   */
   public Float getAccumulatedInterestPaymentsAtPoint (int year) {
-    Float monthlyInterestRate = yearlyInterestRate / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
 
-    Float f = 0.0f;
-    Integer compoundingPeriodDesired = year * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
-    
-    if (loanAmount < 0.0) {
-      loanAmount = 0.0f;
-    }
-    if (monthlyInterestRate < 0.0) {
-      monthlyInterestRate = 0.0f;
-    }
-    if (compoundingPeriodDesired < 0) {
-      compoundingPeriodDesired = 0;
-    }
-    if (compoundingPeriodDesired > numberOfCompoundingPeriods) {
-      compoundingPeriodDesired = numberOfCompoundingPeriods;
-    }
-    Float c = monthlyInterestRate+1;
-    Float d = (float) Math.pow(c, compoundingPeriodDesired);
-    
-    Float e = 0f;
-    
-    if (c != 0f) {
-      e = (1-d)/(1-c);
-
-    }
-    if (monthlyInterestRate == 0) {
-      f = 0.0f;
-    } else {
-    f = monthlyMortgagePayment/monthlyInterestRate;
-    }
-    Integer g = compoundingPeriodDesired + 1;
-
-    Float accumInterestPaymentAtPoint = monthlyInterestRate*(loanAmount*(e+d)+(f)*(c*g-(e + d))-(monthlyMortgagePayment * g));
+    Float accumInterestPaymentAtPoint = interestPaymentAccumulatorArray[year * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR].floatValue();
 
     dataController.setValueAsFloat(ValueEnum.ACCUM_INTEREST, accumInterestPaymentAtPoint, year);
+
     return accumInterestPaymentAtPoint;
   }
   
   public Float getPrincipalOutstandingAtPoint (int compoundingPeriodDesired) {
 
-    Float principalOutstandingAtPoint = 0.0f;
-    Float a = monthlyInterestRate + 1;
-
-    if (monthlyInterestRate > 0.0f) {
-      principalOutstandingAtPoint = (float) ((Math.pow(a,compoundingPeriodDesired) * loanAmount) -
-        ( monthlyMortgagePayment *  (((a - Math.pow(a,compoundingPeriodDesired) )/ -monthlyInterestRate) + 1)));
-    }
-    
-    if (principalOutstandingAtPoint < 0.0f) {
-      principalOutstandingAtPoint = 0.0f;
-    }
-    
-    return principalOutstandingAtPoint;
+    return amountOwedArray[compoundingPeriodDesired].floatValue();
   }
   
   public Float calculateYearlyPrincipalPaid(int year, int monthCPModifier, int prevYearMonthCPModifier) {
@@ -181,8 +175,7 @@ public class Mortgage {
     return monthlyPrivateMortgageInsurance;
   }
 
-  public void setMonthlyPrivateMortgageInsurance(
-      Float monthlyPrivateMortgageInsurance) {
+  public void setMonthlyPrivateMortgageInsurance(Float monthlyPrivateMortgageInsurance) {
     this.monthlyPrivateMortgageInsurance = monthlyPrivateMortgageInsurance;
   }
 
@@ -202,11 +195,11 @@ public class Mortgage {
     this.downPayment = downPayment;
   }
 
-  public void setYearlyInterestRate(Float yearlyInterestRate) {
+  public void setYearlyInterestRate(Double yearlyInterestRate) {
     this.yearlyInterestRate = yearlyInterestRate;
   }
 
-  public void setMonthlyInterestRate(Float monthlyInterestRate) {
+  public void setMonthlyInterestRate(Double monthlyInterestRate) {
     this.monthlyInterestRate = monthlyInterestRate;
   }
 
@@ -222,13 +215,14 @@ public class Mortgage {
     this.totalPurchaseValue = totalPurchaseValue;
   }
 
-  public Float getMonthlyMortgagePayment(int year) {
+  public Double getMonthlyMortgagePayment(int year) {
     return mortgagePayment.getMonthlyMortgagePayment(year);
   }
 
-  public void setMonthlyMortgagePayment(Float monthlyMortgagePayment) {
+  public void setMonthlyMortgagePayment(Double monthlyMortgagePayment) {
     this.monthlyMortgagePayment = monthlyMortgagePayment;
   }
+
 
 
 }

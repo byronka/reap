@@ -47,6 +47,7 @@ public class ConfigureDataTablesActivity extends Activity {
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
     setContentView(R.layout.configure_data_tables);
+    
     viewableDataTableRows = dataController.getViewableDataTableRows();
     valueToDataTableItemCorrespondence = new HashMap<ValueEnum, TableRow> ();
     configDataTableLayout = (TableLayout) findViewById(R.id.dataTableLayoutConfiguration);
@@ -135,10 +136,10 @@ public class ConfigureDataTablesActivity extends Activity {
       }
 
       if (alternateColor) {
-        newTableRow.setBackgroundResource(R.color.data_table_row_color_alternate_a);
+        newTableRow.setBackgroundResource(R.color.gray85);
         alternateColor = ! alternateColor;
       } else {
-        newTableRow.setBackgroundResource(R.color.data_table_row_color_alternate_b);
+        newTableRow.setBackgroundResource(R.color.gray95);
         alternateColor = ! alternateColor;
       }
 

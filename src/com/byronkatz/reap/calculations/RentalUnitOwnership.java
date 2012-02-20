@@ -148,20 +148,20 @@ public class RentalUnitOwnership {
     // cashflowIn - cashflowOut
 
     final Float yearlyPrivateMortgageInsurance = mortgage.getYearlyPmi(year);
-    final Float monthlyMortgagePayment = mortgage.getMonthlyMortgagePayment(year);
+    final Double monthlyMortgagePayment = mortgage.getMonthlyMortgagePayment(year);
 
     final Float yearlyOperatingExpenses = getFVPropertyTax(year) + getFVMunicipalFees(year) + 
     		 rental.getFVYearlyGeneralExpenses(year) + 
     		rental.getFVYearlyHomeInsurance(year) + yearlyPrivateMortgageInsurance;
     dataController.setValueAsFloat(ValueEnum.YEARLY_OPERATING_EXPENSES, yearlyOperatingExpenses , year);
     
-    final Float yearlyOutlay = yearlyOperatingExpenses + (monthlyMortgagePayment * 12);
+    final Float yearlyOutlay = yearlyOperatingExpenses + (monthlyMortgagePayment.floatValue() * 12);
     
     dataController.setValueAsFloat(ValueEnum.YEARLY_OUTLAY, yearlyOutlay, year);
     
     final Float yearlyNetOperatingIncome = rental.getFVNetYearlyIncome(year) - yearlyOperatingExpenses;
     dataController.setValueAsFloat(ValueEnum.YEARLY_NET_OPERATING_INCOME, yearlyNetOperatingIncome, year);
-    final Float yearlyBeforeTaxCashFlow = yearlyNetOperatingIncome - (monthlyMortgagePayment * 12);
+    final Float yearlyBeforeTaxCashFlow = yearlyNetOperatingIncome - (monthlyMortgagePayment.floatValue() * 12);
     
     final Float capitalizationRateOnPurchaseValue = yearlyNetOperatingIncome / estateValue.getEstateValue(0);
     dataController.setValueAsFloat(ValueEnum.CAP_RATE_ON_PURCHASE_VALUE, capitalizationRateOnPurchaseValue, year);

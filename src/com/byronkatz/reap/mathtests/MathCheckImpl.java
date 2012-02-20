@@ -12,9 +12,12 @@ public class MathCheckImpl implements MathCheckInterface {
   public MathCheckImpl() {
     
     mathTests = new HashMap<ValueEnum, Class<? extends ItemTestInterface>>();
+    
     mathTests.put( ValueEnum.YEARLY_INCOME, TestRentalIncome.class);
     mathTests.put(ValueEnum.ATCF, TestAfterTaxCashFlow.class);
     mathTests.put( ValueEnum.YEARLY_OUTLAY, TestYearlyOutlay.class);
+    mathTests.put(ValueEnum.YEARLY_INTEREST_PAID, TestYearlyInterestPaid.class);
+    mathTests.put(ValueEnum.ACCUM_INTEREST, TestYearlyInterestPaidAccumulator.class);
   }
   
   @Override

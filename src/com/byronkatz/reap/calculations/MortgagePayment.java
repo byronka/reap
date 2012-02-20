@@ -5,26 +5,26 @@ import com.byronkatz.reap.general.ValueEnum;
 
 public class MortgagePayment {
 
-  private Float monthlyInterestRate;
-  private Integer numOfCompoundingPeriods;
-  private Float loanAmount;
-  private Float monthlyMortgagePayment;
-  private Float yearlyMortgagePayment;
+  private Double monthlyMortgagePayment;
+  private Double yearlyMortgagePayment;
   private DataController dataController;
   private Integer numOfCompoundingPeriodYears;
 
 
   public MortgagePayment(DataController dataController, 
       Integer numOfCompoundingPeriods, Float loanAmount, 
-      Float monthlyInterestRate) {
+      Double yearlyInterestRate) {
     this.dataController = dataController;
-    this.numOfCompoundingPeriods = numOfCompoundingPeriods;
     numOfCompoundingPeriodYears = numOfCompoundingPeriods / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
-    this.loanAmount = loanAmount;
-    this.monthlyInterestRate = monthlyInterestRate;
-    calculateMortgagePayment();
+    monthlyMortgagePayment = calculateMortgagePayment((double)yearlyInterestRate, numOfCompoundingPeriods, loanAmount);
+    yearlyMortgagePayment = GeneralCalculations.NUM_OF_MONTHS_IN_YEAR * monthlyMortgagePayment;
 
   }
+  
+  /**
+   * no-args test constructor
+   */
+  public MortgagePayment() {}
 
   private void saveValues(int year, Float monthlyMortgagePayment, Float yearlyMortgagePayment) {
 
@@ -33,28 +33,36 @@ public class MortgagePayment {
 
   }
 
-  public Float getMonthlyMortgagePayment(int year) {
+  public Double getMonthlyMortgagePayment(int year) {
 
     if (year > numOfCompoundingPeriodYears) {
       saveValues(year, 0f, 0f);
-      return 0f;
+      return 0d;
     } else {
-      saveValues(year, monthlyMortgagePayment, yearlyMortgagePayment);
+      saveValues(year, monthlyMortgagePayment.floatValue(), yearlyMortgagePayment.floatValue());
       return monthlyMortgagePayment;
     }
 
   }
 
-  private void calculateMortgagePayment() {
+  private Double calculateMortgagePayment(Double yearlyInterestRate, 
+      Integer numOfCompoundingPeriods, Float loanAmount) {
+    
+    Double mP = 0.0d;
+    
     //to avoid divide by zero error
-    if (monthlyInterestRate == 0.0f || numOfCompoundingPeriods == 0) {
-      monthlyMortgagePayment = 0.0f;
+    if (yearlyInterestRate == 0.0f || numOfCompoundingPeriods == 0) {
+      mP = 0.0d;
     } else {
-      monthlyMortgagePayment = (float) ((loanAmount * monthlyInterestRate) / 
-          (1 - (Math.pow(1 + monthlyInterestRate, -numOfCompoundingPeriods))));
+      mP = ((loanAmount * (yearlyInterestRate / 12)) / 
+          (1.0f - (1 / (Math.pow(1 + (yearlyInterestRate / 12), numOfCompoundingPeriods)))));
+//      Log.d("power!", "numOfCopmoundingPeriods: " + numOfCompoundingPeriods);
+//      Log.d("power!", "loanAmount: " + loanAmount + " monthlyInterestRate: " + monthlyInterestRate);;
+//      Log.d("power!", "new BigDecimal(1 + monthlyInterestRate).pow(numOfCompoundingPeriods): " + 
+//          new BigDecimal(1 + monthlyInterestRate).pow(numOfCompoundingPeriods));
     }
-    yearlyMortgagePayment = GeneralCalculations.NUM_OF_MONTHS_IN_YEAR * monthlyMortgagePayment;
-
+    return mP;
   }
+
 
 }

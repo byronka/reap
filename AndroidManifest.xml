@@ -46,7 +46,8 @@
             android:label="@string/configureDataTableTitleText"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Dialog"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:windowSoftInputMode="stateHidden|adjustResize"
+             />
         <activity
             android:name=".reap.activity.FinancialEnvironmentActivity"
             android:label="@string/financialEnvironmentActivityTitleText"

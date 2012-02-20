@@ -26,7 +26,11 @@
     <color name="tf_green2">#81DC74</color>
     <color name="tf_green3">#46CB33</color>
     <color name="tf_green4">#2E8622</color>
+    <color name="gray95">#0c0c0c</color>
+    <color name="gray90">#191919</color>
+    <color name="gray85">#272727</color>
     <color name="gray80">#343434</color>
+    <color name="gray75">#3f3f3f</color>
     <color name="gray60">#666666</color>
     <color name="gray40">#999999</color>
 

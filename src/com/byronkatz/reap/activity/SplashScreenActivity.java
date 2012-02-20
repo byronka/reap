@@ -104,6 +104,11 @@ public class SplashScreenActivity extends Activity {
       editor.putBoolean(ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(), true);         
       editor.putBoolean(ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(), true);       
       editor.putBoolean(ValueEnum.PROJECTED_HOME_VALUE.name(), true);      
+      editor.putBoolean(ValueEnum.YEARLY_INCOME.name(), true);      
+      editor.putBoolean(ValueEnum.YEARLY_INTEREST_RATE.name(), true);      
+      editor.putBoolean(ValueEnum.REQUIRED_RATE_OF_RETURN.name(), true);      
+      editor.putBoolean(ValueEnum.PROJECTED_HOME_VALUE.name(), true);      
+      
       editor.putBoolean(ValueEnum.ATER.name(), true);  
 
       editor.putBoolean("IS_GRAPH_VISIBLE", true);

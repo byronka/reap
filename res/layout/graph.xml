@@ -5,7 +5,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:weightSum="1"
-    android:background="@drawable/input_background" >
+    android:background="@drawable/custom_background" >
 
     <!-- the following is just to catch the focus and do nothing with it -->
 

@@ -135,11 +135,11 @@ public class DataTable {
       for (ValueEnum ve : viewableDataTableRows) {
         if (ve.toString() == tempString) {
           if (alternateColor) {
-            tempRow.setBackgroundResource(R.color.gray80);
+            tempRow.setBackgroundResource(R.color.gray85);
             tempRow.setVisibility(View.VISIBLE);
             alternateColor = ! alternateColor;
           } else {
-            tempRow.setBackgroundResource(R.color.gray60);
+            tempRow.setBackgroundResource(R.color.gray95);
             tempRow.setVisibility(View.VISIBLE);
             alternateColor = ! alternateColor;
           }
@@ -160,6 +160,7 @@ public class DataTable {
   }
 
   public void setDataTableValueByCurrency(TextView t, ValueEnum ve, Integer year) {
+//    Log.d(getClass().getName(), "ValueEnum: " + ve.name() + " Year: " + year);
     if (ve.isVaryingByYear()) {
       t.setText(Utility.displayCurrency(dataController.getValueAsFloat(ve, year)));
     } else if (! ve.isVaryingByYear()) {

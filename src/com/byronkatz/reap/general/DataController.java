@@ -12,7 +12,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.util.Log;
 
 import com.byronkatz.reap.calculations.GeneralCalculations;
 
@@ -131,10 +130,7 @@ public class DataController {
     if ((existingValue == null) || (Math.abs(existingValue - value) > EPSILON)) {
       dataChanged = true;
       numericMap.put(key, value);
-    } else {
-      //do nothing
-    } 
-
+    }
   }
 
   public void setValueAsFloat(ValueEnum key, Float value, Integer year) {

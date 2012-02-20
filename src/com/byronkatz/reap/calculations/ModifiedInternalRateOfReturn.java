@@ -8,14 +8,14 @@ import com.byronkatz.reap.general.ValueEnum;
 public class ModifiedInternalRateOfReturn {
 
   private Vector<Float> cashFlowVector;
-  private Float yearlyInterestRate;
+  private Double yearlyInterestRate;
   private Float yearlyRequiredRateOfReturn;
   private Float mirrValueAccumulator;
 
   private DataController dataController;
 
   public ModifiedInternalRateOfReturn(DataController dataController,
-      Float yearlyInterestRate, 
+      Double yearlyInterestRate, 
       Float yearlyRequiredRateOfReturn) {
     this.dataController = dataController;
     mirrValueAccumulator = 0.0f;
