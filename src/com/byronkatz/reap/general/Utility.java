@@ -24,7 +24,7 @@ import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 public class Utility {
 
-//  private static Double returnValue = 0.0f;
+  //  private static Double returnValue = 0.0f;
   private static NumberFormat percentFormat = null;
   private static NumberFormat currencyFormat = null;
   private static NumberFormat currencyFormatter = null;
@@ -47,7 +47,7 @@ public class Utility {
     helpDialog.setCanceledOnTouchOutside(true);
     helpDialog.show();
   }
-  
+
   public static void showHelpDialog(String helpText, int helpTitle, Context context) {
     helpDialog = new Dialog(context);
     window = helpDialog.getWindow();
@@ -72,7 +72,7 @@ public class Utility {
   }
 
   public static void callCalc(Activity a) {
-    
+
     Intent i = new Intent();
     i.setClassName("com.android.calculator2",
         "com.android.calculator2.Calculator");
@@ -89,33 +89,45 @@ public class Utility {
   public static void showAlertDialog(Activity activity, String message) {
     AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
-      builder.setMessage(message);
-      String buttonText = activity.getString(android.R.string.ok);
-      builder.setPositiveButton(buttonText, new DialogInterface.OnClickListener() {
+    builder.setMessage(message);
+    String buttonText = activity.getString(android.R.string.ok);
+    builder.setPositiveButton(buttonText, new DialogInterface.OnClickListener() {
 
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
 
-          dialog.dismiss();
-        }
-      } );
+        dialog.dismiss();
+      }
+    } );
   }
-  
+
   public static void showAlertDialog(Context context, String message) {
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-      builder.setMessage(message);
-      String buttonText = context.getString(android.R.string.ok);
-      builder.setPositiveButton(buttonText, new DialogInterface.OnClickListener() {
+    builder.setMessage(message);
+    String buttonText = context.getString(android.R.string.ok);
+    builder.setPositiveButton(buttonText, new DialogInterface.OnClickListener() {
 
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
 
-          dialog.dismiss();
-        }
-      } );
+        dialog.dismiss();
+      }
+    } );
   }
-  
+
+  public static String toHexString(byte[] bytes) {
+    char[] hexArray = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+    char[] hexChars = new char[bytes.length * 2];
+    int v;
+    for ( int j = 0; j < bytes.length; j++ ) {
+      v = bytes[j] & 0xFF;
+      hexChars[j*2] = hexArray[v/16];
+      hexChars[j*2 + 1] = hexArray[v%16];
+    }
+    return new String(hexChars);
+  }
+
   public static void showToast(Activity activity, String message) {
     Toast toast = Toast.makeText(activity, message, Toast.LENGTH_SHORT);
     toast.show();
@@ -150,7 +162,7 @@ public class Utility {
     currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
     return currencyFormatter.format(value);
   }
-  
+
   public static String displayValue(Double value, ValueEnum ve) {
     String type = ve.getType().name();
     String outputValue = "nothing";

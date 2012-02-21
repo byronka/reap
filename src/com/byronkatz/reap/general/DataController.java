@@ -29,6 +29,7 @@ public class DataController {
   //below data structure holds a whole set of calculated values 
   //for each division of the progress slider
   private static Map<Integer, Map<Integer, Map<ValueEnum, Double>>> multiDivisionNumericValues;
+
   private static Map<ValueEnum, String> textValues;
   private static Set<ValueEnum> viewableDataTableRows;
   private static Boolean dataChanged;

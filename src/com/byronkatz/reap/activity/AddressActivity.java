@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;
+import com.byronkatz.reap.general.OnFocusChangeListenerWrapperComments;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.ValueEnum;
 
@@ -32,7 +33,7 @@ public class AddressActivity extends Activity {
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
     setContentView(R.layout.address);
-    
+
     statePosition = new String[STATE_ARRAY_SIZE];
     streetAddressEditText = (EditText) findViewById(R.id.streetAddressEditText);
     cityEditText = (EditText) findViewById(R.id.cityEditText);
@@ -66,29 +67,32 @@ public class AddressActivity extends Activity {
     });
 
     streetAddressEditText.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.STREET_ADDRESS));
-    
+
     cityEditText.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.CITY));
 
-    commentsEditText.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.COMMENTS));
+    commentsEditText.setOnFocusChangeListener(new OnFocusChangeListenerWrapperComments(ValueEnum.COMMENTS));
   }
+
 
   @Override
   protected void onPause() {
-    ValueEnum key = ValueEnum.STREET_ADDRESS;
-    String value = streetAddressEditText.getText().toString();
-    dataController.setValueAsString(key, value);
-    
-    key = ValueEnum.CITY;
-    value = cityEditText.getText().toString();
-    dataController.setValueAsString(key, value);
-    
-    key = ValueEnum.COMMENTS;
-    value = commentsEditText.getText().toString();
-    dataController.setValueAsString(key, value);
-    
+    ValueEnum streetAddressKey = ValueEnum.STREET_ADDRESS;
+    String streetAddressValue = streetAddressEditText.getText().toString();
+
+    ValueEnum cityKey = ValueEnum.CITY;
+    String cityValue = cityEditText.getText().toString();
+
+    ValueEnum commentsKey = ValueEnum.COMMENTS;
+    String commentsValue = commentsEditText.getText().toString();
+
+  
+      dataController.setValueAsString(streetAddressKey, streetAddressValue);
+      dataController.setValueAsString(cityKey, cityValue);
+      dataController.setValueAsString(commentsKey, commentsValue);
+
     super.onPause();
   }
-  
+
   private void assignValuesToFields() {
 
     String sa = dataController.getValueAsString(ValueEnum.STREET_ADDRESS);
@@ -102,12 +106,12 @@ public class AddressActivity extends Activity {
 
     int statePosition = adapter.getPosition(stateInitials);
     stateSpinner.setSelection(statePosition);
-    
+
     String comments = 
         dataController.getValueAsString(ValueEnum.COMMENTS);
     commentsEditText.setText(comments);
 
   }
 
-  
+
 }
