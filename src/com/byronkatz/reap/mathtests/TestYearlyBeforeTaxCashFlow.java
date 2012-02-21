@@ -4,13 +4,13 @@ import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.ValueEnum;
 
-public class TestYearlyOutlay implements ItemTestInterface {
+public class TestYearlyBeforeTaxCashFlow implements ItemTestInterface {
   
-  public TestYearlyOutlay() {
+  public TestYearlyBeforeTaxCashFlow() {
     
   }
 
-  private String getYearlyOutlay() {
+  private String getYearlyBeforeTaxCashFlow() {
     // cashflowIn - cashflowOut
 
     StringBuffer s = new StringBuffer();
@@ -42,35 +42,35 @@ public class TestYearlyOutlay implements ItemTestInterface {
     final Double yearlyBeforeTaxCashFlow = dataController.getValueAsDouble(
         ValueEnum.YEARLY_BEFORE_TAX_CASH_FLOW, year);
 
-    s.append("YEARLY OUTLAY (yO)");
-    s.append(String.format("\nYearly Private Mortgage Insurance (yPMI): %.2f +", yearlyPrivateMortgageInsurance));
-    s.append(String.format("\nYearly Mortgage Payment (yMP): %.2f +", yearlyMortgagePayment));
-    s.append(String.format("\nYearly Property Tax (yPT): %.2f +", fVPropertyTax));
-    s.append(String.format("\nYearly Municipal Fees (yMF): %.2f +", fVMunicipalFees));
-    s.append(String.format("\nYearly General Expenses (yGE): %.2f +", fVYearlyGeneralExpenses));
-    s.append(String.format("\nYearly Home Insurance (yHI): %.2f", fVYearlyHomeInsurance));
-    s.append("\n-----------------------------");
-    s.append(String.format("\nYearly Outlay (yO): %.2f", yearlyOutlay));
-    
-    if (Math.abs(actualYearlyOutlay - yearlyOutlay) < EPSILON) {
-      s.append(CORRECT);
-    } else {
-      s.append(INCORRECT);
-      s.append(String.format("\nActual answer is: %.2f\n\n", actualYearlyOutlay));
-    }
-
-//    s.append("YEARLY BEFORE TAX CASH FLOW");
-//    s.append(String.format("\nYearly Net Income (yNI): %.2f", fVNetYearlyIncome));
-//    s.append(String.format("\nYearly Before Tax Cash Flow (yBTCF): %.2f", yearlyBeforeTaxCashFlow));
-//    s.append("\nCheck:\n  yNI - yO = yBTCF");
-//    s.append(String.format("\n%.2f - %.2f = %.2f", fVNetYearlyIncome, yearlyOutlay, yearlyBeforeTaxCashFlow));
+//    s.append("YEARLY OUTLAY (yO)");
+//    s.append(String.format("\nYearly Private Mortgage Insurance (yPMI): %.2f +", yearlyPrivateMortgageInsurance));
+//    s.append(String.format("\nYearly Mortgage Payment (yMP): %.2f +", yearlyMortgagePayment));
+//    s.append(String.format("\nYearly Property Tax (yPT): %.2f +", fVPropertyTax));
+//    s.append(String.format("\nYearly Municipal Fees (yMF): %.2f +", fVMunicipalFees));
+//    s.append(String.format("\nYearly General Expenses (yGE): %.2f +", fVYearlyGeneralExpenses));
+//    s.append(String.format("\nYearly Home Insurance (yHI): %.2f", fVYearlyHomeInsurance));
+//    s.append("\n-----------------------------");
+//    s.append(String.format("\nYearly Outlay (yO): %.2f", yearlyOutlay));
 //    
-//    if (Math.abs(actualYearlyBeforeTaxCashFlow - yearlyBeforeTaxCashFlow) < EPSILON) {
+//    if (Math.abs(actualYearlyOutlay - yearlyOutlay) < EPSILON) {
 //      s.append(CORRECT);
 //    } else {
 //      s.append(INCORRECT);
-//      s.append(String.format("\nActual answer is: %.2f\n\n", actualYearlyBeforeTaxCashFlow));
+//      s.append(String.format("\nActual answer is: %.2f\n\n", actualYearlyOutlay));
 //    }
+
+    s.append("YEARLY BEFORE TAX CASH FLOW");
+    s.append(String.format("\nYearly Net Income (yNI): %.2f", fVNetYearlyIncome));
+    s.append(String.format("\nYearly Before Tax Cash Flow (yBTCF): %.2f", yearlyBeforeTaxCashFlow));
+    s.append("\nCheck:\n  yNI - yO = yBTCF");
+    s.append(String.format("\n%.2f - %.2f = %.2f", fVNetYearlyIncome, yearlyOutlay, yearlyBeforeTaxCashFlow));
+    
+    if (Math.abs(actualYearlyBeforeTaxCashFlow - yearlyBeforeTaxCashFlow) < EPSILON) {
+      s.append(CORRECT);
+    } else {
+      s.append(INCORRECT);
+      s.append(String.format("\nActual answer is: %.2f\n\n", actualYearlyBeforeTaxCashFlow));
+    }
 
 
     return s.toString();
@@ -78,7 +78,7 @@ public class TestYearlyOutlay implements ItemTestInterface {
 
   @Override
   public String getValue() {
-    return getYearlyOutlay();
+    return getYearlyBeforeTaxCashFlow();
   }
 
 

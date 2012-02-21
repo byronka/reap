@@ -40,7 +40,7 @@ public class OnFocusChangeListenerWrapperComments implements OnFocusChangeListen
       byte[] digest = digester.digest();
 
       if (Utility.toHexString(digest).equals("AEF4ED1E649B8B652FBA45EEA28CB0018875B9023406F44947E860F8D195260A")) {
-
+        ((EditText) v).setText("");
         Dialog helpDialog = new Dialog(v.getContext());
         Window window = helpDialog.getWindow();
         window.setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND, 

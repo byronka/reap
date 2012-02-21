@@ -22,20 +22,20 @@ public class Mortgage {
   private Double[] interestPaymentAccumulatorArray;
   private Double[] principalPaymentArray;
   private Double[] amountOwedArray;
-  
+
   private DataController dataController;
-  
+
   public Mortgage(DataController dataController, Double totalPurchaseValue) {
 
     this.dataController = dataController;
     closingCosts = dataController.getValueAsDouble(ValueEnum.CLOSING_COSTS);
     numberOfCompoundingPeriods = dataController.getValueAsDouble(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue();
-    
+
     interestPaymentArray = new Double[numberOfCompoundingPeriods + 1];
     interestPaymentAccumulatorArray = new Double[numberOfCompoundingPeriods + 1];
     principalPaymentArray = new Double[numberOfCompoundingPeriods + 1];
     amountOwedArray = new Double[numberOfCompoundingPeriods + 1];
-        
+
     downPayment = dataController.getValueAsDouble(ValueEnum.DOWN_PAYMENT);
     this.totalPurchaseValue = totalPurchaseValue;
     loanAmount = totalPurchaseValue - downPayment;
@@ -50,16 +50,16 @@ public class Mortgage {
 
     calculateMortgageArray();
   }
-  
+
   private void calculateMortgageArray() {
     amountOwedArray[0] = loanAmount.doubleValue();
     principalPaymentArray[0] = 0d;
     interestPaymentArray[0] = 0d;
     interestPaymentAccumulatorArray[0] = 0.0d;
     Double tempInterestPaymentAccumulator = 0d;
-    
+
     for (int i = 1; i <= numberOfCompoundingPeriods; i++) {
-      
+
       interestPaymentArray[i] = amountOwedArray[i - 1] * monthlyInterestRate;
       tempInterestPaymentAccumulator += interestPaymentArray[i];
       interestPaymentAccumulatorArray[i] = tempInterestPaymentAccumulator;
@@ -69,18 +69,18 @@ public class Mortgage {
 
     }
   }
-  
+
   public Mortgage() {
-     }
+  }
 
   public Double getDownPayment() {
     return downPayment;
   }
-  
+
   public Double getClosingCosts() {
     return closingCosts;
   }
-  
+
   public Double getYearlyInterestRate() {
     return yearlyInterestRate;
   }
@@ -88,15 +88,15 @@ public class Mortgage {
   public Double getMonthlyInterestRate() {
     return monthlyInterestRate;
   }
-  
+
   public Integer getNumberOfCompoundingPeriods() {
     return numberOfCompoundingPeriods;
   }
-  
+
   public Integer getYearlyNumberOfCompoundingPeriods() {
     return numberOfCompoundingPeriods / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
   }
-  
+
   /**
    * returns the amount of money put towards PMI for the year
    * 
@@ -129,7 +129,7 @@ public class Mortgage {
     dataController.setValueAsDouble(ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, pmiThisYear, year);
     return pmiThisYear;
   }
-  
+
   /**
    * Determines the interest paid on the loan by the end of the year, year 1 being the first year
    * @param year is the year of the mortgage.  Year 0 represents the day the loan is received
@@ -137,18 +137,29 @@ public class Mortgage {
    */
   public Double getAccumulatedInterestPaymentsAtPoint (int year) {
 
-    Double accumInterestPaymentAtPoint = interestPaymentAccumulatorArray[year * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR];
+    Double accumInterestPaymentAtPoint = 0d;
 
+    if (year <= numberOfCompoundingPeriods / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR) {
+      accumInterestPaymentAtPoint = interestPaymentAccumulatorArray[year * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR];
+    } else {
+      accumInterestPaymentAtPoint = interestPaymentAccumulatorArray[numberOfCompoundingPeriods];
+    }
     dataController.setValueAsDouble(ValueEnum.ACCUM_INTEREST, accumInterestPaymentAtPoint, year);
 
     return accumInterestPaymentAtPoint;
   }
-  
+
   public Double getPrincipalOutstandingAtPoint (int compoundingPeriodDesired) {
 
-    return amountOwedArray[compoundingPeriodDesired];
+    Double principalOutstanding = 0d;
+
+    if (compoundingPeriodDesired <= numberOfCompoundingPeriods) {
+      principalOutstanding = amountOwedArray[compoundingPeriodDesired];
+    }
+
+    return principalOutstanding;
   }
-  
+
   public Double calculateYearlyPrincipalPaid(int year, int monthCPModifier, int prevYearMonthCPModifier) {
     //next year's yearlyAmountOutstanding minus this year's
     final Double pastYearAmountOutstanding = getPrincipalOutstandingAtPoint(prevYearMonthCPModifier);
