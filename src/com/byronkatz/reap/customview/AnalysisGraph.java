@@ -208,20 +208,27 @@ public class AnalysisGraph extends View {
         isFirstPoint = true;
         Float oldXGraphValue = 0.0f;
         Float oldYGraphValue = 0.0f;
-        
+
         xValue = 0;
         yValue = 0.0f;
-        
+
         for (int i = 0; i < dataPoints.length; i++) {  
           xValue = i + 1;
+
           if ((Math.abs(yValue - dataPoints[i])) > EPSILON) {
             //only if new value and the previous value are essentially different, 
             //otherwise use the old value
             yValue = dataPoints[i].floatValue();
           } 
           xGraphValue = (float) (marginWidthX +  xGraphCoefficient * (xValue - functionMinX));
-          yGraphValue = (float) (marginWidthY + yGraphCoefficient * (functionMaxY - yValue));
 
+          //if the difference between the top and bottom is zero, it's an outlier - so we use if statement
+          if (Float.isInfinite(yGraphCoefficient)) {
+            yGraphValue = (float) (graphMaxY / 2);
+          } else {
+            yGraphValue = (float) (marginWidthY + yGraphCoefficient * (functionMaxY - yValue));
+          }
+          
           if (xValue == currentYearHighlighted) {
             canvas.drawCircle(xGraphValue, yGraphValue, HIGHLIGHT_CIRCLE_RADIUS, highlightPaint);
           }
