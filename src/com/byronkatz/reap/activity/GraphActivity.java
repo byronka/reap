@@ -583,8 +583,8 @@ public class GraphActivity extends Activity {
 
     @Override
     protected void onProgressUpdate(Integer... progress) {
-//      progressDialog.setProgress(progress[0]);
-      setTitle("Calculating... " + progress[0] + "/" + DIVISIONS_OF_VALUE_SLIDER);
+      String updateValue = Utility.displayShortPercentage((double) (progress[0] )/ DIVISIONS_OF_VALUE_SLIDER);
+      setTitle("Calculating... " + updateValue);
 
     }
 
@@ -594,9 +594,6 @@ public class GraphActivity extends Activity {
       //restore the original current value to the array
       dataController.setValueAsDouble(currentSliderKey, currentValueNumeric);
 
-//      progressDialog.dismiss();
-      //WORK AREA
-      //TODO
       setTitle(R.string.graphActivityTitleText);
       
       //WORK AREA ENDS
@@ -619,15 +616,6 @@ public class GraphActivity extends Activity {
       setDataChangedToggle(false);
     }
 
-//    @Override
-//    protected void onPreExecute() {
-//
-//      progressDialog = GraphActivityFunctions.setupProgressGraphDialog(GraphActivity.this);
-//      progressDialog.show();
-//    }
-    
-    //TODO
-    //TESTING - WORK AREA WORK AREA
   @Override
   protected void onPreExecute() {
     setTitle("Calculating...");

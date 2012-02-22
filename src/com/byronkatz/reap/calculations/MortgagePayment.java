@@ -56,11 +56,12 @@ public class MortgagePayment {
     } else {
       mP = ((loanAmount * (yearlyInterestRate / 12)) / 
           (1.0f - (1 / (Math.pow(1 + (yearlyInterestRate / 12), numOfCompoundingPeriods)))));
-//      Log.d("power!", "numOfCopmoundingPeriods: " + numOfCompoundingPeriods);
-//      Log.d("power!", "loanAmount: " + loanAmount + " monthlyInterestRate: " + monthlyInterestRate);;
-//      Log.d("power!", "new BigDecimal(1 + monthlyInterestRate).pow(numOfCompoundingPeriods): " + 
-//          new BigDecimal(1 + monthlyInterestRate).pow(numOfCompoundingPeriods));
     }
+    
+    if (mP < 0d) {
+      mP = 0.0d;
+    }
+    
     return mP;
   }
 

@@ -270,12 +270,23 @@ public class Utility {
       outputValue = displayShortCurrency(value);
       //following is identical to displayValue - change if needed.
     } else if (type == "PERCENTAGE") {
-      outputValue = displayPercentage(value);
+      outputValue = displayShortPercentage(value);
     } else if (type == "INTEGER") {
       outputValue = String.valueOf(value.intValue());
     }
 
     return outputValue;
+  }
+
+  public static String displayShortPercentage(Double value) {
+    
+    //Seems that numberFormat has a beef with Double values.  Downgrade to Float so it doesn't choke
+    
+    percentFormat = NumberFormat.getPercentInstance(Locale.US);
+    percentFormat.setMaximumFractionDigits(0);
+    result = percentFormat.format(value.floatValue());
+//    Log.d("Utilityclass", "result: " + result + " value: " + value);
+    return result;
   }
   
   public static String displayValue(Double value, ValueEnum ve) {
