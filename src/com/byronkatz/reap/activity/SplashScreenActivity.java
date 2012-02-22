@@ -90,11 +90,11 @@ public class SplashScreenActivity extends Activity {
     SharedPreferences sp = getSharedPreferences(GraphActivity.PREFS_NAME, MODE_PRIVATE);
 
     SharedPreferences.Editor editor = sp.edit();
-    Log.d(getClass().getName(), "getting editor");
+//    Log.d(getClass().getName(), "getting editor");
     
     if (((CheckBox) findViewById (R.id.splashScreenRentCheckBox)).isChecked()) {
       
-      Log.d(getClass().getName(), "rental unit");
+//      Log.d(getClass().getName(), "rental unit");
 
       editor.clear();
       editor.putBoolean(ValueEnum.NPV.name(), true);   
@@ -117,7 +117,7 @@ public class SplashScreenActivity extends Activity {
       
     } else {
       
-      Log.d(getClass().getName(), "non-rental unit");
+//      Log.d(getClass().getName(), "non-rental unit");
 
       editor.clear();
 

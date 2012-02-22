@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,6 +21,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.byronkatz.R;
+import com.byronkatz.reap.activity.AppInfoActivity;
+import com.byronkatz.reap.activity.ConfigureDataTablesActivity;
+import com.byronkatz.reap.activity.DataPagesActivity;
+import com.byronkatz.reap.activity.GraphActivity;
+import com.byronkatz.reap.activity.SavedDataBrowserActivity;
 import com.byronkatz.reap.calculations.GeneralCalculations;
 import com.byronkatz.reap.general.ValueEnum.ValueType;
 
@@ -47,6 +53,92 @@ public class Utility {
     helpDialog.setTitle(helpTitle);
     helpDialog.setCanceledOnTouchOutside(true);
     helpDialog.show();
+  }
+  
+  public static void switchForMenuItem(MenuItem item, Activity activity, boolean isGraphVisible) {
+   
+    
+    Intent intent = null;
+    
+    //which item is selected?
+    switch (item.getItemId()) {
+
+    case R.id.configureGraphPageMenuItem:
+
+      intent = new Intent(activity, ConfigureDataTablesActivity.class);
+      intent.putExtra(GraphActivity.IS_GRAPH_VISIBLE, isGraphVisible);
+      activity.startActivityForResult(intent, GraphActivity.CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE);
+      break;
+    case R.id.editValuesMenuItem:
+      intent = new Intent(activity, DataPagesActivity.class);
+      activity.startActivity(intent); 
+      break;
+
+    case R.id.saveCurrentValuesMenuItem:
+      saveValueDialog(activity);
+
+      break;
+
+    case R.id.databaseMenuItem:
+      intent = new Intent(activity, SavedDataBrowserActivity.class);
+      activity.startActivity(intent); 
+      break;
+
+    case R.id.infoMenuItem:
+      intent = new Intent(activity, AppInfoActivity.class);
+      activity.startActivity(intent);
+      break;
+      
+    case R.id.viewGraphMenuItem:
+      intent = new Intent(activity, GraphActivity.class);
+      intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+      activity.startActivity(intent);
+      activity.finish();
+      break;
+
+    default:
+      //select nothing / do nothing
+    }
+  }
+  
+  public static void saveValueDialog(final Activity activity) {
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+
+    builder.setPositiveButton("Add new entry", new DialogInterface.OnClickListener() {
+
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+
+        int newRowIndex = dataController.saveValues();
+        dataController.setCurrentDatabaseRow(newRowIndex);
+        Toast toast = Toast.makeText(activity, "Data saved as new entry", Toast.LENGTH_SHORT);
+        toast.show();
+
+      }
+    } );
+
+    //following is so the "update" button only appears if there is a row to update
+    Integer currentDataRow = dataController.getCurrentDatabaseRow();
+    if ( currentDataRow != -1) {
+      String message = "Current data row is " + currentDataRow;
+      builder.setMessage(message);
+      builder.setNegativeButton("Update current entry", new DialogInterface.OnClickListener() {
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+
+
+          dataController.updateRow();
+          Toast toast = Toast.makeText(activity, "Data saved into current entry", Toast.LENGTH_SHORT);
+          toast.show();
+
+        }
+      });
+    }
+    AlertDialog saveNewOrUpdate = builder.create();
+    saveNewOrUpdate.show();
+
   }
 
   public static void showHelpDialog(String helpText, int helpTitle, Context context) {
@@ -164,6 +256,28 @@ public class Utility {
     return currencyFormatter.format(value);
   }
 
+  public static String displayShortCurrency(Double value) {
+    NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
+    nf.setMaximumFractionDigits(0);
+    return nf.format(value);
+  }
+  
+  public static String displayShortValue(Double value, ValueEnum ve) {
+    String type = ve.getType().name();
+    String outputValue = "nothing";
+
+    if (type == "CURRENCY") {
+      outputValue = displayShortCurrency(value);
+      //following is identical to displayValue - change if needed.
+    } else if (type == "PERCENTAGE") {
+      outputValue = displayPercentage(value);
+    } else if (type == "INTEGER") {
+      outputValue = String.valueOf(value.intValue());
+    }
+
+    return outputValue;
+  }
+  
   public static String displayValue(Double value, ValueEnum ve) {
     String type = ve.getType().name();
     String outputValue = "nothing";

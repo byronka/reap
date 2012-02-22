@@ -31,7 +31,7 @@ public class AnalysisGraph extends View {
   private static final int CRPV = 4;
   private static final int CRCV = 5;
   private static final Float DIVISOR_MODIFIER = 0.75f;
-  private static final Integer RIGHT_SIDE_MARGIN_PIXELS = 95;
+  private static final Integer RIGHT_SIDE_MARGIN_PIXELS = 70;
   private static final Float EPSILON = 0.00001f;
 
   public static final Float GRAPH_MARGIN = 0.20f;
@@ -39,10 +39,10 @@ public class AnalysisGraph extends View {
   public static final int GRAPH_MIN_Y = 0;
   public static final Float CIRCLE_RADIUS = 5.0f;
   public static final Float TEXT_SIZE = 14.0f;
-  public static final Float GRAPH_LINE_STROKE_WIDTH = 3f;
+  public static final Float GRAPH_LINE_STROKE_WIDTH = 5f;
   public static final Float DIVISOR_LINE_STROKE_WIDTH = 1f;
   public static final Float CICLE_STROKE_WIDTH = 1.5f;
-  public static final Float HIGHLIGHT_STROKE_WIDTH = 5F;
+  public static final Float HIGHLIGHT_STROKE_WIDTH = 4F;
   public static final Float HIGHLIGHT_CIRCLE_RADIUS = 10.0f;
   public static final String X_AXIS_STRING = "0.0";
   public static final Integer MINIMUM_YEAR = 1;
@@ -231,6 +231,7 @@ public class AnalysisGraph extends View {
           
           if (xValue == currentYearHighlighted) {
             canvas.drawCircle(xGraphValue, yGraphValue, HIGHLIGHT_CIRCLE_RADIUS, highlightPaint);
+            canvas.drawText(String.valueOf(currentYearHighlighted), xGraphValue+15, yGraphValue+15, textPaint);
           }
 
           //draw the points on the graph
@@ -306,7 +307,7 @@ public class AnalysisGraph extends View {
 
         canvas.drawLine(startX, distFromMarginToDivisor, stopX, 
             distFromMarginToDivisor, divisorPaint);
-        canvas.drawText(Utility.displayValue((double)divisorLineValue, graphKeyValue), (Float) startX, 
+        canvas.drawText(Utility.displayShortValue((double)divisorLineValue, graphKeyValue), (Float) startX, 
             distFromMarginToDivisor, textPaint);
 
       }
@@ -334,7 +335,7 @@ public class AnalysisGraph extends View {
 
         canvas.drawLine(startX, distFromMarginToDivisor, stopX, 
             distFromMarginToDivisor, divisorPaint);
-        canvas.drawText(Utility.displayValue((double)divisorLineValue, graphKeyValue), (Float) startX, 
+        canvas.drawText(Utility.displayShortValue((double)divisorLineValue, graphKeyValue), (Float) startX, 
             distFromMarginToDivisor, textPaint);
 
       }
@@ -347,7 +348,7 @@ public class AnalysisGraph extends View {
     startX = (float) GRAPH_MIN_X;
     stopX  = (float) graphMaxX;
     canvas.drawLine(startX, distFromMarginToXAxis, stopX, 
-        distFromMarginToXAxis, graphLinePaint);
+        distFromMarginToXAxis, divisorPaint);
     canvas.drawText(X_AXIS_STRING, (Float) (stopX - marginWidthX / 2), 
         distFromMarginToXAxis, textPaint);
   }

@@ -25,83 +25,83 @@ public class GraphActivityFunctions {
   private static DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
 
-  static void switchForMenuItem(MenuItem item, GraphActivity graphActivity,
-      int currentYear, boolean isGraphVisible) {
-    Intent intent = null;
-    //which item is selected?
-    switch (item.getItemId()) {
+//  static void switchForMenuItem(MenuItem item, GraphActivity graphActivity,
+//      int currentYear, boolean isGraphVisible) {
+//    Intent intent = null;
+//    //which item is selected?
+//    switch (item.getItemId()) {
+//
+//    case R.id.configureGraphPageMenuItem:
+//
+//      intent = new Intent(graphActivity, ConfigureDataTablesActivity.class);
+//      intent.putExtra("IS_GRAPH_VISIBLE", isGraphVisible);
+//      graphActivity.startActivityForResult(intent, GraphActivity.CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE);
+//      break;
+//    case R.id.editValuesMenuItem:
+//      intent = new Intent(graphActivity, DataPagesActivity.class);
+//      graphActivity.startActivity(intent); 
+//      break;
+//
+//    case R.id.saveCurrentValuesMenuItem:
+//      saveValueDialog(graphActivity);
+//
+//      break;
+//
+//    case R.id.databaseMenuItem:
+//      intent = new Intent(graphActivity, SavedDataBrowserActivity.class);
+//      graphActivity.startActivity(intent); 
+//      break;
+//
+//    case R.id.checkMathMenuItem:
+//      intent = new Intent(graphActivity, AppInfoActivity.class);
+//      intent.putExtra("year", currentYear );
+//      graphActivity.startActivity(intent) ;
+//      break;
+//
+//    default:
+//      //select nothing / do nothing
+//    }
+//  }
 
-    case R.id.configureGraphPageMenuItem:
-
-      intent = new Intent(graphActivity, ConfigureDataTablesActivity.class);
-      intent.putExtra("IS_GRAPH_VISIBLE", isGraphVisible);
-      graphActivity.startActivityForResult(intent, GraphActivity.CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE);
-      break;
-    case R.id.editValuesMenuItem:
-      intent = new Intent(graphActivity, DataPagesActivity.class);
-      graphActivity.startActivity(intent); 
-      break;
-
-    case R.id.saveCurrentValuesMenuItem:
-      saveValueDialog(graphActivity);
-
-      break;
-
-    case R.id.databaseMenuItem:
-      intent = new Intent(graphActivity, SavedDataBrowserActivity.class);
-      graphActivity.startActivity(intent); 
-      break;
-
-    case R.id.checkMathMenuItem:
-      intent = new Intent(graphActivity, AppInfoActivity.class);
-      intent.putExtra("year", currentYear );
-      graphActivity.startActivity(intent) ;
-      break;
-
-    default:
-      //select nothing / do nothing
-    }
-  }
-
-  public static void saveValueDialog(final GraphActivity graphActivity) {
-
-    AlertDialog.Builder builder = new AlertDialog.Builder(graphActivity);
-
-    builder.setPositiveButton("Add new entry", new DialogInterface.OnClickListener() {
-
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-
-        int newRowIndex = dataController.saveValues();
-        dataController.setCurrentDatabaseRow(newRowIndex);
-        Toast toast = Toast.makeText(graphActivity, "Data saved as new entry", Toast.LENGTH_SHORT);
-        toast.show();
-
-      }
-    } );
-
-    //following is so the "update" button only appears if there is a row to update
-    Integer currentDataRow = dataController.getCurrentDatabaseRow();
-    if ( currentDataRow != -1) {
-      String message = "Current data row is " + currentDataRow;
-      builder.setMessage(message);
-      builder.setNegativeButton("Update current entry", new DialogInterface.OnClickListener() {
-
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-
-
-          dataController.updateRow();
-          Toast toast = Toast.makeText(graphActivity, "Data saved into current entry", Toast.LENGTH_SHORT);
-          toast.show();
-
-        }
-      });
-    }
-    AlertDialog saveNewOrUpdate = builder.create();
-    saveNewOrUpdate.show();
-
-  }
+//  public static void saveValueDialog(final GraphActivity graphActivity) {
+//
+//    AlertDialog.Builder builder = new AlertDialog.Builder(graphActivity);
+//
+//    builder.setPositiveButton("Add new entry", new DialogInterface.OnClickListener() {
+//
+//      @Override
+//      public void onClick(DialogInterface dialog, int which) {
+//
+//        int newRowIndex = dataController.saveValues();
+//        dataController.setCurrentDatabaseRow(newRowIndex);
+//        Toast toast = Toast.makeText(graphActivity, "Data saved as new entry", Toast.LENGTH_SHORT);
+//        toast.show();
+//
+//      }
+//    } );
+//
+//    //following is so the "update" button only appears if there is a row to update
+//    Integer currentDataRow = dataController.getCurrentDatabaseRow();
+//    if ( currentDataRow != -1) {
+//      String message = "Current data row is " + currentDataRow;
+//      builder.setMessage(message);
+//      builder.setNegativeButton("Update current entry", new DialogInterface.OnClickListener() {
+//
+//        @Override
+//        public void onClick(DialogInterface dialog, int which) {
+//
+//
+//          dataController.updateRow();
+//          Toast toast = Toast.makeText(graphActivity, "Data saved into current entry", Toast.LENGTH_SHORT);
+//          toast.show();
+//
+//        }
+//      });
+//    }
+//    AlertDialog saveNewOrUpdate = builder.create();
+//    saveNewOrUpdate.show();
+//
+//  }
 
   static ProgressDialog setupProgressGraphDialog(GraphActivity graphActivity) {
     ProgressDialog progressDialog = new ProgressDialog(graphActivity);

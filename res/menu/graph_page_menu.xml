@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    android:name="Data pages menu"
-     >
+    android:name="Data pages menu" >
 
     <item
         android:id="@+id/configureGraphPageMenuItem"
         android:icon="@drawable/settings"
-        android:title="@string/configureGraphMenuTitle"
-
-        />
+        android:title="@string/configureGraphMenuTitle"/>
     <item
         android:id="@+id/databaseMenuItem"
         android:icon="@drawable/load_values"
@@ -22,8 +19,8 @@
         android:icon="@drawable/save"
         android:title="@string/saveCurrentValuesMenuTitle"/>
     <item
-        android:id="@+id/checkMathMenuItem"
+        android:id="@+id/infoMenuItem"
         android:icon="@drawable/info"
-        android:title="@string/mathCheckMenuTitle"/>
+        android:title="@string/infoMenuTitle"/>
 
 </menu>

@@ -93,7 +93,7 @@ public class DataController {
   //once done with conversion, remove this method
   public void setValueAsFloat(ValueEnum key, Float value) {
 
-  Log.d(getClass().getName(), key.name() + " tried to insert " + value.toString());
+//  Log.d(getClass().getName(), key.name() + " tried to insert " + value.toString());
   }
 
   
@@ -145,7 +145,7 @@ public class DataController {
   //once done with conversion, remove this method
   public void setValueAsFloat(ValueEnum key, Float value, Integer year) {
 
-  Log.d(getClass().getName(), key.name() + " tried to insert " + value.toString());
+//  Log.d(getClass().getName(), key.name() + " tried to insert " + value.toString());
   }
   
   public void setValueAsDouble(ValueEnum key, Double value, Integer year) {
@@ -201,6 +201,9 @@ public class DataController {
     //get the default division
     numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
 
+    if (numericValues == null) {
+      return 0d;
+    }
     Map<ValueEnum, Double> m = numericValues.get(DEFAULT_YEAR);
     Double returnValue = m.get(key);
     return returnValue;
@@ -208,8 +211,8 @@ public class DataController {
   
   public Float getValueAsFloat(ValueEnum key) {
 
-  Log.d(getClass().getName(), "ValueEnum: " + key.toString() + 
-      " failed to get correct value");
+//  Log.d(getClass().getName(), "ValueEnum: " + key.toString() + 
+//      " failed to get correct value");
 
   return 0f;
 }
@@ -223,6 +226,10 @@ public class DataController {
     //unpack the numericValues for this division
     numericValues = multiDivisionNumericValues.get(currentDivisionForReading);
 
+    if (numericValues == null) {
+      return 0d;
+    }
+    
     //unpack the map for this year
     Map<ValueEnum, Double> m = numericValues.get(year);
     Double returnValue = m.get(key);
@@ -231,8 +238,8 @@ public class DataController {
   
   public Float getValueAsFloat(ValueEnum key, Integer year) {
 
-  Log.d(getClass().getName(), "ValueEnum: " + key.toString() + " Year: " + year.toString() + 
-      " failed to get correct value");
+//  Log.d(getClass().getName(), "ValueEnum: " + key.toString() + " Year: " + year.toString() + 
+//      " failed to get correct value");
 
   return 0f;
 }

@@ -2,6 +2,9 @@ package com.byronkatz.reap.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -14,6 +17,7 @@ import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;
 import com.byronkatz.reap.general.OnFocusChangeListenerWrapperComments;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
+import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
 
 public class AddressActivity extends Activity {
@@ -28,6 +32,42 @@ public class AddressActivity extends Activity {
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
   private ArrayAdapter<CharSequence> adapter;
 
+  
+  @Override
+  public boolean onCreateOptionsMenu (Menu menu){
+    super.onCreateOptionsMenu(menu);
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.edit_data_page_menu, menu);
+    return true;
+  }
+  
+  /**
+   * This gets called every time the menu is called
+   */
+  @Override
+  public boolean onPrepareOptionsMenu (Menu menu) {
+    super.onPrepareOptionsMenu(menu);
+    saveValuesToCache();
+
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected (MenuItem item) {
+    super.onOptionsItemSelected(item);
+
+    Utility.switchForMenuItem(item, this, false);
+    return false;
+  }
+  
+  
+  @Override
+  public void onResume() {
+    super.onResume();
+    assignValuesToFields();
+
+  }
+  
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedState) {
@@ -46,7 +86,6 @@ public class AddressActivity extends Activity {
     stateSpinner.setAdapter(adapter);
 
 
-    assignValuesToFields();
 
     stateSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -72,10 +111,9 @@ public class AddressActivity extends Activity {
 
     commentsEditText.setOnFocusChangeListener(new OnFocusChangeListenerWrapperComments(ValueEnum.COMMENTS));
   }
+  
 
-
-  @Override
-  protected void onPause() {
+  private void saveValuesToCache() {
     ValueEnum streetAddressKey = ValueEnum.STREET_ADDRESS;
     String streetAddressValue = streetAddressEditText.getText().toString();
 
@@ -89,6 +127,12 @@ public class AddressActivity extends Activity {
       dataController.setValueAsString(streetAddressKey, streetAddressValue);
       dataController.setValueAsString(cityKey, cityValue);
       dataController.setValueAsString(commentsKey, commentsValue);
+  }
+
+
+  @Override
+  protected void onPause() {
+    saveValuesToCache();
 
     super.onPause();
   }

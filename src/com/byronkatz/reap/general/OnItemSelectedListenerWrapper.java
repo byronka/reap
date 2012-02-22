@@ -18,9 +18,9 @@ public class OnItemSelectedListenerWrapper implements OnItemSelectedListener {
     @Override
     public void onItemSelected(AdapterView<?> aParentView, View aView, int aPosition, long anId) {
         if (lastPosition == aPosition) {
-            Log.d(getClass().getName(), "Ignoring onItemSelected for same position: " + aPosition);
+//            Log.d(getClass().getName(), "Ignoring onItemSelected for same position: " + aPosition);
         } else {
-            Log.d(getClass().getName(), "Passing on onItemSelected for different position: " + aPosition);
+//            Log.d(getClass().getName(), "Passing on onItemSelected for different position: " + aPosition);
             listener.onItemSelected(aParentView, aView, aPosition, anId);
         }
         lastPosition = aPosition;

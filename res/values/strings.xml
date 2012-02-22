@@ -16,7 +16,8 @@
 	<string formatted="false" name="savedLocationsMenuTitle">Saved locations</string>
 	<string formatted="false" name="editValuesMenuTitle">Edit data values</string>
 	<string formatted="false" name="saveCurrentValuesMenuTitle">Save current</string>
-	<string formatted="false" name="mathCheckMenuTitle">Info</string>
+	<string formatted="false" name="viewGraphMenuTitle">View graph</string>
+	<string formatted="false" name="infoMenuTitle">Info</string>
 	
 		
 	<!-- Help text for calculated values -->

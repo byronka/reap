@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/custom_background" >
+    android:layout_height="fill_parent" >
+
+    <!-- android:background="@drawable/custom_background" -->
 
     <TableRow
         android:id="@+id/tableRow1"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_weight="0.3" >
+        android:layout_weight="1" >
 
         <Button
             android:id="@+id/addressButton"
@@ -16,6 +17,7 @@
             android:layout_height="fill_parent"
             android:layout_marginBottom="10dip"
             android:layout_marginRight="5dip"
+            android:layout_marginTop="10dip"
             android:layout_weight="0.5"
             android:background="@drawable/custom_button"
             android:text="@string/addressActivityTitleText"
@@ -28,6 +30,7 @@
             android:layout_height="fill_parent"
             android:layout_marginBottom="10dip"
             android:layout_marginLeft="5dip"
+            android:layout_marginTop="10dip"
             android:layout_weight="0.5"
             android:background="@drawable/custom_button"
             android:text="@string/loanActivityTitleText"
@@ -39,7 +42,7 @@
         android:id="@+id/tableRow2"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_weight="0.3" >
+        android:layout_weight="1" >
 
         <Button
             android:id="@+id/saleButton"
@@ -70,7 +73,7 @@
         android:id="@+id/tableRow3"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_weight="0.3" >
+        android:layout_weight="1" >
 
         <Button
             android:id="@+id/rentalButton"

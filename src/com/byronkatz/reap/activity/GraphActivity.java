@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +25,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
@@ -80,7 +82,7 @@ public class GraphActivity extends Activity {
   public boolean onCreateOptionsMenu (Menu menu){
     super.onCreateOptionsMenu(menu);
     MenuInflater inflater = getMenuInflater();
-    inflater.inflate(R.menu.data_pages_menu, menu);
+    inflater.inflate(R.menu.graph_page_menu, menu);
     return true;
   }
 
@@ -94,8 +96,7 @@ public class GraphActivity extends Activity {
       isGraphVisible = true;
     }
 
-    GraphActivityFunctions.switchForMenuItem(item, GraphActivity.this, 
-        getCurrentYearSelected(), isGraphVisible);
+    Utility.switchForMenuItem(item, GraphActivity.this, isGraphVisible);
     return false;
   }
 
@@ -121,6 +122,7 @@ public class GraphActivity extends Activity {
   @Override
   public void onResume() {
     super.onResume();
+    Log.d(getClass().getName(), "entering onResume of graphActivity");
 
     if (DataController.isDataChanged()) {
 
@@ -139,6 +141,9 @@ public class GraphActivity extends Activity {
   @Override
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
+    Log.d(getClass().getName(), "entering onCreate of graphActivity");
+
+    
     dataTable = new DataTable(this);
 
     sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
@@ -271,6 +276,9 @@ public class GraphActivity extends Activity {
       calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
       //separate these so it is not possible to try running a method on a null pointer
     } else if (calculateInBackgroundTask.getStatus() != AsyncTask.Status.RUNNING) {
+      calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
+    } else if (calculateInBackgroundTask.getStatus() == AsyncTask.Status.RUNNING) {
+      calculateInBackgroundTask.cancel(false);
       calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
     }
   }
@@ -575,7 +583,9 @@ public class GraphActivity extends Activity {
 
     @Override
     protected void onProgressUpdate(Integer... progress) {
-      progressDialog.setProgress(progress[0]);
+//      progressDialog.setProgress(progress[0]);
+      setTitle("Calculating... " + progress[0] + "/" + DIVISIONS_OF_VALUE_SLIDER);
+
     }
 
     @Override
@@ -584,7 +594,12 @@ public class GraphActivity extends Activity {
       //restore the original current value to the array
       dataController.setValueAsDouble(currentSliderKey, currentValueNumeric);
 
-      progressDialog.dismiss();
+//      progressDialog.dismiss();
+      //WORK AREA
+      //TODO
+      setTitle(R.string.graphActivityTitleText);
+      
+      //WORK AREA ENDS
       GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
       GraphActivityFunctions.highlightCurrentYearOnGraph(getCurrentYearSelected(), GraphActivity.this);
 
@@ -604,12 +619,19 @@ public class GraphActivity extends Activity {
       setDataChangedToggle(false);
     }
 
-    @Override
-    protected void onPreExecute() {
-
-      progressDialog = GraphActivityFunctions.setupProgressGraphDialog(GraphActivity.this);
-      progressDialog.show();
-    }
+//    @Override
+//    protected void onPreExecute() {
+//
+//      progressDialog = GraphActivityFunctions.setupProgressGraphDialog(GraphActivity.this);
+//      progressDialog.show();
+//    }
+    
+    //TODO
+    //TESTING - WORK AREA WORK AREA
+  @Override
+  protected void onPreExecute() {
+    setTitle("Calculating...");
+  }
 
     @Override
     protected Void doInBackground(Void... arg0) {
@@ -617,6 +639,9 @@ public class GraphActivity extends Activity {
 
         for (int division = 0; division <= DIVISIONS_OF_VALUE_SLIDER; division++) {
           calculateEachDivision(division);
+          if (isCancelled()) {
+            break;
+          }
           publishProgress(division);
         }
       

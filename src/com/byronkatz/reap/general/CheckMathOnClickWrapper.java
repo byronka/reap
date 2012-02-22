@@ -26,12 +26,12 @@ public class CheckMathOnClickWrapper implements OnClickListener {
 
     tempClass = mct.getTestResults(ve);
     if (tempClass == null) {
-      Log.d(getClass().getName(), "tempClass was null");
+//      Log.d(getClass().getName(), "tempClass was null");
     } else {
       try {
         testResults = tempClass.newInstance().getValue(); 
       } catch (Exception e) {
-        Log.d(getClass().getName(), e.toString());
+//        Log.d(getClass().getName(), e.toString());
       } 
     }
     Utility.showHelpDialog(
