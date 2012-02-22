@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -78,7 +79,6 @@ public class SavedDataBrowserActivity extends ListActivity {
       @Override
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //set cursor to row that we clicked on
-        cursor.moveToPosition(position);
 
         createLoadDialog(position);
       }
@@ -89,8 +89,7 @@ public class SavedDataBrowserActivity extends ListActivity {
       @Override
       public boolean onItemLongClick(AdapterView<?> arg0, View view, int position,
           long id) {
-        cursor.moveToPosition(position);
-        createDeleteDialog();
+        createDeleteDialog(position);
 
         return true;
       } 
@@ -98,7 +97,7 @@ public class SavedDataBrowserActivity extends ListActivity {
         
   }
 
-  private void createDeleteDialog() {
+  private void createDeleteDialog(int position) {
     final Dialog deleteDialog = new Dialog(SavedDataBrowserActivity.this);
 
     Window window = deleteDialog.getWindow();
@@ -107,7 +106,10 @@ public class SavedDataBrowserActivity extends ListActivity {
     deleteDialog.setContentView(R.layout.delete_database_item_dialog_view);
     TextView deleteTextView = (TextView)deleteDialog.findViewById(R.id.delete_text);
 
-    deleteTextView.setText("Would you like to delete this entry?");
+    cursor.moveToPosition(position);
+    String rowNum = cursor.getString(0);
+
+    deleteTextView.setText("Would you like to delete the entry at row " + rowNum + "?");
     deleteDialog.setTitle("Delete database item");
     
     Button deleteButton = (Button)deleteDialog.findViewById(R.id.deleteDatabaseItemButton);
@@ -147,9 +149,11 @@ public class SavedDataBrowserActivity extends ListActivity {
     window.setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND, 
         WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
     loadDialog.setContentView(R.layout.load_database_item_dialog_view);
-    TextView deleteTextView = (TextView)loadDialog.findViewById(R.id.delete_text);
+    TextView loadTextView = (TextView)loadDialog.findViewById(R.id.load_text);
 
-    deleteTextView.setText("Would you like to load this entry?");
+    cursor.moveToPosition(position);
+    String rowNum = cursor.getString(0);
+    loadTextView.setText("Would you like to load the entry at row " + rowNum + "?");
     loadDialog.setTitle("Load database item");
     
     Button loadButton = (Button)loadDialog.findViewById(R.id.loadDatabaseItemButton);

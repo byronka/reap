@@ -132,9 +132,9 @@ public class AddressActivity extends Activity {
 
   @Override
   protected void onPause() {
+    super.onPause();
     saveValuesToCache();
 
-    super.onPause();
   }
 
   private void assignValuesToFields() {

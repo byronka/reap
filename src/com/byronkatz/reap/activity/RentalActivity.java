@@ -2,6 +2,9 @@ package com.byronkatz.reap.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -25,7 +28,42 @@ public class RentalActivity extends Activity {
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
+  @Override
+  public boolean onCreateOptionsMenu (Menu menu){
+    super.onCreateOptionsMenu(menu);
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.edit_data_page_menu, menu);
+    return true;
+  }
+  
+  /**
+   * This gets called every time the menu is called
+   */
+  @Override
+  public boolean onPrepareOptionsMenu (Menu menu) {
+    super.onPrepareOptionsMenu(menu);
+    saveValuesToCache();
 
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected (MenuItem item) {
+    super.onOptionsItemSelected(item);
+
+    Utility.switchForMenuItem(item, this, false);
+    return false;
+  }
+  
+  
+  @Override
+  public void onResume() {
+    super.onResume();
+    assignValuesToFields();
+
+  }
+  
+  
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedState) {
@@ -39,8 +77,6 @@ public class RentalActivity extends Activity {
     fixupCosts                    = (EditText)findViewById(R.id.fixupCostsEditText);
     initialYearlyGeneralExpenses  = (EditText)findViewById(R.id.initialYearlyGeneralExpensesEditText);
     requiredRateOfReturn          = (EditText)findViewById(R.id.requiredRateOfReturnEditText);
-
-    assignValuesToFields();
 
     estimatedRentPayments.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.ESTIMATED_RENT_PAYMENTS));
 
@@ -130,10 +166,7 @@ public class RentalActivity extends Activity {
     Utility.callCalc(this);
   }
   
-  @Override
-  public void onPause() {
-    super.onPause();
-
+  private void saveValuesToCache() {
     ValueEnum key = ValueEnum.ESTIMATED_RENT_PAYMENTS;
     Double value = Utility.parseCurrency(estimatedRentPayments.getText().toString());
     dataController.setValueAsDouble(key, value);
@@ -157,6 +190,13 @@ public class RentalActivity extends Activity {
     key = ValueEnum.REQUIRED_RATE_OF_RETURN;
     value = Utility.parsePercentage(requiredRateOfReturn.getText().toString());
     dataController.setValueAsDouble(key, value);
+  }
+  
+  @Override
+  public void onPause() {
+    super.onPause();
+    saveValuesToCache();
+
 
   }
 

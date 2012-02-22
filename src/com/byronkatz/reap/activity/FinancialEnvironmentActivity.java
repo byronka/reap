@@ -2,6 +2,9 @@ package com.byronkatz.reap.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -21,6 +24,42 @@ public class FinancialEnvironmentActivity extends Activity {
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
   
+  
+  @Override
+  public boolean onCreateOptionsMenu (Menu menu){
+    super.onCreateOptionsMenu(menu);
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.edit_data_page_menu, menu);
+    return true;
+  }
+  
+  /**
+   * This gets called every time the menu is called
+   */
+  @Override
+  public boolean onPrepareOptionsMenu (Menu menu) {
+    super.onPrepareOptionsMenu(menu);
+    saveValuesToCache();
+
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected (MenuItem item) {
+    super.onOptionsItemSelected(item);
+
+    Utility.switchForMenuItem(item, this, false);
+    return false;
+  }
+  
+  
+  @Override
+  public void onResume() {
+    super.onResume();
+    assignValuesToFields();
+
+  }
+  
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedState) {
@@ -31,7 +70,6 @@ public class FinancialEnvironmentActivity extends Activity {
     inflationRate               = (EditText)findViewById(R.id.inflationRateEditText);
     realEstateAppreciationRate  = (EditText)findViewById(R.id.realEstateAppreciationRateEditText);
     
-    assignValuesToFields();
    
     inflationRate.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.INFLATION_RATE));
     
@@ -80,17 +118,21 @@ public class FinancialEnvironmentActivity extends Activity {
     
   }
   
-  @Override
-  public void onPause() {
-    super.onPause();
-    
+  private void saveValuesToCache() {
     ValueEnum key = ValueEnum.INFLATION_RATE;
     Double value = Utility.parsePercentage(inflationRate.getText().toString());
     dataController.setValueAsDouble(key, value);
     
     key = ValueEnum.REAL_ESTATE_APPRECIATION_RATE;
     value = Utility.parsePercentage(realEstateAppreciationRate.getText().toString());   
-    dataController.setValueAsDouble(key, value);
+    dataController.setValueAsDouble(key, value); 
+  }
+  
+  @Override
+  public void onPause() {
+    super.onPause();
+    saveValuesToCache();
+
 
   }
 }

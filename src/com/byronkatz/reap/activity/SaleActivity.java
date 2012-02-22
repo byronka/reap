@@ -2,6 +2,9 @@ package com.byronkatz.reap.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -21,6 +24,41 @@ public class SaleActivity extends Activity {
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
   
+  @Override
+  public boolean onCreateOptionsMenu (Menu menu){
+    super.onCreateOptionsMenu(menu);
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.edit_data_page_menu, menu);
+    return true;
+  }
+  
+  /**
+   * This gets called every time the menu is called
+   */
+  @Override
+  public boolean onPrepareOptionsMenu (Menu menu) {
+    super.onPrepareOptionsMenu(menu);
+    saveValuesToCache();
+
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected (MenuItem item) {
+    super.onOptionsItemSelected(item);
+
+    Utility.switchForMenuItem(item, this, false);
+    return false;
+  }
+  
+  
+  @Override
+  public void onResume() {
+    super.onResume();
+    assignValuesToFields();
+
+  }
+  
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedState) {
@@ -31,7 +69,6 @@ public class SaleActivity extends Activity {
     generalSaleExpenses   = (EditText)findViewById(R.id.generalSaleExpensesEditText);
     sellingBrokerRate     = (EditText)findViewById(R.id.sellingBrokerRateEditText);
     
-    assignValuesToFields();
 
     generalSaleExpenses.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.GENERAL_SALE_EXPENSES));
     
@@ -67,8 +104,7 @@ public class SaleActivity extends Activity {
     Utility.callCalc(this);
   }
   
-  @Override
-  protected void onPause() {
+  private void saveValuesToCache() {
     ValueEnum key = ValueEnum.GENERAL_SALE_EXPENSES;
     Double value = Utility.parseCurrency(generalSaleExpenses.getText().toString());
     dataController.setValueAsDouble(key, value);
@@ -76,8 +112,12 @@ public class SaleActivity extends Activity {
     key = ValueEnum.SELLING_BROKER_RATE;
     value = Utility.parsePercentage(sellingBrokerRate.getText().toString());
     dataController.setValueAsDouble(key, value);
-    
+  }
+  
+  @Override
+  protected void onPause() {
     super.onPause();
+    saveValuesToCache();
   }
   
   private void assignValuesToFields() {

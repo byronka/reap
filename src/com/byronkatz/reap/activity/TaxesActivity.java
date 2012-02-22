@@ -2,6 +2,9 @@ package com.byronkatz.reap.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -23,6 +26,41 @@ public class TaxesActivity extends Activity {
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
   
+  @Override
+  public boolean onCreateOptionsMenu (Menu menu){
+    super.onCreateOptionsMenu(menu);
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.edit_data_page_menu, menu);
+    return true;
+  }
+  
+  /**
+   * This gets called every time the menu is called
+   */
+  @Override
+  public boolean onPrepareOptionsMenu (Menu menu) {
+    super.onPrepareOptionsMenu(menu);
+    saveValuesToCache();
+
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected (MenuItem item) {
+    super.onOptionsItemSelected(item);
+
+    Utility.switchForMenuItem(item, this, false);
+    return false;
+  }
+  
+  
+  @Override
+  public void onResume() {
+    super.onResume();
+    assignValuesToFields();
+
+  }
+  
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedState) {
@@ -33,9 +71,7 @@ public class TaxesActivity extends Activity {
     buildingValue      = (EditText)findViewById(R.id.buildingValueEditText);
     propertyTax    = (EditText)findViewById(R.id.propertyTaxEditText);
     localMunicipalFees = (EditText)findViewById(R.id.localMunicipalFeesEditText);
-    
-    assignValuesToFields();
-    
+        
     marginalTaxRate.setOnFocusChangeListener(
         new OnFocusChangeListenerWrapper(ValueEnum.MARGINAL_TAX_RATE));
 
@@ -103,10 +139,7 @@ public class TaxesActivity extends Activity {
     Utility.callCalc(this);
   }
   
-  @Override
-  public void onPause() {
-    super.onPause();
-    
+  private void saveValuesToCache() {
     ValueEnum key = ValueEnum.MARGINAL_TAX_RATE;
     Double value = Utility.parsePercentage(marginalTaxRate.getText().toString());
     dataController.setValueAsDouble(key, value);
@@ -122,6 +155,13 @@ public class TaxesActivity extends Activity {
     key = ValueEnum.LOCAL_MUNICIPAL_FEES;
     value = Utility.parseCurrency(localMunicipalFees.getText().toString());
     dataController.setValueAsDouble(key, value);
+  }
+  
+  @Override
+  public void onPause() {
+    super.onPause();
+    saveValuesToCache();
+
   }
   
   private void assignValuesToFields() {
