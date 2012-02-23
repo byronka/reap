@@ -1,5 +1,6 @@
 package com.byronkatz.reap.general;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,6 +13,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.byronkatz.reap.activity.GraphActivity;
 import com.byronkatz.reap.calculations.GeneralCalculations;
@@ -29,23 +31,36 @@ public class DataController {
   //below data structure holds a whole set of calculated values 
   //for each division of the progress slider
   private static Map<Integer, Map<Integer, Map<ValueEnum, Double>>> multiDivisionNumericValues;
-  private static Map[][] arrayMultiDivisionNumericCache;
+  private static Map<ValueEnum, Double>[][] arrayMultiDivisionNumericCache;
   private static Map<ValueEnum, String> textValues;
   private static Set<ValueEnum> viewableDataTableRows;
   private static Boolean dataChanged;
 
   //DEFAULT_YEAR is for which year to store values that don't change per year.
-  public static final Integer DEFAULT_YEAR = 1;
+  public static final Integer DEFAULT_YEAR = 0;
   public static final Integer DEFAULT_DIVISION = 0;
   public static final Integer CURRENT_MAX_NUM_OF_YEARS = 99 + 30;
   public static Resources resources;
 
   public static final Double EPSILON = 0.00001d;
 
+  @SuppressWarnings("unchecked")
   public DataController(Context context, SharedPreferences sp, Resources resources) {
 
     DataController.resources = resources;
-    arrayMultiDivisionNumericCache = new EnumMap[GraphActivity.DIVISIONS_OF_VALUE_SLIDER][CURRENT_MAX_NUM_OF_YEARS];
+    //WORK AREA
+
+    arrayMultiDivisionNumericCache = new Map[GraphActivity.DIVISIONS_OF_VALUE_SLIDER + 1][CURRENT_MAX_NUM_OF_YEARS];
+
+    for (int i = 0; i < GraphActivity.DIVISIONS_OF_VALUE_SLIDER + 1; i++ ) {
+      for (int j = 0; j < CURRENT_MAX_NUM_OF_YEARS; j++) {
+        arrayMultiDivisionNumericCache[i][j] = new EnumMap<ValueEnum, Double>(ValueEnum.class);
+      }
+    }
+    
+//    Arrays.fill(arrayMultiDivisionNumericCache, new EnumMap<ValueEnum, Double>(ValueEnum.class));
+    //WORK AREA
+    
     databaseAdapter = new DatabaseAdapter(context);
     numericValues = new HashMap<Integer, Map<ValueEnum, Double>>();
     multiDivisionNumericValues = new HashMap<Integer, Map<Integer, Map<ValueEnum, Double>>>();
@@ -92,99 +107,125 @@ public class DataController {
     editor.commit();
   }
 
-  //once done with conversion, remove this method
-  public void setValueAsFloat(ValueEnum key, Float value) {
 
-//  Log.d(getClass().getName(), key.name() + " tried to insert " + value.toString());
-  }
+  
+//  public void setValueAsDouble(ValueEnum key, Double value) {
+//
+//    //get the current division
+//    numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
+//
+//    //prime candidate for refactoring below.
+//    /*
+//     * check to see if this division's Map has been initialized.
+//     * If not, create a new Map and sub-map for it.
+//     */
+//    if (numericValues == null) {
+//      //if numericValues is null, then create it and its numeric map
+//      numericMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
+//      numericMapPut(numericMap, key, value);
+//
+//
+//      numericValues = new HashMap<Integer, Map<ValueEnum, Double>>();
+//      numericValues.put(DEFAULT_YEAR, numericMap);
+//
+//      multiDivisionNumericValues.put(DEFAULT_DIVISION, numericValues);
+//    } else {
+//      numericMap = numericValues.get(DEFAULT_YEAR);
+//    }
+//
+//    if (numericMap == null) {
+//      numericMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
+//      numericMapPut(numericMap, key, value);
+//
+//      numericValues.put(DEFAULT_YEAR, numericMap);
+//    } else {
+//      numericMapPut(numericMap, key, value);
+//    }
+//  }
 
+//  private void numericMapPut(Map<ValueEnum, Double> numericMap, 
+//      ValueEnum key, Double value) {
+//    //if the same value as what is already there, don't put the value
+//    Double existingValue = numericMap.get(key);
+//    
+//    if ((existingValue == null) || (Math.abs(existingValue - value) > EPSILON)) {
+//      dataChanged = true;
+//      numericMap.put(key, value);
+//    }
+//  }
+  
+//  public void setValueAsDouble(ValueEnum key, Double value, Integer year) {
+//
+//    //TODO: add code to check that the year parameter is kosher
+//
+//    //get the current division
+//    numericValues = multiDivisionNumericValues.get(currentDivisionForWriting);
+//
+//    //prime candidate for refactoring below.
+//    /*
+//     * check to see if this division's Map has been initialized.
+//     * If not, create a new Map and sub-map for it.
+//     */
+//    if (numericValues == null) {
+//      //if numericValues is null, then create it and its numeric map
+//      numericMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
+//      numericMap.put(key, value);
+//
+//      numericValues = new HashMap<Integer, Map<ValueEnum, Double>>();
+//      numericValues.put(year, numericMap);
+//
+//      multiDivisionNumericValues.put(currentDivisionForWriting, numericValues);
+//    } else {
+//      numericMap = numericValues.get(year);
+//    }
+//
+//    if (numericMap == null) {
+//      numericMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
+//      numericMap.put(key, value);
+//      numericValues.put(year, numericMap);
+//    } else {
+//      numericMap.put(key, value);
+//    }
+//
+//  }
+  
+  //WORK AREA
   
   public void setValueAsDouble(ValueEnum key, Double value) {
+    //get the default division and year
+    arrayMultiDivisionNumericCache[DEFAULT_DIVISION][DEFAULT_YEAR].put(key, value);
 
-    //get the current division
-    numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
-
-    //prime candidate for refactoring below.
-    /*
-     * check to see if this division's Map has been initialized.
-     * If not, create a new Map and sub-map for it.
-     */
-    if (numericValues == null) {
-      //if numericValues is null, then create it and its numeric map
-      numericMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
-      numericMapPut(numericMap, key, value);
-
-
-      numericValues = new HashMap<Integer, Map<ValueEnum, Double>>();
-      numericValues.put(DEFAULT_YEAR, numericMap);
-
-      multiDivisionNumericValues.put(DEFAULT_DIVISION, numericValues);
-    } else {
-      numericMap = numericValues.get(DEFAULT_YEAR);
-    }
-
-    if (numericMap == null) {
-      numericMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
-      numericMapPut(numericMap, key, value);
-
-      numericValues.put(DEFAULT_YEAR, numericMap);
-    } else {
-      numericMapPut(numericMap, key, value);
-    }
   }
 
-  private void numericMapPut(Map<ValueEnum, Double> numericMap, 
-      ValueEnum key, Double value) {
-    //if the same value as what is already there, don't put the value
-    Double existingValue = numericMap.get(key);
-    
-    if ((existingValue == null) || (Math.abs(existingValue - value) > EPSILON)) {
-      dataChanged = true;
-      numericMap.put(key, value);
-    }
-  }
-
-  //once done with conversion, remove this method
-  public void setValueAsFloat(ValueEnum key, Float value, Integer year) {
-
-//  Log.d(getClass().getName(), key.name() + " tried to insert " + value.toString());
-  }
   
   public void setValueAsDouble(ValueEnum key, Double value, Integer year) {
-
-    //TODO: add code to check that the year parameter is kosher
-
-    //get the current division
-    numericValues = multiDivisionNumericValues.get(currentDivisionForWriting);
-
-    //prime candidate for refactoring below.
-    /*
-     * check to see if this division's Map has been initialized.
-     * If not, create a new Map and sub-map for it.
-     */
-    if (numericValues == null) {
-      //if numericValues is null, then create it and its numeric map
-      numericMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
-      numericMap.put(key, value);
-
-      numericValues = new HashMap<Integer, Map<ValueEnum, Double>>();
-      numericValues.put(year, numericMap);
-
-      multiDivisionNumericValues.put(currentDivisionForWriting, numericValues);
-    } else {
-      numericMap = numericValues.get(year);
-    }
-
-    if (numericMap == null) {
-      numericMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
-      numericMap.put(key, value);
-      numericValues.put(year, numericMap);
-    } else {
-      numericMap.put(key, value);
-    }
+ 
+      arrayMultiDivisionNumericCache[currentDivisionForWriting][year].put(key, value);
 
   }
 
+  public Double getValueAsDouble(ValueEnum key) {
+
+    //get the default division and year
+    Double returnValue = arrayMultiDivisionNumericCache[DEFAULT_DIVISION][DEFAULT_YEAR].get(key);
+    if (returnValue == null){
+      returnValue = 0d;
+    }
+    return returnValue;
+  }
+  
+  public Double getValueAsDouble(ValueEnum key, Integer year) {
+    
+      //unpack the numericValues for this division
+    Double returnValue = arrayMultiDivisionNumericCache[currentDivisionForReading][year].get(key);
+    if (returnValue == null){
+      returnValue = 0d;
+    }
+    return returnValue;
+  }
+
+  
+  //WORK AREA ENDS
 
   public void setValueAsString(ValueEnum key, String value) {
 
@@ -198,53 +239,35 @@ public class DataController {
     return returnValue;
   }
 
-  public Double getValueAsDouble(ValueEnum key) {
-
-    //get the default division
-    numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
-
-    if (numericValues == null) {
-      return 0d;
-    }
-    Map<ValueEnum, Double> m = numericValues.get(DEFAULT_YEAR);
-    Double returnValue = m.get(key);
-    return returnValue;
-  }
-  
-  public Float getValueAsFloat(ValueEnum key) {
-
-//  Log.d(getClass().getName(), "ValueEnum: " + key.toString() + 
-//      " failed to get correct value");
-
-  return 0f;
-}
+//  public Double getValueAsDouble(ValueEnum key) {
+//
+//    //get the default division
+//    numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
+//
+//    if (numericValues == null) {
+//      return 0d;
+//    }
+//    Map<ValueEnum, Double> m = numericValues.get(DEFAULT_YEAR);
+//    Double returnValue = m.get(key);
+//    return returnValue;
+//  }
 
 
 
-  public Double getValueAsDouble(ValueEnum key, Integer year) {
-
-//    Log.d(getClass().getName(), "ValueEnum: " + key.toString() + " Year: " + year.toString());
-
-    //unpack the numericValues for this division
-    numericValues = multiDivisionNumericValues.get(currentDivisionForReading);
-
-    if (numericValues == null) {
-      return 0d;
-    }
-    
-    //unpack the map for this year
-    Map<ValueEnum, Double> m = numericValues.get(year);
-    Double returnValue = m.get(key);
-    return returnValue;
-  }
-  
-  public Float getValueAsFloat(ValueEnum key, Integer year) {
-
-//  Log.d(getClass().getName(), "ValueEnum: " + key.toString() + " Year: " + year.toString() + 
-//      " failed to get correct value");
-
-  return 0f;
-}
+//  public Double getValueAsDouble(ValueEnum key, Integer year) {
+//
+//    //unpack the numericValues for this division
+//    numericValues = multiDivisionNumericValues.get(currentDivisionForReading);
+//
+//    if (numericValues == null) {
+//      return 0d;
+//    }
+//    
+//    //unpack the map for this year
+//    Map<ValueEnum, Double> m = numericValues.get(year);
+//    Double returnValue = m.get(key);
+//    return returnValue;
+//  }
 
   public Double[] getPlotPoints(ValueEnum graphKeyValue) {
 

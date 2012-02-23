@@ -44,7 +44,7 @@ public class EquityReversion {
   
   public Double calculateTaxesDueAtSale(final int year) {
     final Double taxesDueAtSale = ((estateValue.getEstateValue(year) - calculateBrokerCutOfSale(year))
-        - estateValue.getEstateValue(0) + (rentalUnitOwnership.getYearlyDepreciation() * year))
+        - estateValue.getOriginalEstateValue() + (rentalUnitOwnership.getYearlyDepreciation() * year))
         * TAX_ON_CAPITAL_GAINS;
     dataController.setValueAsDouble(ValueEnum.TAXES_DUE_AT_SALE, taxesDueAtSale, year);
 

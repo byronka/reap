@@ -38,7 +38,7 @@ public class RentalUnitOwnership {
     
     this.dataController = dataController;
     estateValue = new EstateValue(dataController);
-    mortgage = new Mortgage(dataController, estateValue.getEstateValue(0));
+    mortgage = new Mortgage(dataController, estateValue.getOriginalEstateValue());
     
     yearlyRequiredRateOfReturn = dataController.getValueAsDouble(ValueEnum.REQUIRED_RATE_OF_RETURN);
     mirr = new ModifiedInternalRateOfReturn( dataController,
@@ -163,7 +163,7 @@ public class RentalUnitOwnership {
     dataController.setValueAsDouble(ValueEnum.YEARLY_NET_OPERATING_INCOME, yearlyNetOperatingIncome, year);
     final Double yearlyBeforeTaxCashFlow = yearlyNetOperatingIncome - (monthlyMortgagePayment * 12);
     
-    final Double capitalizationRateOnPurchaseValue = yearlyNetOperatingIncome / estateValue.getEstateValue(0);
+    final Double capitalizationRateOnPurchaseValue = yearlyNetOperatingIncome / estateValue.getOriginalEstateValue();
     dataController.setValueAsDouble(ValueEnum.CAP_RATE_ON_PURCHASE_VALUE, capitalizationRateOnPurchaseValue, year);
     
     final Double capitalizationRateOnProjectedValue = yearlyNetOperatingIncome / estateValue.getEstateValue(year);
