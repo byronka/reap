@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.35"
             android:text="@string/totalPurchasePriceTitleText"
-            android:textColor="@color/tf_green3" />
+            android:textColor="@color/light_blue" />
 
         <EditText
             android:id="@+id/splashScreenValueEntry"

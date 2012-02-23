@@ -16,6 +16,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.byronkatz.R;
+import com.byronkatz.R.color;
 import com.byronkatz.reap.activity.GraphActivity;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
@@ -104,7 +105,7 @@ public class AnalysisGraph extends View {
     if (! isInEditMode()) {
 
       //set up defaults for the drawing - canvas size, paint color, stroke width.
-      graphLinePaint = createPaint(Color.BLUE, GRAPH_LINE_STROKE_WIDTH, Paint.Style.STROKE, TEXT_SIZE);
+      graphLinePaint = createPaint(getResources().getColor(R.color.graph_purple), GRAPH_LINE_STROKE_WIDTH, Paint.Style.STROKE, TEXT_SIZE);
       divisorPaint = createPaint(Color.WHITE, DIVISOR_LINE_STROKE_WIDTH, Paint.Style.STROKE, TEXT_SIZE);
       textPaint    = createPaint(Color.WHITE, 0.0f, Paint.Style.STROKE, TEXT_SIZE);
       borderPaint = createPaint(Color.GRAY, 3.0f, Paint.Style.STROKE, TEXT_SIZE);

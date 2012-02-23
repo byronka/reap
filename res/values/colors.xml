@@ -33,5 +33,19 @@
     <color name="gray75">#3f3f3f</color>
     <color name="gray60">#666666</color>
     <color name="gray40">#999999</color>
+    
+    <!-- custom triadic -->
+	<color name="yellow_orange_1">#ECE355</color>
+	<color name="yellow_orange_2">#C2B923</color>
+	<color name="light_blue">#8DCAE2</color>
+	<color name="dark_blue">#2E91B7</color>
+	<color name="darker_blue">#224F66</color>
+	<color name="darkest_blue">#0E374D</color>
+		
+	<color name="lighter_purple">#C57FF0</color>
+	<color name="darker_purple">#8623C2</color>		
+	<color name="graph_purple">#4E00E5</color>	
+			
+
 
 </resources>

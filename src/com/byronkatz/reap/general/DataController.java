@@ -12,8 +12,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.util.Log;
 
+import com.byronkatz.reap.activity.GraphActivity;
 import com.byronkatz.reap.calculations.GeneralCalculations;
 
 public class DataController {
@@ -29,7 +29,7 @@ public class DataController {
   //below data structure holds a whole set of calculated values 
   //for each division of the progress slider
   private static Map<Integer, Map<Integer, Map<ValueEnum, Double>>> multiDivisionNumericValues;
-
+  private static Map[][] arrayMultiDivisionNumericCache;
   private static Map<ValueEnum, String> textValues;
   private static Set<ValueEnum> viewableDataTableRows;
   private static Boolean dataChanged;
@@ -37,6 +37,7 @@ public class DataController {
   //DEFAULT_YEAR is for which year to store values that don't change per year.
   public static final Integer DEFAULT_YEAR = 1;
   public static final Integer DEFAULT_DIVISION = 0;
+  public static final Integer CURRENT_MAX_NUM_OF_YEARS = 99 + 30;
   public static Resources resources;
 
   public static final Double EPSILON = 0.00001d;
@@ -44,6 +45,7 @@ public class DataController {
   public DataController(Context context, SharedPreferences sp, Resources resources) {
 
     DataController.resources = resources;
+    arrayMultiDivisionNumericCache = new EnumMap[GraphActivity.DIVISIONS_OF_VALUE_SLIDER][CURRENT_MAX_NUM_OF_YEARS];
     databaseAdapter = new DatabaseAdapter(context);
     numericValues = new HashMap<Integer, Map<ValueEnum, Double>>();
     multiDivisionNumericValues = new HashMap<Integer, Map<Integer, Map<ValueEnum, Double>>>();
