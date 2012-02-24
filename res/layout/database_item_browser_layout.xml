@@ -8,9 +8,8 @@
         android:id="@+id/tableLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:shrinkColumns="0" 
-        android:stretchColumns="1"
-        >
+        android:shrinkColumns="0"
+        android:stretchColumns="1" >
 
         <TableRow>
 
@@ -246,16 +245,16 @@
     </TableLayout>
 
     <TextView
-        android:id="@+id/commentsLoadValuesTextView"
+        android:id="@+id/databaseItemTextView8"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/commentsLoadValuesString"
         android:textColor="@color/tf_green2" />
 
     <TextView
-        android:id="@+id/databaseItemTextView8"
+        android:id="@+id/commentsLoadValuesTextView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="No comment" />
+        android:text="No comments" />
 
 </LinearLayout>
