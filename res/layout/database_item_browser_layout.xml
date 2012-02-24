@@ -1,180 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/overallLinearLayoutDatabaseBrowser"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <RelativeLayout
-        android:id="@+id/LinearLayout1"
+    <TableLayout
+        android:id="@+id/tableLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginBottom="8dip"
-        android:layout_marginLeft="8dip"
-        android:layout_marginRight="8dip"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content"
+        android:shrinkColumns="0" 
+        android:stretchColumns="1"
+        >
 
-        <TextView
-            android:id="@+id/databaseItemTextView0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:text="TextView" >
-        </TextView>
+        <TableRow>
 
-        <TextView
-            android:id="@+id/databaseItemTextView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/databaseItemTextView0"
-            android:text="TextView" >
-        </TextView>
+            <TextView
+                android:id="@+id/databaseItemTextViewLabel0"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dataRowLoadValuesString"
+                android:textColor="@color/tf_green2" />
 
-        <TextView
-            android:id="@+id/databaseItemTextView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/databaseItemTextView1"
-            android:text="TextView" >
-        </TextView>
+            <TextView
+                android:id="@+id/dataRowLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="TextView" />
+        </TableRow>
 
-        <TextView
-            android:id="@+id/databaseItemTextView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/databaseItemTextView2"
-            android:text="TextView" >
-        </TextView>
+        <TableRow>
 
-        <TextView
-            android:id="@+id/databaseItemTextView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/databaseItemTextView3"
-            android:text="TextView" >
-        </TextView>
+            <TextView
+                android:id="@+id/databaseItemTextViewLabel1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/streetAddressLoadValuesString"
+                android:textColor="@color/tf_green2" />
 
-        <TextView
-            android:id="@+id/databaseItemTextView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/databaseItemTextView4"
-            android:text="TextView" >
-        </TextView>
+            <TextView
+                android:id="@+id/streetAddressLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="TextView" />
+        </TableRow>
 
-        <TextView
-            android:id="@+id/databaseItemTextView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/databaseItemTextView5"
-            android:text="TextView" >
-        </TextView>
+        <TableRow>
 
-        <TextView
-            android:id="@+id/databaseItemTextView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/databaseItemTextView6"
-            android:text="TextView" >
-        </TextView>
+            <TextView
+                android:id="@+id/databaseItemTextViewLabel3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/totalPurchaseValueLoadValuesString"
+                android:textColor="@color/tf_green2" />
 
-        <TextView
-            android:id="@+id/databaseItemTextViewLabel0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:text="@string/databaseItemTextViewDesc0" >
-        </TextView>
+            <TextView
+                android:id="@+id/totalPurchaseLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="TextView" />
+        </TableRow>
 
-        <TextView
-            android:id="@+id/databaseItemTextViewLabel1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/databaseItemTextViewLabel0"
-            android:text="@string/databaseItemTextViewDesc1" >
-        </TextView>
+        <TableRow>
 
-        <TextView
-            android:id="@+id/databaseItemTextViewLabel2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/databaseItemTextViewLabel1"
-            android:text="@string/databaseItemTextViewDesc2" >
-        </TextView>
+            <TextView
+                android:id="@+id/databaseItemTextViewLabel4"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/yearlyInterestRateLoadValuesString"
+                android:textColor="@color/tf_green2" />
 
-        <TextView
-            android:id="@+id/databaseItemTextViewLabel3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/databaseItemTextViewLabel2"
-            android:text="@string/databaseItemTextViewDesc3" >
-        </TextView>
+            <TextView
+                android:id="@+id/yearlyInterestRateLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="TextView" />
+        </TableRow>
 
-        <TextView
-            android:id="@+id/databaseItemTextViewLabel4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/databaseItemTextViewLabel3"
-            android:text="@string/databaseItemTextViewDesc4" >
-        </TextView>
+        <TableRow>
 
-        <TextView
-            android:id="@+id/databaseItemTextViewLabel5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/databaseItemTextViewLabel4"
-            android:text="@string/databaseItemTextViewDesc5" >
-        </TextView>
+            <TextView
+                android:id="@+id/databaseItemTextViewLabel5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/downPaymentLoadValuesString"
+                android:textColor="@color/tf_green2" />
 
-        <TextView
-            android:id="@+id/databaseItemTextViewLabel6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/databaseItemTextViewLabel5"
-            android:text="@string/databaseItemTextViewDesc6" >
-        </TextView>
+            <TextView
+                android:id="@+id/downPaymentLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="TextView" />
+        </TableRow>
 
-        <TextView
-            android:id="@+id/databaseItemTextViewLabel7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/databaseItemTextViewLabel6"
-            android:text="@string/databaseItemTextViewDesc7" >
-        </TextView>
+        <TableRow>
 
-        <TextView
-            android:id="@+id/databaseItemTextViewLabel8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/databaseItemTextViewLabel7"
-            android:text="@string/databaseItemTextViewDesc8" >
-        </TextView>
+            <TextView
+                android:id="@+id/databaseItemTextViewLabel6"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/reqRateReturnLoadValuesString"
+                android:textColor="@color/tf_green2" />
 
-        <TextView
-            android:id="@+id/databaseItemTextView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/databaseItemTextViewLabel8"
-            android:text="No comment" />
+            <TextView
+                android:id="@+id/reqRateReturnLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="TextView" />
+        </TableRow>
 
-    </RelativeLayout>
+        <TableRow>
+
+            <TextView
+                android:id="@+id/databaseItemTextViewLabel7"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/estimatedRentLoadValuesString"
+                android:textColor="@color/tf_green2" />
+
+            <TextView
+                android:id="@+id/estimatedRentLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="TextView" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/databaseItemTextViewLabel8"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/yearValueText"
+                android:textColor="@color/tf_green2" />
+
+            <TextView
+                android:id="@+id/yearLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="TextView" />
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/modifiedInternalRateOfReturnTabText"
+                android:textColor="@color/tf_green2" />
+
+            <TextView
+                android:id="@+id/mirrLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                android:text="TextView" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/netPresentValueTabText"
+                android:textColor="@color/tf_green2" />
+
+            <TextView
+                android:id="@+id/npvLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                android:text="TextView" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/atcfTabText"
+                android:textColor="@color/tf_green2" />
+
+            <TextView
+                android:id="@+id/atcfLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                android:text="TextView" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/aterTabText"
+                android:textColor="@color/tf_green2" />
+
+            <TextView
+                android:id="@+id/aterLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                android:text="TextView" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/capRateOnProjectedValueTabText"
+                android:textColor="@color/tf_green2" />
+
+            <TextView
+                android:id="@+id/crcvLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                android:text="TextView" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/capRateOnPurchaseValueTabText"
+                android:textColor="@color/tf_green2" />
+
+            <TextView
+                android:id="@+id/crpvLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                android:text="TextView" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/commentsLoadValuesTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/commentsLoadValuesString"
+        android:textColor="@color/tf_green2" />
+
+    <TextView
+        android:id="@+id/databaseItemTextView8"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="No comment" />
 
 </LinearLayout>

@@ -579,8 +579,6 @@ public class GraphActivity extends Activity {
   private class CalculateInBackgroundTask extends AsyncTask<Void, Integer, Void> {
     Double newCurrentValue = 0.0d;
 
-    ProgressDialog progressDialog;
-
     @Override
     protected void onProgressUpdate(Integer... progress) {
       String updateValue = Utility.displayShortPercentage((double) (progress[0] )/ DIVISIONS_OF_VALUE_SLIDER);

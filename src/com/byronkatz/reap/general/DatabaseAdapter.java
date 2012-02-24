@@ -21,6 +21,7 @@ public class DatabaseAdapter {
 
   // The index (key) column name for use in where clauses.
   public static final String KEY_ID="_id";
+  public static final String YEAR_VALUE = "YEAR_VALUE";
 
 
 
@@ -51,7 +52,14 @@ public class DatabaseAdapter {
       ValueEnum.REQUIRED_RATE_OF_RETURN.name()            + " REAL"    +     ", " +
       ValueEnum.FIX_UP_COSTS.name()                       + " REAL"    +     ","  +
       ValueEnum.PRIVATE_MORTGAGE_INSURANCE.name()         + " REAL"    +     ","  +
-      ValueEnum.CLOSING_COSTS.name()                      + " REAL"    +
+      ValueEnum.CLOSING_COSTS.name()                      + " REAL"    +     ","  +
+      ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name()   + " REAL"    +     ","  +
+      ValueEnum.ATCF.name()                               + " REAL"    +     ","  +
+      ValueEnum.NPV.name()                                + " REAL"    +     ","  +
+      ValueEnum.ATER.name()                               + " REAL"    +     ","  +
+      ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name()        + " REAL"    +     ","  +
+      ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name()         + " REAL"    +     ","  +
+      "YEAR_VALUE"                                        + " REAL"    +
       		" );";
 
   private SQLiteDatabase db;

@@ -237,7 +237,7 @@
                 android:layout_weight="0.40"
                 android:gravity="clip_vertical"
                 android:shrinkColumns="0"
-                android:stretchColumns="1,2" >
+                android:stretchColumns="0" >
             </TableLayout>
         </LinearLayout>
     </ScrollView>

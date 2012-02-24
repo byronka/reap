@@ -2,7 +2,6 @@ package com.byronkatz.reap.general;
 
 import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -26,11 +25,10 @@ public class DataController {
   private static Integer currentDivisionForWriting = 0;
   private static Integer currentDivisionForReading = 0;
   private static DatabaseAdapter databaseAdapter;
-  private static Map<Integer, Map<ValueEnum, Double>> numericValues;
-  private static Map<ValueEnum, Double> numericMap;
+//  private static Map<Integer, Map<ValueEnum, Double>> numericValues;
+  private static Map<ValueEnum, Double> inputMap;
   //below data structure holds a whole set of calculated values 
   //for each division of the progress slider
-  private static Map<Integer, Map<Integer, Map<ValueEnum, Double>>> multiDivisionNumericValues;
   private static Map<ValueEnum, Double>[][] arrayMultiDivisionNumericCache;
   private static Map<ValueEnum, String> textValues;
   private static Set<ValueEnum> viewableDataTableRows;
@@ -39,7 +37,7 @@ public class DataController {
   //DEFAULT_YEAR is for which year to store values that don't change per year.
   public static final Integer DEFAULT_YEAR = 0;
   public static final Integer DEFAULT_DIVISION = 0;
-  public static final Integer CURRENT_MAX_NUM_OF_YEARS = 99 + 30;
+  public static final Integer CURRENT_MAX_NUM_OF_YEARS = 99 + 30 + 1;
   public static Resources resources;
 
   public static final Double EPSILON = 0.00001d;
@@ -50,6 +48,7 @@ public class DataController {
     DataController.resources = resources;
     //WORK AREA
 
+    inputMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
     arrayMultiDivisionNumericCache = new Map[GraphActivity.DIVISIONS_OF_VALUE_SLIDER + 1][CURRENT_MAX_NUM_OF_YEARS];
 
     for (int i = 0; i < GraphActivity.DIVISIONS_OF_VALUE_SLIDER + 1; i++ ) {
@@ -62,8 +61,8 @@ public class DataController {
     //WORK AREA
     
     databaseAdapter = new DatabaseAdapter(context);
-    numericValues = new HashMap<Integer, Map<ValueEnum, Double>>();
-    multiDivisionNumericValues = new HashMap<Integer, Map<Integer, Map<ValueEnum, Double>>>();
+//    numericValues = new HashMap<Integer, Map<ValueEnum, Double>>();
+//    multiDivisionNumericValues = new HashMap<Integer, Map<Integer, Map<ValueEnum, Double>>>();
     textValues = new EnumMap<ValueEnum, String>(ValueEnum.class);
     setViewableDataTableRows(new HashSet<ValueEnum>());
     //datachanged is to tell graphactivity when it's time to recalculate
@@ -108,106 +107,20 @@ public class DataController {
   }
 
 
-  
-//  public void setValueAsDouble(ValueEnum key, Double value) {
-//
-//    //get the current division
-//    numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
-//
-//    //prime candidate for refactoring below.
-//    /*
-//     * check to see if this division's Map has been initialized.
-//     * If not, create a new Map and sub-map for it.
-//     */
-//    if (numericValues == null) {
-//      //if numericValues is null, then create it and its numeric map
-//      numericMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
-//      numericMapPut(numericMap, key, value);
-//
-//
-//      numericValues = new HashMap<Integer, Map<ValueEnum, Double>>();
-//      numericValues.put(DEFAULT_YEAR, numericMap);
-//
-//      multiDivisionNumericValues.put(DEFAULT_DIVISION, numericValues);
-//    } else {
-//      numericMap = numericValues.get(DEFAULT_YEAR);
-//    }
-//
-//    if (numericMap == null) {
-//      numericMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
-//      numericMapPut(numericMap, key, value);
-//
-//      numericValues.put(DEFAULT_YEAR, numericMap);
-//    } else {
-//      numericMapPut(numericMap, key, value);
-//    }
-//  }
-
-//  private void numericMapPut(Map<ValueEnum, Double> numericMap, 
-//      ValueEnum key, Double value) {
-//    //if the same value as what is already there, don't put the value
-//    Double existingValue = numericMap.get(key);
-//    
-//    if ((existingValue == null) || (Math.abs(existingValue - value) > EPSILON)) {
-//      dataChanged = true;
-//      numericMap.put(key, value);
-//    }
-//  }
-  
-//  public void setValueAsDouble(ValueEnum key, Double value, Integer year) {
-//
-//    //TODO: add code to check that the year parameter is kosher
-//
-//    //get the current division
-//    numericValues = multiDivisionNumericValues.get(currentDivisionForWriting);
-//
-//    //prime candidate for refactoring below.
-//    /*
-//     * check to see if this division's Map has been initialized.
-//     * If not, create a new Map and sub-map for it.
-//     */
-//    if (numericValues == null) {
-//      //if numericValues is null, then create it and its numeric map
-//      numericMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
-//      numericMap.put(key, value);
-//
-//      numericValues = new HashMap<Integer, Map<ValueEnum, Double>>();
-//      numericValues.put(year, numericMap);
-//
-//      multiDivisionNumericValues.put(currentDivisionForWriting, numericValues);
-//    } else {
-//      numericMap = numericValues.get(year);
-//    }
-//
-//    if (numericMap == null) {
-//      numericMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
-//      numericMap.put(key, value);
-//      numericValues.put(year, numericMap);
-//    } else {
-//      numericMap.put(key, value);
-//    }
-//
-//  }
-  
-  //WORK AREA
-  
   public void setValueAsDouble(ValueEnum key, Double value) {
-    //get the default division and year
-    arrayMultiDivisionNumericCache[DEFAULT_DIVISION][DEFAULT_YEAR].put(key, value);
-
+    setDataChanged(true);
+    inputMap.put(key, value);
   }
 
-  
   public void setValueAsDouble(ValueEnum key, Double value, Integer year) {
  
       arrayMultiDivisionNumericCache[currentDivisionForWriting][year].put(key, value);
-
   }
-
+  
   public Double getValueAsDouble(ValueEnum key) {
 
     //get the default division and year
-    Double returnValue = arrayMultiDivisionNumericCache[DEFAULT_DIVISION][DEFAULT_YEAR].get(key);
+    Double returnValue = inputMap.get(key);
     if (returnValue == null){
       returnValue = 0d;
     }
@@ -224,8 +137,6 @@ public class DataController {
     return returnValue;
   }
 
-  
-  //WORK AREA ENDS
 
   public void setValueAsString(ValueEnum key, String value) {
 
@@ -238,36 +149,6 @@ public class DataController {
     String returnValue = textValues.get(key);
     return returnValue;
   }
-
-//  public Double getValueAsDouble(ValueEnum key) {
-//
-//    //get the default division
-//    numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
-//
-//    if (numericValues == null) {
-//      return 0d;
-//    }
-//    Map<ValueEnum, Double> m = numericValues.get(DEFAULT_YEAR);
-//    Double returnValue = m.get(key);
-//    return returnValue;
-//  }
-
-
-
-//  public Double getValueAsDouble(ValueEnum key, Integer year) {
-//
-//    //unpack the numericValues for this division
-//    numericValues = multiDivisionNumericValues.get(currentDivisionForReading);
-//
-//    if (numericValues == null) {
-//      return 0d;
-//    }
-//    
-//    //unpack the map for this year
-//    Map<ValueEnum, Double> m = numericValues.get(year);
-//    Double returnValue = m.get(key);
-//    return returnValue;
-//  }
 
   public Double[] getPlotPoints(ValueEnum graphKeyValue) {
 
@@ -285,7 +166,6 @@ public class DataController {
     for (int year = 0; year < (yearsOfCompounding + extraYears); year++) {
       yValue = getValueAsDouble(graphKeyValue, year + 1);
       dataPoints[year] = yValue;
-//      Log.d(getClass().getName(), "year: " + year + " yValue: " + yValue + " grapKeyValue: " + graphKeyValue.name());
       
     }
 
@@ -295,17 +175,16 @@ public class DataController {
   public int saveValues() {
     ContentValues cv = new ContentValues();
 
-    numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
-    numericMap = numericValues.get(DEFAULT_YEAR);
-
-    for (Entry<ValueEnum, Double> m: numericMap.entrySet()) {
+    //take numeric values from user input
+    for (Entry<ValueEnum, Double> m: inputMap.entrySet()) {
       if (m.getKey().isSavedToDatabase()) {
         String key = m.getKey().name();
         Double value = m.getValue();
         cv.put(key, value);
       }
     }
-
+    
+    //take string values from user input
     for (Entry<ValueEnum, String> m: textValues.entrySet()) {
       if (m.getKey().isSavedToDatabase()) {
         String key = m.getKey().name();
@@ -314,8 +193,82 @@ public class DataController {
       }
     }
 
+    //take the current year's values for ATCF, ATER, NPV, MIRR, CRPV and CRCV, pop those in
+    String[] calcEnumsForDatabase = { ValueEnum.ATCF.name(),
+                                    ValueEnum.ATER.name(),
+                                    ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(),
+                                    ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(),
+                                    ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(),
+                                    ValueEnum.NPV.name()
+    };
+    Integer year = getCurrentYearSelected();
+    if (year == null) {
+      year = 0;
+    }
+    Log.d("DataController", "year: " + year  + " currentDivisionForReading: " + currentDivisionForReading);
+    Map<ValueEnum, Double> calcMap = arrayMultiDivisionNumericCache[currentDivisionForReading][year];
+
+    for (Entry<ValueEnum, Double> m: calcMap.entrySet()) {
+      if (Arrays.asList(calcEnumsForDatabase).contains(m.getKey().name())) {
+        String key = m.getKey().name();
+        Double value = m.getValue();
+        cv.put(key, value);
+      }
+    }
+    
+    //Put year into database
+    cv.put(DatabaseAdapter.YEAR_VALUE, getCurrentYearSelected());
+    
     //insert into database and return the last rowindex
-    return databaseAdapter.insertEntry(cv);
+    Integer rowIndex = databaseAdapter.insertEntry(cv);
+    return rowIndex;
+  }
+  
+  public void updateRow() {
+
+    ContentValues cv = new ContentValues();
+
+    //take numeric values from user input
+    for (Entry<ValueEnum, Double> m: inputMap.entrySet()) {
+      if (m.getKey().isSavedToDatabase()) {
+        String key = m.getKey().name();
+        Double value = m.getValue();
+        cv.put(key, value);
+      }
+    }
+
+    //take string values from user input
+    for (Entry<ValueEnum, String> m: textValues.entrySet()) {
+      if (m.getKey().isSavedToDatabase()) {
+        String key = m.getKey().name();
+        String value = m.getValue();
+        cv.put(key, value);
+      }
+    }
+    
+    //take the current year's values for ATCF, ATER, NPV, MIRR, CRPV and CRCV, pop those in
+    String[] calcEnumsForDatabase = { ValueEnum.ATCF.name(),
+                                    ValueEnum.ATER.name(),
+                                    ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(),
+                                    ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(),
+                                    ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(),
+                                    ValueEnum.NPV.name()
+    };
+    Integer year = getCurrentYearSelected();
+    Map<ValueEnum, Double> calcMap = arrayMultiDivisionNumericCache[currentDivisionForReading][year];
+
+    for (Entry<ValueEnum, Double> m: calcMap.entrySet()) {
+      if (Arrays.asList(calcEnumsForDatabase).contains(m.getKey().name())) {
+        String key = m.getKey().name();
+        Double value = m.getValue();
+        cv.put(key, value);
+      }
+    }
+
+    //Put year into database
+    cv.put(DatabaseAdapter.YEAR_VALUE, getCurrentYearSelected());
+    
+    databaseAdapter.updateEntry((long)currentRowIndex, cv);
   }
 
   public Cursor getAllDatabaseValues() {
@@ -331,34 +284,11 @@ public class DataController {
     return currentRowIndex;
   }
 
-  public void updateRow() {
 
-    ContentValues cv = new ContentValues();
-
-    numericValues = multiDivisionNumericValues.get(DEFAULT_DIVISION);
-    numericMap = numericValues.get(DEFAULT_YEAR);
-
-    for (Entry<ValueEnum, Double> m: numericMap.entrySet()) {
-      if (m.getKey().isSavedToDatabase()) {
-        String key = m.getKey().name();
-        Double value = m.getValue();
-        cv.put(key, value);
-      }
-    }
-
-    for (Entry<ValueEnum, String> m: textValues.entrySet()) {
-      if (m.getKey().isSavedToDatabase()) {
-        String key = m.getKey().name();
-        String value = m.getValue();
-        cv.put(key, value);
-      }
-    }
-
-    databaseAdapter.updateEntry((long)currentRowIndex, cv);
-  }
-
-
-
+/**
+ * This takes values from a ContentValues and inserts them into the active cache
+ * @param cv
+ */
   public void setCurrentData(ContentValues cv) {
 
     //either a string or not a string

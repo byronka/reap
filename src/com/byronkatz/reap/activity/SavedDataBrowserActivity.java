@@ -50,26 +50,36 @@ public class SavedDataBrowserActivity extends ListActivity {
         new String[] {
             DatabaseAdapter.KEY_ID,
             ValueEnum.STREET_ADDRESS.name(), 
-            ValueEnum.CITY.name(),
             ValueEnum.TOTAL_PURCHASE_VALUE.name(),
             ValueEnum.YEARLY_INTEREST_RATE.name(), 
             ValueEnum.DOWN_PAYMENT.name(), 
             ValueEnum.REQUIRED_RATE_OF_RETURN.name(),
             ValueEnum.ESTIMATED_RENT_PAYMENTS.name(),
-            ValueEnum.COMMENTS.name()
+            ValueEnum.COMMENTS.name(),
+            ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(),
+            ValueEnum.NPV.name(),
+            ValueEnum.ATCF.name(),
+            ValueEnum.ATER.name(),
+            ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(),
+            ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(),
+            DatabaseAdapter.YEAR_VALUE
             },                                          // Array of cursor columns to bind to.
-            new int[] {R.id.databaseItemTextView0,
-                       R.id.databaseItemTextView1, 
-                       R.id.databaseItemTextView2, 
-                       R.id.databaseItemTextView3, 
-                       R.id.databaseItemTextView4,
-                       R.id.databaseItemTextView5,
-                       R.id.databaseItemTextView6,
-                       R.id.databaseItemTextView7,
-                       R.id.databaseItemTextView8,
+            new int[] {R.id.dataRowLoadValuesTextView,
+                       R.id.streetAddressLoadValuesTextView, 
+                       R.id.totalPurchaseLoadValuesTextView, 
+                       R.id.yearlyInterestRateLoadValuesTextView, 
+                       R.id.downPaymentLoadValuesTextView,
+                       R.id.reqRateReturnLoadValuesTextView,
+                       R.id.estimatedRentLoadValuesTextView,
+                       R.id.commentsLoadValuesTextView,
+                       R.id.mirrLoadValuesTextView,
+                       R.id.npvLoadValuesTextView,
+                       R.id.atcfLoadValuesTextView,
+                       R.id.aterLoadValuesTextView,
+                       R.id.crcvLoadValuesTextView,
+                       R.id.crpvLoadValuesTextView,
+                       R.id.yearLoadValuesTextView
                        });  // Parallel array of which template objects to bind to those columns.
-
-
 
     // Bind to our new adapter.
     setListAdapter(adapter);
@@ -167,7 +177,7 @@ public class SavedDataBrowserActivity extends ListActivity {
         dataController.setCurrentDatabaseRow(position + 1);
         Toast toast = Toast.makeText(SavedDataBrowserActivity.this, "Data Loaded", Toast.LENGTH_SHORT);
         toast.show();
-        
+        loadDialog.dismiss();
         finish();
       }
     });

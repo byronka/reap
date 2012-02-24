@@ -1,101 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-    <!-- android:background="@drawable/custom_background" -->
-
-    <TableRow
-        android:id="@+id/tableRow1"
+    <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_weight="1" >
+        android:layout_weight="1"
+        android:fitsSystemWindows="true" >
 
-        <Button
-            android:id="@+id/addressButton"
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="10dip"
-            android:layout_marginRight="5dip"
-            android:layout_marginTop="10dip"
-            android:layout_weight="0.5"
-            android:background="@drawable/custom_button"
-            android:text="@string/addressActivityTitleText"
-            android:textAppearance="@android:style/TextAppearance.Large"
-            android:textColor="@android:color/white" />
+        <TableRow android:layout_weight="1" >
 
-        <Button
-            android:id="@+id/loanButton"
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="10dip"
-            android:layout_marginLeft="5dip"
-            android:layout_marginTop="10dip"
-            android:layout_weight="0.5"
-            android:background="@drawable/custom_button"
-            android:text="@string/loanActivityTitleText"
-            android:textAppearance="@android:style/TextAppearance.Large"
-            android:textColor="@android:color/white" />
-    </TableRow>
+            <Button
+                android:id="@+id/addressButton"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/custom_button"
+                
+                android:text="@string/addressActivityTitleText"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:textColor="@android:color/white" />
 
-    <TableRow
-        android:id="@+id/tableRow2"
-        android:layout_width="fill_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1" >
+            <Button
+                android:id="@+id/loanButton"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/custom_button"
+                
+                android:text="@string/loanActivityTitleText"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:textColor="@android:color/white" />
+        </TableRow>
 
-        <Button
-            android:id="@+id/saleButton"
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="10dip"
-            android:layout_marginRight="5dip"
-            android:layout_weight="0.5"
-            android:background="@drawable/custom_button"
-            android:text="@string/saleActivityTitleText"
-            android:textAppearance="@android:style/TextAppearance.Large"
-            android:textColor="@android:color/white" />
+        <TableRow android:layout_weight="1" >
 
-        <Button
-            android:id="@+id/financialEnvironmentButton"
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="10dip"
-            android:layout_marginLeft="5dip"
-            android:layout_weight="0.5"
-            android:background="@drawable/custom_button"
-            android:text="@string/financialEnvironmentActivityTitleText"
-            android:textAppearance="@android:style/TextAppearance.Large"
-            android:textColor="@android:color/white" />
-    </TableRow>
+            <Button
+                android:id="@+id/saleButton"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/custom_button"
+                
+                android:text="@string/saleActivityTitleText"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:textColor="@android:color/white" />
 
-    <TableRow
-        android:id="@+id/tableRow3"
-        android:layout_width="fill_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1" >
+            <Button
+                android:id="@+id/financialEnvironmentButton"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/custom_button"
+                
+                android:text="@string/financialEnvironmentActivityTitleText"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:textColor="@android:color/white" />
+        </TableRow>
 
-        <Button
-            android:id="@+id/rentalButton"
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_marginRight="5dip"
-            android:layout_weight="0.5"
-            android:background="@drawable/custom_button"
-            android:text="@string/rentalActivityTitleText"
-            android:textAppearance="@android:style/TextAppearance.Large"
-            android:textColor="@android:color/white" />
+        <TableRow android:layout_weight="1" >
 
-        <Button
-            android:id="@+id/taxesButton"
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="5dip"
-            android:layout_weight="0.5"
-            android:background="@drawable/custom_button"
-            android:text="@string/taxesActivityTitleText"
-            android:textAppearance="@android:style/TextAppearance.Large"
-            android:textColor="@android:color/white" />
-    </TableRow>
+            <Button
+                android:id="@+id/rentalButton"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/custom_button"
+                
+                android:text="@string/rentalActivityTitleText"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:textColor="@android:color/white" />
 
-</TableLayout>
+            <Button
+                android:id="@+id/taxesButton"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/custom_button"
+                
+                android:text="@string/taxesActivityTitleText"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:textColor="@android:color/white" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

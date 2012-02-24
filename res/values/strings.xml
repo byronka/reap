@@ -372,15 +372,14 @@
 	<string formatted="false" name="valueSliderText">Value Slider</string>
 	<string formatted="false" name="timeSliderText">Time Slider</string>
 	<string formatted="false" name="realEstateMarketAnalysisSplashPageDescription">Real Estate Analysis Processor</string>
-	<string formatted="false" name="databaseItemTextViewDesc0">Data Row: </string>
-	<string formatted="false" name="databaseItemTextViewDesc1">Street Address: </string>
-	<string formatted="false" name="databaseItemTextViewDesc2">City: </string>
-	<string formatted="false" name="databaseItemTextViewDesc3">Total Purchase Value: </string>
-	<string formatted="false" name="databaseItemTextViewDesc4">Yearly Interest Rate: </string>
-	<string formatted="false" name="databaseItemTextViewDesc5">Down Payment: </string>
-	<string formatted="false" name="databaseItemTextViewDesc6">Required Rate of Return: </string>
-	<string formatted="false" name="databaseItemTextViewDesc7">Estimated rent: </string>
-	<string formatted="false" name="databaseItemTextViewDesc8">Comments: </string>
+	<string formatted="false" name="dataRowLoadValuesString">Data Row: </string>
+	<string formatted="false" name="streetAddressLoadValuesString">Street Address: </string>
+	<string formatted="false" name="totalPurchaseValueLoadValuesString">Total Purchase Value: </string>
+	<string formatted="false" name="yearlyInterestRateLoadValuesString">Yearly Interest Rate: </string>
+	<string formatted="false" name="downPaymentLoadValuesString">Down Payment: </string>
+	<string formatted="false" name="reqRateReturnLoadValuesString">Required Rate of Return: </string>
+	<string formatted="false" name="estimatedRentLoadValuesString">Estimated rent: </string>
+	<string formatted="false" name="commentsLoadValuesString">Comments: </string>
 		
 	
 	<string formatted="false" name="graphVisibilityCheckboxTitle">Graph visibility</string>
