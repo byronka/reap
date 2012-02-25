@@ -82,7 +82,7 @@ public class TaxesActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.marginalTaxRateDescriptionText, 
+            R.string.marginalTaxRateHelpText, 
             R.string.marginalTaxRateTitleText, TaxesActivity.this);
       }
     });
@@ -98,7 +98,7 @@ public class TaxesActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.buildingValueDescriptionText, 
+            R.string.buildingValueHelpText, 
             R.string.buildingValueTitleText, TaxesActivity.this);
       }
     });
@@ -113,7 +113,7 @@ public class TaxesActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.propertyTaxDescriptionText, 
+            R.string.propertyTaxHelpText, 
             R.string.propertyTaxTitleText, TaxesActivity.this);
       }
     });
@@ -128,7 +128,7 @@ public class TaxesActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.localMunicipalFeesDescriptionText, 
+            R.string.localMunicipalFeesHelpText, 
             R.string.localMunicipalFeesTitleText, TaxesActivity.this);
       }
     });

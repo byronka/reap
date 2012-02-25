@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -20,12 +19,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
@@ -122,11 +121,15 @@ public class GraphActivity extends Activity {
   @Override
   public void onResume() {
     super.onResume();
-    Log.d(getClass().getName(), "entering onResume of graphActivity");
 
     if (DataController.isDataChanged()) {
 
       currentValueNumeric = dataController.getValueAsDouble(currentSliderKey);
+      if (currentSliderKey == ValueEnum.SELLING_BROKER_RATE) {
+      Log.d(getClass().getName(), "currentValueNumeric: " + currentValueNumeric +
+          " currentSliderKey: " + currentSliderKey);
+      }
+
       //following is for the reset button
       originalCurrentValueNumeric = currentValueNumeric;
       dataTable.colorTheDataTables();
@@ -141,19 +144,23 @@ public class GraphActivity extends Activity {
   @Override
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
-    Log.d(getClass().getName(), "entering onCreate of graphActivity");
+    requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+    setContentView(R.layout.graph);
+    getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.my_title);
 
-    
+    //data table is the table of calculated and input values shown under the graph
     dataTable = new DataTable(this);
 
     sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
     dataController.setViewableDataTableRows(
         dataTable.restoreViewableDataTableRows(sp));
     isGraphVisible = sp.getBoolean(IS_GRAPH_VISIBLE, false);
+    
+    //set the current current_slider_key, which is shown in the spinner at the top.  If
+    //nothing set, then set Building Value as the default (it's the first one)
     String temp = sp.getString(CURRENT_SLIDER_KEY, ValueEnum.BUILDING_VALUE.name());
+    Log.d(getClass().getName(), "sharedPreferences has " + temp + " as the stored current slider key");
     currentSliderKey = ValueEnum.valueOf(temp);
-
-    setContentView(R.layout.graph);
 
     Integer extraYears = dataController.getValueAsDouble(ValueEnum.EXTRA_YEARS).intValue();
     Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods() + extraYears ;
@@ -171,9 +178,8 @@ public class GraphActivity extends Activity {
   @Override
   public void onPause() {
     super.onPause();
-
+    calculateInBackgroundTask.cancel(false);
     SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
-
     dataTable.saveGraphPageData(sharedPreferences, isGraphVisible, currentSliderKey);
   }
 
@@ -253,9 +259,9 @@ public class GraphActivity extends Activity {
   }
 
   private void recalcGraphPage() {
+    
     EditText maxValueEditText = (EditText) findViewById (R.id.maxValueEditText);
     EditText minValueEditText = (EditText) findViewById (R.id.minValueEditText);
-
 
     minValueNumeric = GraphActivityFunctions.calculateMinFromCurrent(currentValueNumeric);
     maxValueNumeric = GraphActivityFunctions.calculateMaxFromCurrent(currentValueNumeric);
@@ -264,14 +270,18 @@ public class GraphActivity extends Activity {
     GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
     GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
 
-
-    dataController.setValueAsDouble(currentSliderKey, currentValueNumeric);
+    //I don't think there is much purpose in the line below...the currentValueNumeric is
+    //being set by the valueSlider all the time anyway.  And if the progressslider has not
+    //changed, then the value which is in that slot is ok as is...
+    //TODO: consider removing if no bugs appear.
+//    dataController.setValueAsDouble(currentSliderKey, currentValueNumeric);
 
     executeCalculationBackgroundTask();
 
   }
 
   private void executeCalculationBackgroundTask() {
+    
     if (calculateInBackgroundTask == null) {
       calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
       //separate these so it is not possible to try running a method on a null pointer
@@ -282,7 +292,7 @@ public class GraphActivity extends Activity {
       calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
     }
   }
-  
+
   private void sendFocusToJail() {
 
     findViewById(R.id.focusJail).requestFocus();
@@ -576,13 +586,25 @@ public class GraphActivity extends Activity {
 
   }
 
+  private void lockSliderBars() {
+    valueSlider.setEnabled(false);
+    timeSlider.setEnabled(false);
+  }
+  
+  private void unlockSliderBars() {
+    valueSlider.setEnabled(true);
+    timeSlider.setEnabled(true);
+  }
+  
   private class CalculateInBackgroundTask extends AsyncTask<Void, Integer, Void> {
     Double newCurrentValue = 0.0d;
+    Integer yearsToCalculate = 0;
+
 
     @Override
     protected void onProgressUpdate(Integer... progress) {
       String updateValue = Utility.displayShortPercentage((double) (progress[0] )/ DIVISIONS_OF_VALUE_SLIDER);
-      setTitle("Calculating... " + updateValue);
+      ((TextView) findViewById(R.id.customtitlebar)).setText("Calculating... " + updateValue);
 
     }
 
@@ -592,9 +614,9 @@ public class GraphActivity extends Activity {
       //restore the original current value to the array
       dataController.setValueAsDouble(currentSliderKey, currentValueNumeric);
 
-      setTitle(R.string.graphActivityTitleText);
-      
-      //WORK AREA ENDS
+      ((TextView) findViewById(R.id.customtitlebar)).setBackgroundColor(0);
+      ((TextView) findViewById(R.id.customtitlebar)).setText(R.string.entryScreenActivityTitleText);
+
       GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
       GraphActivityFunctions.highlightCurrentYearOnGraph(getCurrentYearSelected(), GraphActivity.this);
 
@@ -612,25 +634,39 @@ public class GraphActivity extends Activity {
       DataController.setCurrentDivisionForReading(valueSlider.getMax() / 2);
 
       setDataChangedToggle(false);
+      
+      //unlock the valueSlider and timeSlider after processing
+      unlockSliderBars();
     }
 
-  @Override
-  protected void onPreExecute() {
-    setTitle("Calculating...");
-  }
+    @Override
+    protected void onPreExecute() {
+      ((TextView) findViewById(R.id.customtitlebar)).setBackgroundColor(R.color.orange01);
+      Integer yearlyPeriods = dataController.getValueAsDouble(
+          ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue() / 12;
+          
+      Integer extraYears = dataController.getValueAsDouble(ValueEnum.EXTRA_YEARS).intValue();
+      yearsToCalculate = yearlyPeriods + extraYears;
+      dataController.initNumericCache(yearsToCalculate);
+      
+      //lock the valueSlider and timeSlider while processing
+      lockSliderBars();
+    }
 
     @Override
     protected Void doInBackground(Void... arg0) {
 
 
-        for (int division = 0; division <= DIVISIONS_OF_VALUE_SLIDER; division++) {
-          calculateEachDivision(division);
-          if (isCancelled()) {
-            break;
-          }
-          publishProgress(division);
+      for (int division = 0; division <= DIVISIONS_OF_VALUE_SLIDER; division++) {
+        calculateEachDivision(division);
+        if (isCancelled()) {
+          //clean up
+          dataController.setValueAsDouble(currentSliderKey, currentValueNumeric);
+          break;
         }
-      
+        publishProgress(division);
+      }
+
       return null;
     }
 
@@ -643,7 +679,7 @@ public class GraphActivity extends Activity {
       percentageSlid = (division / (double) DIVISIONS_OF_VALUE_SLIDER);
       newCurrentValue = minValueNumeric + (percentageSlid * deltaValueNumeric);
       dataController.setValueAsDouble(currentSliderKey, newCurrentValue);
-      new RentalUnitOwnership(dataController).crunchCalculation();
+      new RentalUnitOwnership(dataController).crunchCalculation(yearsToCalculate);
     }
   }
 }

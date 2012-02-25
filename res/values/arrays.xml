@@ -53,9 +53,9 @@
         <item>Wisconsin</item>
         <item>Wyoming</item>
     </string-array>
-    
     <string-array name="numOfCompoundingPeriodsArray">
         <item>Fixed-rate mortgage - 30 years</item>
+        <item>Fixed-rate mortgage - 25 years</item>
         <item>Fixed-rate mortgage - 20 years</item>
         <item>Fixed-rate mortgage - 15 years</item>
     </string-array>

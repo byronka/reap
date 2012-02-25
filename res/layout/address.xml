@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.20"
                 android:gravity="center_vertical"
+                android:textColor="@color/tf_green2"
                 android:text="@string/streetAddressTitleText" >
             </TextView>
 
@@ -54,6 +55,7 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.20"
+                android:textColor="@color/tf_green2"
                 android:text="@string/cityTitleText" >
             </TextView>
 
@@ -77,6 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.20"
+                android:textColor="@color/tf_green2"
                 android:text="@string/stateTitleText" >
             </TextView>
 
@@ -94,6 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/commentsTitleText"
+            android:textColor="@color/tf_green2"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <EditText

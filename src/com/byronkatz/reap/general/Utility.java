@@ -112,7 +112,7 @@ public class Utility {
 
         int newRowIndex = dataController.saveValues();
         dataController.setCurrentDatabaseRow(newRowIndex);
-        Toast toast = Toast.makeText(activity, "Data saved as new entry", Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(activity, "Data saved as new entry id: " + newRowIndex, Toast.LENGTH_SHORT);
         toast.show();
 
       }
@@ -121,7 +121,7 @@ public class Utility {
     //following is so the "update" button only appears if there is a row to update
     Integer currentDataRow = dataController.getCurrentDatabaseRow();
     if ( currentDataRow != -1) {
-      String message = "Current data row is " + currentDataRow;
+      String message = "Current entry id is " + currentDataRow;
       builder.setMessage(message);
       builder.setNegativeButton("Update current entry", new DialogInterface.OnClickListener() {
 

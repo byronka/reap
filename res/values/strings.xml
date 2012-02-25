@@ -65,9 +65,7 @@
 	
 	<string formatted="false" name="extraYearsHelpText">Number of extra years to calculate past the mortgage end</string>
 	<string formatted="false" name="extraYearsTitleText">Extra years to calculate</string>
-		
-	<string formatted="false" name="fixupCostsHelpText">The amount of money required to make any upgrades or repairs to the property at the time of purchase in order to get it up to your required level of finish</string>
-	
+			
 	<string formatted="false" name="generalSaleExpensesHelpText">The amount of money necessary to bring the investment up to repair for the purposes of liquidating the investment</string>
 	
 	<string formatted="false" name="inflationRateHelpText">The yearly rate of inflation.  This is the rate at which currency loses value per year.</string>
@@ -81,13 +79,16 @@
 	
 	<string formatted="false" name="marginalTaxRateHelpText">The percentage rate that the investment amount is taxed.  The reason this is called ""marginal" tax rate is because it is assumed that you have other income and this is on top of that.  So, due to the different tax brackets, the best way to determine your tax rate is to find what is the top bracket you are currently in for your other income, and then apply that to the rental income on this property.  Note that this value does not apply to the equity reversion (investment sale).  In that case the rate is the capital gains rate, which as of 2012 is 15%</string>
 	
-	<string formatted="false" name="modifiedInternalRateOfReturnHelpText">The modified internal rate of return is an equation to determine the comparative attractiveness of an investment, to rank alternative investments of equal size.  Note that the equal size of investments is important.  If the projects are of unequal size, it help to review the value of the net present value to get a more fair comparison</string>
+	<string formatted="false" name="modifiedInternalRateOfReturnHelpText">The modified internal rate of return is an equation to determine the comparative attractiveness of an investment, to rank alternative investments of equal size.  Note that the equal size of investments is important.  If the projects are of unequal size, it help to review the value of the net present value to get a more fair comparison.\n\nThe equation for MIRR is as follows: for any number n of cash flows, MIRR = nth root of the Future value of positive cash flows using the reinvestment rate divided by the Present value of negative cash flows at the finance rate, all minus 1</string>
 	<string formatted="false" name="modifiedInternalRateOfReturnTitleText">Modified internal rate of return</string>
 	
 	<string formatted="false" name="monthlyMortgagePaymentHelpText">The monthly mortgage payment.  This is calculated by the following formula: AMT_BORROWED * ( (INT_RATE / 12) / (1 - (1 / (1 + INT_RATE)^(YEARS * 12)  )  )</string>
 	<string formatted="false" name="monthlyMortgagePaymentTitleText">Monthly mortgage payment</string>
 	
-	<string formatted="false" name="monthlyRentFVHelpText">The monthly rent for this year</string>
+	<string formatted="false" name="monthlyRentFVHelpText">The monthly rent for this year.  
+	    Assumption: The amount of rent charged goes up once every twelve months starting
+		from the house purchase date.  Rent increases per the yearly real estate
+		appreciation rate. </string>
 	<string formatted="false" name="monthlyRentFVTitleText">Monthly rent charged</string>
 		
 	<string formatted="false" name="netPresentValueHelpText">The net present value is the sum of the present values for each year\'s final balance.  In this application, this means it is the first payment (down payment, fix-up costs, and general purchase expenses) plus the yearly after tax cash flows (all in present value by the required rate of return as a discount rate) and finally the present value of the after-tax equity reversion (the sale of the purchase)</string>
@@ -151,7 +152,11 @@
     <string formatted="false" name="yearlyMunicipalFeesHelpText">The future value yearly municipal fees</string>
     <string formatted="false" name="yearlyMunicipalFeesTitleText">Yearly municipal fees</string>
 
-    <string formatted="false" name="yearlyOperatingExpensesHelpText">All expenses for the year except debt service (mortgage payment).  This includes property tax, management fees, insurance premiums, maintenance costs, utility fees, or other expenses made in the operation of the investment property</string>
+    <string formatted="false" name="yearlyOperatingExpensesHelpText">All expenses for the year 
+        except debt service (mortgage payment).  This includes property tax, management fees, 
+        insurance premiums, maintenance costs, utility fees, or other expenses made in the 
+        operation of the investment property.  Assumption:  The yearly general expenses 
+         increase at the rate of yearly inflation.  They increase at this rate once a year.</string>
     <string formatted="false" name="yearlyOperatingExpensesTitleText">Yearly operating expenses</string>
     
     <string formatted="false" name="yearlyNetOperatingIncomeHelpText">The income for the year (rent) minus vacancy and credit losses, minus yearly operating expenses</string>
@@ -166,10 +171,15 @@
 	<string formatted="false" name="yearlyPrincipalPaidHelpText">The amount of principal paid in the mortgage payments for this year</string>
 	<string formatted="false" name="yearlyPrincipalPaidTitleText">Yearly principal paid</string>
 
-	<string formatted="false" name="yearlyPropertyTaxHelpText">The amount of property tax paid this year.  This application calculates each year\'s property tax by a future value equation using real estate appreciation as the rate of compounding</string>
+	<string formatted="false" name="yearlyPropertyTaxHelpText">The amount of property tax paid 
+	    this year.  This application calculates each year\'s property tax by a future 
+	    value equation using real estate appreciation as the rate of compounding.  Assumption: this
+	    tax is paid once a year.</string>
 	<string formatted="false" name="yearlyPropertyTaxTitleText">Yearly property tax</string>
 	
-	<string formatted="false" name="yearlyTaxOnIncomeHelpText">Tax on the portion of income which is at the marginal tax rate, or in other words, the taxable income times the marginal tax rate</string>
+	<string formatted="false" name="yearlyTaxOnIncomeHelpText">Tax on the portion of income 
+	    which is at the marginal tax rate, or in other words, the taxable income times the 
+	    marginal tax rate.  Assumption:  This tax is paid once a year.</string>
 	<string formatted="false" name="yearlyTaxOnIncomeTitleText">Yearly tax on income</string>
 		    
 	
@@ -213,21 +223,11 @@
 	<!-- taxes -->
 	<string formatted="false" name="TaxesScreenHeaderText">Taxes</string>
 	<string formatted="false" name="marginalTaxRateTitleText">Marginal Tax Rate</string>
-	<string formatted="false" name="marginalTaxRateDescriptionText">The marginal tax rate is the tax rate that is
-		expected for the amount of adjusted gross income for the year
-	</string>
+
 	<string formatted="false" name="backButtonText">Back</string>
 	<string formatted="false" name="buildingValueTitleText">Initial building value</string>
 	<string formatted="false" name="propertyTaxTitleText">Initial property Tax</string>
 	<string formatted="false" name="localMunicipalFeesTitleText">Initial municipal Fees</string>
-	<string formatted="false" name="buildingValueDescriptionText">the value of the building, as opposed to the land
-		value.
-	</string>
-	<string formatted="false" name="propertyTaxDescriptionText">The dollar amount of the yearly property tax assessed on the property by the local jurisdiction
-	</string>
-	<string formatted="false" name="localMunicipalFeesDescriptionText">Fees assessed by the local municipality in addition
-		to the property tax (such as solid waste or water taxes)
-	</string>
 
 	<!-- address -->
 	<string formatted="false" name="streetAddressHeaderText">Address</string>
@@ -251,96 +251,53 @@
 
 	<!-- Loan page -->
 	<string formatted="false" name="yearlyInterestRateTitleText">Yearly loan interest rate</string>
-	<string formatted="false" name="yearlyInterestRateDescriptionText">The yearly interest rate is the yearly percentage
-		of the amount borrowed which is owed to the lender
-	</string>
-	<string formatted="false" name="downPaymentDescriptionText">The down payment is the amount of money given to
-		the lender as collateral to secure the loan against default
-	</string>
+
 	<string formatted="false" name="downPaymentTitleText">Down payment</string>
-	<string formatted="false" name="numOfCompoundingPeriodsDescriptionText">The number of compounding periods on the loan. This
-		may be monthly or yearly. Typical residential loans are 180 months (15
-		years) or 360 months (30 years)
-	</string>
+
 	<string formatted="false" name="numOfCompoundingPeriodsTitleText">Number of compounding periods</string>
 	<string formatted="false" name="calcPMIDownPaymentButtonText">Set down payment by PMI</string>
 	<string formatted="false" name="calcPMITitleText">PMI Button Help</string>
-	<string formatted="false" name="calcPMIDescriptionText">Pressing this button will set the down payment to 20% of the currently entered Total Purchase Price value</string>
 
-	<string formatted="false" name="totalPurchaseValueDescriptionText">This value is the total purchase price, including
-		the land and building
-	</string>
 	<string formatted="false" name="totalPurchasePriceTitleText">Total purchase price</string>
 	<string formatted="false" name="closingCostsTitleText">Closing costs</string>
-	<string formatted="false" name="closingCostsDescriptionText">The closing costs are the miscellaneous expenses
-		incurred in addition to the down payment. This may include home
-		inspection, title insurance, surveying costs, or discount point costs.
-	</string>
+
 	
 	<string formatted="false" name="privateMortgageInsuranceTitleText">Private mortgage insurance</string>
-	<string formatted="false" name="privateMortgageInsuranceDescriptionText">This is the amount charged by lenders to 
-		offset their costs in the case of a default on a loan.  It it typically charged when
-		the borrower puts up less than 20% of their own money as a down payment (That is the
-		assumed amount in this program)</string>
 
 	<string formatted="false" name="extraYearsCalculateTitleText">Extra years to calculate</string>
 	
 	<!-- sale expenses -->
-	<string formatted="false" name="generalSaleExpensesDescriptionText">These are the expenses incurred during the sale of
-		the property- final fixup, any legal fees, etc., all in present value, when *you* sell it.  This is
-		not for when you purchase the property.
-	</string>
+
 	<string formatted="false" name="generalSaleExpensesTitleText">Initial general sale expenses</string>
-	<string formatted="false" name="sellingBrokerRateDescriptionText">The percentage of the sale price taken by the
-		selling broker
-	</string>
+
 	<string formatted="false" name="sellingBrokerRateTitleText">Selling broker rate</string>
 	<string formatted="false" name="saleScreenHeaderText">Sale</string>
 
 	<!-- financial environment -->
 	<string formatted="false" name="financialEnvironmentHeaderText">Financial Environment</string>
-	<string formatted="false" name="inflationRateDescriptionText">The inflation rate is the expected average yearly
-		rate at which money loses value
-	</string>
+
 	<string formatted="false" name="inflationRateTitleText">Inflation rate</string>
 	<string formatted="false" name="realEstateAppreciationRateTitleText">Real estate appreciation rate</string>
-	<string formatted="false" name="realEstateAppreciationRateDescriptionText">This value is the expected average annual rate at
-		which the capital value of the investment appreciates (increases)
-	</string>
+
 
 	<!-- rental -->
 	<string formatted="false" name="rentalHeaderText">Rental</string>
-	<string formatted="false" name="estimatedRentPaymentsDescriptionText">This is the initial rent payments expected for the
-		property
-	</string>
+
 	<string formatted="false" name="estimatedRentPaymentsTitleText">Initial estimated rent payments</string>
 
-	<string formatted="false" name="yearlyHomeInsuranceDescriptionText">This is the initial yearly cost of home insurance.
-	</string>
 	<string formatted="false" name="yearlyHomeInsuranceTitleText">Yearly home insurance</string>
-	<string formatted="false" name="vacancyAndCreditLossDescriptionText">This is the average yearly amount lost through
-		tenants not paying their rent for whatever reason, as a percentage of
-		total rental income
-	</string>
+
 	<string formatted="false" name="vacancyAndCreditLossTitleText">Vacancy and credit loss</string>
-	<string formatted="false" name="fixupCostsDescriptionText">Cost to fix up the property to a rentable state as
-		a one-time dollar amount
+	<string formatted="false" name="fixupCostsHelpText">Cost to fix up the property to a 
+	    rentable state as a one-time dollar amount.  Assumption: the fix-up costs (costs which are expended near the
+		time of purchase) commensurately increase the total value of the
+		investment.  This means that if you buy a $250k investment and spend
+		$50k on improvements (fix-up) the total value is now $300k.
 	</string>
 	<string formatted="false" name="fixupCostsTitleText">Fix-up costs</string>
-	<string formatted="false" name="initialYearlyGeneralExpensesDescriptionText">These are the initial expenses, as a yearly dollar
-		amount, to maintain the property. They include the costs of saving for
-		big-ticket repairs, management costs, minor repair costs, advertising,
-		and other miscellaneous expenses
-	</string>
+
 	<string formatted="false" name="initialYearlyGeneralExpensesTitleText">initial yearly general expenses</string>
-	<string formatted="false" name="requiredRateOfReturnDescriptionText">The required rate of return is the minimum rate of
-		return, as a yearly percentage, expected as the average yearly return.
-		It is used in the net present value equation to bring all future
-		values into the present value.  It is probably best to set this to the cost
-		of capital a.k.a. the interest rate on loans.  That is because you will want
-		to get a return on investment at least equal to what it takes to get the money
-		in the first place.
-	</string>
+
 	<string formatted="false" name="requiredRateOfReturnTitleText">Required rate of return</string>
 
 	<!-- set data values activity -->
@@ -372,7 +329,7 @@
 	<string formatted="false" name="valueSliderText">Value Slider</string>
 	<string formatted="false" name="timeSliderText">Time Slider</string>
 	<string formatted="false" name="realEstateMarketAnalysisSplashPageDescription">Real Estate Analysis Processor</string>
-	<string formatted="false" name="dataRowLoadValuesString">Data Row: </string>
+	<string formatted="false" name="dataRowLoadValuesString">Entry id: </string>
 	<string formatted="false" name="streetAddressLoadValuesString">Street Address: </string>
 	<string formatted="false" name="totalPurchaseValueLoadValuesString">Total Purchase Value: </string>
 	<string formatted="false" name="yearlyInterestRateLoadValuesString">Yearly Interest Rate: </string>

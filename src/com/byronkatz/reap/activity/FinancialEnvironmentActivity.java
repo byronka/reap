@@ -80,7 +80,7 @@ public class FinancialEnvironmentActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.inflationRateDescriptionText, 
+            R.string.inflationRateHelpText, 
             R.string.inflationRateTitleText,
             FinancialEnvironmentActivity.this);
       }
@@ -95,7 +95,7 @@ public class FinancialEnvironmentActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.realEstateAppreciationRateDescriptionText, 
+            R.string.realEstateAppreciationRateHelpText, 
             R.string.realEstateAppreciationRateTitleText,
             FinancialEnvironmentActivity.this);
       }

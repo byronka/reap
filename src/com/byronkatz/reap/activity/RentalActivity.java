@@ -87,7 +87,7 @@ public class RentalActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.estimatedRentPaymentsDescriptionText, 
+            R.string.estimatedRentPaymentsHelpText, 
             R.string.estimatedRentPaymentsTitleText, RentalActivity.this);
       }
     });
@@ -115,7 +115,7 @@ public class RentalActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.vacancyAndCreditLossDescriptionText, 
+            R.string.vacancyAndCreditLossRateHelpText, 
             R.string.vacancyAndCreditLossTitleText, RentalActivity.this);
       }
     });
@@ -129,7 +129,7 @@ public class RentalActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.fixupCostsDescriptionText, R.string.fixupCostsTitleText, RentalActivity.this);
+            R.string.fixupCostsHelpText, R.string.fixupCostsTitleText, RentalActivity.this);
       }
     });
 
@@ -142,7 +142,7 @@ public class RentalActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.initialYearlyGeneralExpensesDescriptionText, 
+            R.string.initialYearlyGeneralExpensesHelpText, 
             R.string.initialYearlyGeneralExpensesTitleText, RentalActivity.this);
       }
     });
@@ -156,7 +156,7 @@ public class RentalActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.requiredRateOfReturnDescriptionText, R.string.requiredRateOfReturnTitleText, RentalActivity.this);
+            R.string.requiredRateOfReturnHelpText, R.string.requiredRateOfReturnTitleText, RentalActivity.this);
       }
     });
 

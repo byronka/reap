@@ -25,7 +25,7 @@ public class DataController {
   private static Integer currentDivisionForWriting = 0;
   private static Integer currentDivisionForReading = 0;
   private static DatabaseAdapter databaseAdapter;
-//  private static Map<Integer, Map<ValueEnum, Double>> numericValues;
+  //  private static Map<Integer, Map<ValueEnum, Double>> numericValues;
   private static Map<ValueEnum, Double> inputMap;
   //below data structure holds a whole set of calculated values 
   //for each division of the progress slider
@@ -42,27 +42,21 @@ public class DataController {
 
   public static final Double EPSILON = 0.00001d;
 
-  @SuppressWarnings("unchecked")
   public DataController(Context context, SharedPreferences sp, Resources resources) {
 
     DataController.resources = resources;
-    //WORK AREA
 
     inputMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
-    arrayMultiDivisionNumericCache = new Map[GraphActivity.DIVISIONS_OF_VALUE_SLIDER + 1][CURRENT_MAX_NUM_OF_YEARS];
+    //    arrayMultiDivisionNumericCache = new Map[GraphActivity.DIVISIONS_OF_VALUE_SLIDER + 1][CURRENT_MAX_NUM_OF_YEARS];
+    //
+    //    for (int i = 0; i < GraphActivity.DIVISIONS_OF_VALUE_SLIDER + 1; i++ ) {
+    //      for (int j = 0; j < CURRENT_MAX_NUM_OF_YEARS; j++) {
+    //        arrayMultiDivisionNumericCache[i][j] = new EnumMap<ValueEnum, Double>(ValueEnum.class);
+    //      }
+    //    }
+    //    initNumericCache(years)
 
-    for (int i = 0; i < GraphActivity.DIVISIONS_OF_VALUE_SLIDER + 1; i++ ) {
-      for (int j = 0; j < CURRENT_MAX_NUM_OF_YEARS; j++) {
-        arrayMultiDivisionNumericCache[i][j] = new EnumMap<ValueEnum, Double>(ValueEnum.class);
-      }
-    }
-    
-//    Arrays.fill(arrayMultiDivisionNumericCache, new EnumMap<ValueEnum, Double>(ValueEnum.class));
-    //WORK AREA
-    
     databaseAdapter = new DatabaseAdapter(context);
-//    numericValues = new HashMap<Integer, Map<ValueEnum, Double>>();
-//    multiDivisionNumericValues = new HashMap<Integer, Map<Integer, Map<ValueEnum, Double>>>();
     textValues = new EnumMap<ValueEnum, String>(ValueEnum.class);
     setViewableDataTableRows(new HashSet<ValueEnum>());
     //datachanged is to tell graphactivity when it's time to recalculate
@@ -71,9 +65,24 @@ public class DataController {
     //set to -1 when the system start to flag that it is not set
     currentRowIndex = -1;
   }
-  
+
   public static Resources getAppResources() {
     return resources;
+  }
+
+  /**
+   * This method gets called whenever the system is about to recalculate.
+   * @param years number of years that will be calculated.  Sets the proper size of arry.
+   */
+  @SuppressWarnings("unchecked")
+  public void initNumericCache(int years) {
+    arrayMultiDivisionNumericCache = new Map[GraphActivity.DIVISIONS_OF_VALUE_SLIDER + 1][years + 1];
+
+    for (int i = 0; i < GraphActivity.DIVISIONS_OF_VALUE_SLIDER + 1; i++ ) {
+      for (int j = 0; j < (years + 1); j++) {
+        arrayMultiDivisionNumericCache[i][j] = new EnumMap<ValueEnum, Double>(ValueEnum.class);
+      }
+    }
   }
 
   public void loadFieldValues(SharedPreferences sp) {
@@ -89,9 +98,9 @@ public class DataController {
       }
     }
   }
-  
+
   public void saveFieldValues(SharedPreferences sp) {
-    
+
     SharedPreferences.Editor editor = sp.edit();
     editor.clear();
     //either a string or not a string
@@ -102,34 +111,49 @@ public class DataController {
         editor.putString(inputEnum.name(), getValueAsString(inputEnum));
       }
     }
-    
+
     editor.commit();
   }
 
 
+  /**
+   * This method is used to change the input values, set by the user.  None of these values are
+   * calculated by the system
+   * @param key the ValueEnum which is used to determine the name of the value
+   * @param value the numeric value associated with the particular input
+   */
   public void setValueAsDouble(ValueEnum key, Double value) {
     setDataChanged(true);
     inputMap.put(key, value);
+    if (key == ValueEnum.SELLING_BROKER_RATE) {
+      Log.d("dataController at setValueAsDouble", "inputMap just set key: " + key + " value: " + value);
+    }
   }
 
   public void setValueAsDouble(ValueEnum key, Double value, Integer year) {
- 
-      arrayMultiDivisionNumericCache[currentDivisionForWriting][year].put(key, value);
+
+    arrayMultiDivisionNumericCache[currentDivisionForWriting][year].put(key, value);
   }
-  
+
   public Double getValueAsDouble(ValueEnum key) {
 
     //get the default division and year
     Double returnValue = inputMap.get(key);
+
+    if (key == ValueEnum.SELLING_BROKER_RATE) {
+      Log.d("dataController at getValueAsDouble", "for key " + key + " in inputMap.get(key), returnvalue is " + returnValue);
+    }
     if (returnValue == null){
+      Log.d("dataController at getValueAsDouble", "returnValue was null");
+
       returnValue = 0d;
     }
     return returnValue;
   }
-  
+
   public Double getValueAsDouble(ValueEnum key, Integer year) {
-    
-      //unpack the numericValues for this division
+
+    //unpack the numericValues for this division
     Double returnValue = arrayMultiDivisionNumericCache[currentDivisionForReading][year].get(key);
     if (returnValue == null){
       returnValue = 0d;
@@ -158,7 +182,7 @@ public class DataController {
     int yearsOfCompounding = getValueAsDouble(
         ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue() / 
         GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
-    
+
     int extraYears = getValueAsDouble(
         ValueEnum.EXTRA_YEARS).intValue();
 
@@ -166,7 +190,7 @@ public class DataController {
     for (int year = 0; year < (yearsOfCompounding + extraYears); year++) {
       yValue = getValueAsDouble(graphKeyValue, year + 1);
       dataPoints[year] = yValue;
-      
+
     }
 
     return dataPoints;
@@ -183,7 +207,7 @@ public class DataController {
         cv.put(key, value);
       }
     }
-    
+
     //take string values from user input
     for (Entry<ValueEnum, String> m: textValues.entrySet()) {
       if (m.getKey().isSavedToDatabase()) {
@@ -195,11 +219,11 @@ public class DataController {
 
     //take the current year's values for ATCF, ATER, NPV, MIRR, CRPV and CRCV, pop those in
     String[] calcEnumsForDatabase = { ValueEnum.ATCF.name(),
-                                    ValueEnum.ATER.name(),
-                                    ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(),
-                                    ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(),
-                                    ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(),
-                                    ValueEnum.NPV.name()
+        ValueEnum.ATER.name(),
+        ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(),
+        ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(),
+        ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(),
+        ValueEnum.NPV.name()
     };
     Integer year = getCurrentYearSelected();
     if (year == null) {
@@ -215,15 +239,15 @@ public class DataController {
         cv.put(key, value);
       }
     }
-    
+
     //Put year into database
     cv.put(DatabaseAdapter.YEAR_VALUE, getCurrentYearSelected());
-    
+
     //insert into database and return the last rowindex
     Integer rowIndex = databaseAdapter.insertEntry(cv);
     return rowIndex;
   }
-  
+
   public void updateRow() {
 
     ContentValues cv = new ContentValues();
@@ -245,14 +269,14 @@ public class DataController {
         cv.put(key, value);
       }
     }
-    
+
     //take the current year's values for ATCF, ATER, NPV, MIRR, CRPV and CRCV, pop those in
     String[] calcEnumsForDatabase = { ValueEnum.ATCF.name(),
-                                    ValueEnum.ATER.name(),
-                                    ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(),
-                                    ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(),
-                                    ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(),
-                                    ValueEnum.NPV.name()
+        ValueEnum.ATER.name(),
+        ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(),
+        ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(),
+        ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(),
+        ValueEnum.NPV.name()
     };
     Integer year = getCurrentYearSelected();
     Map<ValueEnum, Double> calcMap = arrayMultiDivisionNumericCache[currentDivisionForReading][year];
@@ -267,7 +291,7 @@ public class DataController {
 
     //Put year into database
     cv.put(DatabaseAdapter.YEAR_VALUE, getCurrentYearSelected());
-    
+
     databaseAdapter.updateEntry((long)currentRowIndex, cv);
   }
 
@@ -285,18 +309,26 @@ public class DataController {
   }
 
 
-/**
- * This takes values from a ContentValues and inserts them into the active cache
- * @param cv
- */
+  /**
+   * This takes values from a ContentValues and inserts them into the active cache.
+   * 
+   * Used to load values from the database into the active cache
+   * @param cv the ContentValues (basically a hashmap) which is a row from the database
+   */
   public void setCurrentData(ContentValues cv) {
 
     //either a string or not a string
     for (ValueEnum inputEnum : ValueEnum.values()) {
+
+
       if (inputEnum.isSavedToDatabase() && (inputEnum.getType() != ValueEnum.ValueType.STRING)) {
         setValueAsDouble(inputEnum, cv.getAsDouble(inputEnum.name()));
+        if (inputEnum == ValueEnum.SELLING_BROKER_RATE) {
+          Log.d("dataController at setCurrentData", "valuename: " + inputEnum + " value: " + cv.getAsDouble(inputEnum.name()));
+        }
       } else if (inputEnum.isSavedToDatabase() && (inputEnum.getType() == ValueEnum.ValueType.STRING)) {
         setValueAsString(inputEnum, cv.getAsString(inputEnum.name()));
+
       }
     }
   }

@@ -13,7 +13,6 @@ public class RentalUnitOwnership {
 
   private Double municipalFees;
   private Double propertyTax;
-  private Double fixupCosts;
   private Double yearlyRealEstateAppreciationRate;
   private Double yearlyInflationRate;
   private Double monthlyInflationRate;
@@ -48,7 +47,6 @@ public class RentalUnitOwnership {
     rental = new Rental(dataController, this);
 
     
-    fixupCosts = dataController.getValueAsDouble(ValueEnum.FIX_UP_COSTS);
     municipalFees = dataController.getValueAsDouble(ValueEnum.LOCAL_MUNICIPAL_FEES);
     extraYears = dataController.getValueAsDouble(ValueEnum.EXTRA_YEARS).intValue();
     propertyTax = dataController.getValueAsDouble(ValueEnum.PROPERTY_TAX);
@@ -115,9 +113,7 @@ public class RentalUnitOwnership {
     return propertyTax;
   }
   
-  public Double getFixupCosts() {
-    return fixupCosts;
-  }
+
   
   public Double getFVPropertyTax(int year) {
     
@@ -220,7 +216,7 @@ public class RentalUnitOwnership {
     return yearlyNPVSummation;
   }
   
-  public void crunchCalculation() {
+  public void crunchCalculation(int yearsToCalculate) {
 
     /*note: many of the equations below are calculated using monthly variables.  This is done
      * when the reality of the equation is monthly.  For example, in the final summation of
@@ -230,12 +226,13 @@ public class RentalUnitOwnership {
      * Think about that a bit before making changes.
      */
 
-    firstDay = mortgage.getDownPayment() + mortgage.getClosingCosts() + getFixupCosts();
+    firstDay = mortgage.getDownPayment() + mortgage.getClosingCosts() + estateValue.getFixupCosts();
 
     mirr.calculateMirr(0, -firstDay, null);
 
     
-    for (int year = 1; year <=( mortgage.getYearlyNumberOfCompoundingPeriods() + extraYears); year++) {
+//    for (int year = 1; year <=( mortgage.getYearlyNumberOfCompoundingPeriods() + extraYears); year++) {
+      for (int year = 1; year <=( yearsToCalculate); year++) {
 
       final Integer monthCPModifier = year * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
       final Integer prevYearMonthCPModifier = (year - 1) * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;

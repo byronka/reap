@@ -45,6 +45,10 @@
 	<color name="lighter_purple">#C57FF0</color>
 	<color name="darker_purple">#8623C2</color>		
 	<color name="graph_purple">#4E00E5</color>	
+	
+    <color name="titlebackgroundcolor">#3232CD</color>
+    <color name="titletextcolor">#FFFF00</color>
+
 			
 
 

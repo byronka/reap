@@ -120,7 +120,7 @@ public class LoanActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.yearlyInterestRateDescriptionText, 
+            R.string.yearlyInterestRateHelpText, 
             R.string.yearlyInterestRateTitleText,
             LoanActivity.this);
       }
@@ -136,7 +136,7 @@ public class LoanActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.downPaymentDescriptionText, 
+            R.string.downPaymentHelpText, 
             R.string.downPaymentTitleText, LoanActivity.this);
       }
     });
@@ -164,7 +164,7 @@ public class LoanActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.totalPurchaseValueDescriptionText, 
+            R.string.totalPurchaseValueHelpText, 
             R.string.totalPurchasePriceTitleText, LoanActivity.this);
       }
     });
@@ -178,7 +178,7 @@ public class LoanActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.closingCostsDescriptionText, 
+            R.string.closingCostsHelpText, 
             R.string.closingCostsTitleText, LoanActivity.this);
       }
     });
@@ -192,6 +192,7 @@ public class LoanActivity extends Activity {
         int THIRTY_YEARS  = adapter.getPosition("Fixed-rate mortgage - 30 years");
         int TWENTY_YEARS =  adapter.getPosition("Fixed-rate mortgage - 20 years");
         int FIFTEEN_YEARS = adapter.getPosition("Fixed-rate mortgage - 15 years");
+        int TWENTYFIVE_YEARS = adapter.getPosition("Fixed-rate mortgage - 25 years");
         Double value = null;
 
         if (pos == THIRTY_YEARS) {
@@ -200,7 +201,9 @@ public class LoanActivity extends Activity {
           value = 180.0d;
         } else if (pos == TWENTY_YEARS) {
           value = 240.0d;
-        }
+        } else if (pos == TWENTYFIVE_YEARS) {
+          value = 300.0d;
+        } 
         ValueEnum key = ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS;
         dataController.setValueAsDouble(key, value);
 
@@ -223,7 +226,7 @@ public class LoanActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.privateMortgageInsuranceDescriptionText, 
+            R.string.privateMortgageInsuranceHelpText, 
             R.string.privateMortgageInsuranceTitleText, LoanActivity.this);
       }
     });
@@ -238,6 +241,8 @@ public class LoanActivity extends Activity {
 
     //Have to do the following in order to pick item in array by number - see setSelection()
     int THIRTY_YEARS  = adapter.getPosition("Fixed-rate mortgage - 30 years");
+    int TWENTYFIVE_YEARS = adapter.getPosition("Fixed-rate mortgage - 25 years");
+    
     int TWENTY_YEARS  = adapter.getPosition("Fixed-rate mortgage - 20 years");
     int FIFTEEN_YEARS = adapter.getPosition("Fixed-rate mortgage - 15 years");
     
@@ -250,7 +255,10 @@ public class LoanActivity extends Activity {
       loanTerm.setSelection(FIFTEEN_YEARS);
     } else if (numOfCompoundingPeriods.intValue() == 240) {
       loanTerm.setSelection(TWENTY_YEARS);
+    } else if (numOfCompoundingPeriods.intValue() == 300) {
+      loanTerm.setSelection(TWENTYFIVE_YEARS);
     }
+      
     Double tempVariable = null;
 
     tempVariable = dataController.getValueAsDouble(ValueEnum.YEARLY_INTEREST_RATE);

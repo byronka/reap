@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:padding="10dip"
+     >
 
     <TableLayout
         android:id="@+id/tableLayout1"
@@ -11,7 +13,7 @@
         android:shrinkColumns="0"
         android:stretchColumns="1" >
 
-        <TableRow>
+        <TableRow android:background="@color/gray90">
 
             <TextView
                 android:id="@+id/databaseItemTextViewLabel0"
@@ -28,7 +30,7 @@
                 android:text="TextView" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:background="@color/gray95">
 
             <TextView
                 android:id="@+id/databaseItemTextViewLabel1"
@@ -45,7 +47,7 @@
                 android:text="TextView" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:background="@color/gray90">
 
             <TextView
                 android:id="@+id/databaseItemTextViewLabel3"
@@ -62,7 +64,7 @@
                 android:text="TextView" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:background="@color/gray95">
 
             <TextView
                 android:id="@+id/databaseItemTextViewLabel4"
@@ -79,7 +81,7 @@
                 android:text="TextView" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:background="@color/gray90">
 
             <TextView
                 android:id="@+id/databaseItemTextViewLabel5"
@@ -96,7 +98,7 @@
                 android:text="TextView" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:background="@color/gray95">
 
             <TextView
                 android:id="@+id/databaseItemTextViewLabel6"
@@ -113,7 +115,7 @@
                 android:text="TextView" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:background="@color/gray90">
 
             <TextView
                 android:id="@+id/databaseItemTextViewLabel7"
@@ -130,7 +132,7 @@
                 android:text="TextView" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:background="@color/gray95">
 
             <TextView
                 android:id="@+id/databaseItemTextViewLabel8"
@@ -153,7 +155,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
-        <TableRow>
+        <TableRow android:background="@color/gray90">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -198,7 +200,7 @@
                 android:text="TextView" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:background="@color/gray95">
 
             <TextView
                 android:layout_width="fill_parent"

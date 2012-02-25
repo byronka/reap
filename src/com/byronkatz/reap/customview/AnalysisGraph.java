@@ -111,7 +111,6 @@ public class AnalysisGraph extends View {
       borderPaint = createPaint(Color.GRAY, 3.0f, Paint.Style.STROKE, TEXT_SIZE);
       highlightPaint = createPaint(Color.YELLOW, 4.0f, Paint.Style.STROKE, TEXT_SIZE);
 
-
       initView(attrs);
     }
   }
@@ -213,6 +212,7 @@ public class AnalysisGraph extends View {
         xValue = 0;
         yValue = 0.0f;
 
+        //actually draw the graphline here
         for (int i = 0; i < dataPoints.length; i++) {  
           xValue = i + 1;
 
@@ -229,11 +229,7 @@ public class AnalysisGraph extends View {
           } else {
             yGraphValue = (float) (marginWidthY + yGraphCoefficient * (functionMaxY - yValue));
           }
-          
-          if (xValue == currentYearHighlighted) {
-            canvas.drawCircle(xGraphValue, yGraphValue, HIGHLIGHT_CIRCLE_RADIUS, highlightPaint);
-            canvas.drawText(String.valueOf(currentYearHighlighted), xGraphValue+15, yGraphValue+15, textPaint);
-          }
+
 
           //draw the points on the graph
           if (!isFirstPoint) {
@@ -243,7 +239,21 @@ public class AnalysisGraph extends View {
 
           oldXGraphValue = xGraphValue;
           oldYGraphValue = yGraphValue;
+
+          //          if (xValue == currentYearHighlighted) {
+          //            canvas.drawCircle(xGraphValue, yGraphValue, HIGHLIGHT_CIRCLE_RADIUS, highlightPaint);
+          //            canvas.drawText(String.valueOf(currentYearHighlighted), xGraphValue+15, yGraphValue+15, textPaint);
+          //          }
+
         }
+
+        //draw the highlight circle
+        xGraphValue = (float) (marginWidthX +  xGraphCoefficient * (currentYearHighlighted - functionMinX));
+        yGraphValue = (float) (marginWidthY + yGraphCoefficient * (functionMaxY - dataPoints[currentYearHighlighted - 1].floatValue()));
+        canvas.drawCircle(xGraphValue, yGraphValue, HIGHLIGHT_CIRCLE_RADIUS, highlightPaint);
+        canvas.drawPoint(xGraphValue, yGraphValue, highlightPaint);
+        canvas.drawText(String.valueOf(currentYearHighlighted), xGraphValue+15, yGraphValue+15, textPaint);
+
 
         //draw the frame
         Rect graphFrameRect = new Rect(GRAPH_MIN_X,GRAPH_MIN_Y, 

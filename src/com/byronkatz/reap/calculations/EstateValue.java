@@ -11,22 +11,34 @@ public class EstateValue {
   private Double futureEstateValue;
   private Boolean cached;
   private int cachedYear;
+  private Double renovatedValue;
+  private Double fixupCosts;
+
 
   private DataController dc;
 
   public EstateValue(DataController dc) {
     this.dc = dc;
+    fixupCosts = dc.getValueAsDouble(ValueEnum.FIX_UP_COSTS);
+
     originalEstateValue = dc.getValueAsDouble(ValueEnum.TOTAL_PURCHASE_VALUE);
+    renovatedValue = fixupCosts + originalEstateValue;
+        
     realEstateAppreciationRate = dc.getValueAsDouble(ValueEnum.REAL_ESTATE_APPRECIATION_RATE);
 
   }
 
+  
   private void saveValue(int year) {
     dc.setValueAsDouble(ValueEnum.PROJECTED_HOME_VALUE, futureEstateValue, year);
   }
 
   public Double getOriginalEstateValue() {
     return originalEstateValue;
+  }
+  
+  public Double getFixupCosts() {
+    return fixupCosts;
   }
   
   /**
@@ -38,7 +50,7 @@ public class EstateValue {
 
       Double compoundingPeriodDesired = (double) (year * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR);
       Double rate = realEstateAppreciationRate / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
-      futureEstateValue = GeneralCalculations.futureValue(compoundingPeriodDesired, rate, originalEstateValue);
+      futureEstateValue = GeneralCalculations.futureValue(compoundingPeriodDesired, rate, renovatedValue);
       saveValue(year);
 
     return futureEstateValue;

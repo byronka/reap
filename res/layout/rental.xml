@@ -32,7 +32,7 @@
                 android:layout_weight="0.50"
                 android:text="@string/estimatedRentPaymentsTitleText"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/tf_green3" >
+                android:textColor="@color/tf_green2" >
             </TextView>
 
             <EditText
@@ -58,7 +58,7 @@
                 android:layout_weight="0.50"
                 android:text="@string/yearlyHomeInsuranceTitleText"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/tf_green3" >
+                android:textColor="@color/tf_green2" >
             </TextView>
 
             <EditText
@@ -84,7 +84,7 @@
                 android:layout_weight="0.50"
                 android:text="@string/vacancyAndCreditLossTitleText"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/tf_green3" >
+                android:textColor="@color/tf_green2" >
             </TextView>
 
             <EditText
@@ -110,7 +110,7 @@
                 android:layout_weight="0.50"
                 android:text="@string/fixupCostsTitleText"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/tf_green3" >
+                android:textColor="@color/tf_green2" >
             </TextView>
 
             <EditText
@@ -136,7 +136,7 @@
                 android:layout_weight="0.50"
                 android:text="@string/initialYearlyGeneralExpensesTitleText"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/tf_green3" >
+                android:textColor="@color/tf_green2" >
             </TextView>
 
             <EditText
@@ -162,7 +162,7 @@
                 android:layout_weight="0.50"
                 android:text="@string/requiredRateOfReturnTitleText"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/tf_green3" >
+                android:textColor="@color/tf_green2" >
             </TextView>
 
             <EditText

@@ -79,7 +79,7 @@ public class SaleActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.generalSaleExpensesDescriptionText, 
+            R.string.generalSaleExpensesHelpText, 
             R.string.generalSaleExpensesTitleText, SaleActivity.this);
       }
     });
@@ -94,7 +94,7 @@ public class SaleActivity extends Activity {
       @Override
       public void onClick(View v) {
         Utility.showHelpDialog(
-            R.string.sellingBrokerRateDescriptionText, 
+            R.string.sellingBrokerRateHelpText, 
             R.string.sellingBrokerRateTitleText, SaleActivity.this);
       }
     });

@@ -119,7 +119,7 @@ public class SavedDataBrowserActivity extends ListActivity {
     cursor.moveToPosition(position);
     String rowNum = cursor.getString(0);
 
-    deleteTextView.setText("Would you like to delete the entry at row " + rowNum + "?");
+    deleteTextView.setText("Delete the data with entry id: " + rowNum + " ?");
     deleteDialog.setTitle("Delete database item");
     
     Button deleteButton = (Button)deleteDialog.findViewById(R.id.deleteDatabaseItemButton);
@@ -163,7 +163,7 @@ public class SavedDataBrowserActivity extends ListActivity {
 
     cursor.moveToPosition(position);
     String rowNum = cursor.getString(0);
-    loadTextView.setText("Would you like to load the entry at row " + rowNum + "?");
+    loadTextView.setText("load the data with entry id: " + rowNum + " ?");
     loadDialog.setTitle("Load database item");
     
     Button loadButton = (Button)loadDialog.findViewById(R.id.loadDatabaseItemButton);
