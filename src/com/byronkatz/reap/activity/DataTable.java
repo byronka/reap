@@ -160,7 +160,6 @@ public class DataTable {
   }
 
   public void setDataTableValueByCurrency(TextView t, ValueEnum ve, Integer year) {
-//    Log.d(getClass().getName(), "ValueEnum: " + ve.name() + " Year: " + year);
     if (ve.isVaryingByYear()) {
       t.setText(Utility.displayCurrency(dataController.getValueAsDouble(ve, year)));
     } else if (! ve.isVaryingByYear()) {

@@ -6,7 +6,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -42,44 +41,44 @@ public class SavedDataBrowserActivity extends ListActivity {
     contentValues = new ContentValues();
     cursor = dataController.getAllDatabaseValues();
     startManagingCursor(cursor);
+    
+    String[] from = {
+        DatabaseAdapter.KEY_ID,
+        ValueEnum.STREET_ADDRESS.name(), 
+        ValueEnum.TOTAL_PURCHASE_VALUE.name(),
+        ValueEnum.YEARLY_INTEREST_RATE.name(), 
+        ValueEnum.DOWN_PAYMENT.name(), 
+        ValueEnum.REQUIRED_RATE_OF_RETURN.name(),
+        ValueEnum.ESTIMATED_RENT_PAYMENTS.name(),
+        ValueEnum.COMMENTS.name(),
+        ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(),
+        ValueEnum.NPV.name(),
+        ValueEnum.ATCF.name(),
+        ValueEnum.ATER.name(),
+        ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(),
+        ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(),
+        DatabaseAdapter.YEAR_VALUE
+    };
 
-    ListAdapter adapter = new SimpleCursorAdapter(
-        this, // Context.
-        R.layout.database_item_browser_layout, 
-        cursor,                                              // Pass in the cursor to bind to.
-        new String[] {
-            DatabaseAdapter.KEY_ID,
-            ValueEnum.STREET_ADDRESS.name(), 
-            ValueEnum.TOTAL_PURCHASE_VALUE.name(),
-            ValueEnum.YEARLY_INTEREST_RATE.name(), 
-            ValueEnum.DOWN_PAYMENT.name(), 
-            ValueEnum.REQUIRED_RATE_OF_RETURN.name(),
-            ValueEnum.ESTIMATED_RENT_PAYMENTS.name(),
-            ValueEnum.COMMENTS.name(),
-            ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(),
-            ValueEnum.NPV.name(),
-            ValueEnum.ATCF.name(),
-            ValueEnum.ATER.name(),
-            ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(),
-            ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(),
-            DatabaseAdapter.YEAR_VALUE
-            },                                          // Array of cursor columns to bind to.
-            new int[] {R.id.dataRowLoadValuesTextView,
-                       R.id.streetAddressLoadValuesTextView, 
-                       R.id.totalPurchaseLoadValuesTextView, 
-                       R.id.yearlyInterestRateLoadValuesTextView, 
-                       R.id.downPaymentLoadValuesTextView,
-                       R.id.reqRateReturnLoadValuesTextView,
-                       R.id.estimatedRentLoadValuesTextView,
-                       R.id.commentsLoadValuesTextView,
-                       R.id.mirrLoadValuesTextView,
-                       R.id.npvLoadValuesTextView,
-                       R.id.atcfLoadValuesTextView,
-                       R.id.aterLoadValuesTextView,
-                       R.id.crcvLoadValuesTextView,
-                       R.id.crpvLoadValuesTextView,
-                       R.id.yearLoadValuesTextView
-                       });  // Parallel array of which template objects to bind to those columns.
+    int[] to = {
+        R.id.dataRowLoadValuesTextView,
+        R.id.streetAddressLoadValuesTextView, 
+        R.id.totalPurchaseLoadValuesTextView, 
+        R.id.yearlyInterestRateLoadValuesTextView, 
+        R.id.downPaymentLoadValuesTextView,
+        R.id.reqRateReturnLoadValuesTextView,
+        R.id.estimatedRentLoadValuesTextView,
+        R.id.commentsLoadValuesTextView,
+        R.id.mirrLoadValuesTextView,
+        R.id.npvLoadValuesTextView,
+        R.id.atcfLoadValuesTextView,
+        R.id.aterLoadValuesTextView,
+        R.id.crcvLoadValuesTextView,
+        R.id.crpvLoadValuesTextView,
+        R.id.yearLoadValuesTextView
+        };
+    
+    ListAdapter adapter = new SimpleCursorAdapter(this, R.layout.database_item_browser_layout, cursor, from , to); 
 
     // Bind to our new adapter.
     setListAdapter(adapter);

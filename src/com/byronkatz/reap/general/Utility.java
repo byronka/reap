@@ -11,7 +11,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -285,7 +284,6 @@ public class Utility {
     percentFormat = NumberFormat.getPercentInstance(Locale.US);
     percentFormat.setMaximumFractionDigits(0);
     result = percentFormat.format(value.floatValue());
-//    Log.d("Utilityclass", "result: " + result + " value: " + value);
     return result;
   }
   
@@ -353,7 +351,6 @@ public class Utility {
     percentFormat = NumberFormat.getPercentInstance(Locale.US);
     percentFormat.setMaximumFractionDigits(4);
     result = percentFormat.format(value.floatValue());
-//    Log.d("Utilityclass", "result: " + result + " value: " + value);
     return result;
   }
 

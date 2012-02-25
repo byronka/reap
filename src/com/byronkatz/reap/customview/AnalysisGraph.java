@@ -240,16 +240,17 @@ public class AnalysisGraph extends View {
           oldXGraphValue = xGraphValue;
           oldYGraphValue = yGraphValue;
 
-          //          if (xValue == currentYearHighlighted) {
-          //            canvas.drawCircle(xGraphValue, yGraphValue, HIGHLIGHT_CIRCLE_RADIUS, highlightPaint);
-          //            canvas.drawText(String.valueOf(currentYearHighlighted), xGraphValue+15, yGraphValue+15, textPaint);
-          //          }
-
         }
 
         //draw the highlight circle
+        //if the difference between the top and bottom is zero, it's an outlier - so we use if statement
+        if (Float.isInfinite(yGraphCoefficient)) {
+          yGraphValue = (float) (graphMaxY / 2);
+        } else {
+          yGraphValue = (float) (marginWidthY + yGraphCoefficient * (functionMaxY - dataPoints[currentYearHighlighted - 1].floatValue()));
+        }
+        
         xGraphValue = (float) (marginWidthX +  xGraphCoefficient * (currentYearHighlighted - functionMinX));
-        yGraphValue = (float) (marginWidthY + yGraphCoefficient * (functionMaxY - dataPoints[currentYearHighlighted - 1].floatValue()));
         canvas.drawCircle(xGraphValue, yGraphValue, HIGHLIGHT_CIRCLE_RADIUS, highlightPaint);
         canvas.drawPoint(xGraphValue, yGraphValue, highlightPaint);
         canvas.drawText(String.valueOf(currentYearHighlighted), xGraphValue+15, yGraphValue+15, textPaint);

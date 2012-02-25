@@ -125,9 +125,7 @@ public class DataController {
   public void setValueAsDouble(ValueEnum key, Double value) {
     setDataChanged(true);
     inputMap.put(key, value);
-    if (key == ValueEnum.SELLING_BROKER_RATE) {
-      Log.d("dataController at setValueAsDouble", "inputMap just set key: " + key + " value: " + value);
-    }
+
   }
 
   public void setValueAsDouble(ValueEnum key, Double value, Integer year) {
@@ -140,12 +138,8 @@ public class DataController {
     //get the default division and year
     Double returnValue = inputMap.get(key);
 
-    if (key == ValueEnum.SELLING_BROKER_RATE) {
-      Log.d("dataController at getValueAsDouble", "for key " + key + " in inputMap.get(key), returnvalue is " + returnValue);
-    }
-    if (returnValue == null){
-      Log.d("dataController at getValueAsDouble", "returnValue was null");
 
+    if (returnValue == null){
       returnValue = 0d;
     }
     return returnValue;
@@ -229,7 +223,6 @@ public class DataController {
     if (year == null) {
       year = 0;
     }
-    Log.d("DataController", "year: " + year  + " currentDivisionForReading: " + currentDivisionForReading);
     Map<ValueEnum, Double> calcMap = arrayMultiDivisionNumericCache[currentDivisionForReading][year];
 
     for (Entry<ValueEnum, Double> m: calcMap.entrySet()) {
@@ -323,9 +316,6 @@ public class DataController {
 
       if (inputEnum.isSavedToDatabase() && (inputEnum.getType() != ValueEnum.ValueType.STRING)) {
         setValueAsDouble(inputEnum, cv.getAsDouble(inputEnum.name()));
-        if (inputEnum == ValueEnum.SELLING_BROKER_RATE) {
-          Log.d("dataController at setCurrentData", "valuename: " + inputEnum + " value: " + cv.getAsDouble(inputEnum.name()));
-        }
       } else if (inputEnum.isSavedToDatabase() && (inputEnum.getType() == ValueEnum.ValueType.STRING)) {
         setValueAsString(inputEnum, cv.getAsString(inputEnum.name()));
 
