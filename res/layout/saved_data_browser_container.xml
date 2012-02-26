@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="10dip"
-        android:text="@string/deleteHelpMessageText" />
+        android:text="@string/savedDataHelpMessageText" />
 
     <ListView
         android:id="@android:id/list"

@@ -4,12 +4,11 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dip" >
-
-    <TableLayout
-        android:id="@+id/tableLayout1"
+    
+        <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="0,2,4" >
+        android:stretchColumns="1" >
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -34,6 +33,13 @@
                 android:text="val"
                 android:textSize="12dip" />
         </TableRow>
+        </TableLayout>
+    
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,2,4" >
 
         <TableRow android:background="@color/gray90" >
 

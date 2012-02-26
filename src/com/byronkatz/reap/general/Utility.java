@@ -11,6 +11,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -103,33 +104,42 @@ public class Utility {
   public static void saveValueDialog(final Activity activity) {
 
     AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-
-    builder.setPositiveButton("Add new entry", new DialogInterface.OnClickListener() {
+    final String baseMessage = activity.getString(R.string.saveDataDialogBaseMessageText);
+    final String addNewEntryText = activity.getString(R.string.addNewEntryText);
+    final String dataSavedAsNewEntry = activity.getString(R.string.dataSavedAsNewEntryText);
+    final String currentEntryIdIs = activity.getString(R.string.currentEntryIdIsText);
+    final String updateCurrentEntry = activity.getString(R.string.updateCurrentEntryText);
+    final String dataSavedIntoCurrentEntryText = activity.getString(R.string.dataSavedIntoCurrentEntryText);
+    
+    
+    builder.setMessage(baseMessage);
+    builder.setPositiveButton(addNewEntryText, new DialogInterface.OnClickListener() {
 
       @Override
       public void onClick(DialogInterface dialog, int which) {
 
         int newRowIndex = dataController.saveValues();
         dataController.setCurrentDatabaseRow(newRowIndex);
-        Toast toast = Toast.makeText(activity, "Data saved as new entry id: " + newRowIndex, Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(activity, dataSavedAsNewEntry + newRowIndex, Toast.LENGTH_SHORT);
         toast.show();
 
       }
     } );
 
     //following is so the "update" button only appears if there is a row to update
-    Integer currentDataRow = dataController.getCurrentDatabaseRow();
-    if ( currentDataRow != -1) {
-      String message = "Current entry id is " + currentDataRow;
+    final Integer currentDataRow = dataController.getCurrentDatabaseRow();
+    if ( currentDataRow > 0) {
+      String currentEntryIdmessage = currentEntryIdIs + currentDataRow;
+      String message = baseMessage + currentEntryIdmessage;
       builder.setMessage(message);
-      builder.setNegativeButton("Update current entry", new DialogInterface.OnClickListener() {
+      builder.setNegativeButton(updateCurrentEntry, new DialogInterface.OnClickListener() {
 
         @Override
         public void onClick(DialogInterface dialog, int which) {
 
 
           dataController.updateRow();
-          Toast toast = Toast.makeText(activity, "Data saved into current entry", Toast.LENGTH_SHORT);
+          Toast toast = Toast.makeText(activity, dataSavedIntoCurrentEntryText + currentDataRow , Toast.LENGTH_SHORT);
           toast.show();
 
         }
@@ -169,12 +179,15 @@ public class Utility {
     i.setClassName("com.android.calculator2",
         "com.android.calculator2.Calculator");
 
+    String calcActNotFound = a.getString(R.string.calculatorActivityNotFoundText);
+    String calcGenException = a.getString(R.string.calcActivityNotFoundGenExceptionText);
+    
     try {
       a.startActivity(i);
     } catch (ActivityNotFoundException e) {
-      showAlertDialog(a, "Activity was not found");
+      showAlertDialog(a, calcActNotFound);
     } catch (Exception e) {
-      showAlertDialog(a, "General exception");
+      showAlertDialog(a, calcGenException);
     }
   }
 
@@ -246,7 +259,7 @@ public class Utility {
       editText.setSelection(0, textLength);
       break;
     default:
-      System.err.println("shouldn't get here in setSelectionOnView");
+      Log.e("setSelectionOnView in Utility class", "shouldn't get here");
     }
   }
 
@@ -287,6 +300,7 @@ public class Utility {
 
     //Seems that numberFormat has a beef with Double values.  Downgrade to Float so it doesn't choke
 
+    //This might be something we want to externalize IF we get that far
     percentFormat = NumberFormat.getPercentInstance(Locale.US);
     percentFormat.setMaximumFractionDigits(0);
     result = percentFormat.format(value.floatValue());
@@ -338,9 +352,14 @@ public class Utility {
 
     String returnValue = value;
 
+    //we don't want null values
+    if (value == null) {
+      returnValue = "0";
+    }
+    
     //if it is a string we just want to pass it through
     if (ve.getType() != ValueType.STRING) {
-      returnValue = displayShortValue(parseValue(value, ve), ve);
+      returnValue = displayShortValue(parseValue(returnValue, ve), ve);
     }
 
     return returnValue;

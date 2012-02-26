@@ -12,7 +12,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.util.Log;
 
 import com.byronkatz.reap.activity.GraphActivity;
 import com.byronkatz.reap.calculations.GeneralCalculations;
@@ -209,27 +208,6 @@ public class DataController {
       }
     }
 
-    //    //take the current year's values for ATCF, ATER, NPV, MIRR, CRPV and CRCV, pop those in
-    //    String[] calcEnumsForDatabase = { ValueEnum.ATCF.name(),
-    //        ValueEnum.ATER.name(),
-    //        ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(),
-    //        ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(),
-    //        ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(),
-    //        ValueEnum.NPV.name()
-    //    };
-    //    Integer year = getCurrentYearSelected();
-    //    if (year == null) {
-    //      year = 0;
-    //    }
-    //    Map<ValueEnum, Double> calcMap = arrayMultiDivisionNumericCache[currentDivisionForReading][year];
-    //
-    //    for (Entry<ValueEnum, Double> m: calcMap.entrySet()) {
-    //      if (Arrays.asList(calcEnumsForDatabase).contains(m.getKey().name())) {
-    //        String key = m.getKey().name();
-    //        Double value = m.getValue();
-    //        cv.put(key, value);
-    //      }
-    //    }
     cv = placeCalcValueInContentValues(cv);
 
     //Put year into database
@@ -239,14 +217,14 @@ public class DataController {
     Integer rowIndex = databaseAdapter.insertEntry(cv);
     return rowIndex;
   }
-  
+
   private ContentValues placeYearInDatabase(ContentValues cv) {
     if (getCurrentYearSelected() == null) {
       cv.put(DatabaseAdapter.YEAR_VALUE, 0);
     } else {
       cv.put(DatabaseAdapter.YEAR_VALUE, getCurrentYearSelected());
     }
-    
+
     return cv;
   }
 
@@ -308,6 +286,11 @@ public class DataController {
       return cv;
     }
 
+    //third chance to bail - is dataChanged true?
+    if (dataChanged) {
+      return cv;
+    }
+
     Map<ValueEnum, Double> calcMap = arrayMultiDivisionNumericCache[currentDivisionForReading][year];
 
     //This will loop through the entries in the map we have for this year and division.
@@ -316,7 +299,13 @@ public class DataController {
       if (Arrays.asList(calcEnumsForDatabase).contains(m.getKey().name())) {
         String key = m.getKey().name();
         Double value = m.getValue();
-        cv.put(key, value);
+
+        //we don't want to put in a null value.
+        if (value == null) {
+          cv.put(key, 0d);
+        } else {
+          cv.put(key, value);
+        }
       }
     }
 
@@ -328,10 +317,18 @@ public class DataController {
     return cursor;
   }
 
+  /**
+   * Sets the stored row index for use for data operations
+   * @param currentRowIndex the index number for the row in the database
+   */
   public void setCurrentDatabaseRow(int currentRowIndex) {
     this.currentRowIndex = currentRowIndex;
   }
 
+  /**
+   * Returns the index number for the row in the database, under the column _id
+   * @return
+   */
   public int getCurrentDatabaseRow() {
     return currentRowIndex;
   }

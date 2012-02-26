@@ -97,7 +97,7 @@ public class SavedDataBrowserActivity extends ListActivity {
 
 
         String columnName = cursor.getColumnName(columnIndex);
-        
+
         ValueEnum viewEnum = null;
         //here we try to extract a valueEnum from the string value
         try {
@@ -106,19 +106,20 @@ public class SavedDataBrowserActivity extends ListActivity {
           Log.d(getClass().getName(), "illegalArgumentException at SavedDataBrowser activity");
           Log.d(getClass().getName(), e.getMessage());
           Log.d(getClass().getName(), "This is a debug message, to help in programming the application.  Otherwise, ignore.");
-          
+
         }
-        
+
         //if we successfully got a ValueEnum, we can use it to format the string
         if (viewEnum != null) {
 
           viewEnum = ValueEnum.valueOf(columnName);
           String stringValue = cursor.getString(columnIndex);
           TextView textView = (TextView) view;
+          Log.d(getClass().getName(), "about to parseAndDisplay stringValue: " + stringValue + " viewEnum: " + viewEnum);
           textView.setText(Utility.parseAndDisplayShortValue(stringValue, viewEnum));
           return true;
         }
-                return false;
+        return false;
       }
     });
 
@@ -158,7 +159,7 @@ public class SavedDataBrowserActivity extends ListActivity {
     TextView deleteTextView = (TextView)deleteDialog.findViewById(R.id.delete_text);
 
     cursor.moveToPosition(position);
-    String rowNum = cursor.getString(0);
+    final Integer rowNum = cursor.getInt(0);
 
     deleteTextView.setText("Delete the data with entry id: " + rowNum + " ?");
     deleteDialog.setTitle("Delete database item");
@@ -171,6 +172,11 @@ public class SavedDataBrowserActivity extends ListActivity {
         int columnIndex = cursor.getColumnIndex(DatabaseAdapter.KEY_ID);
         int rowId = cursor.getInt(columnIndex);
         dataController.removeDatabaseEntry(rowId);
+        
+        //if we just deleted the "current" data, then set the current row to an invalid number
+        if (rowNum == dataController.getCurrentDatabaseRow()) {
+        dataController.setCurrentDatabaseRow(-1);
+        }
 
         Toast toast = Toast.makeText(SavedDataBrowserActivity.this, "Data deleted", Toast.LENGTH_SHORT);
         toast.show();
