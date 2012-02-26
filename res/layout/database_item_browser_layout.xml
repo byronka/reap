@@ -3,17 +3,39 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dip"
-     >
+    android:padding="10dip" >
 
     <TableLayout
         android:id="@+id/tableLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:shrinkColumns="0"
-        android:stretchColumns="1" >
+        android:stretchColumns="0,2,4" >
 
-        <TableRow android:background="@color/gray90">
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:background="@color/gray95">
+
+            <TextView
+                android:id="@+id/databaseItemTextViewLabel1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/streetAddressLoadValuesString"
+                android:textColor="@color/tf_green2"
+                android:textSize="10dip" />
+
+            <TextView
+                android:id="@+id/streetAddressLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                android:text="val"
+                android:textSize="12dip" />
+        </TableRow>
+
+        <TableRow android:background="@color/gray90" >
 
             <TextView
                 android:id="@+id/databaseItemTextViewLabel0"
@@ -27,222 +49,271 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="TextView" />
-        </TableRow>
-
-        <TableRow android:background="@color/gray95">
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                android:text="val"
+                android:textSize="12dip" />
 
             <TextView
-                android:id="@+id/databaseItemTextViewLabel1"
+                android:id="@+id/databaseItemTextViewLabel10"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/streetAddressLoadValuesString"
-                android:textColor="@color/tf_green2" />
+                android:text="@string/rearLoadValuesString"
+                android:textColor="@color/tf_green2"
+                android:textSize="10dip" />
 
             <TextView
-                android:id="@+id/streetAddressLoadValuesTextView"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="TextView" />
-        </TableRow>
-
-        <TableRow android:background="@color/gray90">
-
-            <TextView
-                android:id="@+id/databaseItemTextViewLabel3"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/totalPurchaseValueLoadValuesString"
-                android:textColor="@color/tf_green2" />
-
-            <TextView
-                android:id="@+id/totalPurchaseLoadValuesTextView"
+                android:id="@+id/rearLoadValuesTextView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="TextView" />
-        </TableRow>
-
-        <TableRow android:background="@color/gray95">
-
-            <TextView
-                android:id="@+id/databaseItemTextViewLabel4"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/yearlyInterestRateLoadValuesString"
-                android:textColor="@color/tf_green2" />
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                android:text="val"
+                android:textSize="12dip" />
 
             <TextView
-                android:id="@+id/yearlyInterestRateLoadValuesTextView"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="TextView" />
-        </TableRow>
-
-        <TableRow android:background="@color/gray90">
-
-            <TextView
-                android:id="@+id/databaseItemTextViewLabel5"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/downPaymentLoadValuesString"
-                android:textColor="@color/tf_green2" />
-
-            <TextView
-                android:id="@+id/downPaymentLoadValuesTextView"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="TextView" />
-        </TableRow>
-
-        <TableRow android:background="@color/gray95">
-
-            <TextView
-                android:id="@+id/databaseItemTextViewLabel6"
+                android:id="@+id/databaseItemTextViewLabel11"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/reqRateReturnLoadValuesString"
-                android:textColor="@color/tf_green2" />
+                android:textColor="@color/tf_green2"
+                android:textSize="10dip" />
 
             <TextView
-                android:id="@+id/reqRateReturnLoadValuesTextView"
+                android:id="@+id/rrrLoadValuesTextView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="TextView" />
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                android:text="val"
+                android:textSize="12dip" />
         </TableRow>
 
-        <TableRow android:background="@color/gray90">
-
-            <TextView
-                android:id="@+id/databaseItemTextViewLabel7"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/estimatedRentLoadValuesString"
-                android:textColor="@color/tf_green2" />
-
-            <TextView
-                android:id="@+id/estimatedRentLoadValuesTextView"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="TextView" />
-        </TableRow>
-
-        <TableRow android:background="@color/gray95">
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:background="@color/gray95">
 
             <TextView
                 android:id="@+id/databaseItemTextViewLabel8"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/yearValueText"
-                android:textColor="@color/tf_green2" />
+                android:textColor="@color/tf_green2"
+                android:textSize="10dip" />
 
             <TextView
                 android:id="@+id/yearLoadValuesTextView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="TextView" />
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                android:text="val"
+                android:textSize="12dip" />
+
+            <TextView
+                android:id="@+id/databaseItemTextViewLabel4"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/yearlyInterestRateLoadValuesString"
+                android:textColor="@color/tf_green2"
+                android:textSize="10dip" />
+
+            <TextView
+                android:id="@+id/yearlyInterestRateLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                android:text="val"
+                android:textSize="12dip" />
+
+            <TextView
+                android:id="@+id/databaseItemTextViewLabel9"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/yearlyInflationRateLoadValuesString"
+                android:textColor="@color/tf_green2"
+                android:textSize="10dip" />
+
+            <TextView
+                android:id="@+id/inflationRateLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                android:text="val"
+                android:textSize="12dip" />
         </TableRow>
-    </TableLayout>
 
-    <TableLayout
-        android:id="@+id/tableLayout1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        <TableRow android:background="@color/gray90" >
 
-        <TableRow android:background="@color/gray90">
+            <TextView
+                android:id="@+id/databaseItemTextViewLabel3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/totalPurchaseValueLoadValuesString"
+                android:textColor="@color/tf_green2"
+                android:textSize="10dip" />
+
+            <TextView
+                android:id="@+id/totalPurchaseLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                android:text="val"
+                android:textSize="12dip" />
+
+            <TextView
+                android:id="@+id/databaseItemTextViewLabel7"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/estimatedRentLoadValuesString"
+                android:textColor="@color/tf_green2"
+                android:textSize="10dip" />
+
+            <TextView
+                android:id="@+id/estimatedRentLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                android:text="val"
+                android:textSize="12dip" />
+
+            <TextView
+                android:id="@+id/databaseItemTextViewLabel5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/downPaymentLoadValuesString"
+                android:textColor="@color/tf_green2"
+                android:textSize="10dip" />
+
+            <TextView
+                android:id="@+id/downPaymentLoadValuesTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                android:text="val"
+                android:textSize="12dip" />
+        </TableRow>
+
+        <TableRow android:background="@color/gray95" >
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/modifiedInternalRateOfReturnTabText"
-                android:textColor="@color/tf_green2" />
+                android:textColor="@color/tf_green2"
+                android:textSize="10dip" />
 
             <TextView
                 android:id="@+id/mirrLoadValuesTextView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:gravity="right"
                 android:paddingLeft="5dip"
                 android:paddingRight="5dip"
-                android:text="TextView" />
+                android:text="val"
+                android:textSize="12dip" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/netPresentValueTabText"
-                android:textColor="@color/tf_green2" />
+                android:textColor="@color/tf_green2"
+                android:textSize="10dip" />
 
             <TextView
                 android:id="@+id/npvLoadValuesTextView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:gravity="right"
                 android:paddingLeft="5dip"
                 android:paddingRight="5dip"
-                android:text="TextView" />
+                android:text="val"
+                android:textSize="12dip" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/atcfTabText"
-                android:textColor="@color/tf_green2" />
+                android:textColor="@color/tf_green2"
+                android:textSize="10dip" />
 
             <TextView
                 android:id="@+id/atcfLoadValuesTextView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:gravity="right"
                 android:paddingLeft="5dip"
                 android:paddingRight="5dip"
-                android:text="TextView" />
+                android:text="val"
+                android:textSize="12dip" />
         </TableRow>
 
-        <TableRow android:background="@color/gray95">
+        <TableRow android:background="@color/gray90" >
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/aterTabText"
-                android:textColor="@color/tf_green2" />
+                android:textColor="@color/tf_green2"
+                android:textSize="10dip" />
 
             <TextView
                 android:id="@+id/aterLoadValuesTextView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:gravity="right"
                 android:paddingLeft="5dip"
                 android:paddingRight="5dip"
-                android:text="TextView" />
+                android:text="val"
+                android:textSize="12dip" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/capRateOnProjectedValueTabText"
-                android:textColor="@color/tf_green2" />
+                android:textColor="@color/tf_green2"
+                android:textSize="10dip" />
 
             <TextView
                 android:id="@+id/crcvLoadValuesTextView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:gravity="right"
                 android:paddingLeft="5dip"
                 android:paddingRight="5dip"
-                android:text="TextView" />
+                android:text="val"
+                android:textSize="12dip" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/capRateOnPurchaseValueTabText"
-                android:textColor="@color/tf_green2" />
+                android:textColor="@color/tf_green2"
+                android:textSize="10dip" />
 
             <TextView
                 android:id="@+id/crpvLoadValuesTextView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:gravity="right"
                 android:paddingLeft="5dip"
                 android:paddingRight="5dip"
-                android:text="TextView" />
+                android:text="val"
+                android:textSize="12dip" />
         </TableRow>
     </TableLayout>
 
@@ -251,12 +322,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/commentsLoadValuesString"
-        android:textColor="@color/tf_green2" />
+        android:textColor="@color/tf_green2"
+        android:textSize="10dip" />
 
     <TextView
         android:id="@+id/commentsLoadValuesTextView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="No comments" />
+        android:text="No comments"
+        android:textSize="12dip" />
 
 </LinearLayout>

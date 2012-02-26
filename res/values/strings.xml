@@ -329,14 +329,17 @@
 	<string formatted="false" name="valueSliderText">Value Slider</string>
 	<string formatted="false" name="timeSliderText">Time Slider</string>
 	<string formatted="false" name="realEstateMarketAnalysisSplashPageDescription">Real Estate Analysis Processor</string>
-	<string formatted="false" name="dataRowLoadValuesString">Entry id: </string>
-	<string formatted="false" name="streetAddressLoadValuesString">Street Address: </string>
-	<string formatted="false" name="totalPurchaseValueLoadValuesString">Total Purchase Value: </string>
-	<string formatted="false" name="yearlyInterestRateLoadValuesString">Yearly Interest Rate: </string>
-	<string formatted="false" name="downPaymentLoadValuesString">Down Payment: </string>
-	<string formatted="false" name="reqRateReturnLoadValuesString">Required Rate of Return: </string>
-	<string formatted="false" name="estimatedRentLoadValuesString">Estimated rent: </string>
+	<string formatted="false" name="dataRowLoadValuesString">Id: </string>
+	<string formatted="false" name="streetAddressLoadValuesString">Addr: </string>
+	<string formatted="false" name="totalPurchaseValueLoadValuesString">Value: </string>
+	<string formatted="false" name="yearlyInflationRateLoadValuesString">infl-ate: </string>	
+	<string formatted="false" name="yearlyInterestRateLoadValuesString">int-rate: </string>
+	<string formatted="false" name="downPaymentLoadValuesString">Down P.: </string>
+	<string formatted="false" name="reqRateReturnLoadValuesString">rrr: </string>
+	<string formatted="false" name="estimatedRentLoadValuesString">rent: </string>
 	<string formatted="false" name="commentsLoadValuesString">Comments: </string>
+	<string formatted="false" name="rearLoadValuesString">rear: </string>
+		
 		
 	
 	<string formatted="false" name="graphVisibilityCheckboxTitle">Graph visibility</string>

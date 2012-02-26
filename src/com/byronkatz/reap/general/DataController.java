@@ -47,14 +47,6 @@ public class DataController {
     DataController.resources = resources;
 
     inputMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
-    //    arrayMultiDivisionNumericCache = new Map[GraphActivity.DIVISIONS_OF_VALUE_SLIDER + 1][CURRENT_MAX_NUM_OF_YEARS];
-    //
-    //    for (int i = 0; i < GraphActivity.DIVISIONS_OF_VALUE_SLIDER + 1; i++ ) {
-    //      for (int j = 0; j < CURRENT_MAX_NUM_OF_YEARS; j++) {
-    //        arrayMultiDivisionNumericCache[i][j] = new EnumMap<ValueEnum, Double>(ValueEnum.class);
-    //      }
-    //    }
-    //    initNumericCache(years)
 
     databaseAdapter = new DatabaseAdapter(context);
     textValues = new EnumMap<ValueEnum, String>(ValueEnum.class);
@@ -123,8 +115,14 @@ public class DataController {
    * @param value the numeric value associated with the particular input
    */
   public void setValueAsDouble(ValueEnum key, Double value) {
-    setDataChanged(true);
-    inputMap.put(key, value);
+
+    //only add the value and set data changed if that number isn't already there
+    if (inputMap.get(key) == null || ! inputMap.get(key).equals(value)) {
+      setDataChanged(true);
+      inputMap.put(key, value);
+    }
+
+
 
   }
 
@@ -211,34 +209,45 @@ public class DataController {
       }
     }
 
-    //take the current year's values for ATCF, ATER, NPV, MIRR, CRPV and CRCV, pop those in
-    String[] calcEnumsForDatabase = { ValueEnum.ATCF.name(),
-        ValueEnum.ATER.name(),
-        ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(),
-        ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(),
-        ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(),
-        ValueEnum.NPV.name()
-    };
-    Integer year = getCurrentYearSelected();
-    if (year == null) {
-      year = 0;
-    }
-    Map<ValueEnum, Double> calcMap = arrayMultiDivisionNumericCache[currentDivisionForReading][year];
-
-    for (Entry<ValueEnum, Double> m: calcMap.entrySet()) {
-      if (Arrays.asList(calcEnumsForDatabase).contains(m.getKey().name())) {
-        String key = m.getKey().name();
-        Double value = m.getValue();
-        cv.put(key, value);
-      }
-    }
+    //    //take the current year's values for ATCF, ATER, NPV, MIRR, CRPV and CRCV, pop those in
+    //    String[] calcEnumsForDatabase = { ValueEnum.ATCF.name(),
+    //        ValueEnum.ATER.name(),
+    //        ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(),
+    //        ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(),
+    //        ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(),
+    //        ValueEnum.NPV.name()
+    //    };
+    //    Integer year = getCurrentYearSelected();
+    //    if (year == null) {
+    //      year = 0;
+    //    }
+    //    Map<ValueEnum, Double> calcMap = arrayMultiDivisionNumericCache[currentDivisionForReading][year];
+    //
+    //    for (Entry<ValueEnum, Double> m: calcMap.entrySet()) {
+    //      if (Arrays.asList(calcEnumsForDatabase).contains(m.getKey().name())) {
+    //        String key = m.getKey().name();
+    //        Double value = m.getValue();
+    //        cv.put(key, value);
+    //      }
+    //    }
+    cv = placeCalcValueInContentValues(cv);
 
     //Put year into database
-    cv.put(DatabaseAdapter.YEAR_VALUE, getCurrentYearSelected());
+    cv = placeYearInDatabase(cv);
 
     //insert into database and return the last rowindex
     Integer rowIndex = databaseAdapter.insertEntry(cv);
     return rowIndex;
+  }
+  
+  private ContentValues placeYearInDatabase(ContentValues cv) {
+    if (getCurrentYearSelected() == null) {
+      cv.put(DatabaseAdapter.YEAR_VALUE, 0);
+    } else {
+      cv.put(DatabaseAdapter.YEAR_VALUE, getCurrentYearSelected());
+    }
+    
+    return cv;
   }
 
   public void updateRow() {
@@ -263,17 +272,46 @@ public class DataController {
       }
     }
 
+    cv = placeCalcValueInContentValues(cv);
+
+    //Put year into database
+    cv = placeYearInDatabase(cv);
+
+    databaseAdapter.updateEntry((long)currentRowIndex, cv);
+  }
+
+  private ContentValues placeCalcValueInContentValues(ContentValues cv) {
+    //do the following ONLY if the values have been calculated.  If not, set as zero
+
     //take the current year's values for ATCF, ATER, NPV, MIRR, CRPV and CRCV, pop those in
-    String[] calcEnumsForDatabase = { ValueEnum.ATCF.name(),
+    String[] calcEnumsForDatabase = { 
+        ValueEnum.ATCF.name(),
         ValueEnum.ATER.name(),
         ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(),
         ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(),
         ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(),
         ValueEnum.NPV.name()
     };
+    //first let's set the values to zero, in case we bail later.  
+    //If we don't bail, they get overwritten
+    for (String s : calcEnumsForDatabase) {
+      cv.put(s, 0.0d);
+    }
+
     Integer year = getCurrentYearSelected();
+
+    //first chance to bail - is year null?
+    if (year == null) {return cv;}
+
+    //second chance to bail - is currentDivisionForReading between 0 and max?
+    if (!(currentDivisionForReading >= 0 && currentDivisionForReading < GraphActivity.DIVISIONS_OF_VALUE_SLIDER)) {
+      return cv;
+    }
+
     Map<ValueEnum, Double> calcMap = arrayMultiDivisionNumericCache[currentDivisionForReading][year];
 
+    //This will loop through the entries in the map we have for this year and division.
+    //if it does not find a mapping, it merely keeps going, and leaves it 0 in that slot.
     for (Entry<ValueEnum, Double> m: calcMap.entrySet()) {
       if (Arrays.asList(calcEnumsForDatabase).contains(m.getKey().name())) {
         String key = m.getKey().name();
@@ -282,10 +320,7 @@ public class DataController {
       }
     }
 
-    //Put year into database
-    cv.put(DatabaseAdapter.YEAR_VALUE, getCurrentYearSelected());
-
-    databaseAdapter.updateEntry((long)currentRowIndex, cv);
+    return cv;
   }
 
   public Cursor getAllDatabaseValues() {

@@ -79,6 +79,10 @@ public enum ValueEnum {
     return DataController.getAppResources().getString(titleText);
   }
   
+  /**
+   * This method returns the assigned type of value, such as integer, currency, percentage, or string
+   * @return returns the kind of number this is
+   */
   public ValueType getType() {
     return valueType;
   }

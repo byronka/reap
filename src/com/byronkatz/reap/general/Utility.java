@@ -53,12 +53,12 @@ public class Utility {
     helpDialog.setCanceledOnTouchOutside(true);
     helpDialog.show();
   }
-  
+
   public static void switchForMenuItem(MenuItem item, Activity activity, boolean isGraphVisible) {
-   
-    
+
+
     Intent intent = null;
-    
+
     //which item is selected?
     switch (item.getItemId()) {
 
@@ -87,7 +87,7 @@ public class Utility {
       intent = new Intent(activity, AppInfoActivity.class);
       activity.startActivity(intent);
       break;
-      
+
     case R.id.viewGraphMenuItem:
       intent = new Intent(activity, GraphActivity.class);
       intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -99,7 +99,7 @@ public class Utility {
       //select nothing / do nothing
     }
   }
-  
+
   public static void saveValueDialog(final Activity activity) {
 
     AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -260,7 +260,13 @@ public class Utility {
     nf.setMaximumFractionDigits(0);
     return nf.format(value);
   }
-  
+
+  /**
+   * This method converts a raw number into a nicely formatted string
+   * @param value the original number
+   * @param ve the type of number, enumerated by ValueEnum
+   * @return
+   */
   public static String displayShortValue(Double value, ValueEnum ve) {
     String type = ve.getType().name();
     String outputValue = "nothing";
@@ -269,7 +275,7 @@ public class Utility {
       outputValue = displayShortCurrency(value);
       //following is identical to displayValue - change if needed.
     } else if (type == "PERCENTAGE") {
-      outputValue = displayShortPercentage(value);
+      outputValue = displayPercentage(value);
     } else if (type == "INTEGER") {
       outputValue = String.valueOf(value.intValue());
     }
@@ -278,15 +284,15 @@ public class Utility {
   }
 
   public static String displayShortPercentage(Double value) {
-    
+
     //Seems that numberFormat has a beef with Double values.  Downgrade to Float so it doesn't choke
-    
+
     percentFormat = NumberFormat.getPercentInstance(Locale.US);
     percentFormat.setMaximumFractionDigits(0);
     result = percentFormat.format(value.floatValue());
     return result;
   }
-  
+
   public static String displayValue(Double value, ValueEnum ve) {
     String type = ve.getType().name();
     String outputValue = "nothing";
@@ -321,6 +327,46 @@ public class Utility {
     return returnValue;
   }
 
+  /**
+   * This method takes a string value, parses it into a proper value, and converts that to a 
+   * formatted string
+   * @param value the original string value (currently takes currency, percentage, string, integer)
+   * @param ve the ValueEnum associated with this value
+   * @return
+   */
+  public static String parseAndDisplayShortValue(String value, ValueEnum ve) {
+
+    String returnValue = value;
+
+    //if it is a string we just want to pass it through
+    if (ve.getType() != ValueType.STRING) {
+      returnValue = displayShortValue(parseValue(value, ve), ve);
+    }
+
+    return returnValue;
+  }
+
+  /**
+   * Currently only set up to handle percentages and currency
+   * @param value the string value which is a currency, percentage, or integer
+   * @param ve the ValueEnum associated with the value
+   * @return
+   */
+  public static Double parseValue(String value, ValueEnum ve) {
+
+    Double returnValue = 0.0d;
+
+    if (ve.getType() == ValueType.CURRENCY) {
+      returnValue = parseCurrency(value);
+    } else if (ve.getType() == ValueType.PERCENTAGE){
+      returnValue = parsePercentage(value);
+    } else if (ve.getType() == ValueType.INTEGER){
+      returnValue = Double.valueOf(value);
+    }
+
+    return returnValue;
+  }
+
   public static void parseThenDisplayValue(View v, ValueEnum ve) {
     if (ve.getType() == ValueType.CURRENCY) {
       parseThenDisplayCurrency(v);
@@ -345,9 +391,9 @@ public class Utility {
   }
 
   public static String displayPercentage(Double value) {
-    
+
     //Seems that numberFormat has a beef with Double values.  Downgrade to Float so it doesn't choke
-    
+
     percentFormat = NumberFormat.getPercentInstance(Locale.US);
     percentFormat.setMaximumFractionDigits(4);
     result = percentFormat.format(value.floatValue());
