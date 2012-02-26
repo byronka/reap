@@ -12,7 +12,7 @@
         android:title="@string/saveCurrentValuesMenuTitle"/>
     <item
         android:id="@+id/viewGraphMenuItem"
-        android:icon="@drawable/save"
+        android:icon="@drawable/graph"
         android:title="@string/viewGraphMenuTitle"/>
     <item
         android:id="@+id/infoMenuItem"

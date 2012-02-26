@@ -12,8 +12,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
+import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +21,7 @@ import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.DatabaseAdapter;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
+import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
 
 
@@ -78,8 +79,8 @@ public class SavedDataBrowserActivity extends ListActivity {
         R.id.yearLoadValuesTextView
         };
     
-    ListAdapter adapter = new SimpleCursorAdapter(this, R.layout.database_item_browser_layout, cursor, from , to); 
-
+    SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.database_item_browser_layout, cursor, from , to); 
+    
     // Bind to our new adapter.
     setListAdapter(adapter);
 

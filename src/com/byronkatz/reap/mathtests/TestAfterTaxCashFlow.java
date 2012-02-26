@@ -11,7 +11,8 @@ public class TestAfterTaxCashFlow implements ItemTestInterface {
     
   }
 
-  private String getATCF() {
+  @Override
+  public String getValue() {
 
     StringBuffer s = new StringBuffer();
     final DataController dataController = RealEstateMarketAnalysisApplication
@@ -41,9 +42,5 @@ public class TestAfterTaxCashFlow implements ItemTestInterface {
     return s.toString();
   }
 
-  @Override
-  public String getValue() {
-    return getATCF();
-  }
 
 }

@@ -374,6 +374,10 @@
 	<string name="authorInfoText">Real Estate Analysis Processor
 	    \n\u00A9 2012 Byron Katz
 	    \nbyronka@msn.com
+	    
+	    \n\nCredits for the icons go to Google, and thanks to Olof Brickarp
+	    \nfor vector conversions.
+	    \n\nThanks to stackoverflow.com for innumerable answers to questions.
 	    </string>
 	
 </resources>

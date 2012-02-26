@@ -42,7 +42,7 @@ public class RentalUnitOwnership {
     yearlyRequiredRateOfReturn = dataController.getValueAsDouble(ValueEnum.REQUIRED_RATE_OF_RETURN);
     mirr = new ModifiedInternalRateOfReturn( dataController,
         mortgage.getYearlyInterestRate(), yearlyRequiredRateOfReturn);
-    equityReversion = new EquityReversion(dataController, estateValue, this);
+    equityReversion = new EquityReversion(dataController, estateValue, this, mortgage);
 
     rental = new Rental(dataController, this);
 
@@ -239,7 +239,7 @@ public class RentalUnitOwnership {
 
       final Double atcfNPVSummation = calculateYearlyRentalIncomeNPV(year, monthCPModifier, prevYearMonthCPModifier);
 
-      final Double adjustedAter = equityReversion.calculateAter(year);  
+      final Double adjustedAter = equityReversion.calculatePresentValueAter(year);  
 
       npvAccumulator = -firstDay + atcfNPVSummation + adjustedAter;
       dataController.setValueAsDouble(ValueEnum.NPV, npvAccumulator, year);
