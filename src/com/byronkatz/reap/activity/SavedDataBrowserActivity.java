@@ -103,10 +103,10 @@ public class SavedDataBrowserActivity extends ListActivity {
         try {
           viewEnum = ValueEnum.valueOf(columnName);
         } catch (IllegalArgumentException e) {
-          Log.d(getClass().getName(), "illegalArgumentException at SavedDataBrowser activity");
-          Log.d(getClass().getName(), e.getMessage());
-          Log.d(getClass().getName(), "This is a debug message, to help in programming the application.  Otherwise, ignore.");
-
+//          Log.d(getClass().getName(), "illegalArgumentException at SavedDataBrowser activity");
+//          Log.d(getClass().getName(), e.getMessage());
+//          Log.d(getClass().getName(), "This is a debug message, to help in programming the application.  Otherwise, ignore.");
+          //do nothing
         }
 
         //if we successfully got a ValueEnum, we can use it to format the string
@@ -115,7 +115,7 @@ public class SavedDataBrowserActivity extends ListActivity {
           viewEnum = ValueEnum.valueOf(columnName);
           String stringValue = cursor.getString(columnIndex);
           TextView textView = (TextView) view;
-          Log.d(getClass().getName(), "about to parseAndDisplay stringValue: " + stringValue + " viewEnum: " + viewEnum);
+//          Log.d(getClass().getName(), "about to parseAndDisplay stringValue: " + stringValue + " viewEnum: " + viewEnum);
           textView.setText(Utility.parseAndDisplayShortValue(stringValue, viewEnum));
           return true;
         }
