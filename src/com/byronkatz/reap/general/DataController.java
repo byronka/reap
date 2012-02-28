@@ -63,17 +63,36 @@ public class DataController {
 
   /**
    * This method gets called whenever the system is about to recalculate.
+   * It should not re-init if the number of years is the same.
    * @param years number of years that will be calculated.  Sets the proper size of arry.
    */
   @SuppressWarnings("unchecked")
   public void initNumericCache(int years) {
-    arrayMultiDivisionNumericCache = new Map[GraphActivity.DIVISIONS_OF_VALUE_SLIDER + 1][years + 1];
 
+    if (arrayMultiDivisionNumericCache != null) {
+      if ((arrayMultiDivisionNumericCache.length == (GraphActivity.DIVISIONS_OF_VALUE_SLIDER + 1)) &&
+          arrayMultiDivisionNumericCache[0].length == (years + 1)) {
+        //bail if the cache is non-null and already initialized to the right size.
+        return;
+      }
+
+    }
+
+    arrayMultiDivisionNumericCache = new Map[GraphActivity.DIVISIONS_OF_VALUE_SLIDER + 1][years + 1];
+    
     for (int i = 0; i < GraphActivity.DIVISIONS_OF_VALUE_SLIDER + 1; i++ ) {
       for (int j = 0; j < (years + 1); j++) {
         arrayMultiDivisionNumericCache[i][j] = new EnumMap<ValueEnum, Double>(ValueEnum.class);
       }
     }
+  }
+
+  /**
+   * This method is used when the user leaves the app for other things.  The app should
+   * not continue to hold onto memory it does not need.
+   */
+  public void nullifyNumericCache() {
+    arrayMultiDivisionNumericCache = null;
   }
 
   public void loadFieldValues(SharedPreferences sp) {

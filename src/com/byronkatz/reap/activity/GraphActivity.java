@@ -177,6 +177,18 @@ public class GraphActivity extends Activity {
     calculateInBackgroundTask.cancel(false);
     SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
     dataTable.saveGraphPageData(sharedPreferences, isGraphVisible, currentSliderKey);
+
+    if (this.isFinishing()){
+      dataController.nullifyNumericCache();
+    }
+
+  }
+  
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    dataController.nullifyNumericCache();
+    System.runFinalizersOnExit(true);
   }
 
   @Override
@@ -658,7 +670,7 @@ public class GraphActivity extends Activity {
 
     @Override
     protected void onPreExecute() {
-      
+
       currentValueStorage = currentValueNumeric;
       currentSliderKeyStorage = currentSliderKey;
       ((TextView) findViewById(R.id.customtitlebar)).setBackgroundColor(R.color.orange01);
