@@ -346,7 +346,7 @@ public class Utility {
 
   /**
    * This method takes a string value, parses it into a proper value, and converts that to a 
-   * formatted string
+   * formatted string, with no pennies if currency.
    * @param value the original string value (currently takes currency, percentage, string, integer)
    * @param ve the ValueEnum associated with this value
    * @return
@@ -363,6 +363,30 @@ public class Utility {
     //if it is a string we just want to pass it through
     if (ve.getType() != ValueType.STRING) {
       returnValue = displayShortValue(parseValue(returnValue, ve), ve);
+    }
+
+    return returnValue;
+  }
+  
+  /**
+   * This method takes a string value, parses it into a proper value, and converts that to a 
+   * formatted string, with pennies if currency.
+   * @param value the original string value (currently takes currency, percentage, string, integer)
+   * @param ve the ValueEnum associated with this value
+   * @return
+   */
+  public static String parseAndDisplayValue(String value, ValueEnum ve) {
+
+    String returnValue = value;
+
+    //we don't want null values
+    if (value == null) {
+      returnValue = "0";
+    }
+
+    //if it is a string we just want to pass it through
+    if (ve.getType() != ValueType.STRING) {
+      returnValue = displayValue(parseValue(returnValue, ve), ve);
     }
 
     return returnValue;

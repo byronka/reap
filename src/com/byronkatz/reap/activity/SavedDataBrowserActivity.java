@@ -280,7 +280,7 @@ public class SavedDataBrowserActivity extends ListActivity {
     cursor.moveToPosition(position);
     final Integer rowNum = cursor.getInt(0);
 
-    String dialogMessage = getString(R.string.emailDialogMessage) + " " + rowNum;
+    String dialogMessage = getString(R.string.emailDialogMessage) + " " + rowNum + "?";
     emailDialogBuilder.setMessage(dialogMessage);    
     emailDialogBuilder.setTitle(getString(R.string.emailDialogTitle));
 
@@ -317,7 +317,12 @@ public class SavedDataBrowserActivity extends ListActivity {
     final Integer rowNum = cursor.getInt(0);
 
     //at cursor 9 is the street address
-    String subject = "REAP Investment analysis for entry " + rowNum + " at address " + cursor.getString(9);
+    String subject = "REAP analysis for entry " + rowNum;
+    
+    if (cursor.getString(9).length() > 0) {
+      subject += " at address " + cursor.getString(9);
+    }
+    
     String body = "";
 
     ContentValues emailContentValues = new ContentValues();
@@ -336,14 +341,26 @@ public class SavedDataBrowserActivity extends ListActivity {
       //if we successfully got a ValueEnum, we can use it to format the string
       if (viewEnum != null) {
         
-        body += viewEnum.getTitleText() + ": ";
-        body += Utility.parseAndDisplayShortValue(String.valueOf(m.getValue()), viewEnum);
+        body += getString(viewEnum.getTitleText()) + ": ";
+        body += Utility.parseAndDisplayValue(String.valueOf(m.getValue()), viewEnum);
         body += "\n";
-      } else {
-        body += m.getKey() + ": ";
+      } else  if (m.getKey().equals(DatabaseAdapter.KEY_ID)) {
+        
+        body += "Entry id: ";
         body += String.valueOf(m.getValue());
         body += "\n";
 
+      } else if(m.getKey().equals(DatabaseAdapter.MODIFIED_AT)) {
+        
+        body += "Last modified on: ";
+        body += String.valueOf(m.getValue());
+        body += "\n";
+        
+      } else if (m.getKey().equals(DatabaseAdapter.YEAR_VALUE)) {
+        
+        body += "Calculated value for year: ";
+        body += String.valueOf(m.getValue());
+        body += "\n";
       }
     }
 
