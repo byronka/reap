@@ -16,6 +16,7 @@ public class MathCheckImpl implements MathCheckInterface {
     mathTests.put( ValueEnum.YEARLY_INCOME, TestRentalIncome.class);
     mathTests.put(ValueEnum.ATCF, TestAfterTaxCashFlow.class);
     mathTests.put(ValueEnum.ATCF_ACCUMULATOR, TestAfterTaxCashFlowAccumulator.class);
+    mathTests.put(ValueEnum.ATCF_NPV, TestAfterTaxCashFlowNPV.class);
     mathTests.put(ValueEnum.ATER, TestAfterTaxEquityReversion.class);
     mathTests.put( ValueEnum.YEARLY_OUTLAY, TestYearlyOutlay.class);
     mathTests.put(ValueEnum.YEARLY_INTEREST_PAID, TestYearlyInterestPaid.class);

@@ -24,11 +24,11 @@ public class TestAfterTaxCashFlow implements ItemTestInterface {
     final Double yearlyIncomeTax = dataController.getValueAsDouble(ValueEnum.YEARLY_TAX_ON_INCOME, year);
     final Double yearlyAfterTaxCashFlow = dataController.getValueAsDouble(ValueEnum.ATCF, year);
     
-    s.append("YEARLY AFTER TAX CASH FLOW (yATCF)");
-    s.append(String.format("\nYearly Before Tax Cash Flow (yBTCF): %.2f -", yearlyBeforeTaxCashFlow));
-    s.append(String.format("\nYearly Income Tax (yIT): %.2f", yearlyIncomeTax));
+    s.append("YEARLY AFTER TAX CASH FLOW (ATCF)");
+    s.append(String.format("\nBefore Tax Cash Flow (BTCF): %.2f -", yearlyBeforeTaxCashFlow));
+    s.append(String.format("\nIncome Tax (IT): %.2f", yearlyIncomeTax));
     s.append("\n-----------------------------");
-    s.append(String.format("\nYearly After Tax Cash Flow (yATCF): %.2f", yearlyAfterTaxCashFlow));
+    s.append(String.format("\n= After Tax Cash Flow (ATCF): %.2f", yearlyAfterTaxCashFlow));
     
     Double actualATCF = yearlyBeforeTaxCashFlow - yearlyIncomeTax;
     

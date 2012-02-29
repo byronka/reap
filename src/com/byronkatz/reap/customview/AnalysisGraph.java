@@ -32,14 +32,16 @@ public class AnalysisGraph extends View {
   private static final int CRPV = 4;
   private static final int CRCV = 5;
   private static final Float DIVISOR_MODIFIER = 0.75f;
+  //following is for left-side text
+  private static final Float LEFT_SIDE_MARGIN_PIXELS = 10f;
   private static final Integer RIGHT_SIDE_MARGIN_PIXELS = 70;
   private static final Float EPSILON = 0.00001f;
 
-  public static final Float GRAPH_MARGIN = 0.20f;
+  public static final Float GRAPH_MARGIN = 0.25f;
   public static final int GRAPH_MIN_X = 0;
   public static final int GRAPH_MIN_Y = 0;
   public static final Float CIRCLE_RADIUS = 5.0f;
-  public static final Float TEXT_SIZE = 14.0f;
+  public static final Float TEXT_SIZE = 16.0f;
   public static final Float GRAPH_LINE_STROKE_WIDTH = 5f;
   public static final Float DIVISOR_LINE_STROKE_WIDTH = 1f;
   public static final Float CICLE_STROKE_WIDTH = 1.5f;
@@ -279,13 +281,15 @@ public class AnalysisGraph extends View {
 
         //draw top number text
         maxYString = Utility.displayValue ((double)functionMaxY, graphKeyValue);
-        maxX =  marginWidthX.floatValue() / 4;
+//        maxX =  marginWidthX.floatValue() / 4;
+        minX =  LEFT_SIDE_MARGIN_PIXELS;
         maxY =  marginWidthY.floatValue();
-        canvas.drawText(maxYString, maxX, maxY, textPaint);
+        canvas.drawText(maxYString, minX, maxY, textPaint);
 
         //draw bottom number text
         minYString = Utility.displayValue ((double)functionMinY, graphKeyValue);
-        minX = (float) marginWidthX.floatValue() / 4;
+//        minX = (float) marginWidthX.floatValue() / 4;
+        minX = LEFT_SIDE_MARGIN_PIXELS;
         minY = (float) (marginWidthY + betweenMarginsOnY);
         canvas.drawText(minYString, minX, minY, textPaint);
 
@@ -357,7 +361,7 @@ public class AnalysisGraph extends View {
   private void drawZeroAxis(Canvas canvas) {
     //following is the distance from max value down to the zero line (the x-axis)
     distFromMarginToXAxis = (marginWidthY + (yGraphCoefficient * functionMaxY));
-    startX = (float) GRAPH_MIN_X;
+    startX = (float) marginWidthX;
     stopX  = (float) graphMaxX;
     canvas.drawLine(startX, distFromMarginToXAxis, stopX, 
         distFromMarginToXAxis, divisorPaint);

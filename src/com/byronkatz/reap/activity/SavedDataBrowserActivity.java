@@ -1,15 +1,18 @@
 package com.byronkatz.reap.activity;
 
-import java.util.Arrays;
-import java.util.List;
-
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -17,7 +20,6 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.SimpleCursorAdapter;
-import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,27 +27,66 @@ import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.DatabaseAdapter;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
-import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
 
 
 public class SavedDataBrowserActivity extends ListActivity {
 
+  SimpleCursorAdapter adapter;
   private Cursor cursor;
+  private String currentSortString;
+  private Integer currentSortTypeIndex;
+  private static final String SORTER = "SORTER";
+  private static final String SORT_TYPE = "SORT_TYPE";
+  private final String[] sortTypes = {
+      "By Date",
+      "By ID",
+      "By MIRR",
+      "By NPV",
+      "By CRCV",
+      "By CRPV",
+      "By ATCF"
+  };
   private ContentValues contentValues;
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
+  @Override
+  public void onResume() {
+    super.onResume();
+    //by default, sort by id when we start, unless something is saved
+    SharedPreferences sp = getPreferences(MODE_PRIVATE);
+    String sortString = sp.getString(SORTER, DatabaseAdapter.KEY_ID);
+    Integer sortIndex = sp.getInt(SORT_TYPE, 1);
+    
+    cursor = getSortedCursor(cursor, sortString, sortTypes[sortIndex]);
+    currentSortTypeIndex = sortIndex;
+    setupDataBrowser(cursor);
+    
+  }
+  
+  @Override
+  public void onPause() {
+    super.onPause();
+    SharedPreferences sp = getPreferences(MODE_PRIVATE);
+    SharedPreferences.Editor editor = sp.edit();
+    editor.clear();
+    editor.putString(SORTER, currentSortString);
+    editor.putInt(SORT_TYPE, currentSortTypeIndex);
+    editor.commit();
+  }
+  
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
     setContentView(R.layout.saved_data_browser_container);
 
-
     contentValues = new ContentValues();
-    cursor = dataController.getAllDatabaseValues();
-    startManagingCursor(cursor);
+  }
+
+  private void setupDataBrowser(Cursor cursor) {
+
 
     String[] from = {
         DatabaseAdapter.KEY_ID,
@@ -64,7 +105,8 @@ public class SavedDataBrowserActivity extends ListActivity {
         DatabaseAdapter.YEAR_VALUE,
         ValueEnum.INFLATION_RATE.name(),
         ValueEnum.REAL_ESTATE_APPRECIATION_RATE.name(),
-        ValueEnum.REQUIRED_RATE_OF_RETURN.name()
+        ValueEnum.REQUIRED_RATE_OF_RETURN.name(),
+        DatabaseAdapter.MODIFIED_AT
     };
 
     int[] to = {
@@ -84,45 +126,15 @@ public class SavedDataBrowserActivity extends ListActivity {
         R.id.yearLoadValuesTextView,                
         R.id.inflationRateLoadValuesTextView,
         R.id.rearLoadValuesTextView,
-        R.id.rrrLoadValuesTextView
+        R.id.rrrLoadValuesTextView,
+        R.id.modifiedTimeStampTextView
     };
 
-    SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.database_item_browser_layout, cursor, from , to); 
-
-    adapter.setViewBinder(new ViewBinder() {
-
-
-      @Override
-      public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-
-
-        String columnName = cursor.getColumnName(columnIndex);
-
-        ValueEnum viewEnum = null;
-        //here we try to extract a valueEnum from the string value
-        try {
-          viewEnum = ValueEnum.valueOf(columnName);
-        } catch (IllegalArgumentException e) {
-//          Log.d(getClass().getName(), "illegalArgumentException at SavedDataBrowser activity");
-//          Log.d(getClass().getName(), e.getMessage());
-//          Log.d(getClass().getName(), "This is a debug message, to help in programming the application.  Otherwise, ignore.");
-          //do nothing
-        }
-
-        //if we successfully got a ValueEnum, we can use it to format the string
-        if (viewEnum != null) {
-
-          viewEnum = ValueEnum.valueOf(columnName);
-          String stringValue = cursor.getString(columnIndex);
-          TextView textView = (TextView) view;
-//          Log.d(getClass().getName(), "about to parseAndDisplay stringValue: " + stringValue + " viewEnum: " + viewEnum);
-          textView.setText(Utility.parseAndDisplayShortValue(stringValue, viewEnum));
-          return true;
-        }
-        return false;
-      }
-    });
-
+    
+    startManagingCursor(cursor);
+    adapter = new SimpleCursorAdapter(
+        this, R.layout.database_item_browser_layout, cursor, from , to); 
+    adapter.setViewBinder(new SavedDataBrowserViewBinder());
     // Bind to our new adapter.
     setListAdapter(adapter);
 
@@ -146,8 +158,88 @@ public class SavedDataBrowserActivity extends ListActivity {
         return true;
       } 
     });
+  }
+  
+  @Override
+  public boolean onCreateOptionsMenu (Menu menu){
+    super.onCreateOptionsMenu(menu);
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.saved_data_browser_menu, menu);
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected (MenuItem item) {
+    super.onOptionsItemSelected(item);
+
+    //the graph visibility parameter does not get used - harmless to include a boolean here
+    if (item.getItemId() == R.id.sortByMenuItem) {
+      displaySortByDialog();
+    }
+    return false;
+  }
+  
+  private void displaySortByDialog() {
+
+    AlertDialog.Builder b = new Builder(this);
+    b.setTitle("Sort");
+
+    
+    b.setItems(sortTypes, new AlertDialog.OnClickListener() {
+
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+
+        dialog.dismiss();
+        switch(which){
+        case 0:
+          changeSort(DatabaseAdapter.MODIFIED_AT, cursor, which);
+          break;
+        case 1:
+          changeSort(DatabaseAdapter.KEY_ID, cursor, which);
+          break;
+        case 2:
+          changeSort(ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(), cursor, which);
+          break;
+        case 3:
+          changeSort(ValueEnum.NPV.name(), cursor, which);
+          break;
+        case 4:
+          changeSort(ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(), cursor, which);
+          break;
+        case 5:
+          changeSort(ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(), cursor, which);
+          break;
+        case 6:
+          changeSort(ValueEnum.ATCF.name(), cursor, which);
+          break;
+        }
+      }
+
+    });
+
+    b.show();
 
   }
+  
+  private void changeSort(String sorter, Cursor cursor, Integer index) {
+    
+    currentSortString = sorter;
+    currentSortTypeIndex = index;
+    cursor = getSortedCursor(cursor, currentSortString, sortTypes[index]);
+//    cursor.requery();
+//    adapter.notifyDataSetChanged();
+    setupDataBrowser(cursor);
+  }
+  
+  private Cursor getSortedCursor(Cursor cursor, String sorter, String nameOfSort) {
+    cursor = dataController.getAllDatabaseValues(sorter + " DESC");
+    String newWindowTitle = "Sort " + nameOfSort;
+    setTitle(newWindowTitle);
+
+    return cursor;
+  }
+
 
   private void createDeleteDialog(int position) {
     final Dialog deleteDialog = new Dialog(SavedDataBrowserActivity.this);
@@ -161,8 +253,11 @@ public class SavedDataBrowserActivity extends ListActivity {
     cursor.moveToPosition(position);
     final Integer rowNum = cursor.getInt(0);
 
-    deleteTextView.setText("Delete the data with entry id: " + rowNum + " ?");
-    deleteDialog.setTitle("Delete database item");
+    String deleteMessage = getString(R.string.deleteMessage);
+    deleteTextView.setText(deleteMessage + " " + rowNum + " ?");
+    
+    String deleteMessageTitle = getString(R.string.deleteMessageTitle);
+    deleteDialog.setTitle(deleteMessageTitle);
 
     Button deleteButton = (Button)deleteDialog.findViewById(R.id.deleteDatabaseItemButton);
     deleteButton.setOnClickListener(new OnClickListener() {
@@ -178,7 +273,8 @@ public class SavedDataBrowserActivity extends ListActivity {
         dataController.setCurrentDatabaseRow(-1);
         }
 
-        Toast toast = Toast.makeText(SavedDataBrowserActivity.this, "Data deleted", Toast.LENGTH_SHORT);
+        String dataDeletedToastText = getString(R.string.dataDeletedToastText);
+        Toast toast = Toast.makeText(SavedDataBrowserActivity.this, dataDeletedToastText, Toast.LENGTH_SHORT);
         toast.show();
 
         cursor.requery();
@@ -210,8 +306,12 @@ public class SavedDataBrowserActivity extends ListActivity {
 
     cursor.moveToPosition(position);
     String rowNum = cursor.getString(0);
-    loadTextView.setText("load the data with entry id: " + rowNum + " ?");
-    loadDialog.setTitle("Load database item");
+    
+    String loadTheDataWithId = getString(R.string.loadTheDataWithId);
+    loadTextView.setText(loadTheDataWithId + " " + rowNum + " ?");
+    
+    String loadDataDialogTitle = getString(R.string.loadDataDialogTitle);
+    loadDialog.setTitle(loadDataDialogTitle);
 
     Button loadButton = (Button)loadDialog.findViewById(R.id.loadDatabaseItemButton);
     loadButton.setOnClickListener(new OnClickListener() {
@@ -222,7 +322,9 @@ public class SavedDataBrowserActivity extends ListActivity {
         DatabaseUtils.cursorRowToContentValues(cursor, contentValues);
         dataController.setCurrentData(contentValues);
         dataController.setCurrentDatabaseRow(position + 1);
-        Toast toast = Toast.makeText(SavedDataBrowserActivity.this, "Data Loaded", Toast.LENGTH_SHORT);
+        
+        String dataLoadedToastText = getString(R.string.dataLoadedToastText);
+        Toast toast = Toast.makeText(SavedDataBrowserActivity.this, dataLoadedToastText, Toast.LENGTH_SHORT);
         toast.show();
         loadDialog.dismiss();
         finish();
@@ -241,6 +343,7 @@ public class SavedDataBrowserActivity extends ListActivity {
 
     loadDialog.show();
   }
+  
 
 }
 

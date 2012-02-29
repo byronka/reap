@@ -31,6 +31,8 @@
 	<string formatted="false" name="saveCurrentValuesMenuTitle">Save current</string>
 	<string formatted="false" name="viewGraphMenuTitle">View graph</string>
 	<string formatted="false" name="infoMenuTitle">Info</string>
+	<string formatted="false" name="sortByMenuTitle">Sorting</string>
+		
 	
 		
 	<!-- Help text for calculated values -->
@@ -351,6 +353,8 @@
 	<string formatted="false" name="reqRateReturnLoadValuesString">rrr: </string>
 	<string formatted="false" name="estimatedRentLoadValuesString">rent: </string>
 	<string formatted="false" name="commentsLoadValuesString">Comments: </string>
+	<string formatted="false" name="dateStampString">Modified: </string>
+		
 	<string formatted="false" name="rearLoadValuesString">rear: </string>
 		
 		
@@ -366,12 +370,24 @@
 	<string formatted="false" name="splashScreenRentCheckBox">Rental?</string>
 	<string formatted="false" name="calculatorActivityNotFoundText">calculator Activity was not found</string>
 	<string formatted="false" name="calcActivityNotFoundGenExceptionText">tried to call calculator activity, but instead got this General exception</string>
-		
+	<string formatted="false" name="titleBarTextWhileCheckLicense">Checking license...</string>
+	
+	<!-- Saved data browser -->	
+
 	<string formatted="false" name="addNewEntryText">Add new entry</string>
+	<string formatted="false" name="noEntriesText">No entries.</string>
 	<string formatted="false" name="currentEntryIdIsText">Current entry id is </string>
 	<string formatted="false" name="updateCurrentEntryText">Update current entry</string>
 	<string formatted="false" name="dataSavedAsNewEntryText">Data saved as new entry id: </string>
 	<string formatted="false" name="dataSavedIntoCurrentEntryText">Data saved into current entry id: </string>
+	<string formatted="false" name="deleteMessage">Delete the data with entry id:</string>
+	<string formatted="false" name="deleteMessageTitle">Delete database item</string>
+	<string formatted="false" name="dataDeletedToastText">Data deleted</string>
+	<string formatted="false" name="loadTheDataWithId">load the data with entry id:</string>
+	<string formatted="false" name="loadDataDialogTitle">Load database item</string>
+	<string formatted="false" name="dataLoadedToastText">Data Loaded</string>
+					
+	
 	<string formatted="false" name="totalPurchaseValueSplashTitleText">Total purchase value</string>
 	<string formatted="false" name="totalPurchaseValueSplashHelpText">The total purchase value of 
 	    the investment.  values are calculated using the following 

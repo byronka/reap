@@ -21,6 +21,7 @@ public class DatabaseAdapter {
 
   // The index (key) column name for use in where clauses.
   public static final String KEY_ID="_id";
+  public static final String MODIFIED_AT = "modified_at";
   public static final String YEAR_VALUE = "YEAR_VALUE";
 
 
@@ -28,6 +29,7 @@ public class DatabaseAdapter {
   private static final String LOCATIONS_DATABASE_CREATE = "create table " + 
       LOCATIONS_DATABASE_TABLE + " ("     + 
       KEY_ID + " integer primary key autoincrement" + ", " +
+      MODIFIED_AT                                         + " DATE DEFAULT CURRENT_DATE" +   ", " +
       ValueEnum.TOTAL_PURCHASE_VALUE.name()               + " REAL"    +     ", " +
       ValueEnum.YEARLY_INTEREST_RATE.name()               + " REAL"    +     ", " +
       ValueEnum.BUILDING_VALUE.name()                     + " REAL"    +     ", " +
@@ -59,7 +61,7 @@ public class DatabaseAdapter {
       ValueEnum.ATER.name()                               + " REAL"    +     ","  +
       ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name()        + " REAL"    +     ","  +
       ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name()         + " REAL"    +     ","  +
-      "YEAR_VALUE"                                        + " REAL"    +
+      YEAR_VALUE                                          + " REAL"    +
       		" );";
 
   private SQLiteDatabase db;
@@ -89,9 +91,9 @@ public class DatabaseAdapter {
     return db.delete(LOCATIONS_DATABASE_TABLE, KEY_ID + "=" + rowIndex, null) > 0;
   }
 
-  public Cursor getAllEntries () {
+  public Cursor getAllEntries (String sorterText) {
     
-    return db.query(LOCATIONS_DATABASE_TABLE, null, null, null, null, null, null);
+    return db.query(LOCATIONS_DATABASE_TABLE, null, null, null, null, null, sorterText);
   }
 
   public HashMap<String, String> getEntry(long rowIndex) {
@@ -120,6 +122,14 @@ public class DatabaseAdapter {
     @Override
     public void onCreate(SQLiteDatabase db) {
       db.execSQL(LOCATIONS_DATABASE_CREATE);
+      
+      //following adds a trigger so the modified time gets changed whenever an update occurs
+      db.execSQL("CREATE TRIGGER update_modified_timestamp " +
+      		"AFTER UPDATE ON " + LOCATIONS_DATABASE_TABLE +
+          " BEGIN " +
+          "UPDATE " + LOCATIONS_DATABASE_TABLE + " SET " + MODIFIED_AT + "=DATE('now','localtime'); " +
+//      		"WHERE rowid = new.rowid;" +
+      		"END;");
 
     }
 

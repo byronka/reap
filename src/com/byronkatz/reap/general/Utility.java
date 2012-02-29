@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -101,6 +102,7 @@ public class Utility {
     }
   }
 
+ 
   public static void saveValueDialog(final Activity activity) {
 
     AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -110,8 +112,8 @@ public class Utility {
     final String currentEntryIdIs = activity.getString(R.string.currentEntryIdIsText);
     final String updateCurrentEntry = activity.getString(R.string.updateCurrentEntryText);
     final String dataSavedIntoCurrentEntryText = activity.getString(R.string.dataSavedIntoCurrentEntryText);
-    
-    
+
+
     builder.setMessage(baseMessage);
     builder.setPositiveButton(addNewEntryText, new DialogInterface.OnClickListener() {
 
@@ -120,7 +122,8 @@ public class Utility {
 
         int newRowIndex = dataController.saveValues();
         dataController.setCurrentDatabaseRow(newRowIndex);
-        Toast toast = Toast.makeText(activity, dataSavedAsNewEntry + newRowIndex, Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(activity, dataSavedAsNewEntry + " " + newRowIndex, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER|Gravity.CENTER, 0, 0);
         toast.show();
 
       }
@@ -129,7 +132,7 @@ public class Utility {
     //following is so the "update" button only appears if there is a row to update
     final Integer currentDataRow = dataController.getCurrentDatabaseRow();
     if ( currentDataRow > 0) {
-      String currentEntryIdmessage = currentEntryIdIs + currentDataRow;
+      String currentEntryIdmessage = currentEntryIdIs + " " + currentDataRow;
       String message = baseMessage + currentEntryIdmessage;
       builder.setMessage(message);
       builder.setNegativeButton(updateCurrentEntry, new DialogInterface.OnClickListener() {
@@ -139,7 +142,7 @@ public class Utility {
 
 
           dataController.updateRow();
-          Toast toast = Toast.makeText(activity, dataSavedIntoCurrentEntryText + currentDataRow , Toast.LENGTH_SHORT);
+          Toast toast = Toast.makeText(activity, dataSavedIntoCurrentEntryText + " " + currentDataRow , Toast.LENGTH_SHORT);
           toast.show();
 
         }
@@ -181,7 +184,7 @@ public class Utility {
 
     String calcActNotFound = a.getString(R.string.calculatorActivityNotFoundText);
     String calcGenException = a.getString(R.string.calcActivityNotFoundGenExceptionText);
-    
+
     try {
       a.startActivity(i);
     } catch (ActivityNotFoundException e) {
@@ -356,7 +359,7 @@ public class Utility {
     if (value == null) {
       returnValue = "0";
     }
-    
+
     //if it is a string we just want to pass it through
     if (ve.getType() != ValueType.STRING) {
       returnValue = displayShortValue(parseValue(returnValue, ve), ve);

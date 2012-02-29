@@ -42,23 +42,6 @@ public class TestYearlyBeforeTaxCashFlow implements ItemTestInterface {
     final Double yearlyBeforeTaxCashFlow = dataController.getValueAsDouble(
         ValueEnum.YEARLY_BEFORE_TAX_CASH_FLOW, year);
 
-//    s.append("YEARLY OUTLAY (yO)");
-//    s.append(String.format("\nYearly Private Mortgage Insurance (yPMI): %.2f +", yearlyPrivateMortgageInsurance));
-//    s.append(String.format("\nYearly Mortgage Payment (yMP): %.2f +", yearlyMortgagePayment));
-//    s.append(String.format("\nYearly Property Tax (yPT): %.2f +", fVPropertyTax));
-//    s.append(String.format("\nYearly Municipal Fees (yMF): %.2f +", fVMunicipalFees));
-//    s.append(String.format("\nYearly General Expenses (yGE): %.2f +", fVYearlyGeneralExpenses));
-//    s.append(String.format("\nYearly Home Insurance (yHI): %.2f", fVYearlyHomeInsurance));
-//    s.append("\n-----------------------------");
-//    s.append(String.format("\nYearly Outlay (yO): %.2f", yearlyOutlay));
-//    
-//    if (Math.abs(actualYearlyOutlay - yearlyOutlay) < EPSILON) {
-//      s.append(CORRECT);
-//    } else {
-//      s.append(INCORRECT);
-//      s.append(String.format("\nActual answer is: %.2f\n\n", actualYearlyOutlay));
-//    }
-
     s.append("YEARLY BEFORE TAX CASH FLOW");
     s.append(String.format("\nYearly Net Income (yNI): %.2f", fVNetYearlyIncome));
     s.append(String.format("\nYearly Before Tax Cash Flow (yBTCF): %.2f", yearlyBeforeTaxCashFlow));

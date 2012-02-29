@@ -10,7 +10,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings.Secure;
+import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -38,24 +40,29 @@ public class SplashScreenActivity extends Activity {
     -12, 65, 30, -128, -103, -58, 74, -64, 51, 88, -95, 23, 77, -117, -24, -113, -11, 32, -64,
     93
   };
-  
 
-  private TextView mStatusText;
-  private Button mCheckLicenseButton;
-
+  private Boolean licensed = false;
   private LicenseCheckerCallback mLicenseCheckerCallback;
   private LicenseChecker mChecker;
   // A handler on the UI thread.
   private Handler mHandler;
 
+
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
+
+  public void setLicensed(Boolean licensed) {
+    this.licensed = licensed;
+  }
 
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
+    requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
     setContentView(R.layout.splash_screen);
+
+    mHandler = new Handler();
 
     final EditText splashScreenValueEntry = (EditText) findViewById (R.id.splashScreenValueEntry);
     splashScreenValueEntry.setOnFocusChangeListener(
@@ -81,18 +88,21 @@ public class SplashScreenActivity extends Activity {
       @Override
       public void onClick(View v) {
 
-        Double enteredValue = Utility.parseCurrency(splashScreenValueEntry.getText().toString());
+        if (licensed) {
+          Double enteredValue = Utility.parseCurrency(splashScreenValueEntry.getText().toString());
 
-        if (enteredValue == 0) {
-          Utility.showToast(SplashScreenActivity.this, "Must enter a value greater than 0");
-        } else {
+          if (enteredValue == 0) {
+            Utility.showToast(SplashScreenActivity.this, "Must enter a value greater than 0");
+          } else {
 
-          setAssumedValues(enteredValue);
-          setViewableRows();
-          DataController.setDataChanged(true);
-          Intent intent = new Intent(SplashScreenActivity.this, GraphActivity.class);
-          startActivity(intent); 
-          finish();
+            setAssumedValues(enteredValue);
+            setViewableRows();
+            DataController.setDataChanged(true);
+
+            Intent intent = new Intent(SplashScreenActivity.this, GraphActivity.class);
+            startActivity(intent); 
+            finish();
+          }
         }
       }
     });
@@ -104,15 +114,18 @@ public class SplashScreenActivity extends Activity {
       @Override
       public void onClick(View v) {
 
-        DataController.setDataChanged(true);
-        Intent intent = new Intent(SplashScreenActivity.this, GraphActivity.class);
-        startActivity(intent); 
-        finish();
+        if (licensed) {
+
+          DataController.setDataChanged(true);
+          Intent intent = new Intent(SplashScreenActivity.this, GraphActivity.class);
+          startActivity(intent); 
+          finish();
+        }
       }
     });
 
-    //below code section handles licensing
-    mHandler = new Handler();
+    //    //below code section handles licensing
+    //    mHandler = new Handler();
 
     // Try to use more data here. ANDROID_ID is a single point of attack.
     String deviceId = Secure.getString(getContentResolver(), Secure.ANDROID_ID);
@@ -148,10 +161,26 @@ public class SplashScreenActivity extends Activity {
   }
 
   private void doCheck() {
+    setProgressBarIndeterminateVisibility(true);
+    setTitle(R.string.titleBarTextWhileCheckLicense);
     mChecker.checkAccess(mLicenseCheckerCallback);
   }
 
 
+  /**
+   * This method only gets called if the license check comes back to allow use.
+   * Otherwise, a dialog is presented to purchase the app.
+   * @param result
+   */
+  private void displayResult() {
+    mHandler.post(new Runnable() {
+        public void run() {
+            setTitle(getString(R.string.realEstateMarketAnalysisSplashPageDescription));
+            setProgressBarIndeterminateVisibility(false);
+        }
+    });
+  }
+    
   private void setViewableRows() {
 
     SharedPreferences sp = getSharedPreferences(GraphActivity.PREFS_NAME, MODE_PRIVATE);
@@ -229,50 +258,57 @@ public class SplashScreenActivity extends Activity {
     dataController.setValueAsDouble(ValueEnum.REQUIRED_RATE_OF_RETURN, yearlyInterestRate);
 
   }
-  
+
 
   private class MyLicenseCheckerCallback implements LicenseCheckerCallback {
-      public void allow() {
-          if (isFinishing()) {
-              // Don't update UI if Activity is finishing.
-              return;
-          }
-          // Should allow user access.
-      }
+    public void allow() {
+      if (isFinishing()) {
 
-      public void dontAllow() {
-          if (isFinishing()) {
-              // Don't update UI if Activity is finishing.
-              return;
-          }
-          // Should not allow access. In most cases, the app should assume
-          // the user has access unless it encounters this. If it does,
-          // the app should inform the user of their unlicensed ways
-          // and then either shut down the app or limit the user to a
-          // restricted set of features.
-          // In this example, we show a dialog that takes the user to Market.
-          showDialog(0);
+        // Don't update UI if Activity is finishing.
+        return;
       }
+      setLicensed(true);
+      displayResult();
+      // Should allow user access.
+    }
 
-      public void applicationError(ApplicationErrorCode errorCode) {
-          if (isFinishing()) {
-              // Don't update UI if Activity is finishing.
-              return;
-          }
-          // This is a polite way of saying the developer made a mistake
-          // while setting up or calling the license checker library.
-          // Please examine the error code and fix the error.
-          String result = String.format(getString(R.string.application_error), errorCode);
-//          displayResult(result);
+    public void dontAllow() {
+      if (isFinishing()) {
+        // Don't update UI if Activity is finishing.
+        return;
       }
+      // Should not allow access. In most cases, the app should assume
+      // the user has access unless it encounters this. If it does,
+      // the app should inform the user of their unlicensed ways
+      // and then either shut down the app or limit the user to a
+      // restricted set of features.
+      // In this example, we show a dialog that takes the user to Market.
+      setLicensed(false);
+
+      showDialog(0);
+    }
+
+    public void applicationError(ApplicationErrorCode errorCode) {
+      if (isFinishing()) {
+        // Don't update UI if Activity is finishing.
+        return;
+      }
+      // This is a polite way of saying the developer made a mistake
+      // while setting up or calling the license checker library.
+      // Please examine the error code and fix the error.
+      String result = String.format(getString(R.string.application_error), errorCode);
+      Log.d(getClass().getName(), "result is " + result);
+      setLicensed(true);
+      displayResult();
+    }
   }
 
   @Override
   protected void onDestroy() {
-      super.onDestroy();
-      mChecker.onDestroy();
+    super.onDestroy();
+    mChecker.onDestroy();
   }
 
-  
-  
+
+
 }

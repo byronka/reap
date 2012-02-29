@@ -231,7 +231,7 @@ public class DataController {
 
     //Put year into database
     cv = placeYearInDatabase(cv);
-
+    
     //insert into database and return the last rowindex
     Integer rowIndex = databaseAdapter.insertEntry(cv);
     return rowIndex;
@@ -277,6 +277,11 @@ public class DataController {
     databaseAdapter.updateEntry((long)currentRowIndex, cv);
   }
 
+  /**
+   * gets the calculated values for the currently selected year and stores in database
+   * @param cv
+   * @return
+   */
   private ContentValues placeCalcValueInContentValues(ContentValues cv) {
     //do the following ONLY if the values have been calculated.  If not, set as zero
 
@@ -331,8 +336,9 @@ public class DataController {
     return cv;
   }
 
-  public Cursor getAllDatabaseValues() {
-    Cursor cursor = databaseAdapter.getAllEntries();
+  public Cursor getAllDatabaseValues(String sorterText) {
+    Cursor cursor = databaseAdapter.getAllEntries(sorterText);
+    
     return cursor;
   }
 

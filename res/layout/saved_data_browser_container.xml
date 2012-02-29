@@ -10,7 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="10dip"
+        android:textSize="10dip"
+        android:padding="5dip"
         android:text="@string/savedDataHelpMessageText" />
 
     <ListView
@@ -20,12 +21,13 @@
         android:drawSelectorOnTop="false"
          />
 
+    <!-- The following text view only gets shown if there are no entries -->
     <TextView
         android:id="@android:id/empty"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#FF0000"
-        android:text="No data" />
+        android:text="@string/noEntriesText" />
 
 </LinearLayout>
