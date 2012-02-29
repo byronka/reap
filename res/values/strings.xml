@@ -366,7 +366,10 @@
 	<string formatted="false" name="skip">Skip this step</string>
 	<string formatted="false" name="saveDataDialogBaseMessageText">Calculated values are included 
 	    in the database entry after 100% calculation on the graph page.  Current values are saved.</string>
-	<string formatted="false" name="savedDataHelpMessageText">Press on an entry to load it.  Press and hold on an entry to delete</string>
+	<string formatted="false" name="savedDataHelpMessageText">Press on an entry to load it.  Press and hold for other options</string>
+	<string formatted="false" name="emailDialogMessage">Want to email the entry with id </string>
+	<string formatted="false" name="emailDialogTitle">Email</string>
+			
 	<string formatted="false" name="splashScreenRentCheckBox">Rental?</string>
 	<string formatted="false" name="calculatorActivityNotFoundText">calculator Activity was not found</string>
 	<string formatted="false" name="calcActivityNotFoundGenExceptionText">tried to call calculator activity, but instead got this General exception</string>

@@ -161,11 +161,29 @@ public class SplashScreenActivity extends Activity {
   }
 
   private void doCheck() {
+    //first thing is grey out the entry values
+    deactivateInterface();
+    
     setProgressBarIndeterminateVisibility(true);
     setTitle(R.string.titleBarTextWhileCheckLicense);
     mChecker.checkAccess(mLicenseCheckerCallback);
   }
 
+  private void deactivateInterface() {
+  
+    ((EditText) findViewById (R.id.splashScreenValueEntry)).setEnabled(false);
+    ((Button)findViewById(R.id.splashScreenGoButton)).setEnabled(false);
+    ((Button)findViewById(R.id.splashScreenSkipButton)).setEnabled(false);
+    ((CheckBox) findViewById(R.id.splashScreenRentCheckBox)).setEnabled(false);
+  }
+  
+  private void activateInterface() {
+    
+    ((EditText) findViewById (R.id.splashScreenValueEntry)).setEnabled(true);
+    ((Button)findViewById(R.id.splashScreenGoButton)).setEnabled(true);
+    ((Button)findViewById(R.id.splashScreenSkipButton)).setEnabled(true);
+    ((CheckBox) findViewById(R.id.splashScreenRentCheckBox)).setEnabled(true);
+  }
 
   /**
    * This method only gets called if the license check comes back to allow use.
@@ -175,6 +193,7 @@ public class SplashScreenActivity extends Activity {
   private void displayResult() {
     mHandler.post(new Runnable() {
         public void run() {
+          activateInterface();
             setTitle(getString(R.string.realEstateMarketAnalysisSplashPageDescription));
             setProgressBarIndeterminateVisibility(false);
         }
@@ -263,11 +282,13 @@ public class SplashScreenActivity extends Activity {
   private class MyLicenseCheckerCallback implements LicenseCheckerCallback {
     public void allow() {
       if (isFinishing()) {
-
         // Don't update UI if Activity is finishing.
         return;
       }
+      
       setLicensed(true);
+
+      
       displayResult();
       // Should allow user access.
     }

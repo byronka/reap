@@ -24,16 +24,17 @@ public class TestAfterTaxCashFlowNPV implements ItemTestInterface {
     Double pValue = 0d;
     Double calculatedAtcfNPV = 0d;
     
-    s.append("YEARLY AFTER TAX CASH FLOW NPV (ATCF-NPV)");
-    for (int i = 1; i < year; i++) {
-      pValue = dataController.getValueAsDouble(ValueEnum.ATCF, year) / Math.pow((1 + discountRate), i);
-      s.append(String.format("\nyear: %d Present value: %.2f", year, pValue));
+    s.append("AFTER TAX CASH FLOW NPV (ATCF-NPV)");
+    for (int i = 1; i <= (year * 12); i++) {
+      pValue = dataController.getValueAsDouble(ValueEnum.ATCF, year) / Math.pow((1 + discountRate / 12), i);
       calculatedAtcfNPV += pValue;
 
     }
-    
+    s.append(String.format("\nCalculated ATCF NPV: %.2f", calculatedAtcfNPV));
+
     Double storedAtcfNPV = dataController.getValueAsDouble(ValueEnum.ATCF_NPV, year);
-    
+    s.append(String.format("\nStored ATCF NPV: %.2f", storedAtcfNPV));
+
     if (Math.abs(calculatedAtcfNPV - storedAtcfNPV) < EPSILON) {
       s.append(CORRECT);
     } else {

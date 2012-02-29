@@ -103,12 +103,16 @@ public class DataTable {
 
       TextView dataTablePropertyValue = (TextView) newTableRow.getChildAt(PROPERTY_VALUE_INDEX); 
       
+      //for now, we are putting this to rest - have 8 methods tested but those aren't done well.
+      //maybe will finish in an update
       //if it is not saved to database, that means we calculated it. if non-calc'd, just provide help.
-      if (ve.isSavedToDatabase() == false) {
-        dataTablePropertyValue.setOnClickListener(new CheckMathOnClickWrapper(ve));
-      } else {
-        dataTablePropertyValue.setOnClickListener(new HelpButtonOnClickWrapper(ve));
-      }
+//      if (ve.isSavedToDatabase() == false) {
+//        dataTablePropertyValue.setOnClickListener(new CheckMathOnClickWrapper(ve));
+//      } else {
+//        dataTablePropertyValue.setOnClickListener(new HelpButtonOnClickWrapper(ve));
+//      }
+      
+      dataTablePropertyValue.setOnClickListener(new HelpButtonOnClickWrapper(ve));
 
 
       dataTableLayout.addView(newTableRow);
