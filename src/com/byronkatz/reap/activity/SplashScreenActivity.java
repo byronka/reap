@@ -280,6 +280,7 @@ public class SplashScreenActivity extends Activity {
 
 
   private class MyLicenseCheckerCallback implements LicenseCheckerCallback {
+    
     public void allow() {
       if (isFinishing()) {
         // Don't update UI if Activity is finishing.

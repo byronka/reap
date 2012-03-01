@@ -364,7 +364,7 @@ public class SavedDataBrowserActivity extends ListActivity {
       }
     }
 
-    final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+    final Intent emailIntent = new Intent(android.content.Intent.ACTION_SENDTO);
     emailIntent.setType("text/html");
     emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
     
