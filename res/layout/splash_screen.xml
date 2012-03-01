@@ -79,13 +79,21 @@
             android:textColor="@android:color/white" />
     </TableRow>
 
-    <TableRow
-        android:id="@+id/tableRow6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+    <TableRow >
 
         <TextView
-            android:id="@+id/textView3"
+			android:padding="10dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/splashScreenNote" />
+
+    </TableRow>
+    
+        <TableRow >
+
+
+        <TextView
+			android:padding="10dip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/reapFeatureList" />

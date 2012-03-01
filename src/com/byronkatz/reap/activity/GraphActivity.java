@@ -279,12 +279,6 @@ public class GraphActivity extends Activity {
     GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
     GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
 
-    //I don't think there is much purpose in the line below...the currentValueNumeric is
-    //being set by the valueSlider all the time anyway.  And if the progressslider has not
-    //changed, then the value which is in that slot is ok as is...
-    //TODO: consider removing if no bugs appear.
-    //    dataController.setValueAsDouble(currentSliderKey, currentValueNumeric);
-
     executeCalculationBackgroundTask();
 
   }
@@ -327,7 +321,6 @@ public class GraphActivity extends Activity {
 
       }
     });
-
 
 
     currentValueEditText.setOnEditorActionListener(new OnEditorActionListener() {
@@ -571,6 +564,9 @@ public class GraphActivity extends Activity {
           public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
               long arg3) {
             //first we need to stop the background thread if running
+
+            //sending focus to jail will make the current value save
+            sendFocusToJail();
 
             if (calculateInBackgroundTask != null) {
               calculateInBackgroundTask.cancel(false);

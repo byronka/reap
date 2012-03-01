@@ -13,7 +13,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,6 +22,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,10 +40,52 @@ public class SavedDataBrowserActivity extends ListActivity {
   SimpleCursorAdapter adapter;
   private Cursor cursor;
   private String currentSortString;
+  private Boolean isSortAscending;
   private Integer currentSortTypeIndex;
+  private static final String SORT_DIRECTION = "SORT_DIRECTION"; 
   private static final String SORTER = "SORTER";
   private static final String SORT_TYPE = "SORT_TYPE";
 
+  private String[] from = {
+      DatabaseAdapter.KEY_ID,
+      ValueEnum.STREET_ADDRESS.name(), 
+      ValueEnum.TOTAL_PURCHASE_VALUE.name(),
+      ValueEnum.YEARLY_INTEREST_RATE.name(), 
+      ValueEnum.DOWN_PAYMENT.name(), 
+      ValueEnum.ESTIMATED_RENT_PAYMENTS.name(),
+      ValueEnum.COMMENTS.name(),
+      ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(),
+      ValueEnum.NPV.name(),
+      ValueEnum.ATCF.name(),
+      ValueEnum.ATER.name(),
+      ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(),
+      DatabaseAdapter.YEAR_VALUE,
+      ValueEnum.INFLATION_RATE.name(),
+      ValueEnum.REAL_ESTATE_APPRECIATION_RATE.name(),
+      ValueEnum.REQUIRED_RATE_OF_RETURN.name(),
+      DatabaseAdapter.MODIFIED_AT
+  };
+
+  private int[] to = {
+      R.id.dataRowLoadValuesTextView,             
+      R.id.streetAddressLoadValuesTextView,       
+      R.id.totalPurchaseLoadValuesTextView,       
+      R.id.yearlyInterestRateLoadValuesTextView,  
+      R.id.downPaymentLoadValuesTextView,         
+      R.id.estimatedRentLoadValuesTextView,       
+      R.id.commentsLoadValuesTextView,            
+      R.id.mirrLoadValuesTextView,                
+      R.id.npvLoadValuesTextView,                 
+      R.id.atcfLoadValuesTextView,                
+      R.id.aterLoadValuesTextView,                
+      R.id.crcvLoadValuesTextView,                
+      R.id.yearLoadValuesTextView,                
+      R.id.inflationRateLoadValuesTextView,
+      R.id.rearLoadValuesTextView,
+      R.id.rrrLoadValuesTextView,
+      R.id.modifiedTimeStampTextView
+  };
+  
   private final String[] sortTypes = {
       "By Date",
       "By ID",
@@ -70,9 +112,11 @@ public class SavedDataBrowserActivity extends ListActivity {
     SharedPreferences sp = getPreferences(MODE_PRIVATE);
     currentSortString = sp.getString(SORTER, DatabaseAdapter.KEY_ID);
     currentSortTypeIndex = sp.getInt(SORT_TYPE, 1);
+    isSortAscending = sp.getBoolean(SORT_DIRECTION, false);
+    changeSort(currentSortString, currentSortTypeIndex);
 
-    cursor = getSortedCursor(cursor, currentSortString, sortTypes[currentSortTypeIndex]);
-    setupDataBrowser(cursor);
+//    cursor = getSortedCursor(currentSortString, sortTypes[currentSortTypeIndex]);
+//    setupDataBrowser(cursor);
 
   }
 
@@ -84,6 +128,7 @@ public class SavedDataBrowserActivity extends ListActivity {
     editor.clear();
     editor.putString(SORTER, currentSortString);
     editor.putInt(SORT_TYPE, currentSortTypeIndex);
+    editor.putBoolean(SORT_DIRECTION, isSortAscending);
     editor.commit();
   }
 
@@ -97,48 +142,6 @@ public class SavedDataBrowserActivity extends ListActivity {
   }
 
   private void setupDataBrowser(Cursor cursor) {
-
-
-    String[] from = {
-        DatabaseAdapter.KEY_ID,
-        ValueEnum.STREET_ADDRESS.name(), 
-        ValueEnum.TOTAL_PURCHASE_VALUE.name(),
-        ValueEnum.YEARLY_INTEREST_RATE.name(), 
-        ValueEnum.DOWN_PAYMENT.name(), 
-        ValueEnum.ESTIMATED_RENT_PAYMENTS.name(),
-        ValueEnum.COMMENTS.name(),
-        ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(),
-        ValueEnum.NPV.name(),
-        ValueEnum.ATCF.name(),
-        ValueEnum.ATER.name(),
-        ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(),
-        DatabaseAdapter.YEAR_VALUE,
-        ValueEnum.INFLATION_RATE.name(),
-        ValueEnum.REAL_ESTATE_APPRECIATION_RATE.name(),
-        ValueEnum.REQUIRED_RATE_OF_RETURN.name(),
-        DatabaseAdapter.MODIFIED_AT
-    };
-
-    int[] to = {
-        R.id.dataRowLoadValuesTextView,             
-        R.id.streetAddressLoadValuesTextView,       
-        R.id.totalPurchaseLoadValuesTextView,       
-        R.id.yearlyInterestRateLoadValuesTextView,  
-        R.id.downPaymentLoadValuesTextView,         
-        R.id.estimatedRentLoadValuesTextView,       
-        R.id.commentsLoadValuesTextView,            
-        R.id.mirrLoadValuesTextView,                
-        R.id.npvLoadValuesTextView,                 
-        R.id.atcfLoadValuesTextView,                
-        R.id.aterLoadValuesTextView,                
-        R.id.crcvLoadValuesTextView,                
-        R.id.yearLoadValuesTextView,                
-        R.id.inflationRateLoadValuesTextView,
-        R.id.rearLoadValuesTextView,
-        R.id.rrrLoadValuesTextView,
-        R.id.modifiedTimeStampTextView
-    };
-
 
     startManagingCursor(cursor);
     adapter = new SimpleCursorAdapter(
@@ -228,25 +231,25 @@ public class SavedDataBrowserActivity extends ListActivity {
         dialog.dismiss();
         switch(which){
         case 0:
-          changeSort(DatabaseAdapter.MODIFIED_AT, cursor, which);
+          changeSort(DatabaseAdapter.MODIFIED_AT, which);
           break;
         case 1:
-          changeSort(DatabaseAdapter.KEY_ID, cursor, which);
+          changeSort(DatabaseAdapter.KEY_ID, which);
           break;
         case 2:
-          changeSort(ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(), cursor, which);
+          changeSort(ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name(), which);
           break;
         case 3:
-          changeSort(ValueEnum.NPV.name(), cursor, which);
+          changeSort(ValueEnum.NPV.name(), which);
           break;
         case 4:
-          changeSort(ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(), cursor, which);
+          changeSort(ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(), which);
           break;
         case 5:
-          changeSort(ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(), cursor, which);
+          changeSort(ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(), which);
           break;
         case 6:
-          changeSort(ValueEnum.ATCF.name(), cursor, which);
+          changeSort(ValueEnum.ATCF.name(), which);
           break;
         }
       }
@@ -257,19 +260,43 @@ public class SavedDataBrowserActivity extends ListActivity {
 
   }
 
-  private void changeSort(String sorter, Cursor cursor, Integer index) {
+    private void changeSort(String sorter, Integer index) {
 
+      //if these are already equal to globals, user wants to reverse sort
+      if (currentSortString.equals(sorter)) {
+        isSortAscending = ! isSortAscending;
+      }
+      
+      //save these values to globals
     currentSortString = sorter;
     currentSortTypeIndex = index;
-    cursor = getSortedCursor(cursor, currentSortString, sortTypes[index]);
+    
+    cursor = getSortedCursor(currentSortString, sortTypes[currentSortTypeIndex]);
     setupDataBrowser(cursor);
+    
   }
 
-  private Cursor getSortedCursor(Cursor cursor, String sorter, String nameOfSort) {
-    cursor = dataController.getAllDatabaseValues(sorter + " DESC");
+    /**
+     * gets a new sorted cursor.
+     * @param sorter the column name in the database which will set the sort in the returned cursor
+     * @param nameOfSort The title used to describe the sort, will be set in the activity title
+     * @return A sorted cursor
+     */
+  private Cursor getSortedCursor(String sorter, String nameOfSort) {
+    
+    Cursor cursor;
+    String direction = "";
+    
+    if (isSortAscending) {
+      direction = " ASC";
+    } else {
+      direction = " DESC";
+    }
+    
+    cursor = dataController.getAllDatabaseValues(sorter + direction);
     String newWindowTitle = "Sort " + nameOfSort;
     setTitle(newWindowTitle);
-
+    
     return cursor;
   }
 
@@ -280,8 +307,10 @@ public class SavedDataBrowserActivity extends ListActivity {
     cursor.moveToPosition(position);
     final Integer rowNum = cursor.getInt(0);
 
-    String dialogMessage = getString(R.string.emailDialogMessage) + " " + rowNum + "?";
-    emailDialogBuilder.setMessage(dialogMessage);    
+    String dialogMessage = getString(R.string.emailDialogMessage) + " " + rowNum;
+    dialogMessage = addAddressToMessage(dialogMessage);
+    
+    emailDialogBuilder.setMessage(dialogMessage + "?");    
     emailDialogBuilder.setTitle(getString(R.string.emailDialogTitle));
 
     emailDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -301,9 +330,6 @@ public class SavedDataBrowserActivity extends ListActivity {
 
       }
     });
-
-
-
     emailDialogBuilder.create().show();
   }
 
@@ -335,7 +361,7 @@ public class SavedDataBrowserActivity extends ListActivity {
       try {
         viewEnum = ValueEnum.valueOf(m.getKey());
       } catch (IllegalArgumentException e) {
-        //do nothing - just move on
+        //do nothing - just move on.  This is where we hit things not in valueEnum, like year
       }
 
       //if we successfully got a ValueEnum, we can use it to format the string
@@ -344,6 +370,8 @@ public class SavedDataBrowserActivity extends ListActivity {
         body += getString(viewEnum.getTitleText()) + ": ";
         body += Utility.parseAndDisplayValue(String.valueOf(m.getValue()), viewEnum);
         body += "\n";
+        
+        //otherwise, for specific entries, put in hardcoded titles below:
       } else  if (m.getKey().equals(DatabaseAdapter.KEY_ID)) {
         
         body += "Entry id: ";
@@ -389,7 +417,9 @@ public class SavedDataBrowserActivity extends ListActivity {
     final Integer rowNum = cursor.getInt(0);
 
     String deleteMessage = getString(R.string.deleteMessage);
-    deleteTextView.setText(deleteMessage + " " + rowNum + " ?");
+    deleteMessage += " " + rowNum;
+    deleteMessage = addAddressToMessage(deleteMessage);
+    deleteTextView.setText(deleteMessage + "?");
 
     String deleteMessageTitle = getString(R.string.deleteMessageTitle);
     deleteDialog.setTitle(deleteMessageTitle);
@@ -440,10 +470,17 @@ public class SavedDataBrowserActivity extends ListActivity {
     TextView loadTextView = (TextView)loadDialog.findViewById(R.id.load_text);
 
     cursor.moveToPosition(position);
-    String rowNum = cursor.getString(0);
+    final String rowNum = cursor.getString(0);
 
+    
+    //set the message to ask the user, to confirm they want that row loaded
     String loadTheDataWithId = getString(R.string.loadTheDataWithId);
-    loadTextView.setText(loadTheDataWithId + " " + rowNum + " ?");
+    
+    loadTheDataWithId += " " + rowNum;
+    loadTheDataWithId = addAddressToMessage(loadTheDataWithId);
+ 
+
+    loadTextView.setText(loadTheDataWithId + "?");
 
     String loadDataDialogTitle = getString(R.string.loadDataDialogTitle);
     loadDialog.setTitle(loadDataDialogTitle);
@@ -456,7 +493,7 @@ public class SavedDataBrowserActivity extends ListActivity {
 
         DatabaseUtils.cursorRowToContentValues(cursor, contentValues);
         dataController.setCurrentData(contentValues);
-        dataController.setCurrentDatabaseRow(position + 1);
+        dataController.setCurrentDatabaseRow(Integer.valueOf(rowNum));
 
         String dataLoadedToastText = getString(R.string.dataLoadedToastText);
         Toast toast = Toast.makeText(SavedDataBrowserActivity.this, dataLoadedToastText, Toast.LENGTH_SHORT);
@@ -477,6 +514,19 @@ public class SavedDataBrowserActivity extends ListActivity {
     });
 
     loadDialog.show();
+  }
+  
+  private String addAddressToMessage(String message) {
+    
+    //9 is the "address" column
+    final String address = cursor.getString(9);
+    //if this entry has an address, include it
+    if (address.length() > 0) {
+      message += " at " + address;
+      
+    }
+    
+    return message;
   }
 
 

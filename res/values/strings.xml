@@ -216,9 +216,9 @@
 	<string formatted="false" name="searchDatabaseButtonText">Search the database</string>
 
 	<!-- Graph Activity page -->
-	<string formatted="false" name="minValueLabel">Minimum Value</string>
-	<string formatted="false" name="maxValueLabel">Maximum Value</string>
-	<string formatted="false" name="currentValueLabel">Current Value</string>
+	<string formatted="false" name="minValueLabel">Minimum</string>
+	<string formatted="false" name="maxValueLabel">Maximum</string>
+	<string formatted="false" name="currentValueLabel">Current</string>
 	<string formatted="false" name="resetButton">Reset</string>
 	<string formatted="false" name="yearValueText">Year: </string>
 
@@ -360,19 +360,29 @@
 		
 	
 	<string formatted="false" name="graphVisibilityCheckboxTitle">Graph visibility</string>
-	<string formatted="false" name="splashScreenEntryHelpText">Enter the total purchase value for the investment.  This application will then make assumptions of the other numbers and provide an analysis.  You can then modify the default values as necessary for a more precise result</string>
-	<string formatted="false" name="reapFeatureList">REAP has the following features: \n* calculate important real estate appraisal values \n* dynamically modify values to suit \n* ease of use \n* robust results</string>
+	<string formatted="false" name="splashScreenEntryHelpText">Enter the total purchase value for 
+	    the investment.  This application will then make assumptions of the other numbers and 
+	    provide an analysis.  You can then modify the default values as necessary for a more precise result</string>
+	<string formatted="false" name="reapFeatureList">REAP has the following features: 
+	    \n* calculate important real estate appraisal values 
+	    \n* dynamically modify values to suit 
+	    \n* ease of use 
+	    \n* robust results</string>
 	<string formatted="false" name="go">Go</string>
-	<string formatted="false" name="skip">Skip this step</string>
+	<string formatted="false" name="splashScreenNote">Note: The GO button will calculate default values which
+	    the user is able to modify later.  These will overwrite any current input values.</string>
+		<string formatted="false" name="skip">Skip this step</string>
 	<string formatted="false" name="saveDataDialogBaseMessageText">Calculated values are included 
 	    in the database entry after 100% calculation on the graph page.  Current values are saved.</string>
-	<string formatted="false" name="savedDataHelpMessageText">Press on an entry to load it.  Press and hold for other options</string>
-	<string formatted="false" name="emailDialogMessage">Want to email the entry with id </string>
+	<string formatted="false" name="savedDataHelpMessageText">Press on an entry to load it.  
+	    Press and hold for other options</string>
+	<string formatted="false" name="emailDialogMessage">Do you want to email the entry with id </string>
 	<string formatted="false" name="emailDialogTitle">Email</string>
 			
 	<string formatted="false" name="splashScreenRentCheckBox">Rental?</string>
 	<string formatted="false" name="calculatorActivityNotFoundText">calculator Activity was not found</string>
-	<string formatted="false" name="calcActivityNotFoundGenExceptionText">tried to call calculator activity, but instead got this General exception</string>
+	<string formatted="false" name="calcActivityNotFoundGenExceptionText">tried to call calculator activity, 
+	    but instead got this General exception</string>
 	<string formatted="false" name="titleBarTextWhileCheckLicense">Checking license...</string>
 	
 	<!-- Saved data browser -->	
@@ -386,7 +396,7 @@
 	<string formatted="false" name="deleteMessage">Delete the data with entry id:</string>
 	<string formatted="false" name="deleteMessageTitle">Delete database item</string>
 	<string formatted="false" name="dataDeletedToastText">Data deleted</string>
-	<string formatted="false" name="loadTheDataWithId">load the data with entry id:</string>
+	<string formatted="false" name="loadTheDataWithId">Note:  All current values will be overwritten.  Load the data with entry id:</string>
 	<string formatted="false" name="loadDataDialogTitle">Load database item</string>
 	<string formatted="false" name="dataLoadedToastText">Data Loaded</string>
 					

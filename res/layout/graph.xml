@@ -3,9 +3,9 @@
     xmlns:katz="http://schemas.android.com/apk/res/com.byronkatz"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/custom_background"
     android:orientation="vertical"
-    android:weightSum="1"
-    android:background="@drawable/custom_background" >
+    android:weightSum="1" >
 
     <!-- the following is just to catch the focus and do nothing with it -->
 
@@ -52,6 +52,13 @@
                 android:gravity="center"
                 android:text="@string/maxValueLabel"
                 android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/maxValueTextView"
+                android:layout_width="55dip"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:textSize="13dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -84,14 +91,6 @@
                 android:textSize="10dp" >
             </EditText>
 
-            <Button
-                android:id="@+id/resetButton"
-                android:layout_width="55dip"
-                android:layout_height="fill_parent"
-                android:text="@string/resetButton"
-                android:textSize="12dip" >
-            </Button>
-
             <EditText
                 android:id="@+id/maxValueEditText"
                 android:layout_width="0dip"
@@ -104,6 +103,14 @@
                 android:maxLength="20"
                 android:textSize="10dp" >
             </EditText>
+
+            <Button
+                android:id="@+id/resetButton"
+                android:layout_width="55dip"
+                android:layout_height="fill_parent"
+                android:text="@string/resetButton"
+                android:textSize="12dip" >
+            </Button>
         </LinearLayout>
 
         <Spinner
