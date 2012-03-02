@@ -372,7 +372,7 @@ public class SavedDataBrowserActivity extends ListActivity {
 
     
     String yearValue = emailContentValues.getAsString(DatabaseAdapter.YEAR_VALUE);
-    body += "<b>Calculated Value For Year: " + yearValue + "</b>"  + "<br />";
+    body += "<b>Calculated Values For Year: " + yearValue + "</b>"  + "<br />";
  
     body += "<br />";
     
