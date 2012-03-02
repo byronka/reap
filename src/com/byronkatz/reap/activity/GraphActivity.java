@@ -178,10 +178,6 @@ public class GraphActivity extends Activity {
     SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
     dataTable.saveGraphPageData(sharedPreferences, isGraphVisible, currentSliderKey);
 
-    if (this.isFinishing()){
-      dataController.nullifyNumericCache();
-    }
-
   }
   
   @Override

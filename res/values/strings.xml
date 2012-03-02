@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string formatted="false" name="app_name">Real Estate Analysis Processor</string>
+    <string name="app_name" formatted="false">Real Estate Analysis Processor</string>
 
-	  <!-- License checking status messages -->
+    <!-- License checking status messages -->
     <string name="check_license">Check license</string>
     <string name="checking_license">Checking license...</string>
     <string name="dont_allow">Don\'t allow the user access</string>
@@ -17,394 +17,511 @@
         when the connection is better.  If not licensed, please purchase it from Android Market.</string>
     <string name="buy_button">Buy app</string>
     <string name="quit_button">Exit</string>
-	
-	<!-- Graph tab values -->
-	<string formatted="false" name="netPresentValueTabText">NPV</string>
-	<string formatted="false" name="atcfTabText">ATCF</string>
-	<string formatted="false" name="aterTabText">ATER</string>
-	<string formatted="false" name="modifiedInternalRateOfReturnTabText">MIRR</string>
-	<string formatted="false" name="capRateOnPurchaseValueTabText">CRPV</string>
-	<string formatted="false" name="capRateOnProjectedValueTabText">CRCV</string>
-				
-	<!-- Menu items -->
-	<string formatted="false" name="configureGraphMenuTitle">Configure graph page</string>
-	<string formatted="false" name="savedLocationsMenuTitle">Saved locations</string>
-	<string formatted="false" name="editValuesMenuTitle">Edit data values</string>
-	<string formatted="false" name="saveCurrentValuesMenuTitle">Save current</string>
-	<string formatted="false" name="viewGraphMenuTitle">View graph</string>
-	<string formatted="false" name="infoMenuTitle">Info</string>
-	<string formatted="false" name="sortByMenuTitle">Sorting</string>
-		
-	
-		
-	<!-- Help text for calculated values -->
-	<string formatted="false" name="helpButtonContentDescription">Help button</string>
-	<string formatted="false" name="accumulatedInterestPaidTitleText">Interest Paid Accumulator</string>
-	<string formatted="false" name="accumulatedInterestPaidHelpText">The accumulated interest paid to date.</string>
 
-	<string formatted="false" name="atcfTitleText">After tax cash flow</string>
-	<string formatted="false" name="atcfHelpText">This is the net balance for the year: f(x)=income - outlay</string>
-	
-	<string formatted="false" name="atcfAccumulatorTitleText">After tax cash flow accumulator</string>
-	<string formatted="false" name="atcfAccumulatorHelpText">This value is the accumulating after tax cash flow from year to year</string>
-	
-	<string formatted="false" name="atcfNetPresentValueTitleText">After tax cash flow NPV</string>
-	<string formatted="false" name="atcfNetPresentValueHelpText">This is the summation of the present values of after tax cash flows to date</string>
-	
-	<string formatted="false" name="aterTitleText">After tax equity reversion</string>
-	<string formatted="false" name="aterHelpText">Amount received from sale of house, minus broker fees and inflation-adjusted miscellaneous fees</string>
-		
-	<string formatted="false" name="aterPresentValueTitleText">Present value ATER</string>
-	<string formatted="false" name="aterPresentValueHelpText">This is the after tax equity reversion in present value dollars</string>
-		
-	<string formatted="false" name="brokerCutTitleText">Broker cut at sale</string>
-	<string formatted="false" name="brokerCutHelpText">This is the amount the broker receives at the time when you sell the investment, based on the percentage set</string>
-		
-	<string formatted="false" name="buildingValueHelpText">The value of the building itself, not the total estate (which includes land)</string>
-		
-	<string formatted="false" name="capRateOnPurchaseValueHelpText">This is the cap rate based on the original purchase value of the investment.  The equation is yearly Net Operating Income (NOI) / purchase value</string>
-	<string formatted="false" name="capRateOnPurchaseValueTitleText">Cap rate (purchase value)</string>
-	
-	<string formatted="false" name="capRateOnProjectedValueHelpText">This is the cap rate based on the current estimated value of the investment.  The equation is yearly Net Operating Income (NOI) / current value</string>
-	<string formatted="false" name="capRateOnProjectedValueTitleText">Cap rate (current value)</string>
-		
-			
-	<string formatted="false" name="cityHelpText">City of investment</string>
-		
-	<string formatted="false" name="closingCostsHelpText">costs incurred at the time of purchase of investment, such as surveyor fees, home inspection, title insurance, termite bond, and any other miscellaneous fees *other* than the amount owed to the broker at the time of purchase</string>
-	
-	<string formatted="false" name="currentAmountOutstandingHelpText">The amount of principal left to pay off on the loan</string>
-	<string formatted="false" name="currentAmountOutstandingTitleText">Loan amount outstanding</string>
-	
-	<string formatted="false" name="downPaymentHelpText">The amount of money given by the investor towards the purchase price of the investment</string>
-	
-	<string formatted="false" name="estimatedRentPaymentsHelpText">The estimated monthly rent income</string>
-	
-	<string formatted="false" name="extraYearsHelpText">Number of extra years to calculate past the mortgage end</string>
-	<string formatted="false" name="extraYearsTitleText">Extra years to calculate</string>
-			
-	<string formatted="false" name="generalSaleExpensesHelpText">The amount of money necessary to bring the investment up to repair for the purposes of liquidating the investment</string>
-	
-	<string formatted="false" name="inflationRateHelpText">The yearly rate of inflation.  This is the rate at which currency loses value per year.</string>
-	
-	<string formatted="false" name="initialYearlyGeneralExpensesHelpText">This is the expected yearly amount to put aside for general expenses necessary to keep the investment in good repair without losing value.  Examples may include having to repair the HVAC, paying for lawn care, retaining a management company or handyman, or other general yearly expenses.</string>
-	
-	<string formatted="false" name="initialHomeInsuranceHelpText">This is the initial yearly cost of home insurance</string>
-	<string formatted="false" name="initialHomeInsuranceTitleText">Initial home Insurance</string>
-	
-	<string formatted="false" name="localMunicipalFeesHelpText">These fees are yearly assessments on property owners for such things as environment fees, sewer fees, or other fees which are frequently included in the yearly property tax bill</string>
-	
-	<string formatted="false" name="marginalTaxRateHelpText">The percentage rate that the investment amount is taxed.  The reason this is called ""marginal" tax rate is because it is assumed that you have other income and this is on top of that.  So, due to the different tax brackets, the best way to determine your tax rate is to find what is the top bracket you are currently in for your other income, and then apply that to the rental income on this property.  Note that this value does not apply to the equity reversion (investment sale).  In that case the rate is the capital gains rate, which as of 2012 is 15%</string>
-	
-	<string formatted="false" name="modifiedInternalRateOfReturnHelpText">The modified internal rate of return is an equation to determine the comparative attractiveness of an investment, to rank alternative investments of equal size.  Note that the equal size of investments is important.  If the projects are of unequal size, it help to review the value of the net present value to get a more fair comparison.\n\nThe equation for MIRR is as follows: for any number n of cash flows, MIRR = nth root of the Future value of positive cash flows using the reinvestment rate divided by the Present value of negative cash flows at the finance rate, all minus 1</string>
-	<string formatted="false" name="modifiedInternalRateOfReturnTitleText">Modified internal rate of return</string>
-	
-	<string formatted="false" name="monthlyMortgagePaymentHelpText">The monthly mortgage payment.  This is calculated by the following formula: AMT_BORROWED * ( (INT_RATE / 12) / (1 - (1 / (1 + INT_RATE)^(YEARS * 12)  )  )</string>
-	<string formatted="false" name="monthlyMortgagePaymentTitleText">Monthly mortgage payment</string>
-	
-	<string formatted="false" name="monthlyRentFVHelpText">The monthly rent for this year.  
+    <!-- Graph tab values -->
+    <string name="netPresentValueTabText" formatted="false">NPV</string>
+    <string name="atcfTabText" formatted="false">ATCF</string>
+    <string name="aterTabText" formatted="false">ATER</string>
+    <string name="modifiedInternalRateOfReturnTabText" formatted="false">MIRR</string>
+    <string name="capRateOnPurchaseValueTabText" formatted="false">CRPV</string>
+    <string name="capRateOnProjectedValueTabText" formatted="false">CRCV</string>
+
+    <!-- Menu items -->
+    <string name="configureGraphMenuTitle" formatted="false">Configure Graph Page</string>
+    <string name="savedLocationsMenuTitle" formatted="false">Saved Locations</string>
+    <string name="editValuesMenuTitle" formatted="false">Edit Data Values</string>
+    <string name="saveCurrentValuesMenuTitle" formatted="false">Save Current</string>
+    <string name="viewGraphMenuTitle" formatted="false">View Graph</string>
+    <string name="infoMenuTitle" formatted="false">Info</string>
+    <string name="sortByMenuTitle" formatted="false">Sorting</string>
+
+    <!-- Help text for calculated values -->
+    <string name="helpButtonContentDescription" formatted="false">Help button</string>
+    <string name="accumulatedInterestPaidTitleText" formatted="false">Interest Paid Accumulator</string>
+    <string name="accumulatedInterestPaidHelpText" formatted="false">The accumulated interest paid to date.
+	    \n
+	    \n
+	    \nIn an amortized loan, each monthly mortgage payment has a portion which applies
+	     to paying down the amount owed versus a portion which is headed for the pocket of the lender.
+	      The amount listed here is that total accumulated amount which has gone to the lender, to date.
+	      \n\n
+	        This value is calculated from the user input</string>
+    <string name="atcfTitleText" formatted="false">After Tax Cash Flow</string>
+    <string name="atcfHelpText" formatted="false">The amount of money that goes into your bank at the end of the year.
+	    \n
+	    \n
+	    After Tax Cash Flow equates to the Before Tax Cash Flow minus the yearly income tax.  The yearly income
+	    tax is calculated by multiplying the Marginal Tax Rate by the Taxable Income
+	    \n\n
+	      This value is calculated from the user input</string>
+    <string name="atcfAccumulatorTitleText" formatted="false">After Tax Cash Flow Accumulator</string>
+    <string name="atcfAccumulatorHelpText" formatted="false">This value is the accumulating after tax cash flow to date
+	    \n
+	    \n
+	    This is the amount of money which has accrued, starting at the first day of ownership, and ending
+	    on the last day of the currently selected year.
+	    \n\n
+	      This value is calculated from the user input</string>
+    <string name="atcfNetPresentValueTitleText" formatted="false">After Tax Cash Flow NPV</string>
+    <string name="atcfNetPresentValueHelpText" formatted="false">Each yearly After Tax Cash Flow is 
+	    brought into present value dollars and added up to give this value.
+	    \n
+	    \n
+	    This is the summation of the present values of after tax cash flows to date.  Present value
+	    is calculated by dividing the After Tax Cash Flow by (1 + discount rate)^number of compounding periods. 
+	    In this case the compounding periods are months, so for example, the last month\'s equation would be (1 + discount rate)^360
+	    for a 30 year mortgage.
+	    \n\n
+	      This value is calculated from the user input</string>
+    <string name="aterTitleText" formatted="false">After Tax Equity Reversion</string>
+    <string name="aterHelpText" formatted="false">Amount received from sale of house, minus broker fees and inflation-adjusted 
+	    miscellaneous fees. 
+	    \n\n
+	     This value is calculated from the user input</string>
+    <string name="aterPresentValueTitleText" formatted="false">Present Value ATER</string>
+    <string name="aterPresentValueHelpText" formatted="false">This is the after tax equity reversion in present value dollars.  
+	    \n\n
+	      This value is calculated from the user input</string>
+    <string name="brokerCutTitleText" formatted="false">Broker Cut at Sale</string>
+    <string name="brokerCutHelpText" formatted="false">This is the amount the broker receives at the time when you sell the investment,
+	     based on the percentage set. 
+	     \n\n
+	       This value is calculated from the user input</string>
+    <string name="buildingValueHelpText" formatted="false">The value of the building itself, not the total estate (which includes land).
+	    \n\n
+	    This is a value entered by the user, not calculated</string>
+    <string name="capRateOnPurchaseValueHelpText" formatted="false">This is the cap rate based on the original purchase value of the investment.  
+	    The equation is yearly Net Operating Income (NOI) / purchase value</string>
+    <string name="capRateOnPurchaseValueTitleText" formatted="false">Cap Rate (Purchase Value)</string>
+    <string name="capRateOnProjectedValueHelpText" formatted="false">This is the cap rate based on the current estimated value of the investment.  
+	    The equation is yearly Net Operating Income (NOI) / current value</string>
+    <string name="capRateOnProjectedValueTitleText" formatted="false">Cap Rate (Current Value)</string>
+    <string name="cityHelpText" formatted="false">City of Investment</string>
+    <string name="closingCostsHelpText" formatted="false">costs incurred at the time of purchase of investment, 
+	    such as surveyor fees, home inspection, title insurance, termite bond, and any 
+	    other miscellaneous fees *other* than the amount owed to the broker at the time of purchase
+	    \n\n
+	    This is a value entered by the user, not calculated</string>
+    <string name="currentAmountOutstandingHelpText" formatted="false">The amount of principal left to pay off on the loan</string>
+    <string name="currentAmountOutstandingTitleText" formatted="false">Loan Amount Outstanding</string>
+    <string name="downPaymentHelpText" formatted="false">The amount of money given by the investor towards the purchase price of the investment
+	    \n\n
+	    This is a value entered by the user, not calculated</string>
+    <string name="estimatedRentPaymentsHelpText" formatted="false">The estimated monthly rent income.  This amount is the rent charged in the very
+	    first month of investment ownership.  See Monthly Rent Charged or Yearly Rent Income for projected future values of rent.
+	    \n\n
+	    This is a value entered by the user, not calculated</string>
+    <string name="extraYearsHelpText" formatted="false">Number of extra years to calculate past the mortgage end
+	    \n\n
+	    This is a value entered by the user, not calculated</string>
+    <string name="extraYearsTitleText" formatted="false">Extra Years to Calculate</string>
+    <string name="generalSaleExpensesHelpText" formatted="false">The amount of money necessary to bring the investment up to
+	     repair for the purposes of liquidating the investment.  What must be understood is that is the value in present
+	     value terms, as though you were selling off the investment today.  Its future value will be used at the time of selling
+	     the property.  For this value, see Selling Expenses.
+	     \n\n
+	    This is a value entered by the user, not calculated</string>
+    <string name="inflationRateHelpText" formatted="false">The yearly rate of inflation.  This is the rate at which currency 
+	    loses value per year.
+	     \n\n
+	    This is a value entered by the user, not calculated</string>
+    <string name="initialYearlyGeneralExpensesHelpText" formatted="false">This is the expected yearly amount to put aside for 
+	    general expenses necessary to keep the investment in good repair without losing value.  Examples may include having to 
+	    repair the HVAC, paying for lawn care, retaining a management company or handyman, or other general yearly expenses.
+	    Each year\'s general expenses future value will be calculated - see Yearly General Expenses
+	     \n\n
+	    This is a value entered by the user, not calculated</string>
+    <string name="initialHomeInsuranceHelpText" formatted="false">This is the initial yearly cost of home insurance.  For future values
+	    of home insurance, see Yearly Home Insurance.
+	    \n\n
+	    This is a value entered by the user, not calculated</string>
+    <string name="initialHomeInsuranceTitleText" formatted="false">Initial Home Insurance</string>
+    <string name="localMunicipalFeesHelpText" formatted="false">These fees are yearly assessments on property owners for such 
+	    things as environment fees, sewer fees, or other fees which are frequently included in the yearly property tax bill.
+	    For future values of local municipal fees, see Yearly Municipal Fees.
+	    \n\n
+	    This is a value entered by the user, not calculated</string>
+    <string name="marginalTaxRateHelpText" formatted="false">The percentage rate that the investment amount is taxed.  The 
+	    reason this is called ""marginal" tax rate is because it is assumed that you have other income and this is on top of 
+	    that.  So, due to the different tax brackets, the best way to determine your tax rate is to find what is the top bracket 
+	    you are currently in for your other income, and then apply that to the rental income on this property.  Note that this
+	     value does not apply to the equity reversion (investment sale).  In that case the rate is the capital gains rate, which as of 2012 is 15%
+	     \n\n
+	    This is a value entered by the user, not calculated</string>
+    <string name="modifiedInternalRateOfReturnHelpText" formatted="false">The modified internal rate of return is an equation to 
+	    determine the comparative attractiveness of an investment, to rank alternative investments of equal size.  Note that the 
+	    equal size of investments is important.  If the projects are of unequal size, it help to review the value of the net present
+	     value to get a more fair comparison.\n\nThe equation for MIRR is as follows: for any number n of cash flows, MIRR = nth root 
+	     of the Future value of positive cash flows using the reinvestment rate divided by the Present value of negative cash flows 
+	     at the finance rate, all minus 1
+	     	    	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="modifiedInternalRateOfReturnTitleText" formatted="false">Modified Internal Rate of Return</string>
+    <string name="monthlyMortgagePaymentHelpText" formatted="false">The monthly mortgage payment.  This is calculated by the 
+	    following formula: AMT_BORROWED * ( (INT_RATE / 12) / (1 - (1 / (1 + INT_RATE)^(YEARS * 12)  )  )
+	    	    	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="monthlyMortgagePaymentTitleText" formatted="false">Monthly Mortgage Payment</string>
+    <string name="monthlyRentFVHelpText" formatted="false">The monthly rent for this year.  
 	    Assumption: The amount of rent charged goes up once every twelve months starting
 		from the house purchase date.  Rent increases per the yearly real estate
-		appreciation rate. </string>
-	<string formatted="false" name="monthlyRentFVTitleText">Monthly rent charged</string>
-		
-	<string formatted="false" name="netPresentValueHelpText">The net present value is the sum of the present values for each year\'s final balance.  In this application, this means it is the first payment (down payment, fix-up costs, and general purchase expenses) plus the yearly after tax cash flows (all in present value by the required rate of return as a discount rate) and finally the present value of the after-tax equity reversion (the sale of the purchase)</string>
-	<string formatted="false" name="netPresentValueTitleText">Net present value</string>
-	
-	<string formatted="false" name="numberOfCompoundingPeriodsHelpText">number of compounding periods for this investment.  For most typical mortgages, such as 15 or 30-year fixed mortgages, this means monthly compounding, so 180 or 360 months respectively</string>
-	<string formatted="false" name="numberOfCompoundingPeriodsTitleText">Number of compounding periods</string>
-	
-	<string formatted="false" name="privateMortgageInsuranceHelpText">This amount is what the lender charges extra in addition to the mortgage payment for their insurance against default.  It is typically assessed when the down payment is less than 20% of the loan.  That is how this application handles it.</string>
-	
-	<string formatted="false" name="projectedHomeValueHelpText">The expected value of the investment at the time of sale, assuming the value increases at the rate set by the real estate appreciation rate</string>
-	<string formatted="false" name="projectedHomeValueTitleText">Projected home value</string>
-	
-	<string formatted="false" name="propertyTaxHelpText">This is the yearly property tax amount assessed on the investment</string>
-	
-	<string formatted="false" name="realEstateAppreciationRateHelpText">This is the anticipated rate of monthly appreciation of the investment.  In this application, the future value of the investment is determined by using this rate plus one to the monthly compounding period desired</string>
-	
-	<string formatted="false" name="requiredRateOfReturnHelpText">This is the minimum rate of return desired by the investor.  It is an important rate as it determines the discount rate for the net present value equation.  This rate should be set to the cost of capital, since you want investments to at least bring in more than it costs you to take out a loan for an investment (or else you would gain no profit).</string>
-	
-	<string formatted="false" name="sellingBrokerRateHelpText">This rate is assessed on the anticipated investment value at the time of sale, to pay for the broker</string>
-	
-	<string formatted="false" name="sellingExpensesHelpText">These are the general expenses expected at the time of selling the investment, modified using the future value equation with the inflation rate.</string>
-	<string formatted="false" name="sellingExpensesTitleText">Selling expenses</string>
-	
-	<string formatted="false" name="stateInitialsHelpText">The state of the investment</string>
-	<string formatted="false" name="stateInitialsTitleText">State</string>
-	
-	<string formatted="false" name="streetAddressHelpText">The street address of the investment</string>
-	
-	<string formatted="false" name="taxableIncomeHelpText">This is the amount of income which is taxable.  Namely, the yearly interest payments are subtracted from the income.</string>
-	<string formatted="false" name="taxableIncomeTitleText">Yearly taxable income</string>
-	
-	<string formatted="false" name="taxesDueAtSaleHelpText">Taxes taken at the sale of the investment. This is currently 15% (all capital gains are 15%) in 2012</string>
-	<string formatted="false" name="taxesDueAtSaleTitleText">Taxes due at sale</string>
-	
-	<string formatted="false" name="totalPurchaseValueHelpText">The value of the entire estate; building, land, and all</string>
-	<string formatted="false" name="totalPurchaseValueTitleText">Total purchase value</string>
-	
-	<string formatted="false" name="vacancyAndCreditLossRateHelpText">This is the estimated average yearly loss due to either of the following: tenants failing to pay their rent, or not having someone in the unit.</string>
-	<string formatted="false" name="vacancyAndCreditLossRateTitleText">Vacancy and credit loss rate</string>
-	
-	<string formatted="false" name="yearlyBeforeTaxCashFlowHelpText">All income - all expenses, before tax</string>
-	<string formatted="false" name="yearlyBeforeTaxCashFlowTitleText">Yearly before tax cash flow</string>
-		
-	<string formatted="false" name="yearlyGeneralExpensesHelpText">Estimated yearly expenses for things such as management costs, lawn care (if the contract requires it), miscellaneous building repair, and so on.  Note that it also includes saving up for big ticket items such as replacing the roof or HVAC.  So, for example, you may save an extra $30 per month each year towards the future roof replacement.</string>
-	<string formatted="false" name="yearlyGeneralExpensesTitleText">Yearly general expenses</string>
-	
-	<string formatted="false" name="yearlyHomeInsuranceHelpText">The yearly general insurance rate.  Note that rental property insurance rates are typically higher than normal homeowner rates.  Check with your insurance agent.</string>
-
-    <string formatted="false" name="yearlyIncomeHelpText">This is the income gained each year through the rent.  This application assumes that the rate you charge will increase once a year at the rate of real estate appreciation.  the equation for next year\'s rent is: this_year_monthly_rent * (1 + real_estate_appreciation_rate / 12)</string>
-    <string formatted="false" name="yearlyIncomeTitleText">Yearly rent income</string>	
-	
-	<string formatted="false" name="yearlyInterestPaidHelpText">The amount of interest paid this year in the mortgage payments.  This application assumes a standard loan amortization</string>
-    <string formatted="false" name="yearlyInterestPaidTitleText">Yearly interest paid</string>
-    
-    <string formatted="false" name="yearlyInterestRateHelpText">The interest rate charged by the lender for the loan.</string>
-    
-    <string formatted="false" name="yearlyMortgagePaymentHelpText">The monthly mortgage payment * 12</string>
-    <string formatted="false" name="yearlyMortgagePaymentTitleText">Yearly mortgage payment</string>
-    
-    <string formatted="false" name="yearlyMunicipalFeesHelpText">The future value yearly municipal fees</string>
-    <string formatted="false" name="yearlyMunicipalFeesTitleText">Yearly municipal fees</string>
-
-    <string formatted="false" name="yearlyOperatingExpensesHelpText">All expenses for the year 
+		appreciation rate. 
+			    	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="monthlyRentFVTitleText" formatted="false">Monthly Rent Charged</string>
+    <string name="netPresentValueHelpText" formatted="false">The net present value is the sum of the present values for 
+	    each year\'s final balance.  In this application, this means it is the first payment (down payment, fix-up costs,
+	     and general purchase expenses) plus the yearly after tax cash flows (all in present value by the required rate 
+	     of return as a discount rate) and finally the present value of the after-tax equity reversion (the sale of the purchase)
+	     	    	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="netPresentValueTitleText" formatted="false">Net Present Value</string>
+    <string name="numberOfCompoundingPeriodsHelpText" formatted="false">Number of compounding periods for this investment.  
+	    For most typical mortgages, such as 15 or 30-year fixed mortgages, this means monthly compounding, so 180 or 360 months respectively.
+	    \n\n
+	    This is a value entered by the user, not calculated</string>
+    <string name="numberOfCompoundingPeriodsTitleText" formatted="false">Number of Compounding Periods</string>
+    <string name="privateMortgageInsuranceHelpText" formatted="false">This amount is what the lender charges extra in 
+	    addition to the mortgage payment for their insurance against default.  It is typically assessed when the down 
+	    payment is less than 20% of the loan.  That is how this application handles it.
+	    \n\n
+	    This is a value entered by the user, not calculated</string>
+    <string name="projectedHomeValueHelpText" formatted="false">The expected value of the investment at the time of sale, 
+	    assuming the value increases at the rate set by the real estate appreciation rate</string>
+    <string name="projectedHomeValueTitleText" formatted="false">Projected Home Value</string>
+    <string name="propertyTaxHelpText" formatted="false">This is the yearly property tax amount assessed on the investment</string>
+    <string name="realEstateAppreciationRateHelpText" formatted="false">This is the anticipated rate of monthly 
+	    appreciation of the investment.  In this application, the future value of the investment is determined by 
+	    using this rate plus one to the monthly compounding period desired
+	                       \n\n
+	    This is a value entered by the user, not calculated
+	    </string>
+    <string name="requiredRateOfReturnHelpText" formatted="false">This is the minimum rate of return desired by the 
+	    investor.  It is an important rate as it determines the discount rate for the net present value equation.  
+	    This rate should be set to the cost of capital, since you want investments to at least bring in more than it
+	     costs you to take out a loan for an investment (or else you would gain no profit).
+	     \n\n
+	    This is a value entered by the user, not calculated</string>
+    <string name="sellingBrokerRateHelpText" formatted="false">This rate is assessed on the anticipated investment
+value at the time of sale, to pay for the broker
+\n\n
+	    This is a value entered by the user, not calculated</string>
+    <string name="sellingExpensesHelpText" formatted="false">These are the general expenses expected at the time of 
+	    selling the investment, modified using the future value equation with the inflation rate.
+	    	                     	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="sellingExpensesTitleText" formatted="false">Selling Expenses</string>
+    <string name="stateInitialsHelpText" formatted="false">The state of the investment</string>
+    <string name="stateInitialsTitleText" formatted="false">State</string>
+    <string name="streetAddressHelpText" formatted="false">The street address of the investment</string>
+    <string name="taxableIncomeHelpText" formatted="false">This is the amount of income which is taxable.  Namely, the 
+	    yearly interest payments are subtracted from the income.
+	    	                     	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="taxableIncomeTitleText" formatted="false">Yearly Taxable Income</string>
+    <string name="taxesDueAtSaleHelpText" formatted="false">Taxes taken at the sale of the investment. 
+        This is currently 15% (all capital gains are 15%) in 2012
+        	                     	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="taxesDueAtSaleTitleText" formatted="false">Taxes Due at Sale</string>
+    <string name="totalPurchaseValueHelpText" formatted="false">The value of the entire estate; building, land, and all.  It is the value at
+        the time of purchase of the investment.
+        \n\n
+	    This is a value entered by the user, not calculated
+	    </string>
+    <string name="totalPurchaseValueTitleText" formatted="false">Total Purchase Value</string>
+    <string name="vacancyAndCreditLossRateHelpText" formatted="false">This is the estimated average yearly loss due to
+	     either of the following: tenants failing to pay their rent, or not having someone in the unit.
+	                     	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="vacancyAndCreditLossRateTitleText" formatted="false">Vacancy and Credit Loss Rate</string>
+    <string name="yearlyBeforeTaxCashFlowHelpText" formatted="false">All income - all expenses, before tax
+                        	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="yearlyBeforeTaxCashFlowTitleText" formatted="false">Yearly Before Tax Cash Flow</string>
+    <string name="yearlyGeneralExpensesHelpText" formatted="false">Estimated yearly expenses for things such as
+	     management costs, lawn care (if the contract requires it), miscellaneous building repair, and so on.  
+	     Note that it also includes saving up for big ticket items such as replacing the roof or HVAC.  So, for 
+	     example, you may save an extra $30 per month each year towards the future roof replacement.
+	                     	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="yearlyGeneralExpensesTitleText" formatted="false">Yearly General Expenses</string>
+    <string name="yearlyHomeInsuranceHelpText" formatted="false">The yearly general insurance amount.  Note that 
+	    rental property insurance rates are typically higher than normal homeowner rates.  Check with your insurance agent.
+	    \n\n
+	    This is a value entered by the user, not calculated
+	    </string>
+    <string name="yearlyIncomeHelpText" formatted="false">This is the income gained each year through the rent.  This 
+        application assumes that the rate you charge will increase once a year at the rate of real estate appreciation.  
+        The equation for next year\'s rent is: this_year_monthly_rent * (1 + real_estate_appreciation_rate / 12)
+                	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="yearlyIncomeTitleText" formatted="false">Yearly Rent Income</string>
+    <string name="yearlyInterestPaidHelpText" formatted="false">The amount of interest paid this year in the mortgage 
+	    payments.  This application assumes a standard loan amortization
+	            	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="yearlyInterestPaidTitleText" formatted="false">Yearly Interest Paid</string>
+    <string name="yearlyInterestRateHelpText" formatted="false">The interest rate charged by the lender for the loan.
+        \n\n
+	    This is a value entered by the user, not calculated
+	    </string>
+    <string name="yearlyMortgagePaymentHelpText" formatted="false">The Monthly Mortgage Payment * 12
+        	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="yearlyMortgagePaymentTitleText" formatted="false">Yearly Mortgage Payment</string>
+    <string name="yearlyMunicipalFeesHelpText" formatted="false">The future value yearly municipal fees.  For the initial
+        input, see Initial Municipal Fees
+        	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="yearlyMunicipalFeesTitleText" formatted="false">Yearly Municipal Fees</string>
+    <string name="yearlyOperatingExpensesHelpText" formatted="false">All expenses for the year 
         except debt service (mortgage payment).  This includes property tax, management fees, 
         insurance premiums, maintenance costs, utility fees, or other expenses made in the 
         operation of the investment property.  Assumption:  The yearly general expenses 
-         increase at the rate of yearly inflation.  They increase at this rate once a year.</string>
-    <string formatted="false" name="yearlyOperatingExpensesTitleText">Yearly operating expenses</string>
-    
-    <string formatted="false" name="yearlyNetOperatingIncomeHelpText">The income for the year (rent) minus vacancy and credit losses, minus yearly operating expenses</string>
-    <string formatted="false" name="yearlyNetOperatingIncomeTitleText">Yearly net operating income</string>
-    
-    <string formatted="false" name="yearlyOutlayHelpText">All expenses for the year - debt service, home insurance, property tax, municipal fees, general expenses (maintenance), and private mortgage insurance</string>
-    <string formatted="false" name="yearlyOutlayTitleText">Yearly outlay</string>
-    
-    <string formatted="false" name="yearlyPrivateMortgageInsuranceHelpText">The amount paid this year in private mortgage insurance.  The monthly amount is set in the loan edit dialog.  If the amount outstanding on the loan is more than 80% of the total value, the monthly private mortgage insurance amount will be charged each month until it reaches 80%</string>
-    <string formatted="false" name="yearlyPrivateMortgageInsuranceTitleText">Yearly private mortgage insurance</string>
-	
-	<string formatted="false" name="yearlyPrincipalPaidHelpText">The amount of principal paid in the mortgage payments for this year</string>
-	<string formatted="false" name="yearlyPrincipalPaidTitleText">Yearly principal paid</string>
-
-	<string formatted="false" name="yearlyPropertyTaxHelpText">The amount of property tax paid 
+         increase at the rate of yearly inflation.  They increase at this rate once a year.
+         	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="yearlyOperatingExpensesTitleText" formatted="false">Yearly Operating Expenses</string>
+    <string name="yearlyNetOperatingIncomeHelpText" formatted="false">The income for the year (rent) minus vacancy and 
+        credit losses, minus yearly operating expenses
+        	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="yearlyNetOperatingIncomeTitleText" formatted="false">Yearly Net Operating Income</string>
+    <string name="yearlyOutlayHelpText" formatted="false">All expenses for the year - debt service, home 
+        insurance, property tax, municipal fees, general expenses (maintenance), and private mortgage insurance
+        	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="yearlyOutlayTitleText" formatted="false">Yearly Outlay</string>
+    <string name="yearlyPrivateMortgageInsuranceHelpText" formatted="false">The amount paid this year in private 
+        mortgage insurance.  The monthly amount is set in the loan edit dialog.  If the amount outstanding on the 
+        loan is more than 80% of the total value, the monthly private mortgage insurance 
+        amount will be charged each month until it reaches 80%
+        	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="yearlyPrivateMortgageInsuranceTitleText" formatted="false">Yearly Private Mortgage Insurance</string>
+    <string name="yearlyPrincipalPaidHelpText" formatted="false">The amount of principal paid in the mortgage 
+	    payments for this year
+	    	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="yearlyPrincipalPaidTitleText" formatted="false">Yearly Principal Paid</string>
+    <string name="yearlyPropertyTaxHelpText" formatted="false">The amount of property tax paid 
 	    this year.  This application calculates each year\'s property tax by a future 
 	    value equation using real estate appreciation as the rate of compounding.  Assumption: this
-	    tax is paid once a year.</string>
-	<string formatted="false" name="yearlyPropertyTaxTitleText">Yearly property tax</string>
-	
-	<string formatted="false" name="yearlyTaxOnIncomeHelpText">Tax on the portion of income 
+	    tax is paid once a year.
+	    	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="yearlyPropertyTaxTitleText" formatted="false">Yearly Property Tax</string>
+    <string name="yearlyTaxOnIncomeHelpText" formatted="false">Tax on the portion of income 
 	    which is at the marginal tax rate, or in other words, the taxable income times the 
-	    marginal tax rate.  Assumption:  This tax is paid once a year.</string>
-	<string formatted="false" name="yearlyTaxOnIncomeTitleText">Yearly tax on income</string>
-		    
-	
-	
-	<!-- entry page text -->
-	<string formatted="false" name="useCalcWithoutDefaultValues">generic default values</string>
-	<string formatted="false" name="useCalcWithDefaultValues">default values from address</string>
-	<string formatted="false" name="helpButtonText">Help</string>
-	<string formatted="false" name="viewDataValuesText">View data values</string>
-	<string formatted="false" name="viewGraphButtonText">View graph</string>
-	<string formatted="false" name="setDataValuesButtonText">Set Data Values</string>
+	    marginal tax rate.  Assumption:  This tax is paid once a year.
+	    	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="yearlyTaxOnIncomeTitleText" formatted="false">Yearly Tax on Income</string>
 
-	<!-- setting default values page -->
-	<string formatted="false" name="useGPSButtonText">Use GPS to set current location</string>
-	<string formatted="false" name="loadSavedValuesButtonText">load saved values from database</string>
+    <!-- entry page text -->
+    <string name="useCalcWithoutDefaultValues" formatted="false">Generic Default Values</string>
+    <string name="useCalcWithDefaultValues" formatted="false">default values from address</string>
+    <string name="helpButtonText" formatted="false">Help</string>
+    <string name="viewDataValuesText" formatted="false">View data values</string>
+    <string name="viewGraphButtonText" formatted="false">View graph</string>
+    <string name="setDataValuesButtonText" formatted="false">Set Data Values</string>
 
-	<!-- load saved values -->
-	<string formatted="false" name="browseDatabaseButtonText">Browse the saved data</string>
-	<string formatted="false" name="searchDatabaseButtonText">Search the database</string>
+    <!-- setting default values page -->
+    <string name="useGPSButtonText" formatted="false">Use GPS to set current location</string>
+    <string name="loadSavedValuesButtonText" formatted="false">load saved values from database</string>
 
-	<!-- Graph Activity page -->
-	<string formatted="false" name="minValueLabel">Minimum</string>
-	<string formatted="false" name="maxValueLabel">Maximum</string>
-	<string formatted="false" name="currentValueLabel">Current</string>
-	<string formatted="false" name="resetButton">Reset</string>
-	<string formatted="false" name="yearValueText">Year: </string>
+    <!-- load saved values -->
+    <string name="browseDatabaseButtonText" formatted="false">Browse the saved data</string>
+    <string name="searchDatabaseButtonText" formatted="false">Search the database</string>
 
-	<!-- configure data tables activity -->
-	<string formatted="false" name="allButtonsOnText">All buttons on</string>
-	<string formatted="false" name="allButtonsOffText">All buttons off</string>
-	
+    <!-- Graph Activity page -->
+    <string name="minValueLabel" formatted="false">Minimum</string>
+    <string name="maxValueLabel" formatted="false">Maximum</string>
+    <string name="currentValueLabel" formatted="false">Current</string>
+    <string name="resetButton" formatted="false">Reset</string>
+    <string name="yearValueText" formatted="false">Year: </string>
 
-	<!-- load database item -->
-	<string formatted="false" name="cancelButtonText">Cancel</string>
-	<string formatted="false" name="loadItemText">Load item</string>
-	
-	<!-- Data table -->
-	<string formatted="false" name="defaultZeroPercentage">0%</string>
-	<string formatted="false" name="defaultZeroCurrency">$0.00</string>
+    <!-- configure data tables activity -->
+    <string name="allButtonsOnText" formatted="false">All buttons on</string>
+    <string name="allButtonsOffText" formatted="false">All buttons off</string>
 
-	<!-- taxes -->
-	<string formatted="false" name="TaxesScreenHeaderText">Taxes</string>
-	<string formatted="false" name="marginalTaxRateTitleText">Marginal Tax Rate</string>
+    <!-- load database item -->
+    <string name="cancelButtonText" formatted="false">Cancel</string>
+    <string name="loadItemText" formatted="false">Load item</string>
 
-	<string formatted="false" name="backButtonText">Back</string>
-	<string formatted="false" name="buildingValueTitleText">Initial building value</string>
-	<string formatted="false" name="propertyTaxTitleText">Initial property Tax</string>
-	<string formatted="false" name="localMunicipalFeesTitleText">Initial municipal Fees</string>
+    <!-- Data table -->
+    <string name="defaultZeroPercentage" formatted="false">0%</string>
+    <string name="defaultZeroCurrency" formatted="false">$0.00</string>
 
-	<!-- address -->
-	<string formatted="false" name="streetAddressHeaderText">Address</string>
-	<string formatted="false" name="streetAddressTitleText">Street Address</string>
-	<string formatted="false" name="cityTitleText">City</string>
-	<string formatted="false" name="stateTitleText">State</string>
-	<string formatted="false" name="state_prompt">Choose a State: </string>
-	<string formatted="false" name="commentsTitleText">Comments</string>
-	<string formatted="false" name="commentsHelpText">General comments related to the property</string>
+    <!-- taxes -->
+    <string name="TaxesScreenHeaderText" formatted="false">Taxes</string>
+    <string name="marginalTaxRateTitleText" formatted="false">Marginal Tax Rate</string>
+    <string name="backButtonText" formatted="false">Back</string>
+    <string name="buildingValueTitleText" formatted="false">Initial Building Value</string>
+    <string name="propertyTaxTitleText" formatted="false">Initial Property Tax</string>
+    <string name="localMunicipalFeesTitleText" formatted="false">Initial Municipal Fees</string>
 
+    <!-- address -->
+    <string name="streetAddressHeaderText" formatted="false">Address</string>
+    <string name="streetAddressTitleText" formatted="false">Street Address</string>
+    <string name="cityTitleText" formatted="false">City</string>
+    <string name="stateTitleText" formatted="false">State</string>
+    <string name="state_prompt" formatted="false">Choose a State: </string>
+    <string name="commentsTitleText" formatted="false">Comments</string>
+    <string name="commentsHelpText" formatted="false">General comments related to the property</string>
 
-	<!-- data pages -->
-	<string formatted="false" name="dataPagesHeaderText">Data Pages</string>
-	<string formatted="false" name="taxesCompleteText">Complete</string>
-	<string formatted="false" name="taxesButtonText">Taxes</string>
-	<string formatted="false" name="loanButtonText">Loan</string>
-	<string formatted="false" name="saleButtonText">Sale</string>
-	<string formatted="false" name="financialEnvironmentButtonText">Financial Environment</string>
-	<string formatted="false" name="rentalButtonText">Rental</string>
-	<string formatted="false" name="loanScreenHeaderText">Loan</string>
+    <!-- data pages -->
+    <string name="dataPagesHeaderText" formatted="false">Data Pages</string>
+    <string name="taxesCompleteText" formatted="false">Complete</string>
+    <string name="taxesButtonText" formatted="false">Taxes</string>
+    <string name="loanButtonText" formatted="false">Loan</string>
+    <string name="saleButtonText" formatted="false">Sale</string>
+    <string name="financialEnvironmentButtonText" formatted="false">Financial Environment</string>
+    <string name="rentalButtonText" formatted="false">Rental</string>
+    <string name="loanScreenHeaderText" formatted="false">Loan</string>
 
-	<!-- Loan page -->
-	<string formatted="false" name="yearlyInterestRateTitleText">Yearly loan interest rate</string>
+    <!-- Loan page -->
+    <string name="yearlyInterestRateTitleText" formatted="false">Yearly Loan Interest Rate</string>
+    <string name="downPaymentTitleText" formatted="false">Down Payment</string>
+    <string name="numOfCompoundingPeriodsTitleText" formatted="false">Number of Compounding Periods</string>
+    <string name="calcPMIDownPaymentButtonText" formatted="false">Set down payment by PMI</string>
+    <string name="calcPMITitleText" formatted="false">PMI Button Help</string>
+    <string name="totalPurchasePriceTitleText" formatted="false">Total Purchase Price</string>
+    <string name="closingCostsTitleText" formatted="false">Closing Costs</string>
+    <string name="privateMortgageInsuranceTitleText" formatted="false">Private Mortgage Insurance</string>
+    <string name="extraYearsCalculateTitleText" formatted="false">Extra Years to Calculate</string>
 
-	<string formatted="false" name="downPaymentTitleText">Down payment</string>
+    <!-- sale expenses -->
 
-	<string formatted="false" name="numOfCompoundingPeriodsTitleText">Number of compounding periods</string>
-	<string formatted="false" name="calcPMIDownPaymentButtonText">Set down payment by PMI</string>
-	<string formatted="false" name="calcPMITitleText">PMI Button Help</string>
+    <string name="generalSaleExpensesTitleText" formatted="false">Initial General Sale Expenses</string>
+    <string name="sellingBrokerRateTitleText" formatted="false">Selling Broker Rate</string>
+    <string name="saleScreenHeaderText" formatted="false">Sale</string>
 
-	<string formatted="false" name="totalPurchasePriceTitleText">Total purchase price</string>
-	<string formatted="false" name="closingCostsTitleText">Closing costs</string>
+    <!-- financial environment -->
+    <string name="financialEnvironmentHeaderText" formatted="false">Financial Environment</string>
+    <string name="inflationRateTitleText" formatted="false">Inflation Rate</string>
+    <string name="realEstateAppreciationRateTitleText" formatted="false">Real Estate Appreciation Rate</string>
 
-	
-	<string formatted="false" name="privateMortgageInsuranceTitleText">Private mortgage insurance</string>
-
-	<string formatted="false" name="extraYearsCalculateTitleText">Extra years to calculate</string>
-	
-	<!-- sale expenses -->
-
-	<string formatted="false" name="generalSaleExpensesTitleText">Initial general sale expenses</string>
-
-	<string formatted="false" name="sellingBrokerRateTitleText">Selling broker rate</string>
-	<string formatted="false" name="saleScreenHeaderText">Sale</string>
-
-	<!-- financial environment -->
-	<string formatted="false" name="financialEnvironmentHeaderText">Financial Environment</string>
-
-	<string formatted="false" name="inflationRateTitleText">Inflation rate</string>
-	<string formatted="false" name="realEstateAppreciationRateTitleText">Real estate appreciation rate</string>
-
-
-	<!-- rental -->
-	<string formatted="false" name="rentalHeaderText">Rental</string>
-
-	<string formatted="false" name="estimatedRentPaymentsTitleText">Initial estimated rent payments</string>
-
-	<string formatted="false" name="yearlyHomeInsuranceTitleText">Yearly home insurance</string>
-
-	<string formatted="false" name="vacancyAndCreditLossTitleText">Vacancy and credit loss</string>
-	<string formatted="false" name="fixupCostsHelpText">Cost to fix up the property to a 
+    <!-- rental -->
+    <string name="rentalHeaderText" formatted="false">Rental</string>
+    <string name="estimatedRentPaymentsTitleText" formatted="false">Initial Estimated Rent Payments</string>
+    <string name="yearlyHomeInsuranceTitleText" formatted="false">Yearly Home Insurance</string>
+    <string name="vacancyAndCreditLossTitleText" formatted="false">Vacancy and Credit Loss</string>
+    <string name="fixupCostsHelpText" formatted="false">Cost to fix up the property to a 
 	    rentable state as a one-time dollar amount.  Assumption: the fix-up costs (costs which are expended near the
 		time of purchase) commensurately increase the total value of the
 		investment.  This means that if you buy a $250k investment and spend
 		$50k on improvements (fix-up) the total value is now $300k.
-	</string>
-	<string formatted="false" name="fixupCostsTitleText">Fix-up costs</string>
+			    	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="fixupCostsTitleText" formatted="false">Fix-up Costs</string>
+    <string name="initialYearlyGeneralExpensesTitleText" formatted="false">Initial Yearly General Expenses</string>
+    <string name="requiredRateOfReturnTitleText" formatted="false">Required Rate of Return</string>
 
-	<string formatted="false" name="initialYearlyGeneralExpensesTitleText">initial yearly general expenses</string>
+    <!-- set data values activity -->
+    <string name="editValuesButtonText" formatted="false">Edit values</string>
+    <string name="genericDefaultValues" formatted="false">Use generic default values</string>
+    <string name="defaultValuesFromAddress" formatted="false">Use default values from address</string>
+    <string name="saveCurrentValuesToDatabaseButtonText" formatted="false">Save current values to database</string>
 
-	<string formatted="false" name="requiredRateOfReturnTitleText">Required rate of return</string>
+    <!-- Activity title value- -->
+    <string name="entryScreenActivityTitleText" formatted="false">Real Estate Analysis Processor</string>
+    <string name="rentalActivityTitleText" formatted="false">Rental</string>
+    <string name="dataPagesActivityTitleText" formatted="false">Data pages</string>
+    <string name="addressActivityTitleText" formatted="false">Address and comments</string>
+    <string name="configureDataTableTitleText" formatted="false">Configure data tables</string>
+    <string name="financialEnvironmentActivityTitleText" formatted="false">Financial Environment</string>
+    <string name="graphActivityTitleText" formatted="false">Graph</string>
+    <string name="loadSavedValuesActivityTitleText" formatted="false">Load saved values</string>
+    <string name="loanActivityTitleText" formatted="false">Loan</string>
+    <string name="saleActivityTitleText" formatted="false">Sale</string>
+    <string name="setDataValuesActivityTitleText" formatted="false">Set data values</string>
+    <string name="taxesActivityTitleText" formatted="false">Taxes</string>
+    <string name="savedDataBrowserActivityTitleText" formatted="false">Saved data browser</string>
+    <string name="appInfoActivityTitleText" formatted="false">app info page</string>
+    <string name="databaseSearchActivityTitleText" formatted="false">Database Search</string>
+    <string name="saveCurrentValuesActivityTitleText" formatted="false">Save Current Values</string>
 
-	<!-- set data values activity -->
-	<string formatted="false" name="editValuesButtonText">Edit values</string>
-	<string formatted="false" name="genericDefaultValues">Use generic default values</string>
-	<string formatted="false" name="defaultValuesFromAddress">Use default values from address</string>
-	<string formatted="false" name="saveCurrentValuesToDatabaseButtonText">Save current values to database</string>
-
-	<!-- Activity title value- -->
-	<string formatted="false" name="entryScreenActivityTitleText">Real Estate Analysis Processor</string>
-	<string formatted="false" name="rentalActivityTitleText">Rental</string>
-	<string formatted="false" name="dataPagesActivityTitleText">Data pages</string>
-	<string formatted="false" name="addressActivityTitleText">Address and comments</string>
-	<string formatted="false" name="configureDataTableTitleText">Configure data tables</string>
-	<string formatted="false" name="financialEnvironmentActivityTitleText">Financial Environment</string>
-	<string formatted="false" name="graphActivityTitleText">Graph</string>
-	<string formatted="false" name="loadSavedValuesActivityTitleText">Load saved values</string>
-	<string formatted="false" name="loanActivityTitleText">Loan</string>
-	<string formatted="false" name="saleActivityTitleText">Sale</string>
-	<string formatted="false" name="setDataValuesActivityTitleText">Set data values</string>
-	<string formatted="false" name="taxesActivityTitleText">Taxes</string>
-	<string formatted="false" name="savedDataBrowserActivityTitleText">Saved data browser</string>
-	<string formatted="false" name="appInfoActivityTitleText">app info page</string>
-	<string formatted="false" name="databaseSearchActivityTitleText">Database Search</string>
-	<string formatted="false" name="saveCurrentValuesActivityTitleText">Save Current Values</string>
-
-	<!-- Save current values activity -->
-	<string formatted="false" name="saveButtonText">Save</string>
-	<string formatted="false" name="valueSliderText">Value Slider</string>
-	<string formatted="false" name="timeSliderText">Time Slider</string>
-	<string formatted="false" name="realEstateMarketAnalysisSplashPageDescription">Real Estate Analysis Processor</string>
-	<string formatted="false" name="dataRowLoadValuesString">Id: </string>
-	<string formatted="false" name="streetAddressLoadValuesString">Addr: </string>
-	<string formatted="false" name="totalPurchaseValueLoadValuesString">Value: </string>
-	<string formatted="false" name="yearlyInflationRateLoadValuesString">infl-ate: </string>	
-	<string formatted="false" name="yearlyInterestRateLoadValuesString">int-rate: </string>
-	<string formatted="false" name="downPaymentLoadValuesString">Down P.: </string>
-	<string formatted="false" name="reqRateReturnLoadValuesString">rrr: </string>
-	<string formatted="false" name="estimatedRentLoadValuesString">rent: </string>
-	<string formatted="false" name="commentsLoadValuesString">Comments: </string>
-	<string formatted="false" name="dateStampString">Modified: </string>
-		
-	<string formatted="false" name="rearLoadValuesString">rear: </string>
-		
-		
-	
-	<string formatted="false" name="graphVisibilityCheckboxTitle">Graph visibility</string>
-	<string formatted="false" name="splashScreenEntryHelpText">Enter the total purchase value for 
+    <!-- Save current values activity -->
+    <string name="saveButtonText" formatted="false">Save</string>
+    <string name="valueSliderText" formatted="false">Value Slider</string>
+    <string name="timeSliderText" formatted="false">Time Slider</string>
+    <string name="realEstateMarketAnalysisSplashPageDescription" formatted="false">Real Estate Analysis Processor</string>
+    <string name="dataRowLoadValuesString" formatted="false">Id: </string>
+    <string name="streetAddressLoadValuesString" formatted="false">Addr: </string>
+    <string name="totalPurchaseValueLoadValuesString" formatted="false">Value: </string>
+    <string name="yearlyInflationRateLoadValuesString" formatted="false">infl-ate: </string>
+    <string name="yearlyInterestRateLoadValuesString" formatted="false">int-rate: </string>
+    <string name="downPaymentLoadValuesString" formatted="false">Down P.: </string>
+    <string name="reqRateReturnLoadValuesString" formatted="false">RRR: </string>
+    <string name="estimatedRentLoadValuesString" formatted="false">rent: </string>
+    <string name="commentsLoadValuesString" formatted="false">Comments: </string>
+    <string name="dateStampString" formatted="false">Modified: </string>
+    <string name="rearLoadValuesString" formatted="false">REAR: </string>
+    <string name="graphVisibilityCheckboxTitle" formatted="false">Graph visibility</string>
+    <string name="splashScreenEntryHelpText" formatted="false">Enter the total purchase value for 
 	    the investment.  This application will then make assumptions of the other numbers and 
 	    provide an analysis.  You can then modify the default values as necessary for a more precise result</string>
-	<string formatted="false" name="reapFeatureList">REAP has the following features: 
+    <string name="reapFeatureList" formatted="false">REAP has the following features: 
 	    \n* calculate important real estate appraisal values 
 	    \n* dynamically modify values to suit 
 	    \n* ease of use 
 	    \n* robust results</string>
-	<string formatted="false" name="go">Go</string>
-	<string formatted="false" name="splashScreenNote">Note: The GO button will calculate default values which
+    <string name="go" formatted="false">Go</string>
+    <string name="splashScreenNote" formatted="false">Note: The GO button will calculate default values which
 	    the user is able to modify later.  These will overwrite any current input values.</string>
-		<string formatted="false" name="skip">Skip this step</string>
-	<string formatted="false" name="saveDataDialogBaseMessageText">Calculated values are included 
+    <string name="skip" formatted="false">Skip this step</string>
+    <string name="saveDataDialogBaseMessageText" formatted="false">Calculated values are included 
 	    in the database entry after 100% calculation on the graph page.  Current values are saved.</string>
-	<string formatted="false" name="savedDataHelpMessageText">Press on an entry to load it.  
+    <string name="savedDataHelpMessageText" formatted="false">Press on an entry to load it.  
 	    Press and hold for other options</string>
-	<string formatted="false" name="emailDialogMessage">Do you want to email the entry with id </string>
-	<string formatted="false" name="emailDialogTitle">Email</string>
-			
-	<string formatted="false" name="splashScreenRentCheckBox">Rental?</string>
-	<string formatted="false" name="calculatorActivityNotFoundText">calculator Activity was not found</string>
-	<string formatted="false" name="calcActivityNotFoundGenExceptionText">tried to call calculator activity, 
+    <string name="emailDialogMessage" formatted="false">Do you want to email the entry with id </string>
+    <string name="emailDialogTitle" formatted="false">Email</string>
+    <string name="splashScreenRentCheckBox" formatted="false">Rental?</string>
+    <string name="calculatorActivityNotFoundText" formatted="false">calculator Activity was not found</string>
+    <string name="calcActivityNotFoundGenExceptionText" formatted="false">tried to call calculator activity, 
 	    but instead got this General exception</string>
-	<string formatted="false" name="titleBarTextWhileCheckLicense">Checking license...</string>
-	
-	<!-- Saved data browser -->	
+    <string name="titleBarTextWhileCheckLicense" formatted="false">Checking license...</string>
 
-	<string formatted="false" name="addNewEntryText">Add new entry</string>
-	<string formatted="false" name="noEntriesText">No entries.</string>
-	<string formatted="false" name="currentEntryIdIsText">Current entry id is </string>
-	<string formatted="false" name="updateCurrentEntryText">Update current entry</string>
-	<string formatted="false" name="dataSavedAsNewEntryText">Data saved as new entry id: </string>
-	<string formatted="false" name="dataSavedIntoCurrentEntryText">Data saved into current entry id: </string>
-	<string formatted="false" name="deleteMessage">Delete the data with entry id:</string>
-	<string formatted="false" name="deleteMessageTitle">Delete database item</string>
-	<string formatted="false" name="dataDeletedToastText">Data deleted</string>
-	<string formatted="false" name="loadTheDataWithId">Note:  All current values will be overwritten.  Load the data with entry id:</string>
-	<string formatted="false" name="loadDataDialogTitle">Load database item</string>
-	<string formatted="false" name="dataLoadedToastText">Data Loaded</string>
-					
-	
-	<string formatted="false" name="totalPurchaseValueSplashTitleText">Total purchase value</string>
-	<string formatted="false" name="totalPurchaseValueSplashHelpText">The total purchase value of 
+    <!-- Saved data browser -->
+
+    <string name="addNewEntryText" formatted="false">Add new entry</string>
+    <string name="noEntriesText" formatted="false">No entries.</string>
+    <string name="currentEntryIdIsText" formatted="false">Current entry id is </string>
+    <string name="updateCurrentEntryText" formatted="false">Update current entry</string>
+    <string name="dataSavedAsNewEntryText" formatted="false">Data saved as new entry id: </string>
+    <string name="dataSavedIntoCurrentEntryText" formatted="false">Data saved into current entry id: </string>
+    <string name="deleteMessage" formatted="false">Delete the data with entry id:</string>
+    <string name="deleteMessageTitle" formatted="false">Delete database item</string>
+    <string name="dataDeletedToastText" formatted="false">Data deleted</string>
+    <string name="loadTheDataWithId" formatted="false">Note:  All current values will be overwritten.  Load the data with entry id:</string>
+    <string name="loadDataDialogTitle" formatted="false">Load database item</string>
+    <string name="dataLoadedToastText" formatted="false">Data Loaded</string>
+    <string name="totalPurchaseValueSplashTitleText" formatted="false">Total purchase value</string>
+    <string name="totalPurchaseValueSplashHelpText" formatted="false">The total purchase value of 
 	    the investment.  values are calculated using the following 
 	    formulas: 
 	    \nloan interest rate = 5.5%
@@ -424,17 +541,13 @@
 		\nvacancy rate is 3%
 		\nfix-up costs are $0
 		\nyearly general expenses is $1000
-		\nrequired rate of return is 5.5%	    
-
-	     </string>
-
-	<string name="authorInfoText">Real Estate Analysis Processor
+		\nrequired rate of return is 5.5%	    </string>
+    <string name="authorInfoText">Real Estate Analysis Processor
 	    \n\u00A9 2012 Byron Katz
 	    \nbyronka@msn.com
 	    
 	    \n\nCredits for the icons go to Google, and thanks to Olof Brickarp
 	    \nfor vector conversions.
-	    \n\nThanks to stackoverflow.com for innumerable answers to questions.
-	    </string>
-	
+	    \n\nThanks to stackoverflow.com for innumerable answers to questions.</string>
+
 </resources>
