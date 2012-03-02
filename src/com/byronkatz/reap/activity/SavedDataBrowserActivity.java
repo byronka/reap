@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,7 +23,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +33,7 @@ import com.byronkatz.reap.general.DatabaseAdapter;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
+import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 
 public class SavedDataBrowserActivity extends ListActivity {
@@ -354,6 +355,50 @@ public class SavedDataBrowserActivity extends ListActivity {
     ContentValues emailContentValues = new ContentValues();
     DatabaseUtils.cursorRowToContentValues(cursor, emailContentValues);
 
+    
+    body += "<br /><br />";
+    if (emailContentValues.getAsString(ValueEnum.STREET_ADDRESS.name()).length() > 0) {
+      body += "<b>Address:</b><br />";
+      body += "<br />";
+      body += emailContentValues.getAsString(ValueEnum.STREET_ADDRESS.name()) + "<br />";
+      body += emailContentValues.getAsString(ValueEnum.CITY.name()) + "<br />";
+      body += emailContentValues.getAsString(ValueEnum.STATE_INITIALS.name()) + "<br />";
+      body += "<br /><br />";
+    }
+    
+    body += "<b>Comments:</b>";
+    body += "<br /><br />";
+    body += emailContentValues.getAsString(ValueEnum.COMMENTS.name()) + "<br /><br /><br />";
+
+    
+    String yearValue = emailContentValues.getAsString(DatabaseAdapter.YEAR_VALUE);
+    body += "<b>Calculated Value For Year: " + yearValue + "</b>"  + "<br />";
+ 
+    body += "<br />";
+    
+    body += getString(ValueEnum.NPV.getTitleText()) + ": " + 
+        Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.NPV.name()), ValueEnum.NPV) + "<br />";
+
+    body += getString(ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.getTitleText()) + ": " +
+        Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name()), ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN) + "<br />";
+    
+    body += getString(ValueEnum.ATCF.getTitleText()) + ": " + 
+        Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.ATCF.name()), ValueEnum.ATCF) + "<br />";
+    
+    body += getString(ValueEnum.ATER.getTitleText()) + ": " + 
+        Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.ATER.name()), ValueEnum.ATER) + "<br />";
+    
+    body += getString(ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.getTitleText()) + ": " + 
+        Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name()), ValueEnum.CAP_RATE_ON_PROJECTED_VALUE) + "<br />";
+    
+    body += getString(ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.getTitleText()) + ": " + 
+    Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name()), ValueEnum.CAP_RATE_ON_PURCHASE_VALUE) + "<br />";
+    
+    body += "<br /><br />";
+    body += "<b>User Input Values</b><br />";
+    body += "<br />";
+
+    
     for (Map.Entry<String,Object> m : emailContentValues.valueSet()) {
 
       ValueEnum viewEnum = null;
@@ -365,40 +410,50 @@ public class SavedDataBrowserActivity extends ListActivity {
       }
 
       //if we successfully got a ValueEnum, we can use it to format the string
-      if (viewEnum != null) {
+      if ((viewEnum != null) && (viewEnum.getType() != ValueType.STRING) && (! viewEnum.isVaryingByYear())) {
         
         body += getString(viewEnum.getTitleText()) + ": ";
         body += Utility.parseAndDisplayValue(String.valueOf(m.getValue()), viewEnum);
-        body += "\n";
+        body += "<br />";
         
-        //otherwise, for specific entries, put in hardcoded titles below:
-      } else  if (m.getKey().equals(DatabaseAdapter.KEY_ID)) {
-        
-        body += "Entry id: ";
-        body += String.valueOf(m.getValue());
-        body += "\n";
-
-      } else if(m.getKey().equals(DatabaseAdapter.MODIFIED_AT)) {
-        
-        body += "Last modified on: ";
-        body += String.valueOf(m.getValue());
-        body += "\n";
-        
-      } else if (m.getKey().equals(DatabaseAdapter.YEAR_VALUE)) {
-        
-        body += "Calculated value for year: ";
-        body += String.valueOf(m.getValue());
-        body += "\n";
       }
     }
+    
+    body += "<br /><br />";
+    
+    body += "<em>This data was modified on: " + emailContentValues.getAsString(DatabaseAdapter.MODIFIED_AT);
+    body += " and has a REAP Entry id of: " + emailContentValues.getAsString(DatabaseAdapter.KEY_ID);
+    body += "</em>";
 
-    final Intent emailIntent = new Intent(android.content.Intent.ACTION_SENDTO);
+    
+//        //otherwise, for specific entries, put in hardcoded titles below:
+//      } else  if (m.getKey().equals(DatabaseAdapter.KEY_ID)) {
+//        
+//        body += "Entry id: ";
+//        body += String.valueOf(m.getValue());
+//        body += "\n";
+//
+//      } else if(m.getKey().equals(DatabaseAdapter.MODIFIED_AT)) {
+//        
+//        body += "Last modified on: ";
+//        body += String.valueOf(m.getValue());
+//        body += "\n";
+//        
+//      } else if (m.getKey().equals(DatabaseAdapter.YEAR_VALUE)) {
+//        
+//        body += "Calculated value for year: ";
+//        body += String.valueOf(m.getValue());
+//        body += "\n";
+//      }
+    
+
+    final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
     emailIntent.setType("text/html");
     emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
     
     //do we want this in html format?
-//    emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml(body));
-    emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
+    emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml(body));
+//    emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
     startActivity(Intent.createChooser(emailIntent, "Email:"));
 
   }

@@ -12,7 +12,9 @@
 
     <!-- Unlicensed dialog messages -->
     <string name="unlicensed_dialog_title">Application not licensed</string>
-    <string name="unlicensed_dialog_body">This application is not licensed. Please purchase it from Android Market.</string>
+    <string name="unlicensed_dialog_body">Either an error occurred connecting to the server, 
+        or this application is not licensed.  If your connection is bad, try starting the app again
+        when the connection is better.  If not licensed, please purchase it from Android Market.</string>
     <string name="buy_button">Buy app</string>
     <string name="quit_button">Exit</string>
 	
@@ -37,8 +39,8 @@
 		
 	<!-- Help text for calculated values -->
 	<string formatted="false" name="helpButtonContentDescription">Help button</string>
-	<string formatted="false" name="accumulatedInterestPaidTitleText">Yearly interest paid accumulator</string>
-	<string formatted="false" name="accumulatedInterestPaidHelpText">The accumulated interest paid to date</string>
+	<string formatted="false" name="accumulatedInterestPaidTitleText">Interest Paid Accumulator</string>
+	<string formatted="false" name="accumulatedInterestPaidHelpText">The accumulated interest paid to date.</string>
 
 	<string formatted="false" name="atcfTitleText">After tax cash flow</string>
 	<string formatted="false" name="atcfHelpText">This is the net balance for the year: f(x)=income - outlay</string>
