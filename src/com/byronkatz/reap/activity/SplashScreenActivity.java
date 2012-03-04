@@ -22,7 +22,6 @@ import android.widget.TextView;
 import com.android.vending.licensing.AESObfuscator;
 import com.android.vending.licensing.LicenseChecker;
 import com.android.vending.licensing.LicenseCheckerCallback;
-import com.android.vending.licensing.LicenseCheckerCallback.ApplicationErrorCode;
 import com.android.vending.licensing.ServerManagedPolicy;
 import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
@@ -160,6 +159,7 @@ public class SplashScreenActivity extends Activity {
     .create();
   }
 
+  
   private void doCheck() {
     //first thing is grey out the entry values
     deactivateInterface();
@@ -330,6 +330,8 @@ public class SplashScreenActivity extends Activity {
   protected void onDestroy() {
     super.onDestroy();
     mChecker.onDestroy();
+  dataController.nullifyNumericCache();
+  System.runFinalizersOnExit(true);
   }
 
 
