@@ -14,6 +14,7 @@ import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
+import com.byronkatz.reap.general.TitleTextOnClickListenerWrapper;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
 
@@ -94,71 +95,31 @@ public class RentalActivity extends Activity {
 
     initialHomeInsurance.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.INITIAL_HOME_INSURANCE));
 
-    TextView initialHomeInsuranceTitle = 
-        (TextView)findViewById(R.id.initialHomeInsuranceTitle);
-    initialHomeInsuranceTitle.setOnClickListener(new OnClickListener() {
+    ((TextView)findViewById(R.id.initialHomeInsuranceTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.INITIAL_HOME_INSURANCE));
 
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.initialHomeInsuranceHelpText, 
-            R.string.initialHomeInsuranceTitleText, RentalActivity.this);
-      }
-    });
 
     vacancyAndCreditLoss.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE));
 
-    TextView vacancyAndCreditLossTitle = 
-        (TextView)findViewById(R.id.vacancyAndCreditLossTitle);
-    vacancyAndCreditLossTitle.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.vacancyAndCreditLossRateHelpText, 
-            R.string.vacancyAndCreditLossTitleText, RentalActivity.this);
-      }
-    });
+    ((TextView)findViewById(R.id.vacancyAndCreditLossTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE));
+    
 
     fixupCosts.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.FIX_UP_COSTS));
 
-    TextView fixupCostsTitle =
-        (TextView)findViewById(R.id.fixupCostsTitle);
-    fixupCostsTitle.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.fixupCostsHelpText, R.string.fixupCostsTitleText, RentalActivity.this);
-      }
-    });
+    ((TextView)findViewById(R.id.fixupCostsTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.FIX_UP_COSTS));
+    
 
     initialYearlyGeneralExpenses.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES));
 
-    TextView initialYearlyGeneralExpensesTitle =
-        (TextView)findViewById(R.id.initialYearlyGeneralExpensesTitle);
-    initialYearlyGeneralExpensesTitle.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.initialYearlyGeneralExpensesHelpText, 
-            R.string.initialYearlyGeneralExpensesTitleText, RentalActivity.this);
-      }
-    });
+    ((TextView)findViewById(R.id.initialYearlyGeneralExpensesTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES));
 
     requiredRateOfReturn.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.REQUIRED_RATE_OF_RETURN));
 
-    TextView requiredRateOfReturnTitle = 
-        (TextView)findViewById(R.id.requiredRateOfReturnTitle);
-    requiredRateOfReturnTitle.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.requiredRateOfReturnHelpText, R.string.requiredRateOfReturnTitleText, RentalActivity.this);
-      }
-    });
+    ((TextView)findViewById(R.id.requiredRateOfReturnTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.REQUIRED_RATE_OF_RETURN));
 
   }
 

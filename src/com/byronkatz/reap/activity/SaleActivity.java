@@ -14,6 +14,7 @@ import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
+import com.byronkatz.reap.general.TitleTextOnClickListenerWrapper;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
 
@@ -72,32 +73,15 @@ public class SaleActivity extends Activity {
 
     generalSaleExpenses.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.GENERAL_SALE_EXPENSES));
     
-    TextView generalSaleExpensesTitle = 
-        (TextView)findViewById(R.id.generalSaleExpensesTitle);
-    generalSaleExpensesTitle.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.generalSaleExpensesHelpText, 
-            R.string.generalSaleExpensesTitleText, SaleActivity.this);
-      }
-    });
+    ((TextView)findViewById(R.id.generalSaleExpensesTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.GENERAL_SALE_EXPENSES));
 
   
     sellingBrokerRate.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.SELLING_BROKER_RATE));
     
-    TextView sellingBrokerRateTitle = 
-        (TextView)findViewById(R.id.sellingBrokerRateTitle);
-    sellingBrokerRateTitle.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.sellingBrokerRateHelpText, 
-            R.string.sellingBrokerRateTitleText, SaleActivity.this);
-      }
-    });
+    ((TextView)findViewById(R.id.sellingBrokerRateTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.SELLING_BROKER_RATE));
+    
   }
   
   public void callCalculator(View v) {

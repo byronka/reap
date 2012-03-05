@@ -22,6 +22,7 @@ import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
+import com.byronkatz.reap.general.TitleTextOnClickListenerWrapper;
 
 public class LoanActivity extends Activity {
 
@@ -113,75 +114,34 @@ public class LoanActivity extends Activity {
 
     yearlyInterestRate.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.YEARLY_INTEREST_RATE));
 
-    TextView yearlyInterestRateTitle = 
-        (TextView)findViewById(R.id.yearlyInterestRateTitle);
-    yearlyInterestRateTitle.setOnClickListener(new OnClickListener() {
+        ((TextView)findViewById(R.id.yearlyInterestRateTitle)).setOnClickListener(
+            new TitleTextOnClickListenerWrapper(ValueEnum.YEARLY_INTEREST_RATE));
+        
 
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.yearlyInterestRateHelpText, 
-            R.string.yearlyInterestRateTitleText,
-            LoanActivity.this);
-      }
-    });
 
     downPayment.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.DOWN_PAYMENT));
-
-    TextView downPaymentTitle = 
-        (TextView)findViewById(R.id.downPaymentTitle);
-
-    downPaymentTitle.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.downPaymentHelpText, 
-            R.string.downPaymentTitleText, LoanActivity.this);
-      }
-    });
+    
+    ((TextView)findViewById(R.id.downPaymentTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.DOWN_PAYMENT));
     
     extraYears.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.EXTRA_YEARS));
 
-    TextView extraYearsTitle = 
-        (TextView)findViewById(R.id.extraYearsTitle);
-      extraYearsTitle.setOnClickListener(new OnClickListener() {
+    ((TextView)findViewById(R.id.extraYearsTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.EXTRA_YEARS));
 
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.extraYearsHelpText, 
-            R.string.extraYearsTitleText, LoanActivity.this);
-      }
-    });
     
     totalPurchasePrice.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.TOTAL_PURCHASE_VALUE));
 
-    TextView totalPurchasePriceTitle = 
-        (TextView)findViewById(R.id.totalPurchasePriceTitle);
-      totalPurchasePriceTitle.setOnClickListener(new OnClickListener() {
 
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.totalPurchaseValueHelpText, 
-            R.string.totalPurchasePriceTitleText, LoanActivity.this);
-      }
-    });
+        ((TextView)findViewById(R.id.totalPurchasePriceTitle)).setOnClickListener(
+            new TitleTextOnClickListenerWrapper(ValueEnum.TOTAL_PURCHASE_VALUE));
+       
 
     closingCosts.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.CLOSING_COSTS));
 
-    TextView closingCostsTitle = 
-        (TextView)findViewById(R.id.closingCostsTitle);
-      closingCostsTitle.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.closingCostsHelpText, 
-            R.string.closingCostsTitleText, LoanActivity.this);
-      }
-    });
+        ((TextView)findViewById(R.id.closingCostsTitle)).setOnClickListener(
+            new TitleTextOnClickListenerWrapper(ValueEnum.CLOSING_COSTS));
+     
 
     loanTerm.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -218,18 +178,8 @@ public class LoanActivity extends Activity {
     
     privateMortgageInsurance.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.PRIVATE_MORTGAGE_INSURANCE));
     
-    TextView privateMortgageInsuranceTitle = 
-        (TextView)findViewById(R.id.privateMortgageInsuranceTitle);
-
-      privateMortgageInsuranceTitle.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.privateMortgageInsuranceHelpText, 
-            R.string.privateMortgageInsuranceTitleText, LoanActivity.this);
-      }
-    });
+        ((TextView)findViewById(R.id.privateMortgageInsuranceTitle)).setOnClickListener(
+            new TitleTextOnClickListenerWrapper(ValueEnum.PRIVATE_MORTGAGE_INSURANCE));
 
   }
 

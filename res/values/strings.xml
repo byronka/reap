@@ -122,7 +122,7 @@
 	    The equation is yearly Net Operating Income (NOI) / current value</string>
     <string name="capRateOnProjectedValueTitleText" formatted="false">Cap Rate (Current Value)</string>
     <string name="cityHelpText" formatted="false">City of Investment</string>
-    <string name="closingCostsHelpText" formatted="false">costs incurred at
+    <string name="closingCostsHelpText" formatted="false">Costs incurred at
       the time of purchase of investment, 
       such as surveyor fees, home inspection, title insurance, termite bond, 
       and any 
@@ -166,7 +166,7 @@
       general expenses necessary to keep the investment in good repair
       without losing value.  Examples may include having to 
       repair the HVAC, paying for lawn care, retaining a management
-      company or handyman, or other general yearly expenses.
+      company or handyman, repairing the roof, or other general yearly expenses.
       Each year\'s general expenses future value will be calculated - 
       see Yearly General Expenses
 	     \n\n
@@ -187,7 +187,7 @@
 	    This is a value entered by the user, not calculated</string>
     <string name="marginalTaxRateHelpText" formatted="false">The 
       percentage rate that the investment amount is taxed.  The 
-      reason this is called ""marginal" tax rate is because it is
+      reason this is called *marginal* tax rate is because it is
       assumed that you have other income and this is on top of 
       that.  So, due to the different tax brackets, the best way 
       to determine your tax rate is to find what is the top bracket 
@@ -467,7 +467,7 @@ value at the time of sale, to pay for the broker
 
     <!-- setting default values page -->
     <string name="useGPSButtonText" formatted="false">Use GPS to set current location</string>
-    <string name="loadSavedValuesButtonText" formatted="false">load saved values from database</string>
+    <string name="loadSavedValuesButtonText" formatted="false">Load saved values from database</string>
 
     <!-- load saved values -->
     <string name="browseDatabaseButtonText" formatted="false">Browse the saved data</string>
@@ -581,7 +581,7 @@ value at the time of sale, to pay for the broker
     <string name="setDataValuesActivityTitleText" formatted="false">Set data values</string>
     <string name="taxesActivityTitleText" formatted="false">Taxes</string>
     <string name="savedDataBrowserActivityTitleText" formatted="false">Saved data browser</string>
-    <string name="appInfoActivityTitleText" formatted="false">app info page</string>
+    <string name="appInfoActivityTitleText" formatted="false">App info page</string>
     <string name="databaseSearchActivityTitleText" formatted="false">Database Search</string>
     <string name="saveCurrentValuesActivityTitleText" formatted="false">Save Current Values</string>
 
@@ -630,9 +630,9 @@ value at the time of sale, to pay for the broker
       email the entry with id </string>
     <string name="emailDialogTitle" formatted="false">Email</string>
     <string name="splashScreenRentCheckBox" formatted="false">Rental?</string>
-    <string name="calculatorActivityNotFoundText" formatted="false">calculator 
+    <string name="calculatorActivityNotFoundText" formatted="false">Calculator 
       Activity was not found</string>
-    <string name="calcActivityNotFoundGenExceptionText" formatted="false">tried to
+    <string name="calcActivityNotFoundGenExceptionText" formatted="false">Tried to
       call calculator activity, 
 	    but instead got this General exception</string>
     <string name="titleBarTextWhileCheckLicense" formatted="false">Checking license...</string>

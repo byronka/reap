@@ -14,6 +14,7 @@ import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
+import com.byronkatz.reap.general.TitleTextOnClickListenerWrapper;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
 
@@ -73,33 +74,14 @@ public class FinancialEnvironmentActivity extends Activity {
    
     inflationRate.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.INFLATION_RATE));
     
-    TextView inflationRateTitle = 
-        (TextView)findViewById(R.id.inflationRateTitle);
-    inflationRateTitle.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.inflationRateHelpText, 
-            R.string.inflationRateTitleText,
-            FinancialEnvironmentActivity.this);
-      }
-    });
+    ((TextView)findViewById(R.id.inflationRateTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.INFLATION_RATE));
+    
     
     realEstateAppreciationRate.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.REAL_ESTATE_APPRECIATION_RATE));
     
-    TextView realEstateAppreciationRateTitle = 
-        (TextView)findViewById(R.id.realEstateAppreciationRateTitle);
-    realEstateAppreciationRateTitle.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.realEstateAppreciationRateHelpText, 
-            R.string.realEstateAppreciationRateTitleText,
-            FinancialEnvironmentActivity.this);
-      }
-    });
+    ((TextView)findViewById(R.id.realEstateAppreciationRateTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.REAL_ESTATE_APPRECIATION_RATE));
     
   }
   

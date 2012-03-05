@@ -14,6 +14,7 @@ import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
+import com.byronkatz.reap.general.TitleTextOnClickListenerWrapper;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
 
@@ -75,63 +76,28 @@ public class TaxesActivity extends Activity {
     marginalTaxRate.setOnFocusChangeListener(
         new OnFocusChangeListenerWrapper(ValueEnum.MARGINAL_TAX_RATE));
 
-    TextView marginalTaxRateTitle = 
-        (TextView)findViewById(R.id.marginalTaxRateTitle);
-    marginalTaxRateTitle.setOnClickListener(new OnClickListener() {
+    ((TextView)findViewById(R.id.marginalTaxRateTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.MARGINAL_TAX_RATE));
 
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.marginalTaxRateHelpText, 
-            R.string.marginalTaxRateTitleText, TaxesActivity.this);
-      }
-    });
     
     buildingValue.setOnFocusChangeListener(
         new OnFocusChangeListenerWrapper(ValueEnum.BUILDING_VALUE));
 
-    
-    TextView buildingValueTitle = 
-        (TextView)findViewById(R.id.buildingValueTitle);
-    buildingValueTitle.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.buildingValueHelpText, 
-            R.string.buildingValueTitleText, TaxesActivity.this);
-      }
-    });
+    ((TextView)findViewById(R.id.buildingValueTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.BUILDING_VALUE));
     
     propertyTax.setOnFocusChangeListener(
         new OnFocusChangeListenerWrapper(ValueEnum.PROPERTY_TAX));
     
-    TextView propertyTaxTitle = 
-        (TextView)findViewById(R.id.propertyTaxTitle);
-    propertyTaxTitle.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.propertyTaxHelpText, 
-            R.string.propertyTaxTitleText, TaxesActivity.this);
-      }
-    });
+    ((TextView)findViewById(R.id.propertyTaxTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.PROPERTY_TAX));
+    
     
     localMunicipalFees.setOnFocusChangeListener(
         new OnFocusChangeListenerWrapper(ValueEnum.LOCAL_MUNICIPAL_FEES));
     
-    TextView localMunicipalFeesTitle = 
-        (TextView)findViewById(R.id.localMunicipalFeesTitle);
-    localMunicipalFeesTitle.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.localMunicipalFeesHelpText, 
-            R.string.localMunicipalFeesTitleText, TaxesActivity.this);
-      }
-    });
+    ((TextView)findViewById(R.id.localMunicipalFeesTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.LOCAL_MUNICIPAL_FEES));
     
   }
   
