@@ -19,14 +19,13 @@ public class RealEstateMarketAnalysisApplication extends Application {
   
   @Override
   public final void onCreate() {
-    super.onCreate();
     
     sharedPreferences = getSharedPreferences(BASE_VALUES, ContextWrapper.MODE_PRIVATE);
-
     setDataController(new DataController(this, sharedPreferences, getResources()));
     singleton = this;
-    
+    super.onCreate();
   }
+
     
   public DataController getDataController() {
     return dataController;

@@ -9,6 +9,7 @@ import java.util.Set;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -95,6 +96,10 @@ public class DataController {
     arrayMultiDivisionNumericCache = null;
   }
 
+  /**
+   * gets a sharedPreferences from RealEstateMarketAnalysisApplication and loads those values
+   * @param sp
+   */
   public void loadFieldValues(SharedPreferences sp) {
 
     //either a string or not a string
@@ -109,8 +114,14 @@ public class DataController {
     }
   }
 
-  public void saveFieldValues(SharedPreferences sp) {
-
+  /**
+   * calls a SharedPreferences from RealEstateMarketAnalysisApplication and saves
+   * the current input values there.
+   */
+  public void saveFieldValues() {
+    
+    SharedPreferences sp = RealEstateMarketAnalysisApplication.getInstance().
+        getSharedPreferences(RealEstateMarketAnalysisApplication.BASE_VALUES, ContextWrapper.MODE_PRIVATE);
     SharedPreferences.Editor editor = sp.edit();
     editor.clear();
     //either a string or not a string

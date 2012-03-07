@@ -113,13 +113,31 @@
 	    \n\n
 	    This is a value entered by the user, not calculated</string>
     <string name="capRateOnPurchaseValueHelpText" formatted="false">This
-      is the cap rate based on the original purchase value of the investment.
-	    The equation is yearly Net Operating Income (NOI) / purchase value</string>
+      is the capitalization rate based on the original purchase value of the investment.
+	    The equation is yearly Net Operating Income (NOI) / original purchase value.
+	    \n\n
+	    The equation is meant to give an idea of value of the investment.  It also
+	    provides an indication of what portion of the purchase value is paid
+	    off each year.  For example, a capitalization rate of 10% means that
+	    10% of the value of the investment is paid off by the income on the 
+	    investment each year.
+	    \n\n
+	    It can also provide valuation of an investment.  For instance, if one expects
+	    typical cap rates to be 10% in an area, then a property that provides $100,000
+	    a year should cost $1,000,000
+	    \n\n
+	       This value is calculated from the user input</string>
     <string name="capRateOnPurchaseValueTitleText" formatted="false">Cap 
       Rate (Purchase Value)</string>
     <string name="capRateOnProjectedValueHelpText" formatted="false">This is
       the cap rate based on the current estimated value of the investment.
-	    The equation is yearly Net Operating Income (NOI) / current value</string>
+	    The equation is yearly Net Operating Income (NOI) / current value.  This
+	    value is very similar to Cap Rate (Purchase Value), except that instead
+	    of relating to the valuation of the investment at purchase time, it is
+	    related to the projected current value, and is therefore considered a 
+	    more accurate valuation.
+	    \n\n
+	       This value is calculated from the user input</string>
     <string name="capRateOnProjectedValueTitleText" formatted="false">Cap Rate (Current Value)</string>
     <string name="cityHelpText" formatted="false">City of Investment</string>
     <string name="closingCostsHelpText" formatted="false">Costs incurred at
@@ -154,7 +172,7 @@
       be understood is that is the value in present
       value terms, as though you were selling off the investment today.  
       Its future value will be used at the time of selling
-	     the property.  For this value, see Selling Expenses.
+	  the property.  For the future value, see Selling Expenses.
 	     \n\n
 	    This is a value entered by the user, not calculated</string>
     <string name="inflationRateHelpText" formatted="false">The yearly rate of inflation.  This is the rate at which currency 
@@ -222,7 +240,7 @@
     <string name="monthlyMortgagePaymentTitleText" formatted="false">Monthly Mortgage Payment</string>
     <string name="monthlyRentFVHelpText" formatted="false">The monthly
       rent for this year.  
-      Assumption: The amount of rent charged goes up once every 
+      \n\nAssumption: The amount of rent charged goes up once every 
       twelve months starting
 		from the house purchase date.  Rent increases per the yearly real estate
 		appreciation rate. 
@@ -288,7 +306,8 @@ value at the time of sale, to pay for the broker
     <string name="sellingExpensesHelpText" formatted="false">These are
       the general expenses expected at the time of 
       selling the investment, modified using the future value equation
-      with the inflation rate.
+      with the inflation rate.  The value which the user inputs is 
+      titled, "Initial General Sale Expenses".
 	    	                     	     \n\n
 	       This value is calculated from the user input
 	       </string>
@@ -355,7 +374,8 @@ value at the time of sale, to pay for the broker
 	    This is a value entered by the user, not calculated
 	    </string>
       <string name="yearlyIncomeHelpText" formatted="false">This is the 
-        income gained each year through the rent.  This 
+        income gained each year through the rent, less the Vacancy and
+        Credit Loss.  This 
         application assumes that the rate you charge will increase once
         a year at the rate of real estate appreciation.  
         The equation for next year\'s rent is: this_year_monthly_rent 
@@ -395,7 +415,7 @@ value at the time of sale, to pay for the broker
       tax, management fees, 
       insurance premiums, maintenance costs, utility fees, or other 
       expenses made in the 
-      operation of the investment property.  Assumption:  The yearly
+      operation of the investment property.  \n\nAssumption:  The yearly
       general expenses 
       increase at the rate of yearly inflation.  They increase at 
       this rate once a year.
@@ -409,7 +429,7 @@ value at the time of sale, to pay for the broker
         	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="yearlyNetOperatingIncomeTitleText" formatted="false">Yearly Net Operating Income</string>
+    <string name="yearlyNetOperatingIncomeTitleText" formatted="false">Net Operating Income</string>
     <string name="yearlyOutlayHelpText" formatted="false">All expenses for
       the year - debt service, home 
       insurance, property tax, municipal fees, general expenses (maintenance),
@@ -441,7 +461,7 @@ value at the time of sale, to pay for the broker
       this year.  This application calculates each year\'s property
       tax by a future 
       value equation using real estate appreciation as the rate of
-      compounding.  Assumption: this
+      compounding.  \n\nAssumption: this
 	    tax is paid once a year.
 	    	     \n\n
 	       This value is calculated from the user input
@@ -451,7 +471,7 @@ value at the time of sale, to pay for the broker
       the portion of income 
       which is at the marginal tax rate, or in other words, the 
       taxable income times the 
-	    marginal tax rate.  Assumption:  This tax is paid once a year.
+	    marginal tax rate.  \n\nAssumption:  This tax is paid once a year.
 	    	     \n\n
 	       This value is calculated from the user input
 	       </string>
@@ -550,7 +570,7 @@ value at the time of sale, to pay for the broker
     <string name="fixupCostsHelpText" formatted="false">Cost to fix up the
       property to a 
       rentable state as a one-time dollar amount.  
-      Assumption: the fix-up costs (costs which are expended near the
+      \n\nAssumption: the fix-up costs (costs which are expended near the
 		time of purchase) commensurately increase the total value of the
 		investment.  This means that if you buy a $250k investment and spend
 		$50k on improvements (fix-up) the total value is now $300k.
@@ -656,7 +676,7 @@ value at the time of sale, to pay for the broker
       purchase value of 
 	    the investment.  values are calculated using the following 
 	    formulas: 
-	    \nloan interest rate = 5.5%
+	    \nloan interest rate = 4.0%
 	    \nprivate mortgage insurance is $100 / month
 	    \ndown payment = 20% * totalValue 
 	    \nclosing costs = $1000

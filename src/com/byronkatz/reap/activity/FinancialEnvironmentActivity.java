@@ -112,10 +112,9 @@ public class FinancialEnvironmentActivity extends Activity {
   
   @Override
   public void onPause() {
-    super.onPause();
     saveValuesToCache();
-
-
+    dataController.saveFieldValues();
+    super.onPause();
   }
 }
 

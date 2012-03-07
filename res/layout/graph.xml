@@ -73,10 +73,9 @@
                 android:layout_gravity="left"
                 android:layout_weight="1"
                 android:editable="true"
-                android:fadingEdge="none"
                 android:inputType="numberDecimal"
                 android:maxLength="20"
-                android:textSize="10dp" >
+                android:textSize="11dp" >
             </EditText>
 
             <EditText
@@ -85,10 +84,9 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:editable="true"
-                android:fadingEdge="none"
                 android:inputType="numberDecimal"
                 android:maxLength="20"
-                android:textSize="10dp" >
+                android:textSize="11dp" >
             </EditText>
 
             <EditText
@@ -98,10 +96,9 @@
                 android:layout_gravity="right"
                 android:layout_weight="1"
                 android:editable="true"
-                android:fadingEdge="none"
                 android:inputType="numberDecimal"
                 android:maxLength="20"
-                android:textSize="10dp" >
+                android:textSize="11dp" >
             </EditText>
 
             <Button

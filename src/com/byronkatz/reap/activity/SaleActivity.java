@@ -99,9 +99,10 @@ public class SaleActivity extends Activity {
   }
   
   @Override
-  protected void onPause() {
-    super.onPause();
+  public void onPause() {
     saveValuesToCache();
+    dataController.saveFieldValues();
+    super.onPause();
   }
   
   private void assignValuesToFields() {

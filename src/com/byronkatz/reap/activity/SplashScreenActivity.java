@@ -251,14 +251,14 @@ public class SplashScreenActivity extends Activity {
 
   private void setAssumedValues(final Double totalValue) {
 
-    final Double yearlyInterestRate = 0.055d;
+    final Double yearlyInterestRate = 0.040d;
     dataController.setValueAsDouble(ValueEnum.TOTAL_PURCHASE_VALUE, totalValue);
     dataController.setValueAsDouble(ValueEnum.YEARLY_INTEREST_RATE, yearlyInterestRate);
     dataController.setValueAsDouble(ValueEnum.PRIVATE_MORTGAGE_INSURANCE, 100d);
-    dataController.setValueAsDouble(ValueEnum.DOWN_PAYMENT, totalValue * 0.20d);
+    dataController.setValueAsDouble(ValueEnum.DOWN_PAYMENT, Math.ceil(totalValue * 0.20d));
     dataController.setValueAsDouble(ValueEnum.CLOSING_COSTS, 1000d);
     dataController.setValueAsDouble(ValueEnum.MARGINAL_TAX_RATE, 0.25d);
-    dataController.setValueAsDouble(ValueEnum.BUILDING_VALUE, totalValue * 0.80d);
+    dataController.setValueAsDouble(ValueEnum.BUILDING_VALUE, Math.ceil(totalValue * 0.80d));
     dataController.setValueAsDouble(ValueEnum.PROPERTY_TAX, totalValue * 0.01d);
     dataController.setValueAsDouble(ValueEnum.LOCAL_MUNICIPAL_FEES, 0d);
     dataController.setValueAsDouble(ValueEnum.GENERAL_SALE_EXPENSES, 2000d);
@@ -267,7 +267,7 @@ public class SplashScreenActivity extends Activity {
     dataController.setValueAsDouble(ValueEnum.REAL_ESTATE_APPRECIATION_RATE, 0.04d);
 
     if (((CheckBox) findViewById (R.id.splashScreenRentCheckBox)).isChecked()) {
-      dataController.setValueAsDouble(ValueEnum.ESTIMATED_RENT_PAYMENTS, totalValue * 0.005d);
+      dataController.setValueAsDouble(ValueEnum.ESTIMATED_RENT_PAYMENTS, Math.ceil(totalValue * 0.005d));
     } else {
       dataController.setValueAsDouble(ValueEnum.ESTIMATED_RENT_PAYMENTS, 0d);
     }
