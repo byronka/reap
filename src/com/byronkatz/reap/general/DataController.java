@@ -174,6 +174,11 @@ public class DataController {
 
   public Double getValueAsDouble(ValueEnum key, Integer year) {
 
+    //bail and return something harmless if year is null
+    if (year == null) {
+      return 0d;
+    }
+    
     //unpack the numericValues for this division
     Double returnValue = arrayMultiDivisionNumericCache[currentDivisionForReading][year].get(key);
     if (returnValue == null){

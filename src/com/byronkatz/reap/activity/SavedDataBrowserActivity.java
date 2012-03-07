@@ -14,6 +14,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -93,7 +94,6 @@ public class SavedDataBrowserActivity extends ListActivity {
       "By MIRR",
       "By NPV",
       "By CRCV",
-      "By CRPV",
       "By ATCF"
   };
 
@@ -108,13 +108,14 @@ public class SavedDataBrowserActivity extends ListActivity {
 
   @Override
   public void onResume() {
-    super.onResume();
     //by default, sort by id when we start, unless something is saved
     SharedPreferences sp = getPreferences(MODE_PRIVATE);
     currentSortString = sp.getString(SORTER, DatabaseAdapter.KEY_ID);
     currentSortTypeIndex = sp.getInt(SORT_TYPE, 1);
     isSortAscending = sp.getBoolean(SORT_DIRECTION, false);
-    changeSort(currentSortString, currentSortTypeIndex);
+    cursor = getSortedCursor(currentSortString, sortTypes[currentSortTypeIndex]);
+    setupDataBrowser(cursor);
+    super.onResume();
 
 //    cursor = getSortedCursor(currentSortString, sortTypes[currentSortTypeIndex]);
 //    setupDataBrowser(cursor);
@@ -123,7 +124,6 @@ public class SavedDataBrowserActivity extends ListActivity {
 
   @Override
   public void onPause() {
-    super.onPause();
     SharedPreferences sp = getPreferences(MODE_PRIVATE);
     SharedPreferences.Editor editor = sp.edit();
     editor.clear();
@@ -131,6 +131,8 @@ public class SavedDataBrowserActivity extends ListActivity {
     editor.putInt(SORT_TYPE, currentSortTypeIndex);
     editor.putBoolean(SORT_DIRECTION, isSortAscending);
     editor.commit();
+    super.onPause();
+
   }
 
   /** Called when the activity is first created. */
@@ -247,9 +249,6 @@ public class SavedDataBrowserActivity extends ListActivity {
           changeSort(ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name(), which);
           break;
         case 5:
-          changeSort(ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name(), which);
-          break;
-        case 6:
           changeSort(ValueEnum.ATCF.name(), which);
           break;
         }
@@ -575,6 +574,7 @@ public class SavedDataBrowserActivity extends ListActivity {
     
     //9 is the "address" column
     final String address = cursor.getString(9);
+    Log.d(getClass().getName(), "address: " + address);
     //if this entry has an address, include it
     if (address.length() > 0) {
       message += " at " + address;

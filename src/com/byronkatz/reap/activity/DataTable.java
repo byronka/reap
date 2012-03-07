@@ -256,8 +256,12 @@ public class DataTable {
     return tempSet;
   }
 
-  
-  public void setDataTableItems(ValueEnum[] items, Integer year, Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence ) {
+  /**
+   * method which actually sets values to each of the items in the data table shown in the graph page
+   * @param year year for values we want to see
+   * @param valueToDataTableItemCorrespondence map of valueEnums to tableRows in the data table
+   */
+  public void setDataTableItems( Integer year, Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence ) {
 
 
     ValueEnum ve;
