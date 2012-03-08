@@ -13,6 +13,7 @@ import android.content.ContextWrapper;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.byronkatz.reap.activity.GraphActivity;
 import com.byronkatz.reap.calculations.GeneralCalculations;
@@ -127,9 +128,12 @@ public class DataController {
     //either a string or not a string
     for (ValueEnum inputEnum : ValueEnum.values()) {
       if (inputEnum.isSavedToDatabase() && (inputEnum.getType() != ValueEnum.ValueType.STRING)) {
+        Log.d("DataController saveFieldValues", "saving to sharedPreferences " + inputEnum + " value:" + String.valueOf(getValueAsDouble(inputEnum)));
         editor.putString(inputEnum.name(), String.valueOf(getValueAsDouble(inputEnum)));    
       } else if (inputEnum.isSavedToDatabase() && (inputEnum.getType() == ValueEnum.ValueType.STRING)) {
         editor.putString(inputEnum.name(), getValueAsString(inputEnum));
+        Log.d("DataController saveFieldValues", "saving to sharedPreferences " + inputEnum + " value:" + getValueAsString(inputEnum));
+
       }
     }
 

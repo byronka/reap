@@ -190,13 +190,15 @@ public class GraphActivity extends Activity {
   @Override
   public void onPause() {
 
+    Log.d("GraphActivity onPause", "Entering onPause");
     calculateInBackgroundTask.cancel(false);
     SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
     dataTable.saveGraphPageData(sharedPreferences, isGraphVisible, currentSliderKey);
 
     //Following saves the data to persistence between onPause / onResume
-    dataController.saveFieldValues();
+//    dataController.saveFieldValues();
     super.onPause();
+    Log.d("GraphActivity onPause", "Exiting onPause");
 
   }
 
@@ -739,9 +741,18 @@ public class GraphActivity extends Activity {
 
     @Override
     protected void onCancelled() {
+      Log.d("background thread onCancelled", "Entering onCancelled");
 
-      //clean up
+      //clean up - put the stored current value back in place
       dataController.setValueAsDouble(currentSliderKeyStorage, currentValueStorage);
+      Log.d("background thread onCancelled", "currentSliderKeyStorage: " + currentSliderKeyStorage +
+          "and currentValueStorage: " + currentValueStorage + " were restored");
+      
+      //Following saves the data to persistence between onPause / onResume
+      //It is here because this way we are guaranteed that the data is clean before persisting
+      dataController.saveFieldValues();
+
+      
     }
 
     @Override

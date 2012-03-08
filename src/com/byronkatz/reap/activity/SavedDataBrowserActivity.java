@@ -463,7 +463,6 @@ public class SavedDataBrowserActivity extends ListActivity {
     cursor.moveToPosition(position);
     final Integer rowNum = cursor.getInt(0);
     String dialogMessage = getString(messageText) + " " + rowNum;
-    dialogMessage += " " + rowNum;
     dialogMessage = addAddressToMessage(dialogMessage);
     dialogBuilder.setMessage(dialogMessage + "?");    
     dialogBuilder.setTitle(getString(titleText));
@@ -480,7 +479,7 @@ public class SavedDataBrowserActivity extends ListActivity {
 
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        deleteEntry(position);
+        deleteEntry();
       }
     });
     
@@ -494,7 +493,7 @@ public class SavedDataBrowserActivity extends ListActivity {
     deleteDialogBuilder.create().show();
   }
   
-  private void deleteEntry(int position) {
+  private void deleteEntry() {
     
     final Integer rowNum = cursor.getInt(0);
     int columnIndex = cursor.getColumnIndex(DatabaseAdapter.KEY_ID);
@@ -515,59 +514,94 @@ public class SavedDataBrowserActivity extends ListActivity {
   }
 
   private void createLoadDialog(final int position) {
-    final Dialog loadDialog = new Dialog(SavedDataBrowserActivity.this);
-
-    Window window = loadDialog.getWindow();
-    window.setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND, 
-        WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
-    loadDialog.setContentView(R.layout.load_database_item_dialog_view);
-    TextView loadTextView = (TextView)loadDialog.findViewById(R.id.load_text);
-
-    cursor.moveToPosition(position);
-    final String rowNum = cursor.getString(0);
-
     
-    //set the message to ask the user, to confirm they want that row loaded
-    String loadTheDataWithId = getString(R.string.loadTheDataWithId);
-    
-    loadTheDataWithId += " " + rowNum;
-    loadTheDataWithId = addAddressToMessage(loadTheDataWithId);
- 
+    final AlertDialog.Builder loadDialogBuilder =
+        buildAlertDialog(position, R.string.loadTheDataWithId, R.string.loadDataDialogTitle);
 
-    loadTextView.setText(loadTheDataWithId + "?");
-
-    String loadDataDialogTitle = getString(R.string.loadDataDialogTitle);
-    loadDialog.setTitle(loadDataDialogTitle);
-
-    Button loadButton = (Button)loadDialog.findViewById(R.id.loadDatabaseItemButton);
-    loadButton.setOnClickListener(new OnClickListener() {
+    loadDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
       @Override
-      public void onClick(View v) {
-
-        DatabaseUtils.cursorRowToContentValues(cursor, contentValues);
-        dataController.setCurrentData(contentValues);
-        dataController.setCurrentDatabaseRow(Integer.valueOf(rowNum));
-
-        String dataLoadedToastText = getString(R.string.dataLoadedToastText);
-        Toast toast = Toast.makeText(SavedDataBrowserActivity.this, dataLoadedToastText, Toast.LENGTH_SHORT);
-        toast.show();
-        loadDialog.dismiss();
-        finish();
+      public void onClick(DialogInterface dialog, int which) {
+        loadEntry();
       }
     });
-
-    Button cancelButton = (Button)loadDialog.findViewById(R.id.cancelButton);
-    cancelButton.setOnClickListener(new OnClickListener() {
+    
+    loadDialogBuilder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
 
       @Override
-      public void onClick(View v) {
-        loadDialog.cancel();
-
+      public void onClick(DialogInterface dialog, int which) {
+        //What to do here to cancel?  Nothing?  Yeah I think so.
       }
     });
+    loadDialogBuilder.create().show();    
+  }    
+//    final Dialog loadDialog = new Dialog(SavedDataBrowserActivity.this);
+//
+//    Window window = loadDialog.getWindow();
+//    window.setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND, 
+//        WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+//    loadDialog.setContentView(R.layout.load_database_item_dialog_view);
+//    TextView loadTextView = (TextView)loadDialog.findViewById(R.id.load_text);
+//
+//    cursor.moveToPosition(position);
+//    final String rowNum = cursor.getString(0);
+//
+//    
+//    //set the message to ask the user, to confirm they want that row loaded
+//    String loadTheDataWithId = getString(R.string.loadTheDataWithId);
+//    
+//    loadTheDataWithId += " " + rowNum;
+//    loadTheDataWithId = addAddressToMessage(loadTheDataWithId);
+// 
+//
+//    loadTextView.setText(loadTheDataWithId + "?");
+//
+//    String loadDataDialogTitle = getString(R.string.loadDataDialogTitle);
+//    loadDialog.setTitle(loadDataDialogTitle);
+//
+//    Button loadButton = (Button)loadDialog.findViewById(R.id.loadDatabaseItemButton);
+//    loadButton.setOnClickListener(new OnClickListener() {
+//
+//      @Override
+//      public void onClick(View v) {
+//
+////        DatabaseUtils.cursorRowToContentValues(cursor, contentValues);
+////        dataController.setCurrentData(contentValues);
+////        dataController.setCurrentDatabaseRow(Integer.valueOf(rowNum));
+////
+////        String dataLoadedToastText = getString(R.string.dataLoadedToastText);
+////        Toast toast = Toast.makeText(SavedDataBrowserActivity.this, dataLoadedToastText, Toast.LENGTH_SHORT);
+////        toast.show();
+//        loadEntry(v);
+//        loadDialog.dismiss();
+//        finish();
+//      }
+//    });
+//
+//    Button cancelButton = (Button)loadDialog.findViewById(R.id.cancelButton);
+//    cancelButton.setOnClickListener(new OnClickListener() {
+//
+//      @Override
+//      public void onClick(View v) {
+//        loadDialog.cancel();
+//
+//      }
+//    });
+//
+//    loadDialog.show();
+//  }
+  
+  private void loadEntry() {
+    
+    final Integer rowNum = cursor.getInt(0);
 
-    loadDialog.show();
+    DatabaseUtils.cursorRowToContentValues(cursor, contentValues);
+    dataController.setCurrentData(contentValues);
+    dataController.setCurrentDatabaseRow(Integer.valueOf(rowNum));
+
+    String dataLoadedToastText = getString(R.string.dataLoadedToastText);
+    Toast toast = Toast.makeText(SavedDataBrowserActivity.this, dataLoadedToastText, Toast.LENGTH_LONG);
+    toast.show();
   }
   
   private String addAddressToMessage(String message) {
