@@ -12,23 +12,24 @@ import android.os.Handler;
 import android.provider.Settings.Secure;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.android.vending.licensing.AESObfuscator;
-import com.android.vending.licensing.LicenseChecker;
-import com.android.vending.licensing.LicenseCheckerCallback;
-import com.android.vending.licensing.ServerManagedPolicy;
 import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
+import com.google.android.vending.licensing.AESObfuscator;
+import com.google.android.vending.licensing.LicenseChecker;
+import com.google.android.vending.licensing.LicenseCheckerCallback;
+import com.google.android.vending.licensing.Policy;
+import com.google.android.vending.licensing.ServerManagedPolicy;
 
 public class SplashScreenActivity extends Activity {
 
@@ -140,7 +141,29 @@ public class SplashScreenActivity extends Activity {
   }
 
   protected Dialog onCreateDialog(int id) {
-    // We have only one dialog.
+    // We have two dialogs - one for when it clearly is not licensed, and one for when we failed on retry.
+    //This first one is when failed retry 
+    if (id == Policy.RETRY) {
+    return new AlertDialog.Builder(this)
+    .setTitle(R.string.unlicensed_dialog_title)
+    .setMessage(R.string.failed_retry_dialog_body)
+    .setPositiveButton(R.string.buy_button, new DialogInterface.OnClickListener() {
+      public void onClick(DialogInterface dialog, int which) {
+        Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(
+            "http://market.android.com/details?id=" + getPackageName()));
+        startActivity(marketIntent);
+      }
+    })
+    .setNegativeButton(R.string.quit_button, new DialogInterface.OnClickListener() {
+      public void onClick(DialogInterface dialog, int which) {
+        finish();
+      }
+    })
+    .create();
+    
+    } else {
+      
+    //This second one is for clearly not licensed
     return new AlertDialog.Builder(this)
     .setTitle(R.string.unlicensed_dialog_title)
     .setMessage(R.string.unlicensed_dialog_body)
@@ -157,6 +180,7 @@ public class SplashScreenActivity extends Activity {
       }
     })
     .create();
+    }
   }
 
   
@@ -190,7 +214,7 @@ public class SplashScreenActivity extends Activity {
    * Otherwise, a dialog is presented to purchase the app.
    * @param result
    */
-  private void displayResult() {
+  private void displayResult(final String result) {
     mHandler.post(new Runnable() {
         public void run() {
           activateInterface();
@@ -280,24 +304,25 @@ public class SplashScreenActivity extends Activity {
 
   private class MyLicenseCheckerCallback implements LicenseCheckerCallback {
     
-    public void allow() {
+    @Override
+    public void allow(int reason) {
       if (isFinishing()) {
         // Don't update UI if Activity is finishing.
         return;
       }
       
       setLicensed(true);
-
-      
-      displayResult();
+      displayResult("");
       // Should allow user access.
     }
 
-    public void dontAllow() {
+    @Override
+    public void dontAllow(int reason) {
       if (isFinishing()) {
         // Don't update UI if Activity is finishing.
         return;
       }
+
       // Should not allow access. In most cases, the app should assume
       // the user has access unless it encounters this. If it does,
       // the app should inform the user of their unlicensed ways
@@ -306,10 +331,10 @@ public class SplashScreenActivity extends Activity {
       // In this example, we show a dialog that takes the user to Market.
       setLicensed(false);
 
-      showDialog(0);
+      showDialog(reason);
     }
 
-    public void applicationError(ApplicationErrorCode errorCode) {
+    public void applicationError(int errorCode) {
       if (isFinishing()) {
         // Don't update UI if Activity is finishing.
         return;
@@ -320,8 +345,9 @@ public class SplashScreenActivity extends Activity {
       String result = String.format(getString(R.string.application_error), errorCode);
       Log.d(getClass().getName(), "result is " + result);
       setLicensed(true);
-      displayResult();
+      displayResult(result);
     }
+
   }
 
   @Override

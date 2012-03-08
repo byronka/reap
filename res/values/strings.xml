@@ -18,6 +18,15 @@
       weak, try starting the app again
       when the connection is better.  If not licensed, please
       purchase it from Android Market.</string>
+      
+      <string name="failed_retry_dialog_body">An error occurred 
+      attempting to connect to the licensing server.  If your network connection is
+      weak, try starting the app again when the connection is better.  The licensing
+      service is provided through Google Play, so that must be installed.  Also, check
+      that the account you used to purchase the app is the account under Accounts and Sync
+      in the device settings.
+      
+       </string>
     <string name="buy_button">Buy app</string>
     <string name="quit_button">Exit</string>
 

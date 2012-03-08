@@ -7,9 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -637,7 +634,7 @@ public class GraphActivity extends Activity {
             Log.d("Tag 003", "currentValueNumeric is " + currentValueNumeric);
             Thread.dumpStack();
 
-            //following is for the reset button
+            //following is for the reset button.  It stores the new current value.
             originalCurrentValueNumeric = currentValueNumeric;
 
             recalcGraphPage();
