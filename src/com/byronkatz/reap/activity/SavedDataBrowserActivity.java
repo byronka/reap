@@ -301,15 +301,13 @@ public class SavedDataBrowserActivity extends ListActivity {
   }
 
   private void createEmailDialog(final int position) {
+    
     final AlertDialog.Builder emailDialogBuilder = 
         new AlertDialog.Builder(SavedDataBrowserActivity.this);
-
     cursor.moveToPosition(position);
     final Integer rowNum = cursor.getInt(0);
-
     String dialogMessage = getString(R.string.emailDialogMessage) + " " + rowNum;
     dialogMessage = addAddressToMessage(dialogMessage);
-    
     emailDialogBuilder.setMessage(dialogMessage + "?");    
     emailDialogBuilder.setTitle(getString(R.string.emailDialogTitle));
 
@@ -458,60 +456,62 @@ public class SavedDataBrowserActivity extends ListActivity {
   }
 
 
-  private void createDeleteDialog(int position) {
-    final Dialog deleteDialog = new Dialog(SavedDataBrowserActivity.this);
-
-    Window window = deleteDialog.getWindow();
-    window.setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND, 
-        WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
-    deleteDialog.setContentView(R.layout.delete_database_item_dialog_view);
-    TextView deleteTextView = (TextView)deleteDialog.findViewById(R.id.delete_text);
-
+  private AlertDialog.Builder buildAlertDialog(final int position, int messageText, int titleText) {
+    
+    final AlertDialog.Builder dialogBuilder = 
+        new AlertDialog.Builder(SavedDataBrowserActivity.this);
     cursor.moveToPosition(position);
     final Integer rowNum = cursor.getInt(0);
+    String dialogMessage = getString(messageText) + " " + rowNum;
+    dialogMessage += " " + rowNum;
+    dialogMessage = addAddressToMessage(dialogMessage);
+    dialogBuilder.setMessage(dialogMessage + "?");    
+    dialogBuilder.setTitle(getString(titleText));
+    
+    return dialogBuilder;
+  }
+  
+  private void createDeleteDialog(final int position) {
+        
+    final AlertDialog.Builder deleteDialogBuilder =
+        buildAlertDialog(position, R.string.deleteMessage, R.string.deleteMessageTitle);
 
-    String deleteMessage = getString(R.string.deleteMessage);
-    deleteMessage += " " + rowNum;
-    deleteMessage = addAddressToMessage(deleteMessage);
-    deleteTextView.setText(deleteMessage + "?");
-
-    String deleteMessageTitle = getString(R.string.deleteMessageTitle);
-    deleteDialog.setTitle(deleteMessageTitle);
-
-    Button deleteButton = (Button)deleteDialog.findViewById(R.id.deleteDatabaseItemButton);
-    deleteButton.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        int columnIndex = cursor.getColumnIndex(DatabaseAdapter.KEY_ID);
-        int rowId = cursor.getInt(columnIndex);
-        dataController.removeDatabaseEntry(rowId);
-
-        //if we just deleted the "current" data, then set the current row to an invalid number
-        if (rowNum == dataController.getCurrentDatabaseRow()) {
-          dataController.setCurrentDatabaseRow(-1);
-        }
-
-        String dataDeletedToastText = getString(R.string.dataDeletedToastText);
-        Toast toast = Toast.makeText(SavedDataBrowserActivity.this, dataDeletedToastText, Toast.LENGTH_SHORT);
-        toast.show();
-
-        cursor.requery();
-        deleteDialog.cancel();
-      }
-    });
-
-    Button cancelButton = (Button)deleteDialog.findViewById(R.id.cancelButton);
-    cancelButton.setOnClickListener(new OnClickListener() {
+    deleteDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
       @Override
-      public void onClick(View v) {
-        deleteDialog.cancel();
-
+      public void onClick(DialogInterface dialog, int which) {
+        deleteEntry(position);
       }
     });
+    
+    deleteDialogBuilder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
 
-    deleteDialog.show();
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+        //What to do here to cancel?  Nothing?  Yeah I think so.
+      }
+    });
+    deleteDialogBuilder.create().show();
+  }
+  
+  private void deleteEntry(int position) {
+    
+    final Integer rowNum = cursor.getInt(0);
+    int columnIndex = cursor.getColumnIndex(DatabaseAdapter.KEY_ID);
+    int rowId = cursor.getInt(columnIndex);
+    dataController.removeDatabaseEntry(rowId);
+
+    //if we just deleted the "current" data, then set the current row to an invalid number
+    if (rowNum == dataController.getCurrentDatabaseRow()) {
+      dataController.setCurrentDatabaseRow(-1);
+    }
+
+    String dataDeletedToastText = getString(R.string.dataDeletedToastText);
+    Toast toast = Toast.makeText(SavedDataBrowserActivity.this, dataDeletedToastText, Toast.LENGTH_LONG);
+    toast.show();
+
+    cursor.requery();
+//    deleteDialog.cancel();
   }
 
   private void createLoadDialog(final int position) {

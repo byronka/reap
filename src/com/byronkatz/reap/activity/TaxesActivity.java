@@ -50,7 +50,7 @@ public class TaxesActivity extends Activity {
   public boolean onOptionsItemSelected (MenuItem item) {
     super.onOptionsItemSelected(item);
 
-    Utility.switchForMenuItem(item, this, false);
+    Utility.switchForMenuItem(item, this);
     return false;
   }
   

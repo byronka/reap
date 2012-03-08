@@ -2,7 +2,7 @@ package com.byronkatz.reap.activity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +36,7 @@ public class ConfigureDataTablesActivity extends Activity {
   Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence;
   private Boolean isGraphVisible;
   CheckBox graphVisibilityCheckbox;
+  SharedPreferences graphActivitySharedPrefs;
 
   private DataController dataController = RealEstateMarketAnalysisApplication
       .getInstance().getDataController();
@@ -48,8 +49,10 @@ public class ConfigureDataTablesActivity extends Activity {
     super.onCreate(savedState);
     setContentView(R.layout.configure_data_tables);
     
+    graphActivitySharedPrefs = getSharedPreferences(GraphActivity.PREFS_NAME, 0);
+    
     viewableDataTableRows = dataController.getViewableDataTableRows();
-    valueToDataTableItemCorrespondence = new HashMap<ValueEnum, TableRow> ();
+    valueToDataTableItemCorrespondence = new EnumMap<ValueEnum, TableRow> (ValueEnum.class);
     configDataTableLayout = (TableLayout) findViewById(R.id.dataTableLayoutConfiguration);
     createDataTableConfiguration();
 
@@ -60,9 +63,6 @@ public class ConfigureDataTablesActivity extends Activity {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         isGraphVisible = isChecked;
-        Intent data = new Intent();
-        data.putExtra(GraphActivity.IS_GRAPH_VISIBLE, isGraphVisible);
-        setResult(RESULT_OK, data);
       }
     });
 
@@ -72,7 +72,7 @@ public class ConfigureDataTablesActivity extends Activity {
   public void onResume() {
     super.onResume();
 
-    isGraphVisible = getIntent().getExtras().getBoolean(GraphActivity.IS_GRAPH_VISIBLE);
+    isGraphVisible = graphActivitySharedPrefs.getBoolean(GraphActivity.IS_GRAPH_VISIBLE, true);
     graphVisibilityCheckbox.setChecked(isGraphVisible);
   }
 
@@ -91,14 +91,20 @@ public class ConfigureDataTablesActivity extends Activity {
         viewableDataTableRows.add(entry.getKey());
       }
     }
-    dataController.setViewableDataTableRows(viewableDataTableRows);
 
-    SharedPreferences.Editor editor = getPreferences(0).edit();
+    packageUpDecisionsFromConfig();
+  }
+
+  private void packageUpDecisionsFromConfig() {
+    SharedPreferences.Editor editor = graphActivitySharedPrefs.edit();
     editor.clear();
+    for (ValueEnum ve : viewableDataTableRows) {
+      editor.putBoolean(ve.name(), true);
+    }
     editor.putBoolean(GraphActivity.IS_GRAPH_VISIBLE, isGraphVisible);
     editor.commit();
   }
-
+  
   private void createDataTableConfiguration() {
 
 

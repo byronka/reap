@@ -204,13 +204,11 @@ public class SplashScreenActivity extends Activity {
 
     SharedPreferences sp = getSharedPreferences(GraphActivity.PREFS_NAME, MODE_PRIVATE);
 
-    
-    
     SharedPreferences.Editor editor = sp.edit();
     if (((CheckBox) findViewById (R.id.splashScreenRentCheckBox)).isChecked()) {
 
       //don't clear - if they want this info, these are the entries that need to be on.
-//      editor.clear();
+      editor.clear();
       editor.putBoolean(ValueEnum.NPV.name(), true);   
       editor.putBoolean(ValueEnum.ATCF.name(), true);             
       editor.putBoolean(ValueEnum.ATCF_ACCUMULATOR.name(), true);       
@@ -225,14 +223,14 @@ public class SplashScreenActivity extends Activity {
       editor.putBoolean(ValueEnum.MONTHLY_RENT_FV.name(), true);
       editor.putBoolean(ValueEnum.ATER.name(), true);  
 
-      editor.putBoolean("IS_GRAPH_VISIBLE", true);
+      editor.putBoolean(GraphActivity.IS_GRAPH_VISIBLE, true);
 
       editor.commit();
 
     } else {
 
       //don't clear - if they want this info, these are the entries that need to be on.
-//      editor.clear();
+      editor.clear();
 
       editor.putBoolean(ValueEnum.MONTHLY_MORTGAGE_PAYMENT.name(), true);   
       editor.putBoolean(ValueEnum.ACCUM_INTEREST.name(), true);             
@@ -243,7 +241,7 @@ public class SplashScreenActivity extends Activity {
       editor.putBoolean(ValueEnum.YEARLY_PRINCIPAL_PAID.name(), true);      
       editor.putBoolean(ValueEnum.YEARLY_INTEREST_PAID.name(), true);       
 
-      editor.putBoolean("IS_GRAPH_VISIBLE", false);
+      editor.putBoolean(GraphActivity.IS_GRAPH_VISIBLE, false);
 
       editor.commit();
     }

@@ -40,7 +40,8 @@ public class DataTable {
     this.graphActivity = graphActivity;
   }
 
-  public void makeSelectedRowsVisible(Set<ValueEnum> values, Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence) {
+  public void makeSelectedRowsVisible( Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence) {
+    Set<ValueEnum> values = dataController.getViewableDataTableRows();
     TableRow tempTableRow;
 
     for (Entry<ValueEnum, TableRow> entry : valueToDataTableItemCorrespondence.entrySet()) {

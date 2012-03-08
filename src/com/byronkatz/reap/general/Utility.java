@@ -11,6 +11,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -56,7 +57,7 @@ public class Utility {
     helpDialog.show();
   }
 
-  public static void switchForMenuItem(MenuItem item, Activity activity, boolean isGraphVisible) {
+  public static void switchForMenuItem(MenuItem item, Activity activity) {
 
 
     Intent intent = null;
@@ -67,8 +68,7 @@ public class Utility {
     case R.id.configureGraphPageMenuItem:
 
       intent = new Intent(activity, ConfigureDataTablesActivity.class);
-      intent.putExtra(GraphActivity.IS_GRAPH_VISIBLE, isGraphVisible);
-      activity.startActivityForResult(intent, GraphActivity.CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE);
+      activity.startActivity(intent);
       break;
     case R.id.editValuesMenuItem:
       intent = new Intent(activity, DataPagesActivity.class);

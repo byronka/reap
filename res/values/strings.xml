@@ -354,9 +354,9 @@ value at the time of sale, to pay for the broker
     <string name="vacancyAndCreditLossRateHelpText" formatted="false">This 
       is the estimated average yearly loss due to
       either of the following: tenants failing to pay their rent, or
-      not having someone in the unit.  It is applied to each year's rental
+      not having someone in the unit.  It is applied to each year\'s rental
       income to approximate its affect.  (If you believe that you will never
-      miss a single month's rent due to a tenant not being in the unit or
+      miss a single month\'s rent due to a tenant not being in the unit or
       unable to pay, then set this value to 0).
 	                     	     \n\n
 	       This is a value entered by the user, not calculated

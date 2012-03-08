@@ -74,7 +74,7 @@ public class GraphActivity extends Activity {
   SharedPreferences sp;
 
   public static final int DIVISIONS_OF_VALUE_SLIDER = 40;
-  public static final int CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE = 1;
+//  public static final int CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE = 1;
 
   ValueEnum[] dataTableItems = ValueEnum.values();
   Double percentageSlid;
@@ -98,29 +98,32 @@ public class GraphActivity extends Activity {
       isGraphVisible = true;
     }
 
-    Utility.switchForMenuItem(item, GraphActivity.this, isGraphVisible);
+    Utility.switchForMenuItem(item, GraphActivity.this);
     return false;
   }
 
-  @Override
-  public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
+//  @Override
+//  public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//    super.onActivityResult(requestCode, resultCode, data);
+//
+//    if (requestCode == CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE) {
+//
+//      if (data != null) {
+//        isGraphVisible = data.getExtras().getBoolean(IS_GRAPH_VISIBLE, true);
+//      }
+//
+//      executeGraphVisibility(isGraphVisible);
+//    }
+//  }
 
-    if (requestCode == CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE) {
-      dataTable.makeSelectedRowsVisible(dataController.getViewableDataTableRows(), valueToDataTableItemCorrespondence);
-
-      if (data != null) {
-        isGraphVisible = data.getExtras().getBoolean(IS_GRAPH_VISIBLE, true);
-      }
-
-      if (isGraphVisible) {
-        tabs.setVisibility(View.VISIBLE);
-      } else {
-        tabs.setVisibility(View.GONE);
-      }
+  private void executeGraphVisibility(Boolean isGraphVisible) {
+    if (isGraphVisible) {
+      tabs.setVisibility(View.VISIBLE);
+    } else {
+      tabs.setVisibility(View.GONE);
     }
   }
-
+  
   @Override
   public void onResume() {
 
@@ -129,8 +132,10 @@ public class GraphActivity extends Activity {
     sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
     dataController.setViewableDataTableRows(
         dataTable.restoreViewableDataTableRows(sp));
-    isGraphVisible = sp.getBoolean(IS_GRAPH_VISIBLE, false);
+    dataTable.makeSelectedRowsVisible( valueToDataTableItemCorrespondence);
 
+    isGraphVisible = sp.getBoolean(IS_GRAPH_VISIBLE, false);
+    executeGraphVisibility(isGraphVisible);
     //set the current current_slider_key, which is shown in the spinner at the top.  If
     //nothing set, then set Building Value as the default (it's the first one)
     String temp = sp.getString(CURRENT_SLIDER_KEY, ValueEnum.BUILDING_VALUE.name());
