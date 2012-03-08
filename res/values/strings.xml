@@ -276,10 +276,23 @@
 	    This is a value entered by the user, not calculated</string>
     <string name="projectedHomeValueHelpText" formatted="false">The expected
       value of the investment at the time of sale, 
-	    assuming the value increases at the rate set by the real estate appreciation rate</string>
-    <string name="projectedHomeValueTitleText" formatted="false">Projected Home Value</string>
+	    assuming the value increases at the rate set by the real estate 
+	    appreciation rate.
+	    \n\n
+	    Assumption: The value of the investment goes up once a year.  It is
+	    increased by the value of (1 + REAR / 12)^12
+	    	    	                     	     \n\n
+	       This value is calculated from the user input
+	       </string>
+    <string name="projectedHomeValueTitleText" formatted="false">Projected Investment Value</string>
     <string name="propertyTaxHelpText" formatted="false">This is the yearly
-      property tax amount assessed on the investment</string>
+      property tax amount assessed on the investment.
+      	\n\n
+      	Assumption: This value is assessed once a year.  It increases at
+      	the rate of (1 + Yearly Inflation Rate / 12)^12
+        \n\n
+	       This value is calculated from the user input
+	       </string>
     <string name="realEstateAppreciationRateHelpText" formatted="false">This 
       is the anticipated rate of monthly 
       appreciation of the investment.  In this application, the future value
@@ -341,14 +354,19 @@ value at the time of sale, to pay for the broker
     <string name="vacancyAndCreditLossRateHelpText" formatted="false">This 
       is the estimated average yearly loss due to
       either of the following: tenants failing to pay their rent, or
-      not having someone in the unit.
+      not having someone in the unit.  It is applied to each year's rental
+      income to approximate its affect.  (If you believe that you will never
+      miss a single month's rent due to a tenant not being in the unit or
+      unable to pay, then set this value to 0).
 	                     	     \n\n
-	       This value is calculated from the user input
+	       This is a value entered by the user, not calculated
 	       </string>
          <string name="vacancyAndCreditLossRateTitleText" formatted="false">Vacancy and
            Credit Loss Rate</string>
-         <string name="yearlyBeforeTaxCashFlowHelpText" formatted="false">All income -
-           all expenses, before tax
+         <string name="yearlyBeforeTaxCashFlowHelpText" formatted="false">All income minus
+           all expenses, before tax.  For the yearly expenses, see Yearly Operating
+           Exenses and Yearly Mortgage Payment.  Also note that rental income is
+           the yearly rent minus the vacancy loss (see Vacancy and Credit Loss Rate)
                         	     \n\n
 	       This value is calculated from the user input
 	       </string>
@@ -370,6 +388,9 @@ value at the time of sale, to pay for the broker
            general insurance amount.  Note that 
            rental property insurance rates are typically higher than normal 
            homeowner rates.  Check with your insurance agent.
+           \n\n
+           Assumption: This value is assessed once a year.  It increases at the
+           rate of (1 + Yearly Inflation Rate / 12)^12
 	    \n\n
 	    This is a value entered by the user, not calculated
 	    </string>
@@ -379,20 +400,24 @@ value at the time of sale, to pay for the broker
         application assumes that the rate you charge will increase once
         a year at the rate of real estate appreciation.  
         The equation for next year\'s rent is: this_year_monthly_rent 
-        * (1 + real_estate_appreciation_rate / 12)
+        * (1 + real_estate_appreciation_rate / 12)^12
                 	     \n\n
 	       This value is calculated from the user input
 	       </string>
     <string name="yearlyIncomeTitleText" formatted="false">Yearly Rent Income</string>
     <string name="yearlyInterestPaidHelpText" formatted="false">The amount
       of interest paid this year in the mortgage 
-	    payments.  This application assumes a standard loan amortization
+	    payments.  This application assumes an amortizing loan.
 	            	     \n\n
 	       This value is calculated from the user input
 	       </string>
     <string name="yearlyInterestPaidTitleText" formatted="false">Yearly Interest Paid</string>
     <string name="yearlyInterestRateHelpText" formatted="false">The
-      interest rate charged by the lender for the loan.
+      interest rate charged by the lender for the loan.  This value is used
+      to determine the monthly mortgage payment, and affects many things, such
+      as After Tax Cash Flow, Accumulated Interest Payments, and is a good value
+      to set as the required rate of return, as an investor would prefer that their
+      return be greater than the cost to borrow money.
         \n\n
 	    This is a value entered by the user, not calculated
 	    </string>
@@ -404,7 +429,9 @@ value at the time of sale, to pay for the broker
     <string name="yearlyMortgagePaymentTitleText" formatted="false">Yearly Mortgage Payment</string>
     <string name="yearlyMunicipalFeesHelpText" formatted="false">The 
       future value yearly municipal fees.  For the initial
-        input, see Initial Municipal Fees
+        input, see Initial Municipal Fees.
+        \n\nAssumption: This value is assessed once per year.  It increases
+        at the rate of (1 + Yearly Inflation Rate / 12) ^ 12
         	     \n\n
 	       This value is calculated from the user input
 	       </string>
@@ -415,7 +442,8 @@ value at the time of sale, to pay for the broker
       tax, management fees, 
       insurance premiums, maintenance costs, utility fees, or other 
       expenses made in the 
-      operation of the investment property.  \n\nAssumption:  The yearly
+      operation of the investment property.  
+      \n\nAssumption:  The yearly
       general expenses 
       increase at the rate of yearly inflation.  They increase at 
       this rate once a year.
@@ -444,14 +472,25 @@ value at the time of sale, to pay for the broker
       dialog.  If the amount outstanding on the 
       loan is more than 80% of the total value, the monthly private
       mortgage insurance 
-        amount will be charged each month until it reaches 80%
+        amount will be charged each month until it reaches 80%.
+         Note that different lenders will approach this in different ways, but
+         since this is an application to provide estimates, it makes sense
+         to assume one kind of approach for all investments.
         	     \n\n
 	       This value is calculated from the user input
 	       </string>
     <string name="yearlyPrivateMortgageInsuranceTitleText" formatted="false">Yearly Private Mortgage Insurance</string>
     <string name="yearlyPrincipalPaidHelpText" formatted="false">The 
       amount of principal paid in the mortgage 
-	    payments for this year
+	    payments for this year.
+	    \n\n
+	    In an amortizing loan, each mortgage payment consists
+	    of an interest payment and a principal payment.  These values vary throughout
+	    the loan.  To calculate these values, one starts by multiplying the starting
+	    amount owed by (yearly interest rate / 12).  That is the interest payment for
+	    the month.  Subtract that value from the monthly mortgage payment (which is fixed)
+	    and you get the principal payment.  Subtract that principal payment from the amount
+	    owed, and then repeat the process.
 	    	     \n\n
 	       This value is calculated from the user input
 	       </string>
