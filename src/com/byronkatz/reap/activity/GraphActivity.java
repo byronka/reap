@@ -55,6 +55,7 @@ public class GraphActivity extends Activity {
   public static final String IS_GRAPH_VISIBLE = "IS_GRAPH_VISIBLE";
   public static final String CURRENT_SLIDER_KEY = "CURRENT_SLIDER_KEY";
   private TabHost tabs;
+  private Boolean restartBackgroundThread;
 
   ArrayAdapter<ValueEnum> spinnerArrayAdapter;
 
@@ -184,11 +185,22 @@ public class GraphActivity extends Activity {
 
   }
 
+  /**
+   * to control shutting down the background thread more precisely
+   * 
+   * @param restart set this to true if you want it to immediately restart,
+   * for example, when you need to change the currentValueNumeric
+   */
+  private void shutDownBackGroundThread(Boolean restart) {
+    restartBackgroundThread = restart;
+    calculateInBackgroundTask.cancel(false);
+  }
+  
   @Override
   public void onPause() {
 
     Log.d("GraphActivity onPause", "Entering onPause");
-    calculateInBackgroundTask.cancel(false);
+    shutDownBackGroundThread(false);
     SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
     dataTable.saveGraphPageData(sharedPreferences, isGraphVisible, currentSliderKey);
 
