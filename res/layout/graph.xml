@@ -137,6 +137,7 @@
                 android:layout_weight="0.40"
                 android:gravity="clip_vertical"
                 android:shrinkColumns="0"
+                android:paddingBottom="20dip"
                 android:stretchColumns="0" >
             </TableLayout>
         </LinearLayout>
@@ -160,9 +161,9 @@
 
             <ImageView
                 android:id="@+id/handle"
-                android:layout_width="88dip"
-                android:layout_height="40dip"
-                android:src="@android:drawable/btn_dropdown"
+                android:layout_width="fill_parent"
+                android:layout_height="26dip"
+                android:src="@drawable/tray_handle"
                 />
 
             <LinearLayout
