@@ -12,19 +12,24 @@
 
     <!-- Unlicensed dialog messages -->
     <string name="unlicensed_dialog_title">Licensing Error</string>
-    <string name="unlicensed_dialog_body">Either an error occurred 
-      connecting to the server, 
-      or this application is not licensed.  If your connection is
-      weak, try starting the app again
-      when the connection is better.  If not licensed, please
-      purchase it from Android Market.</string>
+    <string name="unlicensed_dialog_body">The licensing server indicated 
+        that this app has not been licensed for the account on this device.
+        \n\n
+        One thing to check is the account name in the Accounts and
+        Sync for this device\'s settings.  It must be the same as the account
+        used to purchase the app.
+        \n\n 
+        This may be an error, and if so please notify the developer to 
+        quickly fix the problem.  However, If this app has actually not
+        been purchased, please consider purchasing it from Google Play.</string>
       
       <string name="failed_retry_dialog_body">An error occurred 
       attempting to connect to the licensing server.  If your network connection is
       weak, try starting the app again when the connection is better.  The licensing
-      service is provided through Google Play, so that must be installed.  Also, check
-      that the account you used to purchase the app is the account under Accounts and Sync
-      in the device settings.
+      service is provided through Google Play, so that must be installed.  The exact
+      error (which caused this message) is that your device tried to determine 
+      several times if this is a licensed
+      app, was unsuccessful, and eventually gave up.
       
        </string>
     <string name="buy_button">Buy app</string>

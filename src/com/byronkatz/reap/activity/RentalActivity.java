@@ -81,17 +81,9 @@ public class RentalActivity extends Activity {
 
     estimatedRentPayments.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.ESTIMATED_RENT_PAYMENTS));
 
-    TextView estimatedRentPaymentsTitle = 
-        (TextView)findViewById(R.id.estimatedRentPaymentsTitle);
-    estimatedRentPaymentsTitle.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-        Utility.showHelpDialog(
-            R.string.estimatedRentPaymentsHelpText, 
-            R.string.estimatedRentPaymentsTitleText, RentalActivity.this);
-      }
-    });
+    ((TextView)findViewById(R.id.estimatedRentPaymentsTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.ESTIMATED_RENT_PAYMENTS));
+    
 
     initialHomeInsurance.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.INITIAL_HOME_INSURANCE));
 

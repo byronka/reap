@@ -183,6 +183,10 @@ public class DataController {
       return 0d;
     }
     
+    if (currentDivisionForReading == null) {
+      return 0d;
+    }
+    
     //unpack the numericValues for this division
     Double returnValue = arrayMultiDivisionNumericCache[currentDivisionForReading][year].get(key);
     if (returnValue == null){

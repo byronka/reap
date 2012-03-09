@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:katz="http://schemas.android.com/apk/res/com.byronkatz"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/custom_background"
-    android:orientation="vertical"
-    android:weightSum="1" >
+    android:background="@drawable/custom_background">
 
-    <!-- the following is just to catch the focus and do nothing with it -->
+    the following is just to catch the focus and do nothing with it
 
     <LinearLayout
         android:id="@+id/focusJail"
@@ -16,13 +14,11 @@
         android:focusable="true"
         android:focusableInTouchMode="true" />
 
-    
-
     <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/graphDataScrollView"
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" >
+        android:layout_height="fill_parent" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -145,190 +141,199 @@
             </TableLayout>
         </LinearLayout>
     </ScrollView>
-    
+
     <!-- Controls start below -->
 
     <LinearLayout
-        android:id="@+id/sliderLinearLayout"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:orientation="vertical" >
-        
-        <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="95dp"
+        android:layout_height="fill_parent"
+        android:gravity="bottom"
         android:orientation="vertical" >
 
-        <LinearLayout
+        <com.byronkatz.reap.general.WrappingSlidingDrawer
+            android:id="@+id/drawer"
             android:layout_width="fill_parent"
-            android:layout_height="0dip"
-            android:layout_weight="0.20" >
+            android:layout_height="wrap_content"
+            android:content="@+id/sliderLinearLayout"
+            android:handle="@+id/handle" >
 
-            <TextView
-                android:id="@+id/minValueTextView"
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/minValueLabel"
-                android:textSize="13dp" />
+            <ImageView
+                android:id="@+id/handle"
+                android:layout_width="88dip"
+                android:layout_height="20dip"
+                android:src="@drawable/info" />
 
-            <TextView
-                android:id="@+id/currentValueTextView"
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/currentValueLabel"
-                android:textSize="13dp" />
+            <LinearLayout
+                android:id="@+id/sliderLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="#000"
+                android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/maxValueTextView"
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/maxValueLabel"
-                android:textSize="13dp" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="95dp"
+                    android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/maxValueTextView"
-                android:layout_width="55dip"
-                android:layout_height="fill_parent"
-                android:gravity="center"
-                android:textSize="13dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="0dip"
-            android:layout_weight="0.40" >
-
-            <EditText
-                android:id="@+id/minValueEditText"
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_gravity="left"
-                android:layout_weight="1"
-                android:editable="true"
-                android:inputType="numberDecimal"
-                android:maxLength="20"
-                android:textSize="11dp" >
-            </EditText>
-
-            <EditText
-                android:id="@+id/currentValueEditText"
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:editable="true"
-                android:inputType="numberDecimal"
-                android:maxLength="20"
-                android:textSize="11dp" >
-            </EditText>
-
-            <EditText
-                android:id="@+id/maxValueEditText"
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_gravity="right"
-                android:layout_weight="1"
-                android:editable="true"
-                android:inputType="numberDecimal"
-                android:maxLength="20"
-                android:textSize="11dp" >
-            </EditText>
-
-            <Button
-                android:id="@+id/resetButton"
-                android:layout_width="55dip"
-                android:layout_height="fill_parent"
-                android:text="@string/resetButton"
-                android:textSize="12dip" >
-            </Button>
-        </LinearLayout>
-
-        <Spinner
-            android:id="@+id/valueSpinner"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.40" >
-        </Spinner>
-    </LinearLayout>
-
-        <FrameLayout 
+                    <LinearLayout
                         android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            >
-        <LinearLayout
-            android:id="@+id/valueSliderLinearLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false" >
+                        android:layout_height="0dip"
+                        android:layout_weight="0.20" >
 
-            <TextView
-                android:id="@+id/valueSliderLabel"
-                android:layout_width="40dip"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/valueSliderText"
-                android:textAppearance="?android:attr/textAppearanceSmall" >
-            </TextView>
+                        <TextView
+                            android:id="@+id/minValueTextView"
+                            android:layout_width="0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/minValueLabel"
+                            android:textSize="13dp" />
 
-            <SeekBar
-                android:id="@+id/valueSlider"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dip"
-                android:layout_marginRight="6dip"
-                android:padding="5dip" >
-            </SeekBar>
-        </LinearLayout>
-        
-        <TextView 
-                android:layout_width="40dip"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/valueSliderText"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-            />
-        </FrameLayout>
+                        <TextView
+                            android:id="@+id/currentValueTextView"
+                            android:layout_width="0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/currentValueLabel"
+                            android:textSize="13dp" />
 
-        <LinearLayout
-            android:id="@+id/timeSliderLinearLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+                        <TextView
+                            android:id="@+id/maxValueTextView"
+                            android:layout_width="0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/maxValueLabel"
+                            android:textSize="13dp" />
 
-            <TextView
-                android:id="@+id/timeSliderLabel"
-                android:layout_width="40dip"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/timeSliderText"
-                android:textAppearance="?android:attr/textAppearanceSmall" >
-            </TextView>
+                        <TextView
+                            android:id="@+id/maxValueTextView"
+                            android:layout_width="55dip"
+                            android:layout_height="fill_parent"
+                            android:gravity="center"
+                            android:textSize="13dp" />
+                    </LinearLayout>
 
-            <SeekBar
-                android:id="@+id/timeSlider"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dip"
-                android:layout_marginRight="6dip"
-                android:layout_weight="1"
-                android:padding="5dip" >
-            </SeekBar>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dip"
+                        android:layout_weight="0.40" >
 
-            <TextView
-                android:id="@+id/yearLabel"
-                android:layout_width="40dip"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/yearValueText"
-                android:textAppearance="?android:attr/textAppearanceSmall" >
-            </TextView>
-        </LinearLayout>
+                        <EditText
+                            android:id="@+id/minValueEditText"
+                            android:layout_width="0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="left"
+                            android:layout_weight="1"
+                            android:editable="true"
+                            android:inputType="numberDecimal"
+                            android:maxLength="20"
+                            android:textSize="11dp" >
+                        </EditText>
+
+                        <EditText
+                            android:id="@+id/currentValueEditText"
+                            android:layout_width="0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"
+                            android:editable="true"
+                            android:inputType="numberDecimal"
+                            android:maxLength="20"
+                            android:textSize="11dp" >
+                        </EditText>
+
+                        <EditText
+                            android:id="@+id/maxValueEditText"
+                            android:layout_width="0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:editable="true"
+                            android:inputType="numberDecimal"
+                            android:maxLength="20"
+                            android:textSize="11dp" >
+                        </EditText>
+
+                        <Button
+                            android:id="@+id/resetButton"
+                            android:layout_width="55dip"
+                            android:layout_height="fill_parent"
+                            android:text="@string/resetButton"
+                            android:textSize="12dip" >
+                        </Button>
+                    </LinearLayout>
+
+                    <Spinner
+                        android:id="@+id/valueSpinner"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.40" >
+                    </Spinner>
+                </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/valueSliderLinearLayout"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false" >
+
+                        <TextView
+                            android:id="@+id/valueSliderLabel"
+                            android:layout_width="40dip"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/valueSliderText"
+                            android:textAppearance="?android:attr/textAppearanceSmall" >
+                        </TextView>
+
+                        <SeekBar
+                            android:id="@+id/valueSlider"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dip"
+                            android:layout_marginRight="6dip"
+                            android:padding="5dip" >
+                        </SeekBar>
+                    </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/timeSliderLinearLayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/timeSliderLabel"
+                        android:layout_width="40dip"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/timeSliderText"
+                        android:textAppearance="?android:attr/textAppearanceSmall" >
+                    </TextView>
+
+                    <SeekBar
+                        android:id="@+id/timeSlider"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dip"
+                        android:layout_marginRight="6dip"
+                        android:layout_weight="1"
+                        android:padding="5dip" >
+                    </SeekBar>
+
+                    <TextView
+                        android:id="@+id/yearLabel"
+                        android:layout_width="40dip"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/yearValueText"
+                        android:textAppearance="?android:attr/textAppearanceSmall" >
+                    </TextView>
+                </LinearLayout>
+            </LinearLayout>
+        </com.byronkatz.reap.general.WrappingSlidingDrawer>
     </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>

@@ -72,7 +72,7 @@ public class GraphActivity extends Activity {
   SharedPreferences sp;
 
   public static final int DIVISIONS_OF_VALUE_SLIDER = 40;
-//  public static final int CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE = 1;
+  //  public static final int CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE = 1;
 
   ValueEnum[] dataTableItems = ValueEnum.values();
   Double percentageSlid;
@@ -100,19 +100,19 @@ public class GraphActivity extends Activity {
     return false;
   }
 
-//  @Override
-//  public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//    super.onActivityResult(requestCode, resultCode, data);
-//
-//    if (requestCode == CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE) {
-//
-//      if (data != null) {
-//        isGraphVisible = data.getExtras().getBoolean(IS_GRAPH_VISIBLE, true);
-//      }
-//
-//      executeGraphVisibility(isGraphVisible);
-//    }
-//  }
+  //  @Override
+  //  public void onActivityResult(int requestCode, int resultCode, Intent data) {
+  //    super.onActivityResult(requestCode, resultCode, data);
+  //
+  //    if (requestCode == CONFIGURE_DATA_TABLE_ACTIVITY_REQUEST_CODE) {
+  //
+  //      if (data != null) {
+  //        isGraphVisible = data.getExtras().getBoolean(IS_GRAPH_VISIBLE, true);
+  //      }
+  //
+  //      executeGraphVisibility(isGraphVisible);
+  //    }
+  //  }
 
   private void executeGraphVisibility(Boolean isGraphVisible) {
     if (isGraphVisible) {
@@ -121,7 +121,7 @@ public class GraphActivity extends Activity {
       tabs.setVisibility(View.GONE);
     }
   }
-  
+
   @Override
   public void onResume() {
 
@@ -195,17 +195,19 @@ public class GraphActivity extends Activity {
     restartBackgroundThread = restart;
     calculateInBackgroundTask.cancel(false);
   }
-  
+
   @Override
   public void onPause() {
 
     Log.d("GraphActivity onPause", "Entering onPause");
+
+    //full stop - no restart on background thread
     shutDownBackGroundThread(false);
     SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
     dataTable.saveGraphPageData(sharedPreferences, isGraphVisible, currentSliderKey);
 
     //Following saves the data to persistence between onPause / onResume
-//    dataController.saveFieldValues();
+    //    dataController.saveFieldValues();
     super.onPause();
     Log.d("GraphActivity onPause", "Exiting onPause");
 
@@ -318,12 +320,17 @@ public class GraphActivity extends Activity {
 
     if (calculateInBackgroundTask == null) {
       calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
-      //separate these so it is not possible to try running a method on a null pointer
-    } else if (calculateInBackgroundTask.getStatus() != AsyncTask.Status.RUNNING) {
+      //separate these so it is not possible to try running a method (that being, checking
+      //whether it is running or not) on a null pointer, however, if it's *not* null, we can check
+
+      //if not running, or has been cancelled, start it
+    } else if (calculateInBackgroundTask.getStatus() != AsyncTask.Status.RUNNING ||
+        calculateInBackgroundTask.isCancelled() ) {
       calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
+
+      //if it is indeed running, do a clean restart
     } else if (calculateInBackgroundTask.getStatus() == AsyncTask.Status.RUNNING) {
-      calculateInBackgroundTask.cancel(false);
-      calculateInBackgroundTask = new CalculateInBackgroundTask().execute();
+      shutDownBackGroundThread(true);
     }
   }
 
@@ -617,40 +624,44 @@ public class GraphActivity extends Activity {
 
             //sending focus to jail will make the current value save
             sendFocusToJail();
-
-            if (calculateInBackgroundTask != null) {
-              calculateInBackgroundTask.cancel(false);
-            }
-
-            ValueEnum oldCurrentSliderKey = currentSliderKey;
-
             currentSliderKey = spinnerArrayAdapter.getItem(pos);
 
-            //the problem at this point is that if the background thread is operating,
-            //the value this pulls could be anything on the range between the minimum
-            //and maximum.  Therefore, to protect against that, I will set logic so
-            //that it only tries to get currentValueNumeric this way if the
-            //sliderkey is changing.  If the sliderKey is the same as before, don't
-            //pull from the cache.
+            //if we need to stop the background task, do that.
+            //otherwise, set new values for currentSliderKey and currentNumericValue
+            //first we need to make sure it's not null so the next call doesn't
+            //crash on a Null Pointer Exception
+            if (calculateInBackgroundTask != null ) {
+              if (calculateInBackgroundTask.getStatus() == AsyncTask.Status.RUNNING) {
+                shutDownBackGroundThread(true);
+              } else {
 
-            Log.d("OnItemSelected", "oldcurrentSliderKey: " + oldCurrentSliderKey);
-            Log.d("OnItemSelected", "newcurrentSliderKey: " + currentSliderKey);
-            
-            if (! oldCurrentSliderKey.equals(currentSliderKey)) {
-              Log.d("OnItemSelected", "old and new currentSliderKey are different");
-              Log.d("OnItemSelected", "currentValueNumeric was " + currentValueNumeric);
-              currentValueNumeric = dataController.getValueAsDouble(currentSliderKey);
-              Log.d("OnItemSelected", "currentValueNumeric is now " + currentValueNumeric);
 
+                //the problem at this point is that if the background thread is operating,
+                //the value this pulls could be anything on the range between the minimum
+                //and maximum.  Therefore, to protect against that, I will set logic so
+                //that it only tries to get currentValueNumeric this way if the
+                //sliderkey is changing.  If the sliderKey is the same as before, don't
+                //pull from the cache.
+
+                //            Log.d("OnItemSelected", "oldcurrentSliderKey: " + oldCurrentSliderKey);
+                Log.d("OnItemSelected", "newcurrentSliderKey: " + currentSliderKey);
+
+                //            if (! oldCurrentSliderKey.equals(currentSliderKey)) {
+                Log.d("OnItemSelected", "old and new currentSliderKey are different");
+                Log.d("OnItemSelected", "currentValueNumeric was " + currentValueNumeric);
+                currentValueNumeric = dataController.getValueAsDouble(currentSliderKey);
+                Log.d("OnItemSelected", "currentValueNumeric is now " + currentValueNumeric);
+
+                //            }
+                Log.d("Tag 003", "currentValueNumeric is " + currentValueNumeric);
+                Thread.dumpStack();
+
+                //following is for the reset button.  It stores the new current value.
+                originalCurrentValueNumeric = currentValueNumeric;
+
+                recalcGraphPage();
+              }
             }
-            Log.d("Tag 003", "currentValueNumeric is " + currentValueNumeric);
-            Thread.dumpStack();
-
-            //following is for the reset button.  It stores the new current value.
-            originalCurrentValueNumeric = currentValueNumeric;
-
-            recalcGraphPage();
-
           }
 
           @Override
@@ -756,12 +767,19 @@ public class GraphActivity extends Activity {
       dataController.setValueAsDouble(currentSliderKeyStorage, currentValueStorage);
       Log.d("background thread onCancelled", "currentSliderKeyStorage: " + currentSliderKeyStorage +
           "and currentValueStorage: " + currentValueStorage + " were restored");
-      
+
       //Following saves the data to persistence between onPause / onResume
       //It is here because this way we are guaranteed that the data is clean before persisting
       dataController.saveFieldValues();
 
-      
+      //WORK AREA BELOW
+      if (restartBackgroundThread) {
+        currentValueNumeric = dataController.getValueAsDouble(currentSliderKey);
+
+        //following is for the reset button.  It stores the new current value.
+        originalCurrentValueNumeric = currentValueNumeric;
+        recalcGraphPage();
+      }
     }
 
     @Override

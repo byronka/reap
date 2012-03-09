@@ -325,6 +325,11 @@ public class Utility {
     return outputValue;
   }
 
+  /**
+   * Tries to convert the string into a number.  If it cannot, it returns 0
+   * @param value the String in currency format.
+   * @return a Double equatable to value, or else 0
+   */
   public static Double parseCurrency(String value) {
     Double returnValue = 0.0d;
     currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
