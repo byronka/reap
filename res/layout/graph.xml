@@ -155,13 +155,15 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:content="@+id/sliderLinearLayout"
+            android:allowSingleTap="false"
             android:handle="@+id/handle" >
 
             <ImageView
                 android:id="@+id/handle"
                 android:layout_width="88dip"
-                android:layout_height="20dip"
-                android:src="@drawable/info" />
+                android:layout_height="40dip"
+                android:src="@android:drawable/btn_dropdown"
+                />
 
             <LinearLayout
                 android:id="@+id/sliderLinearLayout"
