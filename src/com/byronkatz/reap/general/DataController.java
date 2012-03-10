@@ -128,11 +128,11 @@ public class DataController {
     //either a string or not a string
     for (ValueEnum inputEnum : ValueEnum.values()) {
       if (inputEnum.isSavedToDatabase() && (inputEnum.getType() != ValueEnum.ValueType.STRING)) {
-        Log.d("DataController saveFieldValues", "saving to sharedPreferences " + inputEnum + " value:" + String.valueOf(getValueAsDouble(inputEnum)));
+//        Log.d("DataController saveFieldValues", "saving to sharedPreferences " + inputEnum + " value:" + String.valueOf(getValueAsDouble(inputEnum)));
         editor.putString(inputEnum.name(), String.valueOf(getValueAsDouble(inputEnum)));    
       } else if (inputEnum.isSavedToDatabase() && (inputEnum.getType() == ValueEnum.ValueType.STRING)) {
         editor.putString(inputEnum.name(), getValueAsString(inputEnum));
-        Log.d("DataController saveFieldValues", "saving to sharedPreferences " + inputEnum + " value:" + getValueAsString(inputEnum));
+//        Log.d("DataController saveFieldValues", "saving to sharedPreferences " + inputEnum + " value:" + getValueAsString(inputEnum));
 
       }
     }

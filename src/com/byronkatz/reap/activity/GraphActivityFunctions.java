@@ -132,7 +132,7 @@ public class GraphActivityFunctions {
       break;
     case INTEGER:
 
-      editText.setText(String.valueOf(valueNumeric));
+      editText.setText(String.valueOf(Math.round(valueNumeric)));
       break;
     default:
       //do nothing

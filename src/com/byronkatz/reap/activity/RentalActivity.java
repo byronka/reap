@@ -115,7 +115,7 @@ public class RentalActivity extends Activity {
     ((TextView)findViewById(R.id.requiredRateOfReturnTitle)).setOnClickListener(
         new TitleTextOnClickListenerWrapper(ValueEnum.MONTHS_UNTIL_RENT_STARTS));
     
-    monthsUntilRentStarts.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.REQUIRED_RATE_OF_RETURN));
+    monthsUntilRentStarts.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.MONTHS_UNTIL_RENT_STARTS));
     ((TextView)findViewById(R.id.monthsUntilRentStartsTitle)).setOnClickListener(
         new TitleTextOnClickListenerWrapper(ValueEnum.MONTHS_UNTIL_RENT_STARTS));
   }

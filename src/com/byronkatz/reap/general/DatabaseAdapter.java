@@ -139,9 +139,9 @@ public class DatabaseAdapter {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
       // Log the version upgrade.
-      Log.w("TaskDBAdapter", "Upgrading from version " + 
-          oldVersion + " to " +
-          newVersion + ", which will destroy all old data");
+//      Log.w("TaskDBAdapter", "Upgrading from version " + 
+//          oldVersion + " to " +
+//          newVersion + ", which will destroy all old data");
 
       // Upgrade the existing database to conform to the new version. Multiple 
       // previous versions can be handled by comparing oldVersion and newVersion

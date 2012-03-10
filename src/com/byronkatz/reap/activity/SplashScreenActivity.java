@@ -390,6 +390,8 @@ public class SplashScreenActivity extends Activity {
     dataController.setValueAsDouble(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES, 1000d);
     dataController.setValueAsDouble(ValueEnum.REQUIRED_RATE_OF_RETURN, yearlyInterestRateValue);
     dataController.setValueAsDouble(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS, loanTermValue);
+    dataController.setValueAsDouble(ValueEnum.MONTHS_UNTIL_RENT_STARTS, 0d);
+    dataController.setValueAsDouble(ValueEnum.EXTRA_YEARS, 0d);
 
   }
 

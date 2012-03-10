@@ -16,17 +16,17 @@ public class OnItemSelectedListenerWrapper implements OnItemSelectedListener {
 
   @Override
   public void onItemSelected(AdapterView<?> aParentView, View aView, int aPosition, long anId) {
-    Log.d("OnItemSelectedListener", "spinnerInitializedCount: " + spinnerInitialized);
+//    Log.d("OnItemSelectedListener", "spinnerInitializedCount: " + spinnerInitialized);
     //necessary to do this as a hack, because the Android implementation of 
     //onItemSelected fires once off after the widget is instantiated, for no good reason
     if (! spinnerInitialized) {
-    Log.d("OnItemSelectedListener", "biding time...");
-    Thread.dumpStack();
+//    Log.d("OnItemSelectedListener", "biding time...");
+//    Thread.dumpStack();
       spinnerInitialized = true;
 
     } else {
-      Log.d("OnItemSelectedListener", "actually calling onItemSelected this time");
-      Thread.dumpStack();
+//      Log.d("OnItemSelectedListener", "actually calling onItemSelected this time");
+//      Thread.dumpStack();
 
       listener.onItemSelected(aParentView, aView, aPosition, anId);
     }

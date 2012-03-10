@@ -104,6 +104,12 @@
       the last month\'s equation would be (1 + discount rate)^360
 	    for a 30 year mortgage.
 	    \n\n
+	    Assumption: For simplicity\'s sake, all present value calculations are
+	    done on a yearly basis.  So, to be more specific, it is not the case
+	    that each monthly balance is used to independently calculate present value
+	    for accumulation.  Instead, all income and outlay for the year is 
+	    summed and then the present value equation is run on it.
+	    \n\n
 	      This value is calculated from the user input</string>
     <string name="aterTitleText" formatted="false">After Tax Equity Reversion</string>
     <string name="aterHelpText" formatted="false">Amount received
@@ -240,6 +246,9 @@
       of the Future value of positive cash flows using the reinvestment
       rate divided by the Present value of negative cash flows 
 	     at the finance rate, all minus 1
+	     \n\n
+	     Assumption:  The MIRR value is calculated from the yearly sum of values,
+	     rather than each discrete month\'s values.
 	     	    	     \n\n
 	       This value is calculated from the user input
 	       </string>
@@ -248,6 +257,7 @@
       mortgage payment.  This is calculated by the 
       following formula: AMT_BORROWED * 
       ( (INT_RATE / 12) / (1 - (1 / (1 + INT_RATE)^(YEARS * 12)  )  )
+
 	    	    	     \n\n
 	       This value is calculated from the user input
 	       </string>

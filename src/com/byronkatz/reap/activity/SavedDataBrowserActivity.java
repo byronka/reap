@@ -608,7 +608,7 @@ public class SavedDataBrowserActivity extends ListActivity {
     
     //9 is the "address" column
     final String address = cursor.getString(9);
-    Log.d(getClass().getName(), "address: " + address);
+//    Log.d(getClass().getName(), "address: " + address);
     //if this entry has an address, include it
     if (address.length() > 0) {
       message += " at " + address;

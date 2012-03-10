@@ -206,10 +206,11 @@ public class RentalUnitOwnership {
     atcfAccumulator += yearlyAfterTaxCashFlow;
     dataController.setValueAsDouble(ValueEnum.ATCF_ACCUMULATOR, atcfAccumulator, year);
 
+    //mirr operates on yearly values, not monthly
     mirr.calculateMirr(year, yearlyAfterTaxCashFlow, null);
 
 
-    final Double yearlyDiscountRateDivisor = Math.pow(1 + getMonthlyRequiredRateOfReturn(), monthCPModifier);
+    final Double yearlyDiscountRateDivisor = Math.pow(1 + getYearlyRequiredRateOfReturn(), year);
     yearlyNPVSummation += yearlyAfterTaxCashFlow / yearlyDiscountRateDivisor;
 
     dataController.setValueAsDouble(ValueEnum.ATCF_NPV, yearlyNPVSummation, year);

@@ -262,7 +262,7 @@ public class Utility {
       editText.setSelection(0, textLength);
       break;
     default:
-      Log.e("setSelectionOnView in Utility class", "shouldn't get here");
+//      Log.e("setSelectionOnView in Utility class", "shouldn't get here");
     }
   }
 
@@ -433,6 +433,8 @@ public class Utility {
       parseThenDisplayCurrency(v);
     } else if (ve.getType() == ValueType.PERCENTAGE) {
       parseThenDisplayPercentage(v);
+    } else if (ve.getType() == ValueType.INTEGER) {
+      parseThenDisplayInteger(v);
     }
   }
 
@@ -443,6 +445,12 @@ public class Utility {
 
   }
 
+  private static void parseThenDisplayInteger(View v) {
+
+    ((EditText) v).setText (String.valueOf(
+        Integer.valueOf(((EditText) v).getText().toString())));
+
+  }
 
 
   private static void parseThenDisplayPercentage(View v) {
