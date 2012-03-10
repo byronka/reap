@@ -720,7 +720,7 @@ public class GraphActivity extends Activity {
 
     @Override
     protected void onProgressUpdate(Integer... progress) {
-      String updateValue = Utility.displayShortPercentage((double) (progress[0] )/ DIVISIONS_OF_VALUE_SLIDER);
+      String updateValue = String.valueOf((Math.round(((float) (progress[0] )/ DIVISIONS_OF_VALUE_SLIDER)*100))) + "%";
       ((TextView) findViewById(R.id.customtitlebar)).setText("Calculating... " + updateValue);
 
     }

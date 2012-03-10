@@ -26,6 +26,7 @@ public class RentalActivity extends Activity {
   private EditText fixupCosts;
   private EditText initialYearlyGeneralExpenses;
   private EditText requiredRateOfReturn;
+  private EditText monthsUntilRentStarts;
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
 
@@ -78,6 +79,7 @@ public class RentalActivity extends Activity {
     fixupCosts                    = (EditText)findViewById(R.id.fixupCostsEditText);
     initialYearlyGeneralExpenses  = (EditText)findViewById(R.id.initialYearlyGeneralExpensesEditText);
     requiredRateOfReturn          = (EditText)findViewById(R.id.requiredRateOfReturnEditText);
+    monthsUntilRentStarts         = (EditText)findViewById(R.id.monthsUntilRentStartsEditText);
 
     estimatedRentPayments.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.ESTIMATED_RENT_PAYMENTS));
 
@@ -111,8 +113,11 @@ public class RentalActivity extends Activity {
     requiredRateOfReturn.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.REQUIRED_RATE_OF_RETURN));
 
     ((TextView)findViewById(R.id.requiredRateOfReturnTitle)).setOnClickListener(
-        new TitleTextOnClickListenerWrapper(ValueEnum.REQUIRED_RATE_OF_RETURN));
-
+        new TitleTextOnClickListenerWrapper(ValueEnum.MONTHS_UNTIL_RENT_STARTS));
+    
+    monthsUntilRentStarts.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.REQUIRED_RATE_OF_RETURN));
+    ((TextView)findViewById(R.id.monthsUntilRentStartsTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.MONTHS_UNTIL_RENT_STARTS));
   }
 
   public void callCalculator(View v) {
@@ -143,6 +148,10 @@ public class RentalActivity extends Activity {
     key = ValueEnum.REQUIRED_RATE_OF_RETURN;
     value = Utility.parsePercentage(requiredRateOfReturn.getText().toString());
     dataController.setValueAsDouble(key, value);
+
+    key = ValueEnum.MONTHS_UNTIL_RENT_STARTS;
+    value = Double.valueOf(monthsUntilRentStarts.getText().toString());
+    dataController.setValueAsDouble(key, value);
   }
   
   @Override
@@ -171,5 +180,11 @@ public class RentalActivity extends Activity {
 
     Double rrr = dataController.getValueAsDouble(ValueEnum.REQUIRED_RATE_OF_RETURN);
     requiredRateOfReturn.setText(Utility.displayPercentage(rrr));
+    
+    Double murs = dataController.getValueAsDouble(ValueEnum.MONTHS_UNTIL_RENT_STARTS);
+    Long intMurs = Math.round(murs);
+    monthsUntilRentStarts.setText(intMurs.toString());
+    
+    
   }
 }

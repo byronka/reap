@@ -109,6 +109,7 @@ public class GraphActivityFunctions {
       returnValue = Utility.parsePercentage(editText.getText().toString());
       break;
     case INTEGER:
+      returnValue = Double.valueOf(editText.getText().toString());
     default:
       break;
     }

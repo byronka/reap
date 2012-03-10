@@ -253,7 +253,10 @@
 	       </string>
     <string name="monthlyMortgagePaymentTitleText" formatted="false">Monthly Mortgage Payment</string>
     <string name="monthlyRentFVHelpText" formatted="false">The monthly
-      rent for this year.  
+      rent for this year.  Note that this value may not be appled to the year\'s income
+      if the Months Until Rent Starts value applies here.  For example, if we are in year 3
+      but Months Until Rent Starts is 45 months, then this rent will not be applied to the 
+      income this year.  This is the projected value of rent, based on the following assumption.
       \n\nAssumption: The amount of rent charged goes up once every 
       twelve months starting
 		from the house purchase date.  Rent increases per the yearly real estate
@@ -261,7 +264,7 @@
 			    	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="monthlyRentFVTitleText" formatted="false">Monthly Rent Charged</string>
+    <string name="monthlyRentFVTitleText" formatted="false">Monthly Rent Future Value</string>
     <string name="netPresentValueHelpText" formatted="false">The net present value
       is the sum of the present values for 
       each year\'s final balance.  In this application, this means it is
@@ -633,6 +636,13 @@ value at the time of sale, to pay for the broker
     <string name="fixupCostsTitleText" formatted="false">Fix-up Costs</string>
     <string name="initialYearlyGeneralExpensesTitleText" formatted="false">Initial Yearly General Expenses</string>
     <string name="requiredRateOfReturnTitleText" formatted="false">Required Rate of Return</string>
+    <string name="monthsUntilRentStartsTitleText" formatted="false">Months Until Rent Starts</string>
+    <string name="monthsUntilRentStartsHelpText" formatted="false">This is the number of months
+        from the day of closing on the investment until income starts rolling in from rent payments.
+                \n\n
+	    This is a value entered by the user, not calculated
+        </string>
+    
 
     <!-- set data values activity -->
     <string name="editValuesButtonText" formatted="false">Edit values</string>

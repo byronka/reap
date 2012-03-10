@@ -28,6 +28,7 @@ public enum ValueEnum {
   MARGINAL_TAX_RATE( ValueType.PERCENTAGE, true, false, string.marginalTaxRateHelpText, string.marginalTaxRateTitleText),
   MODIFIED_INTERNAL_RATE_OF_RETURN( ValueType.PERCENTAGE, false, true, string.modifiedInternalRateOfReturnHelpText, string.modifiedInternalRateOfReturnTitleText),
   MONTHLY_MORTGAGE_PAYMENT ( ValueType.CURRENCY, false, true, string.monthlyMortgagePaymentHelpText, string.monthlyMortgagePaymentTitleText),  
+  MONTHS_UNTIL_RENT_STARTS ( ValueType.INTEGER, true, false, string.monthsUntilRentStartsHelpText, string.monthsUntilRentStartsTitleText),
   MONTHLY_RENT_FV ( ValueType.CURRENCY, false, true, string.monthlyRentFVHelpText, string.monthlyRentFVTitleText),
   NPV  ( ValueType.CURRENCY, false, true, string.netPresentValueHelpText, string.netPresentValueTitleText),
   NUMBER_OF_COMPOUNDING_PERIODS( ValueType.INTEGER, true, false, string.numberOfCompoundingPeriodsHelpText, string.numberOfCompoundingPeriodsTitleText),

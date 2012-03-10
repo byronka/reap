@@ -49,6 +49,7 @@ public class DatabaseAdapter {
       ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE.name()       + " REAL"    +     ", " +
       ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES.name()    + " REAL"    +     ", " +
       ValueEnum.MARGINAL_TAX_RATE.name()                  + " REAL"    +     ", " +
+      ValueEnum.MONTHS_UNTIL_RENT_STARTS.name()           + " REAL"    +     ", " +
       ValueEnum.SELLING_BROKER_RATE.name()                + " REAL"    +     ", " +
       ValueEnum.GENERAL_SALE_EXPENSES.name()              + " REAL"    +     ", " +
       ValueEnum.REQUIRED_RATE_OF_RETURN.name()            + " REAL"    +     ", " +

@@ -280,14 +280,14 @@ public class AnalysisGraph extends View {
 
 
         //draw top number text
-        maxYString = Utility.displayValue ((double)functionMaxY, graphKeyValue);
+        maxYString = Utility.displayShortValue ((double)functionMaxY, graphKeyValue);
 //        maxX =  marginWidthX.floatValue() / 4;
         minX =  LEFT_SIDE_MARGIN_PIXELS;
         maxY =  marginWidthY.floatValue();
         canvas.drawText(maxYString, minX, maxY, textPaint);
 
         //draw bottom number text
-        minYString = Utility.displayValue ((double)functionMinY, graphKeyValue);
+        minYString = Utility.displayShortValue ((double)functionMinY, graphKeyValue);
 //        minX = (float) marginWidthX.floatValue() / 4;
         minX = LEFT_SIDE_MARGIN_PIXELS;
         minY = (float) (marginWidthY + betweenMarginsOnY);
@@ -295,7 +295,7 @@ public class AnalysisGraph extends View {
 
         //draw GraphName and current value
         bottom = marginWidthY + betweenMarginsOnY + (marginWidthY/2);
-        String currentValueNumerals = Utility.displayValue(
+        String currentValueNumerals = Utility.displayShortValue(
             dataController.getValueAsDouble(graphKeyValue, currentYearHighlighted), graphKeyValue);
         String currentValue = graphKeyValue.toString() + ": " + currentValueNumerals;
         canvas.drawText(currentValue, minX, bottom, textPaint);

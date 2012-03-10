@@ -267,8 +267,11 @@ public class Utility {
   }
 
   public static String displayCurrency(Double value) {
-    currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
-    return currencyFormatter.format(value);
+//    currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
+//    return currencyFormatter.format(value);
+    NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
+    nf.setMaximumFractionDigits(0);
+    return nf.format(value);
   }
 
   public static String displayShortCurrency(Double value) {
@@ -291,7 +294,7 @@ public class Utility {
       outputValue = displayShortCurrency(value);
       //following is identical to displayValue - change if needed.
     } else if (type == "PERCENTAGE") {
-      outputValue = displayPercentage(value);
+      outputValue = displayShortPercentage(value);
     } else if (type == "INTEGER") {
       outputValue = String.valueOf(value.intValue());
     }
@@ -305,11 +308,18 @@ public class Utility {
 
     //This might be something we want to externalize IF we get that far
     percentFormat = NumberFormat.getPercentInstance(Locale.US);
-    percentFormat.setMaximumFractionDigits(0);
+    percentFormat.setMaximumFractionDigits(2);
     result = percentFormat.format(value.floatValue());
     return result;
   }
 
+  /**
+   * Based on the valueEnum, determines the kind of number (currency, integer, percentage)
+   * and returns a string value which is correct.
+   * @param value the Double value to be converted to a string
+   * @param ve the ValueEnum which corresponds to the value
+   * @return a formatted string appropriate to the value
+   */
   public static String displayValue(Double value, ValueEnum ve) {
     String type = ve.getType().name();
     String outputValue = "nothing";

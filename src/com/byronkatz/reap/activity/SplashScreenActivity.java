@@ -279,19 +279,26 @@ public class SplashScreenActivity extends Activity {
   }
 
   private void deactivateInterface() {
+    
   
-    ((EditText) findViewById (R.id.splashScreenValueEntry)).setEnabled(false);
     ((Button)findViewById(R.id.splashScreenGoButton)).setEnabled(false);
     ((Button)findViewById(R.id.splashScreenSkipButton)).setEnabled(false);
     ((CheckBox) findViewById(R.id.splashScreenRentCheckBox)).setEnabled(false);
+    yearlyInterestRate.setEnabled(false);
+    totalPurchasePrice.setEnabled(false);
+    loanTerm.setEnabled(false);
+    estimatedRentPayments.setEnabled(false);
   }
   
   private void activateInterface() {
     
-    ((EditText) findViewById (R.id.splashScreenValueEntry)).setEnabled(true);
     ((Button)findViewById(R.id.splashScreenGoButton)).setEnabled(true);
     ((Button)findViewById(R.id.splashScreenSkipButton)).setEnabled(true);
     ((CheckBox) findViewById(R.id.splashScreenRentCheckBox)).setEnabled(true);
+    yearlyInterestRate.setEnabled(true);
+    totalPurchasePrice.setEnabled(true);
+    loanTerm.setEnabled(true);
+    estimatedRentPayments.setEnabled(true);
   }
 
   /**

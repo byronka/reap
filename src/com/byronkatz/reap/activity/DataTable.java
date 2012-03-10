@@ -175,9 +175,9 @@ public class DataTable {
 
   public void setDataTableValueByPercentage(TextView t, ValueEnum ve, Integer year) {
     if (ve.isVaryingByYear()) {
-      t.setText(Utility.displayPercentage(dataController.getValueAsDouble(ve, year)));
+      t.setText(Utility.displayShortPercentage(dataController.getValueAsDouble(ve, year)));
     } else if (! ve.isVaryingByYear()) {
-      t.setText(Utility.displayPercentage(dataController.getValueAsDouble(ve)));
+      t.setText(Utility.displayShortPercentage(dataController.getValueAsDouble(ve)));
     }
     
 
