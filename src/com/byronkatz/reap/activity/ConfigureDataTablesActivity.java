@@ -26,7 +26,9 @@ import android.widget.ToggleButton;
 
 import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
+import com.byronkatz.reap.general.HelpButtonOnClickWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
+import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
 
 public class ConfigureDataTablesActivity extends Activity {
@@ -116,11 +118,8 @@ public class ConfigureDataTablesActivity extends Activity {
         (Context.LAYOUT_INFLATER_SERVICE);
 
     List<ValueEnum> dataTableValues = new ArrayList<ValueEnum>(Arrays.asList(ValueEnum.values()));
-    //remove the following values, unneeded in the table
-    dataTableValues.remove(ValueEnum.COMMENTS);
-    dataTableValues.remove(ValueEnum.CITY);
-    dataTableValues.remove(ValueEnum.STATE_INITIALS);
-    dataTableValues.remove(ValueEnum.STREET_ADDRESS);
+    dataTableValues = Utility.removeCertainItemsFromDataTable(dataTableValues);
+    dataTableValues = Utility.sortDataTableValues(this, dataTableValues);
 
     //This is where we create the TableLayout
     //set alternate colors by row
@@ -152,6 +151,8 @@ public class ConfigureDataTablesActivity extends Activity {
       //the property name is always a string
       dataTablePropertyName = (TextView) newTableRow.getChildAt(DataTable.PROPERTY_LABEL_INDEX);
       dataTablePropertyName.setText(ve.toString());
+      dataTablePropertyName.setOnClickListener(new HelpButtonOnClickWrapper(ve));
+
 
       tempDataTablePropertyValue = (TextView) newTableRow.getChildAt(DataTable.PROPERTY_VALUE_INDEX);
       tempDataTablePropertyValue.setVisibility(View.GONE);

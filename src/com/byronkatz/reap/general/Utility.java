@@ -2,6 +2,9 @@ package com.byronkatz.reap.general;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Locale;
 
 import android.app.Activity;
@@ -57,6 +60,51 @@ public class Utility {
     helpDialog.show();
   }
 
+  /**
+   * simple utility method to remove certain values from the data table so they don't ever show
+   * up.  For example, street address, city, state, and comments never have any reason to show up.
+   * @param dataTableValues the List of values that we are removing values from
+   * @return the List of values, with certain values removed
+   */
+  public static List<ValueEnum> removeCertainItemsFromDataTable(List<ValueEnum> dataTableValues) {
+    
+    //remove the following values, unneeded in the table
+    dataTableValues.remove(ValueEnum.COMMENTS);
+    dataTableValues.remove(ValueEnum.CITY);
+    dataTableValues.remove(ValueEnum.STATE_INITIALS);
+    dataTableValues.remove(ValueEnum.STREET_ADDRESS);
+    
+    return dataTableValues;
+  }
+  
+  /**
+   * Simple utility method to sort the dataTableValues in some arbitrary way.
+   * @param dataTableValues the dataTableValues List to sort
+   * @return the sorted List
+   */
+  public static List<ValueEnum> sortDataTableValues(final Activity activity, List<ValueEnum> dataTableValues) {
+    
+    Comparator<ValueEnum> comparator = new Comparator<ValueEnum>() {
+
+      /**
+       * We want to compare the Title Text, since we are alphabetizing based on that.
+       * @param object1 the first ValueEnum to compare
+       * @param object2 the second ValueEnum to compare
+       * @return the compare int, based on the strings
+       */
+      @Override
+      public int compare(ValueEnum object1, ValueEnum object2) {
+        String object1String = activity.getString(object1.getTitleText());
+        String object2String = activity.getString(object2.getTitleText());
+        
+        return object1String.compareTo(object2String);
+      }
+    };
+    
+    Collections.sort(dataTableValues, comparator);
+    return dataTableValues;
+  }
+  
   public static void switchForMenuItem(MenuItem item, Activity activity) {
 
 

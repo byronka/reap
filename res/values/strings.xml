@@ -240,8 +240,8 @@
       determine the comparative attractiveness of an investment, to rank
       alternative investments of equal size.  Note that the 
       equal size of investments is important.  If the projects are of
-      unequal size, it help to review the value of the net present
-      value to get a more fair comparison.\n\nThe equation for MIRR is
+      unequal size, it help to review the value of the Net Present
+      Value to get a more fair comparison.\n\nThe equation for MIRR is
       as follows: for any number n of cash flows, MIRR = nth root 
       of the Future value of positive cash flows using the reinvestment
       rate divided by the Present value of negative cash flows 
@@ -275,7 +275,7 @@
 	       This value is calculated from the user input
 	       </string>
     <string name="monthlyRentFVTitleText" formatted="false">Monthly Rent Future Value</string>
-    <string name="netPresentValueHelpText" formatted="false">The net present value
+    <string name="netPresentValueHelpText" formatted="false">The Net Present Value
       is the sum of the present values for 
       each year\'s final balance.  In this application, this means it is
       the first payment (down payment, fix-up costs,
@@ -331,7 +331,7 @@
       <string name="requiredRateOfReturnHelpText" formatted="false">This 
         is the minimum rate of return desired by the 
         investor.  It is an important rate as it determines the discount
-        rate for the net present value equation.  
+        rate for the Net Present Value equation.  
         This rate should be set to the cost of capital, since you want 
         investments to at least bring in more than it
         costs you to take out a loan for an investment (or else you 

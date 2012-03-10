@@ -2,13 +2,16 @@ package com.byronkatz.reap.activity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,7 +22,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.byronkatz.R;
-import com.byronkatz.reap.general.CheckMathOnClickWrapper;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.HelpButtonOnClickWrapper;
 import com.byronkatz.reap.general.RealEstateMarketAnalysisApplication;
@@ -40,6 +42,12 @@ public class DataTable {
     this.graphActivity = graphActivity;
   }
 
+  /**
+   * loops through the data table and if the valueEnum which corresponds
+   * to that tablerow exists in the viewableDataTableRows, then it is made
+   * VISIBLE.  Otherwise, it is made GONE.
+   * @param valueToDataTableItemCorrespondence
+   */
   public void makeSelectedRowsVisible( Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence) {
     Set<ValueEnum> values = dataController.getViewableDataTableRows();
     TableRow tempTableRow;
@@ -64,22 +72,77 @@ public class DataTable {
     setColorDataTableRows(dataTableLayout, viewableDataTableRows);
   }
 
+  
+//  /**
+//   * simple utility method to remove certain values from the data table so they don't ever show
+//   * up.  For example, street address, city, state, and comments never have any reason to show up.
+//   * @param dataTableValues the List of values that we are removing values from
+//   * @return the List of values, with certain values removed
+//   */
+//  private List<ValueEnum> removeCertainItemsFromDataTable(List<ValueEnum> dataTableValues) {
+//    
+//    //remove the following values, unneeded in the table
+//    dataTableValues.remove(ValueEnum.COMMENTS);
+//    dataTableValues.remove(ValueEnum.CITY);
+//    dataTableValues.remove(ValueEnum.STATE_INITIALS);
+//    dataTableValues.remove(ValueEnum.STREET_ADDRESS);
+//    
+//    return dataTableValues;
+//  }
+  
+  /**
+   * Simple utility method to get an inflater from an activity
+   * @param activity the activity giving us the inflater
+   * @return a LayoutInflater all set up
+   * 
+   */
+  private LayoutInflater getLayoutInflater(Activity activity) {
+    return (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+  }
+  
+//  /**
+//   * Simple utility method to sort the dataTableValues in some arbitrary way.
+//   * @param dataTableValues the dataTableValues List to sort
+//   * @return the sorted List
+//   */
+//  private List<ValueEnum> sortDataTableValues(final Activity activity, List<ValueEnum> dataTableValues) {
+//    
+//    Comparator<ValueEnum> comparator = new Comparator<ValueEnum>() {
+//
+//      /**
+//       * We want to compare the Title Text, since we are alphabetizing based on that.
+//       * @param object1 the first ValueEnum to compare
+//       * @param object2 the second ValueEnum to compare
+//       * @return the compare int, based on the strings
+//       */
+//      @Override
+//      public int compare(ValueEnum object1, ValueEnum object2) {
+//        String object1String = activity.getString(object1.getTitleText());
+//        String object2String = activity.getString(object2.getTitleText());
+//        
+//        return object1String.compareTo(object2String);
+//      }
+//    };
+//    
+//    Collections.sort(dataTableValues, comparator);
+//    return dataTableValues;
+//  }
+  
+  /**
+   * This is a factory method of sorts.  It puts together all the parts necessary for
+   * the tablerow in code, then adds it, in order, to the parent view in the graph activity layout.
+   * @param graphActivity the parent activity which this method will add tablerows to.
+   * @return a map of valueEnum to each tablerow so we can access each tablerow by enum later
+   */
   public Map<ValueEnum, TableRow> createDataTableItems(GraphActivity graphActivity) {
 
-    TextView dataTablePropertyName;
-    Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence = new HashMap<ValueEnum, TableRow> ();
+    Map<ValueEnum, TableRow> valueToDataTableItemCorrespondence = new EnumMap<ValueEnum, TableRow> (ValueEnum.class);
 
-    LayoutInflater inflater = (LayoutInflater) graphActivity.getSystemService
-        (Context.LAYOUT_INFLATER_SERVICE);
+    LayoutInflater inflater = getLayoutInflater(graphActivity);
     List<ValueEnum> dataTableValues = new ArrayList<ValueEnum>(Arrays.asList(ValueEnum.values()));
-    
-    //remove the following values, unneeded in the table
-    dataTableValues.remove(ValueEnum.COMMENTS);
-    dataTableValues.remove(ValueEnum.CITY);
-    dataTableValues.remove(ValueEnum.STATE_INITIALS);
-    dataTableValues.remove(ValueEnum.STREET_ADDRESS);
+    dataTableValues = Utility.removeCertainItemsFromDataTable(dataTableValues);
+    dataTableValues = Utility.sortDataTableValues(graphActivity, dataTableValues);
 
-    Set<ValueEnum> viewableDataTableRows = dataController.getViewableDataTableRows();
     TableLayout dataTableLayout = (TableLayout) graphActivity.findViewById(R.id.dataTableLayout);      
     
     //This is where we create the TableLayout
@@ -95,35 +158,26 @@ public class DataTable {
 
       valueToDataTableItemCorrespondence.put(ve, newTableRow);
 
-      dataTablePropertyName = (TextView) newTableRow.getChildAt(PROPERTY_LABEL_INDEX);
-
+      TextView dataTablePropertyName = (TextView) newTableRow.getChildAt(PROPERTY_LABEL_INDEX);
       //the property name is always a string
       dataTablePropertyName.setText(ve.toString());
-      
       dataTablePropertyName.setOnClickListener(new HelpButtonOnClickWrapper(ve));
-
+      
       TextView dataTablePropertyValue = (TextView) newTableRow.getChildAt(PROPERTY_VALUE_INDEX); 
-      
-      //for now, we are putting this to rest - have 8 methods tested but those aren't done well.
-      //maybe will finish in an update
-      //if it is not saved to database, that means we calculated it. if non-calc'd, just provide help.
-//      if (ve.isSavedToDatabase() == false) {
-//        dataTablePropertyValue.setOnClickListener(new CheckMathOnClickWrapper(ve));
-//      } else {
-//        dataTablePropertyValue.setOnClickListener(new HelpButtonOnClickWrapper(ve));
-//      }
-      
       dataTablePropertyValue.setOnClickListener(new HelpButtonOnClickWrapper(ve));
-
 
       dataTableLayout.addView(newTableRow);
     } //end of main for loop to set dataTableItems
 
+    Set<ValueEnum> viewableDataTableRows = dataController.getViewableDataTableRows();
     setColorDataTableRows(dataTableLayout, viewableDataTableRows);
     return valueToDataTableItemCorrespondence;
 
   }
 
+  /**
+   * Loops through the currently viewableDataTableRows and alternates coloring each row
+   */
   public void setColorDataTableRows(TableLayout dataTableLayout, Set<ValueEnum> viewableDataTableRows) {
 
     boolean alternateColor = true;
