@@ -29,7 +29,7 @@ public class DatabaseAdapter {
   private static final String LOCATIONS_DATABASE_CREATE = "create table " + 
       LOCATIONS_DATABASE_TABLE + " ("     + 
       KEY_ID + " integer primary key autoincrement" + ", " +
-      MODIFIED_AT                                         + " DATE DEFAULT CURRENT_DATE" +   ", " +
+      MODIFIED_AT                                         + " DATE DEFAULT (DATE('now','localtime'))" +   ", " +
       ValueEnum.TOTAL_PURCHASE_VALUE.name()               + " REAL"    +     ", " +
       ValueEnum.YEARLY_INTEREST_RATE.name()               + " REAL"    +     ", " +
       ValueEnum.BUILDING_VALUE.name()                     + " REAL"    +     ", " +

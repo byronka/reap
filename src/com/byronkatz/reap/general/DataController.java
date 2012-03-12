@@ -230,37 +230,26 @@ public class DataController {
     return dataPoints;
   }
 
+  /**
+   * Save the values in the User-input-values map into the database.  Also
+   * adds a few other things - some calculated values, and the year saved.
+   * @return
+   */
   public int saveValues() {
-    ContentValues cv = new ContentValues();
-
-    //take numeric values from user input
-    for (Entry<ValueEnum, Double> m: inputMap.entrySet()) {
-      if (m.getKey().isSavedToDatabase()) {
-        String key = m.getKey().name();
-        Double value = m.getValue();
-        cv.put(key, value);
-      }
-    }
-
-    //take string values from user input
-    for (Entry<ValueEnum, String> m: textValues.entrySet()) {
-      if (m.getKey().isSavedToDatabase()) {
-        String key = m.getKey().name();
-        String value = m.getValue();
-        cv.put(key, value);
-      }
-    }
-
-    cv = placeCalcValueInContentValues(cv);
-
-    //Put year into database
-    cv = placeYearInDatabase(cv);
     
+   ContentValues cv = prepareValuesForSaving();
+   
     //insert into database and return the last rowindex
     Integer rowIndex = databaseAdapter.insertEntry(cv);
     return rowIndex;
   }
 
+  /**
+   * Take the year that is currently selected in the graph activity and set that
+   * into the set of values to be saved to a database.
+   * @param cv the set of values that will be saved to the database
+   * @return the modified set of values that will be saved to the database.
+   */
   private ContentValues placeYearInDatabase(ContentValues cv) {
     if (getCurrentYearSelected() == null) {
       cv.put(DatabaseAdapter.YEAR_VALUE, 0);
@@ -271,8 +260,24 @@ public class DataController {
     return cv;
   }
 
+  /**
+   * Mostly the same as saveValues(), but updates an existing row
+   * rather than creating a new row.
+   */
   public void updateRow() {
 
+    ContentValues cv = prepareValuesForSaving();
+
+    databaseAdapter.updateEntry((long)currentRowIndex, cv);
+  }
+
+  /**
+   * This method handles the portion of work where the data is accumulated
+   * for insertion to the set of values which will eventually be inserted 
+   * intod the database.
+   * @return a newly created ContentValues which can be saved to a database row.
+   */
+  private ContentValues prepareValuesForSaving() {
     ContentValues cv = new ContentValues();
 
     //take numeric values from user input
@@ -295,12 +300,12 @@ public class DataController {
 
     cv = placeCalcValueInContentValues(cv);
 
-    //Put year into database
+    //Put year into valueset
     cv = placeYearInDatabase(cv);
-
-    databaseAdapter.updateEntry((long)currentRowIndex, cv);
+    
+    return cv;
   }
-
+  
   /**
    * gets the calculated values for the currently selected year and stores in database
    * @param cv
@@ -327,15 +332,22 @@ public class DataController {
     Integer year = getCurrentYearSelected();
 
     //first chance to bail - is year null?
-    if (year == null) {return cv;}
+    if (year == null) {      
+      Log.d("DataController", "year is null");
+      return cv;
+    }
 
     //second chance to bail - is currentDivisionForReading between 0 and max?
     if (!(currentDivisionForReading >= 0 && currentDivisionForReading < GraphActivity.DIVISIONS_OF_VALUE_SLIDER)) {
+      Log.d("DataController", "currentDivisionForReading is not between 0 and max");
+
       return cv;
     }
 
     //third chance to bail - is dataChanged true?
     if (dataChanged) {
+      Log.d("DataController", "dataChanged is true");
+
       return cv;
     }
 
@@ -347,7 +359,7 @@ public class DataController {
       if (Arrays.asList(calcEnumsForDatabase).contains(m.getKey().name())) {
         String key = m.getKey().name();
         Double value = m.getValue();
-
+        Log.d("DataController", "key: " + key + " value: " + value);
         //we don't want to put in a null value.
         if (value == null) {
           cv.put(key, 0d);
@@ -435,6 +447,16 @@ public class DataController {
     return dataChanged;
   }
 
+  /**
+   * This method sets a flag to let graph activity know that the data
+   * has changed and therefore it needs to recalculate the cached calculated values.
+   * It is set in the setValueAsDouble(ValueEnum, Double) method, and is
+   * cleared at the end of a non-cancelled calcInBackground in the graph activity.
+   * Also, the value slider, which does use this method and would 
+   * ordinarily set it, immediately unsets it.  This allows the save
+   * function to consider the values in the cached map valid.
+   * @param dataChanged
+   */
   public static void setDataChanged(Boolean dataChanged) {
     DataController.dataChanged = dataChanged;
   }

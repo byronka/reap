@@ -117,9 +117,6 @@ public class SavedDataBrowserActivity extends ListActivity {
     setupDataBrowser(cursor);
     super.onResume();
 
-//    cursor = getSortedCursor(currentSortString, sortTypes[currentSortTypeIndex]);
-//    setupDataBrowser(cursor);
-
   }
 
   @Override

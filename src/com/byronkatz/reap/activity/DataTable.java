@@ -254,7 +254,7 @@ public class DataTable {
   }
 
   public void saveGraphPageData (SharedPreferences sp, Boolean isGraphVisible,
-      ValueEnum currentSliderKey) {
+      ValueEnum currentSliderKey, int currentYearSelected) {
 
     SharedPreferences.Editor editor = sp.edit();
 
@@ -267,6 +267,7 @@ public class DataTable {
 
     editor.putBoolean(GraphActivity.IS_GRAPH_VISIBLE, isGraphVisible);
     editor.putString(GraphActivity.CURRENT_SLIDER_KEY, currentSliderKey.name());
+    editor.putInt(GraphActivity.CURRENT_YEAR_SELECTED, currentYearSelected);
     editor.commit();
   }
 

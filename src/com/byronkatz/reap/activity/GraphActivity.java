@@ -2,7 +2,6 @@ package com.byronkatz.reap.activity;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +10,8 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputFilter;
+import android.text.InputType;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -54,6 +55,7 @@ public class GraphActivity extends Activity {
   private Boolean isGraphVisible;
   public static final String IS_GRAPH_VISIBLE = "IS_GRAPH_VISIBLE";
   public static final String CURRENT_SLIDER_KEY = "CURRENT_SLIDER_KEY";
+  public static final String CURRENT_YEAR_SELECTED = "CURRENT_YEAR_SELECTED";
   private TabHost tabs;
 
   Boolean cleanShutdownBackgroundTask;
@@ -112,25 +114,24 @@ public class GraphActivity extends Activity {
   @Override
   public void onResume() {
 
-    //    Log.d(getClass().getName(), "Entering onResume");
     setCleanShutdown(true);
     sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-    dataController.setViewableDataTableRows(
-        dataTable.restoreViewableDataTableRows(sp));
+    dataController.setViewableDataTableRows(dataTable.restoreViewableDataTableRows(sp));
     dataTable.makeSelectedRowsVisible( valueToDataTableItemCorrespondence);
-
     isGraphVisible = sp.getBoolean(IS_GRAPH_VISIBLE, false);
+    
+   
+
     executeGraphVisibility(isGraphVisible);
     //set the current current_slider_key, which is shown in the spinner at the top.  If
-    //nothing set, then set Building Value as the default (it's the first one)
-    String temp = sp.getString(CURRENT_SLIDER_KEY, ValueEnum.BUILDING_VALUE.name());
+    //nothing set, then set Closing Costs as the default (it's the first one)
+    String temp = sp.getString(CURRENT_SLIDER_KEY, ValueEnum.CLOSING_COSTS.name());
     currentSliderKey = ValueEnum.valueOf(temp);
     setSpinnerSelection(currentSliderKey);
 
     if (DataController.isDataChanged()) {
 
       currentValueNumeric = dataController.getValueAsDouble(currentSliderKey);
-      //      Log.d("Tag 005", "currentValueNumeric is " + currentValueNumeric);
 
       //following is for the reset button
       originalCurrentValueNumeric = currentValueNumeric;
@@ -159,15 +160,25 @@ public class GraphActivity extends Activity {
 
     Integer extraYears = dataController.getValueAsDouble(ValueEnum.EXTRA_YEARS).intValue();
     Integer currentYearMaximum = Utility.getNumOfCompoundingPeriods() + extraYears ;
-    setupValueSpinner();
+    
+    //set the current year from storage.  Either use that, or the maximum on the slider.
+    //just to make sure, though, let's also make sure that number is kosher before we pop it in.
+    sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
-    setupTimeSlider(currentYearMaximum);
+    Integer currentYearSelected = sp.getInt(CURRENT_YEAR_SELECTED, currentYearMaximum);
+    if (currentYearSelected < 1 || currentYearSelected > currentYearMaximum) {
+      currentYearSelected = currentYearMaximum;
+    }
+    
+    setupValueSpinner();
+    setupTimeSlider(currentYearMaximum, currentYearSelected);
     setupValueSlider(currentYearMaximum);
     setupGraphs(currentYearMaximum);
     setupCurrentValueFields();
     valueToDataTableItemCorrespondence = dataTable.createDataTableItems(GraphActivity.this);
 
     setupGraphTabs();
+
     //    Log.d(getClass().getName(), "exiting onCreate");
 
   }
@@ -209,15 +220,13 @@ public class GraphActivity extends Activity {
   @Override
   public void onPause() {
 
-    //    Log.d("GraphActivity onPause", "Entering onPause");
-
     //full stop - no restart on background thread
     shutDownBackGroundThreadIfRunning();
     SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
-    dataTable.saveGraphPageData(sharedPreferences, isGraphVisible, currentSliderKey);
+    dataTable.saveGraphPageData(sharedPreferences, isGraphVisible, currentSliderKey, getCurrentYearSelected());
 
     //Following saves the data to persistence between onPause / onResume
-    //    dataController.saveFieldValues();
+    dataController.saveFieldValues();
     super.onPause();
     //    Log.d("GraphActivity onPause", "Exiting onPause");
 
@@ -307,11 +316,8 @@ public class GraphActivity extends Activity {
   }
 
   private void recalcGraphPage() {
-    //    Log.d(getClass().getName(), "entering recalcGraphPage");
     EditText maxValueEditText = (EditText) findViewById (R.id.maxValueEditText);
     EditText minValueEditText = (EditText) findViewById (R.id.minValueEditText);
-    //    Log.d("recalcGraphPage", "currentValueNumeric is " + currentValueNumeric);
-    //    Thread.dumpStack();
 
     minValueNumeric = GraphActivityFunctions.calculateMinFromCurrent(currentValueNumeric);
     maxValueNumeric = GraphActivityFunctions.calculateMaxFromCurrent(currentValueNumeric);
@@ -322,7 +328,6 @@ public class GraphActivity extends Activity {
     GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
 
     executeCalculationBackgroundTask();
-    //    Log.d(getClass().getName(), "exiting recalcGraphPage");
 
   }
 
@@ -546,9 +551,14 @@ public class GraphActivity extends Activity {
 
         //set the value in the current value field:
         currentValueNumeric = changeCurrentValueBasedOnProgress(progress);
-        //              Log.d("Tag 002", "currentValueNumeric is " + currentValueNumeric);
 
         dataController.setValueAsDouble(currentSliderKey, currentValueNumeric);
+        
+        //we don't want to set dataChanged to True here, even though we are actually
+        //changing it, because what that does is tell the graph activity we want
+        //to recalculate.
+        setDataChangedToggle(false);
+        
         GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
 
         GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
@@ -558,17 +568,16 @@ public class GraphActivity extends Activity {
 
       }
     });
-    //    Log.d(getClass().getName(), "exiting setupValueSlider");
 
   }
 
-  private void setupTimeSlider(Integer currentYearMaximum) {
+  private void setupTimeSlider(Integer currentYearMaximum, Integer currentYearSelected) {
 
     //    Log.d(getClass().getName(), "entering setupTimeSlider");
 
     timeSlider = (SeekBar) findViewById(R.id.timeSlider);
     timeSlider.setMax(currentYearMaximum - 1);
-    timeSlider.setProgress(timeSlider.getMax());
+    timeSlider.setProgress(currentYearSelected - 1);
 
     timeSlider.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
@@ -619,15 +628,12 @@ public class GraphActivity extends Activity {
     }
 
     //sort the list
-    //this will sort by how it is listed in the ValueEnum class.
-    Collections.sort(selectionValues);
+    //this will sort alphabetically
+    Utility.sortDataTableValues(this, selectionValues);
 
     spinnerArrayAdapter = new ArrayAdapter<ValueEnum>(this,
         android.R.layout.simple_spinner_dropdown_item, selectionValues);
     valueSpinner.setAdapter(spinnerArrayAdapter);
-
-    //Is the line below necessary?  IT gets called in onResume
-    //    setSpinnerSelection(currentSliderKey);
 
     valueSpinner.setOnItemSelectedListener(
         new OnItemSelectedListenerWrapper(new OnItemSelectedListener() {
@@ -643,16 +649,12 @@ public class GraphActivity extends Activity {
             currentSliderKey = spinnerArrayAdapter.getItem(pos);
             
             //let's change the number of digits able to enter per the valueEnum type
-            
-            changeMaxLengthEditTextBasedOnType();
-            
+            changeInputFieldBasedOnType();
             currentValueNumeric = dataController.getValueAsDouble(currentSliderKey);
-
             //following is for the reset button.  It stores the new current value.
             originalCurrentValueNumeric = currentValueNumeric;
 
             recalcGraphPage();
-
           }
 
           @Override
@@ -668,20 +670,20 @@ public class GraphActivity extends Activity {
    * This method wraps up changing the max length that can be entered in an
    * EditText field for current, max, and min, based on the type of currentsliderkey
    */
-  private void changeMaxLengthEditTextBasedOnType() {
+  private void changeInputFieldBasedOnType() {
     
     switch (currentSliderKey.getType()) {
     
     case CURRENCY:
-      changeLengthAllValueEditText(20);
+      changeAttributesAllValueEditText(20, ValueType.CURRENCY);
       break;
       
     case INTEGER:
-      changeLengthAllValueEditText(3);
+      changeAttributesAllValueEditText(3, ValueType.INTEGER);
 
       break;
     case PERCENTAGE:
-      changeLengthAllValueEditText(6);
+      changeAttributesAllValueEditText(6, ValueType.PERCENTAGE);
 
       break;
       default:
@@ -692,18 +694,49 @@ public class GraphActivity extends Activity {
   }
   
   /**
-   * this simplifies the setting of max digits that can be entered for current max and min
+   * this simplifies the setting of max digits that can be 
+   * entered for current max and min.  It also sets the type
+   * of value that can be entered, either decimal (real number)
+   * or not (integer)
    * @param length max length, an integer, for each editText
    */
-  private void changeLengthAllValueEditText(int length) {
-    
-    setMaxLengthEditText(currentValueEditText, length);
+  private void changeAttributesAllValueEditText(int length, ValueType vt) {
     
     EditText maxValueEditText = (EditText) findViewById (R.id.maxValueEditText);
     EditText minValueEditText = (EditText) findViewById (R.id.minValueEditText);
     
+    setMaxLengthEditText(currentValueEditText, length);
     setMaxLengthEditText(minValueEditText, length);
     setMaxLengthEditText(maxValueEditText, length);
+    
+    switch (vt) {
+    case CURRENCY:
+      setInputTypeDecimal(minValueEditText);
+      setInputTypeDecimal(maxValueEditText);
+      setInputTypeDecimal(currentValueEditText);
+      break;
+    case INTEGER:
+      setInputTypeNumeric(minValueEditText);
+      setInputTypeNumeric(maxValueEditText);
+      setInputTypeNumeric(currentValueEditText);
+      break;
+      
+    case PERCENTAGE:
+      setInputTypeDecimal(minValueEditText);
+      setInputTypeDecimal(maxValueEditText);
+      setInputTypeDecimal(currentValueEditText);
+      break;
+      default:
+        break;
+    }
+  }
+  
+  private void setInputTypeNumeric(EditText et ) {
+    et.setInputType(InputType.TYPE_CLASS_NUMBER);
+  }
+  
+  private void setInputTypeDecimal(EditText et) {
+    et.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
   }
   
   /**
@@ -787,7 +820,6 @@ public class GraphActivity extends Activity {
 
       //restore the original current value to the array
       dataController.setValueAsDouble(currentSliderKeyStorage, currentValueStorage);
-      //      Log.d("onPostExecute", "currentSliderKeyStorage: " + currentSliderKeyStorage + " currentValueStorage: " + currentValueStorage);
 
       ((TextView) findViewById(R.id.customtitlebar)).setBackgroundColor(0);
       ((TextView) findViewById(R.id.customtitlebar)).setText(R.string.entryScreenActivityTitleText);
@@ -810,12 +842,13 @@ public class GraphActivity extends Activity {
 
       //we only set this when we are truly all done with calculating.
       //until it gets set to false, the system will keep trying to run this thread
-      setDataChangedToggle(false);
 
       //unlock the valueSlider and timeSlider after processing
       unlockSliderBars();
       valueSlider.setProgress(0);
       valueSlider.setProgress(valueSlider.getMax() / 2);
+      setDataChangedToggle(false);
+
       setCleanShutdown(true);
     }
 
@@ -829,9 +862,7 @@ public class GraphActivity extends Activity {
       //          "and currentValueStorage: " + currentValueStorage + " were restored");
       ((TextView) findViewById(R.id.customtitlebar)).setBackgroundColor(0);
       ((TextView) findViewById(R.id.customtitlebar)).setText(R.string.entryScreenActivityTitleText);
-      //Following saves the data to persistence between onPause / onResume
-      //It is here because this way we are guaranteed that the data is clean before persisting
-      dataController.saveFieldValues();
+
       setCleanShutdown(true);
 
     }

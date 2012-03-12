@@ -20,6 +20,7 @@ public enum ValueEnum {
   EXTRA_YEARS (ValueType.INTEGER, true, false, string.extraYearsHelpText, string.extraYearsTitleText),
   FIX_UP_COSTS( ValueType.CURRENCY, true, false, string.fixupCostsHelpText, string.fixupCostsTitleText),
   GENERAL_SALE_EXPENSES( ValueType.CURRENCY, true, false, string.generalSaleExpensesHelpText, string.generalSaleExpensesTitleText),
+  
   INFLATION_RATE( ValueType.PERCENTAGE, true, false, string.inflationRateHelpText, string.inflationRateTitleText),
   INITIAL_YEARLY_GENERAL_EXPENSES( ValueType.CURRENCY, true, false, string.initialYearlyGeneralExpensesHelpText, string.initialYearlyGeneralExpensesTitleText),
   INITIAL_HOME_INSURANCE( ValueType.CURRENCY, true, false, string.initialHomeInsuranceHelpText, string.initialHomeInsuranceTitleText),
@@ -28,6 +29,7 @@ public enum ValueEnum {
   MARGINAL_TAX_RATE( ValueType.PERCENTAGE, true, false, string.marginalTaxRateHelpText, string.marginalTaxRateTitleText),
   MODIFIED_INTERNAL_RATE_OF_RETURN( ValueType.PERCENTAGE, false, true, string.modifiedInternalRateOfReturnHelpText, string.modifiedInternalRateOfReturnTitleText),
   MONTHLY_MORTGAGE_PAYMENT ( ValueType.CURRENCY, false, true, string.monthlyMortgagePaymentHelpText, string.monthlyMortgagePaymentTitleText),  
+  YEARLY_DEPRECIATION ( ValueType.CURRENCY, false, true, string.yearlyDepreciationHelpText, string.yearlyDepreciationTitleText),  
   MONTHS_UNTIL_RENT_STARTS ( ValueType.INTEGER, true, false, string.monthsUntilRentStartsHelpText, string.monthsUntilRentStartsTitleText),
   MONTHLY_RENT_FV ( ValueType.CURRENCY, false, true, string.monthlyRentFVHelpText, string.monthlyRentFVTitleText),
   NPV  ( ValueType.CURRENCY, false, true, string.netPresentValueHelpText, string.netPresentValueTitleText),
@@ -60,6 +62,7 @@ public enum ValueEnum {
   YEARLY_PRINCIPAL_PAID ( ValueType.CURRENCY, false, true, string.yearlyPrincipalPaidHelpText, string.yearlyPrincipalPaidTitleText), 
   YEARLY_PROPERTY_TAX ( ValueType.CURRENCY, false, true, string.yearlyPropertyTaxHelpText, string.yearlyPropertyTaxTitleText),
   YEARLY_INCOME ( ValueType.CURRENCY, false, true, string.yearlyIncomeHelpText, string.yearlyIncomeTitleText),
+  GROSS_YEARLY_INCOME ( ValueType.CURRENCY, false, true, string.grossYearlyIncomeHelpText, string.grossYearlyIncomeTitleText),
   TAXABLE_INCOME ( ValueType.CURRENCY, false, true, string.taxableIncomeHelpText, string.taxableIncomeTitleText),
   YEARLY_TAX_ON_INCOME (ValueType.CURRENCY, false, true, string.yearlyTaxOnIncomeHelpText, string.yearlyTaxOnIncomeTitleText);
 

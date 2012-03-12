@@ -12,7 +12,9 @@ public class Rental {
   private Double fVmonthlyRent;
   private Double grossYearlyIncome;
   private Double vacancyAndCreditLossRate;
-  private Double netYearlyIncome;
+  Double fvNetYearlyIncome;
+  Double fvGrossYearlyIncome;
+  Integer monthsInYear;
   private RentalUnitOwnership rentalUnitOwnership;
   private Double initialYearlyGeneralExpenses;
   private Double initialHomeInsurance;
@@ -31,9 +33,13 @@ public class Rental {
     yearsUntilRentStarts = monthsUntilRentStarts / GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
     monthsRemainderUntilRentStarts = monthsUntilRentStarts % GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
     
-//    Log.d(getClass().getName(), "monthsUntilRentStarts: " + monthsUntilRentStarts);
-//    Log.d(getClass().getName(), "yearsUntilRentStarts: " + yearsUntilRentStarts);
-//    Log.d(getClass().getName(), "monthsRemainderUntilRentStarts: " + monthsRemainderUntilRentStarts);
+    monthsInYear = GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
+    fvNetYearlyIncome = 0.0d;
+    fvGrossYearlyIncome = 0.0d;
+    
+    Log.d(getClass().getName(), "monthsUntilRentStarts: " + monthsUntilRentStarts);
+    Log.d(getClass().getName(), "yearsUntilRentStarts: " + yearsUntilRentStarts);
+    Log.d(getClass().getName(), "monthsRemainderUntilRentStarts: " + monthsRemainderUntilRentStarts);
 
     this.rentalUnitOwnership = rentalUnitOwnership;
   }
@@ -48,18 +54,16 @@ public class Rental {
   
   public Double getFVYearlyGeneralExpenses(int year) {
 
-    Integer compoundingPeriodDesired = (year - 1) * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
     Double fvYearlyGeneralExpenses = 0.0d;
-    fvYearlyGeneralExpenses = initialYearlyGeneralExpenses * rentalUnitOwnership.getFVMir(compoundingPeriodDesired);
+    fvYearlyGeneralExpenses = initialYearlyGeneralExpenses * rentalUnitOwnership.getFVIr(year - 1);
     dataController.setValueAsDouble(ValueEnum.YEARLY_GENERAL_EXPENSES, fvYearlyGeneralExpenses, year);
     return fvYearlyGeneralExpenses;
   }
   
   public Double getFVYearlyHomeInsurance(int year) {
 
-	    Integer compoundingPeriodDesired = (year - 1) * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
 	    Double fvYearlyHomeInsurance = 0.0d;
-	    fvYearlyHomeInsurance = initialHomeInsurance * rentalUnitOwnership.getFVMir(compoundingPeriodDesired);
+	    fvYearlyHomeInsurance = initialHomeInsurance * rentalUnitOwnership.getFVIr(year - 1);
 	    dataController.setValueAsDouble(ValueEnum.YEARLY_HOME_INSURANCE, fvYearlyHomeInsurance, year);
 	    
 	    return fvYearlyHomeInsurance;
@@ -75,43 +79,27 @@ public class Rental {
    * @return the future value net income
    */
   public Double getFVNetYearlyIncome(int year) {
-//    Log.d(getClass().getName(), "entering getFVNetYearlyIncome(int year)");
-
-    Integer monthsInYear = GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
     
-    Integer compoundingPeriodDesired = (year - 1) * monthsInYear;
-
-    fVmonthlyRent = estimatedRentPayments * rentalUnitOwnership.getFVRear(compoundingPeriodDesired);
+    fVmonthlyRent = estimatedRentPayments * rentalUnitOwnership.getFVRear(year - 1);
     dataController.setValueAsDouble(ValueEnum.MONTHLY_RENT_FV, fVmonthlyRent, year);
     
     //to check if rent is applied per Months Until Rent Charged
-//    Log.d(getClass().getName(), "year: " + year);
-//    Log.d(getClass().getName(), "if (yearsUntilRentStarts ("+yearsUntilRentStarts+") >= (year ("+ year +") - 1)): ");
-
     //first we check if even possible it gets applied this year
     if (yearsUntilRentStarts == (year - 1)) {
-//      Log.d(getClass().getName(), "true");
 
       //if that is true, then we multiply the months where we don't 
       //get rent by our rent to find our gross yearly income
       grossYearlyIncome = estimatedRentPayments * (monthsInYear - monthsRemainderUntilRentStarts);
-//      Log.d(getClass().getName(), "grossYearlyIncome("+grossYearlyIncome+") = estimatedRentPayments("+estimatedRentPayments+") " +
-//      		"* (monthsInYear("+monthsInYear+") - monthsRemainderUntilRentStarts("+monthsRemainderUntilRentStarts+"));");
     } else if (yearsUntilRentStarts > (year - 1)) {
       grossYearlyIncome = 0d;
-//      Log.d(getClass().getName(), "grossYearlyIncome = 0d");
-    } else {
-//      Log.d(getClass().getName(), "false");
-
-//      Log.d(getClass().getName(), "grossYearlyIncome = estimatedRentPayments("+estimatedRentPayments+") * monthsInYear("+monthsInYear+")");
-      grossYearlyIncome = estimatedRentPayments * monthsInYear;
-
     }
+
+      fvGrossYearlyIncome = grossYearlyIncome * rentalUnitOwnership.getFVRear(year - 1);
+      dataController.setValueAsDouble(ValueEnum.GROSS_YEARLY_INCOME, fvGrossYearlyIncome, year);
+
     
-    netYearlyIncome = (1 - vacancyAndCreditLossRate) * grossYearlyIncome;
+    fvNetYearlyIncome = (1 - vacancyAndCreditLossRate) * fvGrossYearlyIncome;
     
-    Double fvNetYearlyIncome = 0.0d;
-    fvNetYearlyIncome = netYearlyIncome * rentalUnitOwnership.getFVRear(compoundingPeriodDesired);
     dataController.setValueAsDouble(ValueEnum.YEARLY_INCOME, fvNetYearlyIncome, year);
 //    Log.d(getClass().getName(), "leaving getFVNetYearlyIncome");
 

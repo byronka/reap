@@ -95,6 +95,7 @@ public class RentalUnitOwnership {
   
   public Double getYearlyDepreciation() {
     return yearlyDepreciation;
+
   }
   
   public Double getMarginalTaxRate() {
@@ -117,8 +118,7 @@ public class RentalUnitOwnership {
   
   public Double getFVPropertyTax(int year) {
     
-    Integer compoundingPeriodDesired = (year - 1) * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
-    final Double yearlyPropertyTax = getPropertyTax() * getFVRear(compoundingPeriodDesired); 
+    final Double yearlyPropertyTax = getPropertyTax() * getFVRear(year - 1); 
     dataController.setValueAsDouble(ValueEnum.YEARLY_PROPERTY_TAX, yearlyPropertyTax, year);  
   
     return yearlyPropertyTax;
@@ -126,18 +126,27 @@ public class RentalUnitOwnership {
   
   public Double getFVMunicipalFees(int year) {
 	    
-	    Integer compoundingPeriodDesired = (year - 1) * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
-	    final Double yearlyMunicipalFees = municipalFees * getFVMir(compoundingPeriodDesired); 
+	    final Double yearlyMunicipalFees = municipalFees * getFVIr(year - 1); 
 	    dataController.setValueAsDouble(ValueEnum.YEARLY_MUNICIPAL_FEES, yearlyMunicipalFees, year);
 	    return yearlyMunicipalFees;
 	  }
   
-  public Double getFVRear(int compoundingPeriodDesired) {
-    return Math.pow(1 + monthlyRealEstateAppreciationRate, compoundingPeriodDesired);
+  /**
+   * Applies real estate appreciation rate in a yearly manner
+   * @param year the year to apply the REAR, compounded
+   * @return the compounded value of REAR, compounded yearly
+   */
+  public Double getFVRear(int year) {
+    return Math.pow(1 + yearlyRealEstateAppreciationRate, year);
   }
   
-  public Double getFVMir(int compoundingPeriodDesired) {
-    return Math.pow(1 + monthlyInflationRate, compoundingPeriodDesired);
+  /**
+   * This method returns the yearly compounded value of inflation
+   * @param year the year which is being considerd
+   * @return the value of compounded inflation for that year
+   */
+  public Double getFVIr(int year) {
+    return Math.pow(1 + yearlyInflationRate, year);
   }
   
   public Double calculateYearlyBeforeTaxCashFlow(int year) {
@@ -184,11 +193,14 @@ public class RentalUnitOwnership {
     return yearlyAfterTaxCashFlow;
   }
   
-  public Double calculateTaxableIncome(int year, int monthCPModifier, int prevYearMonthCPModifier, Double yearlyBeforeTaxCashFlow) {
+  public Double calculateTaxableIncome(int year, int monthCPModifier, 
+      int prevYearMonthCPModifier, Double yearlyBeforeTaxCashFlow) {
 
-    final Double yearlyPrincipalPaid = mortgage.calculateYearlyPrincipalPaid(year, monthCPModifier, prevYearMonthCPModifier);
+    final Double yearlyPrincipalPaid = 
+        mortgage.calculateYearlyPrincipalPaid(year, monthCPModifier, prevYearMonthCPModifier);
 
     Double taxableIncome = (yearlyBeforeTaxCashFlow + yearlyPrincipalPaid - getYearlyDepreciation());
+    dataController.setValueAsDouble(ValueEnum.YEARLY_DEPRECIATION, getYearlyDepreciation(), year);
 
     // doesn't make sense to tax negative income...but should this be used to offset taxes? hmmm...
     if (taxableIncome <= 0) {

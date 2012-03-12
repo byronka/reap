@@ -46,6 +46,24 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayoutTotalBuildingValue"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <TextView
+                android:id="@+id/totalPurchaseValueHintTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/totalPurchasePriceTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/tf_green2" >
+            </TextView>
+            
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/linearLayoutBuildingValue"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

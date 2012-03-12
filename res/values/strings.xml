@@ -54,7 +54,7 @@
 
     <!-- Help text for calculated values -->
     <string name="helpButtonContentDescription" formatted="false">Help button</string>
-    <string name="accumulatedInterestPaidTitleText" formatted="false">Interest 
+    <string name="accumulatedInterestPaidTitleText" formatted="false">Calculated Interest 
       Paid Accumulator</string>
     <string name="accumulatedInterestPaidHelpText" formatted="false">The 
       accumulated interest paid to date.
@@ -68,7 +68,7 @@
       gone to the lender, to date.
 	      \n\n
 	        This value is calculated from the user input</string>
-    <string name="atcfTitleText" formatted="false">After Tax Cash Flow</string>
+    <string name="atcfTitleText" formatted="false">Calculated ATCF</string>
     <string name="atcfHelpText" formatted="false">The amount of money 
       that goes into your bank at the end of the year.
 	    \n
@@ -79,8 +79,8 @@
       Taxable Income
 	    \n\n
 	      This value is calculated from the user input</string>
-      <string name="atcfAccumulatorTitleText" formatted="false">After 
-        Tax Cash Flow Accumulator</string>
+      <string name="atcfAccumulatorTitleText" formatted="false">Calculated ATCF
+           Accumulator</string>
       <string name="atcfAccumulatorHelpText" formatted="false">This 
         value is the accumulating after tax cash flow to date
 	    \n
@@ -90,7 +90,7 @@
 	    on the last day of the currently selected year.
 	    \n\n
 	      This value is calculated from the user input</string>
-    <string name="atcfNetPresentValueTitleText" formatted="false">After Tax Cash Flow NPV</string>
+    <string name="atcfNetPresentValueTitleText" formatted="false">Calculated ATCF NPV</string>
     <string name="atcfNetPresentValueHelpText" formatted="false">Each 
       yearly After Tax Cash Flow is 
 	    brought into present value dollars and added up to give this value.
@@ -111,25 +111,36 @@
 	    summed and then the present value equation is run on it.
 	    \n\n
 	      This value is calculated from the user input</string>
-    <string name="aterTitleText" formatted="false">After Tax Equity Reversion</string>
+    <string name="aterTitleText" formatted="false">Calculated ATER</string>
     <string name="aterHelpText" formatted="false">Amount received
       from sale of house, minus broker fees and inflation-adjusted 
-	    miscellaneous fees. 
+	    miscellaneous fees.   The sale amount is based on the projected
+	    value of the investment, which is calculated by taking
+	    the purchase price of the house, plus fix-up costs (We assume it
+	    increase value commensurately), and multiplying that by (1 + REAR/12)^MONTHS
+	    \n\n
+	    Assumption: the ATER shown for each year is meant to represent
+	    what the investor would expect to receive if they sold the property
+	    that year.  For example, the ATER for year 3 indicates the equity
+	    reversion of a property which has been owned for 3 years and sold
+	    before the mortgage was fully paid.  
 	    \n\n
 	     This value is calculated from the user input</string>
-    <string name="aterPresentValueTitleText" formatted="false">Present Value ATER</string>
+    <string name="aterPresentValueTitleText" formatted="false">Calculated ATER PV</string>
     <string name="aterPresentValueHelpText" formatted="false">This is 
       the after tax equity reversion in present value dollars.  
 	    \n\n
 	      This value is calculated from the user input</string>
-    <string name="brokerCutTitleText" formatted="false">Broker Cut at Sale</string>
+    <string name="brokerCutTitleText" formatted="false">Calculated Broker Cut at Sale</string>
     <string name="brokerCutHelpText" formatted="false">This is the 
       amount the broker receives at the time when you sell the investment,
 	     based on the percentage set. 
 	     \n\n
 	       This value is calculated from the user input</string>
        <string name="buildingValueHelpText" formatted="false">The value
-         of the building itself, not the total estate (which includes land).
+         of the building itself, not the total estate (which includes land). This value
+         is used to calculated the depreciation which will be applied to each year\'s
+         taxes and to the taxes at the equity reversion (investment liquidation)
 	    \n\n
 	    This is a value entered by the user, not calculated</string>
     <string name="capRateOnPurchaseValueHelpText" formatted="false">This
@@ -147,7 +158,7 @@
 	    a year should cost $1,000,000
 	    \n\n
 	       This value is calculated from the user input</string>
-    <string name="capRateOnPurchaseValueTitleText" formatted="false">Cap 
+    <string name="capRateOnPurchaseValueTitleText" formatted="false">Calculated Cap 
       Rate (Purchase Value)</string>
     <string name="capRateOnProjectedValueHelpText" formatted="false">This is
       the cap rate based on the current estimated value of the investment.
@@ -158,7 +169,7 @@
 	    more accurate valuation.
 	    \n\n
 	       This value is calculated from the user input</string>
-    <string name="capRateOnProjectedValueTitleText" formatted="false">Cap Rate (Current Value)</string>
+    <string name="capRateOnProjectedValueTitleText" formatted="false">Calculated Cap Rate (Current Value)</string>
     <string name="cityHelpText" formatted="false">City of Investment</string>
     <string name="closingCostsHelpText" formatted="false">Costs incurred at
       the time of purchase of investment, 
@@ -169,7 +180,7 @@
 	    This is a value entered by the user, not calculated</string>
     <string name="currentAmountOutstandingHelpText" formatted="false">The amount
       of principal left to pay off on the loan</string>
-    <string name="currentAmountOutstandingTitleText" formatted="false">Loan Amount 
+    <string name="currentAmountOutstandingTitleText" formatted="false">Calculated Loan Amount 
       Outstanding</string>
     <string name="downPaymentHelpText" formatted="false">The amount of 
       money given by the investor towards the purchase price of the investment
@@ -177,7 +188,7 @@
 	    This is a value entered by the user, not calculated</string>
     <string name="estimatedRentPaymentsHelpText" formatted="false">The 
       estimated monthly rent income.  This amount is the rent charged in the very
-      first month of investment ownership.  See Monthly Rent Charged or 
+      first month of investment ownership.  See Calculated Monthly Rent or 
       Yearly Rent Income for projected future values of rent.
 	    \n\n
 	    This is a value entered by the user, not calculated</string>
@@ -192,7 +203,7 @@
       be understood is that is the value in present
       value terms, as though you were selling off the investment today.  
       Its future value will be used at the time of selling
-	  the property.  For the future value, see Selling Expenses.
+	  the property.  For the future value, see Calculated Selling Expenses.
 	     \n\n
 	    This is a value entered by the user, not calculated</string>
     <string name="inflationRateHelpText" formatted="false">The yearly rate of inflation.  This is the rate at which currency 
@@ -214,8 +225,7 @@
 	    of home insurance, see Yearly Home Insurance.
 	    \n\n
 	    This is a value entered by the user, not calculated</string>
-    <string name="initialHomeInsuranceTitleText" formatted="false">Initial
-      Home Insurance</string>
+    <string name="initialHomeInsuranceTitleText" formatted="false">Home Insurance</string>
     <string name="localMunicipalFeesHelpText" formatted="false">These fees
       are yearly assessments on property owners for such 
       things as environment fees, sewer fees, or other fees which are 
@@ -252,7 +262,8 @@
 	     	    	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="modifiedInternalRateOfReturnTitleText" formatted="false">Modified Internal Rate of Return</string>
+    <string name="modifiedInternalRateOfReturnTitleText" formatted="false">Calculated Modified 
+        Internal Rate of Return</string>
     <string name="monthlyMortgagePaymentHelpText" formatted="false">The monthly
       mortgage payment.  This is calculated by the 
       following formula: AMT_BORROWED * 
@@ -261,7 +272,8 @@
 	    	    	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="monthlyMortgagePaymentTitleText" formatted="false">Monthly Mortgage Payment</string>
+    <string name="monthlyMortgagePaymentTitleText" formatted="false">Calculated Monthly Mortgage 
+        Payment</string>
     <string name="monthlyRentFVHelpText" formatted="false">The monthly
       rent for this year.  Note that this value may not be appled to the year\'s income
       if the Months Until Rent Starts value applies here.  For example, if we are in year 3
@@ -274,7 +286,7 @@
 			    	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="monthlyRentFVTitleText" formatted="false">Monthly Rent Future Value</string>
+    <string name="monthlyRentFVTitleText" formatted="false">Calculated Monthly Rent</string>
     <string name="netPresentValueHelpText" formatted="false">The Net Present Value
       is the sum of the present values for 
       each year\'s final balance.  In this application, this means it is
@@ -283,10 +295,16 @@
       flows (all in present value by the required rate 
       of return as a discount rate) and finally the present value of
       the after-tax equity reversion (the sale of the purchase)
+      \n\n
+      Assumptions: The graph is this application is determined by calculating the
+      Net Present Value for each year.  That means the upfront costs, the After Tax
+      Cash Flows, and the After Tax Equity Reversion, are all calculated independently
+      for each year.  What this means to you is that each year\'s Net Present Value is
+      as if you sold it that year.
 	     	    	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="netPresentValueTitleText" formatted="false">Net Present Value</string>
+    <string name="netPresentValueTitleText" formatted="false">Calculated Net Present Value</string>
     <string name="numberOfCompoundingPeriodsHelpText" formatted="false">Number of 
       compounding periods for this investment.  
       For most typical mortgages, such as 15 or 30-year fixed mortgages, 
@@ -311,7 +329,7 @@
 	    	    	                     	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="projectedHomeValueTitleText" formatted="false">Projected Investment Value</string>
+    <string name="projectedHomeValueTitleText" formatted="false">Calculated Projected Investment Value</string>
     <string name="propertyTaxHelpText" formatted="false">This is the yearly
       property tax amount assessed on the investment.
       	\n\n
@@ -351,17 +369,19 @@ value at the time of sale, to pay for the broker
 	    	                     	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="sellingExpensesTitleText" formatted="false">Selling Expenses</string>
+    <string name="sellingExpensesTitleText" formatted="false">Calculated Selling Expenses</string>
     <string name="stateInitialsHelpText" formatted="false">The state of the investment</string>
     <string name="stateInitialsTitleText" formatted="false">State</string>
     <string name="streetAddressHelpText" formatted="false">The street address of the investment</string>
     <string name="taxableIncomeHelpText" formatted="false">This is the
-      amount of income which is taxable.  Namely, the 
-	    yearly interest payments are subtracted from the income.
+      amount of income for the year which is taxable. It is used to determine
+      the After Tax Cash Flow. This is determined by taking the
+      Net Operating Income, and subtracting the interest payments for the year and the
+      yearly depreciation.
 	    	                     	     \n\n
 	       This value is calculated from the user input
 	       </string>
-         <string name="taxableIncomeTitleText" formatted="false">Yearly 
+         <string name="taxableIncomeTitleText" formatted="false">Calculated  
            Taxable Income</string>
          <string name="taxesDueAtSaleHelpText" formatted="false">Taxes taken 
            at the sale of the investment. 
@@ -369,7 +389,7 @@ value at the time of sale, to pay for the broker
         	                     	     \n\n
 	       This value is calculated from the user input
 	       </string>
-         <string name="taxesDueAtSaleTitleText" formatted="false">Taxes Due 
+         <string name="taxesDueAtSaleTitleText" formatted="false">Calculated Taxes Due 
            at Sale</string>
          <string name="totalPurchaseValueHelpText" formatted="false">The 
            value of the entire estate; building, land, and all.  It is the value at
@@ -397,7 +417,7 @@ value at the time of sale, to pay for the broker
                         	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="yearlyBeforeTaxCashFlowTitleText" formatted="false">Yearly Before Tax Cash Flow</string>
+    <string name="yearlyBeforeTaxCashFlowTitleText" formatted="false">Calculated Before Tax Cash Flow</string>
     <string name="yearlyGeneralExpensesHelpText" formatted="false">Estimated
       yearly expenses for things such as
       management costs, lawn care (if the contract requires it), miscellaneous 
@@ -409,7 +429,7 @@ value at the time of sale, to pay for the broker
 	                     	     \n\n
 	       This value is calculated from the user input
 	       </string>
-         <string name="yearlyGeneralExpensesTitleText" formatted="false">Yearly 
+         <string name="yearlyGeneralExpensesTitleText" formatted="false">Calculated  
            General Expenses</string>
          <string name="yearlyHomeInsuranceHelpText" formatted="false">The yearly
            general insurance amount.  Note that 
@@ -431,14 +451,32 @@ value at the time of sale, to pay for the broker
                 	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="yearlyIncomeTitleText" formatted="false">Yearly Rent Income</string>
+    <string name="yearlyIncomeTitleText" formatted="false">Calculated Yearly Income (Net)</string>
+    
+          <string name="grossYearlyIncomeHelpText" formatted="false">This is the 
+        gross income gained each year through the rent.
+        The application assumes that the rate you charge will increase once
+        a year at the rate of real estate appreciation.  
+        The equation for next year\'s rent is: this_year_monthly_rent 
+        * (1 + real_estate_appreciation_rate / 12)^12
+                	     \n\n
+	       This value is calculated from the user input
+	       </string>
+	       
+	           <string name="yearlyDepreciationTitleText" formatted="false">Calculated Yearly Depreciation</string>
+	           <string name="yearlyDepreciationHelpText" formatted="false">The yearly depreciation is determined by dividing the
+	               value of the investment by a set constant.  In the case of this application, that constant is 27.5
+	               This depreciation is used to determine the Taxable Income for the year, and is applied in determining
+	               the tax applied at the time of investment liquidation.</string>
+	           
+    <string name="grossYearlyIncomeTitleText" formatted="false">Calculated Yearly Income (Gross)</string>
     <string name="yearlyInterestPaidHelpText" formatted="false">The amount
       of interest paid this year in the mortgage 
 	    payments.  This application assumes an amortizing loan.
 	            	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="yearlyInterestPaidTitleText" formatted="false">Yearly Interest Paid</string>
+    <string name="yearlyInterestPaidTitleText" formatted="false">Calculated Interest Paid</string>
     <string name="yearlyInterestRateHelpText" formatted="false">The
       interest rate charged by the lender for the loan.  This value is used
       to determine the monthly mortgage payment, and affects many things, such
@@ -453,7 +491,7 @@ value at the time of sale, to pay for the broker
         	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="yearlyMortgagePaymentTitleText" formatted="false">Yearly Mortgage Payment</string>
+    <string name="yearlyMortgagePaymentTitleText" formatted="false">Calculated Yearly Mortgage Payment</string>
     <string name="yearlyMunicipalFeesHelpText" formatted="false">The 
       future value yearly municipal fees.  For the initial
         input, see Initial Municipal Fees.
@@ -462,7 +500,7 @@ value at the time of sale, to pay for the broker
         	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="yearlyMunicipalFeesTitleText" formatted="false">Yearly Municipal Fees</string>
+    <string name="yearlyMunicipalFeesTitleText" formatted="false">Calculated Municipal Fees</string>
     <string name="yearlyOperatingExpensesHelpText" formatted="false">All 
       expenses for the year 
       except debt service (mortgage payment).  This includes property
@@ -477,22 +515,22 @@ value at the time of sale, to pay for the broker
          	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="yearlyOperatingExpensesTitleText" formatted="false">Yearly Operating Expenses</string>
+    <string name="yearlyOperatingExpensesTitleText" formatted="false">Calculated Operating Expenses</string>
     <string name="yearlyNetOperatingIncomeHelpText" formatted="false">The 
       income for the year (rent) minus vacancy and 
         credit losses, minus yearly operating expenses
         	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="yearlyNetOperatingIncomeTitleText" formatted="false">Net Operating Income</string>
+    <string name="yearlyNetOperatingIncomeTitleText" formatted="false">Calculated Net Operating Income</string>
     <string name="yearlyOutlayHelpText" formatted="false">All expenses for
-      the year - debt service, home 
+      the year minus debt service, home 
       insurance, property tax, municipal fees, general expenses (maintenance),
       and private mortgage insurance
         	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="yearlyOutlayTitleText" formatted="false">Yearly Outlay</string>
+    <string name="yearlyOutlayTitleText" formatted="false">Calculated Yearly Outlay</string>
     <string name="yearlyPrivateMortgageInsuranceHelpText" formatted="false">The
       amount paid this year in private 
       mortgage insurance.  The monthly amount is set in the loan edit
@@ -506,7 +544,7 @@ value at the time of sale, to pay for the broker
         	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="yearlyPrivateMortgageInsuranceTitleText" formatted="false">Yearly Private Mortgage Insurance</string>
+    <string name="yearlyPrivateMortgageInsuranceTitleText" formatted="false">Calculated Private Mortgage Insurance</string>
     <string name="yearlyPrincipalPaidHelpText" formatted="false">The 
       amount of principal paid in the mortgage 
 	    payments for this year.
@@ -521,7 +559,7 @@ value at the time of sale, to pay for the broker
 	    	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="yearlyPrincipalPaidTitleText" formatted="false">Yearly Principal Paid</string>
+    <string name="yearlyPrincipalPaidTitleText" formatted="false">Calculated Principal Paid</string>
     <string name="yearlyPropertyTaxHelpText" formatted="false">The 
       amount of property tax paid 
       this year.  This application calculates each year\'s property
@@ -532,7 +570,7 @@ value at the time of sale, to pay for the broker
 	    	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="yearlyPropertyTaxTitleText" formatted="false">Yearly Property Tax</string>
+    <string name="yearlyPropertyTaxTitleText" formatted="false">Calculated Property Tax</string>
     <string name="yearlyTaxOnIncomeHelpText" formatted="false">Tax on 
       the portion of income 
       which is at the marginal tax rate, or in other words, the 
@@ -541,7 +579,7 @@ value at the time of sale, to pay for the broker
 	    	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="yearlyTaxOnIncomeTitleText" formatted="false">Yearly Tax on Income</string>
+    <string name="yearlyTaxOnIncomeTitleText" formatted="false">Calculated Income Tax</string>
 
     <!-- entry page text -->
     <string name="useCalcWithoutDefaultValues" formatted="false">Generic Default Values</string>
@@ -631,7 +669,7 @@ value at the time of sale, to pay for the broker
     <!-- rental -->
     <string name="rentalHeaderText" formatted="false">Rental</string>
     <string name="estimatedRentPaymentsTitleText" formatted="false">Initial Estimated Rent Payments</string>
-    <string name="yearlyHomeInsuranceTitleText" formatted="false">Yearly Home Insurance</string>
+    <string name="yearlyHomeInsuranceTitleText" formatted="false">Calculated Home Insurance</string>
     <string name="vacancyAndCreditLossTitleText" formatted="false">Vacancy and Credit Loss</string>
     <string name="fixupCostsHelpText" formatted="false">Cost to fix up the
       property to a 
@@ -641,7 +679,7 @@ value at the time of sale, to pay for the broker
 		investment.  This means that if you buy a $250k investment and spend
 		$50k on improvements (fix-up) the total value is now $300k.
 			    	     \n\n
-	       This value is calculated from the user input
+	       This is a value entered by the user, not calculated
 	       </string>
     <string name="fixupCostsTitleText" formatted="false">Fix-up Costs</string>
     <string name="initialYearlyGeneralExpensesTitleText" formatted="false">Initial Yearly General Expenses</string>
@@ -744,7 +782,7 @@ value at the time of sale, to pay for the broker
     <string name="loadTheDataWithId" formatted="false">Note:  All current values will be overwritten.  Load the data with entry id:</string>
     <string name="loadDataDialogTitle" formatted="false">Load database item</string>
     <string name="dataLoadedToastText" formatted="false">Data Loaded</string>
-    <string name="totalPurchaseValueSplashTitleText" formatted="false">Total purchase value</string>
+    <string name="totalPurchaseValueSplashTitleText" formatted="false">Total Purchase Value</string>
     <string name="totalPurchaseValueSplashHelpText" formatted="false">The total 
       purchase value of 
 	    the investment.  values are calculated using the following 

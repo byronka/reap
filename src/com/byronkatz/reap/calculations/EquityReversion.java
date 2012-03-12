@@ -35,9 +35,8 @@ public class EquityReversion {
   
   private Double getFVSellingExpenses(final int year) {
 
-    Integer compoundingPeriodDesired = (year - 1) * GeneralCalculations.NUM_OF_MONTHS_IN_YEAR;
     Double fvSellingExpenses = 0.0d;
-    fvSellingExpenses = sellingExpenses * rentalUnitOwnership.getFVMir(compoundingPeriodDesired);
+    fvSellingExpenses = sellingExpenses * rentalUnitOwnership.getFVIr(year - 1);
     dataController.setValueAsDouble(ValueEnum.SELLING_EXPENSES, fvSellingExpenses, year);
 
     return fvSellingExpenses;

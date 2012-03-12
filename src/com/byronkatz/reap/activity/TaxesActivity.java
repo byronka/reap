@@ -24,6 +24,7 @@ public class TaxesActivity extends Activity {
   private EditText buildingValue;
   private EditText propertyTax;
   private EditText localMunicipalFees;
+  private TextView totalPurchasePriceHint;
   private final DataController dataController = 
       RealEstateMarketAnalysisApplication.getInstance().getDataController();
   
@@ -72,6 +73,7 @@ public class TaxesActivity extends Activity {
     buildingValue      = (EditText)findViewById(R.id.buildingValueEditText);
     propertyTax    = (EditText)findViewById(R.id.propertyTaxEditText);
     localMunicipalFees = (EditText)findViewById(R.id.localMunicipalFeesEditText);
+    totalPurchasePriceHint = (TextView) findViewById(R.id.totalPurchaseValueHintTitle);
         
     marginalTaxRate.setOnFocusChangeListener(
         new OnFocusChangeListenerWrapper(ValueEnum.MARGINAL_TAX_RATE));
@@ -99,6 +101,9 @@ public class TaxesActivity extends Activity {
     ((TextView)findViewById(R.id.localMunicipalFeesTitle)).setOnClickListener(
         new TitleTextOnClickListenerWrapper(ValueEnum.LOCAL_MUNICIPAL_FEES));
     
+    Double totalPurchaseValue = dataController.getValueAsDouble(ValueEnum.TOTAL_PURCHASE_VALUE);
+    String hintMessage = "Total Purchase Value is " + Utility.displayCurrency(totalPurchaseValue);
+    totalPurchasePriceHint.setText(hintMessage);
   }
   
   public void callCalculator(View v) {

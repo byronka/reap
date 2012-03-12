@@ -147,7 +147,6 @@ public class SplashScreenActivity extends Activity {
         int TWENTY_YEARS =  adapter.getPosition("Fixed-rate mortgage - 20 years");
         int FIFTEEN_YEARS = adapter.getPosition("Fixed-rate mortgage - 15 years");
         int TWENTYFIVE_YEARS = adapter.getPosition("Fixed-rate mortgage - 25 years");
-        Double value = null;
 
         if (pos == THIRTY_YEARS) {
           loanTermValue = 360.0d;

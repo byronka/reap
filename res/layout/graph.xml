@@ -164,6 +164,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="26dip"
                 android:src="@drawable/tray_handle"
+                android:scaleType="fitXY"
                 />
 
             <LinearLayout

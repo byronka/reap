@@ -56,7 +56,7 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.50"
-                android:text="@string/yearlyHomeInsuranceTitleText"
+                android:text="@string/initialHomeInsuranceTitleText"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/tf_green2" >
             </TextView>
