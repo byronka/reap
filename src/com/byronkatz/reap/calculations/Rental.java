@@ -43,14 +43,6 @@ public class Rental {
 
     this.rentalUnitOwnership = rentalUnitOwnership;
   }
-
-//  public Double getEstimatedRentPayments() {
-//    return estimatedRentPayments;
-//  }
-  
-//  public Double getInitialYearlyGeneralExpenses() {
-//    return initialYearlyGeneralExpenses;  
-//  }
   
   public Double getFVYearlyGeneralExpenses(int year) {
 
@@ -68,10 +60,7 @@ public class Rental {
 	    
 	    return fvYearlyHomeInsurance;
 	  }
-  
-//  public Double getNetYearlyIncome() {
-//    return netYearlyIncome;
-//  }
+
   
   /**
    * Future value effective gross income (income - vacancy losses)
@@ -90,8 +79,14 @@ public class Rental {
       //if that is true, then we multiply the months where we don't 
       //get rent by our rent to find our gross yearly income
       grossYearlyIncome = estimatedRentPayments * (monthsInYear - monthsRemainderUntilRentStarts);
+    
+      //check if, in the current year, none of the months get any rent income
     } else if (yearsUntilRentStarts > (year - 1)) {
       grossYearlyIncome = 0d;
+      
+      //check if, in the current year, all the months get rent income
+    } else if (yearsUntilRentStarts < (year - 1)) {
+      grossYearlyIncome = estimatedRentPayments * monthsInYear;
     }
 
       fvGrossYearlyIncome = grossYearlyIncome * rentalUnitOwnership.getFVRear(year - 1);
