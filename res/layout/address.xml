@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/overallAddressScrollView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/custom_background" >
+
+    <LinearLayout
+        android:id="@+id/addressOverallLinearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <!-- the following is just to catch the focus and do nothing with it -->
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutStreetAddress"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <TextView
+                android:id="@+id/streetAddress"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.20"
+                android:gravity="center_vertical"
+                android:textColor="@color/tf_green2"
+                android:text="@string/streetAddressTitleText" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/streetAddressEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.80"
+                android:inputType="textCapWords"
+                android:maxLength="40" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutCity"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/cityTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.20"
+                android:textColor="@color/tf_green2"
+                android:text="@string/cityTitleText" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/cityEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.80"
+                android:inputType="textCapWords|textPersonName"
+                android:maxLength="20" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutStreetAddress"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/stateTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.20"
+                android:textColor="@color/tf_green2"
+                android:text="@string/stateTitleText" >
+            </TextView>
+
+            <Spinner
+                android:id="@+id/stateTitleSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.80"
+                android:entries="@array/states_array" >
+            </Spinner>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/commentsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/commentsTitleText"
+            android:textColor="@color/tf_green2"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <EditText
+            android:id="@+id/commentsText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:maxLength="3000" >
+
+            <requestFocus />
+        </EditText>
+    </LinearLayout>
+
+</ScrollView>
