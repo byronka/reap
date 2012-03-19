@@ -8,6 +8,7 @@ import java.util.Map;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Debug;
 import android.text.InputFilter;
 import android.text.InputType;
 
@@ -101,6 +102,17 @@ public class GraphActivity extends Activity {
     }
   }
 
+  private void checkYearSettingsAtResume() {
+    //necessary in case the user switches between loan types (15 vs. 30 year)
+    Integer currentYearMaximum = 
+        (dataController.getInputValue(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue())/12 + 
+        dataController.getInputValue(ValueEnum.EXTRA_YEARS).intValue();
+    
+    Integer currentYearSelected = GraphActivityFunctions.updateTimeSliderAfterChange (timeSlider, currentYearMaximum);
+    updateYearDisplayAtSeekBar(currentYearSelected);
+    dataController.setCurrentYearSelected(currentYearSelected);
+  }
+  
   private void getAndApplySharedPreferencesOnResume() {
     
     sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
@@ -117,6 +129,7 @@ public class GraphActivity extends Activity {
     setSpinnerSelection(currentSliderKey);
     currentValueNumeric = dataController.getInputValue(currentSliderKey);
 
+    checkYearSettingsAtResume();
     //following is for the reset button
     originalCurrentValueNumeric = currentValueNumeric;
 
@@ -125,9 +138,11 @@ public class GraphActivity extends Activity {
   @Override
   public void onResume() {
 
+    dataController.calculationsSetValues();
     getAndApplySharedPreferencesOnResume();
     dataTable.colorTheDataTables();
     recalcGraphPage();
+    //testing line below
     super.onResume();
 
   }
@@ -247,6 +262,9 @@ public class GraphActivity extends Activity {
     GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
     GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
     GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
+    
+    valueSlider.setProgress(0);
+    valueSlider.setProgress(valueSlider.getMax() / 2);
   }
 
   void sendFocusToJail() {
@@ -322,11 +340,18 @@ public class GraphActivity extends Activity {
 
         //set the value in the current value field:
         currentValueNumeric = changeCurrentValueBasedOnProgress(progress);
+//        if (fromUser == true) {
+//        Debug.startMethodTracing();
+//        }
         dataController.putInputValue(currentValueNumeric, currentSliderKey );
+        //testing line below
+        dataController.calculationsSetValues();
         GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
         GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
         dataTable.setDataTableItems( getCurrentYearSelected(), valueToDataTableItemCorrespondence);
-
+//        if (fromUser == true) {
+//        Debug.stopMethodTracing();
+//        }
       }
     });
 

@@ -105,7 +105,7 @@ public class LoanActivity extends Activity {
       public void onClick(View v) {
         Double totalPurchasevalue = 
             Utility.parseCurrency(totalPurchasePrice.getText().toString());
-        Double pmiDownPayment = totalPurchasevalue * Calculations.PMI_BOUNDARY_PERCENTAGE;
+        Double pmiDownPayment = totalPurchasevalue * (1-Calculations.PMI_BOUNDARY_PERCENTAGE);
         String pmiDownPaymentText = Utility.displayCurrency(pmiDownPayment);
         downPayment.setText(pmiDownPaymentText);
 

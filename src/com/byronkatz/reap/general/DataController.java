@@ -27,6 +27,7 @@ public class DataController implements DataManager {
   private Map<ValueEnum, String> textValues;
   private Set<ValueEnum> viewableDataTableRows;
   public Resources resources;
+  private static Long getCalcCalls = 0l;
 
   
   private Map<ValueEnum, CalcValueGettable> calcValuePointers;
@@ -38,9 +39,7 @@ public class DataController implements DataManager {
     inputMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
     calcValuePointers = new EnumMap<ValueEnum, CalcValueGettable>(ValueEnum.class);
     calculations = new Calculations();
-    calculations.setValues(this);
-
-    
+//    calculations.setValues(this);
 
     databaseAdapter = new DatabaseAdapter(context);
     textValues = new EnumMap<ValueEnum, String>(ValueEnum.class);
@@ -49,9 +48,11 @@ public class DataController implements DataManager {
     //set to -1 when the system start to flag that it is not set
     currentRowIndex = -1;
     
-    
   }
 
+  public void calculationsSetValues() {
+    calculations.setValues(this);
+  }
   
     /**
      * this method is meant as a callback for the actual calculation objects
@@ -67,8 +68,13 @@ public class DataController implements DataManager {
    */
   @Override
   public Double getCalcValue(ValueEnum valueEnum, Integer compoundingPeriod) {
-//    Log.d("", "calculating " + valueEnum.name() + " " + compoundingPeriod);
-    return calcValuePointers.get(valueEnum).getValue(compoundingPeriod);
+//    Thread.dumpStack();
+//    Log.d("call " + getCalcCalls++, "calculating " + valueEnum.name() + " " + compoundingPeriod);
+    if (calcValuePointers.get(valueEnum) != null) {
+      return calcValuePointers.get(valueEnum).getValue(compoundingPeriod);
+    } else {
+      return 0d;
+    }
   }
 
   /**
@@ -77,14 +83,17 @@ public class DataController implements DataManager {
    */
   @Override
   public void putInputValue(Double value, ValueEnum valueEnum) {
+    Log.d("call " + getCalcCalls++, "calculating " + valueEnum.name() );
+
     inputMap.put(valueEnum, value);
-    //testing line below
-    calculations.setValues(this);
+//    //testing line below
+//    calculations.setValues(this);
 
   }
 
   @Override
   public Double getInputValue(ValueEnum valueEnum) {
+
     if (inputMap.get(valueEnum) == null) {
       return 0d;
     } else {

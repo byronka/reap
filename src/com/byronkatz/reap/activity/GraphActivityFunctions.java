@@ -152,11 +152,13 @@ public class GraphActivityFunctions {
     }
   }
 
+  
   static Integer updateTimeSliderAfterChange(SeekBar timeSlider, Integer currentYearMaximum) {
 
     //set the new max value on the progress bar
-    timeSlider.setMax(currentYearMaximum - 1);
     Integer oldCurrentValue = timeSlider.getProgress() + 1;
+
+    timeSlider.setMax(currentYearMaximum - 1);
     Integer newValue = 0;
 
     //here we decide - do we need to change the currentYearSelected?  only if the new max

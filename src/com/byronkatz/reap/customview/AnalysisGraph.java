@@ -110,7 +110,7 @@ public class AnalysisGraph extends View {
       textPaint    = createPaint(Color.WHITE, 0.0f, Paint.Style.STROKE, TEXT_SIZE);
       borderPaint = createPaint(Color.GRAY, 3.0f, Paint.Style.STROKE, TEXT_SIZE);
       highlightPaint = createPaint(Color.YELLOW, 4.0f, Paint.Style.STROKE, TEXT_SIZE);
-      
+
       //initialize the data store
       dataPoints = new ArrayList<Double>();
       initView(attrs);
@@ -163,7 +163,7 @@ public class AnalysisGraph extends View {
     }
     setFocusable(true);
   }
-  
+
   /**
    * A method called externally, used to indicate to this view that new data is available.
    */
@@ -180,20 +180,9 @@ public class AnalysisGraph extends View {
   public void onDraw(Canvas canvas) {
 
     if (! isInEditMode() ) {
-      
-//      for (int year = 0; year < (
-//          dataController.getInputValue(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue() / 12 + 
-//          dataController.getInputValue(ValueEnum.EXTRA_YEARS).intValue());
-//          year++) {
-//
-//        Log.d("", "year: " + year);
-//        dataPoints.add(year, dataController.getCalcValue(graphKeyValue, year*12));
-//      }
 
+      setPlotPoints(); 
 
-        setPlotPoints();
-   
-      
       graphMaxY = getMeasuredHeight();
       graphMaxX = getMeasuredWidth();
 

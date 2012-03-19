@@ -7,7 +7,7 @@ package com.byronkatz.reap.calculations;
  */
 public interface CalcValueGettable {
 
-  Integer MONTHS_IN_YEAR = 12;
-  public Double getValue(Integer compoundingPeriod);
+  int MONTHS_IN_YEAR = 12;
+  public double getValue(int compoundingPeriod);
   
 }
