@@ -33,7 +33,6 @@ public class Calculations implements ValueSettable {
   private int totalYearsToCalculate;
   private double requiredRateOfReturn;
   private double atcfNpvAccumulator;
-  private double atcfAccumulator;
   private double[] atcfCache;
   private double[] atcfAccumCache;
   private double[] atcfNpvCache;
@@ -49,6 +48,9 @@ public class Calculations implements ValueSettable {
   private double marginalTaxRate;
   private final double DEPRECIATION_CONSTANT = 27.5d;
   private final double TAX_ON_CAPITAL_GAINS = 0.15d;
+  private double[] yearlyNetIncomeCache;
+  private double[] yearlyNetOperatingIncomeCache;
+  private double[] taxableIncomeCache;
 
   private DataManager dataManager;
 
@@ -120,7 +122,6 @@ public class Calculations implements ValueSettable {
     totalYearsToCalculate = 0;
     requiredRateOfReturn = 0d;
     atcfNpvAccumulator = 0d;
-    atcfAccumulator = 0d;
     yearlyLoanInterestRate = 0d;
     mirr = 0d;
     futureValuePositiveCashFlowsAccumulator = 0d;
@@ -200,6 +201,9 @@ public class Calculations implements ValueSettable {
     createAtcfTable();
     createAtcfAccumTable();
     createAtcfNpvTable();
+    createYearlyNetIncomeTable();
+    createYearlyNetOperatingIncomeTable();
+    createTaxableIncomeTable();
 
   }
   
@@ -254,15 +258,15 @@ public class Calculations implements ValueSettable {
     //only if the size needs to be different do we recreate the arrays.
 
     if (atcfCache == null || 
-        atcfAccumCache == null|| 
-        atcfNpvCache == null ||
-        operatingExpensesCache == null ||
         atcfCache.length != totalYearsToCalculate) {
 
     atcfCache             = new double[totalYearsToCalculate];
     atcfAccumCache        = new double[totalYearsToCalculate];
     atcfNpvCache          = new double[totalYearsToCalculate];
     operatingExpensesCache= new double[totalYearsToCalculate];
+    yearlyNetIncomeCache  = new double[totalYearsToCalculate];
+    yearlyNetOperatingIncomeCache = new double[totalYearsToCalculate];
+    taxableIncomeCache    = new double[totalYearsToCalculate];
     }
   }
 
@@ -385,22 +389,38 @@ public class Calculations implements ValueSettable {
     @Override
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0 ) {return 0d;}
-      return MONTHS_IN_YEAR * (1-vacancyAndCreditLossRate) * 
-          (initialRent * Math.pow(1 + yearlyRealEstateAppreciationRate, compoundingPeriod / MONTHS_IN_YEAR));
+      return yearlyNetIncomeCache[compoundingPeriod / MONTHS_IN_YEAR];
+          
     }
 
   }
+  
+  private void createYearlyNetIncomeTable() {
+    for (int year = 0; year < totalYearsToCalculate; year++) {
+      yearlyNetIncomeCache[year] = 
+          12 * 
+          (1-vacancyAndCreditLossRate) * 
+          (initialRent * Math.pow(1 + yearlyRealEstateAppreciationRate, year));
+
+    }
+  } 
 
   private class NetOperatingIncome implements CalcValueGettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {return 0d;}
-      return 
-          yearlyNetIncomeValue.getValue(compoundingPeriod) -
-          operatingExpensesFValue.getValue(compoundingPeriod);
-    }
+      return yearlyNetIncomeCache[compoundingPeriod/MONTHS_IN_YEAR];
 
+    }
+  }
+  
+  private void createYearlyNetOperatingIncomeTable() {
+    for (int year = 0; year < totalYearsToCalculate; year++) {
+      yearlyNetOperatingIncomeCache[year] =
+          yearlyNetIncomeValue.getValue(year * 12) -
+          operatingExpensesFValue.getValue(year * 12);
+    }
   }
 
   private class TaxableIncome implements CalcValueGettable {
@@ -408,22 +428,23 @@ public class Calculations implements ValueSettable {
     @Override
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {return 0d;}
-      if (calcValue(compoundingPeriod) < 0) {
+      if (taxableIncomeCache[compoundingPeriod/MONTHS_IN_YEAR] < 0) {
         return 0d;
       } else {
-        return calcValue(compoundingPeriod);
+        return taxableIncomeCache[compoundingPeriod/MONTHS_IN_YEAR];
       }
-    }
-
-    private double calcValue(int compoundingPeriod) {
-      return 
-          netOperatingIncome.getValue(compoundingPeriod) -
-          yearlyInterestPaid.getValue(compoundingPeriod) -
-          yearlyDepreciation.getValue(compoundingPeriod);
     }
   }
 
-
+  private void createTaxableIncomeTable() {
+    for (int year = 0; year < totalYearsToCalculate; year++) {
+      taxableIncomeCache[year] = 
+          netOperatingIncome.getValue(year * 12) -
+          yearlyInterestPaid.getValue(year * 12) -
+          yearlyDepreciation.getValue(year * 12);
+    }
+  }
+  
   private class YearlyDepreciation implements CalcValueGettable {
 
     @Override
@@ -947,7 +968,6 @@ public class Calculations implements ValueSettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-
       if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {return 0d;}
       return mpValue;
     } 

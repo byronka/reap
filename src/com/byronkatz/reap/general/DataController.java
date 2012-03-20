@@ -27,7 +27,6 @@ public class DataController implements DataManager {
   private Map<ValueEnum, String> textValues;
   private Set<ValueEnum> viewableDataTableRows;
   public Resources resources;
-  private static Long getCalcCalls = 0l;
 
   
   private Map<ValueEnum, CalcValueGettable> calcValuePointers;
@@ -83,12 +82,7 @@ public class DataController implements DataManager {
    */
   @Override
   public void putInputValue(Double value, ValueEnum valueEnum) {
-    Log.d("call " + getCalcCalls++, "calculating " + valueEnum.name() );
-
     inputMap.put(valueEnum, value);
-//    //testing line below
-//    calculations.setValues(this);
-
   }
 
   @Override

@@ -1,5 +1,10 @@
 package com.byronkatz.reap.activity;
 
+import java.util.Arrays;
+import java.util.zip.DataFormatException;
+import java.util.zip.Deflater;
+import java.util.zip.Inflater;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -40,12 +45,16 @@ import com.google.android.vending.licensing.ServerManagedPolicy;
 
 public class SplashScreenActivity extends Activity {
 
-  private static final String BASE64_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMI" +
-  		"IBCgKCAQEAtMcU2P+xWvORzMLw5bVrP5OCFoj1zFznap/DPgvs9+xAWFO82VXRTbGjznr6pUfl5x1R" +
-  		"52Jtxxy8rYefvAOh6ITixKQBonHt5U48FHxVn9c0gqNtPSE/9BpefY3seAutA9dXLSxQB+mbupJYaG" +
-  		"y7Vc9lMU6i73PuYq6Fw5I4e1nAYpq1rS/CPPnBp4cB7M8nuB0lBiQkfEne8go57OqYAhEryEJrATLz" +
-  		"A0v2gPYJitppgDJolxpRo9EVlmnNc/iIo+DlGdoysKaOnWLX916rC9pKvfS76WinAC6FTxAMFrwrxjm" +
-  		"jyqjZ/QQJ+VbUnVKOQ0ce5cXB4MoD9jxwY2VRVQIDAQAB";
+  //This is zipped and encoded in bytes below so anyone using a string finder on this code
+  //won't be able to so easily find this string.
+//  private static final String BASE64_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMI" +
+//      "IBCgKCAQEAtMcU2P+xWvORzMLw5bVrP5OCFoj1zFznap/DPgvs9+xAWFO82VXRTbGjznr6pUfl5x1R" +
+//      "52Jtxxy8rYefvAOh6ITixKQBonHt5U48FHxVn9c0gqNtPSE/9BpefY3seAutA9dXLSxQB+mbupJYaG" +
+//      "y7Vc9lMU6i73PuYq6Fw5I4e1nAYpq1rS/CPPnBp4cB7M8nuB0lBiQkfEne8go57OqYAhEryEJrATLz" +
+//      "A0v2gPYJitppgDJolxpRo9EVlmnNc/iIo+DlGdoysKaOnWLX916rC9pKvfS76WinAC6FTxAMFrwrxjm" +
+//      "jyqjZ/QQJ+VbUnVKOQ0ce5cXB4MoD9jxwY2VRVQIDAQAB";
+
+
 
   // Generate your own 20 random bytes, and put them here.
   private static final byte[] SALT = new byte[] {
@@ -59,9 +68,9 @@ public class SplashScreenActivity extends Activity {
   private LicenseChecker mChecker;
   // A handler on the UI thread.
   private Handler mHandler;
-  
+
   ArrayAdapter<CharSequence> adapter;
-  
+
   private EditText yearlyInterestRate;
   private Double yearlyInterestRateValue;
   private EditText totalPurchasePrice;
@@ -79,7 +88,7 @@ public class SplashScreenActivity extends Activity {
   public void setLicensed(Boolean licensed) {
     this.licensed = licensed;
   }
-  
+
   /**
    * This gets values from the three input fields.  The spinner sets its value differently.
    */
@@ -97,6 +106,45 @@ public class SplashScreenActivity extends Activity {
     setContentView(R.layout.splash_screen);
     mHandler = new Handler();
 
+    byte[] zippedKey = {
+        72, -119, 13, -55, -53, -102, 67, 48, 24, 0, -48, 7, -78, 112, -103,
+        -70, 100, -7, -57, -91, -125, 42, -47, 74, 107, 118, -83, 65, -87, 70,
+        -88, 18, -98, 126, 102, 119, -66, -17, 68, -66, -113, -3, 22, -114, -72,
+        126, 14, -113, 103, -77, 71, -117, -126, -127, -72, 30, 64, 108, 3, -79,
+        32, -6, 127, -69, 14, -1, -19, -62, 20, 21, -103, -106, 72, -30, 50,
+        -57, -23, 22, 29, 22, -3, 78, -57, 68, -113, 109, -81, 111, -43, -51,
+        -37, -40, -115, -53, 78, 82, -49, 111, 36, 9, -72, 120, -79, -91, -47,
+        107, 122, -66, -17, -37, -115, -115, 6, -49, -86, 78, 23, 106, -86, 107,
+        -63, 36, -60, 106, -115, 121, 89, -51, 16, 63, 12, -1, -36, -120, -112,
+        -32, -98, 125, 79, 122, -74, -77, -68, 111, 65, 25, 42, -108, 122, 56,
+        78, -55, -55, -107, 17, -26, 101, -107, 127, -67, 75, -8, 76, -128, 126,
+        -81, -121, -109, 32, 88, 122, -35, 63, 60, -56, 111, -5, -43, -92, 5,
+        -22, -94, -52, 104, -52, -81, -28, -109, 15, -122, -73, -24, -2, -82,
+        84, 25, -28, 124, 80, -57, -109, 108, 39, 9, -61, 124, 87, 96, 51, -78,
+        -40, 7, 43, 29, 110, -56, -77, 114, 89, 105, -43, -67, 110, -58, 67, 14,
+        15, 119, 92, -35, 96, -124, -13, 97, 3, 101, -42, -22, 36, 15, -102,
+        -119, -13, -38, 9, -6, 78, -16, -76, 71, 46, -19, 94, -20, 88, -56,
+        -115, -33, 75, 78, -73, -1, -19, -41, 119, 120, -117, -39, -27, 112, 69,
+        -86, 49, -38, -120, -121, 115, 117, 50, -115, 75, -61, -64, 54, -68,
+        -77, -128, -56, 27, -105, 81, -76, -81, 118, 29, -38, 31, -103, -112,
+        64, -94, -9, -116, -47, 48, 38, 74, 81, -22, -59, 21, -17, -94, -34, 65,
+        -83, 88, 114, -115, -90, -108, -8, 14, 16, -64, 127, 82, -100, -126, 88
+
+    };
+    Inflater inflater = new Inflater();
+
+    inflater.setInput(zippedKey);
+    inflater.finished();
+    byte[] outputBuffer = new byte[392];
+    int sizeOfString = 0;
+    try {
+      sizeOfString = inflater.inflate(outputBuffer);
+    } catch (DataFormatException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    String BASE64_PUBLIC_KEY = new String(Arrays.copyOfRange(outputBuffer, 0, sizeOfString));
+
 
     yearlyInterestRate = (EditText)findViewById(R.id.yearlyInterestRateEditText);
     loanTerm           = (Spinner) findViewById(R.id.numOfCompoundingPeriodsSpinner);
@@ -108,35 +156,35 @@ public class SplashScreenActivity extends Activity {
         this, R.array.numOfCompoundingPeriodsArray, android.R.layout.simple_spinner_item);
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     loanTerm.setAdapter(adapter);
-    
-    
+
+
     mCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-      
+
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if (isChecked) {
           findViewById(R.id.estimatedRentRow).setVisibility(View.VISIBLE);
         } else if (!isChecked) {
           findViewById(R.id.estimatedRentRow).setVisibility(View.INVISIBLE);
-          
+
         }
-        
+
       }
     });
-    
-    
+
+
     totalPurchasePrice.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.TOTAL_PURCHASE_VALUE));
 
     ((TextView)findViewById(R.id.totalPurchaseValueSplashTitle)).setOnClickListener(
         new TitleTextOnClickListenerWrapper(ValueEnum.TOTAL_PURCHASE_VALUE));
-   
-   
+
+
     yearlyInterestRate.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.YEARLY_INTEREST_RATE));
 
     ((TextView)findViewById(R.id.yearlyInterestRateTitle)).setOnClickListener(
         new TitleTextOnClickListenerWrapper(ValueEnum.YEARLY_INTEREST_RATE));
-    
-    
+
+
     loanTerm.setOnItemSelectedListener(new OnItemSelectedListener() {
 
       @Override
@@ -164,7 +212,7 @@ public class SplashScreenActivity extends Activity {
         // Do nothing.
       }
     });
-    
+
     estimatedRentPayments.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.ESTIMATED_RENT_PAYMENTS));
 
     ((TextView)findViewById(R.id.estimatedRentPaymentsTitle)).setOnClickListener(
@@ -178,12 +226,12 @@ public class SplashScreenActivity extends Activity {
       public void onClick(View v) {
 
         if (licensed) {
-            obtainValues();
-            setAssumedValues();
-            setViewableRows();
+          obtainValues();
+          setAssumedValues();
+          setViewableRows();
 
-            Intent intent = new Intent(SplashScreenActivity.this, GraphActivity.class);
-            startActivity(intent); 
+          Intent intent = new Intent(SplashScreenActivity.this, GraphActivity.class);
+          startActivity(intent); 
         }
       }
     });
@@ -216,58 +264,58 @@ public class SplashScreenActivity extends Activity {
             BASE64_PUBLIC_KEY);
     doCheck();
   }
-  
-  
+
+
 
   protected Dialog onCreateDialog(int id) {
     // We have two dialogs - one for when it clearly is not licensed, and one for when we failed on retry.
     //This first one is when failed retry 
     if (id == Policy.RETRY) {
-    return new AlertDialog.Builder(this)
-    .setTitle(R.string.unlicensed_dialog_title)
-    .setMessage(R.string.failed_retry_dialog_body)
-    .setNegativeButton(R.string.quit_button, new DialogInterface.OnClickListener() {
-      public void onClick(DialogInterface dialog, int which) {
-        finish();
-      }
-    })
-    .create();
-    
+      return new AlertDialog.Builder(this)
+      .setTitle(R.string.unlicensed_dialog_title)
+      .setMessage(R.string.failed_retry_dialog_body)
+      .setNegativeButton(R.string.quit_button, new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+          finish();
+        }
+      })
+      .create();
+
     } else {
-      
-    //This second one is for clearly not licensed
-    return new AlertDialog.Builder(this)
-    .setTitle(R.string.unlicensed_dialog_title)
-    .setMessage(R.string.unlicensed_dialog_body)
-    .setPositiveButton(R.string.buy_button, new DialogInterface.OnClickListener() {
-      public void onClick(DialogInterface dialog, int which) {
-        Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(
-            "http://market.android.com/details?id=" + getPackageName()));
-        startActivity(marketIntent);
-      }
-    })
-    .setNegativeButton(R.string.quit_button, new DialogInterface.OnClickListener() {
-      public void onClick(DialogInterface dialog, int which) {
-        finish();
-      }
-    })
-    .create();
+
+      //This second one is for clearly not licensed
+      return new AlertDialog.Builder(this)
+      .setTitle(R.string.unlicensed_dialog_title)
+      .setMessage(R.string.unlicensed_dialog_body)
+      .setPositiveButton(R.string.buy_button, new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+          Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(
+              "http://market.android.com/details?id=" + getPackageName()));
+          startActivity(marketIntent);
+        }
+      })
+      .setNegativeButton(R.string.quit_button, new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+          finish();
+        }
+      })
+      .create();
     }
   }
 
-  
+
   private void doCheck() {
     //first thing is grey out the entry values
     deactivateInterface();
-    
+
     setProgressBarIndeterminateVisibility(true);
     setTitle(R.string.titleBarTextWhileCheckLicense);
     mChecker.checkAccess(mLicenseCheckerCallback);
   }
 
   private void deactivateInterface() {
-    
-  
+
+
     ((Button)findViewById(R.id.splashScreenGoButton)).setEnabled(false);
     ((Button)findViewById(R.id.splashScreenSkipButton)).setEnabled(false);
     ((CheckBox) findViewById(R.id.splashScreenRentCheckBox)).setEnabled(false);
@@ -276,9 +324,9 @@ public class SplashScreenActivity extends Activity {
     loanTerm.setEnabled(false);
     estimatedRentPayments.setEnabled(false);
   }
-  
+
   private void activateInterface() {
-    
+
     ((Button)findViewById(R.id.splashScreenGoButton)).setEnabled(true);
     ((Button)findViewById(R.id.splashScreenSkipButton)).setEnabled(true);
     ((CheckBox) findViewById(R.id.splashScreenRentCheckBox)).setEnabled(true);
@@ -295,14 +343,14 @@ public class SplashScreenActivity extends Activity {
    */
   private void displayResult(final String result) {
     mHandler.post(new Runnable() {
-        public void run() {
-          activateInterface();
-            setTitle(getString(R.string.realEstateMarketAnalysisSplashPageDescription));
-            setProgressBarIndeterminateVisibility(false);
-        }
+      public void run() {
+        activateInterface();
+        setTitle(getString(R.string.realEstateMarketAnalysisSplashPageDescription));
+        setProgressBarIndeterminateVisibility(false);
+      }
     });
   }
-    
+
   private void setViewableRows() {
 
     SharedPreferences sp = getSharedPreferences(GraphActivity.PREFS_NAME, MODE_PRIVATE);
@@ -351,7 +399,7 @@ public class SplashScreenActivity extends Activity {
   }
 
   private void setAssumedValues() {
-    
+
     dataController.putInputValue(totalPurchasePriceValue, ValueEnum.TOTAL_PURCHASE_VALUE);
     dataController.putInputValue(yearlyInterestRateValue, ValueEnum.YEARLY_INTEREST_RATE);
     dataController.putInputValue(100d, ValueEnum.PRIVATE_MORTGAGE_INSURANCE );
@@ -384,14 +432,14 @@ public class SplashScreenActivity extends Activity {
 
 
   private class MyLicenseCheckerCallback implements LicenseCheckerCallback {
-    
+
     @Override
     public void allow(int reason) {
       if (isFinishing()) {
         // Don't update UI if Activity is finishing.
         return;
       }
-      
+
       setLicensed(true);
       displayResult("");
       // Should allow user access.
@@ -435,8 +483,8 @@ public class SplashScreenActivity extends Activity {
   protected void onDestroy() {
     super.onDestroy();
     mChecker.onDestroy();
-//  dataController.nullifyNumericCache();
-  System.runFinalizersOnExit(true);
+    //  dataController.nullifyNumericCache();
+    System.runFinalizersOnExit(true);
   }
 
 

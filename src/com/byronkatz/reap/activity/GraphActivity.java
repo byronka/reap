@@ -65,6 +65,8 @@ public class GraphActivity extends Activity {
   Double currentValueNumeric;
   Double originalCurrentValueNumeric; //for the reset button
 
+  private int test = 0;
+
   SharedPreferences sp;
 
   public static final int DIVISIONS_OF_VALUE_SLIDER = 40;
@@ -324,6 +326,7 @@ public class GraphActivity extends Activity {
 
     valueSlider.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
+      
       @Override
       public void onStopTrackingTouch(SeekBar seekBar) {
         //empty - do nothing
@@ -340,18 +343,13 @@ public class GraphActivity extends Activity {
 
         //set the value in the current value field:
         currentValueNumeric = changeCurrentValueBasedOnProgress(progress);
-//        if (fromUser == true) {
-//        Debug.startMethodTracing();
-//        }
+
         dataController.putInputValue(currentValueNumeric, currentSliderKey );
-        //testing line below
         dataController.calculationsSetValues();
         GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
         GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
         dataTable.setDataTableItems( getCurrentYearSelected(), valueToDataTableItemCorrespondence);
-//        if (fromUser == true) {
-//        Debug.stopMethodTracing();
-//        }
+
       }
     });
 
