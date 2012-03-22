@@ -33,16 +33,22 @@ import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 public class Utility {
 
-  //  private static Double returnValue = 0.0f;
-  private static NumberFormat percentFormat = null;
-  private static NumberFormat currencyFormat = null;
-  private static NumberFormat currencyFormatter = null;
   private static Dialog helpDialog = null;
   private static Window window = null;
   private static TextView helpTextView = null;
   private static String result = null;
   private static DataController dataController = RealEstateAnalysisProcessorApplication
       .getInstance().getDataController();
+  private static NumberFormat currencyNumberFormat = getCurrencyNumberFormat();
+
+  
+  private static NumberFormat getCurrencyNumberFormat() {
+    NumberFormat currencyNumberFormat =NumberFormat.getCurrencyInstance(Locale.US);
+    currencyNumberFormat.setMaximumFractionDigits(0);
+    return currencyNumberFormat;
+  }
+
+  private static NumberFormat percentNumberFormat = NumberFormat.getPercentInstance(Locale.US);
 
   public static void showHelpDialog(int helpText, int helpTitle, Context context) {
     helpDialog = new Dialog(context);
@@ -306,15 +312,14 @@ public class Utility {
   public static String displayCurrency(Double value) {
 //    currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
 //    return currencyFormatter.format(value);
-    NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
-    nf.setMaximumFractionDigits(0);
-    return nf.format(value);
+    //TODO
+//    currencyNumberFormat.setMaximumFractionDigits(0);
+    return currencyNumberFormat.format(value);
   }
 
   public static String displayShortCurrency(Double value) {
-    NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
-    nf.setMaximumFractionDigits(0);
-    return nf.format(value);
+//    currencyNumberFormat.setMaximumFractionDigits(0);
+    return currencyNumberFormat.format(value);
   }
 
   /**
@@ -341,12 +346,11 @@ public class Utility {
 
   public static String displayShortPercentage(Double value) {
 
-    //Seems that numberFormat has a beef with Double values.  Downgrade to Float so it doesn't choke
+    //Seems that currencyNumberFormat has a beef with Double values.  Downgrade to Float so it doesn't choke
 
     //This might be something we want to externalize IF we get that far
-    percentFormat = NumberFormat.getPercentInstance(Locale.US);
-    percentFormat.setMaximumFractionDigits(2);
-    result = percentFormat.format(value.floatValue());
+    percentNumberFormat.setMaximumFractionDigits(2);
+    result = percentNumberFormat.format(value.floatValue());
     return result;
   }
 
@@ -379,10 +383,9 @@ public class Utility {
    */
   public static Double parseCurrency(String value) {
     Double returnValue = 0.0d;
-    currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
     if (value.contains("$")) {
       try {
-        returnValue = currencyFormat.parse(value).doubleValue();
+        returnValue = currencyNumberFormat.parse(value).doubleValue();
       } catch (ParseException e) {
         e.printStackTrace();
       }
@@ -498,21 +501,19 @@ public class Utility {
 
   public static String displayPercentage(Double value) {
 
-    //Seems that numberFormat has a beef with Double values.  Downgrade to Float so it doesn't choke
+    //Seems that currencyNumberFormat has a beef with Double values.  Downgrade to Float so it doesn't choke
 
-    percentFormat = NumberFormat.getPercentInstance(Locale.US);
-    percentFormat.setMaximumFractionDigits(4);
-    result = percentFormat.format(value.floatValue());
+    percentNumberFormat.setMaximumFractionDigits(4);
+    result = percentNumberFormat.format(value.floatValue());
     return result;
   }
 
   public static Double parsePercentage (String value) {
     Double returnValue = 0.0d;
-    percentFormat = NumberFormat.getPercentInstance(Locale.US);
-    percentFormat.setMaximumFractionDigits(4);
+    percentNumberFormat.setMaximumFractionDigits(4);
     if (value.contains("%")) {
       try {
-        Number n = percentFormat.parse(value);
+        Number n = percentNumberFormat.parse(value);
         returnValue = n.doubleValue();
       } catch (ParseException e) {
         e.printStackTrace();

@@ -226,7 +226,7 @@ public class LoanActivity extends Activity {
     tempVariable = dataController.getInputValue(ValueEnum.PRIVATE_MORTGAGE_INSURANCE);
     privateMortgageInsurance.setText(Utility.displayCurrency(tempVariable));
     
-    Integer tempInt = dataController.getInputValue(ValueEnum.EXTRA_YEARS).intValue();
+    Integer tempInt = (int) dataController.getInputValue(ValueEnum.EXTRA_YEARS);
     extraYears.setText(tempInt.toString());
   }
 

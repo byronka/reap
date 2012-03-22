@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Handler;
 import android.provider.Settings.Secure;
 import android.util.Log;
@@ -140,10 +141,9 @@ public class SplashScreenActivity extends Activity {
     try {
       sizeOfString = inflater.inflate(outputBuffer);
     } catch (DataFormatException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    String BASE64_PUBLIC_KEY = new String(Arrays.copyOfRange(outputBuffer, 0, sizeOfString));
+    String BASE64_PUBLIC_KEY = new String(outputBuffer);
 
 
     yearlyInterestRate = (EditText)findViewById(R.id.yearlyInterestRateEditText);

@@ -210,9 +210,9 @@ public class DataTable {
 
   public void setDataTableValueByInteger(TextView t, ValueEnum ve, Integer year) {
     if (ve.isVaryingByYear()) {
-      t.setText(String.valueOf(dataController.getCalcValue(ve, year*12).intValue()));
+      t.setText(String.valueOf((int) dataController.getCalcValue(ve, year*12)));
     } else if (! ve.isVaryingByYear()) {
-      t.setText(String.valueOf(dataController.getInputValue(ve).intValue()));
+      t.setText(String.valueOf((int) dataController.getInputValue(ve)));
     }
     
 

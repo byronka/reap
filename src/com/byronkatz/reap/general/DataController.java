@@ -38,7 +38,6 @@ public class DataController implements DataManager {
     inputMap = new EnumMap<ValueEnum, Double>(ValueEnum.class);
     calcValuePointers = new EnumMap<ValueEnum, CalcValueGettable>(ValueEnum.class);
     calculations = new Calculations();
-//    calculations.setValues(this);
 
     databaseAdapter = new DatabaseAdapter(context);
     textValues = new EnumMap<ValueEnum, String>(ValueEnum.class);
@@ -66,7 +65,7 @@ public class DataController implements DataManager {
    * method in question to run at that time.
    */
   @Override
-  public Double getCalcValue(ValueEnum valueEnum, Integer compoundingPeriod) {
+  public double getCalcValue(ValueEnum valueEnum, int compoundingPeriod) {
 //    Thread.dumpStack();
 //    Log.d("call " + getCalcCalls++, "calculating " + valueEnum.name() + " " + compoundingPeriod);
     if (calcValuePointers.get(valueEnum) != null) {
@@ -81,12 +80,12 @@ public class DataController implements DataManager {
    *
    */
   @Override
-  public void putInputValue(Double value, ValueEnum valueEnum) {
+  public void putInputValue(double value, ValueEnum valueEnum) {
     inputMap.put(valueEnum, value);
   }
 
   @Override
-  public Double getInputValue(ValueEnum valueEnum) {
+  public double getInputValue(ValueEnum valueEnum) {
 
     if (inputMap.get(valueEnum) == null) {
       return 0d;

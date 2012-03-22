@@ -107,8 +107,8 @@ public class GraphActivity extends Activity {
   private void checkYearSettingsAtResume() {
     //necessary in case the user switches between loan types (15 vs. 30 year)
     Integer currentYearMaximum = 
-        (dataController.getInputValue(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue())/12 + 
-        dataController.getInputValue(ValueEnum.EXTRA_YEARS).intValue();
+        (int) (dataController.getInputValue(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS))/12 + 
+        (int) dataController.getInputValue(ValueEnum.EXTRA_YEARS);
     
     Integer currentYearSelected = GraphActivityFunctions.updateTimeSliderAfterChange (timeSlider, currentYearMaximum);
     updateYearDisplayAtSeekBar(currentYearSelected);
@@ -162,8 +162,8 @@ public class GraphActivity extends Activity {
     dataTable = new DataTable(this);
 
     Integer currentYearMaximum = 
-        (dataController.getInputValue(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue())/12 + 
-        dataController.getInputValue(ValueEnum.EXTRA_YEARS).intValue();
+        (int) (dataController.getInputValue(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS))/12 + 
+        (int) dataController.getInputValue(ValueEnum.EXTRA_YEARS);
     
     //set the current year from storage.  Either use that, or the maximum on the slider.
     //just to make sure, though, let's also make sure that number is kosher before we pop it in.
@@ -546,7 +546,7 @@ public class GraphActivity extends Activity {
   }
 
   private Integer getCurrentYearSelected() {
-    return ((SeekBar) findViewById(R.id.timeSlider)).getProgress() + 1;
+    return ((SeekBar) findViewById(R.id.timeSlider)).getProgress();
 
   }
 }

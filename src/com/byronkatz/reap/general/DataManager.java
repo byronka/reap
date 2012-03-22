@@ -11,7 +11,7 @@ public interface DataManager {
    * @param year
    * @return the Double value for that year and value
    */
-  public Double getCalcValue(ValueEnum valueEnum, Integer compoundingPeriod);
+  public double getCalcValue(ValueEnum valueEnum, int compoundingPeriod);
   
   /**
    * This function pulls a user-input value from the data structure.  These values are
@@ -20,7 +20,7 @@ public interface DataManager {
    * @param valueEnum
    * @return
    */
-  public Double getInputValue(ValueEnum valueEnum);
+  public double getInputValue(ValueEnum valueEnum);
   
   /**
    * This function is used throughout the user interface to set the user-input values which
@@ -29,7 +29,7 @@ public interface DataManager {
    * @param value
    * @param valueEnum
    */
-  public void putInputValue(Double value, ValueEnum valueEnum);
+  public void putInputValue(double value, ValueEnum valueEnum);
   
   /**
    * This method is used to map the getValue() method for each calculated value

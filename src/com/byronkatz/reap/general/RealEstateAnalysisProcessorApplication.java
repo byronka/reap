@@ -1,11 +1,15 @@
 package com.byronkatz.reap.general;
 
 
+import org.acra.ACRA;
+import org.acra.annotation.ReportsCrashes;
+
 import android.app.Application;
 import android.content.ContextWrapper;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 
+@ReportsCrashes(formKey = "dHYzM1FGVl9QZVg5b2F0eDNiRnh6bnc6MQ") 
 public class RealEstateAnalysisProcessorApplication extends Application {
 
   private static RealEstateAnalysisProcessorApplication singleton;
@@ -21,7 +25,9 @@ public class RealEstateAnalysisProcessorApplication extends Application {
   
   @Override
   public final void onCreate() {
-    
+ // The following line triggers the initialization of ACRA
+    ACRA.init(this);
+
     sharedPreferences = getSharedPreferences(BASE_VALUES, ContextWrapper.MODE_PRIVATE);
     setDataController(new DataController(this, sharedPreferences));
     RealEstateAnalysisProcessorApplication.resources = getResources();

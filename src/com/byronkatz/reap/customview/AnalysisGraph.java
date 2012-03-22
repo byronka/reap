@@ -170,8 +170,8 @@ public class AnalysisGraph extends View {
   public void setPlotPoints() {
     dataPoints.clear();
     for (int year = 0; year < (
-        dataController.getInputValue(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS).intValue() / 12 + 
-        dataController.getInputValue(ValueEnum.EXTRA_YEARS).intValue());
+        (int) dataController.getInputValue(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS) / 12 + 
+        (int) dataController.getInputValue(ValueEnum.EXTRA_YEARS));
         year++) {
       dataPoints.add(year, dataController.getCalcValue(graphKeyValue, year*12));
     }
@@ -214,17 +214,15 @@ public class AnalysisGraph extends View {
       Float oldXGraphValue = 0.0f;
       Float oldYGraphValue = 0.0f;
 
-      xValue = 0;
       yValue = 0.0f;
 
       //actually draw the graphline here
-      for (int i = 0; i < dataPoints.size(); i++) {  
-        xValue = i + 1;
+      for (xValue = 0; xValue < dataPoints.size(); xValue++) {  
 
-        if ((Math.abs(yValue - dataPoints.get(i))) > EPSILON) {
+        if ((Math.abs(yValue - dataPoints.get(xValue))) > EPSILON) {
           //only if new value and the previous value are essentially different, 
           //otherwise use the old value
-          yValue = dataPoints.get(i).floatValue();
+          yValue = dataPoints.get(xValue).floatValue();
         } 
         xGraphValue = (float) (marginWidthX +  xGraphCoefficient * (xValue - functionMinX));
 
@@ -253,7 +251,7 @@ public class AnalysisGraph extends View {
         yGraphValue = (float) (graphMaxY / 2);
       } else {
         yGraphValue = (float) (marginWidthY + yGraphCoefficient * 
-            (functionMaxY - dataPoints.get(currentYearHighlighted - 1).floatValue()));
+            (functionMaxY - dataPoints.get(currentYearHighlighted).floatValue()));
       }
 
       xGraphValue = (float) (marginWidthX +  xGraphCoefficient * (currentYearHighlighted - functionMinX));
