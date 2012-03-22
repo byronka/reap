@@ -7045,7 +7045,7 @@ Methods (count = 19):
     Access flags: 0x2
       = private java.lang.Integer c()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 18, locals = 1, stack = 2):
+    + Code attribute instructions (code length = 16, locals = 1, stack = 2):
       [0] aload_0 v0
       [1] ldc #18
         - Integer [2131034215]
@@ -7055,11 +7055,9 @@ Methods (count = 19):
         - Class [android/widget/SeekBar]
       [9] invokevirtual #146
         - Methodref [android/widget/SeekBar.getProgress ()I]
-      [12] iconst_1
-      [13] iadd
-      [14] invokestatic #218
+      [12] invokestatic #218
         - Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
-      [17] areturn
+      [15] areturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
@@ -17358,12 +17356,12 @@ Methods (count = 13):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 6)
-        [0] -> line 60
-        [6] -> line 61
-        [73] -> line 62
-        [115] -> line 63
-        [118] -> line 60
-        [121] -> line 46
+        [0] -> line 61
+        [6] -> line 62
+        [73] -> line 63
+        [115] -> line 64
+        [118] -> line 61
+        [121] -> line 47
   - Method:       <init>()V
     Access flags: 0x1
       = public SplashScreenActivity()
@@ -17389,11 +17387,11 @@ Methods (count = 13):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 5)
-        [0] -> line 46
-        [4] -> line 66
-        [12] -> line 85
-        [13] -> line 86
-        [22] -> line 46
+        [0] -> line 47
+        [4] -> line 67
+        [12] -> line 86
+        [13] -> line 87
+        [22] -> line 47
   + Method:       a(Ljava/lang/Boolean;)V
     Access flags: 0x11
       = public final void a(java.lang.Boolean)
@@ -17407,8 +17405,8 @@ Methods (count = 13):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
-        [0] -> line 89
-        [5] -> line 90
+        [0] -> line 90
+        [5] -> line 91
   + Method:       onCreate(Landroid/os/Bundle;)V
     Access flags: 0x1
       = public void onCreate(android.os.Bundle)
@@ -19123,78 +19121,78 @@ Methods (count = 13):
       - Class [java/util/zip/DataFormatException]
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 72)
-        [0] -> line 104
-        [5] -> line 105
-        [11] -> line 106
-        [17] -> line 107
-        [28] -> line 109
-        [35] -> line 110
-        [114] -> line 111
-        [204] -> line 112
-        [294] -> line 113
-        [383] -> line 114
-        [472] -> line 115
-        [562] -> line 116
-        [652] -> line 117
-        [742] -> line 118
-        [839] -> line 119
-        [944] -> line 120
-        [1049] -> line 121
-        [1153] -> line 122
-        [1251] -> line 123
-        [1363] -> line 124
-        [1475] -> line 125
-        [1579] -> line 126
-        [1684] -> line 127
-        [1788] -> line 128
-        [1886] -> line 129
-        [1984] -> line 130
-        [2096] -> line 131
-        [2197] -> line 109
-        [2198] -> line 134
-        [2206] -> line 136
-        [2211] -> line 137
-        [2216] -> line 138
-        [2222] -> line 139
-        [2231] -> line 142
-        [2234] -> line 145
-        [2243] -> line 148
-        [2256] -> line 149
-        [2269] -> line 150
-        [2282] -> line 151
-        [2295] -> line 152
-        [2308] -> line 154
-        [2309] -> line 155
-        [2314] -> line 154
-        [2320] -> line 156
-        [2329] -> line 157
-        [2340] -> line 160
-        [2355] -> line 175
-        [2372] -> line 177
-        [2381] -> line 178
-        [2391] -> line 177
-        [2394] -> line 181
-        [2411] -> line 183
-        [2420] -> line 184
-        [2430] -> line 183
-        [2433] -> line 187
-        [2448] -> line 215
-        [2465] -> line 217
-        [2474] -> line 218
-        [2484] -> line 217
-        [2487] -> line 221
-        [2496] -> line 220
-        [2507] -> line 239
-        [2516] -> line 238
-        [2527] -> line 255
-        [2537] -> line 258
-        [2549] -> line 260
-        [2554] -> line 261
-        [2560] -> line 262
-        [2578] -> line 263
-        [2582] -> line 260
-        [2585] -> line 264
-        [2682] -> line 265
+        [0] -> line 105
+        [5] -> line 106
+        [11] -> line 107
+        [17] -> line 108
+        [28] -> line 110
+        [35] -> line 111
+        [114] -> line 112
+        [204] -> line 113
+        [294] -> line 114
+        [383] -> line 115
+        [472] -> line 116
+        [562] -> line 117
+        [652] -> line 118
+        [742] -> line 119
+        [839] -> line 120
+        [944] -> line 121
+        [1049] -> line 122
+        [1153] -> line 123
+        [1251] -> line 124
+        [1363] -> line 125
+        [1475] -> line 126
+        [1579] -> line 127
+        [1684] -> line 128
+        [1788] -> line 129
+        [1886] -> line 130
+        [1984] -> line 131
+        [2096] -> line 132
+        [2197] -> line 110
+        [2198] -> line 135
+        [2206] -> line 137
+        [2211] -> line 138
+        [2216] -> line 139
+        [2222] -> line 140
+        [2231] -> line 143
+        [2234] -> line 146
+        [2243] -> line 149
+        [2256] -> line 150
+        [2269] -> line 151
+        [2282] -> line 152
+        [2295] -> line 153
+        [2308] -> line 155
+        [2309] -> line 156
+        [2314] -> line 155
+        [2320] -> line 157
+        [2329] -> line 158
+        [2340] -> line 161
+        [2355] -> line 176
+        [2372] -> line 178
+        [2381] -> line 179
+        [2391] -> line 178
+        [2394] -> line 182
+        [2411] -> line 184
+        [2420] -> line 185
+        [2430] -> line 184
+        [2433] -> line 188
+        [2448] -> line 216
+        [2465] -> line 218
+        [2474] -> line 219
+        [2484] -> line 218
+        [2487] -> line 222
+        [2496] -> line 221
+        [2507] -> line 240
+        [2516] -> line 239
+        [2527] -> line 256
+        [2537] -> line 259
+        [2549] -> line 261
+        [2554] -> line 262
+        [2560] -> line 263
+        [2578] -> line 264
+        [2582] -> line 261
+        [2585] -> line 265
+        [2682] -> line 266
       + Stack map table attribute (count = 2):
         - [2231] Var: [a:com/byronkatz/reap/activity/SplashScreenActivity][a:android/os/Bundle][a:[B][a:java/util/zip/Inflater][a:[B][i], Stack: [a:java/util/zip/DataFormatException]
         - [2234] Var: ..., Stack: (empty)
@@ -19273,20 +19271,20 @@ Methods (count = 13):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 14)
-        [0] -> line 272
-        [7] -> line 273
-        [15] -> line 274
-        [20] -> line 275
-        [25] -> line 276
-        [38] -> line 281
-        [41] -> line 273
-        [42] -> line 286
-        [50] -> line 287
-        [55] -> line 288
-        [60] -> line 289
-        [73] -> line 296
-        [86] -> line 301
-        [89] -> line 286
+        [0] -> line 273
+        [7] -> line 274
+        [15] -> line 275
+        [20] -> line 276
+        [25] -> line 277
+        [38] -> line 282
+        [41] -> line 274
+        [42] -> line 287
+        [50] -> line 288
+        [55] -> line 289
+        [60] -> line 290
+        [73] -> line 297
+        [86] -> line 302
+        [89] -> line 287
       + Stack map table attribute (count = 1):
         - [42] Var: ..., Stack: (empty)
   + Method:       onDestroy()V
@@ -19309,10 +19307,10 @@ Methods (count = 13):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 4)
-        [0] -> line 483
-        [4] -> line 484
-        [11] -> line 486
-        [15] -> line 487
+        [0] -> line 484
+        [4] -> line 485
+        [11] -> line 487
+        [15] -> line 488
   + Method:       a(Lcom/byronkatz/reap/activity/SplashScreenActivity;)V
     Access flags: 0x1008
       = static synthetic void a(com.byronkatz.reap.activity.SplashScreenActivity)
@@ -19336,7 +19334,7 @@ Methods (count = 13):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 343
+        [0] -> line 344
   + Method:       a(Lcom/byronkatz/reap/activity/SplashScreenActivity;Ljava/lang/Double;)V
     Access flags: 0x1008
       = static synthetic void a(com.byronkatz.reap.activity.SplashScreenActivity,java.lang.Double)
@@ -19350,7 +19348,7 @@ Methods (count = 13):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 79
+        [0] -> line 80
   + Method:       b(Lcom/byronkatz/reap/activity/SplashScreenActivity;)Ljava/lang/Boolean;
     Access flags: 0x1008
       = static synthetic java.lang.Boolean b(com.byronkatz.reap.activity.SplashScreenActivity)
@@ -19363,7 +19361,7 @@ Methods (count = 13):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 66
+        [0] -> line 67
   + Method:       c(Lcom/byronkatz/reap/activity/SplashScreenActivity;)V
     Access flags: 0x1008
       = static synthetic void c(com.byronkatz.reap.activity.SplashScreenActivity)
@@ -19411,7 +19409,7 @@ Methods (count = 13):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 95
+        [0] -> line 96
   + Method:       d(Lcom/byronkatz/reap/activity/SplashScreenActivity;)V
     Access flags: 0x1008
       = static synthetic void d(com.byronkatz.reap.activity.SplashScreenActivity)
@@ -19673,7 +19671,7 @@ Methods (count = 13):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 400
+        [0] -> line 401
   + Method:       e(Lcom/byronkatz/reap/activity/SplashScreenActivity;)V
     Access flags: 0x1008
       = static synthetic void e(com.byronkatz.reap.activity.SplashScreenActivity)
@@ -19924,7 +19922,7 @@ Methods (count = 13):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 353
+        [0] -> line 354
   + Method:       f(Lcom/byronkatz/reap/activity/SplashScreenActivity;)V
     Access flags: 0x1008
       = static synthetic void f(com.byronkatz.reap.activity.SplashScreenActivity)
@@ -19990,7 +19988,7 @@ Methods (count = 13):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 327
+        [0] -> line 328
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -20068,7 +20066,7 @@ Methods (count = 2):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
         [0] -> line 1
-        [5] -> line 160
+        [5] -> line 161
   + Method:       onCheckedChanged(Landroid/widget/CompoundButton;Z)V
     Access flags: 0x11
       = public final void onCheckedChanged(android.widget.CompoundButton,boolean)
@@ -20103,11 +20101,11 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 5)
-        [0] -> line 164
-        [4] -> line 165
-        [18] -> line 166
-        [22] -> line 167
-        [35] -> line 171
+        [0] -> line 165
+        [4] -> line 166
+        [18] -> line 167
+        [22] -> line 168
+        [35] -> line 172
       + Stack map table attribute (count = 2):
         - [18] Var: ..., Stack: (empty)
         - [35] Var: ..., Stack: (empty)
@@ -20211,7 +20209,7 @@ Methods (count = 3):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
         [0] -> line 1
-        [5] -> line 187
+        [5] -> line 188
   + Method:       onItemSelected(Landroid/widget/AdapterView;Landroid/view/View;IJ)V
     Access flags: 0x11
       = public final void onItemSelected(android.widget.AdapterView,android.view.View,int,long)
@@ -20312,19 +20310,19 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 13)
-        [0] -> line 193
-        [13] -> line 194
-        [26] -> line 195
-        [40] -> line 196
-        [54] -> line 198
-        [59] -> line 199
-        [73] -> line 200
-        [79] -> line 201
-        [93] -> line 202
-        [98] -> line 203
-        [112] -> line 204
-        [118] -> line 205
-        [131] -> line 207
+        [0] -> line 194
+        [13] -> line 195
+        [26] -> line 196
+        [40] -> line 197
+        [54] -> line 199
+        [59] -> line 200
+        [73] -> line 201
+        [79] -> line 202
+        [93] -> line 203
+        [98] -> line 204
+        [112] -> line 205
+        [118] -> line 206
+        [131] -> line 208
       + Stack map table attribute (count = 4):
         - [73] Var: [a:com/byronkatz/reap/activity/af][a:android/widget/AdapterView][a:android/view/View][i][l][i][i][i][i], Stack: 
         - [93] Var: ..., Stack: (empty)
@@ -20339,7 +20337,7 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 212
+        [0] -> line 213
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -20436,7 +20434,7 @@ Methods (count = 2):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
         [0] -> line 1
-        [5] -> line 222
+        [5] -> line 223
   + Method:       onClick(Landroid/view/View;)V
     Access flags: 0x11
       = public final void onClick(android.view.View)
@@ -20486,13 +20484,13 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 7)
-        [0] -> line 227
-        [13] -> line 228
-        [20] -> line 229
-        [27] -> line 230
-        [34] -> line 232
-        [48] -> line 233
-        [56] -> line 235
+        [0] -> line 228
+        [13] -> line 229
+        [20] -> line 230
+        [27] -> line 231
+        [34] -> line 233
+        [48] -> line 234
+        [56] -> line 236
       + Stack map table attribute (count = 1):
         - [56] Var: ..., Stack: (empty)
 
@@ -20582,7 +20580,7 @@ Methods (count = 2):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
         [0] -> line 1
-        [5] -> line 240
+        [5] -> line 241
   + Method:       onClick(Landroid/view/View;)V
     Access flags: 0x11
       = public final void onClick(android.view.View)
@@ -20617,10 +20615,10 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 4)
-        [0] -> line 245
-        [13] -> line 246
-        [27] -> line 247
-        [35] -> line 249
+        [0] -> line 246
+        [13] -> line 247
+        [27] -> line 248
+        [35] -> line 250
       + Stack map table attribute (count = 1):
         - [35] Var: ..., Stack: (empty)
 
@@ -20691,7 +20689,7 @@ Methods (count = 2):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
         [0] -> line 1
-        [5] -> line 276
+        [5] -> line 277
   + Method:       onClick(Landroid/content/DialogInterface;I)V
     Access flags: 0x11
       = public final void onClick(android.content.DialogInterface,int)
@@ -20706,8 +20704,8 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
-        [0] -> line 278
-        [7] -> line 279
+        [0] -> line 279
+        [7] -> line 280
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -20808,7 +20806,7 @@ Methods (count = 2):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
         [0] -> line 1
-        [5] -> line 289
+        [5] -> line 290
   + Method:       onClick(Landroid/content/DialogInterface;I)V
     Access flags: 0x11
       = public final void onClick(android.content.DialogInterface,int)
@@ -20850,11 +20848,11 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 5)
-        [0] -> line 291
-        [6] -> line 292
-        [28] -> line 291
-        [35] -> line 293
-        [43] -> line 294
+        [0] -> line 292
+        [6] -> line 293
+        [28] -> line 292
+        [35] -> line 294
+        [43] -> line 295
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -20923,7 +20921,7 @@ Methods (count = 2):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
         [0] -> line 1
-        [5] -> line 296
+        [5] -> line 297
   + Method:       onClick(Landroid/content/DialogInterface;I)V
     Access flags: 0x11
       = public final void onClick(android.content.DialogInterface,int)
@@ -20938,8 +20936,8 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
-        [0] -> line 298
-        [7] -> line 299
+        [0] -> line 299
+        [7] -> line 300
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -21018,7 +21016,7 @@ Methods (count = 2):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
         [0] -> line 1
-        [5] -> line 344
+        [5] -> line 345
   + Method:       run()V
     Access flags: 0x11
       = public final void run()
@@ -21051,10 +21049,10 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 4)
-        [0] -> line 346
-        [7] -> line 347
-        [23] -> line 348
-        [31] -> line 349
+        [0] -> line 347
+        [7] -> line 348
+        [23] -> line 349
+        [31] -> line 350
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -21185,7 +21183,7 @@ Methods (count = 5):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 433
+        [0] -> line 434
   + Method:       a()V
     Access flags: 0x11
       = public final void a()
@@ -21215,11 +21213,11 @@ Methods (count = 5):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 5)
-        [0] -> line 437
-        [10] -> line 439
-        [11] -> line 442
-        [22] -> line 443
-        [29] -> line 445
+        [0] -> line 438
+        [10] -> line 440
+        [11] -> line 443
+        [22] -> line 444
+        [29] -> line 446
       + Stack map table attribute (count = 1):
         - [11] Var: ..., Stack: (empty)
   + Method:       a(I)V
@@ -21252,11 +21250,11 @@ Methods (count = 5):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 5)
-        [0] -> line 449
-        [10] -> line 451
-        [11] -> line 460
-        [22] -> line 462
-        [30] -> line 463
+        [0] -> line 450
+        [10] -> line 452
+        [11] -> line 461
+        [22] -> line 463
+        [30] -> line 464
       + Stack map table attribute (count = 1):
         - [11] Var: ..., Stack: (empty)
   + Method:       b(I)V
@@ -21327,13 +21325,13 @@ Methods (count = 5):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 7)
-        [0] -> line 466
-        [10] -> line 468
-        [11] -> line 473
-        [35] -> line 474
-        [62] -> line 475
-        [73] -> line 476
-        [80] -> line 477
+        [0] -> line 467
+        [10] -> line 469
+        [11] -> line 474
+        [35] -> line 475
+        [62] -> line 476
+        [73] -> line 477
+        [80] -> line 478
       + Stack map table attribute (count = 1):
         - [11] Var: ..., Stack: (empty)
   - Method:       <init>(Lcom/byronkatz/reap/activity/SplashScreenActivity;)V
@@ -21350,7 +21348,7 @@ Methods (count = 5):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 433
+        [0] -> line 434
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -25446,22 +25444,9 @@ Methods (count = 63):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
         [0] -> line 41
-  + Method:       K(Lcom/byronkatz/reap/a/b;)I
+  + Method:       K(Lcom/byronkatz/reap/a/b;)D
     Access flags: 0x1008
-      = static synthetic int K(com.byronkatz.reap.a.b)
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 5, locals = 1, stack = 1):
-      [0] aload_0 v0
-      [1] getfield #135
-        - Fieldref [com/byronkatz/reap/a/b.y I]
-      [4] ireturn
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 1)
-        [0] -> line 33
-  + Method:       L(Lcom/byronkatz/reap/a/b;)D
-    Access flags: 0x1008
-      = static synthetic double L(com.byronkatz.reap.a.b)
+      = static synthetic double K(com.byronkatz.reap.a.b)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 2):
       [0] aload_0 v0
@@ -25486,9 +25471,9 @@ Methods (count = 63):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
         [0] -> line 40
-  + Method:       M(Lcom/byronkatz/reap/a/b;)D
+  + Method:       L(Lcom/byronkatz/reap/a/b;)D
     Access flags: 0x1008
-      = static synthetic double M(com.byronkatz.reap.a.b)
+      = static synthetic double L(com.byronkatz.reap.a.b)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 2):
       [0] aload_0 v0
@@ -25513,9 +25498,9 @@ Methods (count = 63):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
         [0] -> line 35
-  + Method:       N(Lcom/byronkatz/reap/a/b;)D
+  + Method:       M(Lcom/byronkatz/reap/a/b;)D
     Access flags: 0x1008
-      = static synthetic double N(com.byronkatz.reap.a.b)
+      = static synthetic double M(com.byronkatz.reap.a.b)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 2):
       [0] aload_0 v0
@@ -25526,6 +25511,19 @@ Methods (count = 63):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
         [0] -> line 35
+  + Method:       N(Lcom/byronkatz/reap/a/b;)I
+    Access flags: 0x1008
+      = static synthetic int N(com.byronkatz.reap.a.b)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 5, locals = 1, stack = 1):
+      [0] aload_0 v0
+      [1] getfield #135
+        - Fieldref [com/byronkatz/reap/a/b.y I]
+      [4] ireturn
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 1):
+      + Line number table attribute (count = 1)
+        [0] -> line 33
   + Method:       O(Lcom/byronkatz/reap/a/b;)[D
     Access flags: 0x1008
       = static synthetic double[] O(com.byronkatz.reap.a.b)
@@ -25743,13 +25741,13 @@ Constant Pool (count = 34):
   - Class [com/byronkatz/reap/a/c]
   - Class [java/lang/Object]
   - Fieldref [com/byronkatz/reap/a/c.a Lcom/byronkatz/reap/a/b;]
-  - Methodref [com/byronkatz/reap/a/b.K (Lcom/byronkatz/reap/a/b;)I]
+  - Methodref [com/byronkatz/reap/a/b.N (Lcom/byronkatz/reap/a/b;)I]
   - Methodref [com/byronkatz/reap/a/b.Q (Lcom/byronkatz/reap/a/b;)[D]
   - Methodref [com/byronkatz/reap/a/c.<init> (Lcom/byronkatz/reap/a/b;B)V]
   - Methodref [java/lang/Object.<init> ()V]
   + NameAndType [<init> ()V]
   + NameAndType [<init> (Lcom/byronkatz/reap/a/b;B)V]
-  + NameAndType [K (Lcom/byronkatz/reap/a/b;)I]
+  + NameAndType [N (Lcom/byronkatz/reap/a/b;)I]
   + NameAndType [Q (Lcom/byronkatz/reap/a/b;)[D]
   + NameAndType [a Lcom/byronkatz/reap/a/b;]
   + Utf8 [()V]
@@ -25760,9 +25758,9 @@ Constant Pool (count = 34):
   + Utf8 [(Lcom/byronkatz/reap/a/b;B)V]
   + Utf8 [<init>]
   + Utf8 [Code]
-  + Utf8 [K]
   + Utf8 [Lcom/byronkatz/reap/a/b;]
   + Utf8 [LineNumberTable]
+  + Utf8 [N]
   + Utf8 [Q]
   + Utf8 [SourceFile]
   + Utf8 [StackMapTable]
@@ -25794,7 +25792,7 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 766
+        [0] -> line 801
   + Method:       a(I)D
     Access flags: 0x11
       = public final double a(int)
@@ -25807,7 +25805,7 @@ Methods (count = 3):
       [6] getfield #5
         - Fieldref [com/byronkatz/reap/a/c.a Lcom/byronkatz/reap/a/b;]
       [9] invokestatic #6
-        - Methodref [com/byronkatz/reap/a/b.K (Lcom/byronkatz/reap/a/b;)I]
+        - Methodref [com/byronkatz/reap/a/b.N (Lcom/byronkatz/reap/a/b;)I]
       [12] bipush 12
       [14] imul
       [15] ificmplt +5 (target=20)
@@ -25826,8 +25824,8 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 2)
-        [0] -> line 770
-        [20] -> line 771
+        [0] -> line 805
+        [20] -> line 806
       + Stack map table attribute (count = 2):
         - [18] Var: ..., Stack: (empty)
         - [20] Var: ..., Stack: (empty)
@@ -25845,7 +25843,7 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 766
+        [0] -> line 801
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -25868,13 +25866,13 @@ Constant Pool (count = 34):
   - Class [com/byronkatz/reap/a/d]
   - Class [java/lang/Object]
   - Fieldref [com/byronkatz/reap/a/d.a Lcom/byronkatz/reap/a/b;]
-  - Methodref [com/byronkatz/reap/a/b.K (Lcom/byronkatz/reap/a/b;)I]
+  - Methodref [com/byronkatz/reap/a/b.N (Lcom/byronkatz/reap/a/b;)I]
   - Methodref [com/byronkatz/reap/a/b.P (Lcom/byronkatz/reap/a/b;)[D]
   - Methodref [com/byronkatz/reap/a/d.<init> (Lcom/byronkatz/reap/a/b;B)V]
   - Methodref [java/lang/Object.<init> ()V]
   + NameAndType [<init> ()V]
   + NameAndType [<init> (Lcom/byronkatz/reap/a/b;B)V]
-  + NameAndType [K (Lcom/byronkatz/reap/a/b;)I]
+  + NameAndType [N (Lcom/byronkatz/reap/a/b;)I]
   + NameAndType [P (Lcom/byronkatz/reap/a/b;)[D]
   + NameAndType [a Lcom/byronkatz/reap/a/b;]
   + Utf8 [()V]
@@ -25885,9 +25883,9 @@ Constant Pool (count = 34):
   + Utf8 [(Lcom/byronkatz/reap/a/b;B)V]
   + Utf8 [<init>]
   + Utf8 [Code]
-  + Utf8 [K]
   + Utf8 [Lcom/byronkatz/reap/a/b;]
   + Utf8 [LineNumberTable]
+  + Utf8 [N]
   + Utf8 [P]
   + Utf8 [SourceFile]
   + Utf8 [StackMapTable]
@@ -25919,7 +25917,7 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 756
+        [0] -> line 791
   + Method:       a(I)D
     Access flags: 0x11
       = public final double a(int)
@@ -25932,7 +25930,7 @@ Methods (count = 3):
       [6] getfield #5
         - Fieldref [com/byronkatz/reap/a/d.a Lcom/byronkatz/reap/a/b;]
       [9] invokestatic #6
-        - Methodref [com/byronkatz/reap/a/b.K (Lcom/byronkatz/reap/a/b;)I]
+        - Methodref [com/byronkatz/reap/a/b.N (Lcom/byronkatz/reap/a/b;)I]
       [12] bipush 12
       [14] imul
       [15] ificmplt +5 (target=20)
@@ -25951,8 +25949,8 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 2)
-        [0] -> line 760
-        [20] -> line 761
+        [0] -> line 795
+        [20] -> line 796
       + Stack map table attribute (count = 2):
         - [18] Var: ..., Stack: (empty)
         - [20] Var: ..., Stack: (empty)
@@ -25970,7 +25968,7 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 756
+        [0] -> line 791
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -26214,8 +26212,8 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
-        [0] -> line 937
-        [9] -> line 938
+        [0] -> line 972
+        [9] -> line 973
   + Method:       a(I)D
     Access flags: 0x11
       = public final double a(int)
@@ -26251,9 +26249,9 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 3)
-        [0] -> line 943
-        [17] -> line 944
-        [29] -> line 945
+        [0] -> line 978
+        [17] -> line 979
+        [29] -> line 980
       + Stack map table attribute (count = 3):
         - [15] Var: ..., Stack: (empty)
         - [17] Var: ..., Stack: (empty)
@@ -26280,16 +26278,16 @@ Constant Pool (count = 42):
   - Class [com/byronkatz/reap/a/g]
   - Class [java/lang/Object]
   - Fieldref [com/byronkatz/reap/a/g.a Lcom/byronkatz/reap/a/b;]
-  - Methodref [com/byronkatz/reap/a/b.K (Lcom/byronkatz/reap/a/b;)I]
-  - Methodref [com/byronkatz/reap/a/b.N (Lcom/byronkatz/reap/a/b;)D]
+  - Methodref [com/byronkatz/reap/a/b.M (Lcom/byronkatz/reap/a/b;)D]
+  - Methodref [com/byronkatz/reap/a/b.N (Lcom/byronkatz/reap/a/b;)I]
   - Methodref [com/byronkatz/reap/a/b.O (Lcom/byronkatz/reap/a/b;)[D]
   - Methodref [com/byronkatz/reap/a/b.f (Lcom/byronkatz/reap/a/b;D)V]
   - Methodref [com/byronkatz/reap/a/g.<init> (Lcom/byronkatz/reap/a/b;B)V]
   - Methodref [java/lang/Object.<init> ()V]
   + NameAndType [<init> ()V]
   + NameAndType [<init> (Lcom/byronkatz/reap/a/b;B)V]
-  + NameAndType [K (Lcom/byronkatz/reap/a/b;)I]
-  + NameAndType [N (Lcom/byronkatz/reap/a/b;)D]
+  + NameAndType [M (Lcom/byronkatz/reap/a/b;)D]
+  + NameAndType [N (Lcom/byronkatz/reap/a/b;)I]
   + NameAndType [O (Lcom/byronkatz/reap/a/b;)[D]
   + NameAndType [a Lcom/byronkatz/reap/a/b;]
   + NameAndType [f (Lcom/byronkatz/reap/a/b;D)V]
@@ -26303,9 +26301,9 @@ Constant Pool (count = 42):
   + Utf8 [(Lcom/byronkatz/reap/a/b;D)V]
   + Utf8 [<init>]
   + Utf8 [Code]
-  + Utf8 [K]
   + Utf8 [Lcom/byronkatz/reap/a/b;]
   + Utf8 [LineNumberTable]
+  + Utf8 [M]
   + Utf8 [N]
   + Utf8 [O]
   + Utf8 [SourceFile]
@@ -26339,7 +26337,7 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 737
+        [0] -> line 772
   + Method:       a(I)D
     Access flags: 0x11
       = public final double a(int)
@@ -26362,8 +26360,8 @@ Methods (count = 3):
       [20] getfield #5
         - Fieldref [com/byronkatz/reap/a/g.a Lcom/byronkatz/reap/a/b;]
       [23] dup
-      [24] invokestatic #7
-        - Methodref [com/byronkatz/reap/a/b.N (Lcom/byronkatz/reap/a/b;)D]
+      [24] invokestatic #6
+        - Methodref [com/byronkatz/reap/a/b.M (Lcom/byronkatz/reap/a/b;)D]
       [27] aload_0 v0
       [28] iload_2 v2
       [29] istore v4
@@ -26374,8 +26372,8 @@ Methods (count = 3):
       [39] aload_3 v3
       [40] getfield #5
         - Fieldref [com/byronkatz/reap/a/g.a Lcom/byronkatz/reap/a/b;]
-      [43] invokestatic #6
-        - Methodref [com/byronkatz/reap/a/b.K (Lcom/byronkatz/reap/a/b;)I]
+      [43] invokestatic #7
+        - Methodref [com/byronkatz/reap/a/b.N (Lcom/byronkatz/reap/a/b;)I]
       [46] bipush 12
       [48] imul
       [49] ificmplt +7 (target=56)
@@ -26402,18 +26400,18 @@ Methods (count = 3):
       [84] aload_0 v0
       [85] getfield #5
         - Fieldref [com/byronkatz/reap/a/g.a Lcom/byronkatz/reap/a/b;]
-      [88] invokestatic #7
-        - Methodref [com/byronkatz/reap/a/b.N (Lcom/byronkatz/reap/a/b;)D]
+      [88] invokestatic #6
+        - Methodref [com/byronkatz/reap/a/b.M (Lcom/byronkatz/reap/a/b;)D]
       [91] dreturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 6)
-        [0] -> line 741
-        [6] -> line 742
-        [14] -> line 743
-        [19] -> line 744
-        [73] -> line 743
-        [84] -> line 746
+        [0] -> line 776
+        [6] -> line 777
+        [14] -> line 778
+        [19] -> line 779
+        [73] -> line 778
+        [84] -> line 781
       + Stack map table attribute (count = 3):
         - [6] Var: ..., Stack: (empty)
         - [19] Var: ...[i], Stack: (empty)
@@ -26432,7 +26430,7 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 737
+        [0] -> line 772
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -26640,7 +26638,7 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 817
+        [0] -> line 852
   + Method:       a(I)D
     Access flags: 0x11
       = public final double a(int)
@@ -26674,11 +26672,11 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 5)
-        [0] -> line 821
-        [6] -> line 824
-        [19] -> line 825
-        [36] -> line 824
-        [37] -> line 823
+        [0] -> line 856
+        [6] -> line 859
+        [19] -> line 860
+        [36] -> line 859
+        [37] -> line 858
       + Stack map table attribute (count = 1):
         - [6] Var: ..., Stack: (empty)
   - Method:       <init>(Lcom/byronkatz/reap/a/b;)V
@@ -26695,7 +26693,7 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 817
+        [0] -> line 852
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -26895,7 +26893,7 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 840
+        [0] -> line 875
   + Method:       a(I)D
     Access flags: 0x11
       = public final double a(int)
@@ -26926,10 +26924,10 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 4)
-        [0] -> line 844
-        [6] -> line 846
-        [19] -> line 847
-        [32] -> line 846
+        [0] -> line 879
+        [6] -> line 881
+        [19] -> line 882
+        [32] -> line 881
       + Stack map table attribute (count = 1):
         - [6] Var: ..., Stack: (empty)
   - Method:       <init>(Lcom/byronkatz/reap/a/b;)V
@@ -26946,7 +26944,7 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 840
+        [0] -> line 875
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -27022,7 +27020,7 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 829
+        [0] -> line 864
   + Method:       a(I)D
     Access flags: 0x11
       = public final double a(int)
@@ -27050,10 +27048,10 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 4)
-        [0] -> line 833
-        [6] -> line 835
-        [19] -> line 836
-        [26] -> line 835
+        [0] -> line 868
+        [6] -> line 870
+        [19] -> line 871
+        [26] -> line 870
       + Stack map table attribute (count = 1):
         - [6] Var: ..., Stack: (empty)
   - Method:       <init>(Lcom/byronkatz/reap/a/b;)V
@@ -27070,7 +27068,7 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 829
+        [0] -> line 864
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -27531,8 +27529,8 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
-        [0] -> line 996
-        [9] -> line 997
+        [0] -> line 1031
+        [9] -> line 1032
   + Method:       a(I)D
     Access flags: 0x11
       = public final double a(int)
@@ -27574,10 +27572,10 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 4)
-        [0] -> line 1001
-        [6] -> line 1003
-        [17] -> line 1004
-        [35] -> line 1006
+        [0] -> line 1036
+        [6] -> line 1038
+        [17] -> line 1039
+        [35] -> line 1041
       + Stack map table attribute (count = 2):
         - [6] Var: ..., Stack: (empty)
         - [35] Var: ..., Stack: (empty)
@@ -27651,8 +27649,8 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
-        [0] -> line 1015
-        [9] -> line 1016
+        [0] -> line 1050
+        [9] -> line 1051
   + Method:       a(I)D
     Access flags: 0x11
       = public final double a(int)
@@ -27680,8 +27678,8 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 2)
-        [0] -> line 1020
-        [17] -> line 1022
+        [0] -> line 1055
+        [17] -> line 1057
       + Stack map table attribute (count = 2):
         - [15] Var: ..., Stack: (empty)
         - [17] Var: ..., Stack: (empty)
@@ -27892,8 +27890,8 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
-        [0] -> line 951
-        [9] -> line 952
+        [0] -> line 986
+        [9] -> line 987
   + Method:       a(I)D
     Access flags: 0x11
       = public final double a(int)
@@ -27912,8 +27910,8 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 2)
-        [0] -> line 957
-        [6] -> line 958
+        [0] -> line 992
+        [6] -> line 993
       + Stack map table attribute (count = 1):
         - [6] Var: ..., Stack: (empty)
 
@@ -27932,7 +27930,7 @@ _____________________________________________________________________
 Interfaces (count = 1):
   - Class [com/byronkatz/reap/a/a]
 
-Constant Pool (count = 85):
+Constant Pool (count = 81):
   - Class [com/byronkatz/reap/a/a]
   - Class [com/byronkatz/reap/a/b]
   - Class [com/byronkatz/reap/a/t]
@@ -27945,9 +27943,8 @@ Constant Pool (count = 85):
   - Methodref [com/byronkatz/reap/a/b.H (Lcom/byronkatz/reap/a/b;)D]
   - Methodref [com/byronkatz/reap/a/b.I (Lcom/byronkatz/reap/a/b;)D]
   - Methodref [com/byronkatz/reap/a/b.J (Lcom/byronkatz/reap/a/b;)D]
-  - Methodref [com/byronkatz/reap/a/b.K (Lcom/byronkatz/reap/a/b;)I]
+  - Methodref [com/byronkatz/reap/a/b.K (Lcom/byronkatz/reap/a/b;)D]
   - Methodref [com/byronkatz/reap/a/b.L (Lcom/byronkatz/reap/a/b;)D]
-  - Methodref [com/byronkatz/reap/a/b.M (Lcom/byronkatz/reap/a/b;)D]
   - Methodref [com/byronkatz/reap/a/b.a (Lcom/byronkatz/reap/a/b;D)V]
   - Methodref [com/byronkatz/reap/a/b.b (Lcom/byronkatz/reap/a/b;D)V]
   - Methodref [com/byronkatz/reap/a/b.c (Lcom/byronkatz/reap/a/b;D)V]
@@ -27967,9 +27964,8 @@ Constant Pool (count = 85):
   + NameAndType [H (Lcom/byronkatz/reap/a/b;)D]
   + NameAndType [I (Lcom/byronkatz/reap/a/b;)D]
   + NameAndType [J (Lcom/byronkatz/reap/a/b;)D]
-  + NameAndType [K (Lcom/byronkatz/reap/a/b;)I]
+  + NameAndType [K (Lcom/byronkatz/reap/a/b;)D]
   + NameAndType [L (Lcom/byronkatz/reap/a/b;)D]
-  + NameAndType [M (Lcom/byronkatz/reap/a/b;)D]
   + NameAndType [a (I)D]
   + NameAndType [a (Lcom/byronkatz/reap/a/b;D)V]
   + NameAndType [a Lcom/byronkatz/reap/a/b;]
@@ -27984,7 +27980,6 @@ Constant Pool (count = 85):
   + Utf8 [(DD)D]
   + Utf8 [(I)D]
   + Utf8 [(Lcom/byronkatz/reap/a/b;)D]
-  + Utf8 [(Lcom/byronkatz/reap/a/b;)I]
   + Utf8 [(Lcom/byronkatz/reap/a/b;)Lcom/byronkatz/reap/a/a;]
   + Utf8 [(Lcom/byronkatz/reap/a/b;)V]
   + Utf8 [(Lcom/byronkatz/reap/a/b;B)V]
@@ -28001,7 +27996,6 @@ Constant Pool (count = 85):
   + Utf8 [L]
   + Utf8 [Lcom/byronkatz/reap/a/b;]
   + Utf8 [LineNumberTable]
-  + Utf8 [M]
   + Utf8 [SourceFile]
   + Utf8 [StackMapTable]
   + Utf8 [a]
@@ -28034,7 +28028,7 @@ Methods (count = 3):
       [2] putfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
       [5] aload_0 v0
-      [6] invokespecial #25
+      [6] invokespecial #24
         - Methodref [java/lang/Object.<init> ()V]
       [9] return
       Code attribute exceptions (count = 0):
@@ -28045,7 +28039,7 @@ Methods (count = 3):
     Access flags: 0x11
       = public final double a(int)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 365, locals = 3, stack = 9):
+    + Code attribute instructions (code length = 366, locals = 3, stack = 10):
       [0] iload_1 v1
       [1] ifge +5 (target=6)
       [4] dconst_0
@@ -28054,25 +28048,25 @@ Methods (count = 3):
       [7] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
       [10] dconst_0
-      [11] invokestatic #16
+      [11] invokestatic #15
         - Methodref [com/byronkatz/reap/a/b.a (Lcom/byronkatz/reap/a/b;D)V]
       [14] aload_0 v0
       [15] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
       [18] dconst_0
-      [19] invokestatic #17
+      [19] invokestatic #16
         - Methodref [com/byronkatz/reap/a/b.b (Lcom/byronkatz/reap/a/b;D)V]
       [22] aload_0 v0
       [23] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
       [26] dconst_0
-      [27] invokestatic #18
+      [27] invokestatic #17
         - Methodref [com/byronkatz/reap/a/b.c (Lcom/byronkatz/reap/a/b;D)V]
       [30] aload_0 v0
       [31] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
       [34] dconst_0
-      [35] invokestatic #19
+      [35] invokestatic #18
         - Methodref [com/byronkatz/reap/a/b.d (Lcom/byronkatz/reap/a/b;D)V]
       [38] aload_0 v0
       [39] getfield #6
@@ -28086,15 +28080,15 @@ Methods (count = 3):
       [50] invokestatic #7
         - Methodref [com/byronkatz/reap/a/b.C (Lcom/byronkatz/reap/a/b;)Lcom/byronkatz/reap/a/a;]
       [53] iconst_0
-      [54] invokeinterface #26
+      [54] invokeinterface #25
         - InterfaceMethodref [com/byronkatz/reap/a/a.a (I)D]
       [59] dneg
       [60] dadd
-      [61] invokestatic #16
+      [61] invokestatic #15
         - Methodref [com/byronkatz/reap/a/b.a (Lcom/byronkatz/reap/a/b;D)V]
       [64] iconst_0
       [65] istore_2 v2
-      [66] goto +120 (target=186)
+      [66] goto +121 (target=187)
       [69] aload_0 v0
       [70] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
@@ -28106,9 +28100,9 @@ Methods (count = 3):
       [80] iload_2 v2
       [81] bipush 12
       [83] imul
-      [84] invokeinterface #26
+      [84] invokeinterface #25
         - InterfaceMethodref [com/byronkatz/reap/a/a.a (I)D]
-      [89] invokestatic #18
+      [89] invokestatic #17
         - Methodref [com/byronkatz/reap/a/b.c (Lcom/byronkatz/reap/a/b;D)V]
       [92] aload_0 v0
       [93] getfield #6
@@ -28117,7 +28111,7 @@ Methods (count = 3):
         - Methodref [com/byronkatz/reap/a/b.H (Lcom/byronkatz/reap/a/b;)D]
       [99] dconst_0
       [100] dcmpg
-      [101] ifge +40 (target=141)
+      [101] ifge +42 (target=143)
       [104] aload_0 v0
       [105] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
@@ -28137,174 +28131,176 @@ Methods (count = 3):
         - Methodref [com/byronkatz/reap/a/b.I (Lcom/byronkatz/reap/a/b;)D]
       [127] dadd
       [128] iload_2 v2
-      [129] i2d
-      [130] invokestatic #24
+      [129] iconst_1
+      [130] iadd
+      [131] i2d
+      [132] invokestatic #23
         - Methodref [java/lang/Math.pow (DD)D]
-      [133] ddiv
-      [134] dadd
-      [135] invokestatic #16
+      [135] ddiv
+      [136] dadd
+      [137] invokestatic #15
         - Methodref [com/byronkatz/reap/a/b.a (Lcom/byronkatz/reap/a/b;D)V]
-      [138] goto +45 (target=183)
-      [141] aload_0 v0
-      [142] getfield #6
+      [140] goto +44 (target=184)
+      [143] aload_0 v0
+      [144] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [145] dup
-      [146] invokestatic #12
+      [147] dup
+      [148] invokestatic #12
         - Methodref [com/byronkatz/reap/a/b.J (Lcom/byronkatz/reap/a/b;)D]
-      [149] aload_0 v0
-      [150] getfield #6
+      [151] aload_0 v0
+      [152] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [153] invokestatic #10
+      [155] invokestatic #10
         - Methodref [com/byronkatz/reap/a/b.H (Lcom/byronkatz/reap/a/b;)D]
-      [156] dconst_1
-      [157] aload_0 v0
-      [158] getfield #6
+      [158] dconst_1
+      [159] aload_0 v0
+      [160] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [161] invokestatic #22
+      [163] invokestatic #21
         - Methodref [com/byronkatz/reap/a/b.y (Lcom/byronkatz/reap/a/b;)D]
-      [164] dadd
-      [165] aload_0 v0
-      [166] getfield #6
-        - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [169] invokestatic #13
-        - Methodref [com/byronkatz/reap/a/b.K (Lcom/byronkatz/reap/a/b;)I]
-      [172] iload_2 v2
-      [173] isub
-      [174] i2d
-      [175] invokestatic #24
+      [166] dadd
+      [167] iload_1 v1
+      [168] bipush 12
+      [170] idiv
+      [171] iload_2 v2
+      [172] iconst_1
+      [173] iadd
+      [174] isub
+      [175] i2d
+      [176] invokestatic #23
         - Methodref [java/lang/Math.pow (DD)D]
-      [178] dmul
-      [179] dadd
-      [180] invokestatic #17
+      [179] dmul
+      [180] dadd
+      [181] invokestatic #16
         - Methodref [com/byronkatz/reap/a/b.b (Lcom/byronkatz/reap/a/b;D)V]
-      [183] iinc v2, 1
-      [186] iload_2 v2
-      [187] iload_1 v1
-      [188] bipush 12
-      [190] idiv
-      [191] ificmplt -122 (target=69)
-      [194] aload_0 v0
-      [195] getfield #6
+      [184] iinc v2, 1
+      [187] iload_2 v2
+      [188] iload_1 v1
+      [189] bipush 12
+      [191] idiv
+      [192] ificmplt -123 (target=69)
+      [195] aload_0 v0
+      [196] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [198] aload_0 v0
-      [199] getfield #6
+      [199] aload_0 v0
+      [200] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [202] invokestatic #21
+      [203] invokestatic #20
         - Methodref [com/byronkatz/reap/a/b.x (Lcom/byronkatz/reap/a/b;)Lcom/byronkatz/reap/a/a;]
-      [205] iload_1 v1
-      [206] invokeinterface #26
+      [206] iload_1 v1
+      [207] invokeinterface #25
         - InterfaceMethodref [com/byronkatz/reap/a/a.a (I)D]
-      [211] invokestatic #19
+      [212] invokestatic #18
         - Methodref [com/byronkatz/reap/a/b.d (Lcom/byronkatz/reap/a/b;D)V]
-      [214] aload_0 v0
-      [215] getfield #6
+      [215] aload_0 v0
+      [216] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [218] invokestatic #14
-        - Methodref [com/byronkatz/reap/a/b.L (Lcom/byronkatz/reap/a/b;)D]
-      [221] dconst_0
-      [222] dcmpg
-      [223] ifge +43 (target=266)
-      [226] aload_0 v0
-      [227] getfield #6
+      [219] invokestatic #13
+        - Methodref [com/byronkatz/reap/a/b.K (Lcom/byronkatz/reap/a/b;)D]
+      [222] dconst_0
+      [223] dcmpg
+      [224] ifge +43 (target=267)
+      [227] aload_0 v0
+      [228] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [230] dup
-      [231] invokestatic #8
+      [231] dup
+      [232] invokestatic #8
         - Methodref [com/byronkatz/reap/a/b.F (Lcom/byronkatz/reap/a/b;)D]
-      [234] aload_0 v0
-      [235] getfield #6
+      [235] aload_0 v0
+      [236] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [238] invokestatic #14
-        - Methodref [com/byronkatz/reap/a/b.L (Lcom/byronkatz/reap/a/b;)D]
-      [241] dconst_1
-      [242] aload_0 v0
-      [243] getfield #6
+      [239] invokestatic #13
+        - Methodref [com/byronkatz/reap/a/b.K (Lcom/byronkatz/reap/a/b;)D]
+      [242] dconst_1
+      [243] aload_0 v0
+      [244] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [246] invokestatic #11
+      [247] invokestatic #11
         - Methodref [com/byronkatz/reap/a/b.I (Lcom/byronkatz/reap/a/b;)D]
-      [249] dadd
-      [250] iload_1 v1
-      [251] bipush 12
-      [253] idiv
-      [254] i2d
-      [255] invokestatic #24
+      [250] dadd
+      [251] iload_1 v1
+      [252] bipush 12
+      [254] idiv
+      [255] i2d
+      [256] invokestatic #23
         - Methodref [java/lang/Math.pow (DD)D]
-      [258] ddiv
-      [259] dadd
-      [260] invokestatic #16
+      [259] ddiv
+      [260] dadd
+      [261] invokestatic #15
         - Methodref [com/byronkatz/reap/a/b.a (Lcom/byronkatz/reap/a/b;D)V]
-      [263] goto +34 (target=297)
-      [266] aload_0 v0
-      [267] getfield #6
+      [264] goto +34 (target=298)
+      [267] aload_0 v0
+      [268] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [270] invokestatic #14
-        - Methodref [com/byronkatz/reap/a/b.L (Lcom/byronkatz/reap/a/b;)D]
-      [273] dconst_0
-      [274] dcmpl
-      [275] ifle +22 (target=297)
-      [278] aload_0 v0
-      [279] getfield #6
+      [271] invokestatic #13
+        - Methodref [com/byronkatz/reap/a/b.K (Lcom/byronkatz/reap/a/b;)D]
+      [274] dconst_0
+      [275] dcmpl
+      [276] ifle +22 (target=298)
+      [279] aload_0 v0
+      [280] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [282] dup
-      [283] invokestatic #12
+      [283] dup
+      [284] invokestatic #12
         - Methodref [com/byronkatz/reap/a/b.J (Lcom/byronkatz/reap/a/b;)D]
-      [286] aload_0 v0
-      [287] getfield #6
+      [287] aload_0 v0
+      [288] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [290] invokestatic #14
-        - Methodref [com/byronkatz/reap/a/b.L (Lcom/byronkatz/reap/a/b;)D]
-      [293] dadd
-      [294] invokestatic #17
+      [291] invokestatic #13
+        - Methodref [com/byronkatz/reap/a/b.K (Lcom/byronkatz/reap/a/b;)D]
+      [294] dadd
+      [295] invokestatic #16
         - Methodref [com/byronkatz/reap/a/b.b (Lcom/byronkatz/reap/a/b;D)V]
-      [297] aload_0 v0
-      [298] getfield #6
+      [298] aload_0 v0
+      [299] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [301] invokestatic #8
+      [302] invokestatic #8
         - Methodref [com/byronkatz/reap/a/b.F (Lcom/byronkatz/reap/a/b;)D]
-      [304] dconst_0
-      [305] dcmpl
-      [306] ifeq +43 (target=349)
-      [309] aload_0 v0
-      [310] getfield #6
+      [305] dconst_0
+      [306] dcmpl
+      [307] ifeq +43 (target=350)
+      [310] aload_0 v0
+      [311] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [313] aload_0 v0
-      [314] getfield #6
+      [314] aload_0 v0
+      [315] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [317] invokestatic #12
+      [318] invokestatic #12
         - Methodref [com/byronkatz/reap/a/b.J (Lcom/byronkatz/reap/a/b;)D]
-      [320] aload_0 v0
-      [321] getfield #6
+      [321] aload_0 v0
+      [322] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [324] invokestatic #8
+      [325] invokestatic #8
         - Methodref [com/byronkatz/reap/a/b.F (Lcom/byronkatz/reap/a/b;)D]
-      [327] dneg
-      [328] ddiv
-      [329] dconst_1
-      [330] iload_1 v1
-      [331] bipush 12
-      [333] idiv
-      [334] iconst_1
-      [335] iadd
-      [336] i2d
-      [337] ddiv
-      [338] invokestatic #24
+      [328] dneg
+      [329] ddiv
+      [330] dconst_1
+      [331] iload_1 v1
+      [332] bipush 12
+      [334] idiv
+      [335] iconst_1
+      [336] iadd
+      [337] i2d
+      [338] ddiv
+      [339] invokestatic #23
         - Methodref [java/lang/Math.pow (DD)D]
-      [341] dconst_1
-      [342] dsub
-      [343] invokestatic #20
+      [342] dconst_1
+      [343] dsub
+      [344] invokestatic #19
         - Methodref [com/byronkatz/reap/a/b.e (Lcom/byronkatz/reap/a/b;D)V]
-      [346] goto +11 (target=357)
-      [349] aload_0 v0
-      [350] getfield #6
+      [347] goto +11 (target=358)
+      [350] aload_0 v0
+      [351] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [353] dconst_0
-      [354] invokestatic #20
+      [354] dconst_0
+      [355] invokestatic #19
         - Methodref [com/byronkatz/reap/a/b.e (Lcom/byronkatz/reap/a/b;D)V]
-      [357] aload_0 v0
-      [358] getfield #6
+      [358] aload_0 v0
+      [359] getfield #6
         - Fieldref [com/byronkatz/reap/a/t.a Lcom/byronkatz/reap/a/b;]
-      [361] invokestatic #15
-        - Methodref [com/byronkatz/reap/a/b.M (Lcom/byronkatz/reap/a/b;)D]
-      [364] dreturn
+      [362] invokestatic #14
+        - Methodref [com/byronkatz/reap/a/b.L (Lcom/byronkatz/reap/a/b;)D]
+      [365] dreturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 34)
@@ -28313,45 +28309,45 @@ Methods (count = 3):
         [14] -> line 688
         [22] -> line 689
         [30] -> line 690
-        [38] -> line 695
-        [46] -> line 696
-        [64] -> line 699
-        [69] -> line 701
-        [92] -> line 702
-        [104] -> line 703
-        [112] -> line 704
-        [141] -> line 706
-        [149] -> line 707
-        [156] -> line 708
-        [178] -> line 707
-        [183] -> line 699
-        [194] -> line 713
-        [214] -> line 714
-        [226] -> line 715
-        [234] -> line 716
-        [266] -> line 717
-        [278] -> line 718
-        [297] -> line 724
-        [309] -> line 725
-        [313] -> line 726
-        [320] -> line 727
-        [328] -> line 726
-        [329] -> line 728
-        [338] -> line 725
-        [341] -> line 728
-        [342] -> line 725
-        [349] -> line 730
-        [357] -> line 733
+        [38] -> line 697
+        [46] -> line 698
+        [64] -> line 705
+        [69] -> line 707
+        [92] -> line 710
+        [104] -> line 711
+        [112] -> line 712
+        [143] -> line 719
+        [151] -> line 720
+        [158] -> line 721
+        [179] -> line 720
+        [184] -> line 705
+        [195] -> line 732
+        [215] -> line 735
+        [227] -> line 736
+        [235] -> line 737
+        [267] -> line 741
+        [279] -> line 742
+        [298] -> line 750
+        [310] -> line 751
+        [314] -> line 752
+        [321] -> line 753
+        [329] -> line 752
+        [330] -> line 754
+        [339] -> line 751
+        [342] -> line 754
+        [343] -> line 751
+        [350] -> line 763
+        [358] -> line 768
       + Stack map table attribute (count = 9):
         - [6] Var: ..., Stack: (empty)
         - [69] Var: ...[i], Stack: (empty)
-        - [141] Var: ..., Stack: (empty)
-        - [183] Var: ..., Stack: (empty)
-        - [186] Var: ..., Stack: (empty)
-        - [266] Var: -1, Stack: (empty)
-        - [297] Var: ..., Stack: (empty)
-        - [349] Var: ..., Stack: (empty)
-        - [357] Var: ..., Stack: (empty)
+        - [143] Var: ..., Stack: (empty)
+        - [184] Var: ..., Stack: (empty)
+        - [187] Var: ..., Stack: (empty)
+        - [267] Var: -1, Stack: (empty)
+        - [298] Var: ..., Stack: (empty)
+        - [350] Var: ..., Stack: (empty)
+        - [358] Var: ..., Stack: (empty)
   - Method:       <init>(Lcom/byronkatz/reap/a/b;)V
     Access flags: 0x1000
       = synthetic t(com.byronkatz.reap.a.b)
@@ -28360,7 +28356,7 @@ Methods (count = 3):
       [0] aload_0 v0
       [1] aload_1 v1
       [2] iconst_0
-      [3] invokespecial #23
+      [3] invokespecial #22
         - Methodref [com/byronkatz/reap/a/t.<init> (Lcom/byronkatz/reap/a/b;B)V]
       [6] return
       Code attribute exceptions (count = 0):
@@ -28566,8 +28562,8 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
-        [0] -> line 964
-        [9] -> line 965
+        [0] -> line 999
+        [9] -> line 1000
   + Method:       a(I)D
     Access flags: 0x11
       = public final double a(int)
@@ -28593,8 +28589,8 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 2)
-        [0] -> line 969
-        [17] -> line 970
+        [0] -> line 1004
+        [17] -> line 1005
       + Stack map table attribute (count = 2):
         - [15] Var: ..., Stack: (empty)
         - [17] Var: ..., Stack: (empty)
@@ -29164,8 +29160,8 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
-        [0] -> line 918
-        [9] -> line 919
+        [0] -> line 953
+        [9] -> line 954
   + Method:       a(I)D
     Access flags: 0x11
       = public final double a(int)
@@ -29213,11 +29209,11 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 5)
-        [0] -> line 924
-        [17] -> line 929
-        [38] -> line 930
-        [57] -> line 929
-        [58] -> line 928
+        [0] -> line 959
+        [17] -> line 964
+        [38] -> line 965
+        [57] -> line 964
+        [58] -> line 963
       + Stack map table attribute (count = 2):
         - [15] Var: ..., Stack: (empty)
         - [17] Var: ..., Stack: (empty)
@@ -29291,8 +29287,8 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
-        [0] -> line 902
-        [9] -> line 903
+        [0] -> line 937
+        [9] -> line 938
   + Method:       a(I)D
     Access flags: 0x11
       = public final double a(int)
@@ -29334,9 +29330,9 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 3)
-        [0] -> line 908
-        [6] -> line 909
-        [35] -> line 910
+        [0] -> line 943
+        [6] -> line 944
+        [35] -> line 945
       + Stack map table attribute (count = 2):
         - [6] Var: ..., Stack: (empty)
         - [35] Var: ..., Stack: (empty)
@@ -30240,8 +30236,8 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
-        [0] -> line 1052
-        [9] -> line 1053
+        [0] -> line 1087
+        [9] -> line 1088
   + Method:       a(I)D
     Access flags: 0x11
       = public final double a(int)
@@ -30289,11 +30285,11 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 5)
-        [0] -> line 1057
-        [17] -> line 1064
-        [39] -> line 1065
-        [58] -> line 1064
-        [59] -> line 1063
+        [0] -> line 1092
+        [17] -> line 1099
+        [39] -> line 1100
+        [58] -> line 1099
+        [59] -> line 1098
       + Stack map table attribute (count = 2):
         - [15] Var: ..., Stack: (empty)
         - [17] Var: ..., Stack: (empty)
@@ -30370,8 +30366,8 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
-        [0] -> line 982
-        [9] -> line 983
+        [0] -> line 1017
+        [9] -> line 1018
   + Method:       a(I)D
     Access flags: 0x11
       = public final double a(int)
@@ -30403,8 +30399,8 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 2)
-        [0] -> line 988
-        [17] -> line 989
+        [0] -> line 1023
+        [17] -> line 1024
       + Stack map table attribute (count = 2):
         - [15] Var: ..., Stack: (empty)
         - [17] Var: ..., Stack: (empty)
@@ -30594,7 +30590,7 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 851
+        [0] -> line 886
   + Method:       a(I)D
     Access flags: 0x11
       = public final double a(int)
@@ -30628,10 +30624,10 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 4)
-        [0] -> line 855
-        [6] -> line 857
-        [19] -> line 858
-        [36] -> line 857
+        [0] -> line 890
+        [6] -> line 892
+        [19] -> line 893
+        [36] -> line 892
       + Stack map table attribute (count = 1):
         - [6] Var: ..., Stack: (empty)
   - Method:       <init>(Lcom/byronkatz/reap/a/b;)V
@@ -30648,7 +30644,7 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 851
+        [0] -> line 886
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -30721,8 +30717,8 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
-        [0] -> line 1030
-        [9] -> line 1031
+        [0] -> line 1065
+        [9] -> line 1066
   + Method:       a(I)D
     Access flags: 0x11
       = public final double a(int)
@@ -30770,11 +30766,11 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 5)
-        [0] -> line 1035
-        [17] -> line 1042
-        [36] -> line 1043
-        [58] -> line 1042
-        [59] -> line 1041
+        [0] -> line 1070
+        [17] -> line 1077
+        [36] -> line 1078
+        [58] -> line 1077
+        [59] -> line 1076
       + Stack map table attribute (count = 2):
         - [15] Var: ..., Stack: (empty)
         - [17] Var: ..., Stack: (empty)
@@ -31990,11 +31986,11 @@ Methods (count = 8):
     Access flags: 0x1
       = public void onDraw(android.graphics.Canvas)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 1361, locals = 5, stack = 7):
+    + Code attribute instructions (code length = 1371, locals = 4, stack = 6):
       [0] aload_0 v0
       [1] invokevirtual #137
         - Methodref [com/byronkatz/reap/customview/AnalysisGraph.isInEditMode ()Z]
-      [4] ifne +1356 (target=1360)
+      [4] ifne +1366 (target=1370)
       [7] aload_0 v0
       [8] invokespecial #129
         - Methodref [com/byronkatz/reap/customview/AnalysisGraph.a ()V]
@@ -32251,725 +32247,736 @@ Methods (count = 8):
         - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
       [354] astore_3 v3
       [355] aload_0 v0
-      [356] iconst_0
-      [357] invokestatic #156
-        - Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
-      [360] putfield #66
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.Q Ljava/lang/Integer;]
+      [356] fconst_0
+      [357] invokestatic #154
+        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
+      [360] putfield #67
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.R Ljava/lang/Float;]
       [363] aload_0 v0
-      [364] fconst_0
-      [365] invokestatic #154
-        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
-      [368] putfield #67
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.R Ljava/lang/Float;]
-      [371] iconst_0
-      [372] istore v4
-      [374] goto +246 (target=620)
-      [377] aload_0 v0
-      [378] iload v4
-      [380] iconst_1
-      [381] iadd
-      [382] invokestatic #156
+      [364] iconst_0
+      [365] invokestatic #156
         - Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
-      [385] putfield #66
+      [368] putfield #66
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.Q Ljava/lang/Integer;]
-      [388] aload_0 v0
-      [389] getfield #67
+      [371] goto +258 (target=629)
+      [374] aload_0 v0
+      [375] getfield #67
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.R Ljava/lang/Float;]
-      [392] invokevirtual #152
+      [378] invokevirtual #152
         - Methodref [java/lang/Float.floatValue ()F]
-      [395] f2d
-      [396] aload_0 v0
-      [397] getfield #94
+      [381] f2d
+      [382] aload_0 v0
+      [383] getfield #94
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.p Ljava/util/List;]
-      [400] iload v4
-      [402] invokeinterface #171
+      [386] aload_0 v0
+      [387] getfield #66
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.Q Ljava/lang/Integer;]
+      [390] invokevirtual #155
+        - Methodref [java/lang/Integer.intValue ()I]
+      [393] invokeinterface #171
         - InterfaceMethodref [java/util/List.get (I)Ljava/lang/Object;]
-      [407] checkcast #36
+      [398] checkcast #36
         - Class [java/lang/Double]
-      [410] invokevirtual #149
+      [401] invokevirtual #149
         - Methodref [java/lang/Double.doubleValue ()D]
-      [413] dsub
-      [414] invokestatic #157
+      [404] dsub
+      [405] invokestatic #157
         - Methodref [java/lang/Math.abs (D)D]
-      [417] getstatic #91
+      [408] getstatic #91
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.m Ljava/lang/Float;]
-      [420] invokevirtual #152
+      [411] invokevirtual #152
         - Methodref [java/lang/Float.floatValue ()F]
-      [423] f2d
-      [424] dcmpl
-      [425] ifle +27 (target=452)
-      [428] aload_0 v0
-      [429] aload_0 v0
-      [430] getfield #94
+      [414] f2d
+      [415] dcmpl
+      [416] ifle +32 (target=448)
+      [419] aload_0 v0
+      [420] aload_0 v0
+      [421] getfield #94
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.p Ljava/util/List;]
-      [433] iload v4
-      [435] invokeinterface #171
-        - InterfaceMethodref [java/util/List.get (I)Ljava/lang/Object;]
-      [440] checkcast #36
-        - Class [java/lang/Double]
-      [443] invokevirtual #150
-        - Methodref [java/lang/Double.floatValue ()F]
-      [446] invokestatic #154
-        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
-      [449] putfield #67
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.R Ljava/lang/Float;]
-      [452] aload_0 v0
-      [453] aload_0 v0
-      [454] getfield #56
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.G Ljava/lang/Float;]
-      [457] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [460] aload_0 v0
-      [461] getfield #62
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.M Ljava/lang/Float;]
-      [464] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [467] aload_0 v0
-      [468] getfield #66
+      [424] aload_0 v0
+      [425] getfield #66
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.Q Ljava/lang/Integer;]
-      [471] invokevirtual #155
+      [428] invokevirtual #155
         - Methodref [java/lang/Integer.intValue ()I]
-      [474] aload_0 v0
-      [475] getfield #51
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.B Ljava/lang/Integer;]
-      [478] invokevirtual #155
-        - Methodref [java/lang/Integer.intValue ()I]
-      [481] isub
-      [482] i2f
-      [483] fmul
-      [484] fadd
-      [485] invokestatic #154
+      [431] invokeinterface #171
+        - InterfaceMethodref [java/util/List.get (I)Ljava/lang/Object;]
+      [436] checkcast #36
+        - Class [java/lang/Double]
+      [439] invokevirtual #150
+        - Methodref [java/lang/Double.floatValue ()F]
+      [442] invokestatic #154
         - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
-      [488] putfield #64
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.O Ljava/lang/Float;]
-      [491] aload_0 v0
-      [492] getfield #63
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.N Ljava/lang/Float;]
-      [495] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [498] invokestatic #153
-        - Methodref [java/lang/Float.isInfinite (F)Z]
-      [501] ifeq +20 (target=521)
-      [504] aload_0 v0
-      [505] aload_0 v0
-      [506] getfield #92
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.n I]
-      [509] iconst_2
-      [510] idiv
-      [511] i2f
-      [512] invokestatic #154
-        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
-      [515] putfield #65
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.P Ljava/lang/Float;]
-      [518] goto +41 (target=559)
-      [521] aload_0 v0
-      [522] aload_0 v0
-      [523] getfield #57
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.H Ljava/lang/Float;]
-      [526] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [529] aload_0 v0
-      [530] getfield #63
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.N Ljava/lang/Float;]
-      [533] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [536] aload_0 v0
-      [537] getfield #50
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.A Ljava/lang/Float;]
-      [540] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [543] aload_0 v0
-      [544] getfield #67
+      [445] putfield #67
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.R Ljava/lang/Float;]
-      [547] invokevirtual #152
+      [448] aload_0 v0
+      [449] aload_0 v0
+      [450] getfield #56
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.G Ljava/lang/Float;]
+      [453] invokevirtual #152
         - Methodref [java/lang/Float.floatValue ()F]
-      [550] fsub
-      [551] fmul
-      [552] fadd
-      [553] invokestatic #154
+      [456] aload_0 v0
+      [457] getfield #62
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.M Ljava/lang/Float;]
+      [460] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [463] aload_0 v0
+      [464] getfield #66
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.Q Ljava/lang/Integer;]
+      [467] invokevirtual #155
+        - Methodref [java/lang/Integer.intValue ()I]
+      [470] aload_0 v0
+      [471] getfield #51
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.B Ljava/lang/Integer;]
+      [474] invokevirtual #155
+        - Methodref [java/lang/Integer.intValue ()I]
+      [477] isub
+      [478] i2f
+      [479] fmul
+      [480] fadd
+      [481] invokestatic #154
         - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
-      [556] putfield #65
+      [484] putfield #64
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.O Ljava/lang/Float;]
+      [487] aload_0 v0
+      [488] getfield #63
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.N Ljava/lang/Float;]
+      [491] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [494] invokestatic #153
+        - Methodref [java/lang/Float.isInfinite (F)Z]
+      [497] ifeq +20 (target=517)
+      [500] aload_0 v0
+      [501] aload_0 v0
+      [502] getfield #92
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.n I]
+      [505] iconst_2
+      [506] idiv
+      [507] i2f
+      [508] invokestatic #154
+        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
+      [511] putfield #65
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.P Ljava/lang/Float;]
-      [559] aload_0 v0
-      [560] getfield #103
+      [514] goto +41 (target=555)
+      [517] aload_0 v0
+      [518] aload_0 v0
+      [519] getfield #57
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.H Ljava/lang/Float;]
+      [522] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [525] aload_0 v0
+      [526] getfield #63
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.N Ljava/lang/Float;]
+      [529] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [532] aload_0 v0
+      [533] getfield #50
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.A Ljava/lang/Float;]
+      [536] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [539] aload_0 v0
+      [540] getfield #67
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.R Ljava/lang/Float;]
+      [543] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [546] fsub
+      [547] fmul
+      [548] fadd
+      [549] invokestatic #154
+        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
+      [552] putfield #65
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.P Ljava/lang/Float;]
+      [555] aload_0 v0
+      [556] getfield #103
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.y Ljava/lang/Boolean;]
-      [563] invokevirtual #147
+      [559] invokevirtual #147
         - Methodref [java/lang/Boolean.booleanValue ()Z]
-      [566] ifne +33 (target=599)
-      [569] aload_1 v1
-      [570] aload_2 v2
+      [562] ifne +33 (target=595)
+      [565] aload_1 v1
+      [566] aload_2 v2
+      [567] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [570] aload_3 v3
       [571] invokevirtual #152
         - Methodref [java/lang/Float.floatValue ()F]
-      [574] aload_3 v3
-      [575] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [578] aload_0 v0
-      [579] getfield #64
+      [574] aload_0 v0
+      [575] getfield #64
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.O Ljava/lang/Float;]
-      [582] invokevirtual #152
+      [578] invokevirtual #152
         - Methodref [java/lang/Float.floatValue ()F]
-      [585] aload_0 v0
-      [586] getfield #65
+      [581] aload_0 v0
+      [582] getfield #65
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.P Ljava/lang/Float;]
-      [589] invokevirtual #152
+      [585] invokevirtual #152
         - Methodref [java/lang/Float.floatValue ()F]
-      [592] aload_0 v0
-      [593] getfield #97
+      [588] aload_0 v0
+      [589] getfield #97
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.s Landroid/graphics/Paint;]
-      [596] invokevirtual #118
+      [592] invokevirtual #118
         - Methodref [android/graphics/Canvas.drawLine (FFFFLandroid/graphics/Paint;)V]
-      [599] aload_0 v0
-      [600] iconst_0
-      [601] invokestatic #148
+      [595] aload_0 v0
+      [596] iconst_0
+      [597] invokestatic #148
         - Methodref [java/lang/Boolean.valueOf (Z)Ljava/lang/Boolean;]
-      [604] putfield #103
+      [600] putfield #103
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.y Ljava/lang/Boolean;]
-      [607] aload_0 v0
-      [608] getfield #64
+      [603] aload_0 v0
+      [604] getfield #64
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.O Ljava/lang/Float;]
-      [611] astore_2 v2
-      [612] aload_0 v0
-      [613] getfield #65
+      [607] astore_2 v2
+      [608] aload_0 v0
+      [609] getfield #65
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.P Ljava/lang/Float;]
-      [616] astore_3 v3
-      [617] iinc v4, 1
-      [620] iload v4
-      [622] aload_0 v0
-      [623] getfield #94
+      [612] astore_3 v3
+      [613] aload_0 v0
+      [614] dup
+      [615] getfield #66
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.Q Ljava/lang/Integer;]
+      [618] invokevirtual #155
+        - Methodref [java/lang/Integer.intValue ()I]
+      [621] iconst_1
+      [622] iadd
+      [623] invokestatic #156
+        - Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
+      [626] putfield #66
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.Q Ljava/lang/Integer;]
+      [629] aload_0 v0
+      [630] getfield #66
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.Q Ljava/lang/Integer;]
+      [633] invokevirtual #155
+        - Methodref [java/lang/Integer.intValue ()I]
+      [636] aload_0 v0
+      [637] getfield #94
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.p Ljava/util/List;]
-      [626] invokeinterface #172
+      [640] invokeinterface #172
         - InterfaceMethodref [java/util/List.size ()I]
-      [631] ificmplt -254 (target=377)
-      [634] aload_0 v0
-      [635] getfield #63
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.N Ljava/lang/Float;]
-      [638] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [641] invokestatic #153
-        - Methodref [java/lang/Float.isInfinite (F)Z]
-      [644] ifeq +20 (target=664)
-      [647] aload_0 v0
+      [645] ificmplt -271 (target=374)
       [648] aload_0 v0
-      [649] getfield #92
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.n I]
-      [652] iconst_2
-      [653] idiv
-      [654] i2f
-      [655] invokestatic #154
-        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
-      [658] putfield #65
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.P Ljava/lang/Float;]
-      [661] goto +55 (target=716)
-      [664] aload_0 v0
-      [665] aload_0 v0
-      [666] getfield #57
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.H Ljava/lang/Float;]
-      [669] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [672] aload_0 v0
-      [673] getfield #63
+      [649] getfield #63
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.N Ljava/lang/Float;]
-      [676] invokevirtual #152
+      [652] invokevirtual #152
         - Methodref [java/lang/Float.floatValue ()F]
+      [655] invokestatic #153
+        - Methodref [java/lang/Float.isInfinite (F)Z]
+      [658] ifeq +20 (target=678)
+      [661] aload_0 v0
+      [662] aload_0 v0
+      [663] getfield #92
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.n I]
+      [666] iconst_2
+      [667] idiv
+      [668] i2f
+      [669] invokestatic #154
+        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
+      [672] putfield #65
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.P Ljava/lang/Float;]
+      [675] goto +53 (target=728)
+      [678] aload_0 v0
       [679] aload_0 v0
-      [680] getfield #50
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.A Ljava/lang/Float;]
+      [680] getfield #57
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.H Ljava/lang/Float;]
       [683] invokevirtual #152
         - Methodref [java/lang/Float.floatValue ()F]
       [686] aload_0 v0
-      [687] getfield #94
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.p Ljava/util/List;]
-      [690] aload_0 v0
-      [691] getfield #102
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.x I]
-      [694] iconst_1
-      [695] isub
-      [696] invokeinterface #171
-        - InterfaceMethodref [java/util/List.get (I)Ljava/lang/Object;]
-      [701] checkcast #36
-        - Class [java/lang/Double]
-      [704] invokevirtual #150
-        - Methodref [java/lang/Double.floatValue ()F]
-      [707] fsub
-      [708] fmul
-      [709] fadd
-      [710] invokestatic #154
-        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
-      [713] putfield #65
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.P Ljava/lang/Float;]
-      [716] aload_0 v0
-      [717] aload_0 v0
-      [718] getfield #56
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.G Ljava/lang/Float;]
-      [721] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [724] aload_0 v0
-      [725] getfield #62
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.M Ljava/lang/Float;]
-      [728] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [731] aload_0 v0
-      [732] getfield #102
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.x I]
-      [735] aload_0 v0
-      [736] getfield #51
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.B Ljava/lang/Integer;]
-      [739] invokevirtual #155
-        - Methodref [java/lang/Integer.intValue ()I]
-      [742] isub
-      [743] i2f
-      [744] fmul
-      [745] fadd
-      [746] invokestatic #154
-        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
-      [749] putfield #64
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.O Ljava/lang/Float;]
-      [752] aload_1 v1
-      [753] aload_0 v0
-      [754] getfield #64
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.O Ljava/lang/Float;]
-      [757] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [760] aload_0 v0
-      [761] getfield #65
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.P Ljava/lang/Float;]
-      [764] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [767] getstatic #86
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.h Ljava/lang/Float;]
-      [770] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [773] aload_0 v0
-      [774] getfield #101
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.w Landroid/graphics/Paint;]
-      [777] invokevirtual #117
-        - Methodref [android/graphics/Canvas.drawCircle (FFFLandroid/graphics/Paint;)V]
-      [780] aload_1 v1
-      [781] aload_0 v0
-      [782] getfield #64
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.O Ljava/lang/Float;]
-      [785] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [788] aload_0 v0
-      [789] getfield #65
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.P Ljava/lang/Float;]
-      [792] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [795] aload_0 v0
-      [796] getfield #101
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.w Landroid/graphics/Paint;]
-      [799] invokevirtual #119
-        - Methodref [android/graphics/Canvas.drawPoint (FFLandroid/graphics/Paint;)V]
-      [802] aload_1 v1
-      [803] aload_0 v0
-      [804] getfield #102
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.x I]
-      [807] invokestatic #161
-        - Methodref [java/lang/String.valueOf (I)Ljava/lang/String;]
-      [810] aload_0 v0
-      [811] getfield #64
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.O Ljava/lang/Float;]
-      [814] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [817] ldc #12
-        - Float [15.0]
-      [819] fadd
-      [820] aload_0 v0
-      [821] getfield #65
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.P Ljava/lang/Float;]
-      [824] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [827] ldc #12
-        - Float [15.0]
-      [829] fadd
-      [830] aload_0 v0
-      [831] getfield #99
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.u Landroid/graphics/Paint;]
-      [834] invokevirtual #121
-        - Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
-      [837] new #24
-        - Class [android/graphics/Rect]
-      [840] dup
-      [841] iconst_0
-      [842] iconst_0
-      [843] aload_0 v0
-      [844] getfield #93
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.o I]
-      [847] aload_0 v0
-      [848] getfield #92
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.n I]
-      [851] invokespecial #127
-        - Methodref [android/graphics/Rect.<init> (IIII)V]
-      [854] astore v4
-      [856] aload_1 v1
-      [857] aload v4
-      [859] aload_0 v0
-      [860] getfield #100
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.v Landroid/graphics/Paint;]
-      [863] invokevirtual #120
-        - Methodref [android/graphics/Canvas.drawRect (Landroid/graphics/Rect;Landroid/graphics/Paint;)V]
-      [866] aload_0 v0
-      [867] getfield #50
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.A Ljava/lang/Float;]
-      [870] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [873] fconst_0
-      [874] fcmpl
-      [875] ifle +164 (target=1039)
-      [878] aload_0 v0
-      [879] getfield #104
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.z Ljava/lang/Float;]
-      [882] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [885] fconst_0
-      [886] fcmpg
-      [887] ifge +152 (target=1039)
-      [890] aload_0 v0
-      [891] aload_1 v1
-      [892] astore_3 v3
-      [893] dup
-      [894] dup
-      [895] astore_2 v2
-      [896] getfield #57
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.H Ljava/lang/Float;]
-      [899] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [902] aload_2 v2
-      [903] getfield #63
+      [687] getfield #63
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.N Ljava/lang/Float;]
-      [906] invokevirtual #152
+      [690] invokevirtual #152
         - Methodref [java/lang/Float.floatValue ()F]
-      [909] aload_2 v2
-      [910] getfield #50
+      [693] aload_0 v0
+      [694] getfield #50
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.A Ljava/lang/Float;]
-      [913] invokevirtual #152
+      [697] invokevirtual #152
         - Methodref [java/lang/Float.floatValue ()F]
-      [916] fmul
-      [917] fadd
-      [918] invokestatic #154
-        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
-      [921] putfield #74
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.Y Ljava/lang/Float;]
-      [924] aload_2 v2
-      [925] aload_2 v2
-      [926] getfield #56
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.G Ljava/lang/Float;]
-      [929] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [932] invokestatic #154
-        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
-      [935] putfield #77
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.aa Ljava/lang/Float;]
-      [938] aload_2 v2
-      [939] aload_2 v2
-      [940] getfield #93
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.o I]
-      [943] i2f
-      [944] invokestatic #154
-        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
-      [947] putfield #78
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.ab Ljava/lang/Float;]
-      [950] aload_3 v3
-      [951] aload_2 v2
-      [952] getfield #77
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.aa Ljava/lang/Float;]
-      [955] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [958] aload_2 v2
-      [959] getfield #74
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.Y Ljava/lang/Float;]
-      [962] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [965] aload_2 v2
-      [966] getfield #78
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.ab Ljava/lang/Float;]
-      [969] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [972] aload_2 v2
-      [973] getfield #74
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.Y Ljava/lang/Float;]
-      [976] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [979] aload_2 v2
-      [980] getfield #98
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.t Landroid/graphics/Paint;]
-      [983] invokevirtual #118
-        - Methodref [android/graphics/Canvas.drawLine (FFFFLandroid/graphics/Paint;)V]
-      [986] aload_3 v3
-      [987] ldc #15
-        - String [0.0]
-      [989] aload_2 v2
-      [990] getfield #78
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.ab Ljava/lang/Float;]
-      [993] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [996] aload_2 v2
-      [997] getfield #56
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.G Ljava/lang/Float;]
-      [1000] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1003] fconst_2
-      [1004] fdiv
-      [1005] fsub
-      [1006] invokestatic #154
-        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
-      [1009] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1012] aload_2 v2
-      [1013] getfield #74
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.Y Ljava/lang/Float;]
-      [1016] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1019] aload_2 v2
-      [1020] getfield #99
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.u Landroid/graphics/Paint;]
-      [1023] invokevirtual #121
-        - Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
-      [1026] aload_0 v0
-      [1027] aload_1 v1
-      [1028] invokespecial #131
-        - Methodref [com/byronkatz/reap/customview/AnalysisGraph.a (Landroid/graphics/Canvas;)V]
-      [1031] aload_0 v0
-      [1032] aload_1 v1
-      [1033] invokespecial #132
-        - Methodref [com/byronkatz/reap/customview/AnalysisGraph.b (Landroid/graphics/Canvas;)V]
-      [1036] goto +64 (target=1100)
-      [1039] aload_0 v0
-      [1040] getfield #50
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.A Ljava/lang/Float;]
-      [1043] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1046] fconst_0
-      [1047] fcmpl
-      [1048] ifle +23 (target=1071)
-      [1051] aload_0 v0
-      [1052] getfield #104
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.z Ljava/lang/Float;]
-      [1055] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1058] fconst_0
-      [1059] fcmpl
-      [1060] ifle +11 (target=1071)
-      [1063] aload_0 v0
-      [1064] aload_1 v1
-      [1065] invokespecial #131
-        - Methodref [com/byronkatz/reap/customview/AnalysisGraph.a (Landroid/graphics/Canvas;)V]
-      [1068] goto +32 (target=1100)
-      [1071] aload_0 v0
-      [1072] getfield #50
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.A Ljava/lang/Float;]
-      [1075] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1078] fconst_0
-      [1079] fcmpg
-      [1080] ifge +20 (target=1100)
-      [1083] aload_0 v0
-      [1084] getfield #104
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.z Ljava/lang/Float;]
-      [1087] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1090] fconst_0
-      [1091] fcmpg
-      [1092] ifge +8 (target=1100)
-      [1095] aload_0 v0
-      [1096] aload_1 v1
-      [1097] invokespecial #132
-        - Methodref [com/byronkatz/reap/customview/AnalysisGraph.b (Landroid/graphics/Canvas;)V]
-      [1100] aload_0 v0
-      [1101] aload_0 v0
-      [1102] getfield #50
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.A Ljava/lang/Float;]
-      [1105] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1108] f2d
-      [1109] invokestatic #151
-        - Methodref [java/lang/Double.valueOf (D)Ljava/lang/Double;]
-      [1112] aload_0 v0
-      [1113] getfield #96
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.r Lcom/byronkatz/reap/general/o;]
-      [1116] invokestatic #144
-        - Methodref [com/byronkatz/reap/general/j.a (Ljava/lang/Double;Lcom/byronkatz/reap/general/o;)Ljava/lang/String;]
-      [1119] putfield #68
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.S Ljava/lang/String;]
-      [1122] aload_0 v0
-      [1123] getstatic #89
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.k Ljava/lang/Float;]
-      [1126] putfield #71
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.V Ljava/lang/Float;]
-      [1129] aload_0 v0
-      [1130] aload_0 v0
-      [1131] getfield #57
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.H Ljava/lang/Float;]
-      [1134] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1137] invokestatic #154
-        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
-      [1140] putfield #69
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.T Ljava/lang/Float;]
-      [1143] aload_1 v1
-      [1144] aload_0 v0
-      [1145] getfield #68
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.S Ljava/lang/String;]
-      [1148] aload_0 v0
-      [1149] getfield #71
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.V Ljava/lang/Float;]
-      [1152] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1155] aload_0 v0
-      [1156] getfield #69
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.T Ljava/lang/Float;]
-      [1159] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1162] aload_0 v0
-      [1163] getfield #99
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.u Landroid/graphics/Paint;]
-      [1166] invokevirtual #121
-        - Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
-      [1169] aload_0 v0
-      [1170] aload_0 v0
-      [1171] getfield #104
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.z Ljava/lang/Float;]
-      [1174] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1177] f2d
-      [1178] invokestatic #151
-        - Methodref [java/lang/Double.valueOf (D)Ljava/lang/Double;]
-      [1181] aload_0 v0
-      [1182] getfield #96
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.r Lcom/byronkatz/reap/general/o;]
-      [1185] invokestatic #144
-        - Methodref [com/byronkatz/reap/general/j.a (Ljava/lang/Double;Lcom/byronkatz/reap/general/o;)Ljava/lang/String;]
-      [1188] putfield #70
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.U Ljava/lang/String;]
-      [1191] aload_0 v0
-      [1192] getstatic #89
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.k Ljava/lang/Float;]
-      [1195] putfield #71
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.V Ljava/lang/Float;]
-      [1198] aload_0 v0
-      [1199] aload_0 v0
-      [1200] getfield #57
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.H Ljava/lang/Float;]
-      [1203] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1206] aload_0 v0
-      [1207] getfield #61
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.L Ljava/lang/Float;]
-      [1210] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1213] fadd
-      [1214] invokestatic #154
-        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
-      [1217] putfield #72
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.W Ljava/lang/Float;]
-      [1220] aload_1 v1
-      [1221] aload_0 v0
-      [1222] getfield #70
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.U Ljava/lang/String;]
-      [1225] aload_0 v0
-      [1226] getfield #71
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.V Ljava/lang/Float;]
-      [1229] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1232] aload_0 v0
-      [1233] getfield #72
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.W Ljava/lang/Float;]
-      [1236] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1239] aload_0 v0
-      [1240] getfield #99
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.u Landroid/graphics/Paint;]
-      [1243] invokevirtual #121
-        - Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
-      [1246] aload_0 v0
-      [1247] aload_0 v0
-      [1248] getfield #57
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.H Ljava/lang/Float;]
-      [1251] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1254] aload_0 v0
-      [1255] getfield #61
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.L Ljava/lang/Float;]
-      [1258] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1261] fadd
-      [1262] aload_0 v0
-      [1263] getfield #57
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.H Ljava/lang/Float;]
-      [1266] invokevirtual #152
-        - Methodref [java/lang/Float.floatValue ()F]
-      [1269] fconst_2
-      [1270] fdiv
-      [1271] fadd
-      [1272] invokestatic #154
-        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
-      [1275] putfield #73
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.X Ljava/lang/Float;]
-      [1278] aload_0 v0
-      [1279] getfield #79
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.ac Lcom/byronkatz/reap/general/a;]
-      [1282] aload_0 v0
-      [1283] getfield #96
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.r Lcom/byronkatz/reap/general/o;]
-      [1286] aload_0 v0
-      [1287] getfield #102
+      [700] aload_0 v0
+      [701] getfield #94
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.p Ljava/util/List;]
+      [704] aload_0 v0
+      [705] getfield #102
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.x I]
-      [1290] bipush 12
-      [1292] imul
-      [1293] invokevirtual #143
-        - Methodref [com/byronkatz/reap/general/a.a (Lcom/byronkatz/reap/general/o;I)D]
-      [1296] invokestatic #151
-        - Methodref [java/lang/Double.valueOf (D)Ljava/lang/Double;]
-      [1299] aload_0 v0
-      [1300] getfield #96
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.r Lcom/byronkatz/reap/general/o;]
-      [1303] invokestatic #144
-        - Methodref [com/byronkatz/reap/general/j.a (Ljava/lang/Double;Lcom/byronkatz/reap/general/o;)Ljava/lang/String;]
-      [1306] astore_2 v2
-      [1307] new #41
-        - Class [java/lang/StringBuilder]
-      [1310] dup
-      [1311] aload_0 v0
-      [1312] getfield #96
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.r Lcom/byronkatz/reap/general/o;]
-      [1315] invokevirtual #145
-        - Methodref [com/byronkatz/reap/general/o.toString ()Ljava/lang/String;]
-      [1318] invokestatic #162
-        - Methodref [java/lang/String.valueOf (Ljava/lang/Object;)Ljava/lang/String;]
-      [1321] invokespecial #163
-        - Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [1324] ldc #16
-        - String [: ]
-      [1326] invokevirtual #164
-        - Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [1329] aload_2 v2
-      [1330] invokevirtual #164
-        - Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [1333] invokevirtual #165
-        - Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [1336] astore_2 v2
-      [1337] aload_1 v1
-      [1338] aload_2 v2
-      [1339] aload_0 v0
-      [1340] getfield #71
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.V Ljava/lang/Float;]
-      [1343] invokevirtual #152
+      [708] invokeinterface #171
+        - InterfaceMethodref [java/util/List.get (I)Ljava/lang/Object;]
+      [713] checkcast #36
+        - Class [java/lang/Double]
+      [716] invokevirtual #150
+        - Methodref [java/lang/Double.floatValue ()F]
+      [719] fsub
+      [720] fmul
+      [721] fadd
+      [722] invokestatic #154
+        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
+      [725] putfield #65
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.P Ljava/lang/Float;]
+      [728] aload_0 v0
+      [729] aload_0 v0
+      [730] getfield #56
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.G Ljava/lang/Float;]
+      [733] invokevirtual #152
         - Methodref [java/lang/Float.floatValue ()F]
-      [1346] aload_0 v0
-      [1347] getfield #73
-        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.X Ljava/lang/Float;]
-      [1350] invokevirtual #152
+      [736] aload_0 v0
+      [737] getfield #62
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.M Ljava/lang/Float;]
+      [740] invokevirtual #152
         - Methodref [java/lang/Float.floatValue ()F]
-      [1353] aload_0 v0
-      [1354] getfield #99
+      [743] aload_0 v0
+      [744] getfield #102
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.x I]
+      [747] aload_0 v0
+      [748] getfield #51
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.B Ljava/lang/Integer;]
+      [751] invokevirtual #155
+        - Methodref [java/lang/Integer.intValue ()I]
+      [754] isub
+      [755] i2f
+      [756] fmul
+      [757] fadd
+      [758] invokestatic #154
+        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
+      [761] putfield #64
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.O Ljava/lang/Float;]
+      [764] aload_1 v1
+      [765] aload_0 v0
+      [766] getfield #64
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.O Ljava/lang/Float;]
+      [769] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [772] aload_0 v0
+      [773] getfield #65
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.P Ljava/lang/Float;]
+      [776] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [779] getstatic #86
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.h Ljava/lang/Float;]
+      [782] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [785] aload_0 v0
+      [786] getfield #101
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.w Landroid/graphics/Paint;]
+      [789] invokevirtual #117
+        - Methodref [android/graphics/Canvas.drawCircle (FFFLandroid/graphics/Paint;)V]
+      [792] aload_1 v1
+      [793] aload_0 v0
+      [794] getfield #64
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.O Ljava/lang/Float;]
+      [797] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [800] aload_0 v0
+      [801] getfield #65
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.P Ljava/lang/Float;]
+      [804] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [807] aload_0 v0
+      [808] getfield #101
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.w Landroid/graphics/Paint;]
+      [811] invokevirtual #119
+        - Methodref [android/graphics/Canvas.drawPoint (FFLandroid/graphics/Paint;)V]
+      [814] aload_1 v1
+      [815] aload_0 v0
+      [816] getfield #102
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.x I]
+      [819] invokestatic #161
+        - Methodref [java/lang/String.valueOf (I)Ljava/lang/String;]
+      [822] aload_0 v0
+      [823] getfield #64
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.O Ljava/lang/Float;]
+      [826] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [829] ldc #12
+        - Float [15.0]
+      [831] fadd
+      [832] aload_0 v0
+      [833] getfield #65
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.P Ljava/lang/Float;]
+      [836] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [839] ldc #12
+        - Float [15.0]
+      [841] fadd
+      [842] aload_0 v0
+      [843] getfield #99
         - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.u Landroid/graphics/Paint;]
-      [1357] invokevirtual #121
+      [846] invokevirtual #121
         - Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
-      [1360] return
+      [849] new #24
+        - Class [android/graphics/Rect]
+      [852] dup
+      [853] iconst_0
+      [854] iconst_0
+      [855] aload_0 v0
+      [856] getfield #93
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.o I]
+      [859] aload_0 v0
+      [860] getfield #92
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.n I]
+      [863] invokespecial #127
+        - Methodref [android/graphics/Rect.<init> (IIII)V]
+      [866] astore_2 v2
+      [867] aload_1 v1
+      [868] aload_2 v2
+      [869] aload_0 v0
+      [870] getfield #100
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.v Landroid/graphics/Paint;]
+      [873] invokevirtual #120
+        - Methodref [android/graphics/Canvas.drawRect (Landroid/graphics/Rect;Landroid/graphics/Paint;)V]
+      [876] aload_0 v0
+      [877] getfield #50
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.A Ljava/lang/Float;]
+      [880] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [883] fconst_0
+      [884] fcmpl
+      [885] ifle +164 (target=1049)
+      [888] aload_0 v0
+      [889] getfield #104
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.z Ljava/lang/Float;]
+      [892] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [895] fconst_0
+      [896] fcmpg
+      [897] ifge +152 (target=1049)
+      [900] aload_0 v0
+      [901] aload_1 v1
+      [902] astore_3 v3
+      [903] dup
+      [904] dup
+      [905] astore_2 v2
+      [906] getfield #57
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.H Ljava/lang/Float;]
+      [909] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [912] aload_2 v2
+      [913] getfield #63
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.N Ljava/lang/Float;]
+      [916] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [919] aload_2 v2
+      [920] getfield #50
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.A Ljava/lang/Float;]
+      [923] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [926] fmul
+      [927] fadd
+      [928] invokestatic #154
+        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
+      [931] putfield #74
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.Y Ljava/lang/Float;]
+      [934] aload_2 v2
+      [935] aload_2 v2
+      [936] getfield #56
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.G Ljava/lang/Float;]
+      [939] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [942] invokestatic #154
+        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
+      [945] putfield #77
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.aa Ljava/lang/Float;]
+      [948] aload_2 v2
+      [949] aload_2 v2
+      [950] getfield #93
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.o I]
+      [953] i2f
+      [954] invokestatic #154
+        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
+      [957] putfield #78
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.ab Ljava/lang/Float;]
+      [960] aload_3 v3
+      [961] aload_2 v2
+      [962] getfield #77
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.aa Ljava/lang/Float;]
+      [965] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [968] aload_2 v2
+      [969] getfield #74
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.Y Ljava/lang/Float;]
+      [972] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [975] aload_2 v2
+      [976] getfield #78
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.ab Ljava/lang/Float;]
+      [979] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [982] aload_2 v2
+      [983] getfield #74
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.Y Ljava/lang/Float;]
+      [986] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [989] aload_2 v2
+      [990] getfield #98
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.t Landroid/graphics/Paint;]
+      [993] invokevirtual #118
+        - Methodref [android/graphics/Canvas.drawLine (FFFFLandroid/graphics/Paint;)V]
+      [996] aload_3 v3
+      [997] ldc #15
+        - String [0.0]
+      [999] aload_2 v2
+      [1000] getfield #78
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.ab Ljava/lang/Float;]
+      [1003] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1006] aload_2 v2
+      [1007] getfield #56
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.G Ljava/lang/Float;]
+      [1010] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1013] fconst_2
+      [1014] fdiv
+      [1015] fsub
+      [1016] invokestatic #154
+        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
+      [1019] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1022] aload_2 v2
+      [1023] getfield #74
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.Y Ljava/lang/Float;]
+      [1026] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1029] aload_2 v2
+      [1030] getfield #99
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.u Landroid/graphics/Paint;]
+      [1033] invokevirtual #121
+        - Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
+      [1036] aload_0 v0
+      [1037] aload_1 v1
+      [1038] invokespecial #131
+        - Methodref [com/byronkatz/reap/customview/AnalysisGraph.a (Landroid/graphics/Canvas;)V]
+      [1041] aload_0 v0
+      [1042] aload_1 v1
+      [1043] invokespecial #132
+        - Methodref [com/byronkatz/reap/customview/AnalysisGraph.b (Landroid/graphics/Canvas;)V]
+      [1046] goto +64 (target=1110)
+      [1049] aload_0 v0
+      [1050] getfield #50
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.A Ljava/lang/Float;]
+      [1053] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1056] fconst_0
+      [1057] fcmpl
+      [1058] ifle +23 (target=1081)
+      [1061] aload_0 v0
+      [1062] getfield #104
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.z Ljava/lang/Float;]
+      [1065] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1068] fconst_0
+      [1069] fcmpl
+      [1070] ifle +11 (target=1081)
+      [1073] aload_0 v0
+      [1074] aload_1 v1
+      [1075] invokespecial #131
+        - Methodref [com/byronkatz/reap/customview/AnalysisGraph.a (Landroid/graphics/Canvas;)V]
+      [1078] goto +32 (target=1110)
+      [1081] aload_0 v0
+      [1082] getfield #50
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.A Ljava/lang/Float;]
+      [1085] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1088] fconst_0
+      [1089] fcmpg
+      [1090] ifge +20 (target=1110)
+      [1093] aload_0 v0
+      [1094] getfield #104
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.z Ljava/lang/Float;]
+      [1097] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1100] fconst_0
+      [1101] fcmpg
+      [1102] ifge +8 (target=1110)
+      [1105] aload_0 v0
+      [1106] aload_1 v1
+      [1107] invokespecial #132
+        - Methodref [com/byronkatz/reap/customview/AnalysisGraph.b (Landroid/graphics/Canvas;)V]
+      [1110] aload_0 v0
+      [1111] aload_0 v0
+      [1112] getfield #50
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.A Ljava/lang/Float;]
+      [1115] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1118] f2d
+      [1119] invokestatic #151
+        - Methodref [java/lang/Double.valueOf (D)Ljava/lang/Double;]
+      [1122] aload_0 v0
+      [1123] getfield #96
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.r Lcom/byronkatz/reap/general/o;]
+      [1126] invokestatic #144
+        - Methodref [com/byronkatz/reap/general/j.a (Ljava/lang/Double;Lcom/byronkatz/reap/general/o;)Ljava/lang/String;]
+      [1129] putfield #68
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.S Ljava/lang/String;]
+      [1132] aload_0 v0
+      [1133] getstatic #89
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.k Ljava/lang/Float;]
+      [1136] putfield #71
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.V Ljava/lang/Float;]
+      [1139] aload_0 v0
+      [1140] aload_0 v0
+      [1141] getfield #57
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.H Ljava/lang/Float;]
+      [1144] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1147] invokestatic #154
+        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
+      [1150] putfield #69
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.T Ljava/lang/Float;]
+      [1153] aload_1 v1
+      [1154] aload_0 v0
+      [1155] getfield #68
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.S Ljava/lang/String;]
+      [1158] aload_0 v0
+      [1159] getfield #71
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.V Ljava/lang/Float;]
+      [1162] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1165] aload_0 v0
+      [1166] getfield #69
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.T Ljava/lang/Float;]
+      [1169] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1172] aload_0 v0
+      [1173] getfield #99
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.u Landroid/graphics/Paint;]
+      [1176] invokevirtual #121
+        - Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
+      [1179] aload_0 v0
+      [1180] aload_0 v0
+      [1181] getfield #104
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.z Ljava/lang/Float;]
+      [1184] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1187] f2d
+      [1188] invokestatic #151
+        - Methodref [java/lang/Double.valueOf (D)Ljava/lang/Double;]
+      [1191] aload_0 v0
+      [1192] getfield #96
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.r Lcom/byronkatz/reap/general/o;]
+      [1195] invokestatic #144
+        - Methodref [com/byronkatz/reap/general/j.a (Ljava/lang/Double;Lcom/byronkatz/reap/general/o;)Ljava/lang/String;]
+      [1198] putfield #70
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.U Ljava/lang/String;]
+      [1201] aload_0 v0
+      [1202] getstatic #89
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.k Ljava/lang/Float;]
+      [1205] putfield #71
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.V Ljava/lang/Float;]
+      [1208] aload_0 v0
+      [1209] aload_0 v0
+      [1210] getfield #57
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.H Ljava/lang/Float;]
+      [1213] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1216] aload_0 v0
+      [1217] getfield #61
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.L Ljava/lang/Float;]
+      [1220] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1223] fadd
+      [1224] invokestatic #154
+        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
+      [1227] putfield #72
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.W Ljava/lang/Float;]
+      [1230] aload_1 v1
+      [1231] aload_0 v0
+      [1232] getfield #70
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.U Ljava/lang/String;]
+      [1235] aload_0 v0
+      [1236] getfield #71
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.V Ljava/lang/Float;]
+      [1239] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1242] aload_0 v0
+      [1243] getfield #72
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.W Ljava/lang/Float;]
+      [1246] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1249] aload_0 v0
+      [1250] getfield #99
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.u Landroid/graphics/Paint;]
+      [1253] invokevirtual #121
+        - Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
+      [1256] aload_0 v0
+      [1257] aload_0 v0
+      [1258] getfield #57
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.H Ljava/lang/Float;]
+      [1261] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1264] aload_0 v0
+      [1265] getfield #61
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.L Ljava/lang/Float;]
+      [1268] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1271] fadd
+      [1272] aload_0 v0
+      [1273] getfield #57
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.H Ljava/lang/Float;]
+      [1276] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1279] fconst_2
+      [1280] fdiv
+      [1281] fadd
+      [1282] invokestatic #154
+        - Methodref [java/lang/Float.valueOf (F)Ljava/lang/Float;]
+      [1285] putfield #73
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.X Ljava/lang/Float;]
+      [1288] aload_0 v0
+      [1289] getfield #79
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.ac Lcom/byronkatz/reap/general/a;]
+      [1292] aload_0 v0
+      [1293] getfield #96
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.r Lcom/byronkatz/reap/general/o;]
+      [1296] aload_0 v0
+      [1297] getfield #102
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.x I]
+      [1300] bipush 12
+      [1302] imul
+      [1303] invokevirtual #143
+        - Methodref [com/byronkatz/reap/general/a.a (Lcom/byronkatz/reap/general/o;I)D]
+      [1306] invokestatic #151
+        - Methodref [java/lang/Double.valueOf (D)Ljava/lang/Double;]
+      [1309] aload_0 v0
+      [1310] getfield #96
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.r Lcom/byronkatz/reap/general/o;]
+      [1313] invokestatic #144
+        - Methodref [com/byronkatz/reap/general/j.a (Ljava/lang/Double;Lcom/byronkatz/reap/general/o;)Ljava/lang/String;]
+      [1316] astore_2 v2
+      [1317] new #41
+        - Class [java/lang/StringBuilder]
+      [1320] dup
+      [1321] aload_0 v0
+      [1322] getfield #96
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.r Lcom/byronkatz/reap/general/o;]
+      [1325] invokevirtual #145
+        - Methodref [com/byronkatz/reap/general/o.toString ()Ljava/lang/String;]
+      [1328] invokestatic #162
+        - Methodref [java/lang/String.valueOf (Ljava/lang/Object;)Ljava/lang/String;]
+      [1331] invokespecial #163
+        - Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
+      [1334] ldc #16
+        - String [: ]
+      [1336] invokevirtual #164
+        - Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
+      [1339] aload_2 v2
+      [1340] invokevirtual #164
+        - Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
+      [1343] invokevirtual #165
+        - Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
+      [1346] astore_2 v2
+      [1347] aload_1 v1
+      [1348] aload_2 v2
+      [1349] aload_0 v0
+      [1350] getfield #71
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.V Ljava/lang/Float;]
+      [1353] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1356] aload_0 v0
+      [1357] getfield #73
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.X Ljava/lang/Float;]
+      [1360] invokevirtual #152
+        - Methodref [java/lang/Float.floatValue ()F]
+      [1363] aload_0 v0
+      [1364] getfield #99
+        - Fieldref [com/byronkatz/reap/customview/AnalysisGraph.u Landroid/graphics/Paint;]
+      [1367] invokevirtual #121
+        - Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
+      [1370] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
-      + Line number table attribute (count = 76)
+      + Line number table attribute (count = 74)
         [0] -> line 182
         [7] -> line 184
         [11] -> line 186
@@ -32996,69 +33003,67 @@ Methods (count = 8):
         [345] -> line 214
         [350] -> line 215
         [355] -> line 217
-        [363] -> line 218
-        [371] -> line 221
-        [377] -> line 222
-        [388] -> line 224
-        [428] -> line 227
-        [452] -> line 229
-        [491] -> line 232
-        [504] -> line 233
-        [521] -> line 235
-        [559] -> line 240
-        [569] -> line 241
-        [599] -> line 243
-        [607] -> line 245
-        [612] -> line 246
-        [617] -> line 221
-        [634] -> line 252
-        [647] -> line 253
-        [664] -> line 255
-        [679] -> line 256
-        [713] -> line 255
-        [716] -> line 259
-        [752] -> line 260
-        [780] -> line 261
-        [802] -> line 262
-        [837] -> line 266
-        [843] -> line 267
-        [851] -> line 266
-        [856] -> line 268
-        [866] -> line 273
-        [890] -> line 274
-        [1026] -> line 275
-        [1031] -> line 276
-        [1039] -> line 278
-        [1063] -> line 279
-        [1071] -> line 281
-        [1095] -> line 282
-        [1100] -> line 287
-        [1122] -> line 289
-        [1129] -> line 290
-        [1143] -> line 291
-        [1169] -> line 294
-        [1191] -> line 296
-        [1198] -> line 297
-        [1220] -> line 298
-        [1246] -> line 301
-        [1278] -> line 303
-        [1303] -> line 302
-        [1307] -> line 304
-        [1337] -> line 305
-        [1360] -> line 307
+        [363] -> line 220
+        [374] -> line 222
+        [419] -> line 225
+        [448] -> line 227
+        [487] -> line 230
+        [500] -> line 231
+        [517] -> line 233
+        [555] -> line 238
+        [565] -> line 239
+        [595] -> line 241
+        [603] -> line 243
+        [608] -> line 244
+        [613] -> line 220
+        [648] -> line 250
+        [661] -> line 251
+        [678] -> line 253
+        [693] -> line 254
+        [725] -> line 253
+        [728] -> line 257
+        [764] -> line 258
+        [792] -> line 259
+        [814] -> line 260
+        [849] -> line 264
+        [855] -> line 265
+        [863] -> line 264
+        [867] -> line 266
+        [876] -> line 271
+        [900] -> line 272
+        [1036] -> line 273
+        [1041] -> line 274
+        [1049] -> line 276
+        [1073] -> line 277
+        [1081] -> line 279
+        [1105] -> line 280
+        [1110] -> line 285
+        [1132] -> line 287
+        [1139] -> line 288
+        [1153] -> line 289
+        [1179] -> line 292
+        [1201] -> line 294
+        [1208] -> line 295
+        [1230] -> line 296
+        [1256] -> line 299
+        [1288] -> line 301
+        [1313] -> line 300
+        [1317] -> line 302
+        [1347] -> line 303
+        [1370] -> line 305
       + Stack map table attribute (count = 12):
-        - [377] Var: [a:com/byronkatz/reap/customview/AnalysisGraph][a:android/graphics/Canvas][a:java/lang/Integer][a:java/lang/Float][a:java/lang/Float][i], Stack: 
-        - [452] Var: ..., Stack: (empty)
-        - [521] Var: ..., Stack: (empty)
-        - [559] Var: ..., Stack: (empty)
-        - [599] Var: ..., Stack: (empty)
-        - [620] Var: ..., Stack: (empty)
-        - [664] Var: -1, Stack: (empty)
-        - [716] Var: ..., Stack: (empty)
-        - [1039] Var: ...[a:android/graphics/Rect], Stack: (empty)
-        - [1071] Var: ..., Stack: (empty)
-        - [1100] Var: ..., Stack: (empty)
-        - [1360] Var: [a:com/byronkatz/reap/customview/AnalysisGraph][a:android/graphics/Canvas], Stack: 
+        - [374] Var: ...[a:java/lang/Integer][a:java/lang/Float][a:java/lang/Float], Stack: (empty)
+        - [448] Var: ..., Stack: (empty)
+        - [517] Var: ..., Stack: (empty)
+        - [555] Var: ..., Stack: (empty)
+        - [595] Var: ..., Stack: (empty)
+        - [629] Var: ..., Stack: (empty)
+        - [678] Var: ..., Stack: (empty)
+        - [728] Var: ..., Stack: (empty)
+        - [1049] Var: ...[a:android/graphics/Rect], Stack: (empty)
+        - [1081] Var: ..., Stack: (empty)
+        - [1110] Var: ..., Stack: (empty)
+        - [1370] Var: [a:com/byronkatz/reap/customview/AnalysisGraph][a:android/graphics/Canvas], Stack: 
   + Method:       a(Landroid/graphics/Canvas;)V
     Access flags: 0x2
       = private void a(android.graphics.Canvas)
@@ -33233,22 +33238,22 @@ Methods (count = 8):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 16)
-        [0] -> line 312
-        [18] -> line 314
-        [28] -> line 315
-        [50] -> line 316
-        [70] -> line 317
-        [82] -> line 320
-        [87] -> line 322
-        [99] -> line 325
-        [135] -> line 327
-        [157] -> line 328
-        [168] -> line 327
-        [171] -> line 329
-        [195] -> line 330
-        [206] -> line 329
-        [209] -> line 320
-        [230] -> line 334
+        [0] -> line 310
+        [18] -> line 312
+        [28] -> line 313
+        [50] -> line 314
+        [70] -> line 315
+        [82] -> line 318
+        [87] -> line 320
+        [99] -> line 323
+        [135] -> line 325
+        [157] -> line 326
+        [168] -> line 325
+        [171] -> line 327
+        [195] -> line 328
+        [206] -> line 327
+        [209] -> line 318
+        [230] -> line 332
       + Stack map table attribute (count = 3):
         - [87] Var: ...[a:java/lang/Float][a:java/lang/Float][i], Stack: (empty)
         - [212] Var: ..., Stack: (empty)
@@ -33432,23 +33437,23 @@ Methods (count = 8):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 17)
-        [0] -> line 339
-        [18] -> line 341
-        [28] -> line 342
-        [49] -> line 343
-        [57] -> line 344
-        [77] -> line 345
-        [89] -> line 348
-        [94] -> line 350
-        [106] -> line 353
-        [142] -> line 355
-        [164] -> line 356
-        [175] -> line 355
-        [178] -> line 357
-        [202] -> line 358
-        [213] -> line 357
-        [216] -> line 348
-        [237] -> line 362
+        [0] -> line 337
+        [18] -> line 339
+        [28] -> line 340
+        [49] -> line 341
+        [57] -> line 342
+        [77] -> line 343
+        [89] -> line 346
+        [94] -> line 348
+        [106] -> line 351
+        [142] -> line 353
+        [164] -> line 354
+        [175] -> line 353
+        [178] -> line 355
+        [202] -> line 356
+        [213] -> line 355
+        [216] -> line 346
+        [237] -> line 360
       + Stack map table attribute (count = 3):
         - [94] Var: ...[a:java/lang/Float][a:java/lang/Float][i], Stack: (empty)
         - [219] Var: ..., Stack: (empty)
@@ -33466,8 +33471,8 @@ Methods (count = 8):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
-        [0] -> line 380
-        [5] -> line 381
+        [0] -> line 378
+        [5] -> line 379
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -40159,7 +40164,7 @@ Methods (count = 22):
     Access flags: 0x8
       = static void <clinit>()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 44, locals = 0, stack = 1):
+    + Code attribute instructions (code length = 51, locals = 1, stack = 2):
       [0] aconst_null
       [1] putstatic #68
         - Fieldref [com/byronkatz/reap/general/j.a Landroid/app/Dialog;]
@@ -40182,15 +40187,21 @@ Methods (count = 22):
         - Fieldref [java/util/Locale.US Ljava/util/Locale;]
       [28] invokestatic #149
         - Methodref [java/text/NumberFormat.getCurrencyInstance (Ljava/util/Locale;)Ljava/text/NumberFormat;]
-      [31] putstatic #73
+      [31] dup
+      [32] astore_0 v0
+      [33] iconst_0
+      [34] invokevirtual #152
+        - Methodref [java/text/NumberFormat.setMaximumFractionDigits (I)V]
+      [37] aload_0 v0
+      [38] putstatic #73
         - Fieldref [com/byronkatz/reap/general/j.f Ljava/text/NumberFormat;]
-      [34] getstatic #84
+      [41] getstatic #84
         - Fieldref [java/util/Locale.US Ljava/util/Locale;]
-      [37] invokestatic #150
+      [44] invokestatic #150
         - Methodref [java/text/NumberFormat.getPercentInstance (Ljava/util/Locale;)Ljava/text/NumberFormat;]
-      [40] putstatic #74
+      [47] putstatic #74
         - Fieldref [com/byronkatz/reap/general/j.g Ljava/text/NumberFormat;]
-      [43] return
+      [50] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 9)
@@ -40201,28 +40212,21 @@ Methods (count = 22):
         [16] -> line 41
         [22] -> line 40
         [25] -> line 42
-        [34] -> line 47
-        [43] -> line 34
+        [41] -> line 51
+        [50] -> line 34
   - Method:       <init>()V
     Access flags: 0x1
       = public j()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 12, locals = 1, stack = 2):
+    + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
       [1] invokespecial #137
         - Methodref [java/lang/Object.<init> ()V]
-      [4] getstatic #73
-        - Fieldref [com/byronkatz/reap/general/j.f Ljava/text/NumberFormat;]
-      [7] iconst_0
-      [8] invokevirtual #152
-        - Methodref [java/text/NumberFormat.setMaximumFractionDigits (I)V]
-      [11] return
+      [4] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 3)
+      + Line number table attribute (count = 1)
         [0] -> line 34
-        [4] -> line 44
-        [11] -> line 34
   + Method:       a(IILandroid/content/Context;)V
     Access flags: 0x9
       = public static void a(int,int,android.content.Context)
@@ -40284,18 +40288,18 @@ Methods (count = 22):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 12)
-        [0] -> line 50
-        [9] -> line 51
-        [16] -> line 52
-        [20] -> line 53
-        [21] -> line 52
-        [24] -> line 54
-        [32] -> line 55
-        [44] -> line 56
-        [51] -> line 57
-        [58] -> line 58
-        [65] -> line 59
-        [71] -> line 60
+        [0] -> line 54
+        [9] -> line 55
+        [16] -> line 56
+        [20] -> line 57
+        [21] -> line 56
+        [24] -> line 58
+        [32] -> line 59
+        [44] -> line 60
+        [51] -> line 61
+        [58] -> line 62
+        [65] -> line 63
+        [71] -> line 64
   + Method:       a(Ljava/util/List;)Ljava/util/List;
     Access flags: 0x9
       = public static java.util.List a(java.util.List)
@@ -40330,11 +40334,11 @@ Methods (count = 22):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 5)
-        [0] -> line 71
-        [10] -> line 72
-        [20] -> line 73
-        [30] -> line 74
-        [40] -> line 76
+        [0] -> line 75
+        [10] -> line 76
+        [20] -> line 77
+        [30] -> line 78
+        [40] -> line 80
   + Method:       a(Landroid/app/Activity;Ljava/util/List;)Ljava/util/List;
     Access flags: 0x9
       = public static java.util.List a(android.app.Activity,java.util.List)
@@ -40356,9 +40360,9 @@ Methods (count = 22):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 3)
-        [0] -> line 86
-        [9] -> line 103
-        [14] -> line 104
+        [0] -> line 90
+        [9] -> line 107
+        [14] -> line 108
   + Method:       a(Landroid/view/MenuItem;Landroid/app/Activity;)V
     Access flags: 0x9
       = public static void a(android.view.MenuItem,android.app.Activity)
@@ -40588,27 +40592,27 @@ Methods (count = 22):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 21)
-        [0] -> line 110
-        [2] -> line 113
-        [48] -> line 117
-        [59] -> line 118
-        [64] -> line 119
-        [65] -> line 121
-        [76] -> line 122
-        [81] -> line 123
-        [82] -> line 126
-        [255] -> line 128
-        [256] -> line 131
-        [267] -> line 132
-        [272] -> line 133
-        [273] -> line 136
-        [284] -> line 137
-        [289] -> line 138
-        [290] -> line 141
-        [301] -> line 142
-        [308] -> line 143
-        [313] -> line 144
-        [317] -> line 150
+        [0] -> line 114
+        [2] -> line 117
+        [48] -> line 121
+        [59] -> line 122
+        [64] -> line 123
+        [65] -> line 125
+        [76] -> line 126
+        [81] -> line 127
+        [82] -> line 130
+        [255] -> line 132
+        [256] -> line 135
+        [267] -> line 136
+        [272] -> line 137
+        [273] -> line 140
+        [284] -> line 141
+        [289] -> line 142
+        [290] -> line 145
+        [301] -> line 146
+        [308] -> line 147
+        [313] -> line 148
+        [317] -> line 154
       + Stack map table attribute (count = 7):
         - [48] Var: ...[a:android/content/Intent], Stack: (empty)
         - [65] Var: ..., Stack: (empty)
@@ -40672,18 +40676,18 @@ Methods (count = 22):
       - Class [java/lang/Exception]
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 12)
-        [0] -> line 220
-        [8] -> line 221
-        [11] -> line 222
-        [13] -> line 221
-        [17] -> line 224
-        [24] -> line 225
-        [31] -> line 228
-        [37] -> line 229
-        [38] -> line 230
-        [44] -> line 231
-        [45] -> line 232
-        [50] -> line 234
+        [0] -> line 224
+        [8] -> line 225
+        [11] -> line 226
+        [13] -> line 225
+        [17] -> line 228
+        [24] -> line 229
+        [31] -> line 232
+        [37] -> line 233
+        [38] -> line 234
+        [44] -> line 235
+        [45] -> line 236
+        [50] -> line 238
       + Stack map table attribute (count = 3):
         - [37] Var: [a:android/app/Activity][a:android/content/Intent][a:java/lang/String][a:java/lang/String], Stack: [a:android/content/ActivityNotFoundException]
         - [44] Var: ..., Stack: [a:java/lang/Exception]
@@ -40725,11 +40729,11 @@ Methods (count = 22):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 5)
-        [0] -> line 237
-        [9] -> line 239
-        [15] -> line 240
-        [22] -> line 241
-        [35] -> line 249
+        [0] -> line 241
+        [9] -> line 243
+        [15] -> line 244
+        [22] -> line 245
+        [35] -> line 253
   + Method:       a([B)Ljava/lang/String;
     Access flags: 0x9
       = public static java.lang.String a(byte[])
@@ -40854,14 +40858,14 @@ Methods (count = 22):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 8)
-        [0] -> line 267
-        [95] -> line 268
-        [102] -> line 270
-        [108] -> line 271
-        [117] -> line 272
-        [129] -> line 273
-        [143] -> line 270
-        [153] -> line 275
+        [0] -> line 271
+        [95] -> line 272
+        [102] -> line 274
+        [108] -> line 275
+        [117] -> line 276
+        [129] -> line 277
+        [143] -> line 274
+        [153] -> line 279
       + Stack map table attribute (count = 2):
         - [108] Var: [a:[B][a:[C][a:[C][T][i], Stack: 
         - [146] Var: ..., Stack: (empty)
@@ -40927,20 +40931,20 @@ Methods (count = 22):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 14)
-        [0] -> line 284
-        [5] -> line 286
-        [14] -> line 287
-        [18] -> line 288
-        [23] -> line 290
-        [26] -> line 290
-        [60] -> line 292
-        [66] -> line 293
-        [67] -> line 295
-        [75] -> line 296
-        [76] -> line 298
-        [82] -> line 299
-        [83] -> line 301
-        [89] -> line 306
+        [0] -> line 288
+        [5] -> line 290
+        [14] -> line 291
+        [18] -> line 292
+        [23] -> line 294
+        [26] -> line 294
+        [60] -> line 296
+        [66] -> line 297
+        [67] -> line 299
+        [75] -> line 300
+        [76] -> line 302
+        [82] -> line 303
+        [83] -> line 305
+        [89] -> line 310
       + Stack map table attribute (count = 5):
         - [60] Var: [a:android/view/View][a:com/byronkatz/reap/general/o][a:android/widget/EditText][a:java/lang/String][i][a:com/byronkatz/reap/general/p], Stack: 
         - [67] Var: ..., Stack: (empty)
@@ -40961,7 +40965,7 @@ Methods (count = 22):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1)
-        [0] -> line 313
+        [0] -> line 317
   + Method:       a(Ljava/lang/Double;Lcom/byronkatz/reap/general/o;)Ljava/lang/String;
     Access flags: 0x9
       = public static java.lang.String a(java.lang.Double,com.byronkatz.reap.general.o)
@@ -41011,15 +41015,15 @@ Methods (count = 22):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 9)
-        [0] -> line 328
-        [8] -> line 329
-        [11] -> line 331
-        [17] -> line 332
-        [28] -> line 334
-        [34] -> line 335
-        [42] -> line 336
-        [48] -> line 337
-        [56] -> line 340
+        [0] -> line 332
+        [8] -> line 333
+        [11] -> line 335
+        [17] -> line 336
+        [28] -> line 338
+        [34] -> line 339
+        [42] -> line 340
+        [48] -> line 341
+        [56] -> line 344
       + Stack map table attribute (count = 3):
         - [28] Var: ...[a:java/lang/String][a:java/lang/String], Stack: (empty)
         - [42] Var: ..., Stack: (empty)
@@ -41049,9 +41053,9 @@ Methods (count = 22):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 3)
-        [0] -> line 348
-        [7] -> line 349
-        [19] -> line 350
+        [0] -> line 352
+        [7] -> line 353
+        [19] -> line 354
   + Method:       a(Ljava/lang/String;)Ljava/lang/Double;
     Access flags: 0x9
       = public static java.lang.Double a(java.lang.String)
@@ -41100,14 +41104,14 @@ Methods (count = 22):
       - Class [java/lang/NumberFormatException]
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 8)
-        [0] -> line 381
-        [5] -> line 382
-        [14] -> line 384
-        [31] -> line 385
-        [37] -> line 390
-        [45] -> line 391
-        [46] -> line 392
-        [51] -> line 395
+        [0] -> line 385
+        [5] -> line 386
+        [14] -> line 388
+        [31] -> line 389
+        [37] -> line 394
+        [45] -> line 395
+        [46] -> line 396
+        [51] -> line 399
       + Stack map table attribute (count = 5):
         - [31] Var: [a:java/lang/String][a:java/lang/Double], Stack: [a:java/text/ParseException]
         - [34] Var: ..., Stack: (empty)
@@ -41145,12 +41149,12 @@ Methods (count = 22):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 6)
-        [0] -> line 407
-        [2] -> line 410
-        [6] -> line 411
-        [9] -> line 415
-        [19] -> line 416
-        [29] -> line 419
+        [0] -> line 411
+        [2] -> line 414
+        [6] -> line 415
+        [9] -> line 419
+        [19] -> line 420
+        [29] -> line 423
       + Stack map table attribute (count = 2):
         - [9] Var: ...[a:java/lang/String], Stack: (empty)
         - [29] Var: ..., Stack: (empty)
@@ -41221,12 +41225,12 @@ Methods (count = 22):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 6)
-        [0] -> line 431
-        [2] -> line 434
-        [6] -> line 435
-        [9] -> line 439
-        [19] -> line 440
-        [81] -> line 443
+        [0] -> line 435
+        [2] -> line 438
+        [6] -> line 439
+        [9] -> line 443
+        [19] -> line 444
+        [81] -> line 447
       + Stack map table attribute (count = 2):
         - [9] Var: ...[a:java/lang/String], Stack: (empty)
         - [81] Var: ..., Stack: (empty)
@@ -41276,14 +41280,14 @@ Methods (count = 22):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 8)
-        [0] -> line 454
-        [5] -> line 456
-        [15] -> line 457
-        [23] -> line 458
-        [33] -> line 459
-        [41] -> line 460
-        [51] -> line 461
-        [56] -> line 464
+        [0] -> line 458
+        [5] -> line 460
+        [15] -> line 461
+        [23] -> line 462
+        [33] -> line 463
+        [41] -> line 464
+        [51] -> line 465
+        [56] -> line 468
       + Stack map table attribute (count = 3):
         - [23] Var: ...[a:java/lang/Double], Stack: (empty)
         - [41] Var: ..., Stack: (empty)
@@ -41375,13 +41379,13 @@ Methods (count = 22):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 7)
-        [0] -> line 468
-        [10] -> line 469
-        [43] -> line 470
-        [53] -> line 471
-        [81] -> line 472
-        [91] -> line 473
-        [118] -> line 475
+        [0] -> line 472
+        [10] -> line 473
+        [43] -> line 474
+        [53] -> line 475
+        [81] -> line 476
+        [91] -> line 477
+        [118] -> line 479
       + Stack map table attribute (count = 3):
         - [43] Var: ..., Stack: (empty)
         - [81] Var: ..., Stack: (empty)
@@ -41411,9 +41415,9 @@ Methods (count = 22):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 3)
-        [0] -> line 502
-        [7] -> line 503
-        [19] -> line 504
+        [0] -> line 506
+        [7] -> line 507
+        [19] -> line 508
   + Method:       b(Ljava/lang/String;)Ljava/lang/Double;
     Access flags: 0x9
       = public static java.lang.Double b(java.lang.String)
@@ -41467,16 +41471,16 @@ Methods (count = 22):
       - Class [java/lang/NumberFormatException]
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 10)
-        [0] -> line 508
-        [5] -> line 509
-        [12] -> line 510
-        [21] -> line 512
-        [28] -> line 513
-        [38] -> line 514
-        [44] -> line 519
-        [52] -> line 520
-        [53] -> line 521
-        [58] -> line 524
+        [0] -> line 512
+        [5] -> line 513
+        [12] -> line 514
+        [21] -> line 516
+        [28] -> line 517
+        [38] -> line 518
+        [44] -> line 523
+        [52] -> line 524
+        [53] -> line 525
+        [58] -> line 528
       + Stack map table attribute (count = 5):
         - [38] Var: [a:java/lang/String][a:java/lang/Double], Stack: [a:java/text/ParseException]
         - [41] Var: ..., Stack: (empty)
@@ -41661,7 +41665,7 @@ Methods (count = 2):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
         [0] -> line 1
-        [5] -> line 86
+        [5] -> line 90
   + Method:       compare(Ljava/lang/Object;Ljava/lang/Object;)I
     Access flags: 0x1011
       = public final synthetic int compare(java.lang.Object,java.lang.Object)
@@ -41833,7 +41837,7 @@ Methods (count = 2):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
         [0] -> line 1
-        [10] -> line 165
+        [10] -> line 169
   + Method:       onClick(Landroid/content/DialogInterface;I)V
     Access flags: 0x11
       = public final void onClick(android.content.DialogInterface,int)
@@ -41888,12 +41892,12 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 6)
-        [0] -> line 170
-        [7] -> line 171
-        [14] -> line 172
-        [49] -> line 173
-        [57] -> line 174
-        [61] -> line 176
+        [0] -> line 174
+        [7] -> line 175
+        [14] -> line 176
+        [49] -> line 177
+        [57] -> line 178
+        [61] -> line 180
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -42022,7 +42026,7 @@ Methods (count = 2):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
         [0] -> line 1
-        [15] -> line 185
+        [15] -> line 189
   + Method:       onClick(Landroid/content/DialogInterface;I)V
     Access flags: 0x11
       = public final void onClick(android.content.DialogInterface,int)
@@ -42065,10 +42069,10 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 4)
-        [0] -> line 191
-        [6] -> line 192
-        [43] -> line 193
-        [46] -> line 195
+        [0] -> line 195
+        [6] -> line 196
+        [43] -> line 197
+        [46] -> line 199
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -42124,7 +42128,7 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
-        [0] -> line 241
+        [0] -> line 245
         [4] -> line 1
   + Method:       onClick(Landroid/content/DialogInterface;I)V
     Access flags: 0x11
@@ -42138,8 +42142,8 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2)
-        [0] -> line 246
-        [6] -> line 247
+        [0] -> line 250
+        [6] -> line 251
 
 Class file attributes (count = 1):
   + Source file attribute:

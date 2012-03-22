@@ -311,47 +311,47 @@ com.byronkatz.reap.activity.SplashScreenActivity -> com.byronkatz.reap.activity.
     java.lang.Double estimatedRentPaymentsValue -> n
     android.widget.CheckBox mCheckBox -> o
     com.byronkatz.reap.general.DataController dataController -> p
-    89:90:void setLicensed(java.lang.Boolean) -> a
-    104:265:void onCreate(android.os.Bundle) -> onCreate
-    272:286:android.app.Dialog onCreateDialog(int) -> onCreateDialog
-    483:487:void onDestroy() -> onDestroy
-    343:343:void access$0$572d4d12(com.byronkatz.reap.activity.SplashScreenActivity) -> a
-    79:79:void access$1(com.byronkatz.reap.activity.SplashScreenActivity,java.lang.Double) -> a
-    66:66:java.lang.Boolean access$2(com.byronkatz.reap.activity.SplashScreenActivity) -> b
-    95:95:void access$3(com.byronkatz.reap.activity.SplashScreenActivity) -> c
-    400:400:void access$4(com.byronkatz.reap.activity.SplashScreenActivity) -> d
-    353:353:void access$5(com.byronkatz.reap.activity.SplashScreenActivity) -> e
-    327:327:void access$6(com.byronkatz.reap.activity.SplashScreenActivity) -> f
+    90:91:void setLicensed(java.lang.Boolean) -> a
+    105:266:void onCreate(android.os.Bundle) -> onCreate
+    273:287:android.app.Dialog onCreateDialog(int) -> onCreateDialog
+    484:488:void onDestroy() -> onDestroy
+    344:344:void access$0$572d4d12(com.byronkatz.reap.activity.SplashScreenActivity) -> a
+    80:80:void access$1(com.byronkatz.reap.activity.SplashScreenActivity,java.lang.Double) -> a
+    67:67:java.lang.Boolean access$2(com.byronkatz.reap.activity.SplashScreenActivity) -> b
+    96:96:void access$3(com.byronkatz.reap.activity.SplashScreenActivity) -> c
+    401:401:void access$4(com.byronkatz.reap.activity.SplashScreenActivity) -> d
+    354:354:void access$5(com.byronkatz.reap.activity.SplashScreenActivity) -> e
+    328:328:void access$6(com.byronkatz.reap.activity.SplashScreenActivity) -> f
 com.byronkatz.reap.activity.SplashScreenActivity$1 -> com.byronkatz.reap.activity.ae:
     com.byronkatz.reap.activity.SplashScreenActivity this$0 -> a
-    164:171:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+    165:172:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
 com.byronkatz.reap.activity.SplashScreenActivity$2 -> com.byronkatz.reap.activity.af:
     com.byronkatz.reap.activity.SplashScreenActivity this$0 -> a
-    193:207:void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
-    212:212:void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
+    194:208:void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
+    213:213:void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
 com.byronkatz.reap.activity.SplashScreenActivity$3 -> com.byronkatz.reap.activity.ag:
     com.byronkatz.reap.activity.SplashScreenActivity this$0 -> a
-    227:235:void onClick(android.view.View) -> onClick
+    228:236:void onClick(android.view.View) -> onClick
 com.byronkatz.reap.activity.SplashScreenActivity$4 -> com.byronkatz.reap.activity.ah:
     com.byronkatz.reap.activity.SplashScreenActivity this$0 -> a
-    245:249:void onClick(android.view.View) -> onClick
+    246:250:void onClick(android.view.View) -> onClick
 com.byronkatz.reap.activity.SplashScreenActivity$5 -> com.byronkatz.reap.activity.ai:
     com.byronkatz.reap.activity.SplashScreenActivity this$0 -> a
-    278:279:void onClick(android.content.DialogInterface,int) -> onClick
+    279:280:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.activity.SplashScreenActivity$6 -> com.byronkatz.reap.activity.aj:
     com.byronkatz.reap.activity.SplashScreenActivity this$0 -> a
-    291:294:void onClick(android.content.DialogInterface,int) -> onClick
+    292:295:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.activity.SplashScreenActivity$7 -> com.byronkatz.reap.activity.ak:
     com.byronkatz.reap.activity.SplashScreenActivity this$0 -> a
-    298:299:void onClick(android.content.DialogInterface,int) -> onClick
+    299:300:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.activity.SplashScreenActivity$8 -> com.byronkatz.reap.activity.al:
     com.byronkatz.reap.activity.SplashScreenActivity this$0 -> a
-    346:349:void run() -> run
+    347:350:void run() -> run
 com.byronkatz.reap.activity.SplashScreenActivity$MyLicenseCheckerCallback -> com.byronkatz.reap.activity.am:
     com.byronkatz.reap.activity.SplashScreenActivity this$0 -> a
-    437:445:void allow$13462e() -> a
-    449:463:void dontAllow(int) -> a
-    466:477:void applicationError(int) -> b
+    438:446:void allow$13462e() -> a
+    450:464:void dontAllow(int) -> a
+    467:478:void applicationError(int) -> b
 com.byronkatz.reap.activity.TaxesActivity -> com.byronkatz.reap.activity.TaxesActivity:
     android.widget.EditText marginalTaxRate -> a
     android.widget.EditText buildingValue -> b
@@ -498,12 +498,12 @@ com.byronkatz.reap.calculations.Calculations -> com.byronkatz.reap.a.b:
     43:43:double access$37(com.byronkatz.reap.calculations.Calculations) -> H
     39:39:double access$38(com.byronkatz.reap.calculations.Calculations) -> I
     41:41:double access$39(com.byronkatz.reap.calculations.Calculations) -> J
-    33:33:int access$40(com.byronkatz.reap.calculations.Calculations) -> K
-    44:44:double access$41(com.byronkatz.reap.calculations.Calculations) -> L
-    40:40:void access$42(com.byronkatz.reap.calculations.Calculations,double) -> e
-    40:40:double access$43(com.byronkatz.reap.calculations.Calculations) -> M
-    35:35:void access$44(com.byronkatz.reap.calculations.Calculations,double) -> f
-    35:35:double access$45(com.byronkatz.reap.calculations.Calculations) -> N
+    44:44:double access$40(com.byronkatz.reap.calculations.Calculations) -> K
+    40:40:void access$41(com.byronkatz.reap.calculations.Calculations,double) -> e
+    40:40:double access$42(com.byronkatz.reap.calculations.Calculations) -> L
+    35:35:void access$43(com.byronkatz.reap.calculations.Calculations,double) -> f
+    35:35:double access$44(com.byronkatz.reap.calculations.Calculations) -> M
+    33:33:int access$45(com.byronkatz.reap.calculations.Calculations) -> N
     38:38:double[] access$46(com.byronkatz.reap.calculations.Calculations) -> O
     37:37:double[] access$47(com.byronkatz.reap.calculations.Calculations) -> P
     36:36:double[] access$48(com.byronkatz.reap.calculations.Calculations) -> Q
@@ -521,34 +521,34 @@ com.byronkatz.reap.calculations.Calculations -> com.byronkatz.reap.a.b:
     70:70:com.byronkatz.reap.calculations.CalcValueGettable access$60(com.byronkatz.reap.calculations.Calculations) -> ac
 com.byronkatz.reap.calculations.Calculations$AfterTaxCashFlow -> com.byronkatz.reap.a.c:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    770:771:double getValue(int) -> a
+    805:806:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$AfterTaxCashFlowAccumulator -> com.byronkatz.reap.a.d:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    760:761:double getValue(int) -> a
+    795:796:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$AfterTaxEquityReversion -> com.byronkatz.reap.a.e:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
     621:623:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$AmountOwedValue -> com.byronkatz.reap.a.f:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    943:945:double getValue(int) -> a
+    978:980:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$AtcfNpv -> com.byronkatz.reap.a.g:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    741:746:double getValue(int) -> a
+    776:781:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$AterPV -> com.byronkatz.reap.a.h:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
     638:638:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$BeforeTaxCashFlow -> com.byronkatz.reap.a.i:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    821:823:double getValue(int) -> a
+    856:858:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$BrokerCutOfSale -> com.byronkatz.reap.a.j:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
     608:610:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$CapitalizationRateOnProjectedValue -> com.byronkatz.reap.a.k:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    844:846:double getValue(int) -> a
+    879:881:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$CapitalizationRateOnPurchaseValue -> com.byronkatz.reap.a.l:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    833:835:double getValue(int) -> a
+    868:870:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$FirstDayCosts -> com.byronkatz.reap.a.m:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
     660:661:double getValue(int) -> a
@@ -560,25 +560,25 @@ com.byronkatz.reap.calculations.Calculations$InsuranceFValue -> com.byronkatz.re
     540:541:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$InterestPaidAccumulatedValue -> com.byronkatz.reap.a.p:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1001:1006:double getValue(int) -> a
+    1036:1041:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$InterestPaymentValue -> com.byronkatz.reap.a.q:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1020:1022:double getValue(int) -> a
+    1055:1057:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$InvestmentFValue -> com.byronkatz.reap.a.r:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
     595:596:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$LoanAmountValue -> com.byronkatz.reap.a.s:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    957:958:double getValue(int) -> a
+    992:993:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$MIRR -> com.byronkatz.reap.a.t:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    685:733:double getValue(int) -> a
+    685:768:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$MonthlyRentFValue -> com.byronkatz.reap.a.u:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
     362:363:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$MortgagePayment -> com.byronkatz.reap.a.v:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    969:970:double getValue(int) -> a
+    1004:1005:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$MunicipalExpensesFValue -> com.byronkatz.reap.a.w:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
     505:506:double getValue(int) -> a
@@ -593,10 +593,10 @@ com.byronkatz.reap.calculations.Calculations$OperatingExpensesFValue -> com.byro
     574:575:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$PrivateMortgageInsurance -> com.byronkatz.reap.a.aa:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    924:928:double getValue(int) -> a
+    959:963:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$PrivateMortgageInsuranceAccum -> com.byronkatz.reap.a.ab:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    908:910:double getValue(int) -> a
+    943:945:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$PropertyTaxFValue -> com.byronkatz.reap.a.ac:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
     523:524:double getValue(int) -> a
@@ -618,19 +618,19 @@ com.byronkatz.reap.calculations.Calculations$YearlyGrossIncomeValue -> com.byron
     377:378:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$YearlyInterestPaid -> com.byronkatz.reap.a.ai:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1057:1063:double getValue(int) -> a
+    1092:1098:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$YearlyMortgagePayment -> com.byronkatz.reap.a.aj:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    988:989:double getValue(int) -> a
+    1023:1024:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$YearlyNetIncomeValue -> com.byronkatz.reap.a.ak:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
     392:393:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$YearlyOutlay -> com.byronkatz.reap.a.al:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    855:857:double getValue(int) -> a
+    890:892:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$YearlyPrincipalPaid -> com.byronkatz.reap.a.am:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1035:1041:double getValue(int) -> a
+    1070:1076:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$YearlyTaxOnIncome -> com.byronkatz.reap.a.an:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
     463:465:double getValue(int) -> a
@@ -692,10 +692,10 @@ com.byronkatz.reap.customview.AnalysisGraph -> com.byronkatz.reap.customview.Ana
     com.byronkatz.reap.general.DataController dataController -> ac
     124:131:android.graphics.Paint createPaint(int,java.lang.Float,android.graphics.Paint$Style,java.lang.Float) -> a
     171:178:void setPlotPoints() -> a
-    182:307:void onDraw(android.graphics.Canvas) -> onDraw
-    312:334:void drawPositiveDivisors(android.graphics.Canvas) -> a
-    339:362:void drawNegativeDivisors(android.graphics.Canvas) -> b
-    380:381:void setCurrentYearHighlighted(int) -> a
+    182:305:void onDraw(android.graphics.Canvas) -> onDraw
+    310:332:void drawPositiveDivisors(android.graphics.Canvas) -> a
+    337:360:void drawNegativeDivisors(android.graphics.Canvas) -> b
+    378:379:void setCurrentYearHighlighted(int) -> a
 com.byronkatz.reap.general.DataController -> com.byronkatz.reap.general.a:
     java.lang.Integer currentYearSelected -> b
     java.lang.Integer currentRowIndex -> c
@@ -777,24 +777,24 @@ com.byronkatz.reap.general.Utility -> com.byronkatz.reap.general.j:
     java.text.NumberFormat currencyNumberFormat -> f
     java.text.NumberFormat percentNumberFormat -> g
     int[] $SWITCH_TABLE$com$byronkatz$reap$general$ValueEnum$ValueType -> h
-    50:60:void showHelpDialog(int,int,android.content.Context) -> a
-    71:76:java.util.List removeCertainItemsFromDataTable(java.util.List) -> a
-    86:104:java.util.List sortDataTableValues(android.app.Activity,java.util.List) -> a
-    110:150:void switchForMenuItem(android.view.MenuItem,android.app.Activity) -> a
-    220:234:void callCalc(android.app.Activity) -> a
-    237:249:void showAlertDialog(android.app.Activity,java.lang.String) -> a
-    267:275:java.lang.String toHexString(byte[]) -> a
-    284:306:void setSelectionOnView(android.view.View,com.byronkatz.reap.general.ValueEnum) -> a
-    313:313:java.lang.String displayCurrency(java.lang.Double) -> a
-    328:340:java.lang.String displayShortValue(java.lang.Double,com.byronkatz.reap.general.ValueEnum) -> a
-    348:350:java.lang.String displayShortPercentage(java.lang.Double) -> b
-    381:395:java.lang.Double parseCurrency(java.lang.String) -> a
-    407:419:java.lang.String parseAndDisplayShortValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> a
-    431:443:java.lang.String parseAndDisplayValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> b
-    454:464:java.lang.Double parseValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> c
-    468:475:void parseThenDisplayValue(android.view.View,com.byronkatz.reap.general.ValueEnum) -> b
-    502:504:java.lang.String displayPercentage(java.lang.Double) -> c
-    508:524:java.lang.Double parsePercentage(java.lang.String) -> b
+    54:64:void showHelpDialog(int,int,android.content.Context) -> a
+    75:80:java.util.List removeCertainItemsFromDataTable(java.util.List) -> a
+    90:108:java.util.List sortDataTableValues(android.app.Activity,java.util.List) -> a
+    114:154:void switchForMenuItem(android.view.MenuItem,android.app.Activity) -> a
+    224:238:void callCalc(android.app.Activity) -> a
+    241:253:void showAlertDialog(android.app.Activity,java.lang.String) -> a
+    271:279:java.lang.String toHexString(byte[]) -> a
+    288:310:void setSelectionOnView(android.view.View,com.byronkatz.reap.general.ValueEnum) -> a
+    317:317:java.lang.String displayCurrency(java.lang.Double) -> a
+    332:344:java.lang.String displayShortValue(java.lang.Double,com.byronkatz.reap.general.ValueEnum) -> a
+    352:354:java.lang.String displayShortPercentage(java.lang.Double) -> b
+    385:399:java.lang.Double parseCurrency(java.lang.String) -> a
+    411:423:java.lang.String parseAndDisplayShortValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> a
+    435:447:java.lang.String parseAndDisplayValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> b
+    458:468:java.lang.Double parseValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> c
+    472:479:void parseThenDisplayValue(android.view.View,com.byronkatz.reap.general.ValueEnum) -> b
+    506:508:java.lang.String displayPercentage(java.lang.Double) -> c
+    512:528:java.lang.Double parsePercentage(java.lang.String) -> b
     40:40:com.byronkatz.reap.general.DataController access$0() -> a
     34:34:int[] $SWITCH_TABLE$com$byronkatz$reap$general$ValueEnum$ValueType() -> b
 com.byronkatz.reap.general.Utility$1 -> com.byronkatz.reap.general.k:
@@ -803,14 +803,14 @@ com.byronkatz.reap.general.Utility$1 -> com.byronkatz.reap.general.k:
 com.byronkatz.reap.general.Utility$2 -> com.byronkatz.reap.general.l:
     android.app.Activity val$activity -> a
     java.lang.String val$dataSavedAsNewEntry -> b
-    170:176:void onClick(android.content.DialogInterface,int) -> onClick
+    174:180:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.general.Utility$3 -> com.byronkatz.reap.general.m:
     android.app.Activity val$activity -> a
     java.lang.String val$dataSavedIntoCurrentEntryText -> b
     java.lang.Integer val$currentDataRow -> c
-    191:195:void onClick(android.content.DialogInterface,int) -> onClick
+    195:199:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.general.Utility$4 -> com.byronkatz.reap.general.n:
-    246:247:void onClick(android.content.DialogInterface,int) -> onClick
+    250:251:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.general.ValueEnum -> com.byronkatz.reap.general.o:
     com.byronkatz.reap.general.ValueEnum ATCF -> a
     com.byronkatz.reap.general.ValueEnum ATCF_ACCUMULATOR -> b

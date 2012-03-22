@@ -50,7 +50,7 @@ com.byronkatz.reap.customview.AnalysisGraph:
     public static final int GRAPH_MIN_Y
     public static final java.lang.String X_AXIS_STRING
     private java.lang.Float maxX
-    376:376:public int getCurrentYearHighlighted()
+    374:374:public int getCurrentYearHighlighted()
 com.byronkatz.reap.general.DataController:
     public android.content.res.Resources resources
 com.byronkatz.reap.general.DataManager:
@@ -69,9 +69,9 @@ com.byronkatz.reap.general.DatabaseAdapter:
 com.byronkatz.reap.general.RealEstateAnalysisProcessorApplication:
     public static final java.lang.String BASE_VALUES
 com.byronkatz.reap.general.Utility:
-    204:214:public static void showHelpDialog(java.lang.String,int,android.content.Context)
-    252:264:public static void showAlertDialog(android.content.Context,java.lang.String)
-    279:281:public static void showToast(android.app.Activity,java.lang.String)
+    208:218:public static void showHelpDialog(java.lang.String,int,android.content.Context)
+    256:268:public static void showAlertDialog(android.content.Context,java.lang.String)
+    283:285:public static void showToast(android.app.Activity,java.lang.String)
 com.byronkatz.reap.general.Utility$5
 com.byronkatz.reap.general.ValueEnum:
     108:109:public void setIsSavedToDatabase(java.lang.Boolean)

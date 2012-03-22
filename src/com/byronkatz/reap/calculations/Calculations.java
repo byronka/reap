@@ -614,8 +614,18 @@ public class Calculations implements ValueSettable {
 
   }
 
+
   private class AfterTaxEquityReversion implements CalcValueGettable {
 
+    /**
+     * Unlike most other equations, this one is different in one
+     * important respect:  whereas other equations give the value
+     * for the end of that year (as in, for year 0, you get the value
+     * at the 365th day of that first year), instead this one gives
+     * the exact value at the end of the month you enter.  This is 
+     * because it is based on the amount owed on the loan at any point
+     * in time.
+     */
     @Override
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {return 0d;}
@@ -655,6 +665,15 @@ public class Calculations implements ValueSettable {
 
   private class FirstDayCosts implements CalcValueGettable {
 
+    /**
+     * This equation varies from the norm in that it 
+     * always provides the same amount, unless you ask
+     * for a compounding period below 0.  The first day
+     * costs are those that are incurred the very first
+     * day of ownership.  This is not the exact situation
+     * in the case of fixup costs, but for our purposes
+     * it is a close approimation
+     */
     @Override
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {return 0d;}
@@ -693,48 +712,52 @@ public class Calculations implements ValueSettable {
       //cash flows for mirr:
 
       //step 1, first day costs:
+      //first day costs are assumed to literally be on the day of closing, for simplification
       presentValueNegativeCashFlowsAccumulator +=
           -firstDayCosts.getValue(0);
 //      System.out.println("firstDayCosts presentValueNegativeCashFlowsAccumulator: " + presentValueNegativeCashFlowsAccumulator);
-//      System.out.println("firstDayCosts: " + firstDayCosts);
+//      System.out.println("firstDayCosts: " + firstDayCosts.getValue(0));
       
       //step 2: after tax cash flows - different action depending on sign
+      //the atcf provided is for the end of the year.  For example, atcf of month 5
+      //provides the atcf at month 12
       for (int year = 0; year < (compoundingPeriod / MONTHS_IN_YEAR); year++) {
 
-        atcfTempValue = afterTaxCashFlow.getValue(year*MONTHS_IN_YEAR);
+        atcfTempValue = afterTaxCashFlow.getValue((year)*MONTHS_IN_YEAR);
 //        System.out.println("atcfTempValue: " + atcfTempValue);
 
         if (atcfTempValue < 0d) {
           presentValueNegativeCashFlowsAccumulator +=
               atcfTempValue /  Math.pow(1 + yearlyLoanInterestRate, year+1);
-//          System.out.println("divided by 1 + yearlyLoanInterestRate to the " + year + "power");
-//          System.out.println("equals: " + atcfTempValue /  Math.pow(1 + yearlyLoanInterestRate, year));
+//          System.out.println("divided by 1 + yearlyLoanInterestRate to the " + (year+1) + " power");
+//          System.out.println("equals: " + atcfTempValue /  Math.pow(1 + yearlyLoanInterestRate, year+1));
 //
 //          System.out.println("atcf presentValueNegativeCashFlowsAccumulator: " + presentValueNegativeCashFlowsAccumulator);
 
         } else {
           futureValuePositiveCashFlowsAccumulator +=
               atcfTempValue * 
-              Math.pow(1 + requiredRateOfReturn, (compoundingPeriod / MONTHS_IN_YEAR) - year+1);
-//          System.out.println("times 1+requiredRateOfReturn to the " + ((compoundingPeriod / MONTHS_IN_YEAR) - year) + "power");
+              Math.pow(1 + requiredRateOfReturn, (compoundingPeriod / MONTHS_IN_YEAR) - (year+1));
+//          System.out.println("times 1+requiredRateOfReturn ("+ requiredRateOfReturn+") to the " + ((compoundingPeriod / MONTHS_IN_YEAR) - (year+1)) + " power");
 //          System.out.println("equals: " + (atcfTempValue * 
-//              Math.pow(1 + requiredRateOfReturn, (compoundingPeriod / MONTHS_IN_YEAR) - year)));
-//
+//              Math.pow(1 + requiredRateOfReturn, (compoundingPeriod / MONTHS_IN_YEAR) - (year+1))));
+
 //          System.out.println("atcf futureValuePositiveCashFlowsAccumulator: " + futureValuePositiveCashFlowsAccumulator);
         }
       }
 
       //step 3: ater
+      //take the ater at the end of the year in question
       aterTempValue = afterTaxEquityReversion.getValue(compoundingPeriod);
 //      System.out.println("aterTempValue: " + aterTempValue);
 
-      if (aterTempValue < 0.0f) {
+      if (aterTempValue < 0.0d) {
         presentValueNegativeCashFlowsAccumulator += 
             aterTempValue / Math.pow(1 + yearlyLoanInterestRate, compoundingPeriod/MONTHS_IN_YEAR);
 //        System.out.println("divided by 1 + yearlyLoanInterestRate to the " + (compoundingPeriod/MONTHS_IN_YEAR) + "power");
 //        System.out.println("equals: " + aterTempValue / Math.pow(1 + yearlyLoanInterestRate, compoundingPeriod/MONTHS_IN_YEAR));
 //        System.out.println("ater presentValueNegativeCashFlowsAccumulator: " + presentValueNegativeCashFlowsAccumulator);
-      } else if (aterTempValue > 0.0f) {
+      } else if (aterTempValue > 0.0d) {
         futureValuePositiveCashFlowsAccumulator += aterTempValue;
 //        System.out.println("ater futureValuePositiveCashFlowsAccumulator: " + futureValuePositiveCashFlowsAccumulator);
 
@@ -751,8 +774,8 @@ public class Calculations implements ValueSettable {
 //        System.out.println();
 //        System.out.println("final calc");
 //        System.out.println("root number: " + ((compoundingPeriod/MONTHS_IN_YEAR)+1));
-//        System.out.println("atcf presentValueNegativeCashFlowsAccumulator: " + presentValueNegativeCashFlowsAccumulator);
-//        System.out.println("atcf futureValuePositiveCashFlowsAccumulator: " + futureValuePositiveCashFlowsAccumulator);
+//        System.out.println("presentValueNegativeCashFlowsAccumulator: " + presentValueNegativeCashFlowsAccumulator);
+//        System.out.println("futureValuePositiveCashFlowsAccumulator: " + futureValuePositiveCashFlowsAccumulator);
 //        System.out.println("mirr: " + mirr);
         
       } else {
