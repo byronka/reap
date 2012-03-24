@@ -22,6 +22,7 @@ public enum ValueEnum {
   GENERAL_SALE_EXPENSES( ValueType.CURRENCY, true, false, string.generalSaleExpensesHelpText, string.generalSaleExpensesTitleText),
   FIRST_DAY_COSTS ( ValueType.CURRENCY, false, true, string.firstDayCostsHelpText, string.firstDayCostsTitleText),
   LOAN_AMOUNT ( ValueType.CURRENCY, false, true, string.loanAmountHelpText, string.loanAmountTitleText),
+  PRINCIPAL_PAYMENT ( ValueType.CURRENCY, false, true, string.principalPaymentHelpText, string.principalPaymentTitleText),
   INTEREST_PAYMENT ( ValueType.CURRENCY, false, true, string.interestPaymentHelpText, string.interestPaymentTitleText),
   INFLATION_RATE( ValueType.PERCENTAGE, true, false, string.inflationRateHelpText, string.inflationRateTitleText),
   INITIAL_YEARLY_GENERAL_EXPENSES( ValueType.CURRENCY, true, false, string.initialYearlyGeneralExpensesHelpText, string.initialYearlyGeneralExpensesTitleText),

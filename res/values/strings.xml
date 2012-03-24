@@ -54,7 +54,10 @@
 
     <!-- Help text for calculated values -->
 
-  	
+  	<string name="principalPaymentHelpText">This is the monthly principal payment for the
+  	    month number in question</string>
+  	<string name="principalPaymentTitleText">Calculated Principal Payment</string>
+  		
   	<string name="firstDayCostsHelpText">These are the costs that are incurred
   	    on the first day (figuratively, but close) of ownership.  Specifically,
   	    they are the sum of the down payment, the fix-up costs, and the closing costs.
@@ -841,5 +844,7 @@ value at the time of sale, to pay for the broker
 	    \nrenaissance.nomad@gmail.com
 
     </string>
+    <string name="crash_toast_text">The REAP application has crashed.  Email report
+        being prepared.</string>
 
 </resources>

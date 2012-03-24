@@ -2,8 +2,6 @@ package com.byronkatz.reap.activity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.List;
@@ -32,7 +30,6 @@ public class DataTable {
 
   public static final int PROPERTY_LABEL_INDEX = 0;
   public static final int PROPERTY_VALUE_INDEX = 1;
-  public static final int TOGGLE_BUTTON_INDEX = 2;
 
   GraphActivity graphActivity;
   private final DataController dataController = RealEstateAnalysisProcessorApplication
@@ -151,7 +148,7 @@ public class DataTable {
     for (ValueEnum ve : dataTableValues) {
 
       //set up the correspondence between the table index and the valueEnums
-      TableRow newTableRow = (TableRow) inflater.inflate(R.layout.data_table_tablerow, null);
+      TableRow newTableRow = (TableRow) inflater.inflate(R.layout.data_table_tablerow_graph_activity, null);
 
       //make it invisible to start
       newTableRow.setVisibility(View.GONE);

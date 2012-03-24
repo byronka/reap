@@ -67,6 +67,7 @@ public class Calculations implements ValueSettable {
   private CalcValueGettable netOperatingIncome;
   private CalcValueGettable taxableIncome;
   private CalcValueGettable interestPaymentValue;
+  private CalcValueGettable principalPaymentValue;
   private CalcValueGettable interestPaidAccumulatedValue;
   private CalcValueGettable amountOwedValue;
   private CalcValueGettable loanAmountValue;
@@ -150,6 +151,7 @@ public class Calculations implements ValueSettable {
     interestPaymentValue                    = new InterestPaymentValue();
     interestPaidAccumulatedValue            = new InterestPaidAccumulatedValue();
     amountOwedValue                         = new AmountOwedValue();
+    principalPaymentValue                   = new PrincipalPaymentValue();
     loanAmountValue                         = new LoanAmountValue();
     yearlyInterestPaid                      = new YearlyInterestPaid();
     yearlyPrincipalPaid                     = new YearlyPrincipalPaid();
@@ -251,7 +253,7 @@ public class Calculations implements ValueSettable {
         pmiAccumulator == null ||
         interestPayment.length != nocp) {
       interestPayment       = new double[nocp];
-      amountOwed            = new double[nocp+1];
+      amountOwed            = new double[nocp];
       interestAccumulator   = new double[nocp];
       principalPayment      = new double[nocp];
       pmiAccumulator        = new double[nocp];
@@ -272,6 +274,8 @@ public class Calculations implements ValueSettable {
   }
 
   private void assignDataManager(DataManager dataManager) {
+    dataManager.addCalcValuePointers(
+        ValueEnum.PRINCIPAL_PAYMENT, principalPaymentValue);
     dataManager.addCalcValuePointers(
         ValueEnum.ATCF, afterTaxCashFlow);
     dataManager.addCalcValuePointers(
@@ -348,6 +352,15 @@ public class Calculations implements ValueSettable {
         ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, privateMortgageInsurance);
     dataManager.addCalcValuePointers(
         ValueEnum.LOAN_AMOUNT, loanAmountValue);
+  }
+  
+  private class PrincipalPaymentValue implements CalcValueGettable {
+    
+    @Override
+    public double getValue (int compoundingPeriod) {
+      if (compoundingPeriod < 0) {return 0d;}
+      return principalPayment[compoundingPeriod];
+    }
   }
 
   /**
@@ -617,15 +630,6 @@ public class Calculations implements ValueSettable {
 
   private class AfterTaxEquityReversion implements CalcValueGettable {
 
-    /**
-     * Unlike most other equations, this one is different in one
-     * important respect:  whereas other equations give the value
-     * for the end of that year (as in, for year 0, you get the value
-     * at the 365th day of that first year), instead this one gives
-     * the exact value at the end of the month you enter.  This is 
-     * because it is based on the amount owed on the loan at any point
-     * in time.
-     */
     @Override
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {return 0d;}
@@ -634,7 +638,9 @@ public class Calculations implements ValueSettable {
           investmentFValue.getValue(compoundingPeriod) -
           brokerCutOfSale.getValue(compoundingPeriod) -
           sellingExpensesFValue.getValue(compoundingPeriod) -
-          amountOwedValue.getValue(compoundingPeriod) -
+          //by multiplying and dividing, we get the number of month at the beginning of the year
+          //WORK AREA
+          amountOwedValue.getValue((compoundingPeriod/MONTHS_IN_YEAR)*MONTHS_IN_YEAR) -
           taxesDueAtSale.getValue(compoundingPeriod);
 
     }
@@ -741,7 +747,7 @@ public class Calculations implements ValueSettable {
 //          System.out.println("times 1+requiredRateOfReturn ("+ requiredRateOfReturn+") to the " + ((compoundingPeriod / MONTHS_IN_YEAR) - (year+1)) + " power");
 //          System.out.println("equals: " + (atcfTempValue * 
 //              Math.pow(1 + requiredRateOfReturn, (compoundingPeriod / MONTHS_IN_YEAR) - (year+1))));
-
+//
 //          System.out.println("atcf futureValuePositiveCashFlowsAccumulator: " + futureValuePositiveCashFlowsAccumulator);
         }
       }
@@ -770,10 +776,10 @@ public class Calculations implements ValueSettable {
         mirr = Math.pow(
             futureValuePositiveCashFlowsAccumulator / 
             - presentValueNegativeCashFlowsAccumulator, 
-            (1.0d/((compoundingPeriod/MONTHS_IN_YEAR)+1))) - 1;
+            (1.0d/(compoundingPeriod/MONTHS_IN_YEAR))) - 1;
 //        System.out.println();
 //        System.out.println("final calc");
-//        System.out.println("root number: " + ((compoundingPeriod/MONTHS_IN_YEAR)+1));
+//        System.out.println("root number: " + (compoundingPeriod/MONTHS_IN_YEAR));
 //        System.out.println("presentValueNegativeCashFlowsAccumulator: " + presentValueNegativeCashFlowsAccumulator);
 //        System.out.println("futureValuePositiveCashFlowsAccumulator: " + futureValuePositiveCashFlowsAccumulator);
 //        System.out.println("mirr: " + mirr);
@@ -940,14 +946,27 @@ public class Calculations implements ValueSettable {
         }
       }
 
-      interestPayment[i] = amountOwed[i] * loanInterestRateMonthly;
+      if (i == 0) {
+        interestPayment[i] = loanAmount * loanInterestRateMonthly;
+      } else {
+        interestPayment[i] = amountOwed[i-1] * loanInterestRateMonthly;
+      }
+      
       if (i == 0) {
         interestAccumulator[i] = interestPayment[i];
       } else {
         interestAccumulator[i] = interestPayment[i] + interestAccumulator[i-1];
       }
+      
       principalPayment[i] = mpValue - interestPayment[i];
-      amountOwed[i+1] = amountOwed[i] - principalPayment[i];
+      
+      if (i == 0) {
+        amountOwed[i] = loanAmount - principalPayment[i];
+      } else {
+        amountOwed[i] = amountOwed[i-1] - principalPayment[i];
+
+      }
+        
     }
   }
 
@@ -995,7 +1014,6 @@ public class Calculations implements ValueSettable {
     public double getValue(int compoundingPeriod) {
 
       if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {return 0d;}
-      if (compoundingPeriod == 0) { return loanAmount; }
       return amountOwed[compoundingPeriod];
     }
   }

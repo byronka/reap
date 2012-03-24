@@ -43,7 +43,7 @@ public class ConfigureDataTablesActivity extends Activity {
   private DataController dataController = RealEstateAnalysisProcessorApplication
       .getInstance().getDataController();
 
-
+  private static final int TOGGLE_BUTTON_INDEX = 1;
 
   /** Called when the activity is first created. */
   @Override
@@ -88,7 +88,7 @@ public class ConfigureDataTablesActivity extends Activity {
 
     for (Entry<ValueEnum, TableRow> entry  : valueToDataTableItemCorrespondence.entrySet()) {
       tempTableRow = entry.getValue();
-      tempToggleButton = (ToggleButton) tempTableRow.getChildAt(DataTable.TOGGLE_BUTTON_INDEX);
+      tempToggleButton = (ToggleButton) tempTableRow.getChildAt(TOGGLE_BUTTON_INDEX);
       if (tempToggleButton.isChecked()) {
         viewableDataTableRows.add(entry.getKey());
       }
@@ -109,9 +109,6 @@ public class ConfigureDataTablesActivity extends Activity {
   
   private void createDataTableConfiguration() {
 
-
-    TextView tempDataTablePropertyValue;
-    ToggleButton tempDataTableToggleButton;
     TextView dataTablePropertyName;
 
     LayoutInflater inflater = (LayoutInflater)ConfigureDataTablesActivity.this.getSystemService
@@ -129,10 +126,10 @@ public class ConfigureDataTablesActivity extends Activity {
     for (ValueEnum ve : dataTableValues) {
 
       //set up the correspondence between the table index and the valueEnums
-      TableRow newTableRow = (TableRow) inflater.inflate(R.layout.data_table_tablerow, null);
+      TableRow newTableRow = (TableRow) inflater.inflate(R.layout.data_table_tablerow_configure_activity, null);
       valueToDataTableItemCorrespondence.put(ve, newTableRow);
 
-      ToggleButton toggleButton = (ToggleButton) newTableRow.getChildAt(DataTable.TOGGLE_BUTTON_INDEX);
+      ToggleButton toggleButton = (ToggleButton) newTableRow.getChildAt(TOGGLE_BUTTON_INDEX);
       //set toggle buttons by what is in the Set<ValueEnum> viewableDataTableRows
       if (viewableDataTableRows.contains(ve)) {
         toggleButton.setChecked(true);
@@ -154,12 +151,6 @@ public class ConfigureDataTablesActivity extends Activity {
       dataTablePropertyName.setOnClickListener(new HelpButtonOnClickWrapper(ve));
 
 
-      tempDataTablePropertyValue = (TextView) newTableRow.getChildAt(DataTable.PROPERTY_VALUE_INDEX);
-      tempDataTablePropertyValue.setVisibility(View.GONE);
-
-      tempDataTableToggleButton = (ToggleButton) newTableRow.getChildAt(DataTable.TOGGLE_BUTTON_INDEX);
-      tempDataTableToggleButton.setVisibility(View.VISIBLE);
-
       /* set value based on what type of number it is, or string if 
        * applicable if it is saved to database, that 
        * means we only need the first year, or 
@@ -177,7 +168,7 @@ public class ConfigureDataTablesActivity extends Activity {
 
     for (Entry<ValueEnum, TableRow> entry  : valueToDataTableItemCorrespondence.entrySet()) {
       tempTableRow = entry.getValue();
-      tempToggleButton = (ToggleButton) tempTableRow.getChildAt(DataTable.TOGGLE_BUTTON_INDEX);
+      tempToggleButton = (ToggleButton) tempTableRow.getChildAt(TOGGLE_BUTTON_INDEX);
       tempToggleButton.setChecked(true);
     }
   }
@@ -188,7 +179,7 @@ public class ConfigureDataTablesActivity extends Activity {
 
     for (Entry<ValueEnum, TableRow> entry  : valueToDataTableItemCorrespondence.entrySet()) {
       tempTableRow = entry.getValue();
-      tempToggleButton = (ToggleButton) tempTableRow.getChildAt(DataTable.TOGGLE_BUTTON_INDEX);
+      tempToggleButton = (ToggleButton) tempTableRow.getChildAt(TOGGLE_BUTTON_INDEX);
       tempToggleButton.setChecked(false);
     }
   }

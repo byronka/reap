@@ -246,6 +246,7 @@ public class SplashScreenActivity extends Activity {
         if (licensed) {
           Intent intent = new Intent(SplashScreenActivity.this, GraphActivity.class);
           startActivity(intent); 
+
         }
       }
     });

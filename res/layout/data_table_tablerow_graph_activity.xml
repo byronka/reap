@@ -18,11 +18,4 @@
         android:padding="3dip"
         android:textColor="@android:color/white" />
 
-    <ToggleButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center|top"
-        android:padding="3dip"
-        android:visibility="gone" />
-
 </TableRow>

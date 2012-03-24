@@ -1,10 +1,10 @@
 package com.byronkatz.reap.activity;
 
+import java.io.File;
 import java.util.Map;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -12,25 +12,22 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Html;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.DatabaseAdapter;
+import com.byronkatz.reap.general.ExcelAttachment;
 import com.byronkatz.reap.general.RealEstateAnalysisProcessorApplication;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
@@ -47,6 +44,10 @@ public class SavedDataBrowserActivity extends ListActivity {
   private static final String SORT_DIRECTION = "SORT_DIRECTION"; 
   private static final String SORTER = "SORTER";
   private static final String SORT_TYPE = "SORT_TYPE";
+  ExcelAttachment excelAttachment;
+  
+  boolean mExternalStorageAvailable = false;
+  boolean mExternalStorageWriteable = false;
 
   private String[] from = {
       DatabaseAdapter.KEY_ID,
@@ -328,22 +329,8 @@ public class SavedDataBrowserActivity extends ListActivity {
     emailDialogBuilder.create().show();
   }
 
-  /**
-   * This is the method that will set up an intent to email the values from the database
-   * using the user's standard email program.
-   * @param position
-   */
-  private void emailEntry(int position) {
+  private String createEmailMessage() {
 
-    final Integer rowNum = cursor.getInt(0);
-
-    //at cursor 9 is the street address
-    String subject = "REAP analysis for entry " + rowNum;
-    
-    if (cursor.getString(9).length() > 0) {
-      subject += " at address " + cursor.getString(9);
-    }
-    
     String body = "";
 
     ContentValues emailContentValues = new ContentValues();
@@ -418,38 +405,71 @@ public class SavedDataBrowserActivity extends ListActivity {
     body += "<em>This data was modified on: " + emailContentValues.getAsString(DatabaseAdapter.MODIFIED_AT);
     body += " and has a REAP Entry id of: " + emailContentValues.getAsString(DatabaseAdapter.KEY_ID);
     body += "</em>";
-
     
-//        //otherwise, for specific entries, put in hardcoded titles below:
-//      } else  if (m.getKey().equals(DatabaseAdapter.KEY_ID)) {
-//        
-//        body += "Entry id: ";
-//        body += String.valueOf(m.getValue());
-//        body += "\n";
-//
-//      } else if(m.getKey().equals(DatabaseAdapter.MODIFIED_AT)) {
-//        
-//        body += "Last modified on: ";
-//        body += String.valueOf(m.getValue());
-//        body += "\n";
-//        
-//      } else if (m.getKey().equals(DatabaseAdapter.YEAR_VALUE)) {
-//        
-//        body += "Calculated value for year: ";
-//        body += String.valueOf(m.getValue());
-//        body += "\n";
-//      }
-    
+    return body;
+  }
+  
+  /**
+   * This is the method that will set up an intent to email the values from the database
+   * using the user's standard email program.
+   * @param position
+   */
+  private void emailEntry(int position) {
 
-    final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+    final Integer rowNum = cursor.getInt(0);
+
+    //at cursor 9 is the street address
+    String subject = "REAP analysis for entry " + rowNum;
+    if (cursor.getString(9).length() > 0) {
+      subject += " at address " + cursor.getString(9);
+    }
+    String body = createEmailMessage();
+
+    Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
     emailIntent.setType("text/html");
     emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
-    
-    //do we want this in html format?
+    emailIntent = addExcelAttachment(emailIntent);
+
     emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml(body));
-//    emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
     startActivity(Intent.createChooser(emailIntent, "Email:"));
 
+  }
+  
+//  private void checkMediaAvailability() {
+//
+//    String state = Environment.getExternalStorageState();
+//
+//    if (Environment.MEDIA_MOUNTED.equals(state)) {
+//        // We can read and write the media
+//        mExternalStorageAvailable = mExternalStorageWriteable = true;
+//    } else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+//        // We can only read the media
+//        mExternalStorageAvailable = true;
+//        mExternalStorageWriteable = false;
+//    } else {
+//        // Something else is wrong. It may be one of many other states, but all we need
+//        //  to know is we can neither read nor write
+//        mExternalStorageAvailable = mExternalStorageWriteable = false;
+//    }
+//  }
+  
+  private Intent addExcelAttachment(Intent emailIntent) {
+    
+//    checkMediaAvailability();
+
+//    if (mExternalStorageAvailable && mExternalStorageWriteable) {
+    createExcelAttachment();
+    Uri uri = Uri.fromFile(new File("/mnt/sdcard/../.."+getFilesDir()+"/"+ExcelAttachment.OUTPUT_WORKBOOK));
+
+    emailIntent.putExtra(android.content.Intent.EXTRA_STREAM, uri);
+//    }
+    
+    return emailIntent;
+  }
+  
+  private void createExcelAttachment() {
+    excelAttachment = new ExcelAttachment(this);
+    excelAttachment.createAttachment();
   }
 
 

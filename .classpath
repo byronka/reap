@@ -5,5 +5,10 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="lib" path="C:/Users/byron/Downloads/acra-4.2.3/acra-4.2.3/build/acra-4.2.3.jar"/>
+	<classpathentry kind="lib" path="/Jexcel/lib/jxl.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/Users/byron/workspace/jexcelapi/docs/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

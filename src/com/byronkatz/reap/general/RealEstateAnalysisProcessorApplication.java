@@ -2,6 +2,8 @@ package com.byronkatz.reap.general;
 
 
 import org.acra.ACRA;
+import org.acra.ReportField;
+import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 
 import android.app.Application;
@@ -9,7 +11,16 @@ import android.content.ContextWrapper;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 
-@ReportsCrashes(formKey = "dHYzM1FGVl9QZVg5b2F0eDNiRnh6bnc6MQ") 
+import com.byronkatz.R;
+
+//formKey = "dHYzM1FGVl9QZVg5b2F0eDNiRnh6bnc6MQ") points to my google doc
+
+
+@ReportsCrashes(formKey = "", // will not be used
+mailTo = "renaissance.nomad@gmail.com",               
+mode = ReportingInteractionMode.TOAST,
+resToastText = R.string.crash_toast_text)
+
 public class RealEstateAnalysisProcessorApplication extends Application {
 
   private static RealEstateAnalysisProcessorApplication singleton;
