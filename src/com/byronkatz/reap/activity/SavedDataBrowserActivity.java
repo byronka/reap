@@ -14,8 +14,10 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,9 +27,9 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import com.byronkatz.R;
+import com.byronkatz.reap.general.CsvAttachment;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.DatabaseAdapter;
-import com.byronkatz.reap.general.ExcelAttachment;
 import com.byronkatz.reap.general.RealEstateAnalysisProcessorApplication;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
@@ -44,7 +46,7 @@ public class SavedDataBrowserActivity extends ListActivity {
   private static final String SORT_DIRECTION = "SORT_DIRECTION"; 
   private static final String SORTER = "SORTER";
   private static final String SORT_TYPE = "SORT_TYPE";
-  ExcelAttachment excelAttachment;
+  CsvAttachment csvAttachment;
   
   boolean mExternalStorageAvailable = false;
   boolean mExternalStorageWriteable = false;
@@ -428,48 +430,26 @@ public class SavedDataBrowserActivity extends ListActivity {
     Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
     emailIntent.setType("text/html");
     emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
-    emailIntent = addExcelAttachment(emailIntent);
+    emailIntent = addCsvAttachment(emailIntent, cursor);
 
     emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml(body));
-    startActivity(Intent.createChooser(emailIntent, "Email:"));
+    startActivity(emailIntent);
 
   }
   
-//  private void checkMediaAvailability() {
-//
-//    String state = Environment.getExternalStorageState();
-//
-//    if (Environment.MEDIA_MOUNTED.equals(state)) {
-//        // We can read and write the media
-//        mExternalStorageAvailable = mExternalStorageWriteable = true;
-//    } else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-//        // We can only read the media
-//        mExternalStorageAvailable = true;
-//        mExternalStorageWriteable = false;
-//    } else {
-//        // Something else is wrong. It may be one of many other states, but all we need
-//        //  to know is we can neither read nor write
-//        mExternalStorageAvailable = mExternalStorageWriteable = false;
-//    }
-//  }
   
-  private Intent addExcelAttachment(Intent emailIntent) {
-    
-//    checkMediaAvailability();
+  private Intent addCsvAttachment(Intent emailIntent, Cursor cursor) {
 
-//    if (mExternalStorageAvailable && mExternalStorageWriteable) {
-    createExcelAttachment();
-    Uri uri = Uri.fromFile(new File("/mnt/sdcard/../.."+getFilesDir()+"/"+ExcelAttachment.OUTPUT_WORKBOOK));
-
+    createCsvAttachment(cursor);
+    Uri uri = Uri.fromFile(new File("/mnt/sdcard/../.."+getFilesDir()+"/"+CsvAttachment.OUTPUT_WORKBOOK));
     emailIntent.putExtra(android.content.Intent.EXTRA_STREAM, uri);
-//    }
     
     return emailIntent;
   }
   
-  private void createExcelAttachment() {
-    excelAttachment = new ExcelAttachment(this);
-    excelAttachment.createAttachment();
+  private void createCsvAttachment(Cursor cursor) {
+    csvAttachment = new CsvAttachment(this, cursor);
+    csvAttachment.createAttachment();
   }
 
 
