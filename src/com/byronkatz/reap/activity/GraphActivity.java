@@ -512,7 +512,7 @@ public class GraphActivity extends Activity {
   }
   
   private void setInputTypeDecimal(EditText et) {
-    et.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+    et.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
   }
   
   /**

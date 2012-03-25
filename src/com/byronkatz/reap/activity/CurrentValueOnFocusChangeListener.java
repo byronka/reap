@@ -29,16 +29,10 @@ public class CurrentValueOnFocusChangeListener implements
     } else if (! hasFocus) {
 
       Double tempValueNumeric = GraphActivityFunctions.parseEditText(graphActivity.currentValueEditText, graphActivity.currentSliderKey);
-      if (tempValueNumeric.equals(graphActivity.currentValueNumeric)) {
-
-        Toast toast = Toast.makeText(graphActivity, "You entered the same value as already existed for Current", Toast.LENGTH_LONG);
-        toast.show();
-      } else {
+ 
         graphActivity.currentValueNumeric = tempValueNumeric;
-
         graphActivity.recalcGraphPage();
 
-      }
       GraphActivityFunctions.displayValue(graphActivity.currentValueEditText, graphActivity.currentValueNumeric, graphActivity.currentSliderKey);
 
     }

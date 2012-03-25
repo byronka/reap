@@ -27,10 +27,7 @@ public class MinValueOnFocusChangeListener implements OnFocusChangeListener {
     } else if (! hasFocus) {
 
       Double tempMinValue = GraphActivityFunctions.parseEditText(minValueEditText, this.graphActivity.currentSliderKey);
-      if (tempMinValue.equals(this.graphActivity.minValueNumeric)) {
-        Toast toast = Toast.makeText(this.graphActivity, "You entered the same value as already existed for Minimum", Toast.LENGTH_LONG);
-        toast.show();
-      } else if (tempMinValue < this.graphActivity.currentValueNumeric) {
+      if (tempMinValue < this.graphActivity.currentValueNumeric) {
 
         this.graphActivity.minValueNumeric = tempMinValue;
         this.graphActivity.deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(this.graphActivity.minValueNumeric, this.graphActivity.maxValueNumeric);

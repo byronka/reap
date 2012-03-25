@@ -99,11 +99,20 @@ public class ConfigureDataTablesActivity extends Activity {
 
   private void packageUpDecisionsFromConfig() {
     SharedPreferences.Editor editor = graphActivitySharedPrefs.edit();
+    //TODO - right here, we want to avoid scrapping the good stuff in the sharedPref
+
+    int currentYearSelected = graphActivitySharedPrefs.getInt(
+        GraphActivity.CURRENT_YEAR_SELECTED, dataController.getCurrentYearSelected());;
+    String currentSliderKey = graphActivitySharedPrefs.getString(
+        GraphActivity.CURRENT_SLIDER_KEY, ValueEnum.CLOSING_COSTS.name());
+    
     editor.clear();
     for (ValueEnum ve : viewableDataTableRows) {
       editor.putBoolean(ve.name(), true);
     }
     editor.putBoolean(GraphActivity.IS_GRAPH_VISIBLE, isGraphVisible);
+    editor.putString(GraphActivity.CURRENT_SLIDER_KEY, currentSliderKey);
+    editor.putInt(GraphActivity.CURRENT_YEAR_SELECTED, currentYearSelected);
     editor.commit();
   }
   

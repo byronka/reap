@@ -398,6 +398,8 @@ public class SplashScreenActivity extends Activity {
 
   private void setAssumedValues() {
 
+    //if we are setting assumed values, we don't want it polluted with old values possibly.
+    //This makes it easy - it clears everything
     dataController.deleteSavedUserValues();
     
     dataController.putInputValue(totalPurchasePriceValue, ValueEnum.TOTAL_PURCHASE_VALUE);

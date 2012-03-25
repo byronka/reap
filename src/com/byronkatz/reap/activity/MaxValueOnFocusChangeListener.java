@@ -28,17 +28,12 @@ public class MaxValueOnFocusChangeListener implements OnFocusChangeListener {
 
         Double tempMaxValue = GraphActivityFunctions.parseEditText(maxValueEditText, this.graphActivity.currentSliderKey);
 
-        if (tempMaxValue.equals(this.graphActivity.maxValueNumeric)) {
-          Toast toast = Toast.makeText(this.graphActivity, "You entered the same value as already existed for Maximum", Toast.LENGTH_LONG);
-          toast.show();
-        } else if (tempMaxValue > this.graphActivity.currentValueNumeric) {
+        if (tempMaxValue > this.graphActivity.currentValueNumeric) {
           //            Log.d("Tag 001", "currentValueNumeric is " + currentValueNumeric);
           this.graphActivity.maxValueNumeric = tempMaxValue;
 
           this.graphActivity.deltaValueNumeric = GraphActivityFunctions.calculateMinMaxDelta(this.graphActivity.minValueNumeric, this.graphActivity.maxValueNumeric);
-          //          Log.d("", "deltaValueNumeric is " + deltaValueNumeric);
           GraphActivityFunctions.displayValue(maxValueEditText, this.graphActivity.maxValueNumeric, this.graphActivity.currentSliderKey);
-//            executeCalculationBackgroundTask();
         } else {
           Toast toast = Toast.makeText(this.graphActivity, "new Maximum must be greater than Current value: " + this.graphActivity.currentValueEditText.getText().toString(), Toast.LENGTH_LONG);
           toast.show();
