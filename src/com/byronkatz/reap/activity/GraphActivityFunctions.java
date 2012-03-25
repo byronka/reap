@@ -156,9 +156,9 @@ public class GraphActivityFunctions {
   static Integer updateTimeSliderAfterChange(SeekBar timeSlider, Integer currentYearMaximum) {
 
     //set the new max value on the progress bar
-    Integer oldCurrentValue = timeSlider.getProgress() + 1;
+    Integer oldCurrentValue = timeSlider.getProgress();
 
-    timeSlider.setMax(currentYearMaximum - 1);
+    timeSlider.setMax(currentYearMaximum);
     Integer newValue = 0;
 
     //here we decide - do we need to change the currentYearSelected?  only if the new max
@@ -171,7 +171,7 @@ public class GraphActivityFunctions {
 
     //necessary to setprogress twice here.  Bug in Android code.
     timeSlider.setProgress(0);
-    timeSlider.setProgress(newValue - 1);
+    timeSlider.setProgress(newValue);
     
     return newValue;
   }

@@ -65,8 +65,6 @@ public class GraphActivity extends Activity {
   Double currentValueNumeric;
   Double originalCurrentValueNumeric; //for the reset button
 
-  private int test = 0;
-
   SharedPreferences sp;
 
   public static final int DIVISIONS_OF_VALUE_SLIDER = 40;
@@ -108,7 +106,8 @@ public class GraphActivity extends Activity {
     //necessary in case the user switches between loan types (15 vs. 30 year)
     Integer currentYearMaximum = 
         (int) (dataController.getInputValue(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS))/12 + 
-        (int) dataController.getInputValue(ValueEnum.EXTRA_YEARS);
+        (int) dataController.getInputValue(ValueEnum.EXTRA_YEARS) - 
+        1;
     
     Integer currentYearSelected = GraphActivityFunctions.updateTimeSliderAfterChange (timeSlider, currentYearMaximum);
     updateYearDisplayAtSeekBar(currentYearSelected);
@@ -199,12 +198,6 @@ public class GraphActivity extends Activity {
   }
 
 
-  @Override
-  public void onDestroy() {
-    super.onDestroy();
-    System.runFinalizersOnExit(true);
-  }
-
   private void setupGraphTabs() {
     tabs = (TabHost) findViewById(android.R.id.tabhost);        
     tabs.setup();
@@ -241,7 +234,7 @@ public class GraphActivity extends Activity {
   }
 
   private void updateYearDisplayAtSeekBar(Integer year) {
-    yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(year));
+    yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(year+1));
 
   }
 
@@ -344,9 +337,15 @@ public class GraphActivity extends Activity {
         //set the value in the current value field:
         currentValueNumeric = changeCurrentValueBasedOnProgress(progress);
 
-        dataController.putInputValue(currentValueNumeric, currentSliderKey );
-        dataController.calculationsSetValues();
+
         GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
+        
+        //take the input value from the text shown in the field.  That will 
+        //solve our problems for integer values
+        dataController.putInputValue(Utility.parseValue(
+            currentValueEditText.getText().toString(), currentSliderKey), currentSliderKey );
+        dataController.calculationsSetValues();
+        
         GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
         dataTable.setDataTableItems( getCurrentYearSelected(), valueToDataTableItemCorrespondence);
 
@@ -359,7 +358,7 @@ public class GraphActivity extends Activity {
 
     timeSlider = (SeekBar) findViewById(R.id.timeSlider);
     timeSlider.setMax(currentYearMaximum - 1);
-    timeSlider.setProgress(currentYearSelected - 1);
+    timeSlider.setProgress(currentYearSelected);
 
     timeSlider.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 

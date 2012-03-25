@@ -76,6 +76,8 @@ public class Utility {
     dataTableValues.remove(ValueEnum.CITY);
     dataTableValues.remove(ValueEnum.STATE_INITIALS);
     dataTableValues.remove(ValueEnum.STREET_ADDRESS);
+    dataTableValues.remove(ValueEnum.PRINCIPAL_PAYMENT);
+    dataTableValues.remove(ValueEnum.INTEREST_PAYMENT);
     
     return dataTableValues;
   }
@@ -448,7 +450,7 @@ public class Utility {
   }
 
   /**
-   * Currently only set up to handle percentages and currency
+   * Currently handles percentages, currency, and integers
    * @param value the string value which is a currency, percentage, or integer
    * @param ve the ValueEnum associated with the value
    * @return

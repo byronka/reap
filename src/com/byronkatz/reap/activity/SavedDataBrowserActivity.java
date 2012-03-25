@@ -14,6 +14,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.Html;
@@ -339,47 +340,49 @@ public class SavedDataBrowserActivity extends ListActivity {
     DatabaseUtils.cursorRowToContentValues(cursor, emailContentValues);
 
     
-    body += "<br /><br />";
+    body += "\n\n";
     if (emailContentValues.getAsString(ValueEnum.STREET_ADDRESS.name()).length() > 0) {
-      body += "<b>Address:</b><br />";
-      body += "<br />";
-      body += emailContentValues.getAsString(ValueEnum.STREET_ADDRESS.name()) + "<br />";
-      body += emailContentValues.getAsString(ValueEnum.CITY.name()) + "<br />";
-      body += emailContentValues.getAsString(ValueEnum.STATE_INITIALS.name()) + "<br />";
-      body += "<br /><br />";
+      body += "Address:\n";
+      body += "\n";
+      body += emailContentValues.getAsString(ValueEnum.STREET_ADDRESS.name()) + "\n";
+      body += emailContentValues.getAsString(ValueEnum.CITY.name()) + "\n";
+      body += emailContentValues.getAsString(ValueEnum.STATE_INITIALS.name()) + "\n";
+      body += "\n\n";
     }
     
-    body += "<b>Comments:</b>";
-    body += "<br /><br />";
-    body += emailContentValues.getAsString(ValueEnum.COMMENTS.name()) + "<br /><br /><br />";
+    if (emailContentValues.getAsString(ValueEnum.COMMENTS.name()).length() > 0) {
 
+    body += "Comments:";
+    body += "\n\n";
+    body += emailContentValues.getAsString(ValueEnum.COMMENTS.name()) + "\n\n\n";
+    }
     
     String yearValue = emailContentValues.getAsString(DatabaseAdapter.YEAR_VALUE);
-    body += "<b>Calculated Values For Year: " + yearValue + "</b>"  + "<br />";
+    body += "Calculated Values For Year: " + yearValue  + "\n";
  
-    body += "<br />";
+    body += "\n";
     
     body += getString(ValueEnum.NPV.getTitleText()) + ": " + 
-        Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.NPV.name()), ValueEnum.NPV) + "<br />";
+        Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.NPV.name()), ValueEnum.NPV) + "\n";
 
     body += getString(ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.getTitleText()) + ": " +
-        Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name()), ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN) + "<br />";
+        Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name()), ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN) + "\n";
     
     body += getString(ValueEnum.ATCF.getTitleText()) + ": " + 
-        Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.ATCF.name()), ValueEnum.ATCF) + "<br />";
+        Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.ATCF.name()), ValueEnum.ATCF) + "\n";
     
     body += getString(ValueEnum.ATER.getTitleText()) + ": " + 
-        Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.ATER.name()), ValueEnum.ATER) + "<br />";
+        Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.ATER.name()), ValueEnum.ATER) + "\n";
     
     body += getString(ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.getTitleText()) + ": " + 
-        Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name()), ValueEnum.CAP_RATE_ON_PROJECTED_VALUE) + "<br />";
+        Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.CAP_RATE_ON_PROJECTED_VALUE.name()), ValueEnum.CAP_RATE_ON_PROJECTED_VALUE) + "\n";
     
     body += getString(ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.getTitleText()) + ": " + 
-    Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name()), ValueEnum.CAP_RATE_ON_PURCHASE_VALUE) + "<br />";
+    Utility.parseAndDisplayValue(emailContentValues.getAsString(ValueEnum.CAP_RATE_ON_PURCHASE_VALUE.name()), ValueEnum.CAP_RATE_ON_PURCHASE_VALUE) + "\n";
     
-    body += "<br /><br />";
-    body += "<b>User Input Values</b><br />";
-    body += "<br />";
+    body += "\n\n";
+    body += "User Input Values\n";
+    body += "\n";
 
     
     for (Map.Entry<String,Object> m : emailContentValues.valueSet()) {
@@ -393,20 +396,21 @@ public class SavedDataBrowserActivity extends ListActivity {
       }
 
       //if we successfully got a ValueEnum, we can use it to format the string
-      if ((viewEnum != null) && (viewEnum.getType() != ValueType.STRING) && (! viewEnum.isVaryingByYear())) {
+      if ((viewEnum != null) && 
+          (viewEnum.getType() != ValueType.STRING) && 
+          (! viewEnum.isVaryingByYear())) {
         
         body += getString(viewEnum.getTitleText()) + ": ";
         body += Utility.parseAndDisplayValue(String.valueOf(m.getValue()), viewEnum);
-        body += "<br />";
+        body += "\n";
         
       }
     }
     
-    body += "<br /><br />";
+    body += "\n\n";
     
-    body += "<em>This data was modified on: " + emailContentValues.getAsString(DatabaseAdapter.MODIFIED_AT);
+    body += "This data was modified on: " + emailContentValues.getAsString(DatabaseAdapter.MODIFIED_AT);
     body += " and has a REAP Entry id of: " + emailContentValues.getAsString(DatabaseAdapter.KEY_ID);
-    body += "</em>";
     
     return body;
   }
@@ -428,12 +432,16 @@ public class SavedDataBrowserActivity extends ListActivity {
     String body = createEmailMessage();
 
     Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-    emailIntent.setType("text/html");
+    
+    emailIntent.setType("multipart/mixed");
     emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
+    emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
     emailIntent = addCsvAttachment(emailIntent, cursor);
 
-    emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml(body));
+    
     startActivity(emailIntent);
+    
+    
 
   }
   

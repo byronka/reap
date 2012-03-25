@@ -12,7 +12,6 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.byronkatz.R;
@@ -84,7 +83,7 @@ public class AnalysisGraph extends View {
   private Integer xValue;
   private Float yValue;
   private String maxYString;
-  private Float maxX;
+//  private Float maxX;
   private Float maxY;
   private String minYString;
   private Float minX;
@@ -173,6 +172,7 @@ public class AnalysisGraph extends View {
         (int) dataController.getInputValue(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS) / 12 + 
         (int) dataController.getInputValue(ValueEnum.EXTRA_YEARS));
         year++) {
+      //add 11 to get to the end of December of that year
       dataPoints.add(year, dataController.getCalcValue(graphKeyValue, year*12));
     }
   }
@@ -257,7 +257,7 @@ public class AnalysisGraph extends View {
       xGraphValue = (float) (marginWidthX +  xGraphCoefficient * (currentYearHighlighted - functionMinX));
       canvas.drawCircle(xGraphValue, yGraphValue, HIGHLIGHT_CIRCLE_RADIUS, highlightPaint);
       canvas.drawPoint(xGraphValue, yGraphValue, highlightPaint);
-      canvas.drawText(String.valueOf(currentYearHighlighted), xGraphValue+15, yGraphValue+15, textPaint);
+      canvas.drawText(String.valueOf(currentYearHighlighted+1), xGraphValue+15, yGraphValue+15, textPaint);
 
 
       //draw the frame
@@ -374,6 +374,7 @@ public class AnalysisGraph extends View {
     return currentYearHighlighted;
   }
 
+  //called by other classes to set the current year on the graph
   public void setCurrentYearHighlighted(int currentYearHighlighted) {
     this.currentYearHighlighted = currentYearHighlighted;
   }

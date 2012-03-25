@@ -2,35 +2,34 @@ package com.byronkatz.reap.general;
 
 
 import java.io.File;
-import java.io.FilePermission;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
+import java.util.Map.Entry;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
-import android.os.Parcel;
 
+import com.byronkatz.reap.calculations.Calculations;
 import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 
 public class CsvAttachment {
 
-  private final DataController dataController = 
-      RealEstateAnalysisProcessorApplication.getInstance().getDataController();
   public static final String OUTPUT_WORKBOOK = "REAP_workbook.csv";
   private FileWriter outputWriter;
   private Context context;
   private File outputFile;
-  private String csvOutputArray;
+  private StringBuilder csvOutputArray;
   private Cursor cursor;
+  private DataManager dataManager;
 
   public CsvAttachment( Context context, Cursor cursor) {
     this.context = context;
     this.cursor = cursor;
-    csvOutputArray = "";
+    csvOutputArray = new StringBuilder();
+    dataManager = new DataManagerImpl();
 
   }
 
@@ -44,13 +43,14 @@ public class CsvAttachment {
   public File getFile() {
     return outputFile;
   }
-  
+
 
   private void writeAndCloseBook() {
 
     try {
-      outputWriter.write(csvOutputArray);
+      outputWriter.write(csvOutputArray.toString());
       outputWriter.close();
+      csvOutputArray = null;
 
     } catch (IOException e) {
       e.printStackTrace();
@@ -68,96 +68,143 @@ public class CsvAttachment {
     }  
   }
 
+  private String getStringFromCursor(ValueEnum valueEnum) {
+    return cursor.getString(cursor.getColumnIndex(valueEnum.name()));
+  }
 
+  private double getDoubleFromCursor(ValueEnum valueEnum) {
+    return cursor.getDouble(cursor.getColumnIndex(valueEnum.name()));
+  }
+
+  private int getIntegerFromCursor(ValueEnum valueEnum) {
+    return cursor.getInt(cursor.getColumnIndex(valueEnum.name()));
+  }
 
   private void addDataToWorkbook() {
-    
-    
-    ContentValues emailContentValues = new ContentValues();
-    DatabaseUtils.cursorRowToContentValues(cursor, emailContentValues);
-    
-    if (emailContentValues.getAsString(ValueEnum.STREET_ADDRESS.name()).length() > 0) {
-      csvOutputArray += "Address:\n";
-      csvOutputArray += emailContentValues.getAsString(ValueEnum.STREET_ADDRESS.name()) + "\n";
-      csvOutputArray += emailContentValues.getAsString(ValueEnum.CITY.name()) + "\n";
-      csvOutputArray += emailContentValues.getAsString(ValueEnum.STATE_INITIALS.name()) + "\n";
-      csvOutputArray += "\n\n";
-    }
-    
-    if (emailContentValues.getAsString(ValueEnum.COMMENTS.name()).length() > 0) {
 
-    csvOutputArray += "Comments:\n";
-    csvOutputArray += "\n\n";
-    csvOutputArray += emailContentValues.getAsString(ValueEnum.COMMENTS.name()) + "\n\n";
+    //get address info for this entry if it exists
+    if (getStringFromCursor(ValueEnum.STREET_ADDRESS).length() > 0) {
+      csvOutputArray.append( "Address:\n");
+      csvOutputArray.append(getStringFromCursor(ValueEnum.STREET_ADDRESS) + "\n");
+      csvOutputArray.append(getStringFromCursor(ValueEnum.CITY) + "\n");
+      csvOutputArray.append(getStringFromCursor(ValueEnum.STATE_INITIALS) + "\n");
+      csvOutputArray.append("\n\n");
     }
-    
-    String yearValue = emailContentValues.getAsString(DatabaseAdapter.YEAR_VALUE);
-    csvOutputArray += "\nCalculated Values For Year: " + yearValue + "\n\n";
-    
-    for (Map.Entry<String,Object> m : emailContentValues.valueSet()) {
 
-      ValueEnum viewEnum = null;
-      //if we can extract a valueEnum, in order to format the value, do so.
-      try {
-        viewEnum = ValueEnum.valueOf(m.getKey());
-      } catch (IllegalArgumentException e) {
-        //do nothing - just move on.  This is where we hit things not in valueEnum, like year
+    //get comments info for this entry if it exists
+    if (getStringFromCursor(ValueEnum.COMMENTS).length() > 0) {
+
+      csvOutputArray.append("Comments:\n");
+      csvOutputArray.append("\n\n");
+      csvOutputArray.append(getStringFromCursor(ValueEnum.COMMENTS) + "\n\n");
+    }
+
+    //get input values from this entry.  Create a new DataManager object to 
+    //insert into the Calculations object in order to get the correct calculated
+    //values for this entry.
+    for (ValueEnum ve : ValueEnum.values()) {
+
+      if (ve.isSavedToDatabase() && ! ve.isVaryingByYear()) {
+        if (ve.getType() == ValueType.CURRENCY ||
+            ve.getType() == ValueType.PERCENTAGE) {
+          dataManager.putInputValue(getDoubleFromCursor(ve), ve);
+
+          //append these values to the string to create the CSV
+          csvOutputArray.append(context.getString(ve.getTitleText()));
+          csvOutputArray.append(",");
+          csvOutputArray.append("\"" + 
+              Utility.displayValue(getDoubleFromCursor(ve), ve) + "\"\n" );
+        } else if (ve.getType() == ValueType.INTEGER) {
+          dataManager.putInputValue(getIntegerFromCursor(ve), ve);
+
+          //append these values to the string to create the CSV
+          csvOutputArray.append(context.getString(ve.getTitleText()));
+          csvOutputArray.append(",");
+          csvOutputArray.append("\"" + 
+              getIntegerFromCursor(ve) + "\"\n" );
+
+        }
       }
+    }
 
-      //if we successfully got a ValueEnum, we can use it to format the string
-      if ((viewEnum != null) && (viewEnum.getType() != ValueType.STRING) && (! viewEnum.isVaryingByYear())) {
-        
-        csvOutputArray += context.getString(viewEnum.getTitleText());
-        csvOutputArray += ",";
-        csvOutputArray += "\"" + 
-            Utility.parseAndDisplayValue(String.valueOf(m.getValue()), viewEnum) + "\"\n" ;
-        
+    //now we have all the input values in our DataManager, so let's create a new Calculation object,
+    //which will do all our calculations, and we can access it through our dataManager
+    Calculations calculations = new Calculations();
+    calculations.setValues(dataManager);
+
+    csvOutputArray.append("\n\n");
+
+    int nocp = getIntegerFromCursor(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS);
+    int extraYears = getIntegerFromCursor(ValueEnum.EXTRA_YEARS);
+    int totalYears = (nocp /12) + extraYears;
+
+    //Set the titles over the different calculated values
+    csvOutputArray.append("Year,");
+    for (ValueEnum valueEnum : ValueEnum.values()) {
+      if (valueEnum.getType() != ValueType.STRING && !valueEnum.isSavedToDatabase()) {
+        csvOutputArray.append(context.getString(valueEnum.getTitleText()));
+        csvOutputArray.append(",");
       }
     }
-    
-    csvOutputArray += "\n\n";
-    
-    int totalYears = (emailContentValues.getAsInteger(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS.name()) +
-        emailContentValues.getAsInteger(ValueEnum.EXTRA_YEARS.name())) / 12;
-    
-    csvOutputArray += 
-        "Year"                                                + "," + 
-        ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.toString() + "," +
-        ValueEnum.NPV                                         + "," +
-        ValueEnum.ATCF                                        + ",\n";
-    
-    
-    
-    for (int i = 0; i < totalYears ;i++) {  
-      csvOutputArray += "\"";
-      csvOutputArray += i;
-      csvOutputArray += "\"";
-      csvOutputArray += ",";
-      
-      csvOutputArray += "\"";
-      csvOutputArray += Utility.displayValue(dataController.getCalcValue(
-          ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN, i), ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN);
-      csvOutputArray += "\"";
-      csvOutputArray += ",";
+    csvOutputArray.append("\n");
 
-      csvOutputArray += "\"";
-      csvOutputArray += Utility.displayValue(dataController.getCalcValue(
-          ValueEnum.NPV, i), ValueEnum.NPV);
-      csvOutputArray += "\"";
-      csvOutputArray += ",";
+    //loop through the values for each year and type
+    for (int i = 0; i < totalYears ; i++) {  
+      //have to add 1 to the year display
+      csvOutputArray = addCompoundingPeriod(csvOutputArray, i+1);
 
-      csvOutputArray += "\"";
-      csvOutputArray += Utility.displayValue(dataController.getCalcValue(
-          ValueEnum.ATCF, i), ValueEnum.ATCF);
-      csvOutputArray += "\"";
-      csvOutputArray += ",";
-
-      
-      
-      csvOutputArray += "\n";
-
+      for (ValueEnum valueEnum : ValueEnum.values()) {
+        if (valueEnum.getType() != ValueType.STRING && !valueEnum.isSavedToDatabase()) {
+          csvOutputArray = addValue(csvOutputArray, valueEnum, i*12);
+        }
+      }
+      csvOutputArray.append("\n");
     }
-    
+
+    csvOutputArray.append("\n\n");
+
+    //Add the amortization table
+    csvOutputArray.append("Month,");
+    csvOutputArray.append(context.getString(ValueEnum.CURRENT_AMOUNT_OUTSTANDING.getTitleText()));
+    csvOutputArray.append(",");
+    csvOutputArray.append(context.getString(ValueEnum.MONTHLY_MORTGAGE_PAYMENT.getTitleText()));
+    csvOutputArray.append(",");
+    csvOutputArray.append(context.getString(ValueEnum.INTEREST_PAYMENT.getTitleText()));
+    csvOutputArray.append(",");
+    csvOutputArray.append(context.getString(ValueEnum.PRINCIPAL_PAYMENT.getTitleText()));
+    csvOutputArray.append(",\n");
+
+
+    //do the amortization loop
+    for (int i = 0; i < nocp; i++) {
+      //month 1 to month 360 - have to add 1 for month display only
+      addCompoundingPeriod(csvOutputArray, i+1);
+      csvOutputArray = addValue(csvOutputArray, ValueEnum.CURRENT_AMOUNT_OUTSTANDING, i);
+      csvOutputArray = addValue(csvOutputArray, ValueEnum.MONTHLY_MORTGAGE_PAYMENT, i);
+      csvOutputArray = addValue(csvOutputArray, ValueEnum.INTEREST_PAYMENT, i);
+      csvOutputArray = addValue(csvOutputArray, ValueEnum.PRINCIPAL_PAYMENT, i);
+
+      csvOutputArray.append("\n");
+    }
+
+  }
+
+  private StringBuilder addCompoundingPeriod(StringBuilder s, int cP) {
+    s.append("\"");
+    s.append(cP);
+    s.append("\"");
+    s.append(",");
+
+    return s;
+  }
+
+  private StringBuilder addValue(StringBuilder s, ValueEnum valueEnum, int year) {
+    s.append("\"");
+    s.append(dataManager.getCalcValue(valueEnum, year));
+    s.append("\"");
+    s.append(",");
+
+    return s;
   }
 
 }

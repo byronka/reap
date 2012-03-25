@@ -113,6 +113,21 @@ public class DataController implements DataManager {
       }
     }
   }
+  
+  /**
+   * clears out the cache of saved values from the Shared preferences
+   * so we can be sure they are not corrupting our current data
+   */
+  public void deleteSavedUserValues() {
+    SharedPreferences sp = RealEstateAnalysisProcessorApplication.getInstance().
+        getSharedPreferences(RealEstateAnalysisProcessorApplication.BASE_VALUES, ContextWrapper.MODE_PRIVATE);
+    SharedPreferences.Editor editor = sp.edit();
+    editor.clear();
+    editor.commit();
+    loadFieldValues(sp);
+
+
+  }
 
   /**
    * calls a SharedPreferences from RealEstateAnalysisProcessorApplication and saves

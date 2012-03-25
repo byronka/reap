@@ -65,10 +65,10 @@
   	<string name="firstDayCostsTitleText">Calculated First Day Costs</string>
   	
   	<string name="loanAmountHelpText">The loan amount is calculated by
-  	    simple subtracting the downpayment from the Total Purchase Value</string>
+  	    simply subtracting the Down Payment from the Total Purchase Value</string>
   	<string name="loanAmountTitleText">Calculated Loan Amount</string>
   	
-  	 <string name="interestPaymentHelpText">BLEH</string>
+  	 <string name="interestPaymentHelpText">The individual interest payment</string>
   	<string name="interestPaymentTitleText">Calculated Interest Payment</string>
   	
   	<string name="helpButtonContentDescription" formatted="false">Help button</string>
@@ -86,7 +86,7 @@
       gone to the lender, to date.
 	      \n\n
 	        This value is calculated from the user input</string>
-    <string name="atcfTitleText" formatted="false">Calculated ATCF</string>
+    <string name="atcfTitleText" formatted="false">Calculated Yearly ATCF</string>
     <string name="atcfHelpText" formatted="false">The amount of money 
       that goes into your bank at the end of the year.
 	    \n
@@ -494,7 +494,7 @@ value at the time of sale, to pay for the broker
 	            	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="yearlyInterestPaidTitleText" formatted="false">Calculated Interest Paid</string>
+    <string name="yearlyInterestPaidTitleText" formatted="false">Calculated Yearly Interest Paid</string>
     <string name="yearlyInterestRateHelpText" formatted="false">The
       interest rate charged by the lender for the loan.  This value is used
       to determine the monthly mortgage payment, and affects many things, such
@@ -593,7 +593,7 @@ value at the time of sale, to pay for the broker
 	    	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="yearlyPrincipalPaidTitleText" formatted="false">Calculated Principal Paid</string>
+    <string name="yearlyPrincipalPaidTitleText" formatted="false">Calculated Yearly Principal Paid</string>
     <string name="yearlyPropertyTaxHelpText" formatted="false">The 
       amount of property tax paid 
       this year.  This application calculates each year\'s property
@@ -679,7 +679,7 @@ value at the time of sale, to pay for the broker
     <string name="loanScreenHeaderText" formatted="false">Loan</string>
 
     <!-- Loan page -->
-    <string name="yearlyInterestRateTitleText" formatted="false">Yearly Loan Interest Rate</string>
+    <string name="yearlyInterestRateTitleText" formatted="false">Input Loan Interest Rate</string>
     <string name="downPaymentTitleText" formatted="false">Input Down Payment</string>
     <string name="numOfCompoundingPeriodsTitleText" formatted="false">Input Number of Compounding Periods</string>
     <string name="calcPMIDownPaymentButtonText" formatted="false">Set down payment by PMI</string>
@@ -758,7 +758,7 @@ value at the time of sale, to pay for the broker
     <string name="dataRowLoadValuesString" formatted="false">Id: </string>
     <string name="streetAddressLoadValuesString" formatted="false">Addr: </string>
     <string name="totalPurchaseValueLoadValuesString" formatted="false">Value: </string>
-    <string name="yearlyInflationRateLoadValuesString" formatted="false">infl-ate: </string>
+    <string name="yearlyInflationRateLoadValuesString" formatted="false">infl-rate: </string>
     <string name="yearlyInterestRateLoadValuesString" formatted="false">int-rate: </string>
     <string name="downPaymentLoadValuesString" formatted="false">Down P.: </string>
     <string name="reqRateReturnLoadValuesString" formatted="false">RRR: </string>

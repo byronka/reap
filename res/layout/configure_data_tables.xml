@@ -1,31 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="300dip"
-	android:layout_height="fill_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-	<LinearLayout android:orientation="vertical"
-		android:layout_width="300dip" android:layout_height="fill_parent">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
 
-		<Button android:id="@+id/allButtonsOn" android:layout_height="wrap_content"
-			android:layout_width="fill_parent" android:onClick="turnAllButtonsOn"
-			android:text="@string/allButtonsOnText" />
+        <LinearLayout
+            android:id="@+id/on_off_buttons"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
 
-		<Button android:id="@+id/allButtonsOff" android:layout_height="wrap_content"
-			android:layout_width="fill_parent" android:onClick="turnAllButtonsOff"
-			android:text="@string/allButtonsOffText" />
+            <Button
+                android:id="@+id/allButtonsOn"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="turnAllButtonsOn"
+                android:text="@string/allButtonsOnText" />
 
-		<TableLayout android:layout_height="0dp"
-			android:id="@+id/dataTableLayoutConfiguration" android:shrinkColumns="0"
-			android:stretchColumns="1" android:layout_width="fill_parent"
-			android:gravity="clip_vertical" android:layout_weight="0.40">
+            <Button
+                android:id="@+id/allButtonsOff"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="turnAllButtonsOff"
+                android:text="@string/allButtonsOffText" />
+        </LinearLayout>
 
-			<CheckBox
-			    android:id="@+id/graphVisibilityCheckbox"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:text="@string/graphVisibilityCheckboxTitle" />
+        <TableLayout
+            android:id="@+id/dataTableLayoutConfiguration"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.40"
+            android:gravity="clip_vertical"
+            android:shrinkColumns="0"
+            android:stretchColumns="1" >
 
-		</TableLayout>
+            <CheckBox
+                android:id="@+id/graphVisibilityCheckbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/graphVisibilityCheckboxTitle" />
+        </TableLayout>
+    </LinearLayout>
 
-	</LinearLayout>
 </ScrollView>

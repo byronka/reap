@@ -57,7 +57,6 @@ put in the SD card -->
             android:name=".reap.activity.ConfigureDataTablesActivity"
             android:label="@string/configureDataTableTitleText"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Dialog"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".reap.activity.FinancialEnvironmentActivity"

@@ -3,6 +3,17 @@ package com.byronkatz.reap.calculations;
 import com.byronkatz.reap.general.DataManager;
 import com.byronkatz.reap.general.ValueEnum;
 
+/**
+ * One very important point to the calculations in this class. That is: All
+ * yearly values are intended to be valid as of the last day of the year for
+ * which they are calculated. For example, if we want the After Tax Cash Flow
+ * for compounding period 5, the result needs to represent the correct value as
+ * of December 31st, approximately, of that year. This concept will keep all the
+ * values throughout the system accurate if held to.
+ * 
+ * @author byron
+ * 
+ */
 public class Calculations implements ValueSettable {
 
   private double propertyTax;
@@ -18,6 +29,7 @@ public class Calculations implements ValueSettable {
   private double yearlyRealEstateAppreciationRate;
   private double vacancyAndCreditLossRate;
   private int nocp;
+  private int monthsUntilRentStarts;
   private double loanAmount;
   private double downPayment;
   private double loanInterestRateMonthly;
@@ -48,7 +60,7 @@ public class Calculations implements ValueSettable {
   private double marginalTaxRate;
   private final double DEPRECIATION_CONSTANT = 27.5d;
   private final double TAX_ON_CAPITAL_GAINS = 0.15d;
-  private double[] yearlyNetIncomeCache;
+  private double[] yearlyGrossIncomeCache;
   private double[] yearlyNetOperatingIncomeCache;
   private double[] taxableIncomeCache;
 
@@ -94,7 +106,6 @@ public class Calculations implements ValueSettable {
   private CalcValueGettable taxesDueAtSale;
   private CalcValueGettable yearlyTaxOnIncome;
 
-
   public Calculations() {
 
     propertyTax = 0d;
@@ -108,11 +119,12 @@ public class Calculations implements ValueSettable {
     yearlyRealEstateAppreciationRate = 0d;
     vacancyAndCreditLossRate = 0d;
     nocp = 0;
+    monthsUntilRentStarts = 0;
     loanAmount = 0d;
     downPayment = 0d;
     loanInterestRateMonthly = 0d;
     interestAccumulator = null;
-    interestPayment =  null;
+    interestPayment = null;
     principalPayment = null;
     amountOwed = null;
     mpValue = 0d;
@@ -136,45 +148,45 @@ public class Calculations implements ValueSettable {
 
     dataManager = null;
 
-    mirrObject                              = new MIRR();
-    propertyTaxFValue                       = new PropertyTaxFValue();
-    insuranceFValue                         = new InsuranceFValue();
-    generalExpensesFValue                   = new GeneralExpensesFValue();
-    operatingExpensesFValue                 = new OperatingExpensesFValue();
-    municipalExpensesFValue                 = new MunicipalExpensesFValue();
-    investmentFValue                        = new InvestmentFValue();
-    monthlyRentFValue                       = new MonthlyRentFValue();
-    yearlyGrossIncomeValue                  = new YearlyGrossIncomeValue();
-    yearlyNetIncomeValue                    = new YearlyNetIncomeValue();
-    netOperatingIncome                      = new NetOperatingIncome();
-    taxableIncome                           = new TaxableIncome();
-    interestPaymentValue                    = new InterestPaymentValue();
-    interestPaidAccumulatedValue            = new InterestPaidAccumulatedValue();
-    amountOwedValue                         = new AmountOwedValue();
-    principalPaymentValue                   = new PrincipalPaymentValue();
-    loanAmountValue                         = new LoanAmountValue();
-    yearlyInterestPaid                      = new YearlyInterestPaid();
-    yearlyPrincipalPaid                     = new YearlyPrincipalPaid();
-    mortgagePayment                         = new MortgagePayment();
-    yearlyMortgagePayment                   = new YearlyMortgagePayment();
-    privateMortgageInsurance                = new PrivateMortgageInsurance();
-    privateMortgageInsuranceAccum           = new PrivateMortgageInsuranceAccum();
-    afterTaxCashFlow                        = new AfterTaxCashFlow();
-    afterTaxCashFlowNPV                     = new AtcfNpv();
-    afterTaxCashFlowAccumulator             = new AfterTaxCashFlowAccumulator();
-    beforeTaxCashFlow                       = new BeforeTaxCashFlow();
-    yearlyOutlay                            = new YearlyOutlay();
-    capitalizationRateOnPurchaseValue       = new CapitalizationRateOnPurchaseValue();
-    capitalizationRateOnProjectedValue      = new CapitalizationRateOnProjectedValue();
-    firstDayCosts                           = new FirstDayCosts();
-    npv                                     = new NPV();
-    sellingExpensesFValue                   = new SellingExpensesFValue();
-    brokerCutOfSale                         = new BrokerCutOfSale();
-    afterTaxEquityReversion                 = new AfterTaxEquityReversion();
-    aterPv                                  = new AterPV();
-    yearlyDepreciation                      = new YearlyDepreciation();
-    taxesDueAtSale                          = new TaxesDueAtSale();
-    yearlyTaxOnIncome                       = new YearlyTaxOnIncome();
+    mirrObject = new MIRR();
+    propertyTaxFValue = new PropertyTaxFValue();
+    insuranceFValue = new InsuranceFValue();
+    generalExpensesFValue = new GeneralExpensesFValue();
+    operatingExpensesFValue = new OperatingExpensesFValue();
+    municipalExpensesFValue = new MunicipalExpensesFValue();
+    investmentFValue = new InvestmentFValue();
+    monthlyRentFValue = new MonthlyRentFValue();
+    yearlyGrossIncomeValue = new YearlyGrossIncomeValue();
+    yearlyNetIncomeValue = new YearlyNetIncomeValue();
+    netOperatingIncome = new NetOperatingIncome();
+    taxableIncome = new TaxableIncome();
+    interestPaymentValue = new InterestPaymentValue();
+    interestPaidAccumulatedValue = new InterestPaidAccumulatedValue();
+    amountOwedValue = new AmountOwedValue();
+    principalPaymentValue = new PrincipalPaymentValue();
+    loanAmountValue = new LoanAmountValue();
+    yearlyInterestPaid = new YearlyInterestPaid();
+    yearlyPrincipalPaid = new YearlyPrincipalPaid();
+    mortgagePayment = new MortgagePayment();
+    yearlyMortgagePayment = new YearlyMortgagePayment();
+    privateMortgageInsurance = new PrivateMortgageInsurance();
+    privateMortgageInsuranceAccum = new PrivateMortgageInsuranceAccum();
+    afterTaxCashFlow = new AfterTaxCashFlow();
+    afterTaxCashFlowNPV = new AtcfNpv();
+    afterTaxCashFlowAccumulator = new AfterTaxCashFlowAccumulator();
+    beforeTaxCashFlow = new BeforeTaxCashFlow();
+    yearlyOutlay = new YearlyOutlay();
+    capitalizationRateOnPurchaseValue = new CapitalizationRateOnPurchaseValue();
+    capitalizationRateOnProjectedValue = new CapitalizationRateOnProjectedValue();
+    firstDayCosts = new FirstDayCosts();
+    npv = new NPV();
+    sellingExpensesFValue = new SellingExpensesFValue();
+    brokerCutOfSale = new BrokerCutOfSale();
+    afterTaxEquityReversion = new AfterTaxEquityReversion();
+    aterPv = new AterPV();
+    yearlyDepreciation = new YearlyDepreciation();
+    taxesDueAtSale = new TaxesDueAtSale();
+    yearlyTaxOnIncome = new YearlyTaxOnIncome();
 
   }
 
@@ -184,8 +196,8 @@ public class Calculations implements ValueSettable {
     this.dataManager = dataManager;
     assignDataManager(dataManager);
 
-    //before we load in the new values from the user, check if the new values
-    //are different then some of our current ones
+    // before we load in the new values from the user, check if the new values
+    // are different then some of our current ones
 
     double oldLoanValue = loanAmount;
     double oldYearlyLoanInterestRate = yearlyLoanInterestRate;
@@ -193,14 +205,14 @@ public class Calculations implements ValueSettable {
 
     loadCurrentUserInputValues();
 
-    if (oldLoanValue != loanAmount || 
-        oldYearlyLoanInterestRate != yearlyLoanInterestRate || 
-        oldNocp != nocp) {
+    if (oldLoanValue != loanAmount
+        || oldYearlyLoanInterestRate != yearlyLoanInterestRate
+        || oldNocp != nocp) {
       mpValue = calculateMortgagePayment();
       createAmortizationTable(nocp);
     }
     createOperatingExpensesTable();
-    createYearlyNetIncomeTable();
+    createYearlyGrossIncomeTable();
     createYearlyNetOperatingIncomeTable();
     createTaxableIncomeTable();
     createAtcfTable();
@@ -210,32 +222,44 @@ public class Calculations implements ValueSettable {
 
   }
 
-
-
   private void loadCurrentUserInputValues() {
 
-    closingCosts                         = dataManager.getInputValue(ValueEnum.CLOSING_COSTS);
-    propertyTax                          = dataManager.getInputValue(ValueEnum.PROPERTY_TAX                    );
-    insurance                            = dataManager.getInputValue(ValueEnum.INITIAL_HOME_INSURANCE          );
-    generalExpenses                      = dataManager.getInputValue(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES );
-    inflationRate                        = dataManager.getInputValue(ValueEnum.INFLATION_RATE                  );
-    yearlyRealEstateAppreciationRate     = dataManager.getInputValue(ValueEnum.REAL_ESTATE_APPRECIATION_RATE   );
-    municipalExpenses                    = dataManager.getInputValue(ValueEnum.LOCAL_MUNICIPAL_FEES            );
-    totalPurchaseValue                   = dataManager.getInputValue(ValueEnum.TOTAL_PURCHASE_VALUE            );
-    fixupCosts                           = dataManager.getInputValue(ValueEnum.FIX_UP_COSTS                    );
-    initialRent                          = dataManager.getInputValue(ValueEnum.ESTIMATED_RENT_PAYMENTS         );
-    vacancyAndCreditLossRate             = dataManager.getInputValue(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE    );
-    nocp                                 = (int) dataManager.getInputValue(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS);
-    downPayment                          = dataManager.getInputValue(ValueEnum.DOWN_PAYMENT                    );
-    loanInterestRateMonthly              = dataManager.getInputValue(ValueEnum.YEARLY_INTEREST_RATE            )/12;
-    totalYearsToCalculate                = (int) dataManager.getInputValue(ValueEnum.EXTRA_YEARS) + nocp/12;
-    requiredRateOfReturn                 = dataManager.getInputValue(ValueEnum.REQUIRED_RATE_OF_RETURN          );
-    yearlyLoanInterestRate               = dataManager.getInputValue(ValueEnum.YEARLY_INTEREST_RATE             );
-    brokerRate                           = dataManager.getInputValue(ValueEnum.SELLING_BROKER_RATE              );
-    initialSellingExpenses               = dataManager.getInputValue(ValueEnum.GENERAL_SALE_EXPENSES            );
-    buildingValue                        = dataManager.getInputValue(ValueEnum.BUILDING_VALUE                   );
-    marginalTaxRate                      = dataManager.getInputValue(ValueEnum.MARGINAL_TAX_RATE                );
-    pmiMonthly                           = dataManager.getInputValue(ValueEnum.PRIVATE_MORTGAGE_INSURANCE       );
+    closingCosts = dataManager.getInputValue(ValueEnum.CLOSING_COSTS);
+    propertyTax = dataManager.getInputValue(ValueEnum.PROPERTY_TAX);
+    insurance = dataManager.getInputValue(ValueEnum.INITIAL_HOME_INSURANCE);
+    generalExpenses = dataManager
+        .getInputValue(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES);
+    inflationRate = dataManager.getInputValue(ValueEnum.INFLATION_RATE);
+    yearlyRealEstateAppreciationRate = dataManager
+        .getInputValue(ValueEnum.REAL_ESTATE_APPRECIATION_RATE);
+    municipalExpenses = dataManager
+        .getInputValue(ValueEnum.LOCAL_MUNICIPAL_FEES);
+    totalPurchaseValue = dataManager
+        .getInputValue(ValueEnum.TOTAL_PURCHASE_VALUE);
+    fixupCosts = dataManager.getInputValue(ValueEnum.FIX_UP_COSTS);
+    initialRent = dataManager.getInputValue(ValueEnum.ESTIMATED_RENT_PAYMENTS);
+    vacancyAndCreditLossRate = dataManager
+        .getInputValue(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE);
+    nocp = (int) dataManager
+        .getInputValue(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS);
+    downPayment = dataManager.getInputValue(ValueEnum.DOWN_PAYMENT);
+    loanInterestRateMonthly = dataManager
+        .getInputValue(ValueEnum.YEARLY_INTEREST_RATE) / 12;
+    totalYearsToCalculate = (int) dataManager
+        .getInputValue(ValueEnum.EXTRA_YEARS) + nocp / 12;
+    requiredRateOfReturn = dataManager
+        .getInputValue(ValueEnum.REQUIRED_RATE_OF_RETURN);
+    yearlyLoanInterestRate = dataManager
+        .getInputValue(ValueEnum.YEARLY_INTEREST_RATE);
+    brokerRate = dataManager.getInputValue(ValueEnum.SELLING_BROKER_RATE);
+    initialSellingExpenses = dataManager
+        .getInputValue(ValueEnum.GENERAL_SALE_EXPENSES);
+    buildingValue = dataManager.getInputValue(ValueEnum.BUILDING_VALUE);
+    marginalTaxRate = dataManager.getInputValue(ValueEnum.MARGINAL_TAX_RATE);
+    pmiMonthly = dataManager
+        .getInputValue(ValueEnum.PRIVATE_MORTGAGE_INSURANCE);
+    monthsUntilRentStarts = (int) dataManager
+        .getInputValue(ValueEnum.MONTHS_UNTIL_RENT_STARTS);
 
     if (totalPurchaseValue > downPayment) {
       loanAmount = totalPurchaseValue - downPayment;
@@ -245,249 +269,309 @@ public class Calculations implements ValueSettable {
 
     pmiEndsValue = PMI_BOUNDARY_PERCENTAGE * totalPurchaseValue;
 
-    //only if the size needs to be different do we recreate the arrays.
-    if (interestPayment == null || 
-        amountOwed == null ||
-        interestAccumulator == null ||
-        principalPayment == null ||
-        pmiAccumulator == null ||
-        interestPayment.length != nocp) {
-      interestPayment       = new double[nocp];
-      amountOwed            = new double[nocp];
-      interestAccumulator   = new double[nocp];
-      principalPayment      = new double[nocp];
-      pmiAccumulator        = new double[nocp];
+    // only if the size needs to be different do we recreate the arrays.
+    if (interestPayment == null || amountOwed == null
+        || interestAccumulator == null || principalPayment == null
+        || pmiAccumulator == null || interestPayment.length != nocp) {
+      interestPayment = new double[nocp];
+      amountOwed = new double[nocp];
+      interestAccumulator = new double[nocp];
+      principalPayment = new double[nocp];
+      pmiAccumulator = new double[nocp];
     }
-    //only if the size needs to be different do we recreate the arrays.
+    // only if the size needs to be different do we recreate the arrays.
 
-    if (atcfCache == null || 
-        atcfCache.length != totalYearsToCalculate) {
+    if (atcfCache == null || atcfCache.length != totalYearsToCalculate) {
 
-      atcfCache                = new double[totalYearsToCalculate+1];
-      atcfAccumCache           = new double[totalYearsToCalculate+1];
-      atcfPvCache              = new double[totalYearsToCalculate+1];
-      operatingExpensesCache   = new double[totalYearsToCalculate+1];
-      yearlyNetIncomeCache     = new double[totalYearsToCalculate+1];
-      yearlyNetOperatingIncomeCache = new double[totalYearsToCalculate+1];
-      taxableIncomeCache       = new double[totalYearsToCalculate+1];
+      atcfCache = new double[totalYearsToCalculate + 1];
+      atcfAccumCache = new double[totalYearsToCalculate + 1];
+      atcfPvCache = new double[totalYearsToCalculate + 1];
+      operatingExpensesCache = new double[totalYearsToCalculate + 1];
+      yearlyGrossIncomeCache = new double[totalYearsToCalculate + 1];
+      yearlyNetOperatingIncomeCache = new double[totalYearsToCalculate + 1];
+      taxableIncomeCache = new double[totalYearsToCalculate + 1];
     }
   }
 
   private void assignDataManager(DataManager dataManager) {
-    dataManager.addCalcValuePointers(
-        ValueEnum.PRINCIPAL_PAYMENT, principalPaymentValue);
-    dataManager.addCalcValuePointers(
-        ValueEnum.ATCF, afterTaxCashFlow);
-    dataManager.addCalcValuePointers(
-        ValueEnum.YEARLY_BEFORE_TAX_CASH_FLOW, beforeTaxCashFlow);    
-    dataManager.addCalcValuePointers(
-        ValueEnum.YEARLY_OUTLAY, yearlyOutlay);
-    dataManager.addCalcValuePointers(
-        ValueEnum.CAP_RATE_ON_PROJECTED_VALUE, capitalizationRateOnProjectedValue);
-    dataManager.addCalcValuePointers(
-        ValueEnum.CAP_RATE_ON_PURCHASE_VALUE, capitalizationRateOnPurchaseValue);
-    dataManager.addCalcValuePointers(
-        ValueEnum.FIRST_DAY_COSTS, firstDayCosts);
-    dataManager.addCalcValuePointers(
-        ValueEnum.NPV, npv);
-    dataManager.addCalcValuePointers(
-        ValueEnum.ATCF_ACCUMULATOR, afterTaxCashFlowAccumulator);
-    dataManager.addCalcValuePointers(
-        ValueEnum.ATCF_NPV, afterTaxCashFlowNPV);
+    dataManager.addCalcValuePointers(ValueEnum.PRINCIPAL_PAYMENT,
+        principalPaymentValue);
+    dataManager.addCalcValuePointers(ValueEnum.ATCF, afterTaxCashFlow);
+    dataManager.addCalcValuePointers(ValueEnum.YEARLY_BEFORE_TAX_CASH_FLOW,
+        beforeTaxCashFlow);
+    dataManager.addCalcValuePointers(ValueEnum.YEARLY_OUTLAY, yearlyOutlay);
+    dataManager.addCalcValuePointers(ValueEnum.CAP_RATE_ON_PROJECTED_VALUE,
+        capitalizationRateOnProjectedValue);
+    dataManager.addCalcValuePointers(ValueEnum.CAP_RATE_ON_PURCHASE_VALUE,
+        capitalizationRateOnPurchaseValue);
+    dataManager.addCalcValuePointers(ValueEnum.FIRST_DAY_COSTS, firstDayCosts);
+    dataManager.addCalcValuePointers(ValueEnum.NPV, npv);
+    dataManager.addCalcValuePointers(ValueEnum.ATCF_ACCUMULATOR,
+        afterTaxCashFlowAccumulator);
+    dataManager.addCalcValuePointers(ValueEnum.ATCF_NPV, afterTaxCashFlowNPV);
     dataManager.addCalcValuePointers(
         ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN, mirrObject);
+    dataManager.addCalcValuePointers(ValueEnum.BROKER_CUT_OF_SALE,
+        brokerCutOfSale);
+    dataManager.addCalcValuePointers(ValueEnum.ATER, afterTaxEquityReversion);
+    dataManager.addCalcValuePointers(ValueEnum.SELLING_EXPENSES,
+        sellingExpensesFValue);
+    dataManager.addCalcValuePointers(ValueEnum.ATER_PV, aterPv);
+    dataManager.addCalcValuePointers(ValueEnum.PROJECTED_HOME_VALUE,
+        investmentFValue);
+    dataManager.addCalcValuePointers(ValueEnum.MONTHLY_RENT_FV,
+        monthlyRentFValue);
+    dataManager.addCalcValuePointers(ValueEnum.GROSS_YEARLY_INCOME,
+        yearlyGrossIncomeValue);
+    dataManager.addCalcValuePointers(ValueEnum.YEARLY_INCOME,
+        yearlyNetIncomeValue);
+    dataManager.addCalcValuePointers(ValueEnum.YEARLY_NET_OPERATING_INCOME,
+        netOperatingIncome);
+    dataManager.addCalcValuePointers(ValueEnum.TAXABLE_INCOME, taxableIncome);
+    dataManager.addCalcValuePointers(ValueEnum.YEARLY_DEPRECIATION,
+        yearlyDepreciation);
+    dataManager.addCalcValuePointers(ValueEnum.TAXES_DUE_AT_SALE,
+        taxesDueAtSale);
+    dataManager.addCalcValuePointers(ValueEnum.YEARLY_TAX_ON_INCOME,
+        yearlyTaxOnIncome);
+    dataManager.addCalcValuePointers(ValueEnum.YEARLY_PROPERTY_TAX,
+        propertyTaxFValue);
+    dataManager.addCalcValuePointers(ValueEnum.YEARLY_HOME_INSURANCE,
+        insuranceFValue);
+    dataManager.addCalcValuePointers(ValueEnum.YEARLY_GENERAL_EXPENSES,
+        generalExpensesFValue);
+    dataManager.addCalcValuePointers(ValueEnum.YEARLY_OPERATING_EXPENSES,
+        operatingExpensesFValue);
+    dataManager.addCalcValuePointers(ValueEnum.YEARLY_MUNICIPAL_FEES,
+        municipalExpensesFValue);
+    dataManager.addCalcValuePointers(ValueEnum.CURRENT_AMOUNT_OUTSTANDING,
+        amountOwedValue);
+    dataManager.addCalcValuePointers(ValueEnum.ACCUM_INTEREST,
+        interestPaidAccumulatedValue);
+    dataManager.addCalcValuePointers(ValueEnum.INTEREST_PAYMENT,
+        interestPaymentValue);
+    dataManager.addCalcValuePointers(ValueEnum.YEARLY_INTEREST_PAID,
+        yearlyInterestPaid);
+    dataManager.addCalcValuePointers(ValueEnum.YEARLY_PRINCIPAL_PAID,
+        yearlyPrincipalPaid);
+    dataManager.addCalcValuePointers(ValueEnum.MONTHLY_MORTGAGE_PAYMENT,
+        mortgagePayment);
+    dataManager.addCalcValuePointers(ValueEnum.YEARLY_MORTGAGE_PAYMENT,
+        yearlyMortgagePayment);
     dataManager.addCalcValuePointers(
-        ValueEnum.BROKER_CUT_OF_SALE, brokerCutOfSale);
-    dataManager.addCalcValuePointers(
-        ValueEnum.ATER, afterTaxEquityReversion);
-    dataManager.addCalcValuePointers(
-        ValueEnum.SELLING_EXPENSES, sellingExpensesFValue);    
-    dataManager.addCalcValuePointers(
-        ValueEnum.ATER_PV, aterPv);
-    dataManager.addCalcValuePointers(
-        ValueEnum.PROJECTED_HOME_VALUE, investmentFValue);
-    dataManager.addCalcValuePointers(
-        ValueEnum.MONTHLY_RENT_FV, monthlyRentFValue);
-    dataManager.addCalcValuePointers(
-        ValueEnum.GROSS_YEARLY_INCOME, yearlyGrossIncomeValue);
-    dataManager.addCalcValuePointers(
-        ValueEnum.YEARLY_INCOME, yearlyNetIncomeValue);
-    dataManager.addCalcValuePointers(
-        ValueEnum.YEARLY_NET_OPERATING_INCOME, netOperatingIncome);
-    dataManager.addCalcValuePointers(
-        ValueEnum.TAXABLE_INCOME, taxableIncome);
-    dataManager.addCalcValuePointers(
-        ValueEnum.YEARLY_DEPRECIATION, yearlyDepreciation);
-    dataManager.addCalcValuePointers(
-        ValueEnum.TAXES_DUE_AT_SALE, taxesDueAtSale);
-    dataManager.addCalcValuePointers(
-        ValueEnum.YEARLY_TAX_ON_INCOME, yearlyTaxOnIncome);
-    dataManager.addCalcValuePointers(
-        ValueEnum.YEARLY_PROPERTY_TAX, propertyTaxFValue);
-    dataManager.addCalcValuePointers(
-        ValueEnum.YEARLY_HOME_INSURANCE, insuranceFValue);
-    dataManager.addCalcValuePointers(
-        ValueEnum.YEARLY_GENERAL_EXPENSES, generalExpensesFValue);
-    dataManager.addCalcValuePointers(
-        ValueEnum.YEARLY_OPERATING_EXPENSES, operatingExpensesFValue);
-    dataManager.addCalcValuePointers(
-        ValueEnum.YEARLY_MUNICIPAL_FEES, municipalExpensesFValue);
-    dataManager.addCalcValuePointers(
-        ValueEnum.CURRENT_AMOUNT_OUTSTANDING, amountOwedValue);
-    dataManager.addCalcValuePointers(
-        ValueEnum.ACCUM_INTEREST, interestPaidAccumulatedValue);
-    dataManager.addCalcValuePointers(
-        ValueEnum.INTEREST_PAYMENT, interestPaymentValue);
-    dataManager.addCalcValuePointers(
-        ValueEnum.YEARLY_INTEREST_PAID, yearlyInterestPaid);
-    dataManager.addCalcValuePointers(
-        ValueEnum.YEARLY_PRINCIPAL_PAID, yearlyPrincipalPaid);
-    dataManager.addCalcValuePointers(
-        ValueEnum.MONTHLY_MORTGAGE_PAYMENT, mortgagePayment);
-    dataManager.addCalcValuePointers(
-        ValueEnum.YEARLY_MORTGAGE_PAYMENT, yearlyMortgagePayment);
-    dataManager.addCalcValuePointers(
-        ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE_ACCUM, privateMortgageInsuranceAccum);
+        ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE_ACCUM,
+        privateMortgageInsuranceAccum);
     dataManager.addCalcValuePointers(
         ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, privateMortgageInsurance);
-    dataManager.addCalcValuePointers(
-        ValueEnum.LOAN_AMOUNT, loanAmountValue);
+    dataManager.addCalcValuePointers(ValueEnum.LOAN_AMOUNT, loanAmountValue);
   }
-  
+
   private class PrincipalPaymentValue implements CalcValueGettable {
-    
+
     @Override
-    public double getValue (int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
+    public double getValue(int compoundingPeriod) {
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
       return principalPayment[compoundingPeriod];
     }
   }
 
   /**
-   * Future value of the monthly rent.  Gets incremented by REAR once each 12 months.
+   * Future value of the monthly rent. Gets incremented by REAR once each 12
+   * months.
+   * 
    * @author byron
-   *
+   * 
    */
   private class MonthlyRentFValue implements CalcValueGettable {
 
     @Override
-    public double getValue(int compoundingPeriod) {  
-      if (compoundingPeriod < 0 ) {return 0d;}
-      return (initialRent * Math.pow(1 + yearlyRealEstateAppreciationRate, compoundingPeriod / MONTHS_IN_YEAR));
+    public double getValue(int compoundingPeriod) {
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
+      return (initialRent * Math.pow(1 + yearlyRealEstateAppreciationRate,
+          compoundingPeriod / MONTHS_IN_YEAR));
     }
 
   }
 
   /**
-   * The yearly gross income.  The monthly rent times 12.
+   * The yearly gross income. The monthly rent times 12.
+   * 
    * @author byron
-   *
+   * 
    */
   private class YearlyGrossIncomeValue implements CalcValueGettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0 ) {return 0d;}
-      return 12 * (initialRent * Math.pow(1 + yearlyRealEstateAppreciationRate, compoundingPeriod / MONTHS_IN_YEAR));
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
+      return yearlyGrossIncomeCache[compoundingPeriod / MONTHS_IN_YEAR];
     }
 
   }
 
   /**
-   * returns the yearly net income, which is the yearly gross income times (1 minus vacancy)
+   * returns the yearly net income, which is the yearly gross income times (1
+   * minus vacancy)
+   * 
    * @author byron
-   *
+   * 
    */
   private class YearlyNetIncomeValue implements CalcValueGettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0 ) {return 0d;}
-      return yearlyNetIncomeCache[compoundingPeriod / MONTHS_IN_YEAR];
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
+      return yearlyGrossIncomeCache[compoundingPeriod / MONTHS_IN_YEAR]
+          * (1 - vacancyAndCreditLossRate);
 
     }
 
   }
 
-  private void createYearlyNetIncomeTable() {
+  /**
+   * Value is same for entire year
+   * 
+   * @author byron
+   * 
+   */
+  private void createYearlyGrossIncomeTable() {
     for (int year = 0; year < totalYearsToCalculate; year++) {
-      yearlyNetIncomeCache[year] = 
-          12 * 
-          (1-vacancyAndCreditLossRate) * 
-          (initialRent * Math.pow(1 + yearlyRealEstateAppreciationRate, year));
+      if (((year + 1) * 12) <= monthsUntilRentStarts) {
+        yearlyGrossIncomeCache[year] = 0;
+      } else if ((((year + 1) * 12) > monthsUntilRentStarts)
+          && (((year + 1) * 12) - monthsUntilRentStarts) <= 12) {
+        yearlyGrossIncomeCache[year] = (((year + 1) * 12) - monthsUntilRentStarts)
+            * (initialRent * Math.pow(1 + yearlyRealEstateAppreciationRate,
+                year));
+      } else if ((((year + 1) * 12) - monthsUntilRentStarts) > 12) {
+        yearlyGrossIncomeCache[year] = 12 * (initialRent * Math.pow(
+            1 + yearlyRealEstateAppreciationRate, year));
+      }
 
     }
-  } 
+  }
 
+  /**
+   * Value is same for entire year
+   * 
+   * @author byron
+   * 
+   */
   private class NetOperatingIncome implements CalcValueGettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
-      return yearlyNetOperatingIncomeCache[compoundingPeriod/MONTHS_IN_YEAR];
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
+      return yearlyNetOperatingIncomeCache[compoundingPeriod / MONTHS_IN_YEAR];
 
     }
   }
 
+  /**
+   * Value is same for entire year
+   * 
+   * @author byron
+   * 
+   */
   private void createYearlyNetOperatingIncomeTable() {
     for (int year = 0; year < totalYearsToCalculate; year++) {
-      yearlyNetOperatingIncomeCache[year] =
-          yearlyNetIncomeValue.getValue(year * 12) -
-          operatingExpensesFValue.getValue(year * 12);
+      yearlyNetOperatingIncomeCache[year] = yearlyNetIncomeValue
+          .getValue(year * 12) - operatingExpensesFValue.getValue(year * 12);
     }
   }
 
+  /**
+   * Value is same for entire year
+   * 
+   * @author byron
+   * 
+   */
   private class TaxableIncome implements CalcValueGettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
-      if (taxableIncomeCache[compoundingPeriod/MONTHS_IN_YEAR] < 0) {
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
+      if (taxableIncomeCache[compoundingPeriod / MONTHS_IN_YEAR] < 0) {
         return 0d;
       } else {
-        return taxableIncomeCache[compoundingPeriod/MONTHS_IN_YEAR];
+        return taxableIncomeCache[compoundingPeriod / MONTHS_IN_YEAR];
       }
     }
   }
 
   private void createTaxableIncomeTable() {
     for (int year = 0; year < totalYearsToCalculate; year++) {
-      taxableIncomeCache[year] = 
-          netOperatingIncome.getValue(year * 12) -
-          yearlyInterestPaid.getValue(year * 12) -
-          yearlyDepreciation.getValue(year * 12);
+      taxableIncomeCache[year] = netOperatingIncome.getValue(year * 12)
+          - yearlyInterestPaid.getValue(year * 12)
+          - yearlyDepreciation.getValue(year * 12);
     }
   }
 
+  /**
+   * Value is a constant for all values greater than 0
+   * 
+   * @author byron
+   * 
+   */
   private class YearlyDepreciation implements CalcValueGettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
       return buildingValue / DEPRECIATION_CONSTANT;
     }
 
   }
 
+  /**
+   * Value is same for entire year
+   * 
+   * @author byron
+   * 
+   */
   private class YearlyTaxOnIncome implements CalcValueGettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
 
-      return 
-          taxableIncome.getValue(compoundingPeriod) *
-          marginalTaxRate;
+      return taxableIncome.getValue(compoundingPeriod) * marginalTaxRate;
     }
 
   }
 
+  /**
+   * Value is same for entire year
+   * 
+   * @author byron
+   * 
+   */
   private class TaxesDueAtSale implements CalcValueGettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
-      if (taxesDueFunction(compoundingPeriod) < 0) {return 0d;}
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
+      if (taxesDueFunction(compoundingPeriod) < 0) {
+        return 0d;
+      }
 
       else {
         return taxesDueFunction(compoundingPeriod);
@@ -495,301 +579,379 @@ public class Calculations implements ValueSettable {
     }
 
     private double taxesDueFunction(int compoundingPeriod) {
-      return
-          (investmentFValue.getValue(compoundingPeriod) -
-              brokerCutOfSale.getValue(compoundingPeriod) -
-              totalPurchaseValue +
-              (yearlyDepreciation.getValue(compoundingPeriod) *
-                  ((compoundingPeriod/MONTHS_IN_YEAR)+1))) *
-                  TAX_ON_CAPITAL_GAINS;
+      return (investmentFValue.getValue(compoundingPeriod)
+          - brokerCutOfSale.getValue(compoundingPeriod) - totalPurchaseValue + (yearlyDepreciation
+          .getValue(compoundingPeriod) * ((compoundingPeriod / MONTHS_IN_YEAR) + 1)))
+          * TAX_ON_CAPITAL_GAINS;
     }
 
   }
 
   /**
    * compounding yearly rather than monthly.
+   * 
    * @author byron
-   *
+   * 
    */
   private class MunicipalExpensesFValue implements CalcValueGettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
-      return (municipalExpenses * Math.pow(1 + inflationRate, compoundingPeriod / MONTHS_IN_YEAR));
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
+      return (municipalExpenses * Math.pow(1 + inflationRate, compoundingPeriod
+          / MONTHS_IN_YEAR));
     }
 
   }
 
-
   /**
-   * Increments the property tax at the rate of REAR once a year.
-   * We assert that this value should be non-null and greater than 0.  Less than zero
-   * does not make sense.
+   * Increments the property tax at the rate of REAR once a year. We assert that
+   * this value should be non-null and greater than 0. Less than zero does not
+   * make sense.
+   * 
    * @author byron
-   *
+   * 
    */
   private class PropertyTaxFValue implements CalcValueGettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
-      return (propertyTax * Math.pow(1 + yearlyRealEstateAppreciationRate, compoundingPeriod / MONTHS_IN_YEAR));
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
+      return (propertyTax * Math.pow(1 + yearlyRealEstateAppreciationRate,
+          compoundingPeriod / MONTHS_IN_YEAR));
     }
 
   }
 
   /**
-   * Increments the insurance value at the rate of inflation once a year.
-   * We assert that this value should be non-null and greater than 0.  Less than zero
-   * does not make sense.
+   * Increments the insurance value at the rate of inflation once a year. We
+   * assert that this value should be non-null and greater than 0. Less than
+   * zero does not make sense.
+   * 
    * @author byron
-   *
+   * 
    */
   private class InsuranceFValue implements CalcValueGettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
-      return (insurance * Math.pow(1 + inflationRate, compoundingPeriod / MONTHS_IN_YEAR));
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
+      return (insurance * Math.pow(1 + inflationRate, compoundingPeriod
+          / MONTHS_IN_YEAR));
     }
 
   }
 
   /**
    * Increments the general expenses value at the rate of inflation once a year.
-   * We assert that this value should be non-null and greater than 0.  Less than zero
-   * does not make sense.
+   * We assert that this value should be non-null and greater than 0. Less than
+   * zero does not make sense.
+   * 
    * @author byron
-   *
+   * 
    */
   private class GeneralExpensesFValue implements CalcValueGettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
-      return (generalExpenses * Math.pow(1 + inflationRate, compoundingPeriod / MONTHS_IN_YEAR));
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
+      return (generalExpenses * Math.pow(1 + inflationRate, compoundingPeriod
+          / MONTHS_IN_YEAR));
     }
 
   }
 
   /**
    * Increments the general expenses value at the rate of inflation once a year.
-   * We assert that this value should be non-null and greater than 0.  Less than zero
-   * does not make sense.
+   * We assert that this value should be non-null and greater than 0. Less than
+   * zero does not make sense.
+   * 
    * @author byron
    * 
-   *
+   * 
    */
   private class OperatingExpensesFValue implements CalcValueGettable {
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
-      return operatingExpensesCache[compoundingPeriod/MONTHS_IN_YEAR];
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
+      return operatingExpensesCache[compoundingPeriod / MONTHS_IN_YEAR];
     }
 
   }
 
+  /**
+   * Value is same for entire year
+   * 
+   * @author byron
+   * 
+   */
   private void createOperatingExpensesTable() {
     for (int year = 0; year < totalYearsToCalculate; year++) {
-      operatingExpensesCache[year] = 
-          ((generalExpenses + insurance + municipalExpenses) * 
-              Math.pow(1 + inflationRate, year)) +
-              propertyTax *
-              Math.pow(1+yearlyRealEstateAppreciationRate, year);
+      operatingExpensesCache[year] = ((generalExpenses + insurance + municipalExpenses) * Math
+          .pow(1 + inflationRate, year))
+          + propertyTax
+          * Math.pow(1 + yearlyRealEstateAppreciationRate, year);
 
     }
   }
 
-
+  /**
+   * Value is same for entire year
+   * 
+   * @author byron
+   * 
+   */
   private class InvestmentFValue implements CalcValueGettable {
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
-      return (totalPurchaseValue + fixupCosts) * 
-          Math.pow(1 + yearlyRealEstateAppreciationRate, compoundingPeriod/MONTHS_IN_YEAR);
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
+      return (totalPurchaseValue + fixupCosts)
+          * Math.pow(1 + yearlyRealEstateAppreciationRate, compoundingPeriod
+              / MONTHS_IN_YEAR);
 
     }
   }
 
-
-
+  /**
+   * Value is same for entire year
+   * 
+   * @author byron
+   * 
+   */
   private class BrokerCutOfSale implements CalcValueGettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
 
-      return 
-          brokerRate * 
-          investmentFValue.getValue(compoundingPeriod);
+      return brokerRate * investmentFValue.getValue(compoundingPeriod);
     }
 
   }
 
-
+  /**
+   * ATER is for the end of the year, this year
+   * 
+   * @author byron
+   * 
+   */
   private class AfterTaxEquityReversion implements CalcValueGettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
 
-      return 
-          investmentFValue.getValue(compoundingPeriod) -
-          brokerCutOfSale.getValue(compoundingPeriod) -
-          sellingExpensesFValue.getValue(compoundingPeriod) -
-          //by multiplying and dividing, we get the number of month at the beginning of the year
-          //WORK AREA
-          amountOwedValue.getValue((compoundingPeriod/MONTHS_IN_YEAR)*MONTHS_IN_YEAR) -
-          taxesDueAtSale.getValue(compoundingPeriod);
+      return investmentFValue.getValue(compoundingPeriod)
+          - brokerCutOfSale.getValue(compoundingPeriod)
+          - sellingExpensesFValue.getValue(compoundingPeriod)
+          -
+          // by multiplying and dividing, we get the number of month
+          // at the beginning of the year
+          // add 11 to get to the amount owed at end of year
+          amountOwedValue
+              .getValue(((compoundingPeriod / MONTHS_IN_YEAR) * MONTHS_IN_YEAR) + 11)
+          - taxesDueAtSale.getValue(compoundingPeriod);
 
     }
 
   }
 
+  /**
+   * We bring the ATER, which is based on the value at the end of the year, back
+   * to the beginning of the year. That is why the equation has a exponent of a
+   * year ahead: (compoundingPeriod/MONTHS_IN_YEAR)+1)
+   * 
+   * @author byron
+   * 
+   */
   private class AterPV implements CalcValueGettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      return (afterTaxEquityReversion.getValue(compoundingPeriod) / 
-          Math.pow((1 + requiredRateOfReturn/MONTHS_IN_YEAR), compoundingPeriod));
+      return (afterTaxEquityReversion.getValue(compoundingPeriod) / Math.pow(
+          (1 + requiredRateOfReturn), (compoundingPeriod / MONTHS_IN_YEAR) + 1));
     }
 
   }
 
+  /**
+   * Value is same for entire year
+   * 
+   * @author byron
+   * 
+   */
   private class SellingExpensesFValue implements CalcValueGettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
 
-      return initialSellingExpenses * Math.pow(1 + inflationRate , compoundingPeriod / MONTHS_IN_YEAR);
+      return initialSellingExpenses
+          * Math.pow(1 + inflationRate, compoundingPeriod / MONTHS_IN_YEAR);
     }
 
   }
 
-
+  /**
+   * Only valid for the very first day of ownership - the day of closing
+   * 
+   * @author byron
+   * 
+   */
   private class FirstDayCosts implements CalcValueGettable {
 
     /**
-     * This equation varies from the norm in that it 
-     * always provides the same amount, unless you ask
-     * for a compounding period below 0.  The first day
-     * costs are those that are incurred the very first
-     * day of ownership.  This is not the exact situation
-     * in the case of fixup costs, but for our purposes
-     * it is a close approimation
+     * This equation varies from the norm in that it always provides the same
+     * amount, unless you ask for a compounding period below 0. The first day
+     * costs are those that are incurred the very first day of ownership. This
+     * is not the exact situation in the case of fixup costs, but for our
+     * purposes it is a close approimation
      */
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
-      return 
-          downPayment +
-          closingCosts +
-          fixupCosts;
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
+      return downPayment + closingCosts + fixupCosts;
     }
-  }  
+  }
 
   private class NPV implements CalcValueGettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
-      return 
-          (- firstDayCosts.getValue(compoundingPeriod)) + 
-          afterTaxCashFlowNPV.getValue(compoundingPeriod) +
-          aterPv.getValue(compoundingPeriod);
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
+      return (-firstDayCosts.getValue(compoundingPeriod))
+          + afterTaxCashFlowNPV.getValue(compoundingPeriod)
+          + aterPv.getValue(compoundingPeriod);
 
-    } 
+    }
   }
 
   private class MIRR implements CalcValueGettable {
 
     @Override
-    public double getValue (int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
+    public double getValue(int compoundingPeriod) {
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
 
       presentValueNegativeCashFlowsAccumulator = 0d;
       futureValuePositiveCashFlowsAccumulator = 0d;
       atcfTempValue = 0d;
       aterTempValue = 0d;
 
-//      System.out.println();
-      //cash flows for mirr:
+      // System.out.println();
+      // cash flows for mirr:
 
-      //step 1, first day costs:
-      //first day costs are assumed to literally be on the day of closing, for simplification
-      presentValueNegativeCashFlowsAccumulator +=
-          -firstDayCosts.getValue(0);
-//      System.out.println("firstDayCosts presentValueNegativeCashFlowsAccumulator: " + presentValueNegativeCashFlowsAccumulator);
-//      System.out.println("firstDayCosts: " + firstDayCosts.getValue(0));
-      
-      //step 2: after tax cash flows - different action depending on sign
-      //the atcf provided is for the end of the year.  For example, atcf of month 5
-      //provides the atcf at month 12
+      // step 1, first day costs:
+      // first day costs are assumed to literally be on the day of closing, for
+      // simplification
+      presentValueNegativeCashFlowsAccumulator += -firstDayCosts.getValue(0);
+      // System.out.println("firstDayCosts presentValueNegativeCashFlowsAccumulator: "
+      // + presentValueNegativeCashFlowsAccumulator);
+      // System.out.println("firstDayCosts: " + firstDayCosts.getValue(0));
+
+      // step 2: after tax cash flows - different action depending on sign
+      // the atcf provided is for the end of the year. For example, atcf of
+      // month 5
+      // provides the atcf at month 12
       for (int year = 0; year < (compoundingPeriod / MONTHS_IN_YEAR); year++) {
 
-        atcfTempValue = afterTaxCashFlow.getValue((year)*MONTHS_IN_YEAR);
-//        System.out.println("atcfTempValue: " + atcfTempValue);
+        atcfTempValue = afterTaxCashFlow.getValue((year) * MONTHS_IN_YEAR);
+        // System.out.println("atcfTempValue: " + atcfTempValue);
 
         if (atcfTempValue < 0d) {
-          presentValueNegativeCashFlowsAccumulator +=
-              atcfTempValue /  Math.pow(1 + yearlyLoanInterestRate, year+1);
-//          System.out.println("divided by 1 + yearlyLoanInterestRate to the " + (year+1) + " power");
-//          System.out.println("equals: " + atcfTempValue /  Math.pow(1 + yearlyLoanInterestRate, year+1));
-//
-//          System.out.println("atcf presentValueNegativeCashFlowsAccumulator: " + presentValueNegativeCashFlowsAccumulator);
+          presentValueNegativeCashFlowsAccumulator += atcfTempValue
+              / Math.pow(1 + yearlyLoanInterestRate, year + 1);
+          // System.out.println("divided by 1 + yearlyLoanInterestRate to the "
+          // + (year+1) + " power");
+          // System.out.println("equals: " + atcfTempValue / Math.pow(1 +
+          // yearlyLoanInterestRate, year+1));
+          //
+          // System.out.println("atcf presentValueNegativeCashFlowsAccumulator: "
+          // + presentValueNegativeCashFlowsAccumulator);
 
         } else {
-          futureValuePositiveCashFlowsAccumulator +=
-              atcfTempValue * 
-              Math.pow(1 + requiredRateOfReturn, (compoundingPeriod / MONTHS_IN_YEAR) - (year+1));
-//          System.out.println("times 1+requiredRateOfReturn ("+ requiredRateOfReturn+") to the " + ((compoundingPeriod / MONTHS_IN_YEAR) - (year+1)) + " power");
-//          System.out.println("equals: " + (atcfTempValue * 
-//              Math.pow(1 + requiredRateOfReturn, (compoundingPeriod / MONTHS_IN_YEAR) - (year+1))));
-//
-//          System.out.println("atcf futureValuePositiveCashFlowsAccumulator: " + futureValuePositiveCashFlowsAccumulator);
+          futureValuePositiveCashFlowsAccumulator += atcfTempValue
+              * Math.pow(1 + requiredRateOfReturn,
+                  (compoundingPeriod / MONTHS_IN_YEAR) - (year + 1));
+          // System.out.println("times 1+requiredRateOfReturn ("+
+          // requiredRateOfReturn+") to the " + ((compoundingPeriod /
+          // MONTHS_IN_YEAR) - (year+1)) + " power");
+          // System.out.println("equals: " + (atcfTempValue *
+          // Math.pow(1 + requiredRateOfReturn, (compoundingPeriod /
+          // MONTHS_IN_YEAR) - (year+1))));
+          //
+          // System.out.println("atcf futureValuePositiveCashFlowsAccumulator: "
+          // + futureValuePositiveCashFlowsAccumulator);
         }
       }
 
-      //step 3: ater
-      //take the ater at the end of the year in question
+      // step 3: ater
+      // take the ater at the end of the year in question
       aterTempValue = afterTaxEquityReversion.getValue(compoundingPeriod);
-//      System.out.println("aterTempValue: " + aterTempValue);
+      // System.out.println("aterTempValue: " + aterTempValue);
 
       if (aterTempValue < 0.0d) {
-        presentValueNegativeCashFlowsAccumulator += 
-            aterTempValue / Math.pow(1 + yearlyLoanInterestRate, compoundingPeriod/MONTHS_IN_YEAR);
-//        System.out.println("divided by 1 + yearlyLoanInterestRate to the " + (compoundingPeriod/MONTHS_IN_YEAR) + "power");
-//        System.out.println("equals: " + aterTempValue / Math.pow(1 + yearlyLoanInterestRate, compoundingPeriod/MONTHS_IN_YEAR));
-//        System.out.println("ater presentValueNegativeCashFlowsAccumulator: " + presentValueNegativeCashFlowsAccumulator);
+        presentValueNegativeCashFlowsAccumulator += aterTempValue
+            / Math.pow(1 + yearlyLoanInterestRate, compoundingPeriod
+                / MONTHS_IN_YEAR);
+        // System.out.println("divided by 1 + yearlyLoanInterestRate to the " +
+        // (compoundingPeriod/MONTHS_IN_YEAR) + "power");
+        // System.out.println("equals: " + aterTempValue / Math.pow(1 +
+        // yearlyLoanInterestRate, compoundingPeriod/MONTHS_IN_YEAR));
+        // System.out.println("ater presentValueNegativeCashFlowsAccumulator: "
+        // + presentValueNegativeCashFlowsAccumulator);
       } else if (aterTempValue > 0.0d) {
         futureValuePositiveCashFlowsAccumulator += aterTempValue;
-//        System.out.println("ater futureValuePositiveCashFlowsAccumulator: " + futureValuePositiveCashFlowsAccumulator);
+        // System.out.println("ater futureValuePositiveCashFlowsAccumulator: " +
+        // futureValuePositiveCashFlowsAccumulator);
 
       }
 
+      // step 4: division
+      // we don't want divide by zero errors.
+      if (!(presentValueNegativeCashFlowsAccumulator == 0f)) {
+        mirr = Math.pow(futureValuePositiveCashFlowsAccumulator
+            / -presentValueNegativeCashFlowsAccumulator,
+            (1.0d / (compoundingPeriod / MONTHS_IN_YEAR))) - 1;
+        // System.out.println();
+        // System.out.println("final calc");
+        // System.out.println("root number: " +
+        // (compoundingPeriod/MONTHS_IN_YEAR));
+        // System.out.println("presentValueNegativeCashFlowsAccumulator: " +
+        // presentValueNegativeCashFlowsAccumulator);
+        // System.out.println("futureValuePositiveCashFlowsAccumulator: " +
+        // futureValuePositiveCashFlowsAccumulator);
+        // System.out.println("mirr: " + mirr);
 
-      //step 4: division
-      //we don't want divide by zero errors.
-      if (! (presentValueNegativeCashFlowsAccumulator == 0f)) {
-        mirr = Math.pow(
-            futureValuePositiveCashFlowsAccumulator / 
-            - presentValueNegativeCashFlowsAccumulator, 
-            (1.0d/(compoundingPeriod/MONTHS_IN_YEAR))) - 1;
-//        System.out.println();
-//        System.out.println("final calc");
-//        System.out.println("root number: " + (compoundingPeriod/MONTHS_IN_YEAR));
-//        System.out.println("presentValueNegativeCashFlowsAccumulator: " + presentValueNegativeCashFlowsAccumulator);
-//        System.out.println("futureValuePositiveCashFlowsAccumulator: " + futureValuePositiveCashFlowsAccumulator);
-//        System.out.println("mirr: " + mirr);
-        
       } else {
         mirr = 0d;
       }
-//      System.out.println();
-//      System.out.println();
-//      System.out.println("----------------------------------------");
+      // System.out.println();
+      // System.out.println();
+      // System.out.println("----------------------------------------");
       return mirr;
     }
   }
@@ -797,18 +959,23 @@ public class Calculations implements ValueSettable {
   private class AtcfNpv implements CalcValueGettable {
 
     @Override
-    public double getValue (int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
+    public double getValue(int compoundingPeriod) {
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
       atcfNpvAccumulator = 0d;
       for (int i = 0; i <= (compoundingPeriod / MONTHS_IN_YEAR); i++) {
-        atcfNpvAccumulator += getAtcfPv(i);
+        atcfNpvAccumulator += getAtcfPv(i * MONTHS_IN_YEAR);
       }
       return atcfNpvAccumulator;
     }
 
     private double getAtcfPv(int compoundingPeriod) {
-      if (compoundingPeriod < 0 || compoundingPeriod >= (totalYearsToCalculate * 12)) {return 0d;}
-      return atcfPvCache[compoundingPeriod/MONTHS_IN_YEAR];
+      if (compoundingPeriod < 0
+          || compoundingPeriod >= (totalYearsToCalculate * 12)) {
+        return 0d;
+      }
+      return atcfPvCache[compoundingPeriod / MONTHS_IN_YEAR];
     }
 
   }
@@ -817,8 +984,11 @@ public class Calculations implements ValueSettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0 || compoundingPeriod >= (totalYearsToCalculate * 12)) {return 0d;}
-      return atcfAccumCache[compoundingPeriod/MONTHS_IN_YEAR];
+      if (compoundingPeriod < 0
+          || compoundingPeriod >= (totalYearsToCalculate * 12)) {
+        return 0d;
+      }
+      return atcfAccumCache[compoundingPeriod / MONTHS_IN_YEAR];
     }
 
   }
@@ -827,30 +997,33 @@ public class Calculations implements ValueSettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0 || compoundingPeriod >= (totalYearsToCalculate * 12)) {return 0d;}
-      return atcfCache[compoundingPeriod/MONTHS_IN_YEAR];
+      if (compoundingPeriod < 0
+          || compoundingPeriod >= (totalYearsToCalculate * 12)) {
+        return 0d;
+      }
+      return atcfCache[compoundingPeriod / MONTHS_IN_YEAR];
 
     }
 
   }
 
-
-
   /**
    * builds a table of after tax cash flows, for performance optimization
-   * @param nocp int value number of compounding periods
+   * 
+   * @param nocp
+   *          int value number of compounding periods
    */
   private void createAtcfTable() {
     for (int year = 0; year < totalYearsToCalculate; year++) {
 
-      atcfCache[year] =
-          beforeTaxCashFlow.getValue(year*12) -
-          yearlyTaxOnIncome.getValue(year*12);
+      atcfCache[year] = beforeTaxCashFlow.getValue(year * 12)
+          - yearlyTaxOnIncome.getValue(year * 12);
     }
   }
 
   /**
-   * buildis a table of accumulated after tax cash flows, for performance optimization
+   * builds a table of accumulated after tax cash flows, for performance
+   * optimization
    */
   private void createAtcfAccumTable() {
     for (int year = 0; year < totalYearsToCalculate; year++) {
@@ -858,19 +1031,21 @@ public class Calculations implements ValueSettable {
         atcfAccumCache[year] = atcfCache[year];
 
       } else {
-        atcfAccumCache[year] = atcfAccumCache[year-1] + atcfCache[year];
+        atcfAccumCache[year] = atcfAccumCache[year - 1] + atcfCache[year];
 
       }
     }
   }
 
   /**
-   * builds a table of net present values of after tax cash flows, for performance optimization
+   * builds a table of net present values of after tax cash flows, for
+   * performance optimization the exponent needs to be year+1 in order to pull
+   * the value for the end of year (atcf) back to the beginning of year
    */
   private void createAtcfPvTable() {
     for (int year = 0; year < totalYearsToCalculate; year++) {
-      atcfPvCache[year] = atcfCache[year] / 
-          Math.pow((1 + requiredRateOfReturn), year);
+      atcfPvCache[year] = atcfCache[year]
+          / Math.pow((1 + requiredRateOfReturn), year + 1);
     }
   }
 
@@ -878,11 +1053,12 @@ public class Calculations implements ValueSettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
 
-      return 
-          netOperatingIncome.getValue(compoundingPeriod) -
-          MONTHS_IN_YEAR * mortgagePayment.getValue(compoundingPeriod);
+      return netOperatingIncome.getValue(compoundingPeriod)
+          - (MONTHS_IN_YEAR * mortgagePayment.getValue(compoundingPeriod));
     }
   }
 
@@ -890,10 +1066,12 @@ public class Calculations implements ValueSettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
 
-      return netOperatingIncome.getValue(compoundingPeriod) /
-          totalPurchaseValue;
+      return netOperatingIncome.getValue(compoundingPeriod)
+          / totalPurchaseValue;
     }
   }
 
@@ -901,10 +1079,12 @@ public class Calculations implements ValueSettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
 
-      return netOperatingIncome.getValue(compoundingPeriod) /
-          investmentFValue.getValue(compoundingPeriod);
+      return netOperatingIncome.getValue(compoundingPeriod)
+          / investmentFValue.getValue(compoundingPeriod);
     }
   }
 
@@ -912,64 +1092,75 @@ public class Calculations implements ValueSettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0) {return 0d;}
-      else {
-        return operatingExpensesFValue.getValue(compoundingPeriod) +
-            MONTHS_IN_YEAR * mortgagePayment.getValue(compoundingPeriod);
+      if (compoundingPeriod < 0) {
+        return 0d;
+      } else {
+        return operatingExpensesFValue.getValue(compoundingPeriod)
+            + (MONTHS_IN_YEAR * mortgagePayment.getValue(compoundingPeriod));
       }
     }
   }
 
-
-
   private void createAmortizationTable(int nocp) {
     amountOwed[0] = loanAmount;
 
-    //pick an arbitrary month for the mortgage payment - in this case, 1.
+    // pick an arbitrary month for the mortgage payment - in this case, 1.
     mpValue = mortgagePayment.getValue(1);
 
-
-    //each amount calculated is for the *beginning* of that month.
+    // each amount calculated is for the *end* of that month.
     for (int i = 0; i < nocp; i++) {
 
       if (amountOwed[i] >= pmiEndsValue) {
         if (i == 0) {
+          // pmi is determined if, before making that month's
+          // payment, you were below the 80% point. That means
+          // this is the correct spot for the pmiAccumulator expression
           pmiAccumulator[i] = pmiMonthly;
         } else {
-          pmiAccumulator[i] = pmiMonthly + pmiAccumulator[i-1];
+          pmiAccumulator[i] = pmiMonthly + pmiAccumulator[i - 1];
         }
       } else {
+        // if pmi does not apply, we still need to carry on
+        // pmi accumulator until the end of the amortization table
+        // for other algorithms to use
         if (i == 0) {
           pmiAccumulator[i] = 0d;
         } else {
-          pmiAccumulator[i] = pmiAccumulator[i-1];
+          pmiAccumulator[i] = pmiAccumulator[i - 1];
         }
       }
 
       if (i == 0) {
         interestPayment[i] = loanAmount * loanInterestRateMonthly;
       } else {
-        interestPayment[i] = amountOwed[i-1] * loanInterestRateMonthly;
+        interestPayment[i] = amountOwed[i - 1] * loanInterestRateMonthly;
       }
-      
+
       if (i == 0) {
         interestAccumulator[i] = interestPayment[i];
       } else {
-        interestAccumulator[i] = interestPayment[i] + interestAccumulator[i-1];
+        interestAccumulator[i] = interestPayment[i]
+            + interestAccumulator[i - 1];
       }
-      
+
       principalPayment[i] = mpValue - interestPayment[i];
-      
+
       if (i == 0) {
         amountOwed[i] = loanAmount - principalPayment[i];
       } else {
-        amountOwed[i] = amountOwed[i-1] - principalPayment[i];
+        amountOwed[i] = amountOwed[i - 1] - principalPayment[i];
 
       }
-        
+
     }
   }
 
+  /**
+   * Modified so this always provides the accumulated value for the end of year
+   * 
+   * @author byron
+   * 
+   */
   private class PrivateMortgageInsuranceAccum implements CalcValueGettable {
 
     public PrivateMortgageInsuranceAccum() {
@@ -978,15 +1169,19 @@ public class Calculations implements ValueSettable {
     @Override
     public double getValue(int compoundingPeriod) {
 
-      if (compoundingPeriod < 0 ) {return 0d;}
-      if (compoundingPeriod >= nocp) {return pmiAccumulator[nocp-1];}
-      return pmiAccumulator[compoundingPeriod];
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
+      if (compoundingPeriod >= nocp) {
+        return pmiAccumulator[nocp - 1];
+      }
+      return pmiAccumulator[(compoundingPeriod / MONTHS_IN_YEAR) + 11];
     }
+    // TODO
 
   }
 
   private class PrivateMortgageInsurance implements CalcValueGettable {
-
 
     public PrivateMortgageInsurance() {
     }
@@ -994,13 +1189,18 @@ public class Calculations implements ValueSettable {
     @Override
     public double getValue(int compoundingPeriod) {
 
-      if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {return 0d;}
-      //notice we divide by 12 and multiply by 12.  We are using the fact that an integer
-      //truncates the fraction to our advantage.  We want the first month for each year.
-      //for example, ( 15 / 12 ) * 12 = 12.
-      return 
-          privateMortgageInsuranceAccum.getValue((MONTHS_IN_YEAR * ((compoundingPeriod/MONTHS_IN_YEAR)+1))) -
-          privateMortgageInsuranceAccum.getValue( (compoundingPeriod / MONTHS_IN_YEAR) * MONTHS_IN_YEAR);
+      if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {
+        return 0d;
+      }
+      // notice we divide by 12 and multiply by 12. We are using the fact that
+      // an integer
+      // truncates the fraction to our advantage. We want the first month for
+      // each year.
+      // for example, ( 15 / 12 ) * 12 = 12.
+      return privateMortgageInsuranceAccum.getValue(MONTHS_IN_YEAR
+          * ((compoundingPeriod / MONTHS_IN_YEAR) + 1))
+          - privateMortgageInsuranceAccum.getValue(MONTHS_IN_YEAR
+              * (compoundingPeriod / MONTHS_IN_YEAR));
 
     }
   }
@@ -1013,7 +1213,9 @@ public class Calculations implements ValueSettable {
     @Override
     public double getValue(int compoundingPeriod) {
 
-      if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {return 0d;}
+      if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {
+        return 0d;
+      }
       return amountOwed[compoundingPeriod];
     }
   }
@@ -1024,9 +1226,11 @@ public class Calculations implements ValueSettable {
     }
 
     @Override
-    public double getValue (int compoundingPeriod) {
+    public double getValue(int compoundingPeriod) {
 
-      if (compoundingPeriod < 0) {return 0d;}
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
       return loanAmount;
     }
   }
@@ -1038,15 +1242,17 @@ public class Calculations implements ValueSettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {return 0d;}
+      if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {
+        return 0d;
+      }
       return mpValue;
-    } 
+    }
   }
 
   private double calculateMortgagePayment() {
-    return loanAmount * (loanInterestRateMonthly 
-        / (1 - (1 / Math.pow((1 + (loanInterestRateMonthly)),
-            (double) nocp))));
+    return loanAmount
+        * (loanInterestRateMonthly / (1 - (1 / Math.pow(
+            (1 + (loanInterestRateMonthly)), (double) nocp))));
   }
 
   private class YearlyMortgagePayment implements CalcValueGettable {
@@ -1057,11 +1263,12 @@ public class Calculations implements ValueSettable {
     @Override
     public double getValue(int compoundingPeriod) {
 
-      if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {return 0d;}
+      if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {
+        return 0d;
+      }
       return mortgagePayment.getValue(compoundingPeriod) * MONTHS_IN_YEAR;
     }
   }
-
 
   private class InterestPaidAccumulatedValue implements CalcValueGettable {
 
@@ -1070,17 +1277,19 @@ public class Calculations implements ValueSettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0 ) {return 0d;}
-      //if we go past the end of the table, then interest accumulator remains the last number
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
+      // if we go past the end of the table, then interest accumulator remains
+      // the last number
       if (compoundingPeriod >= nocp) {
-        return interestAccumulator[nocp-1];
+        return interestAccumulator[nocp - 1];
       } else {
-        return interestAccumulator[compoundingPeriod];
+        return interestAccumulator[MONTHS_IN_YEAR * (compoundingPeriod / MONTHS_IN_YEAR)+11];
       }
 
     }
   }
-
 
   private class InterestPaymentValue implements CalcValueGettable {
 
@@ -1089,13 +1298,14 @@ public class Calculations implements ValueSettable {
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0 || compoundingPeriod >= nocp ) {return 0d;}
+      if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {
+        return 0d;
+      }
 
-      return interestPayment[compoundingPeriod];    
+      return interestPayment[compoundingPeriod];
     }
 
   }
-
 
   private class YearlyPrincipalPaid implements CalcValueGettable {
 
@@ -1103,44 +1313,55 @@ public class Calculations implements ValueSettable {
     }
 
     @Override
-    public double getValue (int compoundingPeriod) {
-      if (compoundingPeriod < 0 || compoundingPeriod > nocp ) {return 0d;}
-      //        System.out.println(getClass().getName() + " calls: " + numberOfCalls++);
+    public double getValue(int compoundingPeriod) {
+      if (compoundingPeriod < 0 || compoundingPeriod > nocp) {
+        return 0d;
+      }
+      // System.out.println(getClass().getName() + " calls: " +
+      // numberOfCalls++);
 
-      //we divide by 12 then multiply by 12 to get the month at the beginning of the year.
-      //This works because in integer division, it truncates the remainder value.
-      // so for example, 6 / 12 = 0, and 0 * 12 = 0.  25 / 12 = 2, and 2 * 12 = 24
-      return
-          amountOwedValue.getValue(MONTHS_IN_YEAR * (compoundingPeriod / MONTHS_IN_YEAR)) -
-          amountOwedValue.getValue(MONTHS_IN_YEAR * (compoundingPeriod / MONTHS_IN_YEAR)+MONTHS_IN_YEAR);
+      // we divide by 12 then multiply by 12 to get the month at the beginning
+      // of the year.
+      // This works because in integer division, it truncates the remainder
+      // value.
+      // so for example, 6 / 12 = 0, and 0 * 12 = 0. 25 / 12 = 2, and 2 * 12 =
+      // 24
+      return amountOwedValue.getValue(MONTHS_IN_YEAR
+          * (compoundingPeriod / MONTHS_IN_YEAR))
+          - amountOwedValue.getValue(MONTHS_IN_YEAR
+              * (compoundingPeriod / MONTHS_IN_YEAR) + 11);
 
     }
   }
 
   private class YearlyInterestPaid implements CalcValueGettable {
 
-
-
     public YearlyInterestPaid() {
     }
 
     @Override
     public double getValue(int compoundingPeriod) {
-      if (compoundingPeriod < 0 || compoundingPeriod > nocp ) {return 0d;}
-      //        System.out.println(getClass().getName() + " calls: " + numberOfCalls++);
+      if (compoundingPeriod < 0 || compoundingPeriod > nocp) {
+        return 0d;
+      }
+      // System.out.println(getClass().getName() + " calls: " +
+      // numberOfCalls++);
 
-      //we divide by 12 then multiply by 12 to get the month at the beginning of the year.
-      //This works because in integer division, it truncates the remainder value.
-      // so for example, 6 / 12 = 0, and 0 * 12 = 0.  25 / 12 = 2, and 2 * 12 = 24
-      return 
-          interestPaidAccumulatedValue.getValue(MONTHS_IN_YEAR * (compoundingPeriod / MONTHS_IN_YEAR)+MONTHS_IN_YEAR) - 
-          interestPaidAccumulatedValue.getValue(MONTHS_IN_YEAR * (compoundingPeriod / MONTHS_IN_YEAR));
+      // we divide by 12 then multiply by 12 to get the month at the beginning
+      // of the year.
+      // This works because in integer division, it truncates the remainder
+      // value.
+      // so for example, 6 / 12 = 0, and 0 * 12 = 0. 25 / 12 = 2, and 2 * 12 =
+      // 24
 
+      return
+
+      // to subtract Jan from December, we add 11
+      interestPaidAccumulatedValue.getValue((compoundingPeriod/MONTHS_IN_YEAR)*MONTHS_IN_YEAR)
+          - interestPaidAccumulatedValue.getValue(MONTHS_IN_YEAR * ((compoundingPeriod/MONTHS_IN_YEAR)-1));
 
     }
 
   }
-
-
 
 }

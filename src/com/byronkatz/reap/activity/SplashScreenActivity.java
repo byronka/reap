@@ -1,8 +1,6 @@
 package com.byronkatz.reap.activity;
 
-import java.util.Arrays;
 import java.util.zip.DataFormatException;
-import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
 import android.app.Activity;
@@ -13,7 +11,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Debug;
 import android.os.Handler;
 import android.provider.Settings.Secure;
 import android.util.Log;
@@ -359,7 +356,7 @@ public class SplashScreenActivity extends Activity {
     SharedPreferences.Editor editor = sp.edit();
     if (((CheckBox) findViewById (R.id.splashScreenRentCheckBox)).isChecked()) {
 
-      //don't clear - if they want this info, these are the entries that need to be on.
+      //if they want this info, these are the entries that need to be on.
       editor.clear();
       editor.putBoolean(ValueEnum.NPV.name(), true);   
       editor.putBoolean(ValueEnum.ATCF.name(), true);             
@@ -381,7 +378,7 @@ public class SplashScreenActivity extends Activity {
 
     } else {
 
-      //don't clear - if they want this info, these are the entries that need to be on.
+      //if they want this info, these are the entries that need to be on.
       editor.clear();
 
       editor.putBoolean(ValueEnum.MONTHLY_MORTGAGE_PAYMENT.name(), true);   
@@ -401,6 +398,8 @@ public class SplashScreenActivity extends Activity {
 
   private void setAssumedValues() {
 
+    dataController.deleteSavedUserValues();
+    
     dataController.putInputValue(totalPurchasePriceValue, ValueEnum.TOTAL_PURCHASE_VALUE);
     dataController.putInputValue(yearlyInterestRateValue, ValueEnum.YEARLY_INTEREST_RATE);
     dataController.putInputValue(100d, ValueEnum.PRIVATE_MORTGAGE_INSURANCE );
@@ -428,6 +427,7 @@ public class SplashScreenActivity extends Activity {
     dataController.putInputValue(loanTermValue, ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS );
     dataController.putInputValue(0d, ValueEnum.MONTHS_UNTIL_RENT_STARTS );
     dataController.putInputValue(0d, ValueEnum.EXTRA_YEARS );
+    
 
   }
 
