@@ -53,7 +53,15 @@
     <string name="sortByMenuTitle" formatted="false">Sorting</string>
 
     <!-- Help text for calculated values -->
-
+      
+  	 <string name="monthlyAmountOwedHelpText">This is the amount owed (based on the loan) at the end of the
+  	     month in question</string>
+ 	 <string name="monthlyAmountOwedTitleText">Monthly Amount Owed</string>
+  
+    <string name="monthlyInterestAccumulatedHelpText">This amount is the interest that is accumulated at
+        the end of the month in question</string>
+    <string name="monthlyInterestAccumulatedTitleText">Monthly Interest Accumulated</string>
+    
   	<string name="principalPaymentHelpText">This is the monthly principal payment for the
   	    month number in question</string>
   	<string name="principalPaymentTitleText">Calculated Principal Payment</string>
@@ -117,15 +125,13 @@
       This is the summation of the present values of after tax
       cash flows to date.  Present value
       is calculated by dividing the After Tax Cash Flow 
-      by (1 + discount rate)^number of compounding periods.
-      In this case the compounding periods are months, so for example,
-      the last month\'s equation would be (1 + discount rate)^360
+      by (1 + discount rate)^number of years.
+      For example,
+      the last month\'s equation would be (1 + discount rate)^30
 	    for a 30 year mortgage.
 	    \n\n
 	    Assumption: For simplicity\'s sake, all present value calculations are
-	    done on a yearly basis.  So, to be more specific, it is not the case
-	    that each monthly balance is used to independently calculate present value
-	    for accumulation.  Instead, all income and outlay for the year is 
+	    done on a yearly basis.  All income and outlay for the year is 
 	    summed and then the present value equation is run on it.
 	    \n\n
 	      This value is calculated from the user input</string>
@@ -135,7 +141,7 @@
 	    miscellaneous fees.   The sale amount is based on the projected
 	    value of the investment, which is calculated by taking
 	    the purchase price of the house, plus fix-up costs (We assume it
-	    increase value commensurately), and multiplying that by (1 + REAR/12)^MONTHS
+	    increase value commensurately), and multiplying that by (1 + REAR)^Years
 	    \n\n
 	    Assumption: the ATER shown for each year is meant to represent
 	    what the investor would expect to receive if they sold the property
@@ -606,10 +612,12 @@ value at the time of sale, to pay for the broker
 	       </string>
     <string name="yearlyPropertyTaxTitleText" formatted="false">Calculated Property Tax</string>
     <string name="yearlyTaxOnIncomeHelpText" formatted="false">Tax on 
-      the portion of income 
-      which is at the marginal tax rate, or in other words, the 
-      taxable income times the 
-	    marginal tax rate.  \n\nAssumption:  This tax is paid once a year.
+      the portion of income which is at the marginal tax rate, or in other words, the 
+      taxable income times the marginal tax rate.  This tax is additional to the core
+      income tax you may have.  For example, you may owe $10,000 in taxes based
+      on your salary.  The amount shown here is in addition to that, so if it said $30,000,
+      then your total tax would be $40,000.
+      \n\nAssumption:  This tax is paid once a year.
 	    	     \n\n
 	       This value is calculated from the user input
 	       </string>

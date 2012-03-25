@@ -236,7 +236,7 @@ public class DataTable {
       //following are the standards for newbies to the program
     } else {
       vdtr.add(ValueEnum.MONTHLY_MORTGAGE_PAYMENT);
-      vdtr.add(ValueEnum.ACCUM_INTEREST);
+      vdtr.add(ValueEnum.YEARLY_ACCUM_INTEREST);
       vdtr.add(ValueEnum.TOTAL_PURCHASE_VALUE);
       vdtr.add(ValueEnum.YEARLY_INTEREST_RATE);
       vdtr.add(ValueEnum.BROKER_CUT_OF_SALE);

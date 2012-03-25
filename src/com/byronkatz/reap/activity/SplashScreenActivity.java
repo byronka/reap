@@ -382,7 +382,7 @@ public class SplashScreenActivity extends Activity {
       editor.clear();
 
       editor.putBoolean(ValueEnum.MONTHLY_MORTGAGE_PAYMENT.name(), true);   
-      editor.putBoolean(ValueEnum.ACCUM_INTEREST.name(), true);             
+      editor.putBoolean(ValueEnum.YEARLY_ACCUM_INTEREST.name(), true);             
       editor.putBoolean(ValueEnum.TOTAL_PURCHASE_VALUE.name(), true);       
       editor.putBoolean(ValueEnum.YEARLY_INTEREST_RATE.name(), true);       
       editor.putBoolean(ValueEnum.BROKER_CUT_OF_SALE.name(), true);         

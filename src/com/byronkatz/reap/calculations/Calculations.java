@@ -80,8 +80,10 @@ public class Calculations implements ValueSettable {
   private CalcValueGettable taxableIncome;
   private CalcValueGettable interestPaymentValue;
   private CalcValueGettable principalPaymentValue;
-  private CalcValueGettable interestPaidAccumulatedValue;
-  private CalcValueGettable amountOwedValue;
+  private CalcValueGettable yearlyInterestPaidAccumulatedValue;
+  private CalcValueGettable monthlyInterestPaidAccumulatedValue;
+  private CalcValueGettable yearlyAmountOwedValue;
+  private CalcValueGettable monthlyAmountOwedValue;
   private CalcValueGettable loanAmountValue;
   private CalcValueGettable yearlyInterestPaid;
   private CalcValueGettable yearlyPrincipalPaid;
@@ -161,8 +163,10 @@ public class Calculations implements ValueSettable {
     netOperatingIncome = new NetOperatingIncome();
     taxableIncome = new TaxableIncome();
     interestPaymentValue = new InterestPaymentValue();
-    interestPaidAccumulatedValue = new InterestPaidAccumulatedValue();
-    amountOwedValue = new AmountOwedValue();
+    yearlyInterestPaidAccumulatedValue = new YearlyInterestPaidAccumulatedValue();
+    monthlyInterestPaidAccumulatedValue = new MonthlyInterestPaidAccumulatedValue();
+    yearlyAmountOwedValue = new YearlyAmountOwedValue();
+    monthlyAmountOwedValue = new MonthlyAmountOwedValue();
     principalPaymentValue = new PrincipalPaymentValue();
     loanAmountValue = new LoanAmountValue();
     yearlyInterestPaid = new YearlyInterestPaid();
@@ -345,9 +349,13 @@ public class Calculations implements ValueSettable {
     dataManager.addCalcValuePointers(ValueEnum.YEARLY_MUNICIPAL_FEES,
         municipalExpensesFValue);
     dataManager.addCalcValuePointers(ValueEnum.CURRENT_AMOUNT_OUTSTANDING,
-        amountOwedValue);
-    dataManager.addCalcValuePointers(ValueEnum.ACCUM_INTEREST,
-        interestPaidAccumulatedValue);
+        yearlyAmountOwedValue);
+    dataManager.addCalcValuePointers(ValueEnum.MONTHLY_AMOUNT_OWED,
+        monthlyAmountOwedValue);
+    dataManager.addCalcValuePointers(ValueEnum.YEARLY_ACCUM_INTEREST,
+        yearlyInterestPaidAccumulatedValue);
+    dataManager.addCalcValuePointers(ValueEnum.MONTHLY_INTEREST_ACCUMULATED, 
+        monthlyInterestPaidAccumulatedValue);
     dataManager.addCalcValuePointers(ValueEnum.INTEREST_PAYMENT,
         interestPaymentValue);
     dataManager.addCalcValuePointers(ValueEnum.YEARLY_INTEREST_PAID,
@@ -760,7 +768,7 @@ public class Calculations implements ValueSettable {
       return investmentFValue.getValue(compoundingPeriod)
           - brokerCutOfSale.getValue(compoundingPeriod)
           - sellingExpensesFValue.getValue(compoundingPeriod)
-          - amountOwedValue.getValue(compoundingPeriod)
+          - yearlyAmountOwedValue.getValue(compoundingPeriod)
           - taxesDueAtSale.getValue(compoundingPeriod);
 
     }
@@ -1197,10 +1205,8 @@ public class Calculations implements ValueSettable {
     }
   }
 
-  private class AmountOwedValue implements CalcValueGettable {
+  private class YearlyAmountOwedValue implements CalcValueGettable {
 
-    public AmountOwedValue() {
-    }
 
     @Override
     public double getValue(int compoundingPeriod) {
@@ -1209,6 +1215,19 @@ public class Calculations implements ValueSettable {
         return 0d;
       }
       return amountOwed[(MONTHS_IN_YEAR * (compoundingPeriod/MONTHS_IN_YEAR))+11];
+    }
+  }
+  
+  private class MonthlyAmountOwedValue implements CalcValueGettable {
+
+
+    @Override
+    public double getValue(int compoundingPeriod) {
+
+      if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {
+        return 0d;
+      }
+      return amountOwed[compoundingPeriod];
     }
   }
 
@@ -1262,9 +1281,27 @@ public class Calculations implements ValueSettable {
     }
   }
 
-  private class InterestPaidAccumulatedValue implements CalcValueGettable {
+  private class MonthlyInterestPaidAccumulatedValue implements CalcValueGettable {
 
-    public InterestPaidAccumulatedValue() {
+    @Override
+    public double getValue(int compoundingPeriod) {
+      if (compoundingPeriod < 0) {
+        return 0d;
+      }
+      // if we go past the end of the table, then interest accumulator remains
+      // the last number
+      if (compoundingPeriod >= nocp) {
+        return interestAccumulator[nocp - 1];
+      } else {
+        return interestAccumulator[compoundingPeriod];
+      }
+
+    }
+  } 
+  
+  private class YearlyInterestPaidAccumulatedValue implements CalcValueGettable {
+
+    public YearlyInterestPaidAccumulatedValue() {
     }
 
     @Override
@@ -1321,11 +1358,11 @@ public class Calculations implements ValueSettable {
       if (compoundingPeriod >= 0 && compoundingPeriod < 12) {
         return
             loanAmount - 
-            amountOwedValue.getValue(MONTHS_IN_YEAR * (compoundingPeriod / MONTHS_IN_YEAR));
+            yearlyAmountOwedValue.getValue(MONTHS_IN_YEAR * (compoundingPeriod / MONTHS_IN_YEAR));
       } else {
       return 
-          amountOwedValue.getValue(MONTHS_IN_YEAR * ((compoundingPeriod / MONTHS_IN_YEAR)-1)) - 
-          amountOwedValue.getValue(MONTHS_IN_YEAR * (compoundingPeriod / MONTHS_IN_YEAR));
+          yearlyAmountOwedValue.getValue(MONTHS_IN_YEAR * ((compoundingPeriod / MONTHS_IN_YEAR)-1)) - 
+          yearlyAmountOwedValue.getValue(MONTHS_IN_YEAR * (compoundingPeriod / MONTHS_IN_YEAR));
       }
     }
   }
@@ -1353,8 +1390,8 @@ public class Calculations implements ValueSettable {
       return
 
       // to subtract Jan from December, we add 11
-      interestPaidAccumulatedValue.getValue((compoundingPeriod/MONTHS_IN_YEAR)*MONTHS_IN_YEAR)
-          - interestPaidAccumulatedValue.getValue(MONTHS_IN_YEAR * ((compoundingPeriod/MONTHS_IN_YEAR)-1));
+      yearlyInterestPaidAccumulatedValue.getValue((compoundingPeriod/MONTHS_IN_YEAR)*MONTHS_IN_YEAR)
+          - yearlyInterestPaidAccumulatedValue.getValue(MONTHS_IN_YEAR * ((compoundingPeriod/MONTHS_IN_YEAR)-1));
 
     }
 

@@ -142,8 +142,8 @@ public class CsvAttachment {
     
     
     List<ValueEnum> valueEnumArrayList = new ArrayList<ValueEnum>(Arrays.asList(ValueEnum.values()));
-    valueEnumArrayList. remove(ValueEnum.PRINCIPAL_PAYMENT);
-    valueEnumArrayList.remove(ValueEnum.INTEREST_PAYMENT);
+
+    valueEnumArrayList = Utility.removeCertainItemsFromDataTable(valueEnumArrayList);
     valueEnumArrayList = Utility.sortDataTableValues(activity, valueEnumArrayList);
 
     
@@ -172,29 +172,32 @@ public class CsvAttachment {
 
     csvOutputArray.append("\n\n");
 
-//    //Add the amortization table
-//    csvOutputArray.append("Month,");
-//    csvOutputArray.append(activity.getString(ValueEnum.CURRENT_AMOUNT_OUTSTANDING.getTitleText()));
-//    csvOutputArray.append(",");
-//    csvOutputArray.append(activity.getString(ValueEnum.MONTHLY_MORTGAGE_PAYMENT.getTitleText()));
-//    csvOutputArray.append(",");
-//    csvOutputArray.append(activity.getString(ValueEnum.INTEREST_PAYMENT.getTitleText()));
-//    csvOutputArray.append(",");
-//    csvOutputArray.append(activity.getString(ValueEnum.PRINCIPAL_PAYMENT.getTitleText()));
-//    csvOutputArray.append(",\n");
-//
-//
-//    //do the amortization loop
-//    for (int i = 0; i < nocp; i++) {
-//      //month 1 to month 360 - have to add 1 for month display only
-//      addCompoundingPeriod(csvOutputArray, i+1);
-//      csvOutputArray = addValue(csvOutputArray, ValueEnum.CURRENT_AMOUNT_OUTSTANDING, i);
-//      csvOutputArray = addValue(csvOutputArray, ValueEnum.MONTHLY_MORTGAGE_PAYMENT, i);
-//      csvOutputArray = addValue(csvOutputArray, ValueEnum.INTEREST_PAYMENT, i);
-//      csvOutputArray = addValue(csvOutputArray, ValueEnum.PRINCIPAL_PAYMENT, i);
-//
-//      csvOutputArray.append("\n");
-//    }
+    //Add the amortization table
+    csvOutputArray.append("Month,");
+    csvOutputArray.append(activity.getString(ValueEnum.MONTHLY_AMOUNT_OWED.getTitleText()));
+    csvOutputArray.append(",");
+    csvOutputArray.append(activity.getString(ValueEnum.MONTHLY_MORTGAGE_PAYMENT.getTitleText()));
+    csvOutputArray.append(",");
+    csvOutputArray.append(activity.getString(ValueEnum.INTEREST_PAYMENT.getTitleText()));
+    csvOutputArray.append(",");
+    csvOutputArray.append(activity.getString(ValueEnum.MONTHLY_INTEREST_ACCUMULATED.getTitleText()));
+    csvOutputArray.append(",");
+    csvOutputArray.append(activity.getString(ValueEnum.PRINCIPAL_PAYMENT.getTitleText()));
+    csvOutputArray.append(",\n");
+
+
+    //do the amortization loop
+    for (int i = 0; i < nocp; i++) {
+      //month 1 to month 360 - have to add 1 for month display only
+      addCompoundingPeriod(csvOutputArray, i+1);
+      csvOutputArray = addValue(csvOutputArray, ValueEnum.MONTHLY_AMOUNT_OWED, i);
+      csvOutputArray = addValue(csvOutputArray, ValueEnum.MONTHLY_MORTGAGE_PAYMENT, i);
+      csvOutputArray = addValue(csvOutputArray, ValueEnum.INTEREST_PAYMENT, i);
+      csvOutputArray = addValue(csvOutputArray, ValueEnum.MONTHLY_INTEREST_ACCUMULATED, i);
+      csvOutputArray = addValue(csvOutputArray, ValueEnum.PRINCIPAL_PAYMENT, i);
+
+      csvOutputArray.append("\n");
+    }
 
   }
 

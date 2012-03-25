@@ -528,7 +528,7 @@ com.byronkatz.reap.calculations.Calculations$AfterTaxCashFlowAccumulator -> com.
 com.byronkatz.reap.calculations.Calculations$AfterTaxEquityReversion -> com.byronkatz.reap.a.e:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
     621:623:double getValue(int) -> a
-com.byronkatz.reap.calculations.Calculations$AmountOwedValue -> com.byronkatz.reap.a.f:
+com.byronkatz.reap.calculations.YearlyAmountOwedValue -> com.byronkatz.reap.a.f:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
     978:980:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$AtcfNpv -> com.byronkatz.reap.a.g:
@@ -558,7 +558,7 @@ com.byronkatz.reap.calculations.Calculations$GeneralExpensesFValue -> com.byronk
 com.byronkatz.reap.calculations.Calculations$InsuranceFValue -> com.byronkatz.reap.a.o:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
     540:541:double getValue(int) -> a
-com.byronkatz.reap.calculations.Calculations$InterestPaidAccumulatedValue -> com.byronkatz.reap.a.p:
+com.byronkatz.reap.calculations.YearlyInterestPaidAccumulatedValue -> com.byronkatz.reap.a.p:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
     1036:1041:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$InterestPaymentValue -> com.byronkatz.reap.a.q:

@@ -32,6 +32,10 @@ public enum ValueEnum {
   MARGINAL_TAX_RATE( ValueType.PERCENTAGE, true, false, string.marginalTaxRateHelpText, string.marginalTaxRateTitleText),
   MODIFIED_INTERNAL_RATE_OF_RETURN( ValueType.PERCENTAGE, false, true, string.modifiedInternalRateOfReturnHelpText, string.modifiedInternalRateOfReturnTitleText),
   MONTHLY_MORTGAGE_PAYMENT ( ValueType.CURRENCY, false, true, string.monthlyMortgagePaymentHelpText, string.monthlyMortgagePaymentTitleText),  
+  
+  MONTHLY_AMOUNT_OWED ( ValueType.CURRENCY, false, true, string.monthlyAmountOwedHelpText, string.monthlyAmountOwedTitleText),  
+  MONTHLY_INTEREST_ACCUMULATED ( ValueType.CURRENCY, false, true, string.monthlyInterestAccumulatedHelpText, string.monthlyInterestAccumulatedTitleText),  
+  
   YEARLY_DEPRECIATION ( ValueType.CURRENCY, false, true, string.yearlyDepreciationHelpText, string.yearlyDepreciationTitleText),  
   MONTHS_UNTIL_RENT_STARTS ( ValueType.INTEGER, true, false, string.monthsUntilRentStartsHelpText, string.monthsUntilRentStartsTitleText),
   MONTHLY_RENT_FV ( ValueType.CURRENCY, false, true, string.monthlyRentFVHelpText, string.monthlyRentFVTitleText),
@@ -55,7 +59,7 @@ public enum ValueEnum {
   YEARLY_HOME_INSURANCE( ValueType.CURRENCY, false, true, string.yearlyHomeInsuranceHelpText, string.yearlyHomeInsuranceTitleText),
   YEARLY_INTEREST_PAID ( ValueType.CURRENCY, false, true, string.yearlyInterestPaidHelpText, string.yearlyInterestPaidTitleText),
   YEARLY_OPERATING_EXPENSES (ValueType.CURRENCY, false, true, string.yearlyOperatingExpensesHelpText, string.yearlyOperatingExpensesTitleText),
-  ACCUM_INTEREST ( ValueType.CURRENCY, false, true, string.accumulatedInterestPaidHelpText, string.accumulatedInterestPaidTitleText), 
+  YEARLY_ACCUM_INTEREST ( ValueType.CURRENCY, false, true, string.accumulatedInterestPaidHelpText, string.accumulatedInterestPaidTitleText), 
   YEARLY_INTEREST_RATE( ValueType.PERCENTAGE, true, false, string.yearlyInterestRateHelpText, string.yearlyInterestRateTitleText),
   YEARLY_MORTGAGE_PAYMENT (ValueType.CURRENCY, false, true, string.yearlyMortgagePaymentHelpText, string.yearlyMortgagePaymentTitleText), 
   YEARLY_MUNICIPAL_FEES (ValueType.CURRENCY, false, true, string.yearlyMunicipalFeesHelpText, string.yearlyMunicipalFeesTitleText),

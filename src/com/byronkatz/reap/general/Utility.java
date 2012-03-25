@@ -78,6 +78,8 @@ public class Utility {
     dataTableValues.remove(ValueEnum.STREET_ADDRESS);
     dataTableValues.remove(ValueEnum.PRINCIPAL_PAYMENT);
     dataTableValues.remove(ValueEnum.INTEREST_PAYMENT);
+    dataTableValues.remove(ValueEnum.MONTHLY_AMOUNT_OWED);
+    dataTableValues.remove(ValueEnum.MONTHLY_INTEREST_ACCUMULATED);
     
     return dataTableValues;
   }
