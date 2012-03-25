@@ -1,5 +1,7 @@
 package com.byronkatz.reap.calculations;
 
+import java.util.Arrays;
+
 import com.byronkatz.reap.general.DataManager;
 import com.byronkatz.reap.general.ValueEnum;
 
@@ -89,8 +91,8 @@ public class Calculations implements ValueSettable {
   private CalcValueGettable yearlyPrincipalPaid;
   private CalcValueGettable mortgagePayment;
   private CalcValueGettable yearlyMortgagePayment;
-  private CalcValueGettable privateMortgageInsurance;
-  private CalcValueGettable privateMortgageInsuranceAccum;
+  private CalcValueGettable yearlyPrivateMortgageInsurance;
+  private CalcValueGettable yearlyPrivateMortgageInsuranceAccum;
   private CalcValueGettable afterTaxCashFlow;
   private CalcValueGettable afterTaxCashFlowNPV;
   private CalcValueGettable afterTaxCashFlowAccumulator;
@@ -173,8 +175,8 @@ public class Calculations implements ValueSettable {
     yearlyPrincipalPaid = new YearlyPrincipalPaid();
     mortgagePayment = new MortgagePayment();
     yearlyMortgagePayment = new YearlyMortgagePayment();
-    privateMortgageInsurance = new YearlyPrivateMortgageInsurance();
-    privateMortgageInsuranceAccum = new PrivateMortgageInsuranceAccum();
+    yearlyPrivateMortgageInsurance = new YearlyPrivateMortgageInsurance();
+    yearlyPrivateMortgageInsuranceAccum = new YearlyPrivateMortgageInsuranceAccum();
     afterTaxCashFlow = new AfterTaxCashFlow();
     afterTaxCashFlowNPV = new AtcfNpv();
     afterTaxCashFlowAccumulator = new AfterTaxCashFlowAccumulator();
@@ -213,6 +215,7 @@ public class Calculations implements ValueSettable {
         || oldYearlyLoanInterestRate != yearlyLoanInterestRate
         || oldNocp != nocp) {
       mpValue = calculateMortgagePayment();
+
       createAmortizationTable(nocp);
     }
     createOperatingExpensesTable();
@@ -271,8 +274,9 @@ public class Calculations implements ValueSettable {
       loanAmount = 0d;
     }
 
-    pmiEndsValue = PMI_BOUNDARY_PERCENTAGE * totalPurchaseValue;
 
+    pmiEndsValue = PMI_BOUNDARY_PERCENTAGE * totalPurchaseValue;
+    
     // only if the size needs to be different do we recreate the arrays.
     if (interestPayment == null || amountOwed == null
         || interestAccumulator == null || principalPayment == null
@@ -368,9 +372,9 @@ public class Calculations implements ValueSettable {
         yearlyMortgagePayment);
     dataManager.addCalcValuePointers(
         ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE_ACCUM,
-        privateMortgageInsuranceAccum);
+        yearlyPrivateMortgageInsuranceAccum);
     dataManager.addCalcValuePointers(
-        ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, privateMortgageInsurance);
+        ValueEnum.YEARLY_PRIVATE_MORTGAGE_INSURANCE, yearlyPrivateMortgageInsurance);
     dataManager.addCalcValuePointers(ValueEnum.LOAN_AMOUNT, loanAmountValue);
   }
 
@@ -451,6 +455,9 @@ public class Calculations implements ValueSettable {
    * 
    */
   private void createYearlyGrossIncomeTable() {
+    
+    Arrays.fill(yearlyGrossIncomeCache, 0d);
+    
     for (int year = 0; year < totalYearsToCalculate; year++) {
       if (((year + 1) * 12) <= monthsUntilRentStarts) {
         yearlyGrossIncomeCache[year] = 0;
@@ -492,6 +499,9 @@ public class Calculations implements ValueSettable {
    * 
    */
   private void createYearlyNetOperatingIncomeTable() {
+    
+    Arrays.fill(yearlyNetOperatingIncomeCache, 0d);
+    
     for (int year = 0; year < totalYearsToCalculate; year++) {
       yearlyNetOperatingIncomeCache[year] = yearlyNetIncomeValue
           .getValue(year * 12) - operatingExpensesFValue.getValue(year * 12);
@@ -520,6 +530,9 @@ public class Calculations implements ValueSettable {
   }
 
   private void createTaxableIncomeTable() {
+    
+    Arrays.fill(taxableIncomeCache, 0d);
+    
     for (int year = 0; year < totalYearsToCalculate; year++) {
       taxableIncomeCache[year] = netOperatingIncome.getValue(year * 12)
           - yearlyInterestPaid.getValue(year * 12)
@@ -704,6 +717,8 @@ public class Calculations implements ValueSettable {
    * 
    */
   private void createOperatingExpensesTable() {
+    Arrays.fill(operatingExpensesCache, 0d);
+    
     for (int year = 0; year < totalYearsToCalculate; year++) {
       operatingExpensesCache[year] = ((generalExpenses + insurance + municipalExpenses) * Math
           .pow(1 + inflationRate, year))
@@ -1017,8 +1032,10 @@ public class Calculations implements ValueSettable {
    *          int value number of compounding periods
    */
   private void createAtcfTable() {
+    
+    Arrays.fill(atcfCache, 0d);
+    
     for (int year = 0; year < totalYearsToCalculate; year++) {
-
       atcfCache[year] = beforeTaxCashFlow.getValue(year * 12)
           - yearlyTaxOnIncome.getValue(year * 12);
     }
@@ -1029,6 +1046,9 @@ public class Calculations implements ValueSettable {
    * optimization
    */
   private void createAtcfAccumTable() {
+    
+    Arrays.fill(atcfAccumCache, 0d);
+    
     for (int year = 0; year < totalYearsToCalculate; year++) {
       if (year == 0) {
         atcfAccumCache[year] = atcfCache[year];
@@ -1046,6 +1066,9 @@ public class Calculations implements ValueSettable {
    * the value for the end of year (atcf) back to the beginning of year
    */
   private void createAtcfPvTable() {
+    
+    Arrays.fill(atcfPvCache, 0d);
+    
     for (int year = 0; year < totalYearsToCalculate; year++) {
       atcfPvCache[year] = atcfCache[year]
           / Math.pow((1 + requiredRateOfReturn), year + 1);
@@ -1105,7 +1128,17 @@ public class Calculations implements ValueSettable {
   }
 
   private void createAmortizationTable(int nocp) {
+    
+    //clear the values in the array before starting
+    Arrays.fill(amountOwed, 0d);
+    Arrays.fill(interestAccumulator, 0d);
+    Arrays.fill(interestPayment, 0d);
+    Arrays.fill(principalPayment, 0d);
+    Arrays.fill(pmiAccumulator, 0d);
+    
     amountOwed[0] = loanAmount;
+    
+
 
     // pick an arbitrary month for the mortgage payment - in this case, 1.
     mpValue = mortgagePayment.getValue(1);
@@ -1113,25 +1146,7 @@ public class Calculations implements ValueSettable {
     // each amount calculated is for the *end* of that month.
     for (int i = 0; i < nocp; i++) {
 
-      if (amountOwed[i] > pmiEndsValue) {
-        if (i == 0) {
-          // pmi is determined if, before making that month's
-          // payment, you were below the 80% point. That means
-          // this is the correct spot for the pmiAccumulator expression
-          pmiAccumulator[i] = pmiMonthly;
-        } else {
-          pmiAccumulator[i] = pmiMonthly + pmiAccumulator[i - 1];
-        }
-      } else {
-        // if pmi does not apply, we still need to carry on
-        // pmi accumulator until the end of the amortization table
-        // for other algorithms to use
-        if (i == 0) {
-          pmiAccumulator[i] = 0d;
-        } else {
-          pmiAccumulator[i] = pmiAccumulator[i - 1];
-        }
-      }
+
 
       if (i == 0) {
         interestPayment[i] = loanAmount * loanInterestRateMonthly;
@@ -1150,9 +1165,33 @@ public class Calculations implements ValueSettable {
 
       if (i == 0) {
         amountOwed[i] = loanAmount - principalPayment[i];
+
       } else {
         amountOwed[i] = amountOwed[i - 1] - principalPayment[i];
 
+      }
+      
+      if (amountOwed[i] > pmiEndsValue) {
+
+        if (i == 0) {
+          // pmi is determined if, before making that month's
+          // payment, you were below the 80% point. That means
+          // this is the correct spot for the pmiAccumulator expression
+          pmiAccumulator[i] = pmiMonthly;
+
+        } else {
+          pmiAccumulator[i] = pmiMonthly + pmiAccumulator[i - 1];
+
+        }
+      } else {
+        // if pmi does not apply, we still need to carry on
+        // pmi accumulator until the end of the amortization table
+        // for other algorithms to use
+        if (i == 0) {
+          pmiAccumulator[i] = 0d;
+        } else {
+          pmiAccumulator[i] = pmiAccumulator[i - 1];
+        }
       }
 
     }
@@ -1164,9 +1203,9 @@ public class Calculations implements ValueSettable {
    * @author byron
    * 
    */
-  private class PrivateMortgageInsuranceAccum implements CalcValueGettable {
+  private class YearlyPrivateMortgageInsuranceAccum implements CalcValueGettable {
 
-    public PrivateMortgageInsuranceAccum() {
+    public YearlyPrivateMortgageInsuranceAccum() {
     }
 
     @Override
@@ -1200,8 +1239,8 @@ public class Calculations implements ValueSettable {
       // each year.
       // for example, ( 15 / 12 ) * 12 = 12.
       return 
-          privateMortgageInsuranceAccum.getValue(MONTHS_IN_YEAR *(compoundingPeriod/MONTHS_IN_YEAR)) -
-          privateMortgageInsuranceAccum.getValue(MONTHS_IN_YEAR *((compoundingPeriod/MONTHS_IN_YEAR)+1));
+          yearlyPrivateMortgageInsuranceAccum.getValue(MONTHS_IN_YEAR *((compoundingPeriod/MONTHS_IN_YEAR)+1)) -
+          yearlyPrivateMortgageInsuranceAccum.getValue(MONTHS_IN_YEAR *(compoundingPeriod/MONTHS_IN_YEAR));
     }
   }
 

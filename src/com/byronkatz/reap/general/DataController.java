@@ -187,7 +187,9 @@ public class DataController implements DataManager {
     if (getCurrentYearSelected() == null) {
       cv.put(DatabaseAdapter.YEAR_VALUE, 0);
     } else {
-      cv.put(DatabaseAdapter.YEAR_VALUE, getCurrentYearSelected());
+      //save year + 1, since it is an "external" version of year.  Internally,
+      //system works 0 to n-1, externally, 1 to n.
+      cv.put(DatabaseAdapter.YEAR_VALUE, getCurrentYearSelected()+1);
     }
 
     return cv;

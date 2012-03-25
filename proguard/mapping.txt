@@ -594,7 +594,7 @@ com.byronkatz.reap.calculations.Calculations$OperatingExpensesFValue -> com.byro
 com.byronkatz.reap.calculations.YearlyPrivateMortgageInsurance -> com.byronkatz.reap.a.aa:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
     959:963:double getValue(int) -> a
-com.byronkatz.reap.calculations.Calculations$PrivateMortgageInsuranceAccum -> com.byronkatz.reap.a.ab:
+com.byronkatz.reap.calculations.YearlyPrivateMortgageInsuranceAccum -> com.byronkatz.reap.a.ab:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
     943:945:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$PropertyTaxFValue -> com.byronkatz.reap.a.ac:
