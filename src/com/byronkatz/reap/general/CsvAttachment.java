@@ -108,6 +108,7 @@ public class CsvAttachment {
       if (ve.isSavedToDatabase() && ! ve.isVaryingByYear()) {
         if (ve.getType() == ValueType.CURRENCY ||
             ve.getType() == ValueType.PERCENTAGE) {
+          
           dataManager.putInputValue(getDoubleFromCursor(ve), ve);
 
           //append these values to the string to create the CSV
@@ -115,7 +116,9 @@ public class CsvAttachment {
           csvOutputArray.append(",");
           csvOutputArray.append("\"" + 
               Utility.displayValue(getDoubleFromCursor(ve), ve) + "\"\n" );
+          
         } else if (ve.getType() == ValueType.INTEGER) {
+          
           dataManager.putInputValue(getIntegerFromCursor(ve), ve);
 
           //append these values to the string to create the CSV

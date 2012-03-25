@@ -384,7 +384,6 @@ public class SavedDataBrowserActivity extends ListActivity {
     body += "User Input Values\n";
     body += "\n";
 
-    
     for (Map.Entry<String,Object> m : emailContentValues.valueSet()) {
 
       ValueEnum viewEnum = null;
@@ -613,9 +612,8 @@ public class SavedDataBrowserActivity extends ListActivity {
     
     //9 is the "address" column
     final String address = cursor.getString(9);
-//    Log.d(getClass().getName(), "address: " + address);
     //if this entry has an address, include it
-    if (address.length() > 0) {
+    if (address != null && address.length() > 0) {
       message += " at " + address;
       
     }

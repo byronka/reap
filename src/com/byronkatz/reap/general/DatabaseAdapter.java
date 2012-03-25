@@ -29,7 +29,7 @@ public class DatabaseAdapter {
   private static final String LOCATIONS_DATABASE_CREATE = "create table " + 
       LOCATIONS_DATABASE_TABLE + " ("     + 
       KEY_ID + " integer primary key autoincrement" + ", " +
-      MODIFIED_AT                                         + " DATE DEFAULT (DATE('now','localtime'))" +   ", " +
+      MODIFIED_AT                                         + " DEFAULT CURRENT_TIMESTAMP" +   ", " +
       ValueEnum.TOTAL_PURCHASE_VALUE.name()               + " REAL"    +     ", " +
       ValueEnum.YEARLY_INTEREST_RATE.name()               + " REAL"    +     ", " +
       ValueEnum.BUILDING_VALUE.name()                     + " REAL"    +     ", " +
@@ -99,8 +99,6 @@ public class DatabaseAdapter {
 
   public HashMap<String, String> getEntry(long rowIndex) {
     HashMap<String, String> fieldValues = null;
-    // TODO: Return a cursor to a row from the database and
-    // use the values to populate an instance of MyObject
     return fieldValues;
   }
 
@@ -125,12 +123,14 @@ public class DatabaseAdapter {
       db.execSQL(LOCATIONS_DATABASE_CREATE);
       
       //following adds a trigger so the modified time gets changed whenever an update occurs
-      db.execSQL("CREATE TRIGGER update_modified_timestamp " +
-      		"AFTER UPDATE ON " + LOCATIONS_DATABASE_TABLE +
-          " BEGIN " +
-          "UPDATE " + LOCATIONS_DATABASE_TABLE + " SET " + MODIFIED_AT + "=DATE('now','localtime'); " +
-//      		"WHERE rowid = new.rowid;" +
-      		"END;");
+
+      db.execSQL(
+          "CREATE TRIGGER update_modified_timestamp AFTER UPDATE ON mainTable " +
+          "BEGIN " +
+          " update mainTable SET modified_at = datetime('now') WHERE rowid = new.rowid; " +
+          "END;"
+
+          );
 
     }
 

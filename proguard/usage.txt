@@ -13,12 +13,13 @@ com.byronkatz.reap.activity.AddressActivity:
 com.byronkatz.reap.activity.AppInfoActivity:
     public static final java.lang.String INCORRECT
     public static final java.lang.String CORRECT
+com.byronkatz.reap.activity.ConfigureDataTablesActivity:
+    private static final int TOGGLE_BUTTON_INDEX
 com.byronkatz.reap.activity.DataTable:
     public static final int PROPERTY_LABEL_INDEX
     public static final int PROPERTY_VALUE_INDEX
-    public static final int TOGGLE_BUTTON_INDEX
-    242:254:public void saveViewableDataTableRows(android.os.Bundle)
-    304:312:public java.util.Set restoreViewableDataTableRows(android.os.Bundle)
+    192:204:public void saveViewableDataTableRows(android.os.Bundle)
+    254:262:public java.util.Set restoreViewableDataTableRows(android.os.Bundle)
 com.byronkatz.reap.activity.GraphActivity:
     public static final java.lang.String PREFS_NAME
     public static final java.lang.String IS_GRAPH_VISIBLE
@@ -49,13 +50,13 @@ com.byronkatz.reap.customview.AnalysisGraph:
     public static final int GRAPH_MIN_X
     public static final int GRAPH_MIN_Y
     public static final java.lang.String X_AXIS_STRING
-    private java.lang.Float maxX
     374:374:public int getCurrentYearHighlighted()
+com.byronkatz.reap.general.CsvAttachment:
+    public static final java.lang.String OUTPUT_WORKBOOK
+    private java.io.File outputFile
+    45:45:public java.io.File getFile()
 com.byronkatz.reap.general.DataController:
     public android.content.res.Resources resources
-com.byronkatz.reap.general.DataManager:
-    public abstract double getCalcValue(com.byronkatz.reap.general.ValueEnum,int)
-    public abstract void putInputValue(double,com.byronkatz.reap.general.ValueEnum)
 com.byronkatz.reap.general.DatabaseAdapter:
     private static final java.lang.String DATABASE_NAME
     private static final java.lang.String LOCATIONS_DATABASE_TABLE
@@ -65,16 +66,16 @@ com.byronkatz.reap.general.DatabaseAdapter:
     public static final java.lang.String YEAR_VALUE
     77:78:public com.byronkatz.reap.general.DatabaseAdapter open()
     82:83:public void close()
-    101:104:public java.util.HashMap getEntry(long)
+    101:102:public java.util.HashMap getEntry(long)
 com.byronkatz.reap.general.RealEstateAnalysisProcessorApplication:
     public static final java.lang.String BASE_VALUES
 com.byronkatz.reap.general.Utility:
-    208:218:public static void showHelpDialog(java.lang.String,int,android.content.Context)
-    256:268:public static void showAlertDialog(android.content.Context,java.lang.String)
-    283:285:public static void showToast(android.app.Activity,java.lang.String)
+    212:222:public static void showHelpDialog(java.lang.String,int,android.content.Context)
+    260:272:public static void showAlertDialog(android.content.Context,java.lang.String)
+    287:289:public static void showToast(android.app.Activity,java.lang.String)
 com.byronkatz.reap.general.Utility$5
 com.byronkatz.reap.general.ValueEnum:
-    108:109:public void setIsSavedToDatabase(java.lang.Boolean)
+    113:114:public void setIsSavedToDatabase(java.lang.Boolean)
 com.google.android.vending.licensing.AESObfuscator:
     private static final java.lang.String UTF8
     private static final java.lang.String KEYGEN_ALGORITHM

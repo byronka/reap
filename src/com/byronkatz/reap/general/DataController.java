@@ -237,6 +237,7 @@ public class DataController implements DataManager {
 
     //Put year into valueset
     cv = placeYearInDatabase(cv);
+
     
     return cv;
   }
