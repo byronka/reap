@@ -4,12 +4,13 @@ package com.byronkatz.reap.general;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map.Entry;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import android.content.ContentValues;
+import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 
 import com.byronkatz.reap.calculations.Calculations;
 import com.byronkatz.reap.general.ValueEnum.ValueType;
@@ -19,14 +20,14 @@ public class CsvAttachment {
 
   public static final String OUTPUT_WORKBOOK = "REAP_workbook.csv";
   private FileWriter outputWriter;
-  private Context context;
+  private Activity activity;
   private File outputFile;
   private StringBuilder csvOutputArray;
   private Cursor cursor;
   private DataManager dataManager;
 
-  public CsvAttachment( Context context, Cursor cursor) {
-    this.context = context;
+  public CsvAttachment( Activity activity, Cursor cursor) {
+    this.activity = activity;
     this.cursor = cursor;
     csvOutputArray = new StringBuilder();
     dataManager = new DataManagerImpl();
@@ -35,7 +36,7 @@ public class CsvAttachment {
 
 
   public void createAttachment() {
-    openFileOutputStream(context);
+    openFileOutputStream(activity);
     addDataToWorkbook();
     writeAndCloseBook();
   }
@@ -57,10 +58,10 @@ public class CsvAttachment {
     }
   }
 
-  private void openFileOutputStream(Context context) {
+  private void openFileOutputStream(Context activity) {
     try {
-      context.openFileOutput(OUTPUT_WORKBOOK, Context.MODE_WORLD_READABLE);
-      File file = new File(context.getFilesDir(), OUTPUT_WORKBOOK);
+      activity.openFileOutput(OUTPUT_WORKBOOK, Context.MODE_WORLD_READABLE);
+      File file = new File(activity.getFilesDir(), OUTPUT_WORKBOOK);
       outputWriter = new FileWriter(file);
 
     } catch (IOException e) {
@@ -110,7 +111,7 @@ public class CsvAttachment {
           dataManager.putInputValue(getDoubleFromCursor(ve), ve);
 
           //append these values to the string to create the CSV
-          csvOutputArray.append(context.getString(ve.getTitleText()));
+          csvOutputArray.append(activity.getString(ve.getTitleText()));
           csvOutputArray.append(",");
           csvOutputArray.append("\"" + 
               Utility.displayValue(getDoubleFromCursor(ve), ve) + "\"\n" );
@@ -118,7 +119,7 @@ public class CsvAttachment {
           dataManager.putInputValue(getIntegerFromCursor(ve), ve);
 
           //append these values to the string to create the CSV
-          csvOutputArray.append(context.getString(ve.getTitleText()));
+          csvOutputArray.append(activity.getString(ve.getTitleText()));
           csvOutputArray.append(",");
           csvOutputArray.append("\"" + 
               getIntegerFromCursor(ve) + "\"\n" );
@@ -138,11 +139,19 @@ public class CsvAttachment {
     int extraYears = getIntegerFromCursor(ValueEnum.EXTRA_YEARS);
     int totalYears = (nocp /12) + extraYears;
 
+    
+    
+    List<ValueEnum> valueEnumArrayList = new ArrayList<ValueEnum>(Arrays.asList(ValueEnum.values()));
+    valueEnumArrayList. remove(ValueEnum.PRINCIPAL_PAYMENT);
+    valueEnumArrayList.remove(ValueEnum.INTEREST_PAYMENT);
+    valueEnumArrayList = Utility.sortDataTableValues(activity, valueEnumArrayList);
+
+    
     //Set the titles over the different calculated values
     csvOutputArray.append("Year,");
-    for (ValueEnum valueEnum : ValueEnum.values()) {
+    for (ValueEnum valueEnum : valueEnumArrayList) {
       if (valueEnum.getType() != ValueType.STRING && !valueEnum.isSavedToDatabase()) {
-        csvOutputArray.append(context.getString(valueEnum.getTitleText()));
+        csvOutputArray.append(activity.getString(valueEnum.getTitleText()));
         csvOutputArray.append(",");
       }
     }
@@ -153,7 +162,7 @@ public class CsvAttachment {
       //have to add 1 to the year display
       csvOutputArray = addCompoundingPeriod(csvOutputArray, i+1);
 
-      for (ValueEnum valueEnum : ValueEnum.values()) {
+      for (ValueEnum valueEnum : valueEnumArrayList) {
         if (valueEnum.getType() != ValueType.STRING && !valueEnum.isSavedToDatabase()) {
           csvOutputArray = addValue(csvOutputArray, valueEnum, i*12);
         }
@@ -163,29 +172,29 @@ public class CsvAttachment {
 
     csvOutputArray.append("\n\n");
 
-    //Add the amortization table
-    csvOutputArray.append("Month,");
-    csvOutputArray.append(context.getString(ValueEnum.CURRENT_AMOUNT_OUTSTANDING.getTitleText()));
-    csvOutputArray.append(",");
-    csvOutputArray.append(context.getString(ValueEnum.MONTHLY_MORTGAGE_PAYMENT.getTitleText()));
-    csvOutputArray.append(",");
-    csvOutputArray.append(context.getString(ValueEnum.INTEREST_PAYMENT.getTitleText()));
-    csvOutputArray.append(",");
-    csvOutputArray.append(context.getString(ValueEnum.PRINCIPAL_PAYMENT.getTitleText()));
-    csvOutputArray.append(",\n");
-
-
-    //do the amortization loop
-    for (int i = 0; i < nocp; i++) {
-      //month 1 to month 360 - have to add 1 for month display only
-      addCompoundingPeriod(csvOutputArray, i+1);
-      csvOutputArray = addValue(csvOutputArray, ValueEnum.CURRENT_AMOUNT_OUTSTANDING, i);
-      csvOutputArray = addValue(csvOutputArray, ValueEnum.MONTHLY_MORTGAGE_PAYMENT, i);
-      csvOutputArray = addValue(csvOutputArray, ValueEnum.INTEREST_PAYMENT, i);
-      csvOutputArray = addValue(csvOutputArray, ValueEnum.PRINCIPAL_PAYMENT, i);
-
-      csvOutputArray.append("\n");
-    }
+//    //Add the amortization table
+//    csvOutputArray.append("Month,");
+//    csvOutputArray.append(activity.getString(ValueEnum.CURRENT_AMOUNT_OUTSTANDING.getTitleText()));
+//    csvOutputArray.append(",");
+//    csvOutputArray.append(activity.getString(ValueEnum.MONTHLY_MORTGAGE_PAYMENT.getTitleText()));
+//    csvOutputArray.append(",");
+//    csvOutputArray.append(activity.getString(ValueEnum.INTEREST_PAYMENT.getTitleText()));
+//    csvOutputArray.append(",");
+//    csvOutputArray.append(activity.getString(ValueEnum.PRINCIPAL_PAYMENT.getTitleText()));
+//    csvOutputArray.append(",\n");
+//
+//
+//    //do the amortization loop
+//    for (int i = 0; i < nocp; i++) {
+//      //month 1 to month 360 - have to add 1 for month display only
+//      addCompoundingPeriod(csvOutputArray, i+1);
+//      csvOutputArray = addValue(csvOutputArray, ValueEnum.CURRENT_AMOUNT_OUTSTANDING, i);
+//      csvOutputArray = addValue(csvOutputArray, ValueEnum.MONTHLY_MORTGAGE_PAYMENT, i);
+//      csvOutputArray = addValue(csvOutputArray, ValueEnum.INTEREST_PAYMENT, i);
+//      csvOutputArray = addValue(csvOutputArray, ValueEnum.PRINCIPAL_PAYMENT, i);
+//
+//      csvOutputArray.append("\n");
+//    }
 
   }
 

@@ -169,7 +169,7 @@ public class Calculations implements ValueSettable {
     yearlyPrincipalPaid = new YearlyPrincipalPaid();
     mortgagePayment = new MortgagePayment();
     yearlyMortgagePayment = new YearlyMortgagePayment();
-    privateMortgageInsurance = new PrivateMortgageInsurance();
+    privateMortgageInsurance = new YearlyPrivateMortgageInsurance();
     privateMortgageInsuranceAccum = new PrivateMortgageInsuranceAccum();
     afterTaxCashFlow = new AfterTaxCashFlow();
     afterTaxCashFlowNPV = new AtcfNpv();
@@ -760,12 +760,7 @@ public class Calculations implements ValueSettable {
       return investmentFValue.getValue(compoundingPeriod)
           - brokerCutOfSale.getValue(compoundingPeriod)
           - sellingExpensesFValue.getValue(compoundingPeriod)
-          -
-          // by multiplying and dividing, we get the number of month
-          // at the beginning of the year
-          // add 11 to get to the amount owed at end of year
-          amountOwedValue
-              .getValue(((compoundingPeriod / MONTHS_IN_YEAR) * MONTHS_IN_YEAR) + 11)
+          - amountOwedValue.getValue(compoundingPeriod)
           - taxesDueAtSale.getValue(compoundingPeriod);
 
     }
@@ -1110,7 +1105,7 @@ public class Calculations implements ValueSettable {
     // each amount calculated is for the *end* of that month.
     for (int i = 0; i < nocp; i++) {
 
-      if (amountOwed[i] >= pmiEndsValue) {
+      if (amountOwed[i] > pmiEndsValue) {
         if (i == 0) {
           // pmi is determined if, before making that month's
           // payment, you were below the 80% point. That means
@@ -1175,15 +1170,14 @@ public class Calculations implements ValueSettable {
       if (compoundingPeriod >= nocp) {
         return pmiAccumulator[nocp - 1];
       }
-      return pmiAccumulator[(compoundingPeriod / MONTHS_IN_YEAR) + 11];
+      return pmiAccumulator[MONTHS_IN_YEAR * (compoundingPeriod / MONTHS_IN_YEAR) + 11];
     }
-    // TODO
 
   }
 
-  private class PrivateMortgageInsurance implements CalcValueGettable {
+  private class YearlyPrivateMortgageInsurance implements CalcValueGettable {
 
-    public PrivateMortgageInsurance() {
+    public YearlyPrivateMortgageInsurance() {
     }
 
     @Override
@@ -1197,11 +1191,9 @@ public class Calculations implements ValueSettable {
       // truncates the fraction to our advantage. We want the first month for
       // each year.
       // for example, ( 15 / 12 ) * 12 = 12.
-      return privateMortgageInsuranceAccum.getValue(MONTHS_IN_YEAR
-          * ((compoundingPeriod / MONTHS_IN_YEAR) + 1))
-          - privateMortgageInsuranceAccum.getValue(MONTHS_IN_YEAR
-              * (compoundingPeriod / MONTHS_IN_YEAR));
-
+      return 
+          privateMortgageInsuranceAccum.getValue(MONTHS_IN_YEAR *(compoundingPeriod/MONTHS_IN_YEAR)) -
+          privateMortgageInsuranceAccum.getValue(MONTHS_IN_YEAR *((compoundingPeriod/MONTHS_IN_YEAR)+1));
     }
   }
 
@@ -1216,7 +1208,7 @@ public class Calculations implements ValueSettable {
       if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {
         return 0d;
       }
-      return amountOwed[compoundingPeriod];
+      return amountOwed[(MONTHS_IN_YEAR * (compoundingPeriod/MONTHS_IN_YEAR))+11];
     }
   }
 
@@ -1326,11 +1318,15 @@ public class Calculations implements ValueSettable {
       // value.
       // so for example, 6 / 12 = 0, and 0 * 12 = 0. 25 / 12 = 2, and 2 * 12 =
       // 24
-      return amountOwedValue.getValue(MONTHS_IN_YEAR
-          * (compoundingPeriod / MONTHS_IN_YEAR))
-          - amountOwedValue.getValue(MONTHS_IN_YEAR
-              * (compoundingPeriod / MONTHS_IN_YEAR) + 11);
-
+      if (compoundingPeriod >= 0 && compoundingPeriod < 12) {
+        return
+            loanAmount - 
+            amountOwedValue.getValue(MONTHS_IN_YEAR * (compoundingPeriod / MONTHS_IN_YEAR));
+      } else {
+      return 
+          amountOwedValue.getValue(MONTHS_IN_YEAR * ((compoundingPeriod / MONTHS_IN_YEAR)-1)) - 
+          amountOwedValue.getValue(MONTHS_IN_YEAR * (compoundingPeriod / MONTHS_IN_YEAR));
+      }
     }
   }
 

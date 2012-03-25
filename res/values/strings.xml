@@ -562,7 +562,7 @@ value at the time of sale, to pay for the broker
         	     \n\n
 	       This value is calculated from the user input
 	       </string>
-    <string name="yearlyPrivateMortgageInsuranceTitleText" formatted="false">Calculated Private Mortgage Insurance</string>
+    <string name="yearlyPrivateMortgageInsuranceTitleText" formatted="false">Calculated Yearly Private Mortgage Insurance</string>
     
         <string name="yearlyPrivateMortgageInsuranceAccumHelpText" formatted="false">The
       amount paid to date in private 
