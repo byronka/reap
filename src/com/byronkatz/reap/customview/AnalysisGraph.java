@@ -28,7 +28,7 @@ public class AnalysisGraph extends View {
   private static final int MIRR = 3;
   private static final int CRPV = 4;
   private static final int CRCV = 5;
-  private static final Float DIVISOR_MODIFIER = 0.75f;
+  private static final Float DIVISOR_MODIFIER = 1.5f;
   //following is for left-side text
   private static final Float LEFT_SIDE_MARGIN_PIXELS = 10f;
   private static final Integer RIGHT_SIDE_MARGIN_PIXELS = 70;

@@ -241,7 +241,7 @@
       repair the HVAC, paying for lawn care, retaining a management
       company or handyman, repairing the roof, or other general yearly expenses.
       Each year\'s general expenses future value will be calculated - 
-      see Yearly General Expenses
+      see Calculated General Expenses
 	     \n\n
 	    This is a value entered by the user, not calculated</string>
     <string name="initialHomeInsuranceHelpText" formatted="false">This is
@@ -254,7 +254,7 @@
       are yearly assessments on property owners for such 
       things as environment fees, sewer fees, or other fees which are 
       frequently included in the yearly property tax bill.
-	    For future values of local municipal fees, see Yearly Municipal Fees.
+	    For future values of local municipal fees, see Calculated Municipal Fees.
 	    \n\n
 	    This is a value entered by the user, not calculated</string>
     <string name="marginalTaxRateHelpText" formatted="false">The 
@@ -349,7 +349,7 @@
 	    appreciation rate.
 	    \n\n
 	    Assumption: The value of the investment goes up once a year.  It is
-	    increased by the value of (1 + REAR / 12)^12
+	    increased by the value of (1 + REAR)^years
 	    	    	                     	     \n\n
 	       This value is calculated from the user input
 	       </string>
@@ -358,7 +358,7 @@
       property tax amount assessed on the investment.
       	\n\n
       	Assumption: This value is assessed once a year.  It increases at
-      	the rate of (1 + Yearly Inflation Rate / 12)^12
+      	the rate of (1 + Yearly Inflation Rate)^years
         \n\n
 	       This value is calculated from the user input
 	       </string>
@@ -366,7 +366,7 @@
       is the anticipated rate of monthly 
       appreciation of the investment.  In this application, the future value
       of the investment is determined by 
-	    using this rate plus one to the monthly compounding period desired
+	    using this rate plus one to the yearly compounding period desired
 	                       \n\n
 	    This is a value entered by the user, not calculated
 	    </string>
@@ -471,7 +471,7 @@ value at the time of sale, to pay for the broker
         application assumes that the rate you charge will increase once
         a year at the rate of real estate appreciation.  
         The equation for next year\'s rent is: this_year_monthly_rent 
-        * (1 + real_estate_appreciation_rate / 12)^12
+        * (1 + real_estate_appreciation_rate)^years
                 	     \n\n
 	       This value is calculated from the user input
 	       </string>
@@ -482,7 +482,7 @@ value at the time of sale, to pay for the broker
         The application assumes that the rate you charge will increase once
         a year at the rate of real estate appreciation.  
         The equation for next year\'s rent is: this_year_monthly_rent 
-        * (1 + real_estate_appreciation_rate / 12)^12
+        * (1 + real_estate_appreciation_rate)^years
                 	     \n\n
 	       This value is calculated from the user input
 	       </string>
@@ -520,7 +520,7 @@ value at the time of sale, to pay for the broker
       future value yearly municipal fees.  For the initial
         input, see Input Municipal Fees.
         \n\nAssumption: This value is assessed once per year.  It increases
-        at the rate of (1 + Yearly Inflation Rate / 12) ^ 12
+        at the rate of (1 + Yearly Inflation Rate) ^ years
         	     \n\n
 	       This value is calculated from the user input
 	       </string>
