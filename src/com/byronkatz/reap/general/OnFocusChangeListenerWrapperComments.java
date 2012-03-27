@@ -34,7 +34,11 @@ public class OnFocusChangeListenerWrapperComments implements OnFocusChangeListen
       try {
         digester = MessageDigest.getInstance("SHA-256");
       } catch (NoSuchAlgorithmException e) {
-        e.printStackTrace();
+        String message = "An error occurred - the REAP system attempted" +
+        		" to get an encryption algorithm from the device library, " +
+        		"and it was not provided.  Please notify the developer.\n" + e.getMessage();
+
+        Utility.showAlertDialog(v.getContext(), message);
       }
 
       String commentsValue = ((EditText) v).getText().toString();

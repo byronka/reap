@@ -2,6 +2,7 @@ package com.byronkatz.reap.general;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,22 +51,51 @@ public class CsvAttachment {
 
     try {
       outputWriter.write(csvOutputArray.toString());
-      outputWriter.close();
-      csvOutputArray = null;
-
     } catch (IOException e) {
-      e.printStackTrace();
+      String message = "For some reason, The REAP system" +
+          " was unable to write the csv file it was creating.  The error" +
+          "trace is as follows:\n" + e.getMessage();
+
+      Utility.showAlertDialog(activity.getBaseContext(), message);
     }
+
+    try {
+      outputWriter.close();
+    } catch (IOException e) {
+      String message = "For some reason, The REAP system" +
+          " was unable to close the csv file it was creating.  The error" +
+          "trace is as follows:\n" + e.getMessage();
+
+      Utility.showAlertDialog(activity.getBaseContext(), message);
+    }
+
+    csvOutputArray = null;
+
+
   }
 
-  private void openFileOutputStream(Context activity) {
+  private void openFileOutputStream(Activity activity) {
     try {
       activity.openFileOutput(OUTPUT_WORKBOOK, Context.MODE_WORLD_READABLE);
-      File file = new File(activity.getFilesDir(), OUTPUT_WORKBOOK);
-      outputWriter = new FileWriter(file);
+    } catch (FileNotFoundException e) {
+      String message = "This error should never be received - it " +
+      		"means that the system could not find a file.  But that" +
+      		" does not make sense, because it was not opening a file, it " +
+      		"was creating one.  Please notify the developer" + e.getMessage();
 
+      Utility.showAlertDialog(activity.getBaseContext(), message);    }
+
+    File file = new File(activity.getFilesDir(), OUTPUT_WORKBOOK);
+
+    try { 
+      outputWriter = new FileWriter(file);
     } catch (IOException e) {
-      e.printStackTrace();
+      String message = "For some reason, The REAP system" +
+          " was unable to open the file it was going to use as a csv" +
+          " attachment.  The error" +
+          "trace is as follows:\n" + e.getMessage();
+
+      Utility.showAlertDialog(activity.getBaseContext(), message);
     }  
   }
 
@@ -110,7 +140,7 @@ public class CsvAttachment {
       if (ve.isSavedToDatabase() && ! ve.isVaryingByYear()) {
         if (ve.getType() == ValueType.CURRENCY ||
             ve.getType() == ValueType.PERCENTAGE) {
-          
+
           dataManager.putInputValue(getDoubleFromCursor(ve), ve);
 
           //append these values to the string to create the CSV
@@ -118,9 +148,9 @@ public class CsvAttachment {
           csvOutputArray.append(",");
           csvOutputArray.append("\"" + 
               Utility.displayValue(getDoubleFromCursor(ve), ve) + "\"\n" );
-          
+
         } else if (ve.getType() == ValueType.INTEGER) {
-          
+
           dataManager.putInputValue(getIntegerFromCursor(ve), ve);
 
           //append these values to the string to create the CSV
@@ -144,14 +174,14 @@ public class CsvAttachment {
     int extraYears = getIntegerFromCursor(ValueEnum.EXTRA_YEARS);
     int totalYears = (nocp /12) + extraYears;
 
-    
-    
+
+
     List<ValueEnum> valueEnumArrayList = new ArrayList<ValueEnum>(Arrays.asList(ValueEnum.values()));
 
     valueEnumArrayList = Utility.removeCertainItemsFromDataTable(valueEnumArrayList);
     valueEnumArrayList = Utility.sortDataTableValues(activity, valueEnumArrayList);
 
-    
+
     csvOutputArray.append("\"CALCULATED VALUES\",\n\n");
 
     //Set the titles over the different calculated values
@@ -207,9 +237,9 @@ public class CsvAttachment {
 
       csvOutputArray.append("\n");
     }
-    
+
     csvOutputArray.append("\n\n");
-    
+
     //add the yearly atcf equations
     csvOutputArray.append("\"AFTER TAX CASH FLOWS\",\n\n");
 
@@ -292,7 +322,7 @@ public class CsvAttachment {
 
     csvOutputArray.append("\n\nDetermining Taxes");
     csvOutputArray.append  ("\n-----------------\n\n");
-    
+
     csvOutputArray.append("\"Net Operating Income:\",");
     for (int i = 0; i < totalYears; i++) {
       csvOutputArray = addValue(
@@ -337,8 +367,8 @@ public class CsvAttachment {
       csvOutputArray = addValue(
           csvOutputArray, ValueEnum.YEARLY_TAX_ON_INCOME, i*12);
     }
-    
-    
+
+
 
   }
 

@@ -241,6 +241,12 @@ public class Utility {
     }
   }
 
+  /**
+   * simple utility function to show the user an alert message which they
+   * may then dismiss by clicking "ok"
+   * @param activity page on which to show the message
+   * @param message String message to be displayed to user
+   */
   public static void showAlertDialog(Activity activity, String message) {
     AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
@@ -391,12 +397,18 @@ public class Utility {
       try {
         returnValue = currencyNumberFormat.parse(value).doubleValue();
       } catch (ParseException e) {
-        e.printStackTrace();
+        System.err.println("The REAP system encountered an error while" +
+        		" trying to parse a number.  Please notify the developer" +
+        		"of the following error:\n" + e.getMessage());
+        returnValue = 0d;
       }
     } else {
       try {
         returnValue = Double.valueOf(value);
       } catch (NumberFormatException e) {
+        System.err.println("The REAP system encountered an error while" +
+            " trying to parse a number.  Please notify the developer" +
+            "of the following error:\n" + e.getMessage());
         returnValue = 0.0d;
       }
     }
@@ -520,12 +532,18 @@ public class Utility {
         Number n = percentNumberFormat.parse(value);
         returnValue = n.doubleValue();
       } catch (ParseException e) {
-        e.printStackTrace();
+        System.err.println("The REAP system encountered an error while" +
+            " trying to parse a number.  Please notify the developer" +
+            "of the following error:\n" + e.getMessage());
+        returnValue = 0d;
       }
     }else {
       try {
         returnValue = Double.valueOf(value);
       } catch (NumberFormatException e) {
+        System.err.println("The REAP system encountered an error while" +
+            " trying to parse a number.  Please notify the developer" +
+            "of the following error:\n" + e.getMessage());
         returnValue = 0.0d;
       }
     }
