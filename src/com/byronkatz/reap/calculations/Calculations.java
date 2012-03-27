@@ -18,6 +18,14 @@ import com.byronkatz.reap.general.ValueEnum;
  */
 public class Calculations implements ValueSettable {
 
+  public double getFutureValuePositiveCashFlowsAccumulator() {
+    return futureValuePositiveCashFlowsAccumulator;
+  }
+
+  public double getPresentValueNegativeCashFlowsAccumulator() {
+    return presentValueNegativeCashFlowsAccumulator;
+  }
+
   private double propertyTax;
   private double closingCosts;
   private double insurance;
@@ -144,6 +152,8 @@ public class Calculations implements ValueSettable {
     mirr = 0d;
     futureValuePositiveCashFlowsAccumulator = 0d;
     presentValueNegativeCashFlowsAccumulator = 0d;
+
+    
     atcfTempValue = 0d;
     aterTempValue = 0d;
     brokerRate = 0d;
@@ -306,6 +316,7 @@ public class Calculations implements ValueSettable {
       yearlyGrossIncomeCache = new double[totalYearsToCalculate + 1];
       yearlyNetOperatingIncomeCache = new double[totalYearsToCalculate + 1];
       taxableIncomeCache = new double[totalYearsToCalculate + 1];
+      
     }
   }
 
@@ -887,16 +898,13 @@ public class Calculations implements ValueSettable {
       atcfTempValue = 0d;
       aterTempValue = 0d;
 
-      // System.out.println();
       // cash flows for mirr:
 
       // step 1, first day costs:
       // first day costs are assumed to literally be on the day of closing, for
       // simplification
       presentValueNegativeCashFlowsAccumulator += -firstDayCosts.getValue(0);
-      // System.out.println("firstDayCosts presentValueNegativeCashFlowsAccumulator: "
-      // + presentValueNegativeCashFlowsAccumulator);
-      // System.out.println("firstDayCosts: " + firstDayCosts.getValue(0));
+
 
       // step 2: after tax cash flows - different action depending on sign
       // the atcf provided is for the end of the year. For example, atcf of
@@ -905,32 +913,14 @@ public class Calculations implements ValueSettable {
       for (int year = 0; year < (compoundingPeriod / MONTHS_IN_YEAR); year++) {
 
         atcfTempValue = afterTaxCashFlow.getValue((year) * MONTHS_IN_YEAR);
-        // System.out.println("atcfTempValue: " + atcfTempValue);
 
         if (atcfTempValue < 0d) {
           presentValueNegativeCashFlowsAccumulator += atcfTempValue
               / Math.pow(1 + yearlyLoanInterestRate, year + 1);
-          // System.out.println("divided by 1 + yearlyLoanInterestRate to the "
-          // + (year+1) + " power");
-          // System.out.println("equals: " + atcfTempValue / Math.pow(1 +
-          // yearlyLoanInterestRate, year+1));
-          //
-          // System.out.println("atcf presentValueNegativeCashFlowsAccumulator: "
-          // + presentValueNegativeCashFlowsAccumulator);
-
         } else {
           futureValuePositiveCashFlowsAccumulator += atcfTempValue
               * Math.pow(1 + requiredRateOfReturn,
                   (compoundingPeriod / MONTHS_IN_YEAR) - (year + 1));
-          // System.out.println("times 1+requiredRateOfReturn ("+
-          // requiredRateOfReturn+") to the " + ((compoundingPeriod /
-          // MONTHS_IN_YEAR) - (year+1)) + " power");
-          // System.out.println("equals: " + (atcfTempValue *
-          // Math.pow(1 + requiredRateOfReturn, (compoundingPeriod /
-          // MONTHS_IN_YEAR) - (year+1))));
-          //
-          // System.out.println("atcf futureValuePositiveCashFlowsAccumulator: "
-          // + futureValuePositiveCashFlowsAccumulator);
         }
       }
 
@@ -943,17 +933,8 @@ public class Calculations implements ValueSettable {
         presentValueNegativeCashFlowsAccumulator += aterTempValue
             / Math.pow(1 + yearlyLoanInterestRate, compoundingPeriod
                 / MONTHS_IN_YEAR);
-        // System.out.println("divided by 1 + yearlyLoanInterestRate to the " +
-        // (compoundingPeriod/MONTHS_IN_YEAR) + "power");
-        // System.out.println("equals: " + aterTempValue / Math.pow(1 +
-        // yearlyLoanInterestRate, compoundingPeriod/MONTHS_IN_YEAR));
-        // System.out.println("ater presentValueNegativeCashFlowsAccumulator: "
-        // + presentValueNegativeCashFlowsAccumulator);
       } else if (aterTempValue > 0.0d) {
         futureValuePositiveCashFlowsAccumulator += aterTempValue;
-        // System.out.println("ater futureValuePositiveCashFlowsAccumulator: " +
-        // futureValuePositiveCashFlowsAccumulator);
-
       }
 
       // step 4: division
@@ -961,23 +942,11 @@ public class Calculations implements ValueSettable {
       if (!(presentValueNegativeCashFlowsAccumulator == 0f)) {
         mirr = Math.pow(futureValuePositiveCashFlowsAccumulator
             / -presentValueNegativeCashFlowsAccumulator,
-            (1.0d / (compoundingPeriod / MONTHS_IN_YEAR))) - 1;
-        // System.out.println();
-        // System.out.println("final calc");
-        // System.out.println("root number: " +
-        // (compoundingPeriod/MONTHS_IN_YEAR));
-        // System.out.println("presentValueNegativeCashFlowsAccumulator: " +
-        // presentValueNegativeCashFlowsAccumulator);
-        // System.out.println("futureValuePositiveCashFlowsAccumulator: " +
-        // futureValuePositiveCashFlowsAccumulator);
-        // System.out.println("mirr: " + mirr);
+            (1.0d / ((compoundingPeriod / MONTHS_IN_YEAR)+1))) - 1;
 
       } else {
         mirr = 0d;
       }
-      // System.out.println();
-      // System.out.println();
-      // System.out.println("----------------------------------------");
       return mirr;
     }
   }

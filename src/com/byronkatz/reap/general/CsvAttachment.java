@@ -208,6 +208,8 @@ public class CsvAttachment {
       csvOutputArray.append("\n");
     }
 
+    
+    //==================================
     csvOutputArray.append("\n\n");
     csvOutputArray.append("\"AMORTIZATION TABLE\",\n\n");
 
@@ -240,6 +242,8 @@ public class CsvAttachment {
 
     csvOutputArray.append("\n\n");
 
+    
+    //==================================
     //add the yearly atcf equations
     csvOutputArray.append("\"AFTER TAX CASH FLOWS\",\n\n");
 
@@ -367,7 +371,57 @@ public class CsvAttachment {
       csvOutputArray = addValue(
           csvOutputArray, ValueEnum.YEARLY_TAX_ON_INCOME, i*12);
     }
+    csvOutputArray.append("\n\n");
+    
+    //==================================
+    //add the MIRR present value and future value equations
+    csvOutputArray.append("\"MODIFIED INTERNAL RATE OF RETURN\",\n\n");
+    csvOutputArray.append("\"present value rate (yearly loan interest rate):\",");
+    csvOutputArray.append(dataManager.getInputValue(ValueEnum.YEARLY_INTEREST_RATE));
+    csvOutputArray.append(",\n");
+    csvOutputArray.append("\"future value rate (required rate of return):\",");
+    csvOutputArray.append(dataManager.getInputValue(ValueEnum.REQUIRED_RATE_OF_RETURN));
+    csvOutputArray.append(",\n");
+    
+    //year at top
+    csvOutputArray.append("\"Year:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray.append(i+1 + ",");
+    }
+    csvOutputArray.append("\n");
+    
+    //create arrays to temporarily store these values for later on
+    double[] fvpcf = new double[totalYears];
+    double[] pvncf = new double[totalYears];
+    csvOutputArray.append("\"Modified Internal Rate of Return:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN, i*12);
+      fvpcf[i] = calculations.getFutureValuePositiveCashFlowsAccumulator();
+      pvncf[i] = calculations.getPresentValueNegativeCashFlowsAccumulator();
+    }
+    csvOutputArray.append("\n");
+    
 
+    
+    csvOutputArray.append("\"Future Value Positive Cash Flows:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray.append("\"");
+      csvOutputArray.append(fvpcf[i]);
+      csvOutputArray.append("\"");
+      csvOutputArray.append(",");
+
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"Present Value Negative Cash Flows:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray.append("\"");
+      csvOutputArray.append(pvncf[i]);
+      csvOutputArray.append("\"");
+      csvOutputArray.append(",");
+    }
+    csvOutputArray.append("\n");
 
 
   }

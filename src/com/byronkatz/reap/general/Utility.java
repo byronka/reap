@@ -41,7 +41,7 @@ public class Utility {
       .getInstance().getDataController();
   private static NumberFormat currencyNumberFormat = getCurrencyNumberFormat();
 
-  
+
   private static NumberFormat getCurrencyNumberFormat() {
     NumberFormat currencyNumberFormat =NumberFormat.getCurrencyInstance(Locale.US);
     currencyNumberFormat.setMaximumFractionDigits(0);
@@ -70,7 +70,7 @@ public class Utility {
    * @return the List of values, with certain values removed
    */
   public static List<ValueEnum> removeCertainItemsFromDataTable(List<ValueEnum> dataTableValues) {
-    
+
     //remove the following values, unneeded in the table
     dataTableValues.remove(ValueEnum.COMMENTS);
     dataTableValues.remove(ValueEnum.CITY);
@@ -80,17 +80,17 @@ public class Utility {
     dataTableValues.remove(ValueEnum.INTEREST_PAYMENT);
     dataTableValues.remove(ValueEnum.MONTHLY_AMOUNT_OWED);
     dataTableValues.remove(ValueEnum.MONTHLY_INTEREST_ACCUMULATED);
-    
+
     return dataTableValues;
   }
-  
+
   /**
    * Simple utility method to sort the dataTableValues in some arbitrary way.
    * @param dataTableValues the dataTableValues List to sort
    * @return the sorted List
    */
   public static List<ValueEnum> sortDataTableValues(final Activity activity, List<ValueEnum> dataTableValues) {
-    
+
     Comparator<ValueEnum> comparator = new Comparator<ValueEnum>() {
 
       /**
@@ -103,15 +103,15 @@ public class Utility {
       public int compare(ValueEnum object1, ValueEnum object2) {
         String object1String = activity.getString(object1.getTitleText());
         String object2String = activity.getString(object2.getTitleText());
-        
+
         return object1String.compareTo(object2String);
       }
     };
-    
+
     Collections.sort(dataTableValues, comparator);
     return dataTableValues;
   }
-  
+
   public static void switchForMenuItem(MenuItem item, Activity activity) {
 
 
@@ -157,7 +157,7 @@ public class Utility {
     }
   }
 
- 
+
   public static void saveValueDialog(final Activity activity) {
 
     AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -315,20 +315,20 @@ public class Utility {
       editText.setSelection(0, textLength);
       break;
     default:
-//      Log.e("setSelectionOnView in Utility class", "shouldn't get here");
+      //      Log.e("setSelectionOnView in Utility class", "shouldn't get here");
     }
   }
 
   public static String displayCurrency(Double value) {
-//    currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
-//    return currencyFormatter.format(value);
+    //    currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
+    //    return currencyFormatter.format(value);
     //TODO
-//    currencyNumberFormat.setMaximumFractionDigits(0);
+    //    currencyNumberFormat.setMaximumFractionDigits(0);
     return currencyNumberFormat.format(value);
   }
 
   public static String displayShortCurrency(Double value) {
-//    currencyNumberFormat.setMaximumFractionDigits(0);
+    //    currencyNumberFormat.setMaximumFractionDigits(0);
     return currencyNumberFormat.format(value);
   }
 
@@ -393,25 +393,21 @@ public class Utility {
    */
   public static Double parseCurrency(String value) {
     Double returnValue = 0.0d;
-    if (value.contains("$")) {
-      try {
+
+
+    try {
+      if (value.contains("$")) {
         returnValue = currencyNumberFormat.parse(value).doubleValue();
-      } catch (ParseException e) {
-        System.err.println("The REAP system encountered an error while" +
-        		" trying to parse a number.  Please notify the developer" +
-        		"of the following error:\n" + e.getMessage());
-        returnValue = 0d;
-      }
-    } else {
-      try {
+      } else {
         returnValue = Double.valueOf(value);
-      } catch (NumberFormatException e) {
-        System.err.println("The REAP system encountered an error while" +
-            " trying to parse a number.  Please notify the developer" +
-            "of the following error:\n" + e.getMessage());
-        returnValue = 0.0d;
       }
+    } catch (Exception e) {
+      System.err.println("The REAP system encountered an error while" +
+          " trying to parse a number.  Please notify the developer" +
+          "of the following error:\n" + e.getMessage());
+      return 0d;
     }
+
     return returnValue;
   }
 
@@ -438,7 +434,7 @@ public class Utility {
 
     return returnValue;
   }
-  
+
   /**
    * This method takes a string value, parses it into a proper value, and converts that to a 
    * formatted string, with pennies if currency.
@@ -527,26 +523,22 @@ public class Utility {
   public static Double parsePercentage (String value) {
     Double returnValue = 0.0d;
     percentNumberFormat.setMaximumFractionDigits(4);
-    if (value.contains("%")) {
-      try {
+
+    try {
+      if (value.contains("%")) {
         Number n = percentNumberFormat.parse(value);
         returnValue = n.doubleValue();
-      } catch (ParseException e) {
-        System.err.println("The REAP system encountered an error while" +
-            " trying to parse a number.  Please notify the developer" +
-            "of the following error:\n" + e.getMessage());
-        returnValue = 0d;
-      }
-    }else {
-      try {
+      } else {
         returnValue = Double.valueOf(value);
-      } catch (NumberFormatException e) {
-        System.err.println("The REAP system encountered an error while" +
-            " trying to parse a number.  Please notify the developer" +
-            "of the following error:\n" + e.getMessage());
-        returnValue = 0.0d;
       }
+
+    } catch (Exception e) {
+      System.err.println("The REAP system encountered an error while" +
+          " trying to parse a number.  Please notify the developer" +
+          "of the following error:\n" + e.getMessage());
+      return 0.0d;
     }
+
     return returnValue;
   }
 
