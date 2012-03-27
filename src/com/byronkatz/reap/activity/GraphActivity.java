@@ -301,9 +301,12 @@ public class GraphActivity extends Activity {
 
   }
 
-  private Double changeCurrentValueBasedOnProgress (int progress) {
-
-    return (minValueNumeric + ((progress / (double) DIVISIONS_OF_VALUE_SLIDER) * deltaValueNumeric));
+  private Double changeCurrentValueBasedOnProgress (int progress, ValueEnum currentSliderKey) {
+    if (currentSliderKey.getType() == ValueType.INTEGER) {
+      return Math.floor(minValueNumeric + ((progress / (double) DIVISIONS_OF_VALUE_SLIDER) * deltaValueNumeric));
+    } else {
+      return (minValueNumeric + ((progress / (double) DIVISIONS_OF_VALUE_SLIDER) * deltaValueNumeric));
+    }
   }
 
 
@@ -335,15 +338,11 @@ public class GraphActivity extends Activity {
           boolean fromUser) {
 
         //set the value in the current value field:
-        currentValueNumeric = changeCurrentValueBasedOnProgress(progress);
-
-
+        currentValueNumeric = changeCurrentValueBasedOnProgress(progress, currentSliderKey);
         GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
-        
-        //take the input value from the text shown in the field.  That will 
-        //solve our problems for integer values
-        dataController.putInputValue(Utility.parseValue(
-            currentValueEditText.getText().toString(), currentSliderKey), currentSliderKey );
+
+          dataController.putInputValue(currentValueNumeric, currentSliderKey);
+
         dataController.calculationsSetValues();
         
         GraphActivityFunctions.invalidateGraphs(GraphActivity.this);

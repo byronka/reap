@@ -62,6 +62,7 @@ public class Calculations implements ValueSettable {
   private double marginalTaxRate;
   private final double DEPRECIATION_CONSTANT = 27.5d;
   private final double TAX_ON_CAPITAL_GAINS = 0.15d;
+  private static final double EPSILON = 0.00001d;
   private double[] yearlyGrossIncomeCache;
   private double[] yearlyNetOperatingIncomeCache;
   private double[] taxableIncomeCache;
@@ -196,6 +197,14 @@ public class Calculations implements ValueSettable {
 
   }
 
+  private boolean isApproximatelyEqual(double value1, double value2) {
+    if (Math.abs(value1 - value2) < EPSILON) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
   @Override
   public void setValues(DataManager dataManager) {
 
@@ -211,11 +220,10 @@ public class Calculations implements ValueSettable {
 
     loadCurrentUserInputValues();
 
-    if (oldLoanValue != loanAmount
-        || oldYearlyLoanInterestRate != yearlyLoanInterestRate
-        || oldNocp != nocp) {
+    if (! isApproximatelyEqual(oldLoanValue, loanAmount) || 
+        ! isApproximatelyEqual(oldYearlyLoanInterestRate, yearlyLoanInterestRate) ||
+        ! isApproximatelyEqual(oldNocp, nocp)) {
       mpValue = calculateMortgagePayment();
-
       createAmortizationTable(nocp);
     }
     createOperatingExpensesTable();

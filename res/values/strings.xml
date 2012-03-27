@@ -850,8 +850,8 @@ value at the time of sale, to pay for the broker
     <string name="authorInfoText">Real Estate Analysis Processor
 	    \n\u00A9 2012 Byron Katz
 	    \nrenaissance.nomad@gmail.com
-
     </string>
+    <string name="sendEmailToDeveloperText">Send email to developer</string>
     <string name="crash_toast_text">The REAP application has crashed.  Email report
         being prepared.</string>
 

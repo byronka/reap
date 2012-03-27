@@ -103,6 +103,8 @@ public class CsvAttachment {
     //get input values from this entry.  Create a new DataManager object to 
     //insert into the Calculations object in order to get the correct calculated
     //values for this entry.
+    csvOutputArray.append("\"USER INPUT VALUES\",\n\n");
+
     for (ValueEnum ve : ValueEnum.values()) {
 
       if (ve.isSavedToDatabase() && ! ve.isVaryingByYear()) {
@@ -150,7 +152,10 @@ public class CsvAttachment {
     valueEnumArrayList = Utility.sortDataTableValues(activity, valueEnumArrayList);
 
     
+    csvOutputArray.append("\"CALCULATED VALUES\",\n\n");
+
     //Set the titles over the different calculated values
+
     csvOutputArray.append("Year,");
     for (ValueEnum valueEnum : valueEnumArrayList) {
       if (valueEnum.getType() != ValueType.STRING && !valueEnum.isSavedToDatabase()) {
@@ -174,6 +179,7 @@ public class CsvAttachment {
     }
 
     csvOutputArray.append("\n\n");
+    csvOutputArray.append("\"AMORTIZATION TABLE\",\n\n");
 
     //Add the amortization table
     csvOutputArray.append("Month,");
@@ -201,6 +207,138 @@ public class CsvAttachment {
 
       csvOutputArray.append("\n");
     }
+    
+    csvOutputArray.append("\n\n");
+    
+    //add the yearly atcf equations
+    csvOutputArray.append("\"AFTER TAX CASH FLOWS\",\n\n");
+
+    //year at top
+    csvOutputArray.append("\"Year:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray.append(i+1 + ",");
+    }
+    csvOutputArray.append("\n");
+
+    //gross income
+    csvOutputArray.append("\"Potential Gross Income:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.GROSS_YEARLY_INCOME, i*12);
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"minus Vacancy and Credit Losses:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray.append("\"");
+      csvOutputArray.append(
+
+          dataManager.getInputValue(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE) *
+          dataManager.getCalcValue(ValueEnum.GROSS_YEARLY_INCOME, i*12)
+          );
+      csvOutputArray.append("\"");
+      csvOutputArray.append(",");
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"equals Effective Gross Income:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.YEARLY_INCOME, i*12);
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"minus Operating Expenses:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.YEARLY_OPERATING_EXPENSES, i*12);
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"equals Net Operating Income:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.YEARLY_NET_OPERATING_INCOME, i*12);
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"minus Annual Debt Service:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.YEARLY_MORTGAGE_PAYMENT, i*12);
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"equals Before Tax Cash Flow:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.YEARLY_BEFORE_TAX_CASH_FLOW, i*12);
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"minus Taxes:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.YEARLY_TAX_ON_INCOME, i*12);
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"equals After Tax Cash Flow:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.ATCF, i*12);
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\n\nDetermining Taxes");
+    csvOutputArray.append  ("\n-----------------\n\n");
+    
+    csvOutputArray.append("\"Net Operating Income:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.YEARLY_NET_OPERATING_INCOME, i*12);
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"minus Interest Expense:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.YEARLY_INTEREST_PAID, i*12);
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"minus Depreciation deduction:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.YEARLY_DEPRECIATION, i*12);
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"equals Taxable Income:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.TAXABLE_INCOME, i*12);
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"times Marginal Tax Rate:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray.append("\"");
+      csvOutputArray.append(
+          dataManager.getInputValue(ValueEnum.MARGINAL_TAX_RATE));
+      csvOutputArray.append("\"");
+      csvOutputArray.append(",");
+
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"equals Taxes:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.YEARLY_TAX_ON_INCOME, i*12);
+    }
+    
+    
 
   }
 
