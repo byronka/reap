@@ -63,7 +63,7 @@ public class GraphActivity extends Activity {
   Double maxValueNumeric;
   Double deltaValueNumeric;
   Double currentValueNumeric;
-  Double originalCurrentValueNumeric; //for the reset button
+//  Double originalCurrentValueNumeric; //for the reset button
 
   SharedPreferences sp;
 
@@ -131,8 +131,8 @@ public class GraphActivity extends Activity {
     currentValueNumeric = dataController.getInputValue(currentSliderKey);
 
     checkYearSettingsAtResume();
-    //following is for the reset button
-    originalCurrentValueNumeric = currentValueNumeric;
+//    //following is for the reset button
+//    originalCurrentValueNumeric = currentValueNumeric;
 
   }
   
@@ -280,8 +280,8 @@ public class GraphActivity extends Activity {
       @Override
       public void onClick(View v) {
 
-        currentValueNumeric = originalCurrentValueNumeric;
-        recalcGraphPage();
+        valueSlider.setProgress(0);
+        valueSlider.setProgress(valueSlider.getMax() / 2);
       }
     });
 
@@ -427,8 +427,6 @@ public class GraphActivity extends Activity {
             //let's change the number of digits able to enter per the valueEnum type
             changeInputFieldBasedOnType();
             currentValueNumeric = dataController.getInputValue(currentSliderKey);
-            //following is for the reset button.  It stores the new current value.
-            originalCurrentValueNumeric = currentValueNumeric;
 
             recalcGraphPage();
           }

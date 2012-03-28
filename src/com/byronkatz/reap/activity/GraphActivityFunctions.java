@@ -12,8 +12,8 @@ import com.byronkatz.reap.general.ValueEnum;
 
 public class GraphActivityFunctions {
 
-  private static final Double INCREASE_PERCENTAGE = 1.5d;
-  private static final Double DECREASE_PERCENTAGE = 0.5d;
+  private static final double INCREASE_PERCENTAGE = 1.5d;
+  private static final double DECREASE_PERCENTAGE = 0.5d;
 
 
   static ProgressDialog setupProgressGraphDialog(GraphActivity graphActivity) {
@@ -144,7 +144,7 @@ public class GraphActivityFunctions {
       break;
     case INTEGER:
 
-      editText.setText(String.valueOf(Math.round(valueNumeric)));
+      editText.setText(String.valueOf((int) Math.floor(valueNumeric)));
       break;
     default:
       //do nothing
