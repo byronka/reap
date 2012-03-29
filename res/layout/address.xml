@@ -31,8 +31,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.20"
                 android:gravity="center_vertical"
-                android:textColor="@color/tf_green2"
-                android:text="@string/streetAddressTitleText" >
+                android:text="@string/streetAddressTitleText"
+                android:textColor="@color/tf_green2" >
             </TextView>
 
             <EditText
@@ -55,8 +55,8 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.20"
-                android:textColor="@color/tf_green2"
-                android:text="@string/cityTitleText" >
+                android:text="@string/cityTitleText"
+                android:textColor="@color/tf_green2" >
             </TextView>
 
             <EditText
@@ -76,20 +76,29 @@
 
             <TextView
                 android:id="@+id/stateTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.20"
-                android:textColor="@color/tf_green2"
-                android:text="@string/stateTitleText" >
+                android:text="@string/stateTitleText"
+                android:textColor="@color/tf_green2" >
             </TextView>
 
-            <Spinner
-                android:id="@+id/stateTitleSpinner"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/stateEditText"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.80"
-                android:entries="@array/states_array" >
-            </Spinner>
+                android:inputType="text"
+                android:maxLength="20" >
+            </EditText>
+
+            <!-- <Spinner -->
+            <!-- android:id="@+id/stateTitleSpinner" -->
+            <!-- android:layout_width="wrap_content" -->
+            <!-- android:layout_height="wrap_content" -->
+            <!-- android:layout_weight="0.80" -->
+            <!-- android:entries="@array/states_array" > -->
+            <!-- </Spinner> -->
         </LinearLayout>
 
         <TextView
@@ -97,8 +106,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/commentsTitleText"
-            android:textColor="@color/tf_green2"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/tf_green2" />
 
         <EditText
             android:id="@+id/commentsText"

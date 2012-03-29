@@ -1,5 +1,6 @@
 com.byronkatz.reap.activity.AddressActivity
 com.byronkatz.reap.activity.AppInfoActivity
+com.byronkatz.reap.activity.AppInfoActivity: void sendEmailToDeveloperMethod(android.view.View)
 com.byronkatz.reap.activity.ConfigureDataTablesActivity
 com.byronkatz.reap.activity.ConfigureDataTablesActivity: void turnAllButtonsOn(android.view.View)
 com.byronkatz.reap.activity.ConfigureDataTablesActivity: void turnAllButtonsOff(android.view.View)

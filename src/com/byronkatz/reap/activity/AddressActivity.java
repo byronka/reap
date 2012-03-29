@@ -27,7 +27,8 @@ public class AddressActivity extends Activity {
   private EditText streetAddressEditText;
   private EditText cityEditText;
   private EditText commentsEditText;
-  private Spinner stateSpinner;
+//  private Spinner stateSpinner;
+  private EditText stateEditText;
   private final DataController dataController = 
       RealEstateAnalysisProcessorApplication.getInstance().getDataController();
   private ArrayAdapter<CharSequence> adapter;
@@ -77,33 +78,36 @@ public class AddressActivity extends Activity {
     statePosition = new String[STATE_ARRAY_SIZE];
     streetAddressEditText = (EditText) findViewById(R.id.streetAddressEditText);
     cityEditText = (EditText) findViewById(R.id.cityEditText);
-    stateSpinner = (Spinner) findViewById(R.id.stateTitleSpinner);
+//    stateSpinner = (Spinner) findViewById(R.id.stateTitleSpinner);
+    stateEditText = (EditText) findViewById(R.id.stateEditText);
     commentsEditText = (EditText) findViewById (R.id.commentsText);
 
-    adapter = ArrayAdapter.createFromResource(this, R.array.states_array, 
-        android.R.layout.simple_spinner_item);
-    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    stateSpinner.setAdapter(adapter);
+//    adapter = ArrayAdapter.createFromResource(this, R.array.states_array, 
+//        android.R.layout.simple_spinner_item);
+//    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//    stateSpinner.setAdapter(adapter);
 
 
 
-    stateSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-      @Override
-      public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
-          long arg3) {
-        ValueEnum key = ValueEnum.STATE_INITIALS;
-
-        String value = adapter.getItem(pos).toString();
-        dataController.setValueAsString(key, value);
-      }
-
-      @Override
-      public void onNothingSelected(AdapterView<?> arg0) {
-        // do nothing with this.  This method is necessary to satisfy interface.
-
-      }
-    });
+//    stateSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+//
+//      @Override
+//      public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
+//          long arg3) {
+//        ValueEnum key = ValueEnum.STATE_INITIALS;
+//
+//        String value = adapter.getItem(pos).toString();
+//        dataController.setValueAsString(key, value);
+//      }
+//
+//      @Override
+//      public void onNothingSelected(AdapterView<?> arg0) {
+//        // do nothing with this.  This method is necessary to satisfy interface.
+//
+//      }
+//    });
+    
+    stateEditText.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.STATE_INITIALS));
 
     streetAddressEditText.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.STREET_ADDRESS));
 
@@ -122,8 +126,11 @@ public class AddressActivity extends Activity {
 
     ValueEnum commentsKey = ValueEnum.COMMENTS;
     String commentsValue = commentsEditText.getText().toString();
+    
+    ValueEnum stateKey = ValueEnum.STATE_INITIALS;
+    String stateValue = stateEditText.getText().toString();
 
-  
+      dataController.setValueAsString(stateKey, stateValue);
       dataController.setValueAsString(streetAddressKey, streetAddressValue);
       dataController.setValueAsString(cityKey, cityValue);
       dataController.setValueAsString(commentsKey, commentsValue);
@@ -147,9 +154,11 @@ public class AddressActivity extends Activity {
 
     String stateInitials = 
         dataController.getValueAsString(ValueEnum.STATE_INITIALS);
+    stateEditText.setText(stateInitials);
 
-    int statePosition = adapter.getPosition(stateInitials);
-    stateSpinner.setSelection(statePosition);
+//    int statePosition = adapter.getPosition(stateInitials);
+//    stateSpinner.setSelection(statePosition);
+    
 
     String comments = 
         dataController.getValueAsString(ValueEnum.COMMENTS);

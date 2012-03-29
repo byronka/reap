@@ -125,15 +125,12 @@ public class GraphActivity extends Activity {
     executeGraphVisibility(isGraphVisible);
     //set the current current_slider_key, which is shown in the spinner at the top.  If
     //nothing set, then set Closing Costs as the default (it's the first one)
-    String temp = sp.getString(CURRENT_SLIDER_KEY, ValueEnum.CLOSING_COSTS.name());
+    String temp = sp.getString(CURRENT_SLIDER_KEY, ValueEnum.BUILDING_VALUE.name());
     currentSliderKey = ValueEnum.valueOf(temp);
     setSpinnerSelection(currentSliderKey);
     currentValueNumeric = dataController.getInputValue(currentSliderKey);
 
     checkYearSettingsAtResume();
-//    //following is for the reset button
-//    originalCurrentValueNumeric = currentValueNumeric;
-
   }
   
   @Override
