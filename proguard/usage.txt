@@ -1,17 +1,17 @@
 android.annotation.SuppressLint
 android.annotation.TargetApi
-com.byronkatz.BuildConfig
-com.byronkatz.R:
+com.byronkatz.reap.BuildConfig
+com.byronkatz.reap.R:
     10:10:public R()
-com.byronkatz.R$array
-com.byronkatz.R$attr
-com.byronkatz.R$color
-com.byronkatz.R$drawable
-com.byronkatz.R$id
-com.byronkatz.R$layout
-com.byronkatz.R$menu
-com.byronkatz.R$string
-com.byronkatz.R$styleable:
+com.byronkatz.reap.R$array
+com.byronkatz.reap.R$attr
+com.byronkatz.reap.R$color
+com.byronkatz.reap.R$drawable
+com.byronkatz.reap.R$id
+com.byronkatz.reap.R$layout
+com.byronkatz.reap.R$menu
+com.byronkatz.reap.R$string
+com.byronkatz.reap.R$styleable:
     public static final int AnalysisGraph_graphType
     643:643:public R$styleable()
 com.byronkatz.reap.activity.AddressActivity:
@@ -78,11 +78,11 @@ com.byronkatz.reap.general.DatabaseAdapter:
 com.byronkatz.reap.general.RealEstateAnalysisProcessorApplication:
     public static final java.lang.String BASE_VALUES
 com.byronkatz.reap.general.Utility:
-    34:34:public Utility()
-    212:222:public static void showHelpDialog(java.lang.String,int,android.content.Context)
-    293:295:public static void showToast(android.app.Activity,java.lang.String)
+    33:33:public Utility()
+    211:221:public static void showHelpDialog(java.lang.String,int,android.content.Context)
+    292:294:public static void showToast(android.app.Activity,java.lang.String)
 com.byronkatz.reap.general.ValueEnum:
-    113:114:public void setIsSavedToDatabase(java.lang.Boolean)
+    114:115:public void setIsSavedToDatabase(java.lang.Boolean)
 com.google.android.vending.licensing.AESObfuscator:
     private static final java.lang.String UTF8
     private static final java.lang.String KEYGEN_ALGORITHM

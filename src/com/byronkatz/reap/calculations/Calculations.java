@@ -311,13 +311,13 @@ public class Calculations implements ValueSettable {
 
     if (atcfCache == null || atcfCache.length != totalYearsToCalculate) {
 
-      atcfCache = new double[totalYearsToCalculate + 1];
-      atcfAccumCache = new double[totalYearsToCalculate + 1];
-      atcfPvCache = new double[totalYearsToCalculate + 1];
-      operatingExpensesCache = new double[totalYearsToCalculate + 1];
-      yearlyGrossIncomeCache = new double[totalYearsToCalculate + 1];
-      yearlyNetOperatingIncomeCache = new double[totalYearsToCalculate + 1];
-      taxableIncomeCache = new double[totalYearsToCalculate + 1];
+      atcfCache = new double[totalYearsToCalculate];
+      atcfAccumCache = new double[totalYearsToCalculate];
+      atcfPvCache = new double[totalYearsToCalculate];
+      operatingExpensesCache = new double[totalYearsToCalculate];
+      yearlyGrossIncomeCache = new double[totalYearsToCalculate];
+      yearlyNetOperatingIncomeCache = new double[totalYearsToCalculate];
+      taxableIncomeCache = new double[totalYearsToCalculate];
       
     }
   }

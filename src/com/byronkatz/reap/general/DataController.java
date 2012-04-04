@@ -266,7 +266,6 @@ public class DataController implements DataManager {
 
     //first chance to bail - is year null?
     if (year == null) {      
-      Log.d("DataController", "year is null");
       return cv;
     }
     

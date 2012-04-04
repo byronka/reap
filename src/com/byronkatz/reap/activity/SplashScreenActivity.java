@@ -475,7 +475,6 @@ public class SplashScreenActivity extends Activity {
       // while setting up or calling the license checker library.
       // Please examine the error code and fix the error.
       String result = String.format(getString(R.string.application_error), errorCode);
-      Log.d(getClass().getName(), "result is " + result);
       setLicensed(true);
       displayResult(result);
     }

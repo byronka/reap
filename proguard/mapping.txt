@@ -1,5 +1,5 @@
-com.byronkatz.R -> com.byronkatz.a:
-com.byronkatz.R$styleable -> com.byronkatz.b:
+com.byronkatz.reap.R -> com.byronkatz.reap.a:
+com.byronkatz.reap.R$styleable -> com.byronkatz.reap.b:
     int[] AnalysisGraph -> a
 com.byronkatz.reap.activity.AddressActivity -> com.byronkatz.reap.activity.AddressActivity:
     java.lang.String[] statePosition -> a
@@ -8,13 +8,13 @@ com.byronkatz.reap.activity.AddressActivity -> com.byronkatz.reap.activity.Addre
     android.widget.EditText commentsEditText -> d
     android.widget.EditText stateEditText -> e
     com.byronkatz.reap.general.DataController dataController -> f
-    39:42:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
-    50:53:boolean onPrepareOptionsMenu(android.view.Menu) -> onPrepareOptionsMenu
-    58:61:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
-    67:70:void onResume() -> onResume
-    75:117:void onCreate(android.os.Bundle) -> onCreate
-    121:137:void saveValuesToCache() -> a
-    142:145:void onPause() -> onPause
+    35:38:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    46:49:boolean onPrepareOptionsMenu(android.view.Menu) -> onPrepareOptionsMenu
+    54:57:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    63:66:void onResume() -> onResume
+    71:113:void onCreate(android.os.Bundle) -> onCreate
+    117:133:void saveValuesToCache() -> a
+    138:141:void onPause() -> onPause
 com.byronkatz.reap.activity.AppInfoActivity -> com.byronkatz.reap.activity.AppInfoActivity:
     16:18:void onCreate(android.os.Bundle) -> onCreate
     22:29:void sendEmailToDeveloperMethod(android.view.View) -> sendEmailToDeveloperMethod
@@ -26,17 +26,17 @@ com.byronkatz.reap.activity.ConfigureDataTablesActivity -> com.byronkatz.reap.ac
     android.widget.CheckBox graphVisibilityCheckbox -> b
     android.content.SharedPreferences graphActivitySharedPrefs -> c
     com.byronkatz.reap.general.DataController dataController -> g
-    51:71:void onCreate(android.os.Bundle) -> onCreate
-    75:79:void onResume() -> onResume
-    83:98:void onPause() -> onPause
-    101:117:void packageUpDecisionsFromConfig() -> a
-    123:172:void createDataTableConfiguration() -> b
-    178:183:void turnAllButtonsOn(android.view.View) -> turnAllButtonsOn
-    189:194:void turnAllButtonsOff(android.view.View) -> turnAllButtonsOff
-    39:39:void access$0(com.byronkatz.reap.activity.ConfigureDataTablesActivity,java.lang.Boolean) -> a
+    50:70:void onCreate(android.os.Bundle) -> onCreate
+    74:78:void onResume() -> onResume
+    82:97:void onPause() -> onPause
+    100:116:void packageUpDecisionsFromConfig() -> a
+    122:171:void createDataTableConfiguration() -> b
+    177:182:void turnAllButtonsOn(android.view.View) -> turnAllButtonsOn
+    188:193:void turnAllButtonsOff(android.view.View) -> turnAllButtonsOff
+    38:38:void access$0(com.byronkatz.reap.activity.ConfigureDataTablesActivity,java.lang.Boolean) -> a
 com.byronkatz.reap.activity.ConfigureDataTablesActivity$1 -> com.byronkatz.reap.activity.a:
     com.byronkatz.reap.activity.ConfigureDataTablesActivity this$0 -> a
-    67:68:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+    66:67:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
 com.byronkatz.reap.activity.CurrentValueOnFocusChangeListener -> com.byronkatz.reap.activity.b:
     com.byronkatz.reap.activity.GraphActivity graphActivity -> a
     26:39:void onFocusChange(android.view.View,boolean) -> onFocusChange
@@ -81,14 +81,14 @@ com.byronkatz.reap.activity.FinancialEnvironmentActivity -> com.byronkatz.reap.a
     android.widget.EditText inflationRate -> a
     android.widget.EditText realEstateAppreciationRate -> b
     com.byronkatz.reap.general.DataController dataController -> c
-    31:34:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
-    42:45:boolean onPrepareOptionsMenu(android.view.Menu) -> onPrepareOptionsMenu
-    50:53:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
-    59:62:void onResume() -> onResume
-    67:86:void onCreate(android.os.Bundle) -> onCreate
-    89:90:void callCalculator(android.view.View) -> callCalculator
-    104:111:void saveValuesToCache() -> a
-    115:118:void onPause() -> onPause
+    30:33:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    41:44:boolean onPrepareOptionsMenu(android.view.Menu) -> onPrepareOptionsMenu
+    49:52:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    58:61:void onResume() -> onResume
+    66:85:void onCreate(android.os.Bundle) -> onCreate
+    88:89:void callCalculator(android.view.View) -> callCalculator
+    103:110:void saveValuesToCache() -> a
+    114:117:void onPause() -> onPause
 com.byronkatz.reap.activity.GraphActivity -> com.byronkatz.reap.activity.GraphActivity:
     com.byronkatz.reap.general.ValueEnum currentSliderKey -> a
     android.widget.EditText currentValueEditText -> b
@@ -108,40 +108,40 @@ com.byronkatz.reap.activity.GraphActivity -> com.byronkatz.reap.activity.GraphAc
     android.content.SharedPreferences sp -> m
     com.byronkatz.reap.general.ValueEnum[] dataTableItems -> n
     int[] $SWITCH_TABLE$com$byronkatz$reap$general$ValueEnum$ValueType -> r
-    77:80:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
-    85:94:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
-    144:151:void onResume() -> onResume
-    157:187:void onCreate(android.os.Bundle) -> onCreate
-    194:200:void onPause() -> onPause
-    239:241:void updateYearDisplayAtSeekBar(java.lang.Integer) -> a
-    252:265:void recalcGraphPage() -> a
-    268:269:void sendFocusToJail() -> b
-    480:503:void changeAttributesAllValueEditText(int,com.byronkatz.reap.general.ValueEnum$ValueType) -> a
-    523:526:void setMaxLengthEditText(android.widget.EditText,int) -> a
-    547:547:java.lang.Integer getCurrentYearSelected() -> c
-    306:306:java.lang.Double access$0(com.byronkatz.reap.activity.GraphActivity,int,com.byronkatz.reap.general.ValueEnum) -> a
-    58:58:com.byronkatz.reap.general.DataController access$1(com.byronkatz.reap.activity.GraphActivity) -> a
-    546:546:java.lang.Integer access$2(com.byronkatz.reap.activity.GraphActivity) -> b
-    238:238:void access$3(com.byronkatz.reap.activity.GraphActivity,java.lang.Integer) -> a
-    448:448:void access$4(com.byronkatz.reap.activity.GraphActivity) -> c
-    41:41:int[] $SWITCH_TABLE$com$byronkatz$reap$general$ValueEnum$ValueType() -> d
+    75:78:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    83:92:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    142:149:void onResume() -> onResume
+    155:185:void onCreate(android.os.Bundle) -> onCreate
+    192:198:void onPause() -> onPause
+    237:239:void updateYearDisplayAtSeekBar(java.lang.Integer) -> a
+    250:263:void recalcGraphPage() -> a
+    266:267:void sendFocusToJail() -> b
+    478:501:void changeAttributesAllValueEditText(int,com.byronkatz.reap.general.ValueEnum$ValueType) -> a
+    521:524:void setMaxLengthEditText(android.widget.EditText,int) -> a
+    545:545:java.lang.Integer getCurrentYearSelected() -> c
+    304:304:java.lang.Double access$0(com.byronkatz.reap.activity.GraphActivity,int,com.byronkatz.reap.general.ValueEnum) -> a
+    56:56:com.byronkatz.reap.general.DataController access$1(com.byronkatz.reap.activity.GraphActivity) -> a
+    544:544:java.lang.Integer access$2(com.byronkatz.reap.activity.GraphActivity) -> b
+    236:236:void access$3(com.byronkatz.reap.activity.GraphActivity,java.lang.Integer) -> a
+    446:446:void access$4(com.byronkatz.reap.activity.GraphActivity) -> c
+    39:39:int[] $SWITCH_TABLE$com$byronkatz$reap$general$ValueEnum$ValueType() -> d
 com.byronkatz.reap.activity.GraphActivity$1 -> com.byronkatz.reap.activity.j:
     com.byronkatz.reap.activity.GraphActivity this$0 -> a
-    285:287:void onClick(android.view.View) -> onClick
+    283:285:void onClick(android.view.View) -> onClick
 com.byronkatz.reap.activity.GraphActivity$2 -> com.byronkatz.reap.activity.k:
     com.byronkatz.reap.activity.GraphActivity this$0 -> a
-    331:331:void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
-    336:336:void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
-    343:353:void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
+    329:329:void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
+    334:334:void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
+    341:351:void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
 com.byronkatz.reap.activity.GraphActivity$3 -> com.byronkatz.reap.activity.l:
     com.byronkatz.reap.activity.GraphActivity this$0 -> a
-    369:369:void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
-    374:374:void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
-    379:387:void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
+    367:367:void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
+    372:372:void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
+    377:385:void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
 com.byronkatz.reap.activity.GraphActivity$4 -> com.byronkatz.reap.activity.m:
     com.byronkatz.reap.activity.GraphActivity this$0 -> a
-    426:434:void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
-    439:439:void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
+    424:432:void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
+    437:437:void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
 com.byronkatz.reap.activity.GraphActivityFunctions -> com.byronkatz.reap.activity.n:
     int[] $SWITCH_TABLE$com$byronkatz$reap$general$ValueEnum$ValueType -> a
     37:54:void invalidateGraphs(android.app.Activity) -> a
@@ -196,26 +196,26 @@ com.byronkatz.reap.activity.RentalActivity -> com.byronkatz.reap.activity.Rental
     android.widget.EditText requiredRateOfReturn -> f
     android.widget.EditText monthsUntilRentStarts -> g
     com.byronkatz.reap.general.DataController dataController -> h
-    35:38:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
-    46:49:boolean onPrepareOptionsMenu(android.view.Menu) -> onPrepareOptionsMenu
-    54:57:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
-    63:66:void onResume() -> onResume
-    72:121:void onCreate(android.os.Bundle) -> onCreate
-    124:125:void callCalculator(android.view.View) -> callCalculator
-    128:155:void saveValuesToCache() -> a
-    159:162:void onPause() -> onPause
+    34:37:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    45:48:boolean onPrepareOptionsMenu(android.view.Menu) -> onPrepareOptionsMenu
+    53:56:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    62:65:void onResume() -> onResume
+    71:120:void onCreate(android.os.Bundle) -> onCreate
+    123:124:void callCalculator(android.view.View) -> callCalculator
+    127:154:void saveValuesToCache() -> a
+    158:161:void onPause() -> onPause
 com.byronkatz.reap.activity.SaleActivity -> com.byronkatz.reap.activity.SaleActivity:
     android.widget.EditText generalSaleExpenses -> a
     android.widget.EditText sellingBrokerRate -> b
     com.byronkatz.reap.general.DataController dataController -> c
-    30:33:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
-    41:44:boolean onPrepareOptionsMenu(android.view.Menu) -> onPrepareOptionsMenu
-    49:52:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
-    58:61:void onResume() -> onResume
-    66:85:void onCreate(android.os.Bundle) -> onCreate
-    88:89:void callCalculator(android.view.View) -> callCalculator
-    92:99:void saveValuesToCache() -> a
-    103:106:void onPause() -> onPause
+    29:32:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    40:43:boolean onPrepareOptionsMenu(android.view.Menu) -> onPrepareOptionsMenu
+    48:51:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    57:60:void onResume() -> onResume
+    65:84:void onCreate(android.os.Bundle) -> onCreate
+    87:88:void callCalculator(android.view.View) -> callCalculator
+    91:98:void saveValuesToCache() -> a
+    102:105:void onPause() -> onPause
 com.byronkatz.reap.activity.SavedDataBrowserActivity -> com.byronkatz.reap.activity.SavedDataBrowserActivity:
     android.widget.SimpleCursorAdapter adapter -> a
     android.database.Cursor cursor -> e
@@ -231,56 +231,56 @@ com.byronkatz.reap.activity.SavedDataBrowserActivity -> com.byronkatz.reap.activ
     java.lang.String[] onLongClickFileOptions -> l
     android.content.ContentValues contentValues -> m
     com.byronkatz.reap.general.DataController dataController -> n
-    116:124:void onResume() -> onResume
-    128:137:void onPause() -> onPause
-    142:146:void onCreate(android.os.Bundle) -> onCreate
-    150:177:void setupDataBrowser(android.database.Cursor) -> a
-    181:184:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
-    189:195:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
-    289:301:android.database.Cursor getSortedCursor(java.lang.String,java.lang.String) -> a
-    337:414:java.lang.String createEmailMessage() -> a
-    466:474:android.app.AlertDialog$Builder buildAlertDialog(int,int,int) -> a
-    614:621:java.lang.String addAddressToMessage(java.lang.String) -> a
-    520:520:void access$0(com.byronkatz.reap.activity.SavedDataBrowserActivity,int) -> a
-    198:198:void access$1(com.byronkatz.reap.activity.SavedDataBrowserActivity,int) -> b
-    477:477:void access$2(com.byronkatz.reap.activity.SavedDataBrowserActivity,int) -> c
-    304:304:void access$3(com.byronkatz.reap.activity.SavedDataBrowserActivity,int) -> d
-    264:264:void access$4(com.byronkatz.reap.activity.SavedDataBrowserActivity,java.lang.String,java.lang.Integer) -> a
-    422:422:void access$5$7241fce1(com.byronkatz.reap.activity.SavedDataBrowserActivity) -> a
-    500:500:void access$6(com.byronkatz.reap.activity.SavedDataBrowserActivity) -> b
-    598:598:void access$7(com.byronkatz.reap.activity.SavedDataBrowserActivity) -> c
+    111:119:void onResume() -> onResume
+    123:132:void onPause() -> onPause
+    137:141:void onCreate(android.os.Bundle) -> onCreate
+    145:172:void setupDataBrowser(android.database.Cursor) -> a
+    176:179:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    184:190:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    284:296:android.database.Cursor getSortedCursor(java.lang.String,java.lang.String) -> a
+    332:409:java.lang.String createEmailMessage() -> a
+    467:475:android.app.AlertDialog$Builder buildAlertDialog(int,int,int) -> a
+    615:622:java.lang.String addAddressToMessage(java.lang.String) -> a
+    521:521:void access$0(com.byronkatz.reap.activity.SavedDataBrowserActivity,int) -> a
+    193:193:void access$1(com.byronkatz.reap.activity.SavedDataBrowserActivity,int) -> b
+    478:478:void access$2(com.byronkatz.reap.activity.SavedDataBrowserActivity,int) -> c
+    299:299:void access$3(com.byronkatz.reap.activity.SavedDataBrowserActivity,int) -> d
+    259:259:void access$4(com.byronkatz.reap.activity.SavedDataBrowserActivity,java.lang.String,java.lang.Integer) -> a
+    417:417:void access$5$7241fce1(com.byronkatz.reap.activity.SavedDataBrowserActivity) -> a
+    501:501:void access$6(com.byronkatz.reap.activity.SavedDataBrowserActivity) -> b
+    599:599:void access$7(com.byronkatz.reap.activity.SavedDataBrowserActivity) -> c
 com.byronkatz.reap.activity.SavedDataBrowserActivity$1 -> com.byronkatz.reap.activity.s:
     com.byronkatz.reap.activity.SavedDataBrowserActivity this$0 -> a
-    163:164:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    158:159:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.byronkatz.reap.activity.SavedDataBrowserActivity$10 -> com.byronkatz.reap.activity.t:
     com.byronkatz.reap.activity.SavedDataBrowserActivity this$0 -> a
-    538:538:void onClick(android.content.DialogInterface,int) -> onClick
+    539:539:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.activity.SavedDataBrowserActivity$2 -> com.byronkatz.reap.activity.u:
     com.byronkatz.reap.activity.SavedDataBrowserActivity this$0 -> a
-    172:174:boolean onItemLongClick(android.widget.AdapterView,android.view.View,int,long) -> onItemLongClick
+    167:169:boolean onItemLongClick(android.widget.AdapterView,android.view.View,int,long) -> onItemLongClick
 com.byronkatz.reap.activity.SavedDataBrowserActivity$3 -> com.byronkatz.reap.activity.v:
     com.byronkatz.reap.activity.SavedDataBrowserActivity this$0 -> a
     int val$position -> b
-    208:218:void onClick(android.content.DialogInterface,int) -> onClick
+    203:213:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.activity.SavedDataBrowserActivity$4 -> com.byronkatz.reap.activity.w:
     com.byronkatz.reap.activity.SavedDataBrowserActivity this$0 -> a
-    235:256:void onClick(android.content.DialogInterface,int) -> onClick
+    230:251:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.activity.SavedDataBrowserActivity$5 -> com.byronkatz.reap.activity.x:
     com.byronkatz.reap.activity.SavedDataBrowserActivity this$0 -> a
     int val$position -> b
-    319:321:void onClick(android.content.DialogInterface,int) -> onClick
+    314:316:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.activity.SavedDataBrowserActivity$6 -> com.byronkatz.reap.activity.y:
     com.byronkatz.reap.activity.SavedDataBrowserActivity this$0 -> a
-    330:330:void onClick(android.content.DialogInterface,int) -> onClick
+    325:325:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.activity.SavedDataBrowserActivity$7 -> com.byronkatz.reap.activity.z:
     com.byronkatz.reap.activity.SavedDataBrowserActivity this$0 -> a
-    486:487:void onClick(android.content.DialogInterface,int) -> onClick
+    487:488:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.activity.SavedDataBrowserActivity$8 -> com.byronkatz.reap.activity.aa:
     com.byronkatz.reap.activity.SavedDataBrowserActivity this$0 -> a
-    495:495:void onClick(android.content.DialogInterface,int) -> onClick
+    496:496:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.activity.SavedDataBrowserActivity$9 -> com.byronkatz.reap.activity.ab:
     com.byronkatz.reap.activity.SavedDataBrowserActivity this$0 -> a
-    529:530:void onClick(android.content.DialogInterface,int) -> onClick
+    530:531:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.activity.SavedDataBrowserViewBinder -> com.byronkatz.reap.activity.ac:
     18:41:boolean setViewValue(android.view.View,android.database.Cursor,int) -> setViewValue
 com.byronkatz.reap.activity.SplashScreenActivity -> com.byronkatz.reap.activity.SplashScreenActivity:
@@ -348,14 +348,14 @@ com.byronkatz.reap.activity.TaxesActivity -> com.byronkatz.reap.activity.TaxesAc
     android.widget.EditText localMunicipalFees -> d
     android.widget.TextView totalPurchasePriceHint -> e
     com.byronkatz.reap.general.DataController dataController -> f
-    33:36:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
-    44:47:boolean onPrepareOptionsMenu(android.view.Menu) -> onPrepareOptionsMenu
-    52:55:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
-    61:64:void onResume() -> onResume
-    69:107:void onCreate(android.os.Bundle) -> onCreate
-    110:111:void callCalculator(android.view.View) -> callCalculator
-    114:129:void saveValuesToCache() -> a
-    133:136:void onPause() -> onPause
+    32:35:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    43:46:boolean onPrepareOptionsMenu(android.view.Menu) -> onPrepareOptionsMenu
+    51:54:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    60:63:void onResume() -> onResume
+    68:106:void onCreate(android.os.Bundle) -> onCreate
+    109:110:void callCalculator(android.view.View) -> callCalculator
+    113:128:void saveValuesToCache() -> a
+    132:135:void onPause() -> onPause
 com.byronkatz.reap.activity.ValueEditTextOnEditorActionListener -> com.byronkatz.reap.activity.am:
     com.byronkatz.reap.activity.GraphActivity graphActivity -> a
     25:26:boolean onEditorAction(android.widget.TextView,int,android.view.KeyEvent) -> onEditorAction
@@ -779,8 +779,8 @@ com.byronkatz.reap.general.OnFocusChangeListenerWrapper -> com.byronkatz.reap.ge
     16:22:void onFocusChange(android.view.View,boolean) -> onFocusChange
 com.byronkatz.reap.general.OnFocusChangeListenerWrapperComments -> com.byronkatz.reap.general.i:
     com.byronkatz.reap.general.ValueEnum ve -> a
-    29:72:void onFocusChange(android.view.View,boolean) -> onFocusChange
-    79:142:java.lang.String uncompressText() -> a
+    28:71:void onFocusChange(android.view.View,boolean) -> onFocusChange
+    78:141:java.lang.String uncompressText() -> a
 com.byronkatz.reap.general.OnItemSelectedListenerWrapper -> com.byronkatz.reap.general.j:
     android.widget.AdapterView$OnItemSelectedListener listener -> a
     java.lang.Boolean spinnerInitialized -> b
@@ -807,44 +807,44 @@ com.byronkatz.reap.general.Utility -> com.byronkatz.reap.general.l:
     java.text.NumberFormat currencyNumberFormat -> f
     java.text.NumberFormat percentNumberFormat -> g
     int[] $SWITCH_TABLE$com$byronkatz$reap$general$ValueEnum$ValueType -> h
-    54:64:void showHelpDialog(int,int,android.content.Context) -> a
-    75:84:java.util.List removeCertainItemsFromDataTable(java.util.List) -> a
-    94:112:java.util.List sortDataTableValues(android.app.Activity,java.util.List) -> a
-    118:158:void switchForMenuItem(android.view.MenuItem,android.app.Activity) -> a
-    228:242:void callCalc(android.app.Activity) -> a
-    251:263:void showAlertDialog(android.app.Activity,java.lang.String) -> a
-    266:278:void showAlertDialog(android.content.Context,java.lang.String) -> a
-    281:289:java.lang.String toHexString(byte[]) -> a
-    298:320:void setSelectionOnView(android.view.View,com.byronkatz.reap.general.ValueEnum) -> a
-    327:327:java.lang.String displayCurrency(java.lang.Double) -> a
-    342:354:java.lang.String displayShortValue(java.lang.Double,com.byronkatz.reap.general.ValueEnum) -> a
-    362:364:java.lang.String displayShortPercentage(java.lang.Double) -> b
-    375:386:java.lang.String displayValue(java.lang.Double,com.byronkatz.reap.general.ValueEnum) -> b
-    395:411:java.lang.Double parseCurrency(java.lang.String) -> a
-    423:435:java.lang.String parseAndDisplayShortValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> a
-    447:459:java.lang.String parseAndDisplayValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> b
-    470:480:java.lang.Double parseValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> c
-    484:491:void parseThenDisplayValue(android.view.View,com.byronkatz.reap.general.ValueEnum) -> b
-    518:520:java.lang.String displayPercentage(java.lang.Double) -> c
-    524:542:java.lang.Double parsePercentage(java.lang.String) -> b
-    40:40:com.byronkatz.reap.general.DataController access$0() -> a
-    34:34:int[] $SWITCH_TABLE$com$byronkatz$reap$general$ValueEnum$ValueType() -> b
+    53:63:void showHelpDialog(int,int,android.content.Context) -> a
+    74:83:java.util.List removeCertainItemsFromDataTable(java.util.List) -> a
+    93:111:java.util.List sortDataTableValues(android.app.Activity,java.util.List) -> a
+    117:157:void switchForMenuItem(android.view.MenuItem,android.app.Activity) -> a
+    227:241:void callCalc(android.app.Activity) -> a
+    250:262:void showAlertDialog(android.app.Activity,java.lang.String) -> a
+    265:277:void showAlertDialog(android.content.Context,java.lang.String) -> a
+    280:288:java.lang.String toHexString(byte[]) -> a
+    297:319:void setSelectionOnView(android.view.View,com.byronkatz.reap.general.ValueEnum) -> a
+    326:326:java.lang.String displayCurrency(java.lang.Double) -> a
+    341:353:java.lang.String displayShortValue(java.lang.Double,com.byronkatz.reap.general.ValueEnum) -> a
+    361:363:java.lang.String displayShortPercentage(java.lang.Double) -> b
+    374:385:java.lang.String displayValue(java.lang.Double,com.byronkatz.reap.general.ValueEnum) -> b
+    394:410:java.lang.Double parseCurrency(java.lang.String) -> a
+    422:434:java.lang.String parseAndDisplayShortValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> a
+    446:458:java.lang.String parseAndDisplayValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> b
+    469:479:java.lang.Double parseValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> c
+    483:490:void parseThenDisplayValue(android.view.View,com.byronkatz.reap.general.ValueEnum) -> b
+    517:519:java.lang.String displayPercentage(java.lang.Double) -> c
+    523:541:java.lang.Double parsePercentage(java.lang.String) -> b
+    39:39:com.byronkatz.reap.general.DataController access$0() -> a
+    33:33:int[] $SWITCH_TABLE$com$byronkatz$reap$general$ValueEnum$ValueType() -> b
 com.byronkatz.reap.general.Utility$1 -> com.byronkatz.reap.general.m:
     android.app.Activity val$activity -> a
     1:1:int compare(java.lang.Object,java.lang.Object) -> compare
 com.byronkatz.reap.general.Utility$2 -> com.byronkatz.reap.general.n:
     android.app.Activity val$activity -> a
     java.lang.String val$dataSavedAsNewEntry -> b
-    178:184:void onClick(android.content.DialogInterface,int) -> onClick
+    177:183:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.general.Utility$3 -> com.byronkatz.reap.general.o:
     android.app.Activity val$activity -> a
     java.lang.String val$dataSavedIntoCurrentEntryText -> b
     java.lang.Integer val$currentDataRow -> c
-    199:203:void onClick(android.content.DialogInterface,int) -> onClick
+    198:202:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.general.Utility$4 -> com.byronkatz.reap.general.p:
-    260:261:void onClick(android.content.DialogInterface,int) -> onClick
+    259:260:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.general.Utility$5 -> com.byronkatz.reap.general.q:
-    275:276:void onClick(android.content.DialogInterface,int) -> onClick
+    274:275:void onClick(android.content.DialogInterface,int) -> onClick
 com.byronkatz.reap.general.ValueEnum -> com.byronkatz.reap.general.r:
     com.byronkatz.reap.general.ValueEnum ATCF -> a
     com.byronkatz.reap.general.ValueEnum ATCF_ACCUMULATOR -> b
@@ -919,12 +919,12 @@ com.byronkatz.reap.general.ValueEnum -> com.byronkatz.reap.general.r:
     java.lang.Boolean isSavedToDatabase -> as
     java.lang.Boolean isVaryingByYear -> at
     com.byronkatz.reap.general.ValueEnum[] ENUM$VALUES -> au
-    89:89:java.lang.String toString() -> toString
-    97:97:com.byronkatz.reap.general.ValueEnum$ValueType getType() -> a
-    101:101:java.lang.Integer getTitleText() -> b
-    105:105:java.lang.Integer getHelpText() -> c
-    109:109:java.lang.Boolean isSavedToDatabase() -> d
-    117:117:java.lang.Boolean isVaryingByYear() -> e
+    90:90:java.lang.String toString() -> toString
+    98:98:com.byronkatz.reap.general.ValueEnum$ValueType getType() -> a
+    102:102:java.lang.Integer getTitleText() -> b
+    106:106:java.lang.Integer getHelpText() -> c
+    110:110:java.lang.Boolean isSavedToDatabase() -> d
+    118:118:java.lang.Boolean isVaryingByYear() -> e
     1:1:com.byronkatz.reap.general.ValueEnum[] values() -> values
     1:1:com.byronkatz.reap.general.ValueEnum valueOf(java.lang.String) -> valueOf
 com.byronkatz.reap.general.ValueEnum$ValueType -> com.byronkatz.reap.general.s:

@@ -163,16 +163,12 @@ public class AnalysisGraph extends View {
     setFocusable(true);
   }
 
-  /**
-   * A method called externally, used to indicate to this view that new data is available.
-   */
   public void setPlotPoints() {
     dataPoints.clear();
     for (int year = 0; year < (
         (int) dataController.getInputValue(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS) / 12 + 
         (int) dataController.getInputValue(ValueEnum.EXTRA_YEARS));
         year++) {
-      //add 11 to get to the end of December of that year
       dataPoints.add(year, dataController.getCalcValue(graphKeyValue, year*12));
     }
   }

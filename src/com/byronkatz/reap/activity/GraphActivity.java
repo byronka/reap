@@ -10,12 +10,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -29,6 +29,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.byronkatz.reap.R;
+import com.byronkatz.reap.calculations.Calculations;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.OnItemSelectedListenerWrapper;
 import com.byronkatz.reap.general.RealEstateAnalysisProcessorApplication;
@@ -153,10 +154,9 @@ public class GraphActivity extends Activity {
   public void onCreate(Bundle savedState) {
 
     super.onCreate(savedState);
-    requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+    dataController.calculationsSetValues();
     setContentView(R.layout.graph);
-    getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.my_title);
-
+    
     //data table is the table of calculated and input values shown under the graph
     dataTable = new DataTable(this);
 
@@ -172,6 +172,8 @@ public class GraphActivity extends Activity {
     if (currentYearSelected < 1 || currentYearSelected > currentYearMaximum) {
       currentYearSelected = currentYearMaximum;
     }
+
+    
     
     setupValueSpinner();
     setupTimeSlider(currentYearMaximum, currentYearSelected);
