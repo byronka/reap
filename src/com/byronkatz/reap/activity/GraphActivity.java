@@ -102,6 +102,10 @@ public class GraphActivity extends Activity {
     }
   }
 
+  /**
+   * Algorithm to check what the max year is and change values elsewhere
+   * as necessary to reflect the change
+   */
   private void checkYearSettingsAtResume() {
     //necessary in case the user switches between loan types (15 vs. 30 year)
     Integer currentYearMaximum = 
@@ -116,6 +120,7 @@ public class GraphActivity extends Activity {
   
   private void getAndApplySharedPreferencesOnResume() {
     
+    checkYearSettingsAtResume();
     sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
     dataController.setViewableDataTableRows(dataTable.restoreViewableDataTableRows(sp));
     dataTable.makeSelectedRowsVisible( valueToDataTableItemCorrespondence);
@@ -130,7 +135,7 @@ public class GraphActivity extends Activity {
     setSpinnerSelection(currentSliderKey);
     currentValueNumeric = dataController.getInputValue(currentSliderKey);
 
-    checkYearSettingsAtResume();
+//    checkYearSettingsAtResume();
   }
   
   @Override

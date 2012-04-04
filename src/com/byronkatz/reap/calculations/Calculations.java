@@ -2,6 +2,8 @@ package com.byronkatz.reap.calculations;
 
 import java.util.Arrays;
 
+import android.util.Log;
+
 import com.byronkatz.reap.general.DataManager;
 import com.byronkatz.reap.general.ValueEnum;
 
@@ -506,6 +508,7 @@ public class Calculations implements ValueSettable {
       if (compoundingPeriod < 0) {
         return 0d;
       }
+
       return yearlyNetOperatingIncomeCache[compoundingPeriod / MONTHS_IN_YEAR];
 
     }
@@ -619,10 +622,14 @@ public class Calculations implements ValueSettable {
     }
 
     private double taxesDueFunction(int compoundingPeriod) {
-      return (investmentFValue.getValue(compoundingPeriod)
-          - brokerCutOfSale.getValue(compoundingPeriod) - totalPurchaseValue + (yearlyDepreciation
-          .getValue(compoundingPeriod) * ((compoundingPeriod / MONTHS_IN_YEAR) + 1)))
-          * TAX_ON_CAPITAL_GAINS;
+      return 
+          (investmentFValue.getValue(compoundingPeriod) - 
+              brokerCutOfSale.getValue(compoundingPeriod) - 
+              sellingExpensesFValue.getValue(compoundingPeriod) -
+              totalPurchaseValue + 
+              (yearlyDepreciation.getValue(compoundingPeriod)  * 
+                  ((compoundingPeriod / MONTHS_IN_YEAR) + 1))) * 
+                  TAX_ON_CAPITAL_GAINS;
     }
 
   }

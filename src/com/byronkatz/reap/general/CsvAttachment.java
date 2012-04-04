@@ -373,6 +373,191 @@ public class CsvAttachment {
     }
     csvOutputArray.append("\n\n");
     
+    
+    // WORK AREA BEGIN
+    // WORK AREA BEGIN
+    // WORK AREA BEGIN
+    // WORK AREA BEGIN
+    // WORK AREA BEGIN
+    
+    
+    
+  //==================================
+    //add the yearly atcf equations
+    csvOutputArray.append("\"AFTER TAX EQUITY REVERSIONS (liquidation of investment)\",\n");
+    csvOutputArray.append("\"Note that numbers are valid as of the end of the year\",\n\n");
+
+    //year at top
+    csvOutputArray.append("\"Year:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray.append(i+1 + ",");
+    }
+    csvOutputArray.append("\n");
+
+    //gross income
+    csvOutputArray.append("\"Sale price:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.PROJECTED_HOME_VALUE, i*12);
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"minus future value selling expenses:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray.append("\"");
+      csvOutputArray.append(
+
+          dataManager.getCalcValue(ValueEnum.SELLING_EXPENSES, i*12) +
+          dataManager.getCalcValue(ValueEnum.BROKER_CUT_OF_SALE, i*12)
+          );
+      csvOutputArray.append("\"");
+      csvOutputArray.append(",");
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"equals Net Sale Price:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray.append("\"");
+      csvOutputArray.append(
+
+          dataManager.getCalcValue(ValueEnum.PROJECTED_HOME_VALUE, i*12) -
+          dataManager.getCalcValue(ValueEnum.SELLING_EXPENSES, i*12) -
+          dataManager.getCalcValue(ValueEnum.BROKER_CUT_OF_SALE, i*12)
+          );
+      csvOutputArray.append("\"");
+      csvOutputArray.append(",");
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"minus Amount Outstanding:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.CURRENT_AMOUNT_OUTSTANDING, i*12);
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"equals Before Tax Equity Reversion:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray.append("\"");
+      csvOutputArray.append(
+
+          dataManager.getCalcValue(ValueEnum.PROJECTED_HOME_VALUE, i*12) -
+          dataManager.getCalcValue(ValueEnum.SELLING_EXPENSES, i*12) -
+          dataManager.getCalcValue(ValueEnum.BROKER_CUT_OF_SALE, i*12) -
+          dataManager.getCalcValue(ValueEnum.CURRENT_AMOUNT_OUTSTANDING, i*12)
+          );
+      csvOutputArray.append("\"");
+      csvOutputArray.append(",");
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"minus Taxes:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.TAXES_DUE_AT_SALE, i*12);
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"equals After Tax Equity Reversion:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.ATER, i*12);
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\n\nDetermining Taxes on Sale");
+    csvOutputArray.append  ("\n-----------------\n\n");
+
+    csvOutputArray.append("\"Net sale price:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray.append("\"");
+      csvOutputArray.append(
+
+          dataManager.getCalcValue(ValueEnum.PROJECTED_HOME_VALUE, i*12) -
+          dataManager.getCalcValue(ValueEnum.SELLING_EXPENSES, i*12) - 
+          dataManager.getCalcValue(ValueEnum.BROKER_CUT_OF_SALE, i*12)
+          );
+      csvOutputArray.append("\"");
+      csvOutputArray.append(",");
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"minus Purchase Price:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray.append("\"");
+      csvOutputArray.append(
+
+          dataManager.getInputValue(ValueEnum.TOTAL_PURCHASE_VALUE)
+          );
+      csvOutputArray.append("\"");
+      csvOutputArray.append(",");
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"plus accumulated Depreciation:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray.append("\"");
+      csvOutputArray.append(
+
+          dataManager.getCalcValue(ValueEnum.YEARLY_DEPRECIATION,i*12 )* (i+1)
+          );
+      csvOutputArray.append("\"");
+      csvOutputArray.append(",");
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"equals Taxable Gain:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray.append("\"");
+      csvOutputArray.append(
+
+          dataManager.getCalcValue(ValueEnum.PROJECTED_HOME_VALUE, i*12) -
+          dataManager.getCalcValue(ValueEnum.SELLING_EXPENSES, i*12) -
+          dataManager.getCalcValue(ValueEnum.BROKER_CUT_OF_SALE, i*12) -
+          dataManager.getInputValue(ValueEnum.TOTAL_PURCHASE_VALUE) +
+          dataManager.getCalcValue(ValueEnum.YEARLY_DEPRECIATION, i*12 )* (i+1)
+          );
+      csvOutputArray.append("\"");
+      csvOutputArray.append(",");
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"times Capital Gains Tax Rate:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray.append("\"");
+      csvOutputArray.append(0.15d);
+      csvOutputArray.append("\"");
+      csvOutputArray.append(",");
+
+    }
+    csvOutputArray.append("\n");
+
+    csvOutputArray.append("\"equals Taxes:\",");
+    for (int i = 0; i < totalYears; i++) {
+      csvOutputArray = addValue(
+          csvOutputArray, ValueEnum.TAXES_DUE_AT_SALE, i*12);
+    }
+    csvOutputArray.append("\n\n");
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //WORK AREA END
+    //WORK AREA END
+    //WORK AREA END
+    //WORK AREA END
+    //WORK AREA END
+    //WORK AREA END
+    //WORK AREA END
+    
+    
+    
+    
     //==================================
     //add the MIRR present value and future value equations
     csvOutputArray.append("\"MODIFIED INTERNAL RATE OF RETURN\",\n\n");

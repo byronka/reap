@@ -1,3 +1,8 @@
+android.annotation.SuppressLint
+android.annotation.TargetApi
+com.byronkatz.BuildConfig
+com.byronkatz.R:
+    10:10:public R()
 com.byronkatz.R$array
 com.byronkatz.R$attr
 com.byronkatz.R$color
@@ -8,6 +13,7 @@ com.byronkatz.R$menu
 com.byronkatz.R$string
 com.byronkatz.R$styleable:
     public static final int AnalysisGraph_graphType
+    643:643:public R$styleable()
 com.byronkatz.reap.activity.AddressActivity:
     private static final int STATE_ARRAY_SIZE
     private android.widget.ArrayAdapter adapter
@@ -28,6 +34,7 @@ com.byronkatz.reap.activity.GraphActivity:
 com.byronkatz.reap.activity.GraphActivityFunctions:
     private static final double INCREASE_PERCENTAGE
     private static final double DECREASE_PERCENTAGE
+    13:13:public GraphActivityFunctions()
     20:26:static android.app.ProgressDialog setupProgressGraphDialog(com.byronkatz.reap.activity.GraphActivity)
     94:94:static java.lang.Double calculateCurrentFromMax(java.lang.Double)
     98:98:static java.lang.Double calculateCurrentFromMin(java.lang.Double)
@@ -71,6 +78,7 @@ com.byronkatz.reap.general.DatabaseAdapter:
 com.byronkatz.reap.general.RealEstateAnalysisProcessorApplication:
     public static final java.lang.String BASE_VALUES
 com.byronkatz.reap.general.Utility:
+    34:34:public Utility()
     212:222:public static void showHelpDialog(java.lang.String,int,android.content.Context)
     293:295:public static void showToast(android.app.Activity,java.lang.String)
 com.byronkatz.reap.general.ValueEnum:
@@ -89,6 +97,7 @@ com.google.android.vending.licensing.ILicenseResultListener$Stub$Proxy:
 com.google.android.vending.licensing.ILicensingService$Stub:
     private static final java.lang.String DESCRIPTOR
     static final int TRANSACTION_checkLicense
+    19:22:public ILicensingService$Stub()
     40:40:public android.os.IBinder asBinder()
 com.google.android.vending.licensing.ILicensingService$Stub$Proxy:
     79:79:public java.lang.String getInterfaceDescriptor()
@@ -172,6 +181,8 @@ com.google.android.vending.licensing.util.Base64DecoderException:
     private static final long serialVersionUID
 org.acra.ACRAConfigurationException:
     private static final long serialVersionUID
+org.acra.Compatibility:
+    29:29:public Compatibility()
 org.acra.ConfigurationInspector:
     private static final java.lang.String SUFFIX_MASK
     private static final java.lang.String FIELD_SCREENLAYOUT
@@ -187,6 +198,7 @@ org.acra.ConfigurationInspector:
     private static final java.lang.String PREFIX_KEYBOARDHIDDEN
     private static final java.lang.String PREFIX_KEYBOARD
     private static final java.lang.String PREFIX_HARDKEYBOARDHIDDEN
+    39:39:public ConfigurationInspector()
 org.acra.CrashReportData:
     private static final long serialVersionUID
     private static final java.lang.String PROP_DTD_NAME
@@ -207,6 +219,12 @@ org.acra.CrashReportData:
     700:701:public void storeToXML(java.io.OutputStream,java.lang.String)
     727:778:public synchronized void storeToXML(java.io.OutputStream,java.lang.String,java.lang.String)
     786:786:private java.lang.String substitutePredefinedEntries(java.lang.String)
+org.acra.DeviceFeaturesCollector:
+    33:33:public DeviceFeaturesCollector()
+org.acra.DropBoxCollector:
+    37:37:DropBoxCollector()
+org.acra.DumpSysCollector:
+    31:31:DumpSysCollector()
 org.acra.ErrorReporter:
     public static final java.lang.String REPORTFILE_EXTENSION
     private static final int MAX_SEND_REPORTS
@@ -223,6 +241,13 @@ org.acra.ErrorReporter:
     1266:1268:public void setReportSender(org.acra.sender.ReportSender)
 org.acra.LogCatCollector:
     private static final int DEFAULT_TAIL_COUNT
+    37:37:LogCatCollector()
+org.acra.ReflectionCollector:
+    32:32:public ReflectionCollector()
+org.acra.SettingsCollector:
+    34:34:public SettingsCollector()
+org.acra.SharedPreferencesCollector:
+    10:10:public SharedPreferencesCollector()
 org.acra.util.Base64
 org.acra.util.Base64$Coder
 org.acra.util.Base64$Decoder
@@ -232,5 +257,8 @@ org.acra.util.HttpRequest:
     70:77:public void abort()
     131:140:public java.lang.String sendGet(java.lang.String)
     144:167:public java.io.InputStream getHttpStream(java.lang.String)
+org.acra.util.HttpUtils:
+    29:29:public HttpUtils()
 org.acra.util.Installation:
     private static final java.lang.String INSTALLATION
+    26:26:public Installation()

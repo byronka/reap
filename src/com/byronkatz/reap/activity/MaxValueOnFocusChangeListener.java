@@ -51,6 +51,9 @@ public class MaxValueOnFocusChangeListener implements OnFocusChangeListener {
           this.graphActivity.valueSlider.setProgress((int) Math.round(newProgress));
         
         } else {
+          //set displayed value to what is in memory for max value
+          GraphActivityFunctions.displayValue(maxValueEditText, this.graphActivity.maxValueNumeric, this.graphActivity.currentSliderKey);
+          
           Toast toast = Toast.makeText(
               this.graphActivity, "new Maximum must be greater than Current value: " + this.graphActivity.currentValueEditText.getText().toString(), Toast.LENGTH_LONG);
           toast.show();

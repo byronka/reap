@@ -29,7 +29,7 @@ public class DatabaseAdapter {
   private static final String LOCATIONS_DATABASE_CREATE = "create table " + 
       LOCATIONS_DATABASE_TABLE + " ("     + 
       KEY_ID + " integer primary key autoincrement" + ", " +
-      MODIFIED_AT                                         + " DEFAULT CURRENT_TIMESTAMP" +   ", " +
+      MODIFIED_AT                                         + " DEFAULT (datetime(\'now\',\'localtime\'))" +   ", " +
       ValueEnum.TOTAL_PURCHASE_VALUE.name()               + " REAL"    +     ", " +
       ValueEnum.YEARLY_INTEREST_RATE.name()               + " REAL"    +     ", " +
       ValueEnum.BUILDING_VALUE.name()                     + " REAL"    +     ", " +
@@ -127,7 +127,7 @@ public class DatabaseAdapter {
       db.execSQL(
           "CREATE TRIGGER update_modified_timestamp AFTER UPDATE ON mainTable " +
           "BEGIN " +
-          " update mainTable SET modified_at = datetime('now') WHERE rowid = new.rowid; " +
+          " update mainTable SET modified_at = datetime('now', 'localtime') WHERE rowid = new.rowid; " +
           "END;"
 
           );

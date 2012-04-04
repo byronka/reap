@@ -254,6 +254,7 @@ public class LoanActivity extends Activity {
     key = ValueEnum.EXTRA_YEARS;
     value = Double.valueOf(extraYears.getText().toString());
     dataController.putInputValue(value, key);
+    
   }
   
   @Override

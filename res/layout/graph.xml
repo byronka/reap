@@ -294,12 +294,20 @@
 
                         <SeekBar
                             android:id="@+id/valueSlider"
-                            android:layout_width="fill_parent"
+                            android:layout_width="0dip"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="6dip"
                             android:layout_marginRight="6dip"
+                            android:layout_weight="1"
                             android:padding="5dip" >
                         </SeekBar>
+                        
+                    <TextView
+                        android:layout_width="40dip"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@null" >
+                    </TextView>
                     </LinearLayout>
 
                 <LinearLayout

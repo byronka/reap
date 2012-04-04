@@ -49,6 +49,9 @@ public class MinValueOnFocusChangeListener implements OnFocusChangeListener {
         this.graphActivity.valueSlider.setProgress(0);
         this.graphActivity.valueSlider.setProgress((int) Math.round(newProgress));
       }  else {
+        //set displayed value to what is in memory for min value
+        GraphActivityFunctions.displayValue(minValueEditText, this.graphActivity.minValueNumeric, this.graphActivity.currentSliderKey);
+        
         Toast toast = Toast.makeText(this.graphActivity, "new Minimum must be less than Current value: " + 
             this.graphActivity.currentValueEditText.getText().toString(), Toast.LENGTH_LONG);
         toast.show();

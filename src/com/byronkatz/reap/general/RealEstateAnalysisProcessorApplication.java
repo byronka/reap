@@ -2,7 +2,6 @@ package com.byronkatz.reap.general;
 
 
 import org.acra.ACRA;
-import org.acra.ReportField;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 
