@@ -5,20 +5,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 
-import com.byronkatz.R;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;
 import com.byronkatz.reap.general.OnFocusChangeListenerWrapperComments;
 import com.byronkatz.reap.general.RealEstateAnalysisProcessorApplication;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
+import com.byronkatz.reap.R;
 
 public class AddressActivity extends Activity {
 

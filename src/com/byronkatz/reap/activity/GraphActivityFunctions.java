@@ -5,7 +5,7 @@ import android.app.ProgressDialog;
 import android.widget.EditText;
 import android.widget.SeekBar;
 
-import com.byronkatz.R;
+import com.byronkatz.reap.R;
 import com.byronkatz.reap.customview.AnalysisGraph;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;

@@ -2,11 +2,8 @@ package com.byronkatz.reap.general;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 import java.util.zip.DataFormatException;
 import java.util.zip.Inflater;
-
-import com.byronkatz.R;
 
 import android.app.Dialog;
 import android.view.View;
@@ -15,6 +12,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.byronkatz.reap.R;
 
 public class OnFocusChangeListenerWrapperComments implements OnFocusChangeListener {
 

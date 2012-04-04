@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     android:installLocation="auto"
-    package="com.byronkatz"
-    android:versionCode="2"
-    android:versionName="1.01" >
+    package="com.byronkatz.reap"
+    android:versionCode="1"
+    android:versionName="1.00" >
 
     <uses-feature android:name="android.hardware.screen.portrait" />
 
@@ -19,13 +19,13 @@ put in the SD card -->
     <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="10" />
 
     <application
-        android:name=".reap.general.RealEstateAnalysisProcessorApplication"
+        android:name=".general.RealEstateAnalysisProcessorApplication"
         android:icon="@drawable/house"
         android:label="@string/app_name" >
         <activity
-            android:name=".reap.activity.SplashScreenActivity"
+            android:name=".activity.SplashScreenActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
+            android:windowSoftInputMode="stateVisible|adjustResize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,58 +33,58 @@ put in the SD card -->
             </intent-filter>
         </activity>
         <activity
-            android:name=".reap.activity.GraphActivity"
+            android:name=".activity.GraphActivity"
             android:label="@string/entryScreenActivityTitleText"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
         <activity
-            android:name=".reap.activity.RentalActivity"
+            android:name=".activity.RentalActivity"
             android:label="@string/rentalActivityTitleText"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
-            android:name=".reap.activity.DataPagesActivity"
+            android:name=".activity.DataPagesActivity"
             android:label="@string/dataPagesActivityTitleText"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
-            android:name=".reap.activity.AddressActivity"
+            android:name=".activity.AddressActivity"
             android:label="@string/addressActivityTitleText"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
-            android:name=".reap.activity.ConfigureDataTablesActivity"
+            android:name=".activity.ConfigureDataTablesActivity"
             android:label="@string/configureDataTableTitleText"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".reap.activity.FinancialEnvironmentActivity"
+            android:name=".activity.FinancialEnvironmentActivity"
             android:label="@string/financialEnvironmentActivityTitleText"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
-            android:name=".reap.activity.LoanActivity"
+            android:name=".activity.LoanActivity"
             android:label="@string/loanActivityTitleText"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
-            android:name=".reap.activity.SaleActivity"
+            android:name=".activity.SaleActivity"
             android:label="@string/saleActivityTitleText"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
-            android:name=".reap.activity.TaxesActivity"
+            android:name=".activity.TaxesActivity"
             android:label="@string/taxesActivityTitleText"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
-            android:name=".reap.activity.SavedDataBrowserActivity"
+            android:name=".activity.SavedDataBrowserActivity"
             android:label="@string/savedDataBrowserActivityTitleText"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
-            android:name=".reap.activity.AppInfoActivity"
+            android:name=".activity.AppInfoActivity"
             android:label="@string/appInfoActivityTitleText"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />

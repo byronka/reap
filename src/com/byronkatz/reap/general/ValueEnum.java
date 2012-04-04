@@ -1,6 +1,7 @@
 package com.byronkatz.reap.general;
 
-import com.byronkatz.R.string;
+import com.byronkatz.reap.R.string;
+
 
 public enum ValueEnum {
 

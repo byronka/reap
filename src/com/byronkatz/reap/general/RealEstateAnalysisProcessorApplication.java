@@ -10,7 +10,7 @@ import android.content.ContextWrapper;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 
-import com.byronkatz.R;
+import com.byronkatz.reap.R;
 
 //formKey = "dHYzM1FGVl9QZVg5b2F0eDNiRnh6bnc6MQ") points to my google doc
 

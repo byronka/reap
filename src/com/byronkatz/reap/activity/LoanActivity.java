@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.byronkatz.R;
+import com.byronkatz.reap.R;
 import com.byronkatz.reap.calculations.Calculations;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.OnFocusChangeListenerWrapper;

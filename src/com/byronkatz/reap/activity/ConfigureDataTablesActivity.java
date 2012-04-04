@@ -11,7 +11,6 @@ import java.util.Set;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,7 +23,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import com.byronkatz.R;
+import com.byronkatz.reap.R;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.HelpButtonOnClickWrapper;
 import com.byronkatz.reap.general.RealEstateAnalysisProcessorApplication;

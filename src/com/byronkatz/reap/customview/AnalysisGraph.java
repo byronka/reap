@@ -14,7 +14,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.byronkatz.R;
+import com.byronkatz.reap.R;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.RealEstateAnalysisProcessorApplication;
 import com.byronkatz.reap.general.Utility;

@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.byronkatz.R;
+import com.byronkatz.reap.R;
 
 public class AppInfoActivity extends Activity {
 

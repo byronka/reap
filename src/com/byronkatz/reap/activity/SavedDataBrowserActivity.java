@@ -14,11 +14,6 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Debug;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.text.Html;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,7 +22,7 @@ import android.widget.AdapterView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
-import com.byronkatz.R;
+import com.byronkatz.reap.R;
 import com.byronkatz.reap.general.CsvAttachment;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.DatabaseAdapter;
@@ -436,7 +431,13 @@ public class SavedDataBrowserActivity extends ListActivity {
     emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
     emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
     emailIntent = addCsvAttachment(emailIntent, cursor);
-
+    //TODO work area
+    try {
+      Thread.sleep(1300l);
+    } catch (InterruptedException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
     
     startActivity(emailIntent);
     

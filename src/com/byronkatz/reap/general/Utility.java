@@ -1,7 +1,6 @@
 package com.byronkatz.reap.general;
 
 import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -23,7 +22,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.byronkatz.R;
+import com.byronkatz.reap.R;
 import com.byronkatz.reap.activity.AppInfoActivity;
 import com.byronkatz.reap.activity.ConfigureDataTablesActivity;
 import com.byronkatz.reap.activity.DataPagesActivity;

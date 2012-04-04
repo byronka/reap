@@ -8,10 +8,8 @@ import java.util.Map;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Debug;
 import android.text.InputFilter;
 import android.text.InputType;
-
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,7 +28,7 @@ import android.widget.TabHost;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.byronkatz.R;
+import com.byronkatz.reap.R;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.OnItemSelectedListenerWrapper;
 import com.byronkatz.reap.general.RealEstateAnalysisProcessorApplication;

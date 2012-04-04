@@ -19,7 +19,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.byronkatz.R;
+import com.byronkatz.reap.R;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.HelpButtonOnClickWrapper;
 import com.byronkatz.reap.general.RealEstateAnalysisProcessorApplication;
