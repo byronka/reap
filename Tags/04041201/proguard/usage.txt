@@ -1,0 +1,264 @@
+android.annotation.SuppressLint
+android.annotation.TargetApi
+com.byronkatz.reap.BuildConfig
+com.byronkatz.reap.R:
+    10:10:public R()
+com.byronkatz.reap.R$array
+com.byronkatz.reap.R$attr
+com.byronkatz.reap.R$color
+com.byronkatz.reap.R$drawable
+com.byronkatz.reap.R$id
+com.byronkatz.reap.R$layout
+com.byronkatz.reap.R$menu
+com.byronkatz.reap.R$string
+com.byronkatz.reap.R$styleable:
+    public static final int AnalysisGraph_graphType
+    643:643:public R$styleable()
+com.byronkatz.reap.activity.AddressActivity:
+    private static final int STATE_ARRAY_SIZE
+    private android.widget.ArrayAdapter adapter
+com.byronkatz.reap.activity.ConfigureDataTablesActivity:
+    private static final int TOGGLE_BUTTON_INDEX
+com.byronkatz.reap.activity.DataTable:
+    public static final int PROPERTY_LABEL_INDEX
+    public static final int PROPERTY_VALUE_INDEX
+    192:204:public void saveViewableDataTableRows(android.os.Bundle)
+    254:262:public java.util.Set restoreViewableDataTableRows(android.os.Bundle)
+com.byronkatz.reap.activity.GraphActivity:
+    public static final java.lang.String PREFS_NAME
+    public static final java.lang.String IS_GRAPH_VISIBLE
+    public static final java.lang.String CURRENT_SLIDER_KEY
+    public static final java.lang.String CURRENT_YEAR_SELECTED
+    public static final int DIVISIONS_OF_VALUE_SLIDER
+    java.lang.Double percentageSlid
+com.byronkatz.reap.activity.GraphActivityFunctions:
+    private static final double INCREASE_PERCENTAGE
+    private static final double DECREASE_PERCENTAGE
+    13:13:public GraphActivityFunctions()
+    20:26:static android.app.ProgressDialog setupProgressGraphDialog(com.byronkatz.reap.activity.GraphActivity)
+    94:94:static java.lang.Double calculateCurrentFromMax(java.lang.Double)
+    98:98:static java.lang.Double calculateCurrentFromMin(java.lang.Double)
+com.byronkatz.reap.activity.SavedDataBrowserActivity:
+    private static final java.lang.String SORT_DIRECTION
+    private static final java.lang.String SORTER
+    private static final java.lang.String SORT_TYPE
+com.byronkatz.reap.calculations.CalcValueGettable:
+    public static final int MONTHS_IN_YEAR
+com.byronkatz.reap.calculations.Calculations:
+    public static final double PMI_BOUNDARY_PERCENTAGE
+    private static final double EPSILON
+com.byronkatz.reap.calculations.ValueSettable
+com.byronkatz.reap.customview.AnalysisGraph:
+    private static final int NPV
+    private static final int ATER
+    private static final int ATCF
+    private static final int MIRR
+    private static final int CRPV
+    private static final int CRCV
+    public static final int GRAPH_MIN_X
+    public static final int GRAPH_MIN_Y
+    public static final java.lang.String X_AXIS_STRING
+    370:370:public int getCurrentYearHighlighted()
+com.byronkatz.reap.general.CsvAttachment:
+    public static final java.lang.String OUTPUT_WORKBOOK
+    private java.io.File outputFile
+    46:46:public java.io.File getFile()
+com.byronkatz.reap.general.DataController:
+    public android.content.res.Resources resources
+com.byronkatz.reap.general.DatabaseAdapter:
+    private static final java.lang.String DATABASE_NAME
+    private static final java.lang.String LOCATIONS_DATABASE_TABLE
+    private static final int DATABASE_VERSION
+    public static final java.lang.String KEY_ID
+    public static final java.lang.String MODIFIED_AT
+    public static final java.lang.String YEAR_VALUE
+    77:78:public com.byronkatz.reap.general.DatabaseAdapter open()
+    82:83:public void close()
+    101:102:public java.util.HashMap getEntry(long)
+com.byronkatz.reap.general.RealEstateAnalysisProcessorApplication:
+    public static final java.lang.String BASE_VALUES
+com.byronkatz.reap.general.Utility:
+    33:33:public Utility()
+    211:221:public static void showHelpDialog(java.lang.String,int,android.content.Context)
+    292:294:public static void showToast(android.app.Activity,java.lang.String)
+com.byronkatz.reap.general.ValueEnum:
+    114:115:public void setIsSavedToDatabase(java.lang.Boolean)
+com.google.android.vending.licensing.AESObfuscator:
+    private static final java.lang.String UTF8
+    private static final java.lang.String KEYGEN_ALGORITHM
+    private static final java.lang.String CIPHER_ALGORITHM
+    private static final java.lang.String header
+com.google.android.vending.licensing.APKExpansionPolicy
+com.google.android.vending.licensing.ILicenseResultListener$Stub:
+    private static final java.lang.String DESCRIPTOR
+    static final int TRANSACTION_verifyLicense
+com.google.android.vending.licensing.ILicenseResultListener$Stub$Proxy:
+    79:79:public java.lang.String getInterfaceDescriptor()
+com.google.android.vending.licensing.ILicensingService$Stub:
+    private static final java.lang.String DESCRIPTOR
+    static final int TRANSACTION_checkLicense
+    19:22:public ILicensingService$Stub()
+    40:40:public android.os.IBinder asBinder()
+com.google.android.vending.licensing.ILicensingService$Stub$Proxy:
+    79:79:public java.lang.String getInterfaceDescriptor()
+com.google.android.vending.licensing.LicenseChecker:
+    private static final java.lang.String TAG
+    private static final java.lang.String KEY_FACTORY_ALGORITHM
+    private static final int TIMEOUT_MS
+    private static final boolean DEBUG_LICENSE_ERROR
+com.google.android.vending.licensing.LicenseChecker$ResultListener:
+    private static final int ERROR_CONTACTING_SERVER
+    private static final int ERROR_INVALID_PACKAGE_NAME
+    private static final int ERROR_NON_MATCHING_UID
+com.google.android.vending.licensing.LicenseCheckerCallback:
+    public static final int ERROR_INVALID_PACKAGE_NAME
+    public static final int ERROR_NON_MATCHING_UID
+    public static final int ERROR_NOT_MARKET_MANAGED
+    public static final int ERROR_CHECK_IN_PROGRESS
+    public static final int ERROR_INVALID_PUBLIC_KEY
+    public static final int ERROR_MISSING_PERMISSION
+com.google.android.vending.licensing.LicenseValidator:
+    private static final java.lang.String TAG
+    private static final int LICENSED
+    private static final int NOT_LICENSED
+    private static final int LICENSED_OLD_KEY
+    private static final int ERROR_NOT_MARKET_MANAGED
+    private static final int ERROR_SERVER_FAILURE
+    private static final int ERROR_OVER_QUOTA
+    private static final int ERROR_CONTACTING_SERVER
+    private static final int ERROR_INVALID_PACKAGE_NAME
+    private static final int ERROR_NON_MATCHING_UID
+    private static final java.lang.String SIGNATURE_ALGORITHM
+com.google.android.vending.licensing.Policy:
+    public static final int LICENSED
+    public static final int NOT_LICENSED
+    public static final int RETRY
+com.google.android.vending.licensing.PreferenceObfuscator:
+    private static final java.lang.String TAG
+com.google.android.vending.licensing.R
+com.google.android.vending.licensing.R$array
+com.google.android.vending.licensing.R$attr
+com.google.android.vending.licensing.R$color
+com.google.android.vending.licensing.R$drawable
+com.google.android.vending.licensing.R$id
+com.google.android.vending.licensing.R$layout
+com.google.android.vending.licensing.R$menu
+com.google.android.vending.licensing.R$string
+com.google.android.vending.licensing.R$styleable
+com.google.android.vending.licensing.ServerManagedPolicy:
+    private static final java.lang.String TAG
+    private static final java.lang.String PREFS_FILE
+    private static final java.lang.String PREF_LAST_RESPONSE
+    private static final java.lang.String PREF_VALIDITY_TIMESTAMP
+    private static final java.lang.String PREF_RETRY_UNTIL
+    private static final java.lang.String PREF_MAX_RETRIES
+    private static final java.lang.String PREF_RETRY_COUNT
+    private static final java.lang.String DEFAULT_VALIDITY_TIMESTAMP
+    private static final java.lang.String DEFAULT_RETRY_UNTIL
+    private static final java.lang.String DEFAULT_MAX_RETRIES
+    private static final java.lang.String DEFAULT_RETRY_COUNT
+    private static final long MILLIS_PER_MINUTE
+    154:154:public long getRetryCount()
+    180:180:public long getValidityTimestamp()
+    206:206:public long getRetryUntil()
+    232:232:public long getMaxRetries()
+com.google.android.vending.licensing.StrictPolicy
+com.google.android.vending.licensing.ValidationException:
+    private static final long serialVersionUID
+com.google.android.vending.licensing.util.Base64:
+    public static final boolean ENCODE
+    public static final boolean DECODE
+    private static final byte EQUALS_SIGN
+    private static final byte NEW_LINE
+    private static final byte WHITE_SPACE_ENC
+    private static final byte EQUALS_SIGN_ENC
+    258:258:public static java.lang.String encodeWebSafe(byte[],boolean)
+    431:432:public static byte[] decodeWebSafe(java.lang.String)
+    445:445:public static byte[] decode(byte[])
+    458:458:public static byte[] decodeWebSafe(byte[])
+    489:489:public static byte[] decodeWebSafe(byte[],int,int)
+com.google.android.vending.licensing.util.Base64DecoderException:
+    private static final long serialVersionUID
+org.acra.ACRAConfigurationException:
+    private static final long serialVersionUID
+org.acra.Compatibility:
+    29:29:public Compatibility()
+org.acra.ConfigurationInspector:
+    private static final java.lang.String SUFFIX_MASK
+    private static final java.lang.String FIELD_SCREENLAYOUT
+    private static final java.lang.String FIELD_UIMODE
+    private static final java.lang.String FIELD_MNC
+    private static final java.lang.String FIELD_MCC
+    private static final java.lang.String PREFIX_UI_MODE
+    private static final java.lang.String PREFIX_TOUCHSCREEN
+    private static final java.lang.String PREFIX_SCREENLAYOUT
+    private static final java.lang.String PREFIX_ORIENTATION
+    private static final java.lang.String PREFIX_NAVIGATIONHIDDEN
+    private static final java.lang.String PREFIX_NAVIGATION
+    private static final java.lang.String PREFIX_KEYBOARDHIDDEN
+    private static final java.lang.String PREFIX_KEYBOARD
+    private static final java.lang.String PREFIX_HARDKEYBOARDHIDDEN
+    39:39:public ConfigurationInspector()
+org.acra.CrashReportData:
+    private static final long serialVersionUID
+    private static final java.lang.String PROP_DTD_NAME
+    private static final int NONE
+    private static final int SLASH
+    private static final int UNICODE
+    private static final int CONTINUE
+    private static final int KEY_DONE
+    private static final int IGNORE
+    88:90:public CrashReportData(org.acra.CrashReportData)
+    162:169:public java.lang.String getProperty(org.acra.ReportField,java.lang.String)
+    181:205:public void list(java.io.PrintStream)
+    216:240:public void list(java.io.PrintWriter)
+    475:475:private java.util.Enumeration keys()
+    497:500:public void save(java.io.OutputStream,java.lang.String)
+    513:513:public java.lang.Object setProperty(org.acra.ReportField,java.lang.String)
+    568:585:public synchronized void store(java.io.Writer,java.lang.String)
+    700:701:public void storeToXML(java.io.OutputStream,java.lang.String)
+    727:778:public synchronized void storeToXML(java.io.OutputStream,java.lang.String,java.lang.String)
+    786:786:private java.lang.String substitutePredefinedEntries(java.lang.String)
+org.acra.DeviceFeaturesCollector:
+    33:33:public DeviceFeaturesCollector()
+org.acra.DropBoxCollector:
+    37:37:DropBoxCollector()
+org.acra.DumpSysCollector:
+    31:31:DumpSysCollector()
+org.acra.ErrorReporter:
+    public static final java.lang.String REPORTFILE_EXTENSION
+    private static final int MAX_SEND_REPORTS
+    static final java.lang.String APPROVED_SUFFIX
+    static final java.lang.String EXTRA_REPORT_FILE_NAME
+    289:289:public java.lang.String putCustomData(java.lang.String,java.lang.String)
+    302:302:public java.lang.String removeCustomData(java.lang.String)
+    315:315:public java.lang.String getCustomData(java.lang.String)
+    787:793:public java.lang.Thread handleSilentException(java.lang.Throwable)
+    1081:1082:public void deletePendingSilentReports()
+    1234:1235:public void removeReportSender(org.acra.sender.ReportSender)
+    1243:1250:public void removeReportSenders(java.lang.Class)
+    1257:1258:public void removeAllReportSenders()
+    1266:1268:public void setReportSender(org.acra.sender.ReportSender)
+org.acra.LogCatCollector:
+    private static final int DEFAULT_TAIL_COUNT
+    37:37:LogCatCollector()
+org.acra.ReflectionCollector:
+    32:32:public ReflectionCollector()
+org.acra.SettingsCollector:
+    34:34:public SettingsCollector()
+org.acra.SharedPreferencesCollector:
+    10:10:public SharedPreferencesCollector()
+org.acra.util.Base64
+org.acra.util.Base64$Coder
+org.acra.util.Base64$Decoder
+org.acra.util.Base64$Encoder
+org.acra.util.HttpRequest:
+    65:66:public void clearCookies()
+    70:77:public void abort()
+    131:140:public java.lang.String sendGet(java.lang.String)
+    144:167:public java.io.InputStream getHttpStream(java.lang.String)
+org.acra.util.HttpUtils:
+    29:29:public HttpUtils()
+org.acra.util.Installation:
+    private static final java.lang.String INSTALLATION
+    26:26:public Installation()
