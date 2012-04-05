@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/overallSaleScrollView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/custom_background" >
+
+    <LinearLayout
+        android:id="@+id/overallSaleLinearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <!-- the following is just to catch the focus and do nothing with it -->
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+
+        <LinearLayout
+            android:id="@+id/generalSaleExpensesLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <TextView
+                android:id="@+id/generalSaleExpensesTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/generalSaleExpensesTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/tf_green2" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/generalSaleExpensesEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:inputType="numberDecimal"
+                android:maxLength="20" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sellingBrokerRateLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <TextView
+                android:id="@+id/sellingBrokerRateTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/sellingBrokerRateTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/tf_green2" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/sellingBrokerRateEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:inputType="numberDecimal"
+                android:maxLength="20" >
+            </EditText>
+        </LinearLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:onClick="callCalculator"
+            android:padding="10dip"
+            android:src="@drawable/calc_icon" />
+    </LinearLayout>
+
+</ScrollView>

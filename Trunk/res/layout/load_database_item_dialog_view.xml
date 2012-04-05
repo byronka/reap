@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/load_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+    </TextView>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutDatabaseButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp" >
+
+        <Button
+            android:id="@+id/loadDatabaseItemButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loadItemText" >
+        </Button>
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancelButtonText" >
+        </Button>
+        
+    </LinearLayout>
+
+</LinearLayout>
