@@ -58,7 +58,7 @@ com.byronkatz.reap.customview.AnalysisGraph:
     public static final int GRAPH_MIN_X
     public static final int GRAPH_MIN_Y
     public static final java.lang.String X_AXIS_STRING
-    374:374:public int getCurrentYearHighlighted()
+    370:370:public int getCurrentYearHighlighted()
 com.byronkatz.reap.general.CsvAttachment:
     public static final java.lang.String OUTPUT_WORKBOOK
     private java.io.File outputFile

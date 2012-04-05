@@ -108,40 +108,40 @@ com.byronkatz.reap.activity.GraphActivity -> com.byronkatz.reap.activity.GraphAc
     android.content.SharedPreferences sp -> m
     com.byronkatz.reap.general.ValueEnum[] dataTableItems -> n
     int[] $SWITCH_TABLE$com$byronkatz$reap$general$ValueEnum$ValueType -> r
-    75:78:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
-    83:92:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
-    142:149:void onResume() -> onResume
-    155:185:void onCreate(android.os.Bundle) -> onCreate
-    192:198:void onPause() -> onPause
-    237:239:void updateYearDisplayAtSeekBar(java.lang.Integer) -> a
-    250:263:void recalcGraphPage() -> a
-    266:267:void sendFocusToJail() -> b
-    478:501:void changeAttributesAllValueEditText(int,com.byronkatz.reap.general.ValueEnum$ValueType) -> a
-    521:524:void setMaxLengthEditText(android.widget.EditText,int) -> a
-    545:545:java.lang.Integer getCurrentYearSelected() -> c
-    304:304:java.lang.Double access$0(com.byronkatz.reap.activity.GraphActivity,int,com.byronkatz.reap.general.ValueEnum) -> a
-    56:56:com.byronkatz.reap.general.DataController access$1(com.byronkatz.reap.activity.GraphActivity) -> a
-    544:544:java.lang.Integer access$2(com.byronkatz.reap.activity.GraphActivity) -> b
-    236:236:void access$3(com.byronkatz.reap.activity.GraphActivity,java.lang.Integer) -> a
-    446:446:void access$4(com.byronkatz.reap.activity.GraphActivity) -> c
-    39:39:int[] $SWITCH_TABLE$com$byronkatz$reap$general$ValueEnum$ValueType() -> d
+    76:79:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    84:93:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    143:150:void onResume() -> onResume
+    156:187:void onCreate(android.os.Bundle) -> onCreate
+    194:200:void onPause() -> onPause
+    239:241:void updateYearDisplayAtSeekBar(java.lang.Integer) -> a
+    252:265:void recalcGraphPage() -> a
+    268:269:void sendFocusToJail() -> b
+    480:503:void changeAttributesAllValueEditText(int,com.byronkatz.reap.general.ValueEnum$ValueType) -> a
+    523:526:void setMaxLengthEditText(android.widget.EditText,int) -> a
+    547:547:java.lang.Integer getCurrentYearSelected() -> c
+    306:306:java.lang.Double access$0(com.byronkatz.reap.activity.GraphActivity,int,com.byronkatz.reap.general.ValueEnum) -> a
+    57:57:com.byronkatz.reap.general.DataController access$1(com.byronkatz.reap.activity.GraphActivity) -> a
+    546:546:java.lang.Integer access$2(com.byronkatz.reap.activity.GraphActivity) -> b
+    238:238:void access$3(com.byronkatz.reap.activity.GraphActivity,java.lang.Integer) -> a
+    448:448:void access$4(com.byronkatz.reap.activity.GraphActivity) -> c
+    40:40:int[] $SWITCH_TABLE$com$byronkatz$reap$general$ValueEnum$ValueType() -> d
 com.byronkatz.reap.activity.GraphActivity$1 -> com.byronkatz.reap.activity.j:
     com.byronkatz.reap.activity.GraphActivity this$0 -> a
-    283:285:void onClick(android.view.View) -> onClick
+    285:287:void onClick(android.view.View) -> onClick
 com.byronkatz.reap.activity.GraphActivity$2 -> com.byronkatz.reap.activity.k:
     com.byronkatz.reap.activity.GraphActivity this$0 -> a
-    329:329:void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
-    334:334:void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
-    341:351:void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
+    331:331:void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
+    336:336:void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
+    343:353:void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
 com.byronkatz.reap.activity.GraphActivity$3 -> com.byronkatz.reap.activity.l:
     com.byronkatz.reap.activity.GraphActivity this$0 -> a
-    367:367:void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
-    372:372:void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
-    377:385:void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
+    369:369:void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
+    374:374:void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
+    379:387:void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
 com.byronkatz.reap.activity.GraphActivity$4 -> com.byronkatz.reap.activity.m:
     com.byronkatz.reap.activity.GraphActivity this$0 -> a
-    424:432:void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
-    437:437:void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
+    426:434:void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
+    439:439:void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
 com.byronkatz.reap.activity.GraphActivityFunctions -> com.byronkatz.reap.activity.n:
     int[] $SWITCH_TABLE$com$byronkatz$reap$general$ValueEnum$ValueType -> a
     37:54:void invalidateGraphs(android.app.Activity) -> a
@@ -303,7 +303,7 @@ com.byronkatz.reap.activity.SplashScreenActivity -> com.byronkatz.reap.activity.
     87:88:void setLicensed(java.lang.Boolean) -> a
     102:264:void onCreate(android.os.Bundle) -> onCreate
     271:285:android.app.Dialog onCreateDialog(int) -> onCreateDialog
-    487:491:void onDestroy() -> onDestroy
+    486:489:void onDestroy() -> onDestroy
     342:342:void access$0$572d4d12(com.byronkatz.reap.activity.SplashScreenActivity) -> a
     77:77:void access$1(com.byronkatz.reap.activity.SplashScreenActivity,java.lang.Double) -> a
     64:64:java.lang.Boolean access$2(com.byronkatz.reap.activity.SplashScreenActivity) -> b
@@ -340,7 +340,7 @@ com.byronkatz.reap.activity.SplashScreenActivity$MyLicenseCheckerCallback -> com
     com.byronkatz.reap.activity.SplashScreenActivity this$0 -> a
     441:449:void allow$13462e() -> a
     453:467:void dontAllow(int) -> a
-    470:481:void applicationError(int) -> b
+    470:480:void applicationError(int) -> b
 com.byronkatz.reap.activity.TaxesActivity -> com.byronkatz.reap.activity.TaxesActivity:
     android.widget.EditText marginalTaxRate -> a
     android.widget.EditText buildingValue -> b
@@ -698,11 +698,11 @@ com.byronkatz.reap.customview.AnalysisGraph -> com.byronkatz.reap.customview.Ana
     java.lang.Float stopX -> ab
     com.byronkatz.reap.general.DataController dataController -> ac
     123:130:android.graphics.Paint createPaint(int,java.lang.Float,android.graphics.Paint$Style,java.lang.Float) -> a
-    170:178:void setPlotPoints() -> a
-    182:305:void onDraw(android.graphics.Canvas) -> onDraw
-    310:332:void drawPositiveDivisors(android.graphics.Canvas) -> a
-    337:360:void drawNegativeDivisors(android.graphics.Canvas) -> b
-    379:380:void setCurrentYearHighlighted(int) -> a
+    167:174:void setPlotPoints() -> a
+    178:301:void onDraw(android.graphics.Canvas) -> onDraw
+    306:328:void drawPositiveDivisors(android.graphics.Canvas) -> a
+    333:356:void drawNegativeDivisors(android.graphics.Canvas) -> b
+    375:376:void setCurrentYearHighlighted(int) -> a
 com.byronkatz.reap.general.CsvAttachment -> com.byronkatz.reap.general.a:
     java.io.FileWriter outputWriter -> a
     android.app.Activity activity -> b
@@ -738,15 +738,15 @@ com.byronkatz.reap.general.DataController -> com.byronkatz.reap.general.b:
     173:177:int saveValues() -> c
     204:207:void updateRow() -> d
     216:242:android.content.ContentValues prepareValuesForSaving() -> h
-    254:277:android.content.ContentValues placeCalcValueInContentValues(android.content.ContentValues) -> a
-    281:283:android.database.Cursor getAllDatabaseValues(java.lang.String) -> a
-    291:292:void setCurrentDatabaseRow(int) -> a
-    299:299:int getCurrentDatabaseRow() -> e
-    325:326:boolean removeDatabaseEntry(int) -> b
-    330:330:java.util.Set getViewableDataTableRows() -> f
-    334:335:void setViewableDataTableRows(java.util.Set) -> a
-    338:338:java.lang.Integer getCurrentYearSelected() -> g
-    342:343:void setCurrentYearSelected(java.lang.Integer) -> a
+    254:276:android.content.ContentValues placeCalcValueInContentValues(android.content.ContentValues) -> a
+    280:282:android.database.Cursor getAllDatabaseValues(java.lang.String) -> a
+    290:291:void setCurrentDatabaseRow(int) -> a
+    298:298:int getCurrentDatabaseRow() -> e
+    324:325:boolean removeDatabaseEntry(int) -> b
+    329:329:java.util.Set getViewableDataTableRows() -> f
+    333:334:void setViewableDataTableRows(java.util.Set) -> a
+    337:337:java.lang.Integer getCurrentYearSelected() -> g
+    341:342:void setCurrentYearSelected(java.lang.Integer) -> a
 com.byronkatz.reap.general.DataManager -> com.byronkatz.reap.general.c:
     double getCalcValue(com.byronkatz.reap.general.ValueEnum,int) -> a
     double getInputValue(com.byronkatz.reap.general.ValueEnum) -> a

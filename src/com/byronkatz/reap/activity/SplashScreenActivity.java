@@ -483,10 +483,9 @@ public class SplashScreenActivity extends Activity {
 
   @Override
   protected void onDestroy() {
-    super.onDestroy();
     mChecker.onDestroy();
-    //  dataController.nullifyNumericCache();
-    System.runFinalizersOnExit(true);
+    super.onDestroy();
+
   }
 
 
