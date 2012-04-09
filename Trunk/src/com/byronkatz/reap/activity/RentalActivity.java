@@ -23,6 +23,7 @@ public class RentalActivity extends Activity {
   private EditText initialHomeInsurance;
   private EditText vacancyAndCreditLoss;
   private EditText fixupCosts;
+  private EditText valuation;
   private EditText initialYearlyGeneralExpenses;
   private EditText requiredRateOfReturn;
   private EditText monthsUntilRentStarts;
@@ -79,7 +80,8 @@ public class RentalActivity extends Activity {
     initialYearlyGeneralExpenses  = (EditText)findViewById(R.id.initialYearlyGeneralExpensesEditText);
     requiredRateOfReturn          = (EditText)findViewById(R.id.requiredRateOfReturnEditText);
     monthsUntilRentStarts         = (EditText)findViewById(R.id.monthsUntilRentStartsEditText);
-
+    valuation                     = (EditText)findViewById(R.id.valuationEditText);
+    
     estimatedRentPayments.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.ESTIMATED_RENT_PAYMENTS));
 
     ((TextView)findViewById(R.id.estimatedRentPaymentsTitle)).setOnClickListener(
@@ -102,6 +104,12 @@ public class RentalActivity extends Activity {
 
     ((TextView)findViewById(R.id.fixupCostsTitle)).setOnClickListener(
         new TitleTextOnClickListenerWrapper(ValueEnum.FIX_UP_COSTS));
+    
+    
+    valuation.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.INITIAL_VALUATION));
+
+    ((TextView)findViewById(R.id.valuationTitle)).setOnClickListener(
+        new TitleTextOnClickListenerWrapper(ValueEnum.INITIAL_VALUATION));
     
 
     initialYearlyGeneralExpenses.setOnFocusChangeListener(new OnFocusChangeListenerWrapper(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES));
@@ -139,6 +147,10 @@ public class RentalActivity extends Activity {
     key = ValueEnum.FIX_UP_COSTS;
     value = Utility.parseCurrency(fixupCosts.getText().toString());
     dataController.putInputValue(value, key);
+    
+    key = ValueEnum.INITIAL_VALUATION;
+    value = Utility.parseCurrency(fixupCosts.getText().toString());
+    dataController.putInputValue(value, key);
 
     key = ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES;
     value = Utility.parseCurrency(initialYearlyGeneralExpenses.getText().toString());
@@ -173,6 +185,9 @@ public class RentalActivity extends Activity {
 
     Double fc = dataController.getInputValue(ValueEnum.FIX_UP_COSTS);
     fixupCosts.setText(Utility.displayCurrency(fc));
+    
+    Double val = dataController.getInputValue(ValueEnum.INITIAL_VALUATION);
+    fixupCosts.setText(Utility.displayCurrency(val));
 
     Double iyge = dataController.getInputValue(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES);
     initialYearlyGeneralExpenses.setText(Utility.displayCurrency(iyge));

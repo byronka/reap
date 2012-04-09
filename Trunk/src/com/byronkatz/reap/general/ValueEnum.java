@@ -33,7 +33,7 @@ public enum ValueEnum {
   MARGINAL_TAX_RATE( ValueType.PERCENTAGE, true, false, string.marginalTaxRateHelpText, string.marginalTaxRateTitleText),
   MODIFIED_INTERNAL_RATE_OF_RETURN( ValueType.PERCENTAGE, false, true, string.modifiedInternalRateOfReturnHelpText, string.modifiedInternalRateOfReturnTitleText),
   MONTHLY_MORTGAGE_PAYMENT ( ValueType.CURRENCY, false, true, string.monthlyMortgagePaymentHelpText, string.monthlyMortgagePaymentTitleText),  
-  
+  INITIAL_VALUATION ( ValueType.CURRENCY, true, false, string.valuationHelpText, string.valuationTitleText),
   MONTHLY_AMOUNT_OWED ( ValueType.CURRENCY, false, true, string.monthlyAmountOwedHelpText, string.monthlyAmountOwedTitleText),  
   MONTHLY_INTEREST_ACCUMULATED ( ValueType.CURRENCY, false, true, string.monthlyInterestAccumulatedHelpText, string.monthlyInterestAccumulatedTitleText),  
   

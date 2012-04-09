@@ -115,8 +115,8 @@ containing a value of this type.
         public static final int aterFrameLayout=0x7f050050;
         public static final int aterLoadValuesTextView=0x7f050033;
         public static final int authorInfo=0x7f05006c;
-        public static final int buildingValueEditText=0x7f0500b7;
-        public static final int buildingValueTitle=0x7f0500b6;
+        public static final int buildingValueEditText=0x7f0500ba;
+        public static final int buildingValueTitle=0x7f0500b9;
         public static final int calcPMIDownPaymentButton=0x7f05007f;
         public static final int calcPMILinearLayout=0x7f05007e;
         public static final int cancelButton=0x7f050040;
@@ -128,7 +128,7 @@ containing a value of this type.
         public static final int commentsLoadValuesTextView=0x7f05003c;
         public static final int commentsText=0x7f050012;
         public static final int commentsTitle=0x7f050011;
-        public static final int configureGraphPageMenuItem=0x7f0500c3;
+        public static final int configureGraphPageMenuItem=0x7f0500c6;
         public static final int crcvFrameLayout=0x7f050054;
         public static final int crcvLoadValuesTextView=0x7f050034;
         public static final int crpvFrameLayout=0x7f050056;
@@ -152,20 +152,20 @@ containing a value of this type.
         public static final int databaseItemTextViewLabel7=0x7f050031;
         public static final int databaseItemTextViewLabel8=0x7f050029;
         public static final int databaseItemTextViewLabel9=0x7f05002d;
-        public static final int databaseMenuItem=0x7f0500bf;
+        public static final int databaseMenuItem=0x7f0500c2;
         public static final int deleteDatabaseItemButton=0x7f05003f;
-        public static final int deleteHelpMessage=0x7f0500a3;
+        public static final int deleteHelpMessage=0x7f0500a6;
         public static final int delete_text=0x7f05003d;
         public static final int downPaymentEditText=0x7f050082;
         public static final int downPaymentLinearLayout=0x7f050080;
         public static final int downPaymentLoadValuesTextView=0x7f050036;
         public static final int downPaymentTitle=0x7f050081;
         public static final int drawer=0x7f050058;
-        public static final int editValuesMenuItem=0x7f0500c4;
+        public static final int editValuesMenuItem=0x7f0500c7;
         public static final int estimatedRentLoadValuesTextView=0x7f050032;
         public static final int estimatedRentPaymentsEditText=0x7f050089;
         public static final int estimatedRentPaymentsTitle=0x7f050088;
-        public static final int estimatedRentRow=0x7f0500aa;
+        public static final int estimatedRentRow=0x7f0500ad;
         public static final int extraYearsEditText=0x7f05007d;
         public static final int extraYearsLinearLayout=0x7f05007b;
         public static final int extraYearsTitle=0x7f05007c;
@@ -174,9 +174,9 @@ containing a value of this type.
         public static final int fixupCostsLinearLayout=0x7f05008f;
         public static final int fixupCostsTitle=0x7f050090;
         public static final int focusJail=0x7f050049;
-        public static final int generalSaleExpensesEditText=0x7f05009f;
-        public static final int generalSaleExpensesLinearLayout=0x7f05009d;
-        public static final int generalSaleExpensesTitle=0x7f05009e;
+        public static final int generalSaleExpensesEditText=0x7f0500a2;
+        public static final int generalSaleExpensesLinearLayout=0x7f0500a0;
+        public static final int generalSaleExpensesTitle=0x7f0500a1;
         public static final int graphDataScrollView=0x7f05004a;
         public static final int graphVisibilityCheckbox=0x7f050017;
         public static final int handle=0x7f05005a;
@@ -185,28 +185,28 @@ containing a value of this type.
         public static final int inflationRateLinearLayout=0x7f050043;
         public static final int inflationRateLoadValuesTextView=0x7f05002e;
         public static final int inflationRateTitle=0x7f050044;
-        public static final int infoMenuItem=0x7f0500c2;
+        public static final int infoMenuItem=0x7f0500c5;
         public static final int initialHomeInsuranceEditText=0x7f05008b;
         public static final int initialHomeInsuranceTitle=0x7f05008a;
-        public static final int initialYearlyGeneralExpensesEditText=0x7f050094;
-        public static final int initialYearlyGeneralExpensesLinearLayout=0x7f050092;
-        public static final int initialYearlyGeneralExpensesTitle=0x7f050093;
+        public static final int initialYearlyGeneralExpensesEditText=0x7f050097;
+        public static final int initialYearlyGeneralExpensesLinearLayout=0x7f050095;
+        public static final int initialYearlyGeneralExpensesTitle=0x7f050096;
         public static final int linearLayout1=0x7f05006b;
-        public static final int linearLayoutBuildingValue=0x7f0500b5;
+        public static final int linearLayoutBuildingValue=0x7f0500b8;
         public static final int linearLayoutDatabaseButtons=0x7f05003e;
-        public static final int linearLayoutLocalMunicipalFees=0x7f0500bb;
-        public static final int linearLayoutMarginalTaxRate=0x7f0500b0;
-        public static final int linearLayoutPropertyTax=0x7f0500b8;
+        public static final int linearLayoutLocalMunicipalFees=0x7f0500be;
+        public static final int linearLayoutMarginalTaxRate=0x7f0500b3;
+        public static final int linearLayoutPropertyTax=0x7f0500bb;
         public static final int linearLayoutStreetAddress=0x7f05000e;
-        public static final int linearLayoutTotalBuildingValue=0x7f0500b3;
+        public static final int linearLayoutTotalBuildingValue=0x7f0500b6;
         public static final int loadDatabaseItemButton=0x7f05006f;
         public static final int load_text=0x7f05006e;
         public static final int loanButton=0x7f050019;
         public static final int loanScrollView=0x7f050070;
-        public static final int localMunicipalFeesEditText=0x7f0500bd;
-        public static final int localMunicipalFeesTitle=0x7f0500bc;
-        public static final int marginalTaxRateEditText=0x7f0500b2;
-        public static final int marginalTaxRateTitle=0x7f0500b1;
+        public static final int localMunicipalFeesEditText=0x7f0500c0;
+        public static final int localMunicipalFeesTitle=0x7f0500bf;
+        public static final int marginalTaxRateEditText=0x7f0500b5;
+        public static final int marginalTaxRateTitle=0x7f0500b4;
         public static final int maxValueEditText=0x7f050060;
         public static final int maxValueTextView=0x7f05005d;
         public static final int minValueEditText=0x7f05005e;
@@ -214,9 +214,9 @@ containing a value of this type.
         public static final int mirrFrameLayout=0x7f050052;
         public static final int mirrLoadValuesTextView=0x7f050037;
         public static final int modifiedTimeStampTextView=0x7f05003b;
-        public static final int monthsUntilRentStartsEditText=0x7f05009a;
-        public static final int monthsUntilRentStartsLinearLayout=0x7f050098;
-        public static final int monthsUntilRentStartsTitle=0x7f050099;
+        public static final int monthsUntilRentStartsEditText=0x7f05009d;
+        public static final int monthsUntilRentStartsLinearLayout=0x7f05009b;
+        public static final int monthsUntilRentStartsTitle=0x7f05009c;
         public static final int npvFrameLayout=0x7f05004c;
         public static final int npvLoadValuesTextView=0x7f050038;
         public static final int numOfCompoundingPeriodsSpinner=0x7f05007a;
@@ -225,37 +225,37 @@ containing a value of this type.
         public static final int overallFinancialEnvironmentLinearLayout=0x7f050042;
         public static final int overallFinancialEnvironmentScrollView=0x7f050041;
         public static final int overallRentalScrollView=0x7f050087;
-        public static final int overallSaleLinearLayout=0x7f05009c;
-        public static final int overallSaleScrollView=0x7f05009b;
-        public static final int overallTaxesLayout=0x7f0500af;
+        public static final int overallSaleLinearLayout=0x7f05009f;
+        public static final int overallSaleScrollView=0x7f05009e;
+        public static final int overallTaxesLayout=0x7f0500b2;
         public static final int privateMortgageInsuranceEditText=0x7f050079;
         public static final int privateMortgageInsuranceLinearLayout=0x7f050077;
         public static final int privateMortgageInsuranceTitle=0x7f050078;
-        public static final int propertyTaxEditText=0x7f0500ba;
-        public static final int propertyTaxTitle=0x7f0500b9;
+        public static final int propertyTaxEditText=0x7f0500bd;
+        public static final int propertyTaxTitle=0x7f0500bc;
         public static final int realEstateAppreciationRateEditText=0x7f050048;
         public static final int realEstateAppreciationRateLinearLayout=0x7f050046;
         public static final int realEstateAppreciationRateTitle=0x7f050047;
         public static final int rearLoadValuesTextView=0x7f050026;
         public static final int rentalButton=0x7f05001c;
-        public static final int requiredRateOfReturnEditText=0x7f050097;
-        public static final int requiredRateOfReturnLinearLayout=0x7f050095;
-        public static final int requiredRateOfReturnTitle=0x7f050096;
+        public static final int requiredRateOfReturnEditText=0x7f05009a;
+        public static final int requiredRateOfReturnLinearLayout=0x7f050098;
+        public static final int requiredRateOfReturnTitle=0x7f050099;
         public static final int resetButton=0x7f050061;
         public static final int rrrLoadValuesTextView=0x7f050028;
         public static final int saleButton=0x7f05001a;
-        public static final int saveCurrentValuesMenuItem=0x7f0500c0;
-        public static final int sellingBrokerRateEditText=0x7f0500a2;
-        public static final int sellingBrokerRateLinearLayout=0x7f0500a0;
-        public static final int sellingBrokerRateTitle=0x7f0500a1;
+        public static final int saveCurrentValuesMenuItem=0x7f0500c3;
+        public static final int sellingBrokerRateEditText=0x7f0500a5;
+        public static final int sellingBrokerRateLinearLayout=0x7f0500a3;
+        public static final int sellingBrokerRateTitle=0x7f0500a4;
         public static final int sendEmailToDeveloper=0x7f05006d;
         public static final int sliderLinearLayout=0x7f050059;
-        public static final int sortByMenuItem=0x7f0500c5;
-        public static final int splashScreenGoButton=0x7f0500ac;
-        public static final int splashScreenLayout=0x7f0500a4;
-        public static final int splashScreenRentCheckBox=0x7f0500a9;
-        public static final int splashScreenSkipButton=0x7f0500ad;
-        public static final int splashScreenValueEntry=0x7f0500a8;
+        public static final int sortByMenuItem=0x7f0500c8;
+        public static final int splashScreenGoButton=0x7f0500af;
+        public static final int splashScreenLayout=0x7f0500a7;
+        public static final int splashScreenRentCheckBox=0x7f0500ac;
+        public static final int splashScreenSkipButton=0x7f0500b0;
+        public static final int splashScreenValueEntry=0x7f0500ab;
         public static final int stateEditText=0x7f050010;
         public static final int stateTitle=0x7f05000f;
         public static final int streetAddress=0x7f050009;
@@ -267,12 +267,12 @@ containing a value of this type.
         public static final int tab4=0x7f050051;
         public static final int tab5=0x7f050053;
         public static final int tab6=0x7f050055;
-        public static final int tableRow1=0x7f0500a5;
-        public static final int tableRow4=0x7f0500a6;
-        public static final int tableRow5=0x7f0500ab;
+        public static final int tableRow1=0x7f0500a8;
+        public static final int tableRow4=0x7f0500a9;
+        public static final int tableRow5=0x7f0500ae;
         public static final int taxesButton=0x7f05001d;
-        public static final int taxesScrollView=0x7f0500ae;
-        public static final int textThanksTextView=0x7f0500be;
+        public static final int taxesScrollView=0x7f0500b1;
+        public static final int textThanksTextView=0x7f0500c1;
         public static final int timeSlider=0x7f050068;
         public static final int timeSliderLabel=0x7f050067;
         public static final int timeSliderLinearLayout=0x7f050066;
@@ -280,16 +280,19 @@ containing a value of this type.
         public static final int totalPurchasePriceEditText=0x7f050076;
         public static final int totalPurchasePriceLinearLayout=0x7f050074;
         public static final int totalPurchasePriceTitle=0x7f050075;
-        public static final int totalPurchaseValueHintTitle=0x7f0500b4;
-        public static final int totalPurchaseValueSplashTitle=0x7f0500a7;
+        public static final int totalPurchaseValueHintTitle=0x7f0500b7;
+        public static final int totalPurchaseValueSplashTitle=0x7f0500aa;
         public static final int vacancyAndCreditLossEditText=0x7f05008e;
         public static final int vacancyAndCreditLossLinearLayout=0x7f05008c;
         public static final int vacancyAndCreditLossTitle=0x7f05008d;
+        public static final int valuationEditText=0x7f050094;
+        public static final int valuationLinearLayout=0x7f050092;
+        public static final int valuationTitle=0x7f050093;
         public static final int valueSlider=0x7f050065;
         public static final int valueSliderLabel=0x7f050064;
         public static final int valueSliderLinearLayout=0x7f050063;
         public static final int valueSpinner=0x7f050062;
-        public static final int viewGraphMenuItem=0x7f0500c1;
+        public static final int viewGraphMenuItem=0x7f0500c4;
         public static final int yearLabel=0x7f050069;
         public static final int yearLoadValuesTextView=0x7f05002a;
         public static final int yearlyInterestRateEditText=0x7f050073;
@@ -332,14 +335,14 @@ containing a value of this type.
         public static final int accumulatedInterestPaidTitleText=0x7f070025;
         /**  Saved data browser 
          */
-        public static final int addNewEntryText=0x7f0700fb;
-        public static final int addressActivityTitleText=0x7f0700d1;
+        public static final int addNewEntryText=0x7f0700fd;
+        public static final int addressActivityTitleText=0x7f0700d3;
         public static final int allButtonsOffText=0x7f070097;
         /**  configure data tables activity 
          */
         public static final int allButtonsOnText=0x7f070096;
         public static final int allow=0x7f070004;
-        public static final int appInfoActivityTitleText=0x7f0700db;
+        public static final int appInfoActivityTitleText=0x7f0700dd;
         public static final int app_name=0x7f070000;
         public static final int application_error=0x7f070005;
         public static final int atcfAccumulatorHelpText=0x7f07002a;
@@ -354,7 +357,7 @@ containing a value of this type.
         public static final int aterPresentValueTitleText=0x7f07002f;
         public static final int aterTabText=0x7f07000d;
         public static final int aterTitleText=0x7f07002d;
-        public static final int authorInfoText=0x7f070109;
+        public static final int authorInfoText=0x7f07010b;
         public static final int backButtonText=0x7f07009e;
         public static final int brokerCutHelpText=0x7f070032;
         public static final int brokerCutTitleText=0x7f070031;
@@ -364,10 +367,10 @@ containing a value of this type.
         public static final int buildingValueHelpText=0x7f070033;
         public static final int buildingValueTitleText=0x7f07009f;
         public static final int buy_button=0x7f070009;
-        public static final int calcActivityNotFoundGenExceptionText=0x7f0700f9;
+        public static final int calcActivityNotFoundGenExceptionText=0x7f0700fb;
         public static final int calcPMIDownPaymentButtonText=0x7f0700b4;
         public static final int calcPMITitleText=0x7f0700b5;
-        public static final int calculatorActivityNotFoundText=0x7f0700f8;
+        public static final int calculatorActivityNotFoundText=0x7f0700fa;
         /**  load database item 
          */
         public static final int cancelButtonText=0x7f070098;
@@ -386,56 +389,56 @@ containing a value of this type.
         public static final int closingCostsHelpText=0x7f070039;
         public static final int closingCostsTitleText=0x7f0700b7;
         public static final int commentsHelpText=0x7f0700a8;
-        public static final int commentsLoadValuesString=0x7f0700ea;
+        public static final int commentsLoadValuesString=0x7f0700ec;
         public static final int commentsTitleText=0x7f0700a7;
-        public static final int configureDataTableTitleText=0x7f0700d2;
+        public static final int configureDataTableTitleText=0x7f0700d4;
         /**  Menu items 
          */
         public static final int configureGraphMenuTitle=0x7f070011;
-        public static final int crash_toast_text=0x7f07010b;
+        public static final int crash_toast_text=0x7f07010d;
         public static final int currentAmountOutstandingHelpText=0x7f07003a;
         public static final int currentAmountOutstandingTitleText=0x7f07003b;
-        public static final int currentEntryIdIsText=0x7f0700fd;
+        public static final int currentEntryIdIsText=0x7f0700ff;
         public static final int currentValueLabel=0x7f070093;
-        public static final int dataDeletedToastText=0x7f070103;
-        public static final int dataLoadedToastText=0x7f070106;
-        public static final int dataPagesActivityTitleText=0x7f0700d0;
+        public static final int dataDeletedToastText=0x7f070105;
+        public static final int dataLoadedToastText=0x7f070108;
+        public static final int dataPagesActivityTitleText=0x7f0700d2;
         /**  data pages 
          */
         public static final int dataPagesHeaderText=0x7f0700a9;
-        public static final int dataRowLoadValuesString=0x7f0700e2;
-        public static final int dataSavedAsNewEntryText=0x7f0700ff;
-        public static final int dataSavedIntoCurrentEntryText=0x7f070100;
-        public static final int databaseSearchActivityTitleText=0x7f0700dc;
-        public static final int dateStampString=0x7f0700eb;
-        public static final int defaultValuesFromAddress=0x7f0700cc;
+        public static final int dataRowLoadValuesString=0x7f0700e4;
+        public static final int dataSavedAsNewEntryText=0x7f070101;
+        public static final int dataSavedIntoCurrentEntryText=0x7f070102;
+        public static final int databaseSearchActivityTitleText=0x7f0700de;
+        public static final int dateStampString=0x7f0700ed;
+        public static final int defaultValuesFromAddress=0x7f0700ce;
         public static final int defaultZeroCurrency=0x7f07009b;
         /**  Data table 
          */
         public static final int defaultZeroPercentage=0x7f07009a;
-        public static final int deleteMessage=0x7f070101;
-        public static final int deleteMessageTitle=0x7f070102;
+        public static final int deleteMessage=0x7f070103;
+        public static final int deleteMessageTitle=0x7f070104;
         public static final int dont_allow=0x7f070003;
         public static final int downPaymentHelpText=0x7f07003c;
-        public static final int downPaymentLoadValuesString=0x7f0700e7;
+        public static final int downPaymentLoadValuesString=0x7f0700e9;
         public static final int downPaymentTitleText=0x7f0700b2;
         /**  set data values activity 
          */
-        public static final int editValuesButtonText=0x7f0700ca;
+        public static final int editValuesButtonText=0x7f0700cc;
         public static final int editValuesMenuTitle=0x7f070013;
-        public static final int emailDialogMessage=0x7f0700f5;
-        public static final int emailDialogTitle=0x7f0700f6;
+        public static final int emailDialogMessage=0x7f0700f7;
+        public static final int emailDialogTitle=0x7f0700f8;
         /**  Activity title value- 
          */
-        public static final int entryScreenActivityTitleText=0x7f0700ce;
-        public static final int estimatedRentLoadValuesString=0x7f0700e9;
+        public static final int entryScreenActivityTitleText=0x7f0700d0;
+        public static final int estimatedRentLoadValuesString=0x7f0700eb;
         public static final int estimatedRentPaymentsHelpText=0x7f07003d;
         public static final int estimatedRentPaymentsTitleText=0x7f0700c1;
         public static final int extraYearsCalculateTitleText=0x7f0700b9;
         public static final int extraYearsHelpText=0x7f07003e;
         public static final int extraYearsTitleText=0x7f07003f;
         public static final int failed_retry_dialog_body=0x7f070008;
-        public static final int financialEnvironmentActivityTitleText=0x7f0700d3;
+        public static final int financialEnvironmentActivityTitleText=0x7f0700d5;
         public static final int financialEnvironmentButtonText=0x7f0700ae;
         /**  financial environment 
          */
@@ -448,10 +451,10 @@ containing a value of this type.
         /**  sale expenses 
          */
         public static final int generalSaleExpensesTitleText=0x7f0700ba;
-        public static final int genericDefaultValues=0x7f0700cb;
-        public static final int go=0x7f0700f0;
-        public static final int graphActivityTitleText=0x7f0700d4;
-        public static final int graphVisibilityCheckboxTitle=0x7f0700ed;
+        public static final int genericDefaultValues=0x7f0700cd;
+        public static final int go=0x7f0700f2;
+        public static final int graphActivityTitleText=0x7f0700d6;
+        public static final int graphVisibilityCheckboxTitle=0x7f0700ef;
         public static final int grossYearlyIncomeHelpText=0x7f07006c;
         public static final int grossYearlyIncomeTitleText=0x7f07006f;
         public static final int helpButtonContentDescription=0x7f070024;
@@ -465,12 +468,12 @@ containing a value of this type.
         public static final int initialYearlyGeneralExpensesTitleText=0x7f0700c6;
         public static final int interestPaymentHelpText=0x7f070022;
         public static final int interestPaymentTitleText=0x7f070023;
-        public static final int loadDataDialogTitle=0x7f070105;
+        public static final int loadDataDialogTitle=0x7f070107;
         public static final int loadItemText=0x7f070099;
-        public static final int loadSavedValuesActivityTitleText=0x7f0700d5;
+        public static final int loadSavedValuesActivityTitleText=0x7f0700d7;
         public static final int loadSavedValuesButtonText=0x7f07008e;
-        public static final int loadTheDataWithId=0x7f070104;
-        public static final int loanActivityTitleText=0x7f0700d6;
+        public static final int loadTheDataWithId=0x7f070106;
+        public static final int loanActivityTitleText=0x7f0700d8;
         public static final int loanAmountHelpText=0x7f070020;
         public static final int loanAmountTitleText=0x7f070021;
         public static final int loanButtonText=0x7f0700ac;
@@ -503,7 +506,7 @@ containing a value of this type.
          */
         public static final int netPresentValueTabText=0x7f07000b;
         public static final int netPresentValueTitleText=0x7f07004e;
-        public static final int noEntriesText=0x7f0700fc;
+        public static final int noEntriesText=0x7f0700fe;
         public static final int numOfCompoundingPeriodsTitleText=0x7f0700b3;
         public static final int numberOfCompoundingPeriodsHelpText=0x7f07004f;
         public static final int numberOfCompoundingPeriodsTitleText=0x7f070050;
@@ -518,44 +521,44 @@ containing a value of this type.
         public static final int quit_button=0x7f07000a;
         public static final int realEstateAppreciationRateHelpText=0x7f070055;
         public static final int realEstateAppreciationRateTitleText=0x7f0700bf;
-        public static final int realEstateMarketAnalysisSplashPageDescription=0x7f0700e1;
-        public static final int reapFeatureList=0x7f0700ef;
-        public static final int rearLoadValuesString=0x7f0700ec;
-        public static final int rentalActivityTitleText=0x7f0700cf;
+        public static final int realEstateMarketAnalysisSplashPageDescription=0x7f0700e3;
+        public static final int reapFeatureList=0x7f0700f1;
+        public static final int rearLoadValuesString=0x7f0700ee;
+        public static final int rentalActivityTitleText=0x7f0700d1;
         public static final int rentalButtonText=0x7f0700af;
         /**  rental 
          */
         public static final int rentalHeaderText=0x7f0700c0;
-        public static final int reqRateReturnLoadValuesString=0x7f0700e8;
+        public static final int reqRateReturnLoadValuesString=0x7f0700ea;
         public static final int requiredRateOfReturnHelpText=0x7f070056;
         public static final int requiredRateOfReturnTitleText=0x7f0700c7;
         public static final int resetButton=0x7f070094;
-        public static final int saleActivityTitleText=0x7f0700d7;
+        public static final int saleActivityTitleText=0x7f0700d9;
         public static final int saleButtonText=0x7f0700ad;
         public static final int saleScreenHeaderText=0x7f0700bc;
         /**  Save current values activity 
          */
-        public static final int saveButtonText=0x7f0700de;
-        public static final int saveCurrentValuesActivityTitleText=0x7f0700dd;
+        public static final int saveButtonText=0x7f0700e0;
+        public static final int saveCurrentValuesActivityTitleText=0x7f0700df;
         public static final int saveCurrentValuesMenuTitle=0x7f070014;
-        public static final int saveCurrentValuesToDatabaseButtonText=0x7f0700cd;
-        public static final int saveDataDialogBaseMessageText=0x7f0700f3;
-        public static final int savedDataBrowserActivityTitleText=0x7f0700da;
-        public static final int savedDataHelpMessageText=0x7f0700f4;
+        public static final int saveCurrentValuesToDatabaseButtonText=0x7f0700cf;
+        public static final int saveDataDialogBaseMessageText=0x7f0700f5;
+        public static final int savedDataBrowserActivityTitleText=0x7f0700dc;
+        public static final int savedDataHelpMessageText=0x7f0700f6;
         public static final int savedLocationsMenuTitle=0x7f070012;
         public static final int searchDatabaseButtonText=0x7f070090;
         public static final int sellingBrokerRateHelpText=0x7f070057;
         public static final int sellingBrokerRateTitleText=0x7f0700bb;
         public static final int sellingExpensesHelpText=0x7f070058;
         public static final int sellingExpensesTitleText=0x7f070059;
-        public static final int sendEmailToDeveloperText=0x7f07010a;
-        public static final int setDataValuesActivityTitleText=0x7f0700d8;
+        public static final int sendEmailToDeveloperText=0x7f07010c;
+        public static final int setDataValuesActivityTitleText=0x7f0700da;
         public static final int setDataValuesButtonText=0x7f07008c;
-        public static final int skip=0x7f0700f2;
+        public static final int skip=0x7f0700f4;
         public static final int sortByMenuTitle=0x7f070017;
-        public static final int splashScreenEntryHelpText=0x7f0700ee;
-        public static final int splashScreenNote=0x7f0700f1;
-        public static final int splashScreenRentCheckBox=0x7f0700f7;
+        public static final int splashScreenEntryHelpText=0x7f0700f0;
+        public static final int splashScreenNote=0x7f0700f3;
+        public static final int splashScreenRentCheckBox=0x7f0700f9;
         public static final int stateInitialsHelpText=0x7f07005a;
         public static final int stateInitialsTitleText=0x7f07005b;
         public static final int stateTitleText=0x7f0700a5;
@@ -564,28 +567,28 @@ containing a value of this type.
          */
         public static final int streetAddressHeaderText=0x7f0700a2;
         public static final int streetAddressHelpText=0x7f07005c;
-        public static final int streetAddressLoadValuesString=0x7f0700e3;
+        public static final int streetAddressLoadValuesString=0x7f0700e5;
         public static final int streetAddressTitleText=0x7f0700a3;
         public static final int taxableIncomeHelpText=0x7f07005d;
         public static final int taxableIncomeTitleText=0x7f07005e;
-        public static final int taxesActivityTitleText=0x7f0700d9;
+        public static final int taxesActivityTitleText=0x7f0700db;
         public static final int taxesButtonText=0x7f0700ab;
         public static final int taxesCompleteText=0x7f0700aa;
         public static final int taxesDueAtSaleHelpText=0x7f07005f;
         public static final int taxesDueAtSaleTitleText=0x7f070060;
-        public static final int timeSliderText=0x7f0700e0;
-        public static final int titleBarTextWhileCheckLicense=0x7f0700fa;
+        public static final int timeSliderText=0x7f0700e2;
+        public static final int titleBarTextWhileCheckLicense=0x7f0700fc;
         public static final int totalPurchasePriceTitleText=0x7f0700b6;
         public static final int totalPurchaseValueHelpText=0x7f070061;
-        public static final int totalPurchaseValueLoadValuesString=0x7f0700e4;
-        public static final int totalPurchaseValueSplashHelpText=0x7f070108;
-        public static final int totalPurchaseValueSplashTitleText=0x7f070107;
+        public static final int totalPurchaseValueLoadValuesString=0x7f0700e6;
+        public static final int totalPurchaseValueSplashHelpText=0x7f07010a;
+        public static final int totalPurchaseValueSplashTitleText=0x7f070109;
         public static final int totalPurchaseValueTitleText=0x7f070062;
         public static final int unlicensed_dialog_body=0x7f070007;
         /**  Unlicensed dialog messages 
          */
         public static final int unlicensed_dialog_title=0x7f070006;
-        public static final int updateCurrentEntryText=0x7f0700fe;
+        public static final int updateCurrentEntryText=0x7f070100;
         public static final int useCalcWithDefaultValues=0x7f070088;
         /**  entry page text 
          */
@@ -596,7 +599,9 @@ containing a value of this type.
         public static final int vacancyAndCreditLossRateHelpText=0x7f070063;
         public static final int vacancyAndCreditLossRateTitleText=0x7f070064;
         public static final int vacancyAndCreditLossTitleText=0x7f0700c3;
-        public static final int valueSliderText=0x7f0700df;
+        public static final int valuationHelpText=0x7f0700cb;
+        public static final int valuationTitleText=0x7f0700ca;
+        public static final int valueSliderText=0x7f0700e1;
         public static final int viewDataValuesText=0x7f07008a;
         public static final int viewGraphButtonText=0x7f07008b;
         public static final int viewGraphMenuTitle=0x7f070015;
@@ -611,11 +616,11 @@ containing a value of this type.
         public static final int yearlyHomeInsuranceTitleText=0x7f0700c2;
         public static final int yearlyIncomeHelpText=0x7f07006a;
         public static final int yearlyIncomeTitleText=0x7f07006b;
-        public static final int yearlyInflationRateLoadValuesString=0x7f0700e5;
+        public static final int yearlyInflationRateLoadValuesString=0x7f0700e7;
         public static final int yearlyInterestPaidHelpText=0x7f070070;
         public static final int yearlyInterestPaidTitleText=0x7f070071;
         public static final int yearlyInterestRateHelpText=0x7f070072;
-        public static final int yearlyInterestRateLoadValuesString=0x7f0700e6;
+        public static final int yearlyInterestRateLoadValuesString=0x7f0700e8;
         /**  Loan page 
          */
         public static final int yearlyInterestRateTitleText=0x7f0700b1;

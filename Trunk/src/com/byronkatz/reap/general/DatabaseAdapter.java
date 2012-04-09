@@ -17,7 +17,7 @@ public class DatabaseAdapter {
   private static final String DATABASE_NAME            = "investmentValues";
 
   private static final String LOCATIONS_DATABASE_TABLE = "mainTable";
-  private static final int DATABASE_VERSION = 1;
+  private static final int DATABASE_VERSION = 2;
 
   // The index (key) column name for use in where clauses.
   public static final String KEY_ID="_id";
@@ -54,6 +54,7 @@ public class DatabaseAdapter {
       ValueEnum.GENERAL_SALE_EXPENSES.name()              + " REAL"    +     ", " +
       ValueEnum.REQUIRED_RATE_OF_RETURN.name()            + " REAL"    +     ", " +
       ValueEnum.FIX_UP_COSTS.name()                       + " REAL"    +     ","  +
+      ValueEnum.INITIAL_VALUATION.name()                  + " REAL"    +     ","  +
       ValueEnum.PRIVATE_MORTGAGE_INSURANCE.name()         + " REAL"    +     ","  +
       ValueEnum.CLOSING_COSTS.name()                      + " REAL"    +     ","  +
       ValueEnum.MODIFIED_INTERNAL_RATE_OF_RETURN.name()   + " REAL"    +     ","  +
@@ -139,9 +140,9 @@ public class DatabaseAdapter {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
       // Log the version upgrade.
-//      Log.w("TaskDBAdapter", "Upgrading from version " + 
-//          oldVersion + " to " +
-//          newVersion + ", which will destroy all old data");
+      Log.w("TaskDBAdapter", "Upgrading from version " + 
+          oldVersion + " to " +
+          newVersion + ", which will destroy all old data");
 
       // Upgrade the existing database to conform to the new version. Multiple 
       // previous versions can be handled by comparing oldVersion and newVersion

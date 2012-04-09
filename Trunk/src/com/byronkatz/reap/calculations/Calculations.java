@@ -36,6 +36,7 @@ public class Calculations implements ValueSettable {
   private double inflationRate;
   private double municipalExpenses;
   private double totalPurchaseValue;
+  private double valuation;
   private double fixupCosts;
   private double initialRent;
   private double yearlyRealEstateAppreciationRate;
@@ -129,6 +130,7 @@ public class Calculations implements ValueSettable {
     inflationRate = 0d;
     municipalExpenses = 0d;
     totalPurchaseValue = 0d;
+    valuation = 0d;
     fixupCosts = 0d;
     initialRent = 0d;
     yearlyRealEstateAppreciationRate = 0d;
@@ -264,6 +266,7 @@ public class Calculations implements ValueSettable {
     totalPurchaseValue = dataManager
         .getInputValue(ValueEnum.TOTAL_PURCHASE_VALUE);
     fixupCosts = dataManager.getInputValue(ValueEnum.FIX_UP_COSTS);
+    valuation = dataManager.getInputValue(ValueEnum.INITIAL_VALUATION);
     initialRent = dataManager.getInputValue(ValueEnum.ESTIMATED_RENT_PAYMENTS);
     vacancyAndCreditLossRate = dataManager
         .getInputValue(ValueEnum.VACANCY_AND_CREDIT_LOSS_RATE);
@@ -766,10 +769,15 @@ public class Calculations implements ValueSettable {
       if (compoundingPeriod < 0) {
         return 0d;
       }
+      if (Math.abs(valuation - 0d) < EPSILON) {
+        return valuation
+            * Math.pow(1 + yearlyRealEstateAppreciationRate, compoundingPeriod
+                / MONTHS_IN_YEAR);
+      } else {
       return (totalPurchaseValue + fixupCosts)
           * Math.pow(1 + yearlyRealEstateAppreciationRate, compoundingPeriod
               / MONTHS_IN_YEAR);
-
+      }
     }
   }
 

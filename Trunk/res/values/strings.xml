@@ -734,6 +734,16 @@ value at the time of sale, to pay for the broker
                 \n\n
 	    This value is user-input
         </string>
+        
+    <string name="valuationTitleText">Input Valuation</string>
+    <string name="valuationHelpText">The valuation is the estimated value of the property
+        at the beginning of the first year of ownership.  It is used as the value
+        of the investment if it is greater than 0.  This way, the user may determine
+        that the actual value is less or greater than the purchase price.  The
+        Calculated Projected Value will use this value as its starting point.
+                        \n\n
+	    This value is user-input
+        </string>
     
 
     <!-- set data values activity -->
