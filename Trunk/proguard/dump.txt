@@ -11614,8 +11614,8 @@ Methods (count = 9):
         + Fieldref [com/byronkatz/reap/general/r.C Lcom/byronkatz/reap/general/r;]
       [131] astore_1 v1
       [132] aload_0 v0
-      [133] getfield #37
-        + Fieldref [com/byronkatz/reap/activity/RentalActivity.d Landroid/widget/EditText;]
+      [133] getfield #38
+        + Fieldref [com/byronkatz/reap/activity/RentalActivity.e Landroid/widget/EditText;]
       [136] invokevirtual #59
         + Methodref [android/widget/EditText.getText ()Landroid/text/Editable;]
       [139] invokeinterface #86
@@ -16627,7 +16627,7 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 507):
+Constant Pool (count = 498):
   + Integer [17367048]
   + Integer [17367049]
   + Integer [2130903057]
@@ -16647,7 +16647,6 @@ Constant Pool (count = 507):
   + Integer [2131165192]
   + Integer [2131165193]
   + Integer [2131165194]
-  + Integer [2131165436]
   + String [IS_GRAPH_VISIBLE]
   + String [MyPrefsFile]
   + String [android_id]
@@ -16669,7 +16668,7 @@ Constant Pool (count = 507):
   + Class [android/widget/TextView]
   + Class [com/a/a/a/a/a]
   + Class [com/a/a/a/a/i]
-  + Class [com/a/a/a/a/t]
+  + Class [com/a/a/a/a/s]
   + Class [com/byronkatz/reap/activity/SplashScreenActivity]
   + Class [com/byronkatz/reap/activity/ad]
   + Class [com/byronkatz/reap/activity/ae]
@@ -16782,18 +16781,15 @@ Constant Pool (count = 507):
   + Methodref [android/widget/Spinner.setOnItemSelectedListener (Landroid/widget/AdapterView$OnItemSelectedListener;)V]
   + Methodref [android/widget/TextView.setOnClickListener (Landroid/view/View$OnClickListener;)V]
   + Methodref [com/a/a/a/a/a.<init> ([BLjava/lang/String;Ljava/lang/String;)V]
-  + Methodref [com/a/a/a/a/i.<init> (Landroid/content/Context;Lcom/a/a/a/a/q;Ljava/lang/String;)V]
+  + Methodref [com/a/a/a/a/i.<init> (Landroid/content/Context;Lcom/a/a/a/a/p;Ljava/lang/String;)V]
   + Methodref [com/a/a/a/a/i.a ()V]
-  + Methodref [com/a/a/a/a/i.a (Lcom/a/a/a/a/m;)V]
-  + Methodref [com/a/a/a/a/t.<init> (Landroid/content/Context;Lcom/a/a/a/a/p;)V]
+  + Methodref [com/a/a/a/a/s.<init> (Landroid/content/Context;Lcom/a/a/a/a/o;)V]
   + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
   + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.getContentResolver ()Landroid/content/ContentResolver;]
   + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.getPackageName ()Ljava/lang/String;]
   + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
   + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.requestWindowFeature (I)Z]
   + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.setContentView (I)V]
-  + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.setProgressBarIndeterminateVisibility (Z)V]
-  + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.setTitle (I)V]
   + Methodref [com/byronkatz/reap/activity/ad.<init> (Lcom/byronkatz/reap/activity/SplashScreenActivity;)V]
   + Methodref [com/byronkatz/reap/activity/ae.<init> (Lcom/byronkatz/reap/activity/SplashScreenActivity;)V]
   + Methodref [com/byronkatz/reap/activity/af.<init> (Lcom/byronkatz/reap/activity/SplashScreenActivity;)V]
@@ -16829,8 +16825,8 @@ Constant Pool (count = 507):
   + InterfaceMethodref [android/text/Editable.toString ()Ljava/lang/String;]
   + NameAndType [<init> ()V]
   + NameAndType [<init> (Landroid/content/Context;)V]
-  + NameAndType [<init> (Landroid/content/Context;Lcom/a/a/a/a/p;)V]
-  + NameAndType [<init> (Landroid/content/Context;Lcom/a/a/a/a/q;Ljava/lang/String;)V]
+  + NameAndType [<init> (Landroid/content/Context;Lcom/a/a/a/a/o;)V]
+  + NameAndType [<init> (Landroid/content/Context;Lcom/a/a/a/a/p;Ljava/lang/String;)V]
   + NameAndType [<init> (Lcom/byronkatz/reap/activity/SplashScreenActivity;)V]
   + NameAndType [<init> (Lcom/byronkatz/reap/activity/SplashScreenActivity;B)V]
   + NameAndType [<init> (Lcom/byronkatz/reap/general/r;)V]
@@ -16854,7 +16850,6 @@ Constant Pool (count = 507):
   + NameAndType [a ()V]
   + NameAndType [a (DLcom/byronkatz/reap/general/r;)V]
   + NameAndType [a (Landroid/content/SharedPreferences;)V]
-  + NameAndType [a (Lcom/a/a/a/a/m;)V]
   + NameAndType [a (Ljava/lang/String;)Ljava/lang/Double;]
   + NameAndType [a Landroid/widget/ArrayAdapter;]
   + NameAndType [a Lcom/byronkatz/reap/general/r;]
@@ -16927,9 +16922,7 @@ Constant Pool (count = 507):
   + NameAndType [setOnFocusChangeListener (Landroid/view/View$OnFocusChangeListener;)V]
   + NameAndType [setOnItemSelectedListener (Landroid/widget/AdapterView$OnItemSelectedListener;)V]
   + NameAndType [setPositiveButton (ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;]
-  + NameAndType [setProgressBarIndeterminateVisibility (Z)V]
   + NameAndType [setTitle (I)Landroid/app/AlertDialog$Builder;]
-  + NameAndType [setTitle (I)V]
   + NameAndType [toString ()Ljava/lang/String;]
   + NameAndType [u Lcom/byronkatz/reap/general/r;]
   + NameAndType [v Lcom/byronkatz/reap/general/r;]
@@ -16958,8 +16951,8 @@ Constant Pool (count = 507):
   + Utf8 [(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;]
   + Utf8 [(Landroid/content/Context;)V]
   + Utf8 [(Landroid/content/Context;II)Landroid/widget/ArrayAdapter;]
-  + Utf8 [(Landroid/content/Context;Lcom/a/a/a/a/p;)V]
-  + Utf8 [(Landroid/content/Context;Lcom/a/a/a/a/q;Ljava/lang/String;)V]
+  + Utf8 [(Landroid/content/Context;Lcom/a/a/a/a/o;)V]
+  + Utf8 [(Landroid/content/Context;Lcom/a/a/a/a/p;Ljava/lang/String;)V]
   + Utf8 [(Landroid/content/SharedPreferences;)V]
   + Utf8 [(Landroid/os/Bundle;)V]
   + Utf8 [(Landroid/view/View$OnClickListener;)V]
@@ -16967,7 +16960,6 @@ Constant Pool (count = 507):
   + Utf8 [(Landroid/widget/AdapterView$OnItemSelectedListener;)V]
   + Utf8 [(Landroid/widget/CompoundButton$OnCheckedChangeListener;)V]
   + Utf8 [(Landroid/widget/SpinnerAdapter;)V]
-  + Utf8 [(Lcom/a/a/a/a/m;)V]
   + Utf8 [(Lcom/byronkatz/reap/activity/SplashScreenActivity;)Ljava/lang/Boolean;]
   + Utf8 [(Lcom/byronkatz/reap/activity/SplashScreenActivity;)V]
   + Utf8 [(Lcom/byronkatz/reap/activity/SplashScreenActivity;B)V]
@@ -17045,7 +17037,7 @@ Constant Pool (count = 507):
   + Utf8 [clear]
   + Utf8 [com/a/a/a/a/a]
   + Utf8 [com/a/a/a/a/i]
-  + Utf8 [com/a/a/a/a/t]
+  + Utf8 [com/a/a/a/a/s]
   + Utf8 [com/byronkatz/reap/activity/SplashScreenActivity]
   + Utf8 [com/byronkatz/reap/activity/ad]
   + Utf8 [com/byronkatz/reap/activity/ae]
@@ -17115,7 +17107,6 @@ Constant Pool (count = 507):
   + Utf8 [setOnFocusChangeListener]
   + Utf8 [setOnItemSelectedListener]
   + Utf8 [setPositiveButton]
-  + Utf8 [setProgressBarIndeterminateVisibility]
   + Utf8 [setTitle]
   + Utf8 [toString]
   + Utf8 [u]
@@ -17263,7 +17254,7 @@ Methods (count = 13):
       [113] bipush 19
       [115] bipush 93
       [117] bastore
-      [118] putstatic #86
+      [118] putstatic #85
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.b [B]
       [121] return
       Code attribute exceptions (count = 0):
@@ -17281,20 +17272,20 @@ Methods (count = 13):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 23, locals = 1, stack = 2):
       [0] aload_0 v0
-      [1] invokespecial #138
+      [1] invokespecial #137
         + Methodref [android/app/Activity.<init> ()V]
       [4] aload_0 v0
-      [5] iconst_0
-      [6] invokestatic #196
+      [5] iconst_1
+      [6] invokestatic #192
         + Methodref [java/lang/Boolean.valueOf (Z)Ljava/lang/Boolean;]
-      [9] putfield #87
+      [9] putfield #86
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.c Ljava/lang/Boolean;]
       [12] aload_0 v0
-      [13] invokestatic #186
+      [13] invokestatic #182
         + Methodref [com/byronkatz/reap/general/RealEstateAnalysisProcessorApplication.a ()Lcom/byronkatz/reap/general/RealEstateAnalysisProcessorApplication;]
-      [16] invokevirtual #187
+      [16] invokevirtual #183
         + Methodref [com/byronkatz/reap/general/RealEstateAnalysisProcessorApplication.b ()Lcom/byronkatz/reap/general/b;]
-      [19] putfield #100
+      [19] putfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
       [22] return
       Code attribute exceptions (count = 0):
@@ -17312,7 +17303,7 @@ Methods (count = 13):
     + Code attribute instructions (code length = 6, locals = 2, stack = 2):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] putfield #87
+      [2] putfield #86
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.c Ljava/lang/Boolean;]
       [5] return
       Code attribute exceptions (count = 0):
@@ -17324,28 +17315,28 @@ Methods (count = 13):
     Access flags: 0x1
       = public void onCreate(android.os.Bundle)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 2684, locals = 3, stack = 12):
+    + Code attribute instructions (code length = 2587, locals = 3, stack = 12):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] invokespecial #139
+      [2] invokespecial #138
         + Methodref [android/app/Activity.onCreate (Landroid/os/Bundle;)V]
       [5] aload_0 v0
       [6] iconst_5
-      [7] invokevirtual #173
+      [7] invokevirtual #171
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.requestWindowFeature (I)Z]
       [10] pop
       [11] aload_0 v0
       [12] ldc #3
         + Integer [2130903057]
-      [14] invokevirtual #174
+      [14] invokevirtual #172
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.setContentView (I)V]
       [17] aload_0 v0
-      [18] new #31
+      [18] new #30
         + Class [android/os/Handler]
       [21] dup
-      [22] invokespecial #147
+      [22] invokespecial #146
         + Methodref [android/os/Handler.<init> ()V]
-      [25] putfield #90
+      [25] putfield #89
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.f Landroid/os/Handler;]
       [28] sipush 330
       [31] newarray 8
@@ -18666,18 +18657,18 @@ Methods (count = 13):
       [2194] bipush 88
       [2196] bastore
       [2197] astore_1 v1
-      [2198] new #64
+      [2198] new #63
         + Class [java/util/zip/Inflater]
       [2201] dup
-      [2202] invokespecial #201
+      [2202] invokespecial #197
         + Methodref [java/util/zip/Inflater.<init> ()V]
       [2205] dup
       [2206] astore_2 v2
       [2207] aload_1 v1
-      [2208] invokevirtual #204
+      [2208] invokevirtual #200
         + Methodref [java/util/zip/Inflater.setInput ([B)V]
       [2211] aload_2 v2
-      [2212] invokevirtual #202
+      [2212] invokevirtual #198
         + Methodref [java/util/zip/Inflater.finished ()Z]
       [2215] pop
       [2216] sipush 392
@@ -18685,68 +18676,68 @@ Methods (count = 13):
       [2221] astore_1 v1
       [2222] aload_2 v2
       [2223] aload_1 v1
-      [2224] invokevirtual #203
+      [2224] invokevirtual #199
         + Methodref [java/util/zip/Inflater.inflate ([B)I]
       [2227] pop
       [2228] goto +6 (target=2234)
-      [2231] invokevirtual #200
+      [2231] invokevirtual #196
         + Methodref [java/util/zip/DataFormatException.printStackTrace ()V]
-      [2234] new #62
+      [2234] new #61
         + Class [java/lang/String]
       [2237] dup
       [2238] aload_1 v1
-      [2239] invokespecial #199
+      [2239] invokespecial #195
         + Methodref [java/lang/String.<init> ([B)V]
       [2242] astore_2 v2
       [2243] aload_0 v0
       [2244] aload_0 v0
       [2245] ldc #6
         + Integer [2131034227]
-      [2247] invokevirtual #169
+      [2247] invokevirtual #167
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [2250] checkcast #37
+      [2250] checkcast #36
         + Class [android/widget/EditText]
-      [2253] putfield #91
+      [2253] putfield #90
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.g Landroid/widget/EditText;]
       [2256] aload_0 v0
       [2257] aload_0 v0
       [2258] ldc #7
         + Integer [2131034234]
-      [2260] invokevirtual #169
+      [2260] invokevirtual #167
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [2263] checkcast #38
+      [2263] checkcast #37
         + Class [android/widget/Spinner]
-      [2266] putfield #95
+      [2266] putfield #94
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.k Landroid/widget/Spinner;]
       [2269] aload_0 v0
       [2270] aload_0 v0
       [2271] ldc #11
         + Integer [2131034283]
-      [2273] invokevirtual #169
+      [2273] invokevirtual #167
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [2276] checkcast #37
+      [2276] checkcast #36
         + Class [android/widget/EditText]
-      [2279] putfield #93
+      [2279] putfield #92
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.i Landroid/widget/EditText;]
       [2282] aload_0 v0
       [2283] aload_0 v0
       [2284] ldc #9
         + Integer [2131034249]
-      [2286] invokevirtual #169
+      [2286] invokevirtual #167
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [2289] checkcast #37
+      [2289] checkcast #36
         + Class [android/widget/EditText]
-      [2292] putfield #97
+      [2292] putfield #96
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.m Landroid/widget/EditText;]
       [2295] aload_0 v0
       [2296] aload_0 v0
       [2297] ldc #12
         + Integer [2131034284]
-      [2299] invokevirtual #169
+      [2299] invokevirtual #167
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [2302] checkcast #36
+      [2302] checkcast #35
         + Class [android/widget/CheckBox]
-      [2305] putfield #99
+      [2305] putfield #98
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.o Landroid/widget/CheckBox;]
       [2308] aload_0 v0
       [2309] aload_0 v0
@@ -18754,287 +18745,212 @@ Methods (count = 13):
         + Integer [2130968577]
       [2312] ldc #1
         + Integer [17367048]
-      [2314] invokestatic #150
+      [2314] invokestatic #149
         + Methodref [android/widget/ArrayAdapter.createFromResource (Landroid/content/Context;II)Landroid/widget/ArrayAdapter;]
-      [2317] putfield #85
+      [2317] putfield #84
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.a Landroid/widget/ArrayAdapter;]
       [2320] aload_0 v0
-      [2321] getfield #85
+      [2321] getfield #84
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.a Landroid/widget/ArrayAdapter;]
       [2324] ldc #2
         + Integer [17367049]
-      [2326] invokevirtual #151
+      [2326] invokevirtual #150
         + Methodref [android/widget/ArrayAdapter.setDropDownViewResource (I)V]
       [2329] aload_0 v0
-      [2330] getfield #95
+      [2330] getfield #94
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.k Landroid/widget/Spinner;]
       [2333] aload_0 v0
-      [2334] getfield #85
+      [2334] getfield #84
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.a Landroid/widget/ArrayAdapter;]
-      [2337] invokevirtual #160
+      [2337] invokevirtual #159
         + Methodref [android/widget/Spinner.setAdapter (Landroid/widget/SpinnerAdapter;)V]
       [2340] aload_0 v0
-      [2341] getfield #99
+      [2341] getfield #98
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.o Landroid/widget/CheckBox;]
-      [2344] new #44
+      [2344] new #43
         + Class [com/byronkatz/reap/activity/ad]
       [2347] dup
       [2348] aload_0 v0
-      [2349] invokespecial #177
+      [2349] invokespecial #173
         + Methodref [com/byronkatz/reap/activity/ad.<init> (Lcom/byronkatz/reap/activity/SplashScreenActivity;)V]
-      [2352] invokevirtual #156
+      [2352] invokevirtual #155
         + Methodref [android/widget/CheckBox.setOnCheckedChangeListener (Landroid/widget/CompoundButton$OnCheckedChangeListener;)V]
       [2355] aload_0 v0
-      [2356] getfield #93
+      [2356] getfield #92
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.i Landroid/widget/EditText;]
-      [2359] new #55
+      [2359] new #54
         + Class [com/byronkatz/reap/general/h]
       [2362] dup
-      [2363] getstatic #113
+      [2363] getstatic #112
         + Fieldref [com/byronkatz/reap/general/r.V Lcom/byronkatz/reap/general/r;]
-      [2366] invokespecial #191
+      [2366] invokespecial #187
         + Methodref [com/byronkatz/reap/general/h.<init> (Lcom/byronkatz/reap/general/r;)V]
-      [2369] invokevirtual #159
+      [2369] invokevirtual #158
         + Methodref [android/widget/EditText.setOnFocusChangeListener (Landroid/view/View$OnFocusChangeListener;)V]
       [2372] aload_0 v0
       [2373] ldc #10
         + Integer [2131034282]
-      [2375] invokevirtual #169
+      [2375] invokevirtual #167
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [2378] checkcast #39
+      [2378] checkcast #38
         + Class [android/widget/TextView]
-      [2381] new #56
+      [2381] new #55
         + Class [com/byronkatz/reap/general/k]
       [2384] dup
-      [2385] getstatic #113
+      [2385] getstatic #112
         + Fieldref [com/byronkatz/reap/general/r.V Lcom/byronkatz/reap/general/r;]
-      [2388] invokespecial #192
+      [2388] invokespecial #188
         + Methodref [com/byronkatz/reap/general/k.<init> (Lcom/byronkatz/reap/general/r;)V]
-      [2391] invokevirtual #163
+      [2391] invokevirtual #162
         + Methodref [android/widget/TextView.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [2394] aload_0 v0
-      [2395] getfield #91
+      [2395] getfield #90
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.g Landroid/widget/EditText;]
-      [2398] new #55
+      [2398] new #54
         + Class [com/byronkatz/reap/general/h]
       [2401] dup
-      [2402] getstatic #118
+      [2402] getstatic #117
         + Fieldref [com/byronkatz/reap/general/r.ad Lcom/byronkatz/reap/general/r;]
-      [2405] invokespecial #191
+      [2405] invokespecial #187
         + Methodref [com/byronkatz/reap/general/h.<init> (Lcom/byronkatz/reap/general/r;)V]
-      [2408] invokevirtual #159
+      [2408] invokevirtual #158
         + Methodref [android/widget/EditText.setOnFocusChangeListener (Landroid/view/View$OnFocusChangeListener;)V]
       [2411] aload_0 v0
       [2412] ldc #5
         + Integer [2131034226]
-      [2414] invokevirtual #169
+      [2414] invokevirtual #167
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [2417] checkcast #39
+      [2417] checkcast #38
         + Class [android/widget/TextView]
-      [2420] new #56
+      [2420] new #55
         + Class [com/byronkatz/reap/general/k]
       [2423] dup
-      [2424] getstatic #118
+      [2424] getstatic #117
         + Fieldref [com/byronkatz/reap/general/r.ad Lcom/byronkatz/reap/general/r;]
-      [2427] invokespecial #192
+      [2427] invokespecial #188
         + Methodref [com/byronkatz/reap/general/k.<init> (Lcom/byronkatz/reap/general/r;)V]
-      [2430] invokevirtual #163
+      [2430] invokevirtual #162
         + Methodref [android/widget/TextView.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [2433] aload_0 v0
-      [2434] getfield #95
+      [2434] getfield #94
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.k Landroid/widget/Spinner;]
-      [2437] new #45
+      [2437] new #44
         + Class [com/byronkatz/reap/activity/ae]
       [2440] dup
       [2441] aload_0 v0
-      [2442] invokespecial #178
+      [2442] invokespecial #174
         + Methodref [com/byronkatz/reap/activity/ae.<init> (Lcom/byronkatz/reap/activity/SplashScreenActivity;)V]
-      [2445] invokevirtual #162
+      [2445] invokevirtual #161
         + Methodref [android/widget/Spinner.setOnItemSelectedListener (Landroid/widget/AdapterView$OnItemSelectedListener;)V]
       [2448] aload_0 v0
-      [2449] getfield #97
+      [2449] getfield #96
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.m Landroid/widget/EditText;]
-      [2452] new #55
+      [2452] new #54
         + Class [com/byronkatz/reap/general/h]
       [2455] dup
-      [2456] getstatic #129
+      [2456] getstatic #128
         + Fieldref [com/byronkatz/reap/general/r.m Lcom/byronkatz/reap/general/r;]
-      [2459] invokespecial #191
+      [2459] invokespecial #187
         + Methodref [com/byronkatz/reap/general/h.<init> (Lcom/byronkatz/reap/general/r;)V]
-      [2462] invokevirtual #159
+      [2462] invokevirtual #158
         + Methodref [android/widget/EditText.setOnFocusChangeListener (Landroid/view/View$OnFocusChangeListener;)V]
       [2465] aload_0 v0
       [2466] ldc #8
         + Integer [2131034248]
-      [2468] invokevirtual #169
+      [2468] invokevirtual #167
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [2471] checkcast #39
+      [2471] checkcast #38
         + Class [android/widget/TextView]
-      [2474] new #56
+      [2474] new #55
         + Class [com/byronkatz/reap/general/k]
       [2477] dup
-      [2478] getstatic #129
+      [2478] getstatic #128
         + Fieldref [com/byronkatz/reap/general/r.m Lcom/byronkatz/reap/general/r;]
-      [2481] invokespecial #192
+      [2481] invokespecial #188
         + Methodref [com/byronkatz/reap/general/k.<init> (Lcom/byronkatz/reap/general/r;)V]
-      [2484] invokevirtual #163
+      [2484] invokevirtual #162
         + Methodref [android/widget/TextView.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [2487] aload_0 v0
       [2488] ldc #13
         + Integer [2131034287]
-      [2490] invokevirtual #169
+      [2490] invokevirtual #167
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [2493] checkcast #35
+      [2493] checkcast #34
         + Class [android/widget/Button]
-      [2496] new #46
+      [2496] new #45
         + Class [com/byronkatz/reap/activity/af]
       [2499] dup
       [2500] aload_0 v0
-      [2501] invokespecial #179
+      [2501] invokespecial #175
         + Methodref [com/byronkatz/reap/activity/af.<init> (Lcom/byronkatz/reap/activity/SplashScreenActivity;)V]
-      [2504] invokevirtual #153
+      [2504] invokevirtual #152
         + Methodref [android/widget/Button.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [2507] aload_0 v0
       [2508] ldc #14
         + Integer [2131034288]
-      [2510] invokevirtual #169
+      [2510] invokevirtual #167
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [2513] checkcast #35
+      [2513] checkcast #34
         + Class [android/widget/Button]
-      [2516] new #47
+      [2516] new #46
         + Class [com/byronkatz/reap/activity/ag]
       [2519] dup
       [2520] aload_0 v0
-      [2521] invokespecial #180
+      [2521] invokespecial #176
         + Methodref [com/byronkatz/reap/activity/ag.<init> (Lcom/byronkatz/reap/activity/SplashScreenActivity;)V]
-      [2524] invokevirtual #153
+      [2524] invokevirtual #152
         + Methodref [android/widget/Button.setOnClickListener (Landroid/view/View$OnClickListener;)V]
       [2527] aload_0 v0
-      [2528] invokevirtual #170
+      [2528] invokevirtual #168
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.getContentResolver ()Landroid/content/ContentResolver;]
-      [2531] ldc #23
+      [2531] ldc #22
         + String [android_id]
-      [2533] invokestatic #149
+      [2533] invokestatic #148
         + Methodref [android/provider/Settings$Secure.getString (Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;]
       [2536] astore_1 v1
       [2537] aload_0 v0
-      [2538] new #52
+      [2538] new #51
         + Class [com/byronkatz/reap/activity/al]
       [2541] dup
       [2542] aload_0 v0
       [2543] iconst_0
-      [2544] invokespecial #185
+      [2544] invokespecial #181
         + Methodref [com/byronkatz/reap/activity/al.<init> (Lcom/byronkatz/reap/activity/SplashScreenActivity;B)V]
-      [2547] putfield #88
+      [2547] putfield #87
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.d Lcom/a/a/a/a/m;]
       [2550] aload_0 v0
-      [2551] new #41
+      [2551] new #40
         + Class [com/a/a/a/a/i]
       [2554] dup
       [2555] aload_0 v0
-      [2556] new #42
-        + Class [com/a/a/a/a/t]
+      [2556] new #41
+        + Class [com/a/a/a/a/s]
       [2559] dup
       [2560] aload_0 v0
-      [2561] new #40
+      [2561] new #39
         + Class [com/a/a/a/a/a]
       [2564] dup
-      [2565] getstatic #86
+      [2565] getstatic #85
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.b [B]
       [2568] aload_0 v0
-      [2569] invokevirtual #171
+      [2569] invokevirtual #169
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.getPackageName ()Ljava/lang/String;]
       [2572] aload_1 v1
-      [2573] invokespecial #164
+      [2573] invokespecial #163
         + Methodref [com/a/a/a/a/a.<init> ([BLjava/lang/String;Ljava/lang/String;)V]
-      [2576] invokespecial #168
-        + Methodref [com/a/a/a/a/t.<init> (Landroid/content/Context;Lcom/a/a/a/a/p;)V]
+      [2576] invokespecial #166
+        + Methodref [com/a/a/a/a/s.<init> (Landroid/content/Context;Lcom/a/a/a/a/o;)V]
       [2579] aload_2 v2
-      [2580] invokespecial #165
-        + Methodref [com/a/a/a/a/i.<init> (Landroid/content/Context;Lcom/a/a/a/a/q;Ljava/lang/String;)V]
-      [2583] putfield #89
+      [2580] invokespecial #164
+        + Methodref [com/a/a/a/a/i.<init> (Landroid/content/Context;Lcom/a/a/a/a/p;Ljava/lang/String;)V]
+      [2583] putfield #88
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.e Lcom/a/a/a/a/i;]
-      [2586] aload_0 v0
-      [2587] dup
-      [2588] astore_1 v1
-      [2589] dup
-      [2590] astore_2 v2
-      [2591] ldc #13
-        + Integer [2131034287]
-      [2593] invokevirtual #169
-        + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [2596] checkcast #35
-        + Class [android/widget/Button]
-      [2599] iconst_0
-      [2600] invokevirtual #152
-        + Methodref [android/widget/Button.setEnabled (Z)V]
-      [2603] aload_2 v2
-      [2604] ldc #14
-        + Integer [2131034288]
-      [2606] invokevirtual #169
-        + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [2609] checkcast #35
-        + Class [android/widget/Button]
-      [2612] iconst_0
-      [2613] invokevirtual #152
-        + Methodref [android/widget/Button.setEnabled (Z)V]
-      [2616] aload_2 v2
-      [2617] ldc #12
-        + Integer [2131034284]
-      [2619] invokevirtual #169
-        + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [2622] checkcast #36
-        + Class [android/widget/CheckBox]
-      [2625] iconst_0
-      [2626] invokevirtual #155
-        + Methodref [android/widget/CheckBox.setEnabled (Z)V]
-      [2629] aload_2 v2
-      [2630] getfield #91
-        + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.g Landroid/widget/EditText;]
-      [2633] iconst_0
-      [2634] invokevirtual #158
-        + Methodref [android/widget/EditText.setEnabled (Z)V]
-      [2637] aload_2 v2
-      [2638] getfield #93
-        + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.i Landroid/widget/EditText;]
-      [2641] iconst_0
-      [2642] invokevirtual #158
-        + Methodref [android/widget/EditText.setEnabled (Z)V]
-      [2645] aload_2 v2
-      [2646] getfield #95
-        + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.k Landroid/widget/Spinner;]
-      [2649] iconst_0
-      [2650] invokevirtual #161
-        + Methodref [android/widget/Spinner.setEnabled (Z)V]
-      [2653] aload_2 v2
-      [2654] getfield #97
-        + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.m Landroid/widget/EditText;]
-      [2657] iconst_0
-      [2658] invokevirtual #158
-        + Methodref [android/widget/EditText.setEnabled (Z)V]
-      [2661] aload_1 v1
-      [2662] iconst_1
-      [2663] invokevirtual #175
-        + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.setProgressBarIndeterminateVisibility (Z)V]
-      [2666] aload_1 v1
-      [2667] ldc #20
-        + Integer [2131165436]
-      [2669] invokevirtual #176
-        + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.setTitle (I)V]
-      [2672] aload_1 v1
-      [2673] getfield #89
-        + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.e Lcom/a/a/a/a/i;]
-      [2676] aload_1 v1
-      [2677] getfield #88
-        + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.d Lcom/a/a/a/a/m;]
-      [2680] invokevirtual #167
-        + Methodref [com/a/a/a/a/i.a (Lcom/a/a/a/a/m;)V]
-      [2683] return
+      [2586] return
       Code attribute exceptions (count = 1):
       - ExceptionInfo (2222 -> 2228: 2231):
       + Class [java/util/zip/DataFormatException]
       Code attribute attributes (attribute count = 2):
-      + Line number table attribute (count = 72)
+      + Line number table attribute (count = 71)
         [0] -> line 102
         [5] -> line 103
         [11] -> line 104
@@ -19105,8 +19021,7 @@ Methods (count = 13):
         [2561] -> line 261
         [2579] -> line 262
         [2583] -> line 259
-        [2586] -> line 263
-        [2683] -> line 264
+        [2586] -> line 264
       + Stack map table attribute (count = 2):
         - [2231] Var: [a:com/byronkatz/reap/activity/SplashScreenActivity][a:android/os/Bundle][a:[B][a:java/util/zip/Inflater][a:[B][i], Stack: [a:java/util/zip/DataFormatException]
         - [2234] Var: ..., Stack: (empty)
@@ -19118,68 +19033,68 @@ Methods (count = 13):
       [0] iload_1 v1
       [1] sipush 291
       [4] ificmpne +38 (target=42)
-      [7] new #27
+      [7] new #26
         + Class [android/app/AlertDialog$Builder]
       [10] dup
       [11] aload_0 v0
-      [12] invokespecial #141
+      [12] invokespecial #140
         + Methodref [android/app/AlertDialog$Builder.<init> (Landroid/content/Context;)V]
       [15] ldc #15
         + Integer [2131165190]
-      [17] invokevirtual #146
+      [17] invokevirtual #145
         + Methodref [android/app/AlertDialog$Builder.setTitle (I)Landroid/app/AlertDialog$Builder;]
       [20] ldc #17
         + Integer [2131165192]
-      [22] invokevirtual #143
+      [22] invokevirtual #142
         + Methodref [android/app/AlertDialog$Builder.setMessage (I)Landroid/app/AlertDialog$Builder;]
       [25] ldc #19
         + Integer [2131165194]
-      [27] new #48
+      [27] new #47
         + Class [com/byronkatz/reap/activity/ah]
       [30] dup
       [31] aload_0 v0
-      [32] invokespecial #181
+      [32] invokespecial #177
         + Methodref [com/byronkatz/reap/activity/ah.<init> (Lcom/byronkatz/reap/activity/SplashScreenActivity;)V]
-      [35] invokevirtual #144
+      [35] invokevirtual #143
         + Methodref [android/app/AlertDialog$Builder.setNegativeButton (ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;]
-      [38] invokevirtual #142
+      [38] invokevirtual #141
         + Methodref [android/app/AlertDialog$Builder.create ()Landroid/app/AlertDialog;]
       [41] areturn
-      [42] new #27
+      [42] new #26
         + Class [android/app/AlertDialog$Builder]
       [45] dup
       [46] aload_0 v0
-      [47] invokespecial #141
+      [47] invokespecial #140
         + Methodref [android/app/AlertDialog$Builder.<init> (Landroid/content/Context;)V]
       [50] ldc #15
         + Integer [2131165190]
-      [52] invokevirtual #146
+      [52] invokevirtual #145
         + Methodref [android/app/AlertDialog$Builder.setTitle (I)Landroid/app/AlertDialog$Builder;]
       [55] ldc #16
         + Integer [2131165191]
-      [57] invokevirtual #143
+      [57] invokevirtual #142
         + Methodref [android/app/AlertDialog$Builder.setMessage (I)Landroid/app/AlertDialog$Builder;]
       [60] ldc #18
         + Integer [2131165193]
-      [62] new #49
+      [62] new #48
         + Class [com/byronkatz/reap/activity/ai]
       [65] dup
       [66] aload_0 v0
-      [67] invokespecial #182
+      [67] invokespecial #178
         + Methodref [com/byronkatz/reap/activity/ai.<init> (Lcom/byronkatz/reap/activity/SplashScreenActivity;)V]
-      [70] invokevirtual #145
+      [70] invokevirtual #144
         + Methodref [android/app/AlertDialog$Builder.setPositiveButton (ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;]
       [73] ldc #19
         + Integer [2131165194]
-      [75] new #50
+      [75] new #49
         + Class [com/byronkatz/reap/activity/aj]
       [78] dup
       [79] aload_0 v0
-      [80] invokespecial #183
+      [80] invokespecial #179
         + Methodref [com/byronkatz/reap/activity/aj.<init> (Lcom/byronkatz/reap/activity/SplashScreenActivity;)V]
-      [83] invokevirtual #144
+      [83] invokevirtual #143
         + Methodref [android/app/AlertDialog$Builder.setNegativeButton (ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;]
-      [86] invokevirtual #142
+      [86] invokevirtual #141
         + Methodref [android/app/AlertDialog$Builder.create ()Landroid/app/AlertDialog;]
       [89] areturn
       Code attribute exceptions (count = 0):
@@ -19207,12 +19122,12 @@ Methods (count = 13):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 12, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #89
+      [1] getfield #88
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.e Lcom/a/a/a/a/i;]
-      [4] invokevirtual #166
+      [4] invokevirtual #165
         + Methodref [com/a/a/a/a/i.a ()V]
       [7] aload_0 v0
-      [8] invokespecial #140
+      [8] invokespecial #139
         + Methodref [android/app/Activity.onDestroy ()V]
       [11] return
       Code attribute exceptions (count = 0):
@@ -19229,15 +19144,15 @@ Methods (count = 13):
       [0] aload_0 v0
       [1] dup
       [2] astore_0 v0
-      [3] getfield #90
+      [3] getfield #89
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.f Landroid/os/Handler;]
-      [6] new #51
+      [6] new #50
         + Class [com/byronkatz/reap/activity/ak]
       [9] dup
       [10] aload_0 v0
-      [11] invokespecial #184
+      [11] invokespecial #180
         + Methodref [com/byronkatz/reap/activity/ak.<init> (Lcom/byronkatz/reap/activity/SplashScreenActivity;)V]
-      [14] invokevirtual #148
+      [14] invokevirtual #147
         + Methodref [android/os/Handler.post (Ljava/lang/Runnable;)Z]
       [17] pop
       [18] return
@@ -19252,7 +19167,7 @@ Methods (count = 13):
     + Code attribute instructions (code length = 6, locals = 2, stack = 2):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] putfield #96
+      [2] putfield #95
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.l Ljava/lang/Double;]
       [5] return
       Code attribute exceptions (count = 0):
@@ -19265,7 +19180,7 @@ Methods (count = 13):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #87
+      [1] getfield #86
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.c Ljava/lang/Boolean;]
       [4] areturn
       Code attribute exceptions (count = 0):
@@ -19281,39 +19196,39 @@ Methods (count = 13):
       [1] dup
       [2] dup
       [3] astore_0 v0
-      [4] getfield #93
+      [4] getfield #92
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.i Landroid/widget/EditText;]
-      [7] invokevirtual #157
+      [7] invokevirtual #156
         + Methodref [android/widget/EditText.getText ()Landroid/text/Editable;]
-      [10] invokeinterface #209
+      [10] invokeinterface #205
         + InterfaceMethodref [android/text/Editable.toString ()Ljava/lang/String;]
-      [15] invokestatic #193
+      [15] invokestatic #189
         + Methodref [com/byronkatz/reap/general/l.a (Ljava/lang/String;)Ljava/lang/Double;]
-      [18] putfield #94
+      [18] putfield #93
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.j Ljava/lang/Double;]
       [21] aload_0 v0
       [22] aload_0 v0
-      [23] getfield #91
+      [23] getfield #90
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.g Landroid/widget/EditText;]
-      [26] invokevirtual #157
+      [26] invokevirtual #156
         + Methodref [android/widget/EditText.getText ()Landroid/text/Editable;]
-      [29] invokeinterface #209
+      [29] invokeinterface #205
         + InterfaceMethodref [android/text/Editable.toString ()Ljava/lang/String;]
-      [34] invokestatic #194
+      [34] invokestatic #190
         + Methodref [com/byronkatz/reap/general/l.b (Ljava/lang/String;)Ljava/lang/Double;]
-      [37] putfield #92
+      [37] putfield #91
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.h Ljava/lang/Double;]
       [40] aload_0 v0
       [41] aload_0 v0
-      [42] getfield #97
+      [42] getfield #96
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.m Landroid/widget/EditText;]
-      [45] invokevirtual #157
+      [45] invokevirtual #156
         + Methodref [android/widget/EditText.getText ()Landroid/text/Editable;]
-      [48] invokeinterface #209
+      [48] invokeinterface #205
         + InterfaceMethodref [android/text/Editable.toString ()Ljava/lang/String;]
-      [53] invokestatic #193
+      [53] invokestatic #189
         + Methodref [com/byronkatz/reap/general/l.a (Ljava/lang/String;)Ljava/lang/Double;]
-      [56] putfield #98
+      [56] putfield #97
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.n Ljava/lang/Double;]
       [59] return
       Code attribute exceptions (count = 0):
@@ -19328,282 +19243,282 @@ Methods (count = 13):
       [0] aload_0 v0
       [1] dup
       [2] astore_0 v0
-      [3] getfield #100
+      [3] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
       [6] astore_1 v1
-      [7] invokestatic #186
+      [7] invokestatic #182
         + Methodref [com/byronkatz/reap/general/RealEstateAnalysisProcessorApplication.a ()Lcom/byronkatz/reap/general/RealEstateAnalysisProcessorApplication;]
-      [10] ldc #24
+      [10] ldc #23
         + String [base_values]
       [12] iconst_0
-      [13] invokevirtual #188
+      [13] invokevirtual #184
         + Methodref [com/byronkatz/reap/general/RealEstateAnalysisProcessorApplication.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
       [16] dup
       [17] astore_2 v2
-      [18] invokeinterface #205
+      [18] invokeinterface #201
         + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
       [23] dup
       [24] astore_3 v3
-      [25] invokeinterface #206
+      [25] invokeinterface #202
         + InterfaceMethodref [android/content/SharedPreferences$Editor.clear ()Landroid/content/SharedPreferences$Editor;]
       [30] pop
       [31] aload_3 v3
-      [32] invokeinterface #207
+      [32] invokeinterface #203
         + InterfaceMethodref [android/content/SharedPreferences$Editor.commit ()Z]
       [37] pop
       [38] aload_1 v1
       [39] aload_2 v2
-      [40] invokevirtual #190
+      [40] invokevirtual #186
         + Methodref [com/byronkatz/reap/general/b.a (Landroid/content/SharedPreferences;)V]
       [43] aload_0 v0
-      [44] getfield #100
+      [44] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
       [47] aload_0 v0
-      [48] getfield #94
+      [48] getfield #93
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.j Ljava/lang/Double;]
-      [51] invokevirtual #197
+      [51] invokevirtual #193
         + Methodref [java/lang/Double.doubleValue ()D]
-      [54] getstatic #113
+      [54] getstatic #112
         + Fieldref [com/byronkatz/reap/general/r.V Lcom/byronkatz/reap/general/r;]
-      [57] invokevirtual #189
+      [57] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [60] aload_0 v0
-      [61] getfield #100
+      [61] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
       [64] aload_0 v0
-      [65] getfield #92
+      [65] getfield #91
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.h Ljava/lang/Double;]
-      [68] invokevirtual #197
+      [68] invokevirtual #193
         + Methodref [java/lang/Double.doubleValue ()D]
-      [71] getstatic #118
+      [71] getstatic #117
         + Fieldref [com/byronkatz/reap/general/r.ad Lcom/byronkatz/reap/general/r;]
-      [74] invokevirtual #189
+      [74] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [77] aload_0 v0
-      [78] getfield #100
+      [78] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
-      [81] ldc2_w #79
+      [81] ldc2_w #78
         + Double [100.0]
-      [84] getstatic #107
+      [84] getstatic #106
         + Fieldref [com/byronkatz/reap/general/r.K Lcom/byronkatz/reap/general/r;]
-      [87] invokevirtual #189
+      [87] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [90] aload_0 v0
-      [91] getfield #100
+      [91] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
       [94] aload_0 v0
-      [95] getfield #94
+      [95] getfield #93
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.j Ljava/lang/Double;]
-      [98] invokevirtual #197
+      [98] invokevirtual #193
         + Methodref [java/lang/Double.doubleValue ()D]
-      [101] ldc2_w #73
+      [101] ldc2_w #72
         + Double [0.2]
       [104] dmul
-      [105] invokestatic #198
+      [105] invokestatic #194
         + Methodref [java/lang/Math.ceil (D)D]
-      [108] getstatic #128
+      [108] getstatic #127
         + Fieldref [com/byronkatz/reap/general/r.l Lcom/byronkatz/reap/general/r;]
-      [111] invokevirtual #189
+      [111] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [114] aload_0 v0
-      [115] getfield #100
+      [115] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
-      [118] ldc2_w #81
+      [118] ldc2_w #80
         + Double [1000.0]
-      [121] getstatic #127
+      [121] getstatic #126
         + Fieldref [com/byronkatz/reap/general/r.j Lcom/byronkatz/reap/general/r;]
-      [124] invokevirtual #189
+      [124] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [127] aload_0 v0
-      [128] getfield #100
+      [128] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
-      [131] ldc2_w #75
+      [131] ldc2_w #74
         + Double [0.25]
-      [134] getstatic #137
+      [134] getstatic #136
         + Fieldref [com/byronkatz/reap/general/r.z Lcom/byronkatz/reap/general/r;]
-      [137] invokevirtual #189
+      [137] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [140] aload_0 v0
-      [141] getfield #100
+      [141] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
       [144] aload_0 v0
-      [145] getfield #94
+      [145] getfield #93
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.j Ljava/lang/Double;]
-      [148] invokevirtual #197
+      [148] invokevirtual #193
         + Methodref [java/lang/Double.doubleValue ()D]
-      [151] ldc2_w #77
+      [151] ldc2_w #76
         + Double [0.8]
       [154] dmul
-      [155] invokestatic #198
+      [155] invokestatic #194
         + Methodref [java/lang/Math.ceil (D)D]
-      [158] getstatic #124
+      [158] getstatic #123
         + Fieldref [com/byronkatz/reap/general/r.g Lcom/byronkatz/reap/general/r;]
-      [161] invokevirtual #189
+      [161] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [164] aload_0 v0
-      [165] getfield #100
+      [165] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
       [168] aload_0 v0
-      [169] getfield #94
+      [169] getfield #93
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.j Ljava/lang/Double;]
-      [172] invokevirtual #197
+      [172] invokevirtual #193
         + Methodref [java/lang/Double.doubleValue ()D]
-      [175] ldc2_w #65
+      [175] ldc2_w #64
         + Double [0.01]
       [178] dmul
-      [179] getstatic #109
+      [179] getstatic #108
         + Fieldref [com/byronkatz/reap/general/r.M Lcom/byronkatz/reap/general/r;]
-      [182] invokevirtual #189
+      [182] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [185] aload_0 v0
-      [186] getfield #100
+      [186] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
       [189] dconst_0
-      [190] getstatic #136
+      [190] getstatic #135
         + Fieldref [com/byronkatz/reap/general/r.x Lcom/byronkatz/reap/general/r;]
-      [193] invokevirtual #189
+      [193] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [196] aload_0 v0
-      [197] getfield #100
+      [197] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
-      [200] ldc2_w #83
+      [200] ldc2_w #82
         + Double [2000.0]
-      [203] getstatic #132
+      [203] getstatic #131
         + Fieldref [com/byronkatz/reap/general/r.p Lcom/byronkatz/reap/general/r;]
-      [206] invokevirtual #189
+      [206] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [209] aload_0 v0
-      [210] getfield #100
+      [210] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
-      [213] ldc2_w #71
+      [213] ldc2_w #70
         + Double [0.06]
-      [216] getstatic #112
+      [216] getstatic #111
         + Fieldref [com/byronkatz/reap/general/r.P Lcom/byronkatz/reap/general/r;]
-      [219] invokevirtual #189
+      [219] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [222] aload_0 v0
-      [223] getfield #100
+      [223] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
-      [226] ldc2_w #67
+      [226] ldc2_w #66
         + Double [0.03]
-      [229] getstatic #133
+      [229] getstatic #132
         + Fieldref [com/byronkatz/reap/general/r.u Lcom/byronkatz/reap/general/r;]
-      [232] invokevirtual #189
+      [232] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [235] aload_0 v0
-      [236] getfield #100
+      [236] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
-      [239] ldc2_w #69
+      [239] ldc2_w #68
         + Double [0.04]
-      [242] getstatic #110
+      [242] getstatic #109
         + Fieldref [com/byronkatz/reap/general/r.N Lcom/byronkatz/reap/general/r;]
-      [245] invokevirtual #189
+      [245] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [248] aload_0 v0
       [249] ldc #12
         + Integer [2131034284]
-      [251] invokevirtual #169
+      [251] invokevirtual #167
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [254] checkcast #36
+      [254] checkcast #35
         + Class [android/widget/CheckBox]
-      [257] invokevirtual #154
+      [257] invokevirtual #153
         + Methodref [android/widget/CheckBox.isChecked ()Z]
       [260] ifeq +23 (target=283)
       [263] aload_0 v0
-      [264] getfield #100
+      [264] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
       [267] aload_0 v0
-      [268] getfield #98
+      [268] getfield #97
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.n Ljava/lang/Double;]
-      [271] invokevirtual #197
+      [271] invokevirtual #193
         + Methodref [java/lang/Double.doubleValue ()D]
-      [274] getstatic #129
+      [274] getstatic #128
         + Fieldref [com/byronkatz/reap/general/r.m Lcom/byronkatz/reap/general/r;]
-      [277] invokevirtual #189
+      [277] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [280] goto +14 (target=294)
       [283] aload_0 v0
-      [284] getfield #100
+      [284] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
       [287] dconst_0
-      [288] getstatic #129
+      [288] getstatic #128
         + Fieldref [com/byronkatz/reap/general/r.m Lcom/byronkatz/reap/general/r;]
-      [291] invokevirtual #189
+      [291] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [294] aload_0 v0
-      [295] getfield #100
+      [295] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
-      [298] ldc2_w #81
+      [298] ldc2_w #80
         + Double [1000.0]
-      [301] getstatic #135
+      [301] getstatic #134
         + Fieldref [com/byronkatz/reap/general/r.w Lcom/byronkatz/reap/general/r;]
-      [304] invokevirtual #189
+      [304] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [307] aload_0 v0
-      [308] getfield #100
+      [308] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
-      [311] ldc2_w #67
+      [311] ldc2_w #66
         + Double [0.03]
-      [314] getstatic #114
+      [314] getstatic #113
         + Fieldref [com/byronkatz/reap/general/r.W Lcom/byronkatz/reap/general/r;]
-      [317] invokevirtual #189
+      [317] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [320] aload_0 v0
-      [321] getfield #100
+      [321] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
       [324] dconst_0
-      [325] getstatic #131
+      [325] getstatic #130
         + Fieldref [com/byronkatz/reap/general/r.o Lcom/byronkatz/reap/general/r;]
-      [328] invokevirtual #189
+      [328] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [331] aload_0 v0
-      [332] getfield #100
+      [332] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
-      [335] ldc2_w #81
+      [335] ldc2_w #80
         + Double [1000.0]
-      [338] getstatic #134
+      [338] getstatic #133
         + Fieldref [com/byronkatz/reap/general/r.v Lcom/byronkatz/reap/general/r;]
-      [341] invokevirtual #189
+      [341] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [344] aload_0 v0
-      [345] getfield #100
+      [345] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
       [348] aload_0 v0
-      [349] getfield #92
+      [349] getfield #91
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.h Ljava/lang/Double;]
-      [352] invokevirtual #197
+      [352] invokevirtual #193
         + Methodref [java/lang/Double.doubleValue ()D]
-      [355] getstatic #111
+      [355] getstatic #110
         + Fieldref [com/byronkatz/reap/general/r.O Lcom/byronkatz/reap/general/r;]
-      [358] invokevirtual #189
+      [358] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [361] aload_0 v0
-      [362] getfield #100
+      [362] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
       [365] aload_0 v0
-      [366] getfield #96
+      [366] getfield #95
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.l Ljava/lang/Double;]
-      [369] invokevirtual #197
+      [369] invokevirtual #193
         + Methodref [java/lang/Double.doubleValue ()D]
-      [372] getstatic #106
+      [372] getstatic #105
         + Fieldref [com/byronkatz/reap/general/r.J Lcom/byronkatz/reap/general/r;]
-      [375] invokevirtual #189
+      [375] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [378] aload_0 v0
-      [379] getfield #100
+      [379] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
       [382] dconst_0
-      [383] getstatic #103
+      [383] getstatic #102
         + Fieldref [com/byronkatz/reap/general/r.G Lcom/byronkatz/reap/general/r;]
-      [386] invokevirtual #189
+      [386] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [389] aload_0 v0
-      [390] getfield #100
+      [390] getfield #99
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.p Lcom/byronkatz/reap/general/b;]
       [393] dconst_0
-      [394] getstatic #130
+      [394] getstatic #129
         + Fieldref [com/byronkatz/reap/general/r.n Lcom/byronkatz/reap/general/r;]
-      [397] invokevirtual #189
+      [397] invokevirtual #185
         + Methodref [com/byronkatz/reap/general/b.a (DLcom/byronkatz/reap/general/r;)V]
       [400] return
       Code attribute exceptions (count = 0):
@@ -19618,242 +19533,242 @@ Methods (count = 13):
       [0] aload_0 v0
       [1] dup
       [2] astore_0 v0
-      [3] ldc #22
+      [3] ldc #21
         + String [MyPrefsFile]
       [5] iconst_0
-      [6] invokevirtual #172
+      [6] invokevirtual #170
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
-      [9] invokeinterface #205
+      [9] invokeinterface #201
         + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
       [14] astore_1 v1
       [15] aload_0 v0
       [16] ldc #12
         + Integer [2131034284]
-      [18] invokevirtual #169
+      [18] invokevirtual #167
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [21] checkcast #36
+      [21] checkcast #35
         + Class [android/widget/CheckBox]
-      [24] invokevirtual #154
+      [24] invokevirtual #153
         + Methodref [android/widget/CheckBox.isChecked ()Z]
       [27] ifeq +210 (target=237)
       [30] aload_1 v1
-      [31] invokeinterface #206
+      [31] invokeinterface #202
         + InterfaceMethodref [android/content/SharedPreferences$Editor.clear ()Landroid/content/SharedPreferences$Editor;]
       [36] pop
       [37] aload_1 v1
-      [38] getstatic #105
+      [38] getstatic #104
         + Fieldref [com/byronkatz/reap/general/r.I Lcom/byronkatz/reap/general/r;]
-      [41] invokevirtual #195
+      [41] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [44] iconst_1
-      [45] invokeinterface #208
+      [45] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [50] pop
       [51] aload_1 v1
-      [52] getstatic #115
+      [52] getstatic #114
         + Fieldref [com/byronkatz/reap/general/r.a Lcom/byronkatz/reap/general/r;]
-      [55] invokevirtual #195
+      [55] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [58] iconst_1
-      [59] invokeinterface #208
+      [59] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [64] pop
       [65] aload_1 v1
-      [66] getstatic #121
+      [66] getstatic #120
         + Fieldref [com/byronkatz/reap/general/r.b Lcom/byronkatz/reap/general/r;]
-      [69] invokevirtual #195
+      [69] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [72] iconst_1
-      [73] invokeinterface #208
+      [73] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [78] pop
       [79] aload_1 v1
-      [80] getstatic #101
+      [80] getstatic #100
         + Fieldref [com/byronkatz/reap/general/r.A Lcom/byronkatz/reap/general/r;]
-      [83] invokevirtual #195
+      [83] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [86] iconst_1
-      [87] invokeinterface #208
+      [87] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [92] pop
       [93] aload_1 v1
-      [94] getstatic #126
+      [94] getstatic #125
         + Fieldref [com/byronkatz/reap/general/r.i Lcom/byronkatz/reap/general/r;]
-      [97] invokevirtual #195
+      [97] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [100] iconst_1
-      [101] invokeinterface #208
+      [101] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [106] pop
       [107] aload_1 v1
-      [108] getstatic #125
+      [108] getstatic #124
         + Fieldref [com/byronkatz/reap/general/r.h Lcom/byronkatz/reap/general/r;]
-      [111] invokevirtual #195
+      [111] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [114] iconst_1
-      [115] invokeinterface #208
+      [115] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [120] pop
       [121] aload_1 v1
-      [122] getstatic #108
+      [122] getstatic #107
         + Fieldref [com/byronkatz/reap/general/r.L Lcom/byronkatz/reap/general/r;]
-      [125] invokevirtual #195
+      [125] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [128] iconst_1
-      [129] invokeinterface #208
+      [129] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [134] pop
       [135] aload_1 v1
-      [136] getstatic #120
+      [136] getstatic #119
         + Fieldref [com/byronkatz/reap/general/r.am Lcom/byronkatz/reap/general/r;]
-      [139] invokevirtual #195
+      [139] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [142] iconst_1
-      [143] invokeinterface #208
+      [143] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [148] pop
       [149] aload_1 v1
-      [150] getstatic #118
+      [150] getstatic #117
         + Fieldref [com/byronkatz/reap/general/r.ad Lcom/byronkatz/reap/general/r;]
-      [153] invokevirtual #195
+      [153] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [156] iconst_1
-      [157] invokeinterface #208
+      [157] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [162] pop
       [163] aload_1 v1
-      [164] getstatic #111
+      [164] getstatic #110
         + Fieldref [com/byronkatz/reap/general/r.O Lcom/byronkatz/reap/general/r;]
-      [167] invokevirtual #195
+      [167] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [170] iconst_1
-      [171] invokeinterface #208
+      [171] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [176] pop
       [177] aload_1 v1
-      [178] getstatic #108
+      [178] getstatic #107
         + Fieldref [com/byronkatz/reap/general/r.L Lcom/byronkatz/reap/general/r;]
-      [181] invokevirtual #195
+      [181] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [184] iconst_1
-      [185] invokeinterface #208
+      [185] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [190] pop
       [191] aload_1 v1
-      [192] getstatic #104
+      [192] getstatic #103
         + Fieldref [com/byronkatz/reap/general/r.H Lcom/byronkatz/reap/general/r;]
-      [195] invokevirtual #195
+      [195] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [198] iconst_1
-      [199] invokeinterface #208
+      [199] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [204] pop
       [205] aload_1 v1
-      [206] getstatic #122
+      [206] getstatic #121
         + Fieldref [com/byronkatz/reap/general/r.d Lcom/byronkatz/reap/general/r;]
-      [209] invokevirtual #195
+      [209] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [212] iconst_1
-      [213] invokeinterface #208
+      [213] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [218] pop
       [219] aload_1 v1
-      [220] ldc #21
+      [220] ldc #20
         + String [IS_GRAPH_VISIBLE]
       [222] iconst_1
-      [223] invokeinterface #208
+      [223] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [228] pop
       [229] aload_1 v1
-      [230] invokeinterface #207
+      [230] invokeinterface #203
         + InterfaceMethodref [android/content/SharedPreferences$Editor.commit ()Z]
       [235] pop
       [236] return
       [237] aload_1 v1
-      [238] invokeinterface #206
+      [238] invokeinterface #202
         + InterfaceMethodref [android/content/SharedPreferences$Editor.clear ()Landroid/content/SharedPreferences$Editor;]
       [243] pop
       [244] aload_1 v1
-      [245] getstatic #102
+      [245] getstatic #101
         + Fieldref [com/byronkatz/reap/general/r.B Lcom/byronkatz/reap/general/r;]
-      [248] invokevirtual #195
+      [248] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [251] iconst_1
-      [252] invokeinterface #208
+      [252] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [257] pop
       [258] aload_1 v1
-      [259] getstatic #117
+      [259] getstatic #116
         + Fieldref [com/byronkatz/reap/general/r.ac Lcom/byronkatz/reap/general/r;]
-      [262] invokevirtual #195
+      [262] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [265] iconst_1
-      [266] invokeinterface #208
+      [266] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [271] pop
       [272] aload_1 v1
-      [273] getstatic #113
+      [273] getstatic #112
         + Fieldref [com/byronkatz/reap/general/r.V Lcom/byronkatz/reap/general/r;]
-      [276] invokevirtual #195
+      [276] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [279] iconst_1
-      [280] invokeinterface #208
+      [280] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [285] pop
       [286] aload_1 v1
-      [287] getstatic #118
+      [287] getstatic #117
         + Fieldref [com/byronkatz/reap/general/r.ad Lcom/byronkatz/reap/general/r;]
-      [290] invokevirtual #195
+      [290] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [293] iconst_1
-      [294] invokeinterface #208
+      [294] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [299] pop
       [300] aload_1 v1
-      [301] getstatic #123
+      [301] getstatic #122
         + Fieldref [com/byronkatz/reap/general/r.f Lcom/byronkatz/reap/general/r;]
-      [304] invokevirtual #195
+      [304] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [307] iconst_1
-      [308] invokeinterface #208
+      [308] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [313] pop
       [314] aload_1 v1
-      [315] getstatic #108
+      [315] getstatic #107
         + Fieldref [com/byronkatz/reap/general/r.L Lcom/byronkatz/reap/general/r;]
-      [318] invokevirtual #195
+      [318] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [321] iconst_1
-      [322] invokeinterface #208
+      [322] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [327] pop
       [328] aload_1 v1
-      [329] getstatic #119
+      [329] getstatic #118
         + Fieldref [com/byronkatz/reap/general/r.ak Lcom/byronkatz/reap/general/r;]
-      [332] invokevirtual #195
+      [332] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [335] iconst_1
-      [336] invokeinterface #208
+      [336] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [341] pop
       [342] aload_1 v1
-      [343] getstatic #116
+      [343] getstatic #115
         + Fieldref [com/byronkatz/reap/general/r.aa Lcom/byronkatz/reap/general/r;]
-      [346] invokevirtual #195
+      [346] invokevirtual #191
         + Methodref [com/byronkatz/reap/general/r.name ()Ljava/lang/String;]
       [349] iconst_1
-      [350] invokeinterface #208
+      [350] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [355] pop
       [356] aload_1 v1
-      [357] ldc #21
+      [357] ldc #20
         + String [IS_GRAPH_VISIBLE]
       [359] iconst_0
-      [360] invokeinterface #208
+      [360] invokeinterface #204
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putBoolean (Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;]
       [365] pop
       [366] aload_1 v1
-      [367] invokeinterface #207
+      [367] invokeinterface #203
         + InterfaceMethodref [android/content/SharedPreferences$Editor.commit ()Z]
       [372] pop
       [373] return
@@ -19871,56 +19786,56 @@ Methods (count = 13):
       [2] astore_0 v0
       [3] ldc #13
         + Integer [2131034287]
-      [5] invokevirtual #169
+      [5] invokevirtual #167
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [8] checkcast #35
+      [8] checkcast #34
         + Class [android/widget/Button]
       [11] iconst_1
-      [12] invokevirtual #152
+      [12] invokevirtual #151
         + Methodref [android/widget/Button.setEnabled (Z)V]
       [15] aload_0 v0
       [16] ldc #14
         + Integer [2131034288]
-      [18] invokevirtual #169
+      [18] invokevirtual #167
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [21] checkcast #35
+      [21] checkcast #34
         + Class [android/widget/Button]
       [24] iconst_1
-      [25] invokevirtual #152
+      [25] invokevirtual #151
         + Methodref [android/widget/Button.setEnabled (Z)V]
       [28] aload_0 v0
       [29] ldc #12
         + Integer [2131034284]
-      [31] invokevirtual #169
+      [31] invokevirtual #167
         + Methodref [com/byronkatz/reap/activity/SplashScreenActivity.findViewById (I)Landroid/view/View;]
-      [34] checkcast #36
+      [34] checkcast #35
         + Class [android/widget/CheckBox]
       [37] iconst_1
-      [38] invokevirtual #155
+      [38] invokevirtual #154
         + Methodref [android/widget/CheckBox.setEnabled (Z)V]
       [41] aload_0 v0
-      [42] getfield #91
+      [42] getfield #90
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.g Landroid/widget/EditText;]
       [45] iconst_1
-      [46] invokevirtual #158
+      [46] invokevirtual #157
         + Methodref [android/widget/EditText.setEnabled (Z)V]
       [49] aload_0 v0
-      [50] getfield #93
+      [50] getfield #92
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.i Landroid/widget/EditText;]
       [53] iconst_1
-      [54] invokevirtual #158
+      [54] invokevirtual #157
         + Methodref [android/widget/EditText.setEnabled (Z)V]
       [57] aload_0 v0
-      [58] getfield #95
+      [58] getfield #94
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.k Landroid/widget/Spinner;]
       [61] iconst_1
-      [62] invokevirtual #161
+      [62] invokevirtual #160
         + Methodref [android/widget/Spinner.setEnabled (Z)V]
       [65] aload_0 v0
-      [66] getfield #97
+      [66] getfield #96
         + Fieldref [com/byronkatz/reap/activity/SplashScreenActivity.m Landroid/widget/EditText;]
       [69] iconst_1
-      [70] invokevirtual #158
+      [70] invokevirtual #157
         + Methodref [android/widget/EditText.setEnabled (Z)V]
       [73] return
       Code attribute exceptions (count = 0):
@@ -51618,7 +51533,7 @@ _____________________________________________________________________
     = public final class com.a.a.a.a.a extends java.lang.Object
 
 Interfaces (count = 1):
-  + Class [com/a/a/a/a/p]
+  + Class [com/a/a/a/a/o]
 
 Constant Pool (count = 160):
   + String [:]
@@ -51633,8 +51548,8 @@ Constant Pool (count = 160):
   + Class [com/a/a/a/a/a]
   + Class [com/a/a/a/a/a/a]
   + Class [com/a/a/a/a/a/b]
-  + Class [com/a/a/a/a/p]
-  + Class [com/a/a/a/a/u]
+  + Class [com/a/a/a/a/o]
+  + Class [com/a/a/a/a/t]
   + Class [java/io/UnsupportedEncodingException]
   + Class [java/lang/Object]
   + Class [java/lang/RuntimeException]
@@ -51655,7 +51570,7 @@ Constant Pool (count = 160):
   + Methodref [com/a/a/a/a/a/a.a (Ljava/lang/String;)[B]
   + Methodref [com/a/a/a/a/a/a.a ([B)Ljava/lang/String;]
   + Methodref [com/a/a/a/a/a/b.getMessage ()Ljava/lang/String;]
-  + Methodref [com/a/a/a/a/u.<init> (Ljava/lang/String;)V]
+  + Methodref [com/a/a/a/a/t.<init> (Ljava/lang/String;)V]
   + Methodref [java/lang/Object.<init> ()V]
   + Methodref [java/lang/RuntimeException.<init> (Ljava/lang/String;Ljava/lang/Throwable;)V]
   + Methodref [java/lang/String.<init> ([BLjava/lang/String;)V]
@@ -51751,8 +51666,8 @@ Constant Pool (count = 160):
   + Utf8 [com/a/a/a/a/a]
   + Utf8 [com/a/a/a/a/a/a]
   + Utf8 [com/a/a/a/a/a/b]
-  + Utf8 [com/a/a/a/a/p]
-  + Utf8 [com/a/a/a/a/u]
+  + Utf8 [com/a/a/a/a/o]
+  + Utf8 [com/a/a/a/a/t]
   + Utf8 [doFinal]
   + Utf8 [generateSecret]
   + Utf8 [getBytes]
@@ -52111,7 +52026,7 @@ Methods (count = 4):
         + Methodref [java/lang/String.indexOf (Ljava/lang/String;)I]
       [47] ifeq +27 (target=74)
       [50] new #14
-        + Class [com/a/a/a/a/u]
+        + Class [com/a/a/a/a/t]
       [53] dup
       [54] new #19
         + Class [java/lang/StringBuilder]
@@ -52126,7 +52041,7 @@ Methods (count = 4):
       [67] invokevirtual #47
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [70] invokespecial #35
-        + Methodref [com/a/a/a/a/u.<init> (Ljava/lang/String;)V]
+        + Methodref [com/a/a/a/a/t.<init> (Ljava/lang/String;)V]
       [73] athrow
       [74] aload_3 v3
       [75] bipush 46
@@ -52142,7 +52057,7 @@ Methods (count = 4):
       [89] areturn
       [90] astore_3 v3
       [91] new #14
-        + Class [com/a/a/a/a/u]
+        + Class [com/a/a/a/a/t]
       [94] dup
       [95] new #19
         + Class [java/lang/StringBuilder]
@@ -52164,11 +52079,11 @@ Methods (count = 4):
       [118] invokevirtual #47
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [121] invokespecial #35
-        + Methodref [com/a/a/a/a/u.<init> (Ljava/lang/String;)V]
+        + Methodref [com/a/a/a/a/t.<init> (Ljava/lang/String;)V]
       [124] athrow
       [125] astore_3 v3
       [126] new #14
-        + Class [com/a/a/a/a/u]
+        + Class [com/a/a/a/a/t]
       [129] dup
       [130] new #19
         + Class [java/lang/StringBuilder]
@@ -52190,11 +52105,11 @@ Methods (count = 4):
       [153] invokevirtual #47
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [156] invokespecial #35
-        + Methodref [com/a/a/a/a/u.<init> (Ljava/lang/String;)V]
+        + Methodref [com/a/a/a/a/t.<init> (Ljava/lang/String;)V]
       [159] athrow
       [160] astore_3 v3
       [161] new #14
-        + Class [com/a/a/a/a/u]
+        + Class [com/a/a/a/a/t]
       [164] dup
       [165] new #19
         + Class [java/lang/StringBuilder]
@@ -52216,7 +52131,7 @@ Methods (count = 4):
       [188] invokevirtual #47
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [191] invokespecial #35
-        + Methodref [com/a/a/a/a/u.<init> (Ljava/lang/String;)V]
+        + Methodref [com/a/a/a/a/t.<init> (Ljava/lang/String;)V]
       [194] athrow
       [195] astore_3 v3
       [196] new #17
@@ -52278,16 +52193,21 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 6):
+Constant Pool (count = 8):
   + Class [com/a/a/a/a/b]
   + Class [java/lang/Object]
+  + Utf8 [()I]
   + Utf8 [SourceFile]
+  + Utf8 [a]
   + Utf8 [com/a/a/a/a/b]
   + Utf8 [java/lang/Object]
 
 Fields (count = 0):
 
-Methods (count = 0):
+Methods (count = 1):
+  + Method:       a()I
+    Access flags: 0x401
+      = public abstract int a()
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -53122,11 +53042,9 @@ _____________________________________________________________________
 Interfaces (count = 1):
   + Class [android/content/ServiceConnection]
 
-Constant Pool (count = 319):
+Constant Pool (count = 281):
   + String []
-  + String [Binding to licensing service.]
   + String [Calling checkLicense on service for ]
-  + String [Could not bind to service.]
   + String [Could not decode from Base64.]
   + String [Invalid key specification.]
   + String [LicenseChecker]
@@ -53135,11 +53053,8 @@ Constant Pool (count = 319):
   + String [RemoteException in checkLicense call.]
   + String [Service unexpectedly disconnected.]
   + String [Unable to unbind from licensing service (already unbound)]
-  + String [Using cached license response]
-  + String [Y29tLmFuZHJvaWQudmVuZGluZy5saWNlbnNpbmcuSUxpY2Vuc2luZ1NlcnZpY2U=]
   + String [background thread]
   + Class [android/content/Context]
-  + Class [android/content/Intent]
   + Class [android/content/ServiceConnection]
   + Class [android/content/pm/PackageInfo]
   + Class [android/content/pm/PackageManager]
@@ -53157,12 +53072,10 @@ Constant Pool (count = 319):
   + Class [com/a/a/a/a/j]
   + Class [com/a/a/a/a/m]
   + Class [com/a/a/a/a/n]
-  + Class [com/a/a/a/a/o]
-  + Class [com/a/a/a/a/q]
+  + Class [com/a/a/a/a/p]
   + Class [java/lang/IllegalArgumentException]
   + Class [java/lang/Object]
   + Class [java/lang/RuntimeException]
-  + Class [java/lang/SecurityException]
   + Class [java/lang/String]
   + Class [java/lang/StringBuilder]
   + Class [java/security/KeyFactory]
@@ -53179,17 +53092,15 @@ Constant Pool (count = 319):
   + Fieldref [com/a/a/a/a/i.b Lcom/a/a/a/a/f;]
   + Fieldref [com/a/a/a/a/i.c Ljava/security/PublicKey;]
   + Fieldref [com/a/a/a/a/i.d Landroid/content/Context;]
-  + Fieldref [com/a/a/a/a/i.e Lcom/a/a/a/a/q;]
+  + Fieldref [com/a/a/a/a/i.e Lcom/a/a/a/a/p;]
   + Fieldref [com/a/a/a/a/i.f Landroid/os/Handler;]
   + Fieldref [com/a/a/a/a/i.g Ljava/lang/String;]
   + Fieldref [com/a/a/a/a/i.h Ljava/lang/String;]
   + Fieldref [com/a/a/a/a/i.i Ljava/util/Set;]
   + Fieldref [com/a/a/a/a/i.j Ljava/util/Queue;]
-  + Methodref [android/content/Context.bindService (Landroid/content/Intent;Landroid/content/ServiceConnection;I)Z]
   + Methodref [android/content/Context.getPackageManager ()Landroid/content/pm/PackageManager;]
   + Methodref [android/content/Context.getPackageName ()Ljava/lang/String;]
   + Methodref [android/content/Context.unbindService (Landroid/content/ServiceConnection;)V]
-  + Methodref [android/content/Intent.<init> (Ljava/lang/String;)V]
   + Methodref [android/content/pm/PackageManager.getPackageInfo (Ljava/lang/String;I)Landroid/content/pm/PackageInfo;]
   + Methodref [android/os/Handler.<init> (Landroid/os/Looper;)V]
   + Methodref [android/os/Handler.getLooper ()Landroid/os/Looper;]
@@ -53202,24 +53113,19 @@ Constant Pool (count = 319):
   + Methodref [android/util/Log.w (Ljava/lang/String;Ljava/lang/String;)I]
   + Methodref [android/util/Log.w (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
   + Methodref [com/a/a/a/a/a/a.a (Ljava/lang/String;)[B]
-  + Methodref [com/a/a/a/a/a/b.printStackTrace ()V]
   + Methodref [com/a/a/a/a/g.a (Landroid/os/IBinder;)Lcom/a/a/a/a/f;]
   + Methodref [com/a/a/a/a/i.a (Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;]
   + Methodref [com/a/a/a/a/i.a (Lcom/a/a/a/a/n;)V]
   + Methodref [com/a/a/a/a/i.a (Ljava/lang/String;)Ljava/security/PublicKey;]
   + Methodref [com/a/a/a/a/i.b ()V]
   + Methodref [com/a/a/a/a/i.b (Lcom/a/a/a/a/n;)V]
-  + Methodref [com/a/a/a/a/i.c ()V]
   + Methodref [com/a/a/a/a/j.<init> (Lcom/a/a/a/a/i;Lcom/a/a/a/a/n;)V]
-  + Methodref [com/a/a/a/a/n.<init> (Lcom/a/a/a/a/q;Lcom/a/a/a/a/b;Lcom/a/a/a/a/m;ILjava/lang/String;Ljava/lang/String;)V]
   + Methodref [com/a/a/a/a/n.a ()Lcom/a/a/a/a/m;]
   + Methodref [com/a/a/a/a/n.b ()I]
   + Methodref [com/a/a/a/a/n.c ()Ljava/lang/String;]
-  + Methodref [com/a/a/a/a/o.<init> ()V]
   + Methodref [java/lang/IllegalArgumentException.<init> (Ljava/lang/Throwable;)V]
   + Methodref [java/lang/Object.<init> ()V]
   + Methodref [java/lang/RuntimeException.<init> (Ljava/lang/Throwable;)V]
-  + Methodref [java/lang/String.<init> ([B)V]
   + Methodref [java/lang/String.valueOf (I)Ljava/lang/String;]
   + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
   + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
@@ -53227,17 +53133,14 @@ Constant Pool (count = 319):
   + Methodref [java/security/KeyFactory.generatePublic (Ljava/security/spec/KeySpec;)Ljava/security/PublicKey;]
   + Methodref [java/security/KeyFactory.getInstance (Ljava/lang/String;)Ljava/security/KeyFactory;]
   + Methodref [java/security/SecureRandom.<init> ()V]
-  + Methodref [java/security/SecureRandom.nextInt ()I]
   + Methodref [java/security/spec/X509EncodedKeySpec.<init> ([B)V]
   + Methodref [java/util/HashSet.<init> ()V]
   + Methodref [java/util/LinkedList.<init> ()V]
   + InterfaceMethodref [com/a/a/a/a/f.a (JLjava/lang/String;Lcom/a/a/a/a/c;)V]
   + InterfaceMethodref [com/a/a/a/a/m.a ()V]
   + InterfaceMethodref [com/a/a/a/a/m.a (I)V]
-  + InterfaceMethodref [com/a/a/a/a/m.b (I)V]
-  + InterfaceMethodref [com/a/a/a/a/q.a ()Z]
-  + InterfaceMethodref [com/a/a/a/a/q.a (ILcom/a/a/a/a/s;)V]
-  + InterfaceMethodref [java/util/Queue.offer (Ljava/lang/Object;)Z]
+  + InterfaceMethodref [com/a/a/a/a/p.a ()Z]
+  + InterfaceMethodref [com/a/a/a/a/p.a (ILcom/a/a/a/a/r;)V]
   + InterfaceMethodref [java/util/Queue.poll ()Ljava/lang/Object;]
   + InterfaceMethodref [java/util/Set.add (Ljava/lang/Object;)Z]
   + InterfaceMethodref [java/util/Set.isEmpty ()Z]
@@ -53245,7 +53148,6 @@ Constant Pool (count = 319):
   + NameAndType [<init> ()V]
   + NameAndType [<init> (Landroid/os/Looper;)V]
   + NameAndType [<init> (Lcom/a/a/a/a/i;Lcom/a/a/a/a/n;)V]
-  + NameAndType [<init> (Lcom/a/a/a/a/q;Lcom/a/a/a/a/b;Lcom/a/a/a/a/m;ILjava/lang/String;Ljava/lang/String;)V]
   + NameAndType [<init> (Ljava/lang/String;)V]
   + NameAndType [<init> (Ljava/lang/Throwable;)V]
   + NameAndType [<init> ([B)V]
@@ -53253,7 +53155,7 @@ Constant Pool (count = 319):
   + NameAndType [a ()V]
   + NameAndType [a ()Z]
   + NameAndType [a (I)V]
-  + NameAndType [a (ILcom/a/a/a/a/s;)V]
+  + NameAndType [a (ILcom/a/a/a/a/r;)V]
   + NameAndType [a (JLjava/lang/String;Lcom/a/a/a/a/c;)V]
   + NameAndType [a (Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;]
   + NameAndType [a (Landroid/os/IBinder;)Lcom/a/a/a/a/f;]
@@ -53265,16 +53167,13 @@ Constant Pool (count = 319):
   + NameAndType [append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
   + NameAndType [b ()I]
   + NameAndType [b ()V]
-  + NameAndType [b (I)V]
   + NameAndType [b (Lcom/a/a/a/a/n;)V]
   + NameAndType [b Lcom/a/a/a/a/f;]
-  + NameAndType [bindService (Landroid/content/Intent;Landroid/content/ServiceConnection;I)Z]
   + NameAndType [c ()Ljava/lang/String;]
-  + NameAndType [c ()V]
   + NameAndType [c Ljava/security/PublicKey;]
   + NameAndType [d Landroid/content/Context;]
   + NameAndType [e (Ljava/lang/String;Ljava/lang/String;)I]
-  + NameAndType [e Lcom/a/a/a/a/q;]
+  + NameAndType [e Lcom/a/a/a/a/p;]
   + NameAndType [f Landroid/os/Handler;]
   + NameAndType [g Ljava/lang/String;]
   + NameAndType [generatePublic (Ljava/security/spec/KeySpec;)Ljava/security/PublicKey;]
@@ -53288,10 +53187,7 @@ Constant Pool (count = 319):
   + NameAndType [i Ljava/util/Set;]
   + NameAndType [isEmpty ()Z]
   + NameAndType [j Ljava/util/Queue;]
-  + NameAndType [nextInt ()I]
-  + NameAndType [offer (Ljava/lang/Object;)Z]
   + NameAndType [poll ()Ljava/lang/Object;]
-  + NameAndType [printStackTrace ()V]
   + NameAndType [quit ()V]
   + NameAndType [remove (Ljava/lang/Object;)Z]
   + NameAndType [start ()V]
@@ -53312,13 +53208,12 @@ Constant Pool (count = 319):
   + Utf8 [()Z]
   + Utf8 [(I)Ljava/lang/String;]
   + Utf8 [(I)V]
-  + Utf8 [(ILcom/a/a/a/a/s;)V]
+  + Utf8 [(ILcom/a/a/a/a/r;)V]
   + Utf8 [(JLjava/lang/String;Lcom/a/a/a/a/c;)V]
   + Utf8 [(Landroid/content/ComponentName;)V]
   + Utf8 [(Landroid/content/ComponentName;Landroid/os/IBinder;)V]
-  + Utf8 [(Landroid/content/Context;Lcom/a/a/a/a/q;Ljava/lang/String;)V]
+  + Utf8 [(Landroid/content/Context;Lcom/a/a/a/a/p;Ljava/lang/String;)V]
   + Utf8 [(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;]
-  + Utf8 [(Landroid/content/Intent;Landroid/content/ServiceConnection;I)Z]
   + Utf8 [(Landroid/content/ServiceConnection;)V]
   + Utf8 [(Landroid/os/IBinder;)Lcom/a/a/a/a/f;]
   + Utf8 [(Landroid/os/Looper;)V]
@@ -53326,9 +53221,7 @@ Constant Pool (count = 319):
   + Utf8 [(Lcom/a/a/a/a/i;)Ljava/security/PublicKey;]
   + Utf8 [(Lcom/a/a/a/a/i;)Ljava/util/Set;]
   + Utf8 [(Lcom/a/a/a/a/i;Lcom/a/a/a/a/n;)V]
-  + Utf8 [(Lcom/a/a/a/a/m;)V]
   + Utf8 [(Lcom/a/a/a/a/n;)V]
-  + Utf8 [(Lcom/a/a/a/a/q;Lcom/a/a/a/a/b;Lcom/a/a/a/a/m;ILjava/lang/String;Ljava/lang/String;)V]
   + Utf8 [(Ljava/lang/Object;)Z]
   + Utf8 [(Ljava/lang/String;)Ljava/lang/StringBuilder;]
   + Utf8 [(Ljava/lang/String;)Ljava/security/KeyFactory;]
@@ -53343,17 +53236,15 @@ Constant Pool (count = 319):
   + Utf8 [([B)V]
   + Utf8 [<clinit>]
   + Utf8 [<init>]
-  + Utf8 [Binding to licensing service.]
   + Utf8 [Calling checkLicense on service for ]
   + Utf8 [Code]
-  + Utf8 [Could not bind to service.]
   + Utf8 [Could not decode from Base64.]
   + Utf8 [I]
   + Utf8 [Invalid key specification.]
   + Utf8 [Landroid/content/Context;]
   + Utf8 [Landroid/os/Handler;]
   + Utf8 [Lcom/a/a/a/a/f;]
-  + Utf8 [Lcom/a/a/a/a/q;]
+  + Utf8 [Lcom/a/a/a/a/p;]
   + Utf8 [LicenseChecker]
   + Utf8 [LineNumberTable]
   + Utf8 [Ljava/lang/String;]
@@ -53368,12 +53259,9 @@ Constant Pool (count = 319):
   + Utf8 [SourceFile]
   + Utf8 [StackMapTable]
   + Utf8 [Unable to unbind from licensing service (already unbound)]
-  + Utf8 [Using cached license response]
-  + Utf8 [Y29tLmFuZHJvaWQudmVuZGluZy5saWNlbnNpbmcuSUxpY2Vuc2luZ1NlcnZpY2U=]
   + Utf8 [a]
   + Utf8 [add]
   + Utf8 [android/content/Context]
-  + Utf8 [android/content/Intent]
   + Utf8 [android/content/ServiceConnection]
   + Utf8 [android/content/pm/PackageInfo]
   + Utf8 [android/content/pm/PackageManager]
@@ -53386,7 +53274,6 @@ Constant Pool (count = 319):
   + Utf8 [append]
   + Utf8 [b]
   + Utf8 [background thread]
-  + Utf8 [bindService]
   + Utf8 [c]
   + Utf8 [com/a/a/a/a/a/a]
   + Utf8 [com/a/a/a/a/a/b]
@@ -53396,8 +53283,7 @@ Constant Pool (count = 319):
   + Utf8 [com/a/a/a/a/j]
   + Utf8 [com/a/a/a/a/m]
   + Utf8 [com/a/a/a/a/n]
-  + Utf8 [com/a/a/a/a/o]
-  + Utf8 [com/a/a/a/a/q]
+  + Utf8 [com/a/a/a/a/p]
   + Utf8 [d]
   + Utf8 [e]
   + Utf8 [f]
@@ -53415,7 +53301,6 @@ Constant Pool (count = 319):
   + Utf8 [java/lang/IllegalArgumentException]
   + Utf8 [java/lang/Object]
   + Utf8 [java/lang/RuntimeException]
-  + Utf8 [java/lang/SecurityException]
   + Utf8 [java/lang/String]
   + Utf8 [java/lang/StringBuilder]
   + Utf8 [java/security/KeyFactory]
@@ -53427,12 +53312,9 @@ Constant Pool (count = 319):
   + Utf8 [java/util/LinkedList]
   + Utf8 [java/util/Queue]
   + Utf8 [java/util/Set]
-  + Utf8 [nextInt]
-  + Utf8 [offer]
   + Utf8 [onServiceConnected]
   + Utf8 [onServiceDisconnected]
   + Utf8 [poll]
-  + Utf8 [printStackTrace]
   + Utf8 [quit]
   + Utf8 [remove]
   + Utf8 [start]
@@ -53455,9 +53337,9 @@ Fields (count = 10):
   + Field:        d Landroid/content/Context;
     Access flags: 0x12
       = private final android.content.Context d
-  + Field:        e Lcom/a/a/a/a/q;
+  + Field:        e Lcom/a/a/a/a/p;
     Access flags: 0x12
-      = private final com.a.a.a.a.q e
+      = private final com.a.a.a.a.p e
   + Field:        f Landroid/os/Handler;
     Access flags: 0x2
       = private android.os.Handler f
@@ -53474,18 +53356,18 @@ Fields (count = 10):
     Access flags: 0x12
       = private final java.util.Queue j
 
-Methods (count = 17):
+Methods (count = 15):
   - Method:       <clinit>()V
     Access flags: 0x8
       = static void <clinit>()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 11, locals = 0, stack = 2):
-      [0] new #45
+      [0] new #38
         + Class [java/security/SecureRandom]
       [3] dup
-      [4] invokespecial #104
+      [4] invokespecial #90
         + Methodref [java/security/SecureRandom.<init> ()V]
-      [7] putstatic #53
+      [7] putstatic #46
         + Fieldref [com/a/a/a/a/i.a Ljava/security/SecureRandom;]
       [10] return
       Code attribute exceptions (count = 0):
@@ -53493,82 +53375,82 @@ Methods (count = 17):
       + Line number table attribute (count = 2)
         [0] -> line 65
         [10] -> line 57
-  - Method:       <init>(Landroid/content/Context;Lcom/a/a/a/a/q;Ljava/lang/String;)V
+  - Method:       <init>(Landroid/content/Context;Lcom/a/a/a/a/p;Ljava/lang/String;)V
     Access flags: 0x1
-      = public i(android.content.Context,com.a.a.a.a.q,java.lang.String)
+      = public i(android.content.Context,com.a.a.a.a.p,java.lang.String)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 97, locals = 4, stack = 4):
       [0] aload_0 v0
-      [1] invokespecial #95
+      [1] invokespecial #82
         + Methodref [java/lang/Object.<init> ()V]
       [4] aload_0 v0
-      [5] new #48
+      [5] new #41
         + Class [java/util/HashSet]
       [8] dup
-      [9] invokespecial #107
+      [9] invokespecial #92
         + Methodref [java/util/HashSet.<init> ()V]
-      [12] putfield #61
+      [12] putfield #54
         + Fieldref [com/a/a/a/a/i.i Ljava/util/Set;]
       [15] aload_0 v0
-      [16] new #49
+      [16] new #42
         + Class [java/util/LinkedList]
       [19] dup
-      [20] invokespecial #108
+      [20] invokespecial #93
         + Methodref [java/util/LinkedList.<init> ()V]
-      [23] putfield #62
+      [23] putfield #55
         + Fieldref [com/a/a/a/a/i.j Ljava/util/Queue;]
       [26] aload_0 v0
       [27] aload_1 v1
-      [28] putfield #56
+      [28] putfield #49
         + Fieldref [com/a/a/a/a/i.d Landroid/content/Context;]
       [31] aload_0 v0
       [32] aload_2 v2
-      [33] putfield #57
-        + Fieldref [com/a/a/a/a/i.e Lcom/a/a/a/a/q;]
+      [33] putfield #50
+        + Fieldref [com/a/a/a/a/i.e Lcom/a/a/a/a/p;]
       [36] aload_0 v0
       [37] aload_3 v3
-      [38] invokestatic #84
+      [38] invokestatic #74
         + Methodref [com/a/a/a/a/i.a (Ljava/lang/String;)Ljava/security/PublicKey;]
-      [41] putfield #55
+      [41] putfield #48
         + Fieldref [com/a/a/a/a/i.c Ljava/security/PublicKey;]
       [44] aload_0 v0
       [45] aload_0 v0
-      [46] getfield #56
+      [46] getfield #49
         + Fieldref [com/a/a/a/a/i.d Landroid/content/Context;]
-      [49] invokevirtual #65
+      [49] invokevirtual #57
         + Methodref [android/content/Context.getPackageName ()Ljava/lang/String;]
-      [52] putfield #59
+      [52] putfield #52
         + Fieldref [com/a/a/a/a/i.g Ljava/lang/String;]
       [55] aload_0 v0
       [56] aload_1 v1
       [57] aload_0 v0
-      [58] getfield #59
+      [58] getfield #52
         + Fieldref [com/a/a/a/a/i.g Ljava/lang/String;]
-      [61] invokestatic #82
+      [61] invokestatic #72
         + Methodref [com/a/a/a/a/i.a (Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;]
-      [64] putfield #60
+      [64] putfield #53
         + Fieldref [com/a/a/a/a/i.h Ljava/lang/String;]
-      [67] new #23
+      [67] new #18
         + Class [android/os/HandlerThread]
       [70] dup
-      [71] ldc #15
+      [71] ldc #11
         + String [background thread]
-      [73] invokespecial #71
+      [73] invokespecial #62
         + Methodref [android/os/HandlerThread.<init> (Ljava/lang/String;)V]
       [76] dup
       [77] astore_1 v1
-      [78] invokevirtual #73
+      [78] invokevirtual #64
         + Methodref [android/os/HandlerThread.start ()V]
       [81] aload_0 v0
-      [82] new #22
+      [82] new #17
         + Class [android/os/Handler]
       [85] dup
       [86] aload_1 v1
-      [87] invokevirtual #72
+      [87] invokevirtual #63
         + Methodref [android/os/HandlerThread.getLooper ()Landroid/os/Looper;]
-      [90] invokespecial #69
+      [90] invokespecial #60
         + Methodref [android/os/Handler.<init> (Landroid/os/Looper;)V]
-      [93] putfield #58
+      [93] putfield #51
         + Fieldref [com/a/a/a/a/i.f Landroid/os/Handler;]
       [96] return
       Code attribute exceptions (count = 0):
@@ -53592,58 +53474,58 @@ Methods (count = 17):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 68, locals = 1, stack = 4):
       [0] aload_0 v0
-      [1] invokestatic #79
+      [1] invokestatic #70
         + Methodref [com/a/a/a/a/a/a.a (Ljava/lang/String;)[B]
       [4] astore_0 v0
-      [5] ldc #9
+      [5] ldc #7
         + String [RSA]
-      [7] invokestatic #103
+      [7] invokestatic #89
         + Methodref [java/security/KeyFactory.getInstance (Ljava/lang/String;)Ljava/security/KeyFactory;]
-      [10] new #47
+      [10] new #40
         + Class [java/security/spec/X509EncodedKeySpec]
       [13] dup
       [14] aload_0 v0
-      [15] invokespecial #106
+      [15] invokespecial #91
         + Methodref [java/security/spec/X509EncodedKeySpec.<init> ([B)V]
-      [18] invokevirtual #102
+      [18] invokevirtual #88
         + Methodref [java/security/KeyFactory.generatePublic (Ljava/security/spec/KeySpec;)Ljava/security/PublicKey;]
       [21] areturn
       [22] astore_0 v0
-      [23] new #39
+      [23] new #33
         + Class [java/lang/RuntimeException]
       [26] dup
       [27] aload_0 v0
-      [28] invokespecial #96
+      [28] invokespecial #83
         + Methodref [java/lang/RuntimeException.<init> (Ljava/lang/Throwable;)V]
       [31] athrow
       [32] astore_0 v0
-      [33] ldc #7
+      [33] ldc #5
         + String [LicenseChecker]
-      [35] ldc #5
+      [35] ldc #3
         + String [Could not decode from Base64.]
-      [37] invokestatic #75
+      [37] invokestatic #66
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
       [40] pop
-      [41] new #37
+      [41] new #31
         + Class [java/lang/IllegalArgumentException]
       [44] dup
       [45] aload_0 v0
-      [46] invokespecial #94
+      [46] invokespecial #81
         + Methodref [java/lang/IllegalArgumentException.<init> (Ljava/lang/Throwable;)V]
       [49] athrow
       [50] astore_0 v0
-      [51] ldc #7
+      [51] ldc #5
         + String [LicenseChecker]
-      [53] ldc #6
+      [53] ldc #4
         + String [Invalid key specification.]
-      [55] invokestatic #75
+      [55] invokestatic #66
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
       [58] pop
-      [59] new #37
+      [59] new #31
         + Class [java/lang/IllegalArgumentException]
       [62] dup
       [63] aload_0 v0
-      [64] invokespecial #94
+      [64] invokespecial #81
         + Methodref [java/lang/IllegalArgumentException.<init> (Ljava/lang/Throwable;)V]
       [67] athrow
       Code attribute exceptions (count = 3):
@@ -53670,287 +53552,27 @@ Methods (count = 17):
         - [22] Var: ..., Stack: [a:java/security/NoSuchAlgorithmException]
         - [32] Var: ..., Stack: [a:com/a/a/a/a/a/b]
         - [50] Var: ..., Stack: [a:java/security/spec/InvalidKeySpecException]
-  + Method:       a(Lcom/a/a/a/a/m;)V
-    Access flags: 0x31
-      = public final synchronized void a(com.a.a.a.a.m)
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 163, locals = 3, stack = 8):
-      [0] aload_0 v0
-      [1] getfield #57
-        + Fieldref [com/a/a/a/a/i.e Lcom/a/a/a/a/q;]
-      [4] invokeinterface #113
-        + InterfaceMethodref [com/a/a/a/a/q.a ()Z]
-      [9] ifeq +18 (target=27)
-      [12] ldc #7
-        + String [LicenseChecker]
-      [14] ldc #13
-        + String [Using cached license response]
-      [16] invokestatic #76
-        + Methodref [android/util/Log.i (Ljava/lang/String;Ljava/lang/String;)I]
-      [19] pop
-      [20] aload_1 v1
-      [21] invokeinterface #110
-        + InterfaceMethodref [com/a/a/a/a/m.a ()V]
-      [26] return
-      [27] new #34
-        + Class [com/a/a/a/a/n]
-      [30] dup
-      [31] aload_0 v0
-      [32] getfield #57
-        + Fieldref [com/a/a/a/a/i.e Lcom/a/a/a/a/q;]
-      [35] new #35
-        + Class [com/a/a/a/a/o]
-      [38] dup
-      [39] invokespecial #93
-        + Methodref [com/a/a/a/a/o.<init> ()V]
-      [42] aload_1 v1
-      [43] getstatic #53
-        + Fieldref [com/a/a/a/a/i.a Ljava/security/SecureRandom;]
-      [46] invokevirtual #105
-        + Methodref [java/security/SecureRandom.nextInt ()I]
-      [49] aload_0 v0
-      [50] getfield #59
-        + Fieldref [com/a/a/a/a/i.g Ljava/lang/String;]
-      [53] aload_0 v0
-      [54] getfield #60
-        + Fieldref [com/a/a/a/a/i.h Ljava/lang/String;]
-      [57] invokespecial #89
-        + Methodref [com/a/a/a/a/n.<init> (Lcom/a/a/a/a/q;Lcom/a/a/a/a/b;Lcom/a/a/a/a/m;ILjava/lang/String;Ljava/lang/String;)V]
-      [60] astore_2 v2
-      [61] aload_0 v0
-      [62] getfield #54
-        + Fieldref [com/a/a/a/a/i.b Lcom/a/a/a/a/f;]
-      [65] ifnonnull +82 (target=147)
-      [68] ldc #7
-        + String [LicenseChecker]
-      [70] ldc #2
-        + String [Binding to licensing service.]
-      [72] invokestatic #76
-        + Methodref [android/util/Log.i (Ljava/lang/String;Ljava/lang/String;)I]
-      [75] pop
-      [76] aload_0 v0
-      [77] getfield #56
-        + Fieldref [com/a/a/a/a/i.d Landroid/content/Context;]
-      [80] new #17
-        + Class [android/content/Intent]
-      [83] dup
-      [84] new #41
-        + Class [java/lang/String]
-      [87] dup
-      [88] ldc #14
-        + String [Y29tLmFuZHJvaWQudmVuZGluZy5saWNlbnNpbmcuSUxpY2Vuc2luZ1NlcnZpY2U=]
-      [90] invokestatic #79
-        + Methodref [com/a/a/a/a/a/a.a (Ljava/lang/String;)[B]
-      [93] invokespecial #97
-        + Methodref [java/lang/String.<init> ([B)V]
-      [96] invokespecial #67
-        + Methodref [android/content/Intent.<init> (Ljava/lang/String;)V]
-      [99] aload_0 v0
-      [100] iconst_1
-      [101] invokevirtual #63
-        + Methodref [android/content/Context.bindService (Landroid/content/Intent;Landroid/content/ServiceConnection;I)Z]
-      [104] ifeq +15 (target=119)
-      [107] aload_0 v0
-      [108] getfield #62
-        + Fieldref [com/a/a/a/a/i.j Ljava/util/Queue;]
-      [111] aload_2 v2
-      [112] invokeinterface #115
-        + InterfaceMethodref [java/util/Queue.offer (Ljava/lang/Object;)Z]
-      [117] pop
-      [118] return
-      [119] ldc #7
-        + String [LicenseChecker]
-      [121] ldc #4
-        + String [Could not bind to service.]
-      [123] invokestatic #75
-        + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
-      [126] pop
-      [127] aload_0 v0
-      [128] aload_2 v2
-      [129] invokespecial #86
-        + Methodref [com/a/a/a/a/i.b (Lcom/a/a/a/a/n;)V]
-      [132] return
-      [133] pop
-      [134] aload_1 v1
-      [135] bipush 6
-      [137] invokeinterface #112
-        + InterfaceMethodref [com/a/a/a/a/m.b (I)V]
-      [142] return
-      [143] invokevirtual #80
-        + Methodref [com/a/a/a/a/a/b.printStackTrace ()V]
-      [146] return
-      [147] aload_0 v0
-      [148] getfield #62
-        + Fieldref [com/a/a/a/a/i.j Ljava/util/Queue;]
-      [151] aload_2 v2
-      [152] invokeinterface #115
-        + InterfaceMethodref [java/util/Queue.offer (Ljava/lang/Object;)Z]
-      [157] pop
-      [158] aload_0 v0
-      [159] invokespecial #85
-        + Methodref [com/a/a/a/a/i.b ()V]
-      [162] return
-      Code attribute exceptions (count = 2):
-      - ExceptionInfo (76 -> 132: 133):
-      + Class [java/lang/SecurityException]
-      - ExceptionInfo (76 -> 132: 143):
-      + Class [com/a/a/a/a/a/b]
-      Code attribute attributes (attribute count = 2):
-      + Line number table attribute (count = 27)
-        [0] -> line 139
-        [12] -> line 140
-        [20] -> line 141
-        [27] -> line 143
-        [42] -> line 144
-        [57] -> line 143
-        [61] -> line 146
-        [68] -> line 147
-        [76] -> line 149
-        [80] -> line 151
-        [84] -> line 152
-        [88] -> line 153
-        [93] -> line 152
-        [96] -> line 151
-        [99] -> line 154
-        [100] -> line 155
-        [101] -> line 150
-        [104] -> line 149
-        [107] -> line 158
-        [119] -> line 160
-        [127] -> line 161
-        [133] -> line 163
-        [134] -> line 164
-        [143] -> line 165
-        [147] -> line 169
-        [158] -> line 170
-        [162] -> line 173
-      + Stack map table attribute (count = 8):
-        - [27] Var: ..., Stack: (empty)
-        - [119] Var: ...[a:com/a/a/a/a/n][i], Stack: (empty)
-        - [132] Var: ..., Stack: (empty)
-        - [133] Var: [a:com/a/a/a/a/i][a:com/a/a/a/a/m][a:com/a/a/a/a/n], Stack: [a:java/lang/SecurityException]
-        - [143] Var: ..., Stack: [a:com/a/a/a/a/a/b]
-        - [146] Var: ..., Stack: (empty)
-        - [147] Var: ..., Stack: (empty)
-        - [162] Var: -1, Stack: (empty)
-  + Method:       b()V
-    Access flags: 0x2
-      = private void b()
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 102, locals = 3, stack = 8):
-      [0] goto +84 (target=84)
-      [3] ldc #7
-        + String [LicenseChecker]
-      [5] new #42
-        + Class [java/lang/StringBuilder]
-      [8] dup
-      [9] ldc #3
-        + String [Calling checkLicense on service for ]
-      [11] invokespecial #99
-        + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [14] aload_1 v1
-      [15] invokevirtual #92
-        + Methodref [com/a/a/a/a/n.c ()Ljava/lang/String;]
-      [18] invokevirtual #100
-        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [21] invokevirtual #101
-        + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [24] invokestatic #76
-        + Methodref [android/util/Log.i (Ljava/lang/String;Ljava/lang/String;)I]
-      [27] pop
-      [28] aload_0 v0
-      [29] getfield #54
-        + Fieldref [com/a/a/a/a/i.b Lcom/a/a/a/a/f;]
-      [32] aload_1 v1
-      [33] invokevirtual #91
-        + Methodref [com/a/a/a/a/n.b ()I]
-      [36] i2l
-      [37] aload_1 v1
-      [38] invokevirtual #92
-        + Methodref [com/a/a/a/a/n.c ()Ljava/lang/String;]
-      [41] new #32
-        + Class [com/a/a/a/a/j]
-      [44] dup
-      [45] aload_0 v0
-      [46] aload_1 v1
-      [47] invokespecial #88
-        + Methodref [com/a/a/a/a/j.<init> (Lcom/a/a/a/a/i;Lcom/a/a/a/a/n;)V]
-      [50] invokeinterface #109
-        + InterfaceMethodref [com/a/a/a/a/f.a (JLjava/lang/String;Lcom/a/a/a/a/c;)V]
-      [55] aload_0 v0
-      [56] getfield #61
-        + Fieldref [com/a/a/a/a/i.i Ljava/util/Set;]
-      [59] aload_1 v1
-      [60] invokeinterface #117
-        + InterfaceMethodref [java/util/Set.add (Ljava/lang/Object;)Z]
-      [65] pop
-      [66] goto +18 (target=84)
-      [69] astore_2 v2
-      [70] ldc #7
-        + String [LicenseChecker]
-      [72] ldc #10
-        + String [RemoteException in checkLicense call.]
-      [74] aload_2 v2
-      [75] invokestatic #78
-        + Methodref [android/util/Log.w (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
-      [78] pop
-      [79] aload_0 v0
-      [80] aload_1 v1
-      [81] invokespecial #86
-        + Methodref [com/a/a/a/a/i.b (Lcom/a/a/a/a/n;)V]
-      [84] aload_0 v0
-      [85] getfield #62
-        + Fieldref [com/a/a/a/a/i.j Ljava/util/Queue;]
-      [88] invokeinterface #116
-        + InterfaceMethodref [java/util/Queue.poll ()Ljava/lang/Object;]
-      [93] checkcast #34
-        + Class [com/a/a/a/a/n]
-      [96] dup
-      [97] astore_1 v1
-      [98] ifnonnull -95 (target=3)
-      [101] return
-      Code attribute exceptions (count = 1):
-      - ExceptionInfo (3 -> 66: 69):
-      + Class [android/os/RemoteException]
-      Code attribute attributes (attribute count = 2):
-      + Line number table attribute (count = 12)
-        [0] -> line 177
-        [3] -> line 179
-        [28] -> line 180
-        [32] -> line 181
-        [41] -> line 182
-        [50] -> line 180
-        [55] -> line 183
-        [69] -> line 184
-        [70] -> line 185
-        [79] -> line 186
-        [84] -> line 177
-        [101] -> line 189
-      + Stack map table attribute (count = 3):
-        - [3] Var: ...[a:com/a/a/a/a/n], Stack: (empty)
-        - [69] Var: ..., Stack: [a:android/os/RemoteException]
-        - [84] Var: -1, Stack: (empty)
   + Method:       a(Lcom/a/a/a/a/n;)V
     Access flags: 0x22
       = private synchronized void a(com.a.a.a.a.n)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 28, locals = 2, stack = 2):
       [0] aload_0 v0
-      [1] getfield #61
+      [1] getfield #54
         + Fieldref [com/a/a/a/a/i.i Ljava/util/Set;]
       [4] aload_1 v1
-      [5] invokeinterface #119
+      [5] invokeinterface #102
         + InterfaceMethodref [java/util/Set.remove (Ljava/lang/Object;)Z]
       [10] pop
       [11] aload_0 v0
-      [12] getfield #61
+      [12] getfield #54
         + Fieldref [com/a/a/a/a/i.i Ljava/util/Set;]
-      [15] invokeinterface #118
+      [15] invokeinterface #101
         + InterfaceMethodref [java/util/Set.isEmpty ()Z]
       [20] ifeq +7 (target=27)
       [23] aload_0 v0
-      [24] invokespecial #87
-        + Methodref [com/a/a/a/a/i.c ()V]
+      [24] invokespecial #75
+        + Methodref [com/a/a/a/a/i.b ()V]
       [27] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
@@ -53965,38 +53587,109 @@ Methods (count = 17):
     Access flags: 0x31
       = public final synchronized void onServiceConnected(android.content.ComponentName,android.os.IBinder)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 13, locals = 3, stack = 2):
+    + Code attribute instructions (code length = 112, locals = 4, stack = 8):
       [0] aload_0 v0
       [1] aload_2 v2
-      [2] invokestatic #81
+      [2] invokestatic #71
         + Methodref [com/a/a/a/a/g.a (Landroid/os/IBinder;)Lcom/a/a/a/a/f;]
-      [5] putfield #54
+      [5] putfield #47
         + Fieldref [com/a/a/a/a/i.b Lcom/a/a/a/a/f;]
       [8] aload_0 v0
-      [9] invokespecial #85
-        + Methodref [com/a/a/a/a/i.b ()V]
-      [12] return
-      Code attribute exceptions (count = 0):
+      [9] astore_1 v1
+      [10] goto +84 (target=94)
+      [13] ldc #5
+        + String [LicenseChecker]
+      [15] new #35
+        + Class [java/lang/StringBuilder]
+      [18] dup
+      [19] ldc #2
+        + String [Calling checkLicense on service for ]
+      [21] invokespecial #85
+        + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
+      [24] aload_2 v2
+      [25] invokevirtual #80
+        + Methodref [com/a/a/a/a/n.c ()Ljava/lang/String;]
+      [28] invokevirtual #86
+        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
+      [31] invokevirtual #87
+        + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
+      [34] invokestatic #67
+        + Methodref [android/util/Log.i (Ljava/lang/String;Ljava/lang/String;)I]
+      [37] pop
+      [38] aload_1 v1
+      [39] getfield #47
+        + Fieldref [com/a/a/a/a/i.b Lcom/a/a/a/a/f;]
+      [42] aload_2 v2
+      [43] invokevirtual #79
+        + Methodref [com/a/a/a/a/n.b ()I]
+      [46] i2l
+      [47] aload_2 v2
+      [48] invokevirtual #80
+        + Methodref [com/a/a/a/a/n.c ()Ljava/lang/String;]
+      [51] new #27
+        + Class [com/a/a/a/a/j]
+      [54] dup
+      [55] aload_1 v1
+      [56] aload_2 v2
+      [57] invokespecial #77
+        + Methodref [com/a/a/a/a/j.<init> (Lcom/a/a/a/a/i;Lcom/a/a/a/a/n;)V]
+      [60] invokeinterface #94
+        + InterfaceMethodref [com/a/a/a/a/f.a (JLjava/lang/String;Lcom/a/a/a/a/c;)V]
+      [65] aload_1 v1
+      [66] getfield #54
+        + Fieldref [com/a/a/a/a/i.i Ljava/util/Set;]
+      [69] aload_2 v2
+      [70] invokeinterface #100
+        + InterfaceMethodref [java/util/Set.add (Ljava/lang/Object;)Z]
+      [75] pop
+      [76] goto +18 (target=94)
+      [79] astore_3 v3
+      [80] ldc #5
+        + String [LicenseChecker]
+      [82] ldc #8
+        + String [RemoteException in checkLicense call.]
+      [84] aload_3 v3
+      [85] invokestatic #69
+        + Methodref [android/util/Log.w (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I]
+      [88] pop
+      [89] aload_1 v1
+      [90] aload_2 v2
+      [91] invokespecial #76
+        + Methodref [com/a/a/a/a/i.b (Lcom/a/a/a/a/n;)V]
+      [94] aload_1 v1
+      [95] getfield #55
+        + Fieldref [com/a/a/a/a/i.j Ljava/util/Queue;]
+      [98] invokeinterface #99
+        + InterfaceMethodref [java/util/Queue.poll ()Ljava/lang/Object;]
+      [103] checkcast #29
+        + Class [com/a/a/a/a/n]
+      [106] dup
+      [107] astore_2 v2
+      [108] ifnonnull -95 (target=13)
+      [111] return
+      Code attribute exceptions (count = 1):
+      - ExceptionInfo (13 -> 76: 79):
+      + Class [android/os/RemoteException]
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 3)
         [0] -> line 277
         [8] -> line 278
-        [12] -> line 279
+        [111] -> line 279
   + Method:       onServiceDisconnected(Landroid/content/ComponentName;)V
     Access flags: 0x31
       = public final synchronized void onServiceDisconnected(android.content.ComponentName)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 14, locals = 2, stack = 2):
-      [0] ldc #7
+      [0] ldc #5
         + String [LicenseChecker]
-      [2] ldc #11
+      [2] ldc #9
         + String [Service unexpectedly disconnected.]
-      [4] invokestatic #77
+      [4] invokestatic #68
         + Methodref [android/util/Log.w (Ljava/lang/String;Ljava/lang/String;)I]
       [7] pop
       [8] aload_0 v0
       [9] aconst_null
-      [10] putfield #54
+      [10] putfield #47
         + Fieldref [com/a/a/a/a/i.b Lcom/a/a/a/a/f;]
       [13] return
       Code attribute exceptions (count = 0):
@@ -54011,29 +53704,29 @@ Methods (count = 17):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 48, locals = 2, stack = 3):
       [0] aload_0 v0
-      [1] getfield #57
-        + Fieldref [com/a/a/a/a/i.e Lcom/a/a/a/a/q;]
+      [1] getfield #50
+        + Fieldref [com/a/a/a/a/i.e Lcom/a/a/a/a/p;]
       [4] sipush 291
       [7] aconst_null
-      [8] invokeinterface #114
-        + InterfaceMethodref [com/a/a/a/a/q.a (ILcom/a/a/a/a/s;)V]
+      [8] invokeinterface #98
+        + InterfaceMethodref [com/a/a/a/a/p.a (ILcom/a/a/a/a/r;)V]
       [13] aload_0 v0
-      [14] getfield #57
-        + Fieldref [com/a/a/a/a/i.e Lcom/a/a/a/a/q;]
-      [17] invokeinterface #113
-        + InterfaceMethodref [com/a/a/a/a/q.a ()Z]
+      [14] getfield #50
+        + Fieldref [com/a/a/a/a/i.e Lcom/a/a/a/a/p;]
+      [17] invokeinterface #97
+        + InterfaceMethodref [com/a/a/a/a/p.a ()Z]
       [22] ifeq +13 (target=35)
       [25] aload_1 v1
-      [26] invokevirtual #90
+      [26] invokevirtual #78
         + Methodref [com/a/a/a/a/n.a ()Lcom/a/a/a/a/m;]
-      [29] invokeinterface #110
+      [29] invokeinterface #95
         + InterfaceMethodref [com/a/a/a/a/m.a ()V]
       [34] return
       [35] aload_1 v1
-      [36] invokevirtual #90
+      [36] invokevirtual #78
         + Methodref [com/a/a/a/a/n.a ()Lcom/a/a/a/a/m;]
       [39] sipush 291
-      [42] invokeinterface #111
+      [42] invokeinterface #96
         + InterfaceMethodref [com/a/a/a/a/m.a (I)V]
       [47] return
       Code attribute exceptions (count = 0):
@@ -54047,33 +53740,33 @@ Methods (count = 17):
       + Stack map table attribute (count = 2):
         - [35] Var: ..., Stack: (empty)
         - [47] Var: ..., Stack: (empty)
-  + Method:       c()V
+  + Method:       b()V
     Access flags: 0x2
-      = private void c()
+      = private void b()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 33, locals = 1, stack = 2):
       [0] aload_0 v0
-      [1] getfield #54
+      [1] getfield #47
         + Fieldref [com/a/a/a/a/i.b Lcom/a/a/a/a/f;]
       [4] ifnull +28 (target=32)
       [7] aload_0 v0
-      [8] getfield #56
+      [8] getfield #49
         + Fieldref [com/a/a/a/a/i.d Landroid/content/Context;]
       [11] aload_0 v0
-      [12] invokevirtual #66
+      [12] invokevirtual #58
         + Methodref [android/content/Context.unbindService (Landroid/content/ServiceConnection;)V]
       [15] goto +12 (target=27)
       [18] pop
-      [19] ldc #7
+      [19] ldc #5
         + String [LicenseChecker]
-      [21] ldc #12
+      [21] ldc #10
         + String [Unable to unbind from licensing service (already unbound)]
-      [23] invokestatic #75
+      [23] invokestatic #66
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
       [26] pop
       [27] aload_0 v0
       [28] aconst_null
-      [29] putfield #54
+      [29] putfield #47
         + Fieldref [com/a/a/a/a/i.b Lcom/a/a/a/a/f;]
       [32] return
       Code attribute exceptions (count = 1):
@@ -54097,14 +53790,14 @@ Methods (count = 17):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 15, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #87
-        + Methodref [com/a/a/a/a/i.c ()V]
+      [1] invokespecial #75
+        + Methodref [com/a/a/a/a/i.b ()V]
       [4] aload_0 v0
-      [5] getfield #58
+      [5] getfield #51
         + Fieldref [com/a/a/a/a/i.f Landroid/os/Handler;]
-      [8] invokevirtual #70
+      [8] invokevirtual #61
         + Methodref [android/os/Handler.getLooper ()Landroid/os/Looper;]
-      [11] invokevirtual #74
+      [11] invokevirtual #65
         + Methodref [android/os/Looper.quit ()V]
       [14] return
       Code attribute exceptions (count = 0):
@@ -54119,23 +53812,23 @@ Methods (count = 17):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 28, locals = 2, stack = 3):
       [0] aload_0 v0
-      [1] invokevirtual #64
+      [1] invokevirtual #56
         + Methodref [android/content/Context.getPackageManager ()Landroid/content/pm/PackageManager;]
       [4] aload_1 v1
       [5] iconst_0
-      [6] invokevirtual #68
+      [6] invokevirtual #59
         + Methodref [android/content/pm/PackageManager.getPackageInfo (Ljava/lang/String;I)Landroid/content/pm/PackageInfo;]
-      [9] getfield #52
+      [9] getfield #45
         + Fieldref [android/content/pm/PackageInfo.versionCode I]
-      [12] invokestatic #98
+      [12] invokestatic #84
         + Methodref [java/lang/String.valueOf (I)Ljava/lang/String;]
       [15] areturn
       [16] pop
-      [17] ldc #7
+      [17] ldc #5
         + String [LicenseChecker]
-      [19] ldc #8
+      [19] ldc #6
         + String [Package not found. could not get version code.]
-      [21] invokestatic #75
+      [21] invokestatic #66
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
       [24] pop
       [25] ldc #1
@@ -54161,7 +53854,7 @@ Methods (count = 17):
     + Code attribute instructions (code length = 6, locals = 2, stack = 2):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] invokespecial #86
+      [2] invokespecial #76
         + Methodref [com/a/a/a/a/i.b (Lcom/a/a/a/a/n;)V]
       [5] return
       Code attribute exceptions (count = 0):
@@ -54175,7 +53868,7 @@ Methods (count = 17):
     + Code attribute instructions (code length = 6, locals = 2, stack = 2):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] invokespecial #83
+      [2] invokespecial #73
         + Methodref [com/a/a/a/a/i.a (Lcom/a/a/a/a/n;)V]
       [5] return
       Code attribute exceptions (count = 0):
@@ -54188,7 +53881,7 @@ Methods (count = 17):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #58
+      [1] getfield #51
         + Fieldref [com/a/a/a/a/i.f Landroid/os/Handler;]
       [4] areturn
       Code attribute exceptions (count = 0):
@@ -54201,7 +53894,7 @@ Methods (count = 17):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #61
+      [1] getfield #54
         + Fieldref [com/a/a/a/a/i.i Ljava/util/Set;]
       [4] areturn
       Code attribute exceptions (count = 0):
@@ -54214,7 +53907,7 @@ Methods (count = 17):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #55
+      [1] getfield #48
         + Fieldref [com/a/a/a/a/i.c Ljava/security/PublicKey;]
       [4] areturn
       Code attribute exceptions (count = 0):
@@ -54857,7 +54550,7 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 214):
+Constant Pool (count = 216):
   + String []
   + String [An error has occurred on the licensing server.]
   + String [Could not Base64-decode signature.]
@@ -54879,10 +54572,11 @@ Constant Pool (count = 214):
   + Class [android/util/Log]
   + Class [com/a/a/a/a/a/a]
   + Class [com/a/a/a/a/a/b]
+  + Class [com/a/a/a/a/b]
   + Class [com/a/a/a/a/m]
   + Class [com/a/a/a/a/n]
-  + Class [com/a/a/a/a/q]
-  + Class [com/a/a/a/a/s]
+  + Class [com/a/a/a/a/p]
+  + Class [com/a/a/a/a/r]
   + Class [java/lang/IllegalArgumentException]
   + Class [java/lang/Integer]
   + Class [java/lang/Long]
@@ -54894,32 +54588,31 @@ Constant Pool (count = 214):
   + Class [java/security/Signature]
   + Class [java/security/SignatureException]
   + Class [java/util/regex/Pattern]
-  + Fieldref [com/a/a/a/a/n.a Lcom/a/a/a/a/q;]
+  + Fieldref [com/a/a/a/a/n.a Lcom/a/a/a/a/p;]
   + Fieldref [com/a/a/a/a/n.b Lcom/a/a/a/a/m;]
   + Fieldref [com/a/a/a/a/n.c I]
   + Fieldref [com/a/a/a/a/n.d Ljava/lang/String;]
   + Fieldref [com/a/a/a/a/n.e Ljava/lang/String;]
   + Fieldref [com/a/a/a/a/n.f Lcom/a/a/a/a/b;]
-  + Fieldref [com/a/a/a/a/s.a I]
-  + Fieldref [com/a/a/a/a/s.b I]
-  + Fieldref [com/a/a/a/a/s.c Ljava/lang/String;]
-  + Fieldref [com/a/a/a/a/s.d Ljava/lang/String;]
-  + Fieldref [com/a/a/a/a/s.e Ljava/lang/String;]
-  + Fieldref [com/a/a/a/a/s.f J]
-  + Fieldref [com/a/a/a/a/s.g Ljava/lang/String;]
+  + Fieldref [com/a/a/a/a/r.a I]
+  + Fieldref [com/a/a/a/a/r.b I]
+  + Fieldref [com/a/a/a/a/r.c Ljava/lang/String;]
+  + Fieldref [com/a/a/a/a/r.d Ljava/lang/String;]
+  + Fieldref [com/a/a/a/a/r.e Ljava/lang/String;]
+  + Fieldref [com/a/a/a/a/r.f J]
+  + Fieldref [com/a/a/a/a/r.g Ljava/lang/String;]
   + Methodref [android/text/TextUtils.isEmpty (Ljava/lang/CharSequence;)Z]
   + Methodref [android/text/TextUtils.split (Ljava/lang/String;Ljava/lang/String;)[Ljava/lang/String;]
   + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
   + Methodref [android/util/Log.w (Ljava/lang/String;Ljava/lang/String;)I]
   + Methodref [com/a/a/a/a/a/a.a (Ljava/lang/String;)[B]
   + Methodref [com/a/a/a/a/n.a (I)V]
-  + Methodref [com/a/a/a/a/n.a (ILcom/a/a/a/a/s;)V]
+  + Methodref [com/a/a/a/a/n.a (ILcom/a/a/a/a/r;)V]
   + Methodref [com/a/a/a/a/n.d ()V]
-  + Methodref [com/a/a/a/a/s.<init> ()V]
+  + Methodref [com/a/a/a/a/r.<init> ()V]
   + Methodref [java/lang/IllegalArgumentException.<init> (Ljava/lang/String;)V]
   + Methodref [java/lang/Integer.parseInt (Ljava/lang/String;)I]
   + Methodref [java/lang/Long.parseLong (Ljava/lang/String;)J]
-  + Methodref [java/lang/Object.<init> ()V]
   + Methodref [java/lang/RuntimeException.<init> (Ljava/lang/Throwable;)V]
   + Methodref [java/lang/String.equals (Ljava/lang/Object;)Z]
   + Methodref [java/lang/String.getBytes ()[B]
@@ -54932,21 +54625,23 @@ Constant Pool (count = 214):
   + Methodref [java/security/Signature.update ([B)V]
   + Methodref [java/security/Signature.verify ([B)Z]
   + Methodref [java/util/regex/Pattern.quote (Ljava/lang/String;)Ljava/lang/String;]
+  + InterfaceMethodref [com/a/a/a/a/b.a ()I]
   + InterfaceMethodref [com/a/a/a/a/m.a ()V]
   + InterfaceMethodref [com/a/a/a/a/m.a (I)V]
   + InterfaceMethodref [com/a/a/a/a/m.b (I)V]
-  + InterfaceMethodref [com/a/a/a/a/q.a ()Z]
-  + InterfaceMethodref [com/a/a/a/a/q.a (ILcom/a/a/a/a/s;)V]
+  + InterfaceMethodref [com/a/a/a/a/p.a ()Z]
+  + InterfaceMethodref [com/a/a/a/a/p.a (ILcom/a/a/a/a/r;)V]
   + NameAndType [<init> ()V]
   + NameAndType [<init> (Ljava/lang/String;)V]
   + NameAndType [<init> (Ljava/lang/Throwable;)V]
+  + NameAndType [a ()I]
   + NameAndType [a ()V]
   + NameAndType [a ()Z]
   + NameAndType [a (I)V]
-  + NameAndType [a (ILcom/a/a/a/a/s;)V]
+  + NameAndType [a (ILcom/a/a/a/a/r;)V]
   + NameAndType [a (Ljava/lang/String;)[B]
   + NameAndType [a I]
-  + NameAndType [a Lcom/a/a/a/a/q;]
+  + NameAndType [a Lcom/a/a/a/a/p;]
   + NameAndType [b (I)V]
   + NameAndType [b I]
   + NameAndType [b Lcom/a/a/a/a/m;]
@@ -54986,8 +54681,7 @@ Constant Pool (count = 214):
   + Utf8 [(I)Ljava/lang/String;]
   + Utf8 [(I)V]
   + Utf8 [(II)Ljava/lang/String;]
-  + Utf8 [(ILcom/a/a/a/a/s;)V]
-  + Utf8 [(Lcom/a/a/a/a/q;Lcom/a/a/a/a/b;Lcom/a/a/a/a/m;ILjava/lang/String;Ljava/lang/String;)V]
+  + Utf8 [(ILcom/a/a/a/a/r;)V]
   + Utf8 [(Ljava/lang/CharSequence;)Z]
   + Utf8 [(Ljava/lang/Object;)Z]
   + Utf8 [(Ljava/lang/String;)I]
@@ -55013,7 +54707,7 @@ Constant Pool (count = 214):
   + Utf8 [J]
   + Utf8 [Lcom/a/a/a/a/b;]
   + Utf8 [Lcom/a/a/a/a/m;]
-  + Utf8 [Lcom/a/a/a/a/q;]
+  + Utf8 [Lcom/a/a/a/a/p;]
   + Utf8 [LicenseValidator]
   + Utf8 [Licensing server is refusing to talk to this device, over quota.]
   + Utf8 [LineNumberTable]
@@ -55036,10 +54730,11 @@ Constant Pool (count = 214):
   + Utf8 [c]
   + Utf8 [com/a/a/a/a/a/a]
   + Utf8 [com/a/a/a/a/a/b]
+  + Utf8 [com/a/a/a/a/b]
   + Utf8 [com/a/a/a/a/m]
   + Utf8 [com/a/a/a/a/n]
-  + Utf8 [com/a/a/a/a/q]
-  + Utf8 [com/a/a/a/a/s]
+  + Utf8 [com/a/a/a/a/p]
+  + Utf8 [com/a/a/a/a/r]
   + Utf8 [d]
   + Utf8 [e]
   + Utf8 [equals]
@@ -55073,9 +54768,9 @@ Constant Pool (count = 214):
   + Utf8 [|]
 
 Fields (count = 6):
-  + Field:        a Lcom/a/a/a/a/q;
+  + Field:        a Lcom/a/a/a/a/p;
     Access flags: 0x12
-      = private final com.a.a.a.a.q a
+      = private final com.a.a.a.a.p a
   + Field:        b Lcom/a/a/a/a/m;
     Access flags: 0x12
       = private final com.a.a.a.a.m b
@@ -55092,58 +54787,14 @@ Fields (count = 6):
     Access flags: 0x12
       = private final com.a.a.a.a.b f
 
-Methods (count = 8):
-  - Method:       <init>(Lcom/a/a/a/a/q;Lcom/a/a/a/a/b;Lcom/a/a/a/a/m;ILjava/lang/String;Ljava/lang/String;)V
-    Access flags: 0x0
-      = n(com.a.a.a.a.q,com.a.a.a.a.b,com.a.a.a.a.m,int,java.lang.String,java.lang.String)
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 38, locals = 7, stack = 2):
-      [0] aload_0 v0
-      [1] invokespecial #62
-        + Methodref [java/lang/Object.<init> ()V]
-      [4] aload_0 v0
-      [5] aload_1 v1
-      [6] putfield #37
-        + Fieldref [com/a/a/a/a/n.a Lcom/a/a/a/a/q;]
-      [9] aload_0 v0
-      [10] aload_2 v2
-      [11] putfield #42
-        + Fieldref [com/a/a/a/a/n.f Lcom/a/a/a/a/b;]
-      [14] aload_0 v0
-      [15] aload_3 v3
-      [16] putfield #38
-        + Fieldref [com/a/a/a/a/n.b Lcom/a/a/a/a/m;]
-      [19] aload_0 v0
-      [20] iload v4
-      [22] putfield #39
-        + Fieldref [com/a/a/a/a/n.c I]
-      [25] aload_0 v0
-      [26] aload v5
-      [28] putfield #40
-        + Fieldref [com/a/a/a/a/n.d Ljava/lang/String;]
-      [31] aload_0 v0
-      [32] aload v6
-      [34] putfield #41
-        + Fieldref [com/a/a/a/a/n.e Ljava/lang/String;]
-      [37] return
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 8)
-        [0] -> line 57
-        [4] -> line 59
-        [9] -> line 60
-        [14] -> line 61
-        [19] -> line 62
-        [25] -> line 63
-        [31] -> line 64
-        [37] -> line 65
+Methods (count = 7):
   + Method:       a()Lcom/a/a/a/a/m;
     Access flags: 0x11
       = public final com.a.a.a.a.m a()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #38
+      [1] getfield #39
         + Fieldref [com/a/a/a/a/n.b Lcom/a/a/a/a/m;]
       [4] areturn
       Code attribute exceptions (count = 0):
@@ -55156,7 +54807,7 @@ Methods (count = 8):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #39
+      [1] getfield #40
         + Fieldref [com/a/a/a/a/n.c I]
       [4] ireturn
       Code attribute exceptions (count = 0):
@@ -55169,7 +54820,7 @@ Methods (count = 8):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] getfield #40
+      [1] getfield #41
         + Fieldref [com/a/a/a/a/n.d Ljava/lang/String;]
       [4] areturn
       Code attribute exceptions (count = 0):
@@ -55180,528 +54831,533 @@ Methods (count = 8):
     Access flags: 0x11
       = public final void a(java.security.PublicKey,int,java.lang.String,java.lang.String)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 602, locals = 6, stack = 3):
+    + Code attribute instructions (code length = 607, locals = 7, stack = 3):
       [0] aconst_null
       [1] astore v5
-      [3] iload_2 v2
-      [4] ifeq +13 (target=17)
-      [7] iload_2 v2
-      [8] iconst_1
-      [9] ificmpeq +8 (target=17)
-      [12] iload_2 v2
-      [13] iconst_2
-      [14] ificmpne +393 (target=407)
-      [17] ldc #11
+      [3] aconst_null
+      [4] astore v6
+      [6] iload_2 v2
+      [7] ifeq +13 (target=20)
+      [10] iload_2 v2
+      [11] iconst_1
+      [12] ificmpeq +8 (target=20)
+      [15] iload_2 v2
+      [16] iconst_2
+      [17] ificmpne +393 (target=410)
+      [20] ldc #11
         + String [SHA1withRSA]
-      [19] invokestatic #70
+      [22] invokestatic #70
         + Methodref [java/security/Signature.getInstance (Ljava/lang/String;)Ljava/security/Signature;]
-      [22] dup
-      [23] astore v5
-      [25] aload_1 v1
-      [26] invokevirtual #71
+      [25] dup
+      [26] astore v5
+      [28] aload_1 v1
+      [29] invokevirtual #71
         + Methodref [java/security/Signature.initVerify (Ljava/security/PublicKey;)V]
-      [29] aload v5
-      [31] aload_3 v3
-      [32] invokevirtual #65
+      [32] aload v5
+      [34] aload_3 v3
+      [35] invokevirtual #65
         + Methodref [java/lang/String.getBytes ()[B]
-      [35] invokevirtual #72
+      [38] invokevirtual #72
         + Methodref [java/security/Signature.update ([B)V]
-      [38] aload v5
-      [40] aload v4
-      [42] invokestatic #54
+      [41] aload v5
+      [43] aload v4
+      [45] invokestatic #55
         + Methodref [com/a/a/a/a/a/a.a (Ljava/lang/String;)[B]
-      [45] invokevirtual #73
+      [48] invokevirtual #73
         + Methodref [java/security/Signature.verify ([B)Z]
-      [48] ifne +61 (target=109)
-      [51] ldc #6
+      [51] ifne +61 (target=112)
+      [54] ldc #6
         + String [LicenseValidator]
-      [53] ldc #12
+      [56] ldc #12
         + String [Signature verification failed.]
-      [55] invokestatic #52
+      [58] invokestatic #53
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
-      [58] pop
-      [59] aload_0 v0
-      [60] invokespecial #57
+      [61] pop
+      [62] aload_0 v0
+      [63] invokespecial #58
         + Methodref [com/a/a/a/a/n.d ()V]
-      [63] return
-      [64] astore v5
-      [66] new #30
+      [66] return
+      [67] astore v5
+      [69] new #31
         + Class [java/lang/RuntimeException]
-      [69] dup
-      [70] aload v5
-      [72] invokespecial #63
+      [72] dup
+      [73] aload v5
+      [75] invokespecial #63
         + Methodref [java/lang/RuntimeException.<init> (Ljava/lang/Throwable;)V]
-      [75] athrow
-      [76] pop
-      [77] aload_0 v0
-      [78] iconst_5
-      [79] invokespecial #55
+      [78] athrow
+      [79] pop
+      [80] aload_0 v0
+      [81] iconst_5
+      [82] invokespecial #56
         + Methodref [com/a/a/a/a/n.a (I)V]
-      [82] return
-      [83] astore v5
-      [85] new #30
+      [85] return
+      [86] astore v5
+      [88] new #31
         + Class [java/lang/RuntimeException]
-      [88] dup
-      [89] aload v5
-      [91] invokespecial #63
+      [91] dup
+      [92] aload v5
+      [94] invokespecial #63
         + Methodref [java/lang/RuntimeException.<init> (Ljava/lang/Throwable;)V]
-      [94] athrow
-      [95] pop
-      [96] ldc #6
+      [97] athrow
+      [98] pop
+      [99] ldc #6
         + String [LicenseValidator]
-      [98] ldc #3
+      [101] ldc #3
         + String [Could not Base64-decode signature.]
-      [100] invokestatic #52
+      [103] invokestatic #53
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
-      [103] pop
-      [104] aload_0 v0
-      [105] invokespecial #57
+      [106] pop
+      [107] aload_0 v0
+      [108] invokespecial #58
         + Methodref [com/a/a/a/a/n.d ()V]
-      [108] return
-      [109] aload_3 v3
-      [110] dup
-      [111] astore_1 v1
-      [112] bipush 58
-      [114] invokevirtual #66
+      [111] return
+      [112] aload_3 v3
+      [113] dup
+      [114] astore_1 v1
+      [115] bipush 58
+      [117] invokevirtual #66
         + Methodref [java/lang/String.indexOf (I)I]
-      [117] istore_3 v3
-      [118] iconst_m1
-      [119] iload_3 v3
-      [120] ificmpne +11 (target=131)
-      [123] aload_1 v1
-      [124] astore v4
-      [126] ldc #1
+      [120] istore_3 v3
+      [121] iconst_m1
+      [122] iload_3 v3
+      [123] ificmpne +11 (target=134)
+      [126] aload_1 v1
+      [127] astore v4
+      [129] ldc #1
         + String []
-      [128] goto +31 (target=159)
-      [131] aload_1 v1
-      [132] iconst_0
-      [133] iload_3 v3
-      [134] invokevirtual #69
+      [131] goto +31 (target=162)
+      [134] aload_1 v1
+      [135] iconst_0
+      [136] iload_3 v3
+      [137] invokevirtual #69
         + Methodref [java/lang/String.substring (II)Ljava/lang/String;]
-      [137] astore v4
-      [139] iload_3 v3
-      [140] aload_1 v1
-      [141] invokevirtual #67
+      [140] astore v4
+      [142] iload_3 v3
+      [143] aload_1 v1
+      [144] invokevirtual #67
         + Methodref [java/lang/String.length ()I]
-      [144] ificmplt +8 (target=152)
-      [147] ldc #1
+      [147] ificmplt +8 (target=155)
+      [150] ldc #1
         + String []
-      [149] goto +10 (target=159)
-      [152] aload_1 v1
-      [153] iload_3 v3
-      [154] iconst_1
-      [155] iadd
-      [156] invokevirtual #68
+      [152] goto +10 (target=162)
+      [155] aload_1 v1
+      [156] iload_3 v3
+      [157] iconst_1
+      [158] iadd
+      [159] invokevirtual #68
         + Methodref [java/lang/String.substring (I)Ljava/lang/String;]
-      [159] astore_1 v1
-      [160] aload v4
-      [162] ldc #17
+      [162] astore_1 v1
+      [163] aload v4
+      [165] ldc #17
         + String [|]
-      [164] invokestatic #74
+      [167] invokestatic #74
         + Methodref [java/util/regex/Pattern.quote (Ljava/lang/String;)Ljava/lang/String;]
-      [167] invokestatic #51
+      [170] invokestatic #52
         + Methodref [android/text/TextUtils.split (Ljava/lang/String;Ljava/lang/String;)[Ljava/lang/String;]
-      [170] dup
-      [171] astore_3 v3
-      [172] arraylength
-      [173] bipush 6
-      [175] ificmpge +13 (target=188)
-      [178] new #26
+      [173] dup
+      [174] astore_3 v3
+      [175] arraylength
+      [176] bipush 6
+      [178] ificmpge +13 (target=191)
+      [181] new #27
         + Class [java/lang/IllegalArgumentException]
-      [181] dup
-      [182] ldc #16
+      [184] dup
+      [185] ldc #16
         + String [Wrong number of fields.]
-      [184] invokespecial #59
+      [187] invokespecial #60
         + Methodref [java/lang/IllegalArgumentException.<init> (Ljava/lang/String;)V]
-      [187] athrow
-      [188] new #25
-        + Class [com/a/a/a/a/s]
-      [191] dup
-      [192] invokespecial #58
-        + Methodref [com/a/a/a/a/s.<init> ()V]
-      [195] dup
-      [196] astore v4
-      [198] aload_1 v1
-      [199] putfield #49
-        + Fieldref [com/a/a/a/a/s.g Ljava/lang/String;]
-      [202] aload v4
-      [204] aload_3 v3
-      [205] iconst_0
-      [206] aaload
-      [207] invokestatic #60
+      [190] athrow
+      [191] new #26
+        + Class [com/a/a/a/a/r]
+      [194] dup
+      [195] invokespecial #59
+        + Methodref [com/a/a/a/a/r.<init> ()V]
+      [198] dup
+      [199] astore v4
+      [201] aload_1 v1
+      [202] putfield #50
+        + Fieldref [com/a/a/a/a/r.g Ljava/lang/String;]
+      [205] aload v4
+      [207] aload_3 v3
+      [208] iconst_0
+      [209] aaload
+      [210] invokestatic #61
         + Methodref [java/lang/Integer.parseInt (Ljava/lang/String;)I]
-      [210] putfield #43
-        + Fieldref [com/a/a/a/a/s.a I]
-      [213] aload v4
-      [215] aload_3 v3
-      [216] iconst_1
-      [217] aaload
-      [218] invokestatic #60
+      [213] putfield #44
+        + Fieldref [com/a/a/a/a/r.a I]
+      [216] aload v4
+      [218] aload_3 v3
+      [219] iconst_1
+      [220] aaload
+      [221] invokestatic #61
         + Methodref [java/lang/Integer.parseInt (Ljava/lang/String;)I]
-      [221] putfield #44
-        + Fieldref [com/a/a/a/a/s.b I]
-      [224] aload v4
-      [226] aload_3 v3
-      [227] iconst_2
-      [228] aaload
-      [229] putfield #45
-        + Fieldref [com/a/a/a/a/s.c Ljava/lang/String;]
-      [232] aload v4
-      [234] aload_3 v3
-      [235] iconst_3
-      [236] aaload
-      [237] putfield #46
-        + Fieldref [com/a/a/a/a/s.d Ljava/lang/String;]
-      [240] aload v4
-      [242] aload_3 v3
-      [243] iconst_4
-      [244] aaload
-      [245] putfield #47
-        + Fieldref [com/a/a/a/a/s.e Ljava/lang/String;]
-      [248] aload v4
-      [250] aload_3 v3
-      [251] iconst_5
-      [252] aaload
-      [253] invokestatic #61
+      [224] putfield #45
+        + Fieldref [com/a/a/a/a/r.b I]
+      [227] aload v4
+      [229] aload_3 v3
+      [230] iconst_2
+      [231] aaload
+      [232] putfield #46
+        + Fieldref [com/a/a/a/a/r.c Ljava/lang/String;]
+      [235] aload v4
+      [237] aload_3 v3
+      [238] iconst_3
+      [239] aaload
+      [240] putfield #47
+        + Fieldref [com/a/a/a/a/r.d Ljava/lang/String;]
+      [243] aload v4
+      [245] aload_3 v3
+      [246] iconst_4
+      [247] aaload
+      [248] putfield #48
+        + Fieldref [com/a/a/a/a/r.e Ljava/lang/String;]
+      [251] aload v4
+      [253] aload_3 v3
+      [254] iconst_5
+      [255] aaload
+      [256] invokestatic #62
         + Methodref [java/lang/Long.parseLong (Ljava/lang/String;)J]
-      [256] putfield #48
-        + Fieldref [com/a/a/a/a/s.f J]
-      [259] aload v4
-      [261] astore v5
-      [263] goto +17 (target=280)
-      [266] pop
-      [267] ldc #6
+      [259] putfield #49
+        + Fieldref [com/a/a/a/a/r.f J]
+      [262] aload v4
+      [264] astore v6
+      [266] goto +17 (target=283)
+      [269] pop
+      [270] ldc #6
         + String [LicenseValidator]
-      [269] ldc #4
+      [272] ldc #4
         + String [Could not parse response.]
-      [271] invokestatic #52
+      [274] invokestatic #53
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
-      [274] pop
-      [275] aload_0 v0
-      [276] invokespecial #57
+      [277] pop
+      [278] aload_0 v0
+      [279] invokespecial #58
         + Methodref [com/a/a/a/a/n.d ()V]
-      [279] return
-      [280] aload v5
-      [282] getfield #43
-        + Fieldref [com/a/a/a/a/s.a I]
-      [285] iload_2 v2
-      [286] ificmpeq +16 (target=302)
-      [289] ldc #6
+      [282] return
+      [283] aload v6
+      [285] getfield #44
+        + Fieldref [com/a/a/a/a/r.a I]
+      [288] iload_2 v2
+      [289] ificmpeq +16 (target=305)
+      [292] ldc #6
         + String [LicenseValidator]
-      [291] ldc #10
+      [294] ldc #10
         + String [Response codes don't match.]
-      [293] invokestatic #52
+      [296] invokestatic #53
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
-      [296] pop
-      [297] aload_0 v0
-      [298] invokespecial #57
+      [299] pop
+      [300] aload_0 v0
+      [301] invokespecial #58
         + Methodref [com/a/a/a/a/n.d ()V]
-      [301] return
-      [302] aload v5
-      [304] getfield #44
-        + Fieldref [com/a/a/a/a/s.b I]
-      [307] aload_0 v0
-      [308] getfield #39
+      [304] return
+      [305] aload v6
+      [307] getfield #45
+        + Fieldref [com/a/a/a/a/r.b I]
+      [310] aload_0 v0
+      [311] getfield #40
         + Fieldref [com/a/a/a/a/n.c I]
-      [311] ificmpeq +16 (target=327)
-      [314] ldc #6
+      [314] ificmpeq +16 (target=330)
+      [317] ldc #6
         + String [LicenseValidator]
-      [316] ldc #8
+      [319] ldc #8
         + String [Nonce doesn't match.]
-      [318] invokestatic #52
+      [321] invokestatic #53
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
-      [321] pop
-      [322] aload_0 v0
-      [323] invokespecial #57
+      [324] pop
+      [325] aload_0 v0
+      [326] invokespecial #58
         + Methodref [com/a/a/a/a/n.d ()V]
-      [326] return
-      [327] aload v5
-      [329] getfield #45
-        + Fieldref [com/a/a/a/a/s.c Ljava/lang/String;]
-      [332] aload_0 v0
-      [333] getfield #40
+      [329] return
+      [330] aload v6
+      [332] getfield #46
+        + Fieldref [com/a/a/a/a/r.c Ljava/lang/String;]
+      [335] aload_0 v0
+      [336] getfield #41
         + Fieldref [com/a/a/a/a/n.d Ljava/lang/String;]
-      [336] invokevirtual #64
+      [339] invokevirtual #64
         + Methodref [java/lang/String.equals (Ljava/lang/Object;)Z]
-      [339] ifne +16 (target=355)
-      [342] ldc #6
+      [342] ifne +16 (target=358)
+      [345] ldc #6
         + String [LicenseValidator]
-      [344] ldc #9
+      [347] ldc #9
         + String [Package name doesn't match.]
-      [346] invokestatic #52
+      [349] invokestatic #53
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
-      [349] pop
-      [350] aload_0 v0
-      [351] invokespecial #57
+      [352] pop
+      [353] aload_0 v0
+      [354] invokespecial #58
         + Methodref [com/a/a/a/a/n.d ()V]
-      [354] return
-      [355] aload v5
-      [357] getfield #46
-        + Fieldref [com/a/a/a/a/s.d Ljava/lang/String;]
-      [360] aload_0 v0
-      [361] getfield #41
+      [357] return
+      [358] aload v6
+      [360] getfield #47
+        + Fieldref [com/a/a/a/a/r.d Ljava/lang/String;]
+      [363] aload_0 v0
+      [364] getfield #42
         + Fieldref [com/a/a/a/a/n.e Ljava/lang/String;]
-      [364] invokevirtual #64
+      [367] invokevirtual #64
         + Methodref [java/lang/String.equals (Ljava/lang/Object;)Z]
-      [367] ifne +16 (target=383)
-      [370] ldc #6
+      [370] ifne +16 (target=386)
+      [373] ldc #6
         + String [LicenseValidator]
-      [372] ldc #15
+      [375] ldc #15
         + String [Version codes don't match.]
-      [374] invokestatic #52
+      [377] invokestatic #53
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
-      [377] pop
-      [378] aload_0 v0
-      [379] invokespecial #57
+      [380] pop
+      [381] aload_0 v0
+      [382] invokespecial #58
         + Methodref [com/a/a/a/a/n.d ()V]
-      [382] return
-      [383] aload v5
-      [385] getfield #47
-        + Fieldref [com/a/a/a/a/s.e Ljava/lang/String;]
-      [388] invokestatic #50
+      [385] return
+      [386] aload v6
+      [388] getfield #48
+        + Fieldref [com/a/a/a/a/r.e Ljava/lang/String;]
+      [391] invokestatic #51
         + Methodref [android/text/TextUtils.isEmpty (Ljava/lang/CharSequence;)Z]
-      [391] ifeq +16 (target=407)
-      [394] ldc #6
+      [394] ifeq +16 (target=410)
+      [397] ldc #6
         + String [LicenseValidator]
-      [396] ldc #14
+      [399] ldc #14
         + String [User identifier is empty.]
-      [398] invokestatic #52
+      [401] invokestatic #53
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
-      [401] pop
-      [402] aload_0 v0
-      [403] invokespecial #57
+      [404] pop
+      [405] aload_0 v0
+      [406] invokespecial #58
         + Methodref [com/a/a/a/a/n.d ()V]
-      [406] return
-      [407] iload_2 v2
-      [408] lookupswitch (9 offsets, default=181) (target=589)
-        0: offset = 84, target = 492
-        1: offset = 99, target = 507
-        2: offset = 84, target = 492
-        3: offset = 175, target = 583
-        4: offset = 127, target = 535
-        5: offset = 145, target = 553
-        257: offset = 109, target = 517
-        258: offset = 163, target = 571
-        259: offset = 169, target = 577
-        default: offset = 181, target = 589
+      [409] return
+      [410] iload_2 v2
+      [411] lookupswitch (9 offsets, default=183) (target=594)
+        0: offset = 81, target = 492
+        1: offset = 101, target = 512
+        2: offset = 81, target = 492
+        3: offset = 177, target = 588
+        4: offset = 129, target = 540
+        5: offset = 147, target = 558
+        257: offset = 111, target = 522
+        258: offset = 165, target = 576
+        259: offset = 171, target = 582
+        default: offset = 183, target = 594
       [492] aload_0 v0
-      [493] getfield #42
+      [493] getfield #43
         + Fieldref [com/a/a/a/a/n.f Lcom/a/a/a/a/b;]
-      [496] pop
-      [497] aload_0 v0
-      [498] sipush 256
-      [501] aload v5
-      [503] invokespecial #56
-        + Methodref [com/a/a/a/a/n.a (ILcom/a/a/a/a/s;)V]
-      [506] return
-      [507] aload_0 v0
-      [508] sipush 561
-      [511] aload v5
-      [513] invokespecial #56
-        + Methodref [com/a/a/a/a/n.a (ILcom/a/a/a/a/s;)V]
-      [516] return
-      [517] ldc #6
+      [496] invokeinterface #75
+        + InterfaceMethodref [com/a/a/a/a/b.a ()I]
+      [501] istore v5
+      [503] aload_0 v0
+      [504] iload v5
+      [506] aload v6
+      [508] invokespecial #57
+        + Methodref [com/a/a/a/a/n.a (ILcom/a/a/a/a/r;)V]
+      [511] return
+      [512] aload_0 v0
+      [513] sipush 561
+      [516] aload v6
+      [518] invokespecial #57
+        + Methodref [com/a/a/a/a/n.a (ILcom/a/a/a/a/r;)V]
+      [521] return
+      [522] ldc #6
         + String [LicenseValidator]
-      [519] ldc #5
+      [524] ldc #5
         + String [Error contacting licensing server.]
-      [521] invokestatic #53
+      [526] invokestatic #54
         + Methodref [android/util/Log.w (Ljava/lang/String;Ljava/lang/String;)I]
-      [524] pop
-      [525] aload_0 v0
-      [526] sipush 291
-      [529] aload v5
-      [531] invokespecial #56
-        + Methodref [com/a/a/a/a/n.a (ILcom/a/a/a/a/s;)V]
-      [534] return
-      [535] ldc #6
+      [529] pop
+      [530] aload_0 v0
+      [531] sipush 291
+      [534] aload v6
+      [536] invokespecial #57
+        + Methodref [com/a/a/a/a/n.a (ILcom/a/a/a/a/r;)V]
+      [539] return
+      [540] ldc #6
         + String [LicenseValidator]
-      [537] ldc #2
+      [542] ldc #2
         + String [An error has occurred on the licensing server.]
-      [539] invokestatic #53
+      [544] invokestatic #54
         + Methodref [android/util/Log.w (Ljava/lang/String;Ljava/lang/String;)I]
-      [542] pop
-      [543] aload_0 v0
-      [544] sipush 291
-      [547] aload v5
-      [549] invokespecial #56
-        + Methodref [com/a/a/a/a/n.a (ILcom/a/a/a/a/s;)V]
-      [552] return
-      [553] ldc #6
+      [547] pop
+      [548] aload_0 v0
+      [549] sipush 291
+      [552] aload v6
+      [554] invokespecial #57
+        + Methodref [com/a/a/a/a/n.a (ILcom/a/a/a/a/r;)V]
+      [557] return
+      [558] ldc #6
         + String [LicenseValidator]
-      [555] ldc #7
+      [560] ldc #7
         + String [Licensing server is refusing to talk to this device, over quota.]
-      [557] invokestatic #53
+      [562] invokestatic #54
         + Methodref [android/util/Log.w (Ljava/lang/String;Ljava/lang/String;)I]
-      [560] pop
-      [561] aload_0 v0
-      [562] sipush 291
-      [565] aload v5
-      [567] invokespecial #56
-        + Methodref [com/a/a/a/a/n.a (ILcom/a/a/a/a/s;)V]
-      [570] return
-      [571] aload_0 v0
-      [572] iconst_1
-      [573] invokespecial #55
+      [565] pop
+      [566] aload_0 v0
+      [567] sipush 291
+      [570] aload v6
+      [572] invokespecial #57
+        + Methodref [com/a/a/a/a/n.a (ILcom/a/a/a/a/r;)V]
+      [575] return
+      [576] aload_0 v0
+      [577] iconst_1
+      [578] invokespecial #56
         + Methodref [com/a/a/a/a/n.a (I)V]
-      [576] return
-      [577] aload_0 v0
-      [578] iconst_2
-      [579] invokespecial #55
+      [581] return
+      [582] aload_0 v0
+      [583] iconst_2
+      [584] invokespecial #56
         + Methodref [com/a/a/a/a/n.a (I)V]
-      [582] return
-      [583] aload_0 v0
-      [584] iconst_3
-      [585] invokespecial #55
+      [587] return
+      [588] aload_0 v0
+      [589] iconst_3
+      [590] invokespecial #56
         + Methodref [com/a/a/a/a/n.a (I)V]
-      [588] return
-      [589] ldc #6
+      [593] return
+      [594] ldc #6
         + String [LicenseValidator]
-      [591] ldc #13
+      [596] ldc #13
         + String [Unknown response code for license check.]
-      [593] invokestatic #52
+      [598] invokestatic #53
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
-      [596] pop
-      [597] aload_0 v0
-      [598] invokespecial #57
+      [601] pop
+      [602] aload_0 v0
+      [603] invokespecial #58
         + Methodref [com/a/a/a/a/n.d ()V]
-      [601] return
+      [606] return
       Code attribute exceptions (count = 5):
-      - ExceptionInfo (17 -> 63: 64):
+      - ExceptionInfo (20 -> 66: 67):
       + Class [java/security/NoSuchAlgorithmException]
-      - ExceptionInfo (17 -> 63: 76):
+      - ExceptionInfo (20 -> 66: 79):
       + Class [java/security/InvalidKeyException]
-      - ExceptionInfo (17 -> 63: 83):
+      - ExceptionInfo (20 -> 66: 86):
       + Class [java/security/SignatureException]
-      - ExceptionInfo (17 -> 63: 95):
+      - ExceptionInfo (20 -> 66: 98):
       + Class [com/a/a/a/a/a/b]
-      - ExceptionInfo (109 -> 263: 266):
+      - ExceptionInfo (112 -> 266: 269):
       + Class [java/lang/IllegalArgumentException]
       Code attribute attributes (attribute count = 2):
-      + Line number table attribute (count = 71)
+      + Line number table attribute (count = 72)
         [0] -> line 90
-        [3] -> line 93
-        [12] -> line 94
-        [17] -> line 97
-        [23] -> line 98
-        [29] -> line 99
-        [38] -> line 101
-        [51] -> line 102
-        [59] -> line 103
-        [63] -> line 104
-        [64] -> line 106
-        [66] -> line 108
-        [76] -> line 109
-        [77] -> line 110
-        [82] -> line 111
-        [83] -> line 112
-        [85] -> line 113
-        [95] -> line 114
-        [96] -> line 115
-        [104] -> line 116
-        [108] -> line 117
-        [109] -> line 122
-        [266] -> line 123
-        [267] -> line 124
-        [275] -> line 125
-        [279] -> line 126
-        [280] -> line 129
-        [289] -> line 130
-        [297] -> line 131
-        [301] -> line 132
-        [302] -> line 135
-        [314] -> line 136
-        [322] -> line 137
-        [326] -> line 138
-        [327] -> line 141
-        [342] -> line 142
-        [350] -> line 143
-        [354] -> line 144
-        [355] -> line 147
-        [370] -> line 148
-        [378] -> line 149
-        [382] -> line 150
-        [383] -> line 154
-        [388] -> line 155
-        [394] -> line 156
-        [402] -> line 157
-        [406] -> line 158
-        [407] -> line 162
+        [3] -> line 92
+        [6] -> line 93
+        [15] -> line 94
+        [20] -> line 97
+        [26] -> line 98
+        [32] -> line 99
+        [41] -> line 101
+        [54] -> line 102
+        [62] -> line 103
+        [66] -> line 104
+        [67] -> line 106
+        [69] -> line 108
+        [79] -> line 109
+        [80] -> line 110
+        [85] -> line 111
+        [86] -> line 112
+        [88] -> line 113
+        [98] -> line 114
+        [99] -> line 115
+        [107] -> line 116
+        [111] -> line 117
+        [112] -> line 122
+        [269] -> line 123
+        [270] -> line 124
+        [278] -> line 125
+        [282] -> line 126
+        [283] -> line 129
+        [292] -> line 130
+        [300] -> line 131
+        [304] -> line 132
+        [305] -> line 135
+        [317] -> line 136
+        [325] -> line 137
+        [329] -> line 138
+        [330] -> line 141
+        [345] -> line 142
+        [353] -> line 143
+        [357] -> line 144
+        [358] -> line 147
+        [373] -> line 148
+        [381] -> line 149
+        [385] -> line 150
+        [386] -> line 154
+        [391] -> line 155
+        [397] -> line 156
+        [405] -> line 157
+        [409] -> line 158
+        [410] -> line 162
         [492] -> line 165
-        [497] -> line 166
-        [506] -> line 167
-        [507] -> line 169
-        [516] -> line 170
-        [517] -> line 172
-        [525] -> line 173
-        [534] -> line 174
-        [535] -> line 176
-        [543] -> line 177
-        [552] -> line 178
-        [553] -> line 180
-        [561] -> line 181
-        [570] -> line 182
-        [571] -> line 184
-        [576] -> line 185
-        [577] -> line 187
-        [582] -> line 188
-        [583] -> line 190
-        [588] -> line 191
-        [589] -> line 193
-        [597] -> line 194
-        [601] -> line 196
+        [503] -> line 166
+        [511] -> line 167
+        [512] -> line 169
+        [521] -> line 170
+        [522] -> line 172
+        [530] -> line 173
+        [539] -> line 174
+        [540] -> line 176
+        [548] -> line 177
+        [557] -> line 178
+        [558] -> line 180
+        [566] -> line 181
+        [575] -> line 182
+        [576] -> line 184
+        [581] -> line 185
+        [582] -> line 187
+        [587] -> line 188
+        [588] -> line 190
+        [593] -> line 191
+        [594] -> line 193
+        [602] -> line 194
+        [606] -> line 196
       + Stack map table attribute (count = 23):
-        - [17] Var: ...[a:java/lang/String][a:com/a/a/a/a/s], Stack: (empty)
-        - [64] Var: ..., Stack: [a:java/security/NoSuchAlgorithmException]
-        - [76] Var: ..., Stack: [a:java/security/InvalidKeyException]
-        - [83] Var: ..., Stack: [a:java/security/SignatureException]
-        - [95] Var: ..., Stack: [a:com/a/a/a/a/a/b]
-        - [109] Var: ..., Stack: (empty)
-        - [266] Var: ..., Stack: [a:java/lang/IllegalArgumentException]
-        - [280] Var: ..., Stack: (empty)
-        - [302] Var: ..., Stack: (empty)
-        - [327] Var: ..., Stack: (empty)
-        - [355] Var: ..., Stack: (empty)
-        - [383] Var: ..., Stack: (empty)
-        - [407] Var: ..., Stack: (empty)
+        - [20] Var: ...[a:java/lang/String][a:com/a/a/a/a/r], Stack: (empty)
+        - [67] Var: ..., Stack: [a:java/security/NoSuchAlgorithmException]
+        - [79] Var: ..., Stack: [a:java/security/InvalidKeyException]
+        - [86] Var: ..., Stack: [a:java/security/SignatureException]
+        - [98] Var: ..., Stack: [a:com/a/a/a/a/a/b]
+        - [112] Var: ..., Stack: (empty)
+        - [269] Var: ..., Stack: [a:java/lang/IllegalArgumentException]
+        - [283] Var: ..., Stack: (empty)
+        - [305] Var: ..., Stack: (empty)
+        - [330] Var: ..., Stack: (empty)
+        - [358] Var: ..., Stack: (empty)
+        - [386] Var: ..., Stack: (empty)
+        - [410] Var: ..., Stack: (empty)
         - [492] Var: ..., Stack: (empty)
-        - [507] Var: ..., Stack: (empty)
-        - [517] Var: ..., Stack: (empty)
-        - [535] Var: ..., Stack: (empty)
-        - [553] Var: ..., Stack: (empty)
-        - [571] Var: ..., Stack: (empty)
-        - [577] Var: ..., Stack: (empty)
-        - [583] Var: ..., Stack: (empty)
-        - [589] Var: ..., Stack: (empty)
-        - [601] Var: ..., Stack: (empty)
-  + Method:       a(ILcom/a/a/a/a/s;)V
+        - [512] Var: ..., Stack: (empty)
+        - [522] Var: ..., Stack: (empty)
+        - [540] Var: ..., Stack: (empty)
+        - [558] Var: ..., Stack: (empty)
+        - [576] Var: ..., Stack: (empty)
+        - [582] Var: ..., Stack: (empty)
+        - [588] Var: ..., Stack: (empty)
+        - [594] Var: ..., Stack: (empty)
+        - [606] Var: ..., Stack: (empty)
+  + Method:       a(ILcom/a/a/a/a/r;)V
     Access flags: 0x2
-      = private void a(int,com.a.a.a.a.s)
+      = private void a(int,com.a.a.a.a.r)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 44, locals = 3, stack = 3):
       [0] aload_0 v0
-      [1] getfield #37
-        + Fieldref [com/a/a/a/a/n.a Lcom/a/a/a/a/q;]
+      [1] getfield #38
+        + Fieldref [com/a/a/a/a/n.a Lcom/a/a/a/a/p;]
       [4] iload_1 v1
       [5] aload_2 v2
-      [6] invokeinterface #79
-        + InterfaceMethodref [com/a/a/a/a/q.a (ILcom/a/a/a/a/s;)V]
+      [6] invokeinterface #80
+        + InterfaceMethodref [com/a/a/a/a/p.a (ILcom/a/a/a/a/r;)V]
       [11] aload_0 v0
-      [12] getfield #37
-        + Fieldref [com/a/a/a/a/n.a Lcom/a/a/a/a/q;]
-      [15] invokeinterface #78
-        + InterfaceMethodref [com/a/a/a/a/q.a ()Z]
+      [12] getfield #38
+        + Fieldref [com/a/a/a/a/n.a Lcom/a/a/a/a/p;]
+      [15] invokeinterface #79
+        + InterfaceMethodref [com/a/a/a/a/p.a ()Z]
       [20] ifeq +13 (target=33)
       [23] aload_0 v0
-      [24] getfield #38
+      [24] getfield #39
         + Fieldref [com/a/a/a/a/n.b Lcom/a/a/a/a/m;]
-      [27] invokeinterface #75
+      [27] invokeinterface #76
         + InterfaceMethodref [com/a/a/a/a/m.a ()V]
       [32] return
       [33] aload_0 v0
-      [34] getfield #38
+      [34] getfield #39
         + Fieldref [com/a/a/a/a/n.b Lcom/a/a/a/a/m;]
       [37] iload_1 v1
-      [38] invokeinterface #76
+      [38] invokeinterface #77
         + InterfaceMethodref [com/a/a/a/a/m.a (I)V]
       [43] return
       Code attribute exceptions (count = 0):
@@ -55721,10 +55377,10 @@ Methods (count = 8):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 11, locals = 2, stack = 2):
       [0] aload_0 v0
-      [1] getfield #38
+      [1] getfield #39
         + Fieldref [com/a/a/a/a/n.b Lcom/a/a/a/a/m;]
       [4] iload_1 v1
-      [5] invokeinterface #77
+      [5] invokeinterface #78
         + InterfaceMethodref [com/a/a/a/a/m.b (I)V]
       [10] return
       Code attribute exceptions (count = 0):
@@ -55738,10 +55394,10 @@ Methods (count = 8):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 13, locals = 1, stack = 2):
       [0] aload_0 v0
-      [1] getfield #38
+      [1] getfield #39
         + Fieldref [com/a/a/a/a/n.b Lcom/a/a/a/a/m;]
       [4] sipush 561
-      [7] invokeinterface #76
+      [7] invokeinterface #77
         + InterfaceMethodref [com/a/a/a/a/m.a (I)V]
       [12] return
       Code attribute exceptions (count = 0):
@@ -55759,43 +55415,30 @@ _____________________________________________________________________
   Superclass:    java/lang/Object
   Major version: 0x32
   Minor version: 0x0
-  Access flags:  0x31
-    = public final class com.a.a.a.a.o extends java.lang.Object
+  Access flags:  0x601
+    = public interface com.a.a.a.a.o extends java.lang.Object
 
-Interfaces (count = 1):
-  + Class [com/a/a/a/a/b]
+Interfaces (count = 0):
 
-Constant Pool (count = 14):
-  + Class [com/a/a/a/a/b]
+Constant Pool (count = 9):
   + Class [com/a/a/a/a/o]
   + Class [java/lang/Object]
-  + Methodref [java/lang/Object.<init> ()V]
-  + NameAndType [<init> ()V]
-  + Utf8 [()V]
-  + Utf8 [<init>]
-  + Utf8 [Code]
-  + Utf8 [LineNumberTable]
+  + Utf8 [(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
   + Utf8 [SourceFile]
-  + Utf8 [com/a/a/a/a/b]
+  + Utf8 [a]
+  + Utf8 [b]
   + Utf8 [com/a/a/a/a/o]
   + Utf8 [java/lang/Object]
 
 Fields (count = 0):
 
-Methods (count = 1):
-  - Method:       <init>()V
-    Access flags: 0x1
-      = public o()
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 5, locals = 1, stack = 1):
-      [0] aload_0 v0
-      [1] invokespecial #4
-        + Methodref [java/lang/Object.<init> ()V]
-      [4] return
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 1)
-        [0] -> line 27
+Methods (count = 2):
+  + Method:       a(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    Access flags: 0x401
+      = public abstract java.lang.String a(java.lang.String,java.lang.String)
+  + Method:       b(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    Access flags: 0x401
+      = public abstract java.lang.String b(java.lang.String,java.lang.String)
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -55814,22 +55457,22 @@ Interfaces (count = 0):
 Constant Pool (count = 9):
   + Class [com/a/a/a/a/p]
   + Class [java/lang/Object]
-  + Utf8 [(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
+  + Utf8 [()Z]
+  + Utf8 [(ILcom/a/a/a/a/r;)V]
   + Utf8 [SourceFile]
   + Utf8 [a]
-  + Utf8 [b]
   + Utf8 [com/a/a/a/a/p]
   + Utf8 [java/lang/Object]
 
 Fields (count = 0):
 
 Methods (count = 2):
-  + Method:       a(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+  + Method:       a(ILcom/a/a/a/a/r;)V
     Access flags: 0x401
-      = public abstract java.lang.String a(java.lang.String,java.lang.String)
-  + Method:       b(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      = public abstract void a(int,com.a.a.a.a.r)
+  + Method:       a()Z
     Access flags: 0x401
-      = public abstract java.lang.String b(java.lang.String,java.lang.String)
+      = public abstract boolean a()
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -55840,42 +55483,8 @@ _____________________________________________________________________
   Superclass:    java/lang/Object
   Major version: 0x32
   Minor version: 0x0
-  Access flags:  0x601
-    = public interface com.a.a.a.a.q extends java.lang.Object
-
-Interfaces (count = 0):
-
-Constant Pool (count = 9):
-  + Class [com/a/a/a/a/q]
-  + Class [java/lang/Object]
-  + Utf8 [()Z]
-  + Utf8 [(ILcom/a/a/a/a/s;)V]
-  + Utf8 [SourceFile]
-  + Utf8 [a]
-  + Utf8 [com/a/a/a/a/q]
-  + Utf8 [java/lang/Object]
-
-Fields (count = 0):
-
-Methods (count = 2):
-  + Method:       a(ILcom/a/a/a/a/s;)V
-    Access flags: 0x401
-      = public abstract void a(int,com.a.a.a.a.s)
-  + Method:       a()Z
-    Access flags: 0x401
-      = public abstract boolean a()
-
-Class file attributes (count = 1):
-  + Source file attribute:
-    + Utf8 [SourceFile]
-
-_____________________________________________________________________
-+ Program class: com/a/a/a/a/r
-  Superclass:    java/lang/Object
-  Major version: 0x32
-  Minor version: 0x0
   Access flags:  0x31
-    = public final class com.a.a.a.a.r extends java.lang.Object
+    = public final class com.a.a.a.a.q extends java.lang.Object
 
 Interfaces (count = 0):
 
@@ -55885,15 +55494,15 @@ Constant Pool (count = 80):
   + Class [android/content/SharedPreferences]
   + Class [android/content/SharedPreferences$Editor]
   + Class [android/util/Log]
-  + Class [com/a/a/a/a/p]
-  + Class [com/a/a/a/a/r]
-  + Class [com/a/a/a/a/u]
+  + Class [com/a/a/a/a/o]
+  + Class [com/a/a/a/a/q]
+  + Class [com/a/a/a/a/t]
   + Class [java/lang/Object]
   + Class [java/lang/String]
   + Class [java/lang/StringBuilder]
-  + Fieldref [com/a/a/a/a/r.a Landroid/content/SharedPreferences;]
-  + Fieldref [com/a/a/a/a/r.b Lcom/a/a/a/a/p;]
-  + Fieldref [com/a/a/a/a/r.c Landroid/content/SharedPreferences$Editor;]
+  + Fieldref [com/a/a/a/a/q.a Landroid/content/SharedPreferences;]
+  + Fieldref [com/a/a/a/a/q.b Lcom/a/a/a/a/o;]
+  + Fieldref [com/a/a/a/a/q.c Landroid/content/SharedPreferences$Editor;]
   + Methodref [android/util/Log.w (Ljava/lang/String;Ljava/lang/String;)I]
   + Methodref [java/lang/Object.<init> ()V]
   + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
@@ -55903,15 +55512,15 @@ Constant Pool (count = 80):
   + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
   + InterfaceMethodref [android/content/SharedPreferences$Editor.commit ()Z]
   + InterfaceMethodref [android/content/SharedPreferences$Editor.putString (Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;]
-  + InterfaceMethodref [com/a/a/a/a/p.a (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
-  + InterfaceMethodref [com/a/a/a/a/p.b (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
+  + InterfaceMethodref [com/a/a/a/a/o.a (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
+  + InterfaceMethodref [com/a/a/a/a/o.b (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
   + NameAndType [<init> ()V]
   + NameAndType [<init> (Ljava/lang/String;)V]
   + NameAndType [a (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
   + NameAndType [a Landroid/content/SharedPreferences;]
   + NameAndType [append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
   + NameAndType [b (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
-  + NameAndType [b Lcom/a/a/a/a/p;]
+  + NameAndType [b Lcom/a/a/a/a/o;]
   + NameAndType [c Landroid/content/SharedPreferences$Editor;]
   + NameAndType [commit ()Z]
   + NameAndType [edit ()Landroid/content/SharedPreferences$Editor;]
@@ -55923,7 +55532,7 @@ Constant Pool (count = 80):
   + Utf8 [()Ljava/lang/String;]
   + Utf8 [()V]
   + Utf8 [()Z]
-  + Utf8 [(Landroid/content/SharedPreferences;Lcom/a/a/a/a/p;)V]
+  + Utf8 [(Landroid/content/SharedPreferences;Lcom/a/a/a/a/o;)V]
   + Utf8 [(Ljava/lang/String;)Ljava/lang/StringBuilder;]
   + Utf8 [(Ljava/lang/String;)V]
   + Utf8 [(Ljava/lang/String;Ljava/lang/String;)I]
@@ -55934,7 +55543,7 @@ Constant Pool (count = 80):
   + Utf8 [Code]
   + Utf8 [Landroid/content/SharedPreferences$Editor;]
   + Utf8 [Landroid/content/SharedPreferences;]
-  + Utf8 [Lcom/a/a/a/a/p;]
+  + Utf8 [Lcom/a/a/a/a/o;]
   + Utf8 [LineNumberTable]
   + Utf8 [PreferenceObfuscator]
   + Utf8 [SourceFile]
@@ -55947,9 +55556,9 @@ Constant Pool (count = 80):
   + Utf8 [append]
   + Utf8 [b]
   + Utf8 [c]
-  + Utf8 [com/a/a/a/a/p]
-  + Utf8 [com/a/a/a/a/r]
-  + Utf8 [com/a/a/a/a/u]
+  + Utf8 [com/a/a/a/a/o]
+  + Utf8 [com/a/a/a/a/q]
+  + Utf8 [com/a/a/a/a/t]
   + Utf8 [commit]
   + Utf8 [edit]
   + Utf8 [getString]
@@ -55964,17 +55573,17 @@ Fields (count = 3):
   + Field:        a Landroid/content/SharedPreferences;
     Access flags: 0x12
       = private final android.content.SharedPreferences a
-  + Field:        b Lcom/a/a/a/a/p;
+  + Field:        b Lcom/a/a/a/a/o;
     Access flags: 0x12
-      = private final com.a.a.a.a.p b
+      = private final com.a.a.a.a.o b
   + Field:        c Landroid/content/SharedPreferences$Editor;
     Access flags: 0x2
       = private android.content.SharedPreferences$Editor c
 
 Methods (count = 4):
-  - Method:       <init>(Landroid/content/SharedPreferences;Lcom/a/a/a/a/p;)V
+  - Method:       <init>(Landroid/content/SharedPreferences;Lcom/a/a/a/a/o;)V
     Access flags: 0x1
-      = public r(android.content.SharedPreferences,com.a.a.a.a.p)
+      = public q(android.content.SharedPreferences,com.a.a.a.a.o)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 20, locals = 3, stack = 2):
       [0] aload_0 v0
@@ -55983,15 +55592,15 @@ Methods (count = 4):
       [4] aload_0 v0
       [5] aload_1 v1
       [6] putfield #12
-        + Fieldref [com/a/a/a/a/r.a Landroid/content/SharedPreferences;]
+        + Fieldref [com/a/a/a/a/q.a Landroid/content/SharedPreferences;]
       [9] aload_0 v0
       [10] aload_2 v2
       [11] putfield #13
-        + Fieldref [com/a/a/a/a/r.b Lcom/a/a/a/a/p;]
+        + Fieldref [com/a/a/a/a/q.b Lcom/a/a/a/a/o;]
       [14] aload_0 v0
       [15] aconst_null
       [16] putfield #14
-        + Fieldref [com/a/a/a/a/r.c Landroid/content/SharedPreferences$Editor;]
+        + Fieldref [com/a/a/a/a/q.c Landroid/content/SharedPreferences$Editor;]
       [19] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
@@ -56008,27 +55617,27 @@ Methods (count = 4):
     + Code attribute instructions (code length = 45, locals = 3, stack = 3):
       [0] aload_0 v0
       [1] getfield #14
-        + Fieldref [com/a/a/a/a/r.c Landroid/content/SharedPreferences$Editor;]
+        + Fieldref [com/a/a/a/a/q.c Landroid/content/SharedPreferences$Editor;]
       [4] ifnonnull +16 (target=20)
       [7] aload_0 v0
       [8] aload_0 v0
       [9] getfield #12
-        + Fieldref [com/a/a/a/a/r.a Landroid/content/SharedPreferences;]
+        + Fieldref [com/a/a/a/a/q.a Landroid/content/SharedPreferences;]
       [12] invokeinterface #20
         + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
       [17] putfield #14
-        + Fieldref [com/a/a/a/a/r.c Landroid/content/SharedPreferences$Editor;]
+        + Fieldref [com/a/a/a/a/q.c Landroid/content/SharedPreferences$Editor;]
       [20] aload_0 v0
       [21] getfield #13
-        + Fieldref [com/a/a/a/a/r.b Lcom/a/a/a/a/p;]
+        + Fieldref [com/a/a/a/a/q.b Lcom/a/a/a/a/o;]
       [24] aload_2 v2
       [25] aload_1 v1
       [26] invokeinterface #24
-        + InterfaceMethodref [com/a/a/a/a/p.a (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
+        + InterfaceMethodref [com/a/a/a/a/o.a (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [31] astore_2 v2
       [32] aload_0 v0
       [33] getfield #14
-        + Fieldref [com/a/a/a/a/r.c Landroid/content/SharedPreferences$Editor;]
+        + Fieldref [com/a/a/a/a/q.c Landroid/content/SharedPreferences$Editor;]
       [36] aload_1 v1
       [37] aload_2 v2
       [38] invokeinterface #23
@@ -56052,7 +55661,7 @@ Methods (count = 4):
     + Code attribute instructions (code length = 58, locals = 4, stack = 4):
       [0] aload_0 v0
       [1] getfield #12
-        + Fieldref [com/a/a/a/a/r.a Landroid/content/SharedPreferences;]
+        + Fieldref [com/a/a/a/a/q.a Landroid/content/SharedPreferences;]
       [4] aload_1 v1
       [5] aconst_null
       [6] invokeinterface #21
@@ -56062,11 +55671,11 @@ Methods (count = 4):
       [13] ifnull +41 (target=54)
       [16] aload_0 v0
       [17] getfield #13
-        + Fieldref [com/a/a/a/a/r.b Lcom/a/a/a/a/p;]
+        + Fieldref [com/a/a/a/a/q.b Lcom/a/a/a/a/o;]
       [20] aload_3 v3
       [21] aload_1 v1
       [22] invokeinterface #25
-        + InterfaceMethodref [com/a/a/a/a/p.b (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
+        + InterfaceMethodref [com/a/a/a/a/o.b (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [27] astore_3 v3
       [28] goto +28 (target=56)
       [31] pop
@@ -56093,7 +55702,7 @@ Methods (count = 4):
       [57] areturn
       Code attribute exceptions (count = 1):
       - ExceptionInfo (16 -> 28: 31):
-      + Class [com/a/a/a/a/u]
+      + Class [com/a/a/a/a/t]
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 7)
         [0] -> line 55
@@ -56104,10 +55713,10 @@ Methods (count = 4):
         [54] -> line 62
         [56] -> line 68
       + Stack map table attribute (count = 4):
-        - [31] Var: [a:com/a/a/a/a/r][a:java/lang/String][a:java/lang/String][T][a:java/lang/String], Stack: [a:com/a/a/a/a/u]
-        - [54] Var: [a:com/a/a/a/a/r][a:java/lang/String][a:java/lang/String][a:java/lang/String][a:java/lang/String], Stack: 
-        - [54] Var: [a:com/a/a/a/a/r][a:java/lang/String][a:java/lang/String][T][a:java/lang/String], Stack: 
-        - [56] Var: [a:com/a/a/a/a/r][a:java/lang/String][a:java/lang/String][a:java/lang/String][a:java/lang/String], Stack: 
+        - [31] Var: [a:com/a/a/a/a/q][a:java/lang/String][a:java/lang/String][T][a:java/lang/String], Stack: [a:com/a/a/a/a/t]
+        - [54] Var: [a:com/a/a/a/a/q][a:java/lang/String][a:java/lang/String][a:java/lang/String][a:java/lang/String], Stack: 
+        - [54] Var: [a:com/a/a/a/a/q][a:java/lang/String][a:java/lang/String][T][a:java/lang/String], Stack: 
+        - [56] Var: [a:com/a/a/a/a/q][a:java/lang/String][a:java/lang/String][a:java/lang/String][a:java/lang/String], Stack: 
   + Method:       a()V
     Access flags: 0x11
       = public final void a()
@@ -56115,18 +55724,18 @@ Methods (count = 4):
     + Code attribute instructions (code length = 23, locals = 1, stack = 2):
       [0] aload_0 v0
       [1] getfield #14
-        + Fieldref [com/a/a/a/a/r.c Landroid/content/SharedPreferences$Editor;]
+        + Fieldref [com/a/a/a/a/q.c Landroid/content/SharedPreferences$Editor;]
       [4] ifnull +18 (target=22)
       [7] aload_0 v0
       [8] getfield #14
-        + Fieldref [com/a/a/a/a/r.c Landroid/content/SharedPreferences$Editor;]
+        + Fieldref [com/a/a/a/a/q.c Landroid/content/SharedPreferences$Editor;]
       [11] invokeinterface #22
         + InterfaceMethodref [android/content/SharedPreferences$Editor.commit ()Z]
       [16] pop
       [17] aload_0 v0
       [18] aconst_null
       [19] putfield #14
-        + Fieldref [com/a/a/a/a/r.c Landroid/content/SharedPreferences$Editor;]
+        + Fieldref [com/a/a/a/a/q.c Landroid/content/SharedPreferences$Editor;]
       [22] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
@@ -56143,28 +55752,28 @@ Class file attributes (count = 1):
     + Utf8 [SourceFile]
 
 _____________________________________________________________________
-+ Program class: com/a/a/a/a/s
++ Program class: com/a/a/a/a/r
   Superclass:    java/lang/Object
   Major version: 0x32
   Minor version: 0x0
   Access flags:  0x31
-    = public final class com.a.a.a.a.s extends java.lang.Object
+    = public final class com.a.a.a.a.r extends java.lang.Object
 
 Interfaces (count = 0):
 
 Constant Pool (count = 55):
   + String [|]
   + Class [android/text/TextUtils]
-  + Class [com/a/a/a/a/s]
+  + Class [com/a/a/a/a/r]
   + Class [java/lang/Integer]
   + Class [java/lang/Long]
   + Class [java/lang/Object]
-  + Fieldref [com/a/a/a/a/s.a I]
-  + Fieldref [com/a/a/a/a/s.b I]
-  + Fieldref [com/a/a/a/a/s.c Ljava/lang/String;]
-  + Fieldref [com/a/a/a/a/s.d Ljava/lang/String;]
-  + Fieldref [com/a/a/a/a/s.e Ljava/lang/String;]
-  + Fieldref [com/a/a/a/a/s.f J]
+  + Fieldref [com/a/a/a/a/r.a I]
+  + Fieldref [com/a/a/a/a/r.b I]
+  + Fieldref [com/a/a/a/a/r.c Ljava/lang/String;]
+  + Fieldref [com/a/a/a/a/r.d Ljava/lang/String;]
+  + Fieldref [com/a/a/a/a/r.e Ljava/lang/String;]
+  + Fieldref [com/a/a/a/a/r.f J]
   + Methodref [android/text/TextUtils.join (Ljava/lang/CharSequence;[Ljava/lang/Object;)Ljava/lang/String;]
   + Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
   + Methodref [java/lang/Long.valueOf (J)Ljava/lang/Long;]
@@ -56195,7 +55804,7 @@ Constant Pool (count = 55):
   + Utf8 [android/text/TextUtils]
   + Utf8 [b]
   + Utf8 [c]
-  + Utf8 [com/a/a/a/a/s]
+  + Utf8 [com/a/a/a/a/r]
   + Utf8 [d]
   + Utf8 [e]
   + Utf8 [f]
@@ -56234,7 +55843,7 @@ Fields (count = 7):
 Methods (count = 2):
   - Method:       <init>()V
     Access flags: 0x1
-      = public s()
+      = public r()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
@@ -56259,7 +55868,7 @@ Methods (count = 2):
       [8] iconst_0
       [9] aload_0 v0
       [10] getfield #7
-        + Fieldref [com/a/a/a/a/s.a I]
+        + Fieldref [com/a/a/a/a/r.a I]
       [13] invokestatic #14
         + Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
       [16] aastore
@@ -56267,7 +55876,7 @@ Methods (count = 2):
       [18] iconst_1
       [19] aload_0 v0
       [20] getfield #8
-        + Fieldref [com/a/a/a/a/s.b I]
+        + Fieldref [com/a/a/a/a/r.b I]
       [23] invokestatic #14
         + Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
       [26] aastore
@@ -56275,25 +55884,25 @@ Methods (count = 2):
       [28] iconst_2
       [29] aload_0 v0
       [30] getfield #9
-        + Fieldref [com/a/a/a/a/s.c Ljava/lang/String;]
+        + Fieldref [com/a/a/a/a/r.c Ljava/lang/String;]
       [33] aastore
       [34] dup
       [35] iconst_3
       [36] aload_0 v0
       [37] getfield #10
-        + Fieldref [com/a/a/a/a/s.d Ljava/lang/String;]
+        + Fieldref [com/a/a/a/a/r.d Ljava/lang/String;]
       [40] aastore
       [41] dup
       [42] iconst_4
       [43] aload_0 v0
       [44] getfield #11
-        + Fieldref [com/a/a/a/a/s.e Ljava/lang/String;]
+        + Fieldref [com/a/a/a/a/r.e Ljava/lang/String;]
       [47] aastore
       [48] dup
       [49] iconst_5
       [50] aload_0 v0
       [51] getfield #12
-        + Fieldref [com/a/a/a/a/s.f J]
+        + Fieldref [com/a/a/a/a/r.f J]
       [54] invokestatic #15
         + Methodref [java/lang/Long.valueOf (J)Ljava/lang/Long;]
       [57] aastore
@@ -56312,15 +55921,15 @@ Class file attributes (count = 1):
     + Utf8 [SourceFile]
 
 _____________________________________________________________________
-+ Program class: com/a/a/a/a/t
++ Program class: com/a/a/a/a/s
   Superclass:    java/lang/Object
   Major version: 0x32
   Minor version: 0x0
   Access flags:  0x31
-    = public final class com.a.a.a.a.t extends java.lang.Object
+    = public final class com.a.a.a.a.s extends java.lang.Object
 
 Interfaces (count = 1):
-  + Class [com/a/a/a/a/q]
+  + Class [com/a/a/a/a/p]
 
 Constant Pool (count = 215):
   + String [0]
@@ -56342,10 +55951,10 @@ Constant Pool (count = 215):
   + String [validityTimestamp]
   + Class [android/content/Context]
   + Class [android/util/Log]
+  + Class [com/a/a/a/a/p]
   + Class [com/a/a/a/a/q]
   + Class [com/a/a/a/a/r]
   + Class [com/a/a/a/a/s]
-  + Class [com/a/a/a/a/t]
   + Class [java/lang/Integer]
   + Class [java/lang/Long]
   + Class [java/lang/NumberFormatException]
@@ -56362,25 +55971,25 @@ Constant Pool (count = 215):
   + Class [org/apache/http/NameValuePair]
   + Class [org/apache/http/client/utils/URLEncodedUtils]
   + Long [60000]
-  + Fieldref [com/a/a/a/a/s.g Ljava/lang/String;]
-  + Fieldref [com/a/a/a/a/t.a J]
-  + Fieldref [com/a/a/a/a/t.b J]
-  + Fieldref [com/a/a/a/a/t.c J]
-  + Fieldref [com/a/a/a/a/t.d J]
-  + Fieldref [com/a/a/a/a/t.e J]
-  + Fieldref [com/a/a/a/a/t.f I]
-  + Fieldref [com/a/a/a/a/t.g Lcom/a/a/a/a/r;]
+  + Fieldref [com/a/a/a/a/r.g Ljava/lang/String;]
+  + Fieldref [com/a/a/a/a/s.a J]
+  + Fieldref [com/a/a/a/a/s.b J]
+  + Fieldref [com/a/a/a/a/s.c J]
+  + Fieldref [com/a/a/a/a/s.d J]
+  + Fieldref [com/a/a/a/a/s.e J]
+  + Fieldref [com/a/a/a/a/s.f I]
+  + Fieldref [com/a/a/a/a/s.g Lcom/a/a/a/a/q;]
   + Methodref [android/content/Context.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
   + Methodref [android/util/Log.w (Ljava/lang/String;Ljava/lang/String;)I]
-  + Methodref [com/a/a/a/a/r.<init> (Landroid/content/SharedPreferences;Lcom/a/a/a/a/p;)V]
-  + Methodref [com/a/a/a/a/r.a ()V]
-  + Methodref [com/a/a/a/a/r.a (Ljava/lang/String;Ljava/lang/String;)V]
-  + Methodref [com/a/a/a/a/r.b (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
-  + Methodref [com/a/a/a/a/t.a (J)V]
-  + Methodref [com/a/a/a/a/t.a (Ljava/lang/String;)V]
-  + Methodref [com/a/a/a/a/t.b (Ljava/lang/String;)V]
-  + Methodref [com/a/a/a/a/t.c (Ljava/lang/String;)V]
-  + Methodref [com/a/a/a/a/t.d (Ljava/lang/String;)Ljava/util/Map;]
+  + Methodref [com/a/a/a/a/q.<init> (Landroid/content/SharedPreferences;Lcom/a/a/a/a/o;)V]
+  + Methodref [com/a/a/a/a/q.a ()V]
+  + Methodref [com/a/a/a/a/q.a (Ljava/lang/String;Ljava/lang/String;)V]
+  + Methodref [com/a/a/a/a/q.b (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
+  + Methodref [com/a/a/a/a/s.a (J)V]
+  + Methodref [com/a/a/a/a/s.a (Ljava/lang/String;)V]
+  + Methodref [com/a/a/a/a/s.b (Ljava/lang/String;)V]
+  + Methodref [com/a/a/a/a/s.c (Ljava/lang/String;)V]
+  + Methodref [com/a/a/a/a/s.d (Ljava/lang/String;)Ljava/util/Map;]
   + Methodref [java/lang/Integer.parseInt (Ljava/lang/String;)I]
   + Methodref [java/lang/Integer.toString (I)Ljava/lang/String;]
   + Methodref [java/lang/Long.longValue ()J]
@@ -56403,7 +56012,7 @@ Constant Pool (count = 215):
   + InterfaceMethodref [org/apache/http/NameValuePair.getName ()Ljava/lang/String;]
   + InterfaceMethodref [org/apache/http/NameValuePair.getValue ()Ljava/lang/String;]
   + NameAndType [<init> ()V]
-  + NameAndType [<init> (Landroid/content/SharedPreferences;Lcom/a/a/a/a/p;)V]
+  + NameAndType [<init> (Landroid/content/SharedPreferences;Lcom/a/a/a/a/o;)V]
   + NameAndType [<init> (Ljava/lang/String;)V]
   + NameAndType [a ()V]
   + NameAndType [a (J)V]
@@ -56421,7 +56030,7 @@ Constant Pool (count = 215):
   + NameAndType [d J]
   + NameAndType [e J]
   + NameAndType [f I]
-  + NameAndType [g Lcom/a/a/a/a/r;]
+  + NameAndType [g Lcom/a/a/a/a/q;]
   + NameAndType [g Ljava/lang/String;]
   + NameAndType [get (Ljava/lang/Object;)Ljava/lang/Object;]
   + NameAndType [getName ()Ljava/lang/String;]
@@ -56447,12 +56056,12 @@ Constant Pool (count = 215):
   + Utf8 [()V]
   + Utf8 [()Z]
   + Utf8 [(I)Ljava/lang/String;]
-  + Utf8 [(ILcom/a/a/a/a/s;)V]
+  + Utf8 [(ILcom/a/a/a/a/r;)V]
   + Utf8 [(J)Ljava/lang/Long;]
   + Utf8 [(J)Ljava/lang/String;]
   + Utf8 [(J)V]
-  + Utf8 [(Landroid/content/Context;Lcom/a/a/a/a/p;)V]
-  + Utf8 [(Landroid/content/SharedPreferences;Lcom/a/a/a/a/p;)V]
+  + Utf8 [(Landroid/content/Context;Lcom/a/a/a/a/o;)V]
+  + Utf8 [(Landroid/content/SharedPreferences;Lcom/a/a/a/a/o;)V]
   + Utf8 [(Ljava/lang/Object;)Ljava/lang/Object;]
   + Utf8 [(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;]
   + Utf8 [(Ljava/lang/String;)I]
@@ -56474,7 +56083,7 @@ Constant Pool (count = 215):
   + Utf8 [I]
   + Utf8 [Invalid syntax error while decoding extras data from server.]
   + Utf8 [J]
-  + Utf8 [Lcom/a/a/a/a/r;]
+  + Utf8 [Lcom/a/a/a/a/q;]
   + Utf8 [Licence retry count (GR) missing, grace period disabled]
   + Utf8 [License retry timestamp (GT) missing, grace period disabled]
   + Utf8 [License validity timestamp (VT) missing, caching for a minute]
@@ -56492,10 +56101,10 @@ Constant Pool (count = 215):
   + Utf8 [b]
   + Utf8 [c]
   + Utf8 [com.android.vending.licensing.ServerManagedPolicy]
+  + Utf8 [com/a/a/a/a/p]
   + Utf8 [com/a/a/a/a/q]
   + Utf8 [com/a/a/a/a/r]
   + Utf8 [com/a/a/a/a/s]
-  + Utf8 [com/a/a/a/a/t]
   + Utf8 [currentTimeMillis]
   + Utf8 [d]
   + Utf8 [e]
@@ -56556,14 +56165,14 @@ Fields (count = 7):
   + Field:        f I
     Access flags: 0x2
       = private int f
-  + Field:        g Lcom/a/a/a/a/r;
+  + Field:        g Lcom/a/a/a/a/q;
     Access flags: 0x2
-      = private com.a.a.a.a.r g
+      = private com.a.a.a.a.q g
 
 Methods (count = 8):
-  - Method:       <init>(Landroid/content/Context;Lcom/a/a/a/a/p;)V
+  - Method:       <init>(Landroid/content/Context;Lcom/a/a/a/a/o;)V
     Access flags: 0x1
-      = public t(android.content.Context,com.a.a.a.a.p)
+      = public s(android.content.Context,com.a.a.a.a.o)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 125, locals = 3, stack = 5):
       [0] aload_0 v0
@@ -56572,7 +56181,7 @@ Methods (count = 8):
       [4] aload_0 v0
       [5] lconst_0
       [6] putfield #46
-        + Fieldref [com/a/a/a/a/t.e J]
+        + Fieldref [com/a/a/a/a/s.e J]
       [9] aload_1 v1
       [10] ldc #12
         + String [com.android.vending.licensing.ServerManagedPolicy]
@@ -56582,85 +56191,85 @@ Methods (count = 8):
       [16] astore_1 v1
       [17] aload_0 v0
       [18] new #21
-        + Class [com/a/a/a/a/r]
+        + Class [com/a/a/a/a/q]
       [21] dup
       [22] aload_1 v1
       [23] aload_2 v2
       [24] invokespecial #51
-        + Methodref [com/a/a/a/a/r.<init> (Landroid/content/SharedPreferences;Lcom/a/a/a/a/p;)V]
+        + Methodref [com/a/a/a/a/q.<init> (Landroid/content/SharedPreferences;Lcom/a/a/a/a/o;)V]
       [27] putfield #48
-        + Fieldref [com/a/a/a/a/t.g Lcom/a/a/a/a/r;]
+        + Fieldref [com/a/a/a/a/s.g Lcom/a/a/a/a/q;]
       [30] aload_0 v0
       [31] aload_0 v0
       [32] getfield #48
-        + Fieldref [com/a/a/a/a/t.g Lcom/a/a/a/a/r;]
+        + Fieldref [com/a/a/a/a/s.g Lcom/a/a/a/a/q;]
       [35] ldc #13
         + String [lastResponse]
       [37] sipush 291
       [40] invokestatic #61
         + Methodref [java/lang/Integer.toString (I)Ljava/lang/String;]
       [43] invokevirtual #54
-        + Methodref [com/a/a/a/a/r.b (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
+        + Methodref [com/a/a/a/a/q.b (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [46] invokestatic #60
         + Methodref [java/lang/Integer.parseInt (Ljava/lang/String;)I]
       [49] putfield #47
-        + Fieldref [com/a/a/a/a/t.f I]
+        + Fieldref [com/a/a/a/a/s.f I]
       [52] aload_0 v0
       [53] aload_0 v0
       [54] getfield #48
-        + Fieldref [com/a/a/a/a/t.g Lcom/a/a/a/a/r;]
+        + Fieldref [com/a/a/a/a/s.g Lcom/a/a/a/a/q;]
       [57] ldc #17
         + String [validityTimestamp]
       [59] ldc #1
         + String [0]
       [61] invokevirtual #54
-        + Methodref [com/a/a/a/a/r.b (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
+        + Methodref [com/a/a/a/a/q.b (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [64] invokestatic #63
         + Methodref [java/lang/Long.parseLong (Ljava/lang/String;)J]
       [67] putfield #42
-        + Fieldref [com/a/a/a/a/t.a J]
+        + Fieldref [com/a/a/a/a/s.a J]
       [70] aload_0 v0
       [71] aload_0 v0
       [72] getfield #48
-        + Fieldref [com/a/a/a/a/t.g Lcom/a/a/a/a/r;]
+        + Fieldref [com/a/a/a/a/s.g Lcom/a/a/a/a/q;]
       [75] ldc #16
         + String [retryUntil]
       [77] ldc #1
         + String [0]
       [79] invokevirtual #54
-        + Methodref [com/a/a/a/a/r.b (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
+        + Methodref [com/a/a/a/a/q.b (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [82] invokestatic #63
         + Methodref [java/lang/Long.parseLong (Ljava/lang/String;)J]
       [85] putfield #43
-        + Fieldref [com/a/a/a/a/t.b J]
+        + Fieldref [com/a/a/a/a/s.b J]
       [88] aload_0 v0
       [89] aload_0 v0
       [90] getfield #48
-        + Fieldref [com/a/a/a/a/t.g Lcom/a/a/a/a/r;]
+        + Fieldref [com/a/a/a/a/s.g Lcom/a/a/a/a/q;]
       [93] ldc #14
         + String [maxRetries]
       [95] ldc #1
         + String [0]
       [97] invokevirtual #54
-        + Methodref [com/a/a/a/a/r.b (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
+        + Methodref [com/a/a/a/a/q.b (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [100] invokestatic #63
         + Methodref [java/lang/Long.parseLong (Ljava/lang/String;)J]
       [103] putfield #44
-        + Fieldref [com/a/a/a/a/t.c J]
+        + Fieldref [com/a/a/a/a/s.c J]
       [106] aload_0 v0
       [107] aload_0 v0
       [108] getfield #48
-        + Fieldref [com/a/a/a/a/t.g Lcom/a/a/a/a/r;]
+        + Fieldref [com/a/a/a/a/s.g Lcom/a/a/a/a/q;]
       [111] ldc #15
         + String [retryCount]
       [113] ldc #1
         + String [0]
       [115] invokevirtual #54
-        + Methodref [com/a/a/a/a/r.b (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
+        + Methodref [com/a/a/a/a/q.b (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [118] invokestatic #63
         + Methodref [java/lang/Long.parseLong (Ljava/lang/String;)J]
       [121] putfield #45
-        + Fieldref [com/a/a/a/a/t.d J]
+        + Fieldref [com/a/a/a/a/s.d J]
       [124] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
@@ -56679,9 +56288,9 @@ Methods (count = 8):
         [88] -> line 83
         [106] -> line 84
         [124] -> line 85
-  + Method:       a(ILcom/a/a/a/a/s;)V
+  + Method:       a(ILcom/a/a/a/a/r;)V
     Access flags: 0x11
-      = public final void a(int,com.a.a.a.a.s)
+      = public final void a(int,com.a.a.a.a.r)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 155, locals = 3, stack = 5):
       [0] iload_1 v1
@@ -56690,29 +56299,29 @@ Methods (count = 8):
       [7] aload_0 v0
       [8] lconst_0
       [9] invokespecial #55
-        + Methodref [com/a/a/a/a/t.a (J)V]
+        + Methodref [com/a/a/a/a/s.a (J)V]
       [12] goto +13 (target=25)
       [15] aload_0 v0
       [16] aload_0 v0
       [17] getfield #45
-        + Fieldref [com/a/a/a/a/t.d J]
+        + Fieldref [com/a/a/a/a/s.d J]
       [20] lconst_1
       [21] ladd
       [22] invokespecial #55
-        + Methodref [com/a/a/a/a/t.a (J)V]
+        + Methodref [com/a/a/a/a/s.a (J)V]
       [25] iload_1 v1
       [26] sipush 256
       [29] ificmpne +64 (target=93)
       [32] aload_2 v2
       [33] getfield #41
-        + Fieldref [com/a/a/a/a/s.g Ljava/lang/String;]
+        + Fieldref [com/a/a/a/a/r.g Ljava/lang/String;]
       [36] invokestatic #59
-        + Methodref [com/a/a/a/a/t.d (Ljava/lang/String;)Ljava/util/Map;]
+        + Methodref [com/a/a/a/a/s.d (Ljava/lang/String;)Ljava/util/Map;]
       [39] astore_2 v2
       [40] aload_0 v0
       [41] iload_1 v1
       [42] putfield #47
-        + Fieldref [com/a/a/a/a/t.f I]
+        + Fieldref [com/a/a/a/a/s.f I]
       [45] aload_0 v0
       [46] aload_2 v2
       [47] ldc #11
@@ -56722,7 +56331,7 @@ Methods (count = 8):
       [54] checkcast #28
         + Class [java/lang/String]
       [57] invokespecial #56
-        + Methodref [com/a/a/a/a/t.a (Ljava/lang/String;)V]
+        + Methodref [com/a/a/a/a/s.a (Ljava/lang/String;)V]
       [60] aload_0 v0
       [61] aload_2 v2
       [62] ldc #4
@@ -56732,7 +56341,7 @@ Methods (count = 8):
       [69] checkcast #28
         + Class [java/lang/String]
       [72] invokespecial #57
-        + Methodref [com/a/a/a/a/t.b (Ljava/lang/String;)V]
+        + Methodref [com/a/a/a/a/s.b (Ljava/lang/String;)V]
       [75] aload_0 v0
       [76] aload_2 v2
       [77] ldc #3
@@ -56742,7 +56351,7 @@ Methods (count = 8):
       [84] checkcast #28
         + Class [java/lang/String]
       [87] invokespecial #58
-        + Methodref [com/a/a/a/a/t.c (Ljava/lang/String;)V]
+        + Methodref [com/a/a/a/a/s.c (Ljava/lang/String;)V]
       [90] goto +28 (target=118)
       [93] iload_1 v1
       [94] sipush 561
@@ -56751,17 +56360,17 @@ Methods (count = 8):
       [101] ldc #1
         + String [0]
       [103] invokespecial #56
-        + Methodref [com/a/a/a/a/t.a (Ljava/lang/String;)V]
+        + Methodref [com/a/a/a/a/s.a (Ljava/lang/String;)V]
       [106] aload_0 v0
       [107] ldc #1
         + String [0]
       [109] invokespecial #57
-        + Methodref [com/a/a/a/a/t.b (Ljava/lang/String;)V]
+        + Methodref [com/a/a/a/a/s.b (Ljava/lang/String;)V]
       [112] aload_0 v0
       [113] ldc #1
         + String [0]
       [115] invokespecial #58
-        + Methodref [com/a/a/a/a/t.c (Ljava/lang/String;)V]
+        + Methodref [com/a/a/a/a/s.c (Ljava/lang/String;)V]
       [118] aload_0 v0
       [119] iload_1 v1
       [120] istore_2 v2
@@ -56770,26 +56379,26 @@ Methods (count = 8):
       [123] invokestatic #70
         + Methodref [java/lang/System.currentTimeMillis ()J]
       [126] putfield #46
-        + Fieldref [com/a/a/a/a/t.e J]
+        + Fieldref [com/a/a/a/a/s.e J]
       [129] aload_1 v1
       [130] iload_2 v2
       [131] putfield #47
-        + Fieldref [com/a/a/a/a/t.f I]
+        + Fieldref [com/a/a/a/a/s.f I]
       [134] aload_1 v1
       [135] getfield #48
-        + Fieldref [com/a/a/a/a/t.g Lcom/a/a/a/a/r;]
+        + Fieldref [com/a/a/a/a/s.g Lcom/a/a/a/a/q;]
       [138] ldc #13
         + String [lastResponse]
       [140] iload_2 v2
       [141] invokestatic #61
         + Methodref [java/lang/Integer.toString (I)Ljava/lang/String;]
       [144] invokevirtual #53
-        + Methodref [com/a/a/a/a/r.a (Ljava/lang/String;Ljava/lang/String;)V]
+        + Methodref [com/a/a/a/a/q.a (Ljava/lang/String;Ljava/lang/String;)V]
       [147] aload_0 v0
       [148] getfield #48
-        + Fieldref [com/a/a/a/a/t.g Lcom/a/a/a/a/r;]
+        + Fieldref [com/a/a/a/a/s.g Lcom/a/a/a/a/q;]
       [151] invokevirtual #52
-        + Methodref [com/a/a/a/a/r.a ()V]
+        + Methodref [com/a/a/a/a/q.a ()V]
       [154] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
@@ -56823,17 +56432,17 @@ Methods (count = 8):
       [0] aload_0 v0
       [1] lload_1 v1
       [2] putfield #45
-        + Fieldref [com/a/a/a/a/t.d J]
+        + Fieldref [com/a/a/a/a/s.d J]
       [5] aload_0 v0
       [6] getfield #48
-        + Fieldref [com/a/a/a/a/t.g Lcom/a/a/a/a/r;]
+        + Fieldref [com/a/a/a/a/s.g Lcom/a/a/a/a/q;]
       [9] ldc #15
         + String [retryCount]
       [11] lload_1 v1
       [12] invokestatic #64
         + Methodref [java/lang/Long.toString (J)Ljava/lang/String;]
       [15] invokevirtual #53
-        + Methodref [com/a/a/a/a/r.a (Ljava/lang/String;Ljava/lang/String;)V]
+        + Methodref [com/a/a/a/a/q.a (Ljava/lang/String;Ljava/lang/String;)V]
       [18] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
@@ -56880,15 +56489,15 @@ Methods (count = 8):
       [41] invokevirtual #62
         + Methodref [java/lang/Long.longValue ()J]
       [44] putfield #42
-        + Fieldref [com/a/a/a/a/t.a J]
+        + Fieldref [com/a/a/a/a/s.a J]
       [47] aload_0 v0
       [48] getfield #48
-        + Fieldref [com/a/a/a/a/t.g Lcom/a/a/a/a/r;]
+        + Fieldref [com/a/a/a/a/s.g Lcom/a/a/a/a/q;]
       [51] ldc #17
         + String [validityTimestamp]
       [53] aload_1 v1
       [54] invokevirtual #53
-        + Methodref [com/a/a/a/a/r.a (Ljava/lang/String;Ljava/lang/String;)V]
+        + Methodref [com/a/a/a/a/q.a (Ljava/lang/String;Ljava/lang/String;)V]
       [57] return
       Code attribute exceptions (count = 1):
       - ExceptionInfo (0 -> 8: 11):
@@ -56938,15 +56547,15 @@ Methods (count = 8):
       [30] invokevirtual #62
         + Methodref [java/lang/Long.longValue ()J]
       [33] putfield #43
-        + Fieldref [com/a/a/a/a/t.b J]
+        + Fieldref [com/a/a/a/a/s.b J]
       [36] aload_0 v0
       [37] getfield #48
-        + Fieldref [com/a/a/a/a/t.g Lcom/a/a/a/a/r;]
+        + Fieldref [com/a/a/a/a/s.g Lcom/a/a/a/a/q;]
       [40] ldc #16
         + String [retryUntil]
       [42] aload_1 v1
       [43] invokevirtual #53
-        + Methodref [com/a/a/a/a/r.a (Ljava/lang/String;Ljava/lang/String;)V]
+        + Methodref [com/a/a/a/a/q.a (Ljava/lang/String;Ljava/lang/String;)V]
       [46] return
       Code attribute exceptions (count = 1):
       - ExceptionInfo (0 -> 8: 11):
@@ -56996,15 +56605,15 @@ Methods (count = 8):
       [30] invokevirtual #62
         + Methodref [java/lang/Long.longValue ()J]
       [33] putfield #44
-        + Fieldref [com/a/a/a/a/t.c J]
+        + Fieldref [com/a/a/a/a/s.c J]
       [36] aload_0 v0
       [37] getfield #48
-        + Fieldref [com/a/a/a/a/t.g Lcom/a/a/a/a/r;]
+        + Fieldref [com/a/a/a/a/s.g Lcom/a/a/a/a/q;]
       [40] ldc #14
         + String [maxRetries]
       [42] aload_1 v1
       [43] invokevirtual #53
-        + Methodref [com/a/a/a/a/r.a (Ljava/lang/String;Ljava/lang/String;)V]
+        + Methodref [com/a/a/a/a/q.a (Ljava/lang/String;Ljava/lang/String;)V]
       [46] return
       Code attribute exceptions (count = 1):
       - ExceptionInfo (0 -> 8: 11):
@@ -57032,26 +56641,26 @@ Methods (count = 8):
       [3] lstore_1 v1
       [4] aload_0 v0
       [5] getfield #47
-        + Fieldref [com/a/a/a/a/t.f I]
+        + Fieldref [com/a/a/a/a/s.f I]
       [8] sipush 256
       [11] ificmpne +14 (target=25)
       [14] lload_1 v1
       [15] aload_0 v0
       [16] getfield #42
-        + Fieldref [com/a/a/a/a/t.a J]
+        + Fieldref [com/a/a/a/a/s.a J]
       [19] lcmp
       [20] ifgt +53 (target=73)
       [23] iconst_1
       [24] ireturn
       [25] aload_0 v0
       [26] getfield #47
-        + Fieldref [com/a/a/a/a/t.f I]
+        + Fieldref [com/a/a/a/a/s.f I]
       [29] sipush 291
       [32] ificmpne +41 (target=73)
       [35] lload_1 v1
       [36] aload_0 v0
       [37] getfield #46
-        + Fieldref [com/a/a/a/a/t.e J]
+        + Fieldref [com/a/a/a/a/s.e J]
       [40] ldc2_w #39
         + Long [60000]
       [43] ladd
@@ -57060,15 +56669,15 @@ Methods (count = 8):
       [48] lload_1 v1
       [49] aload_0 v0
       [50] getfield #43
-        + Fieldref [com/a/a/a/a/t.b J]
+        + Fieldref [com/a/a/a/a/s.b J]
       [53] lcmp
       [54] ifle +17 (target=71)
       [57] aload_0 v0
       [58] getfield #45
-        + Fieldref [com/a/a/a/a/t.d J]
+        + Fieldref [com/a/a/a/a/s.d J]
       [61] aload_0 v0
       [62] getfield #44
-        + Fieldref [com/a/a/a/a/t.c J]
+        + Fieldref [com/a/a/a/a/s.c J]
       [65] lcmp
       [66] ifle +5 (target=71)
       [69] iconst_0
@@ -57176,9 +56785,9 @@ Methods (count = 8):
         [89] -> line 271
         [97] -> line 273
       + Stack map table attribute (count = 4):
-        - [47] Var: [a:com/a/a/a/a/t][a:java/lang/String][a:java/util/Map][a:java/net/URI][a:java/util/List][T][a:java/util/Iterator], Stack: 
+        - [47] Var: [a:com/a/a/a/a/s][a:java/lang/String][a:java/util/Map][a:java/net/URI][a:java/util/List][T][a:java/util/Iterator], Stack: 
         - [76] Var: ..., Stack: (empty)
-        - [88] Var: [a:com/a/a/a/a/t][a:java/lang/String][a:java/util/Map], Stack: [a:java/net/URISyntaxException]
+        - [88] Var: [a:com/a/a/a/a/s][a:java/lang/String][a:java/util/Map], Stack: [a:java/net/URISyntaxException]
         - [97] Var: ..., Stack: (empty)
 
 Class file attributes (count = 1):
@@ -57186,17 +56795,17 @@ Class file attributes (count = 1):
     + Utf8 [SourceFile]
 
 _____________________________________________________________________
-+ Program class: com/a/a/a/a/u
++ Program class: com/a/a/a/a/t
   Superclass:    java/lang/Exception
   Major version: 0x32
   Minor version: 0x0
   Access flags:  0x31
-    = public final class com.a.a.a.a.u extends java.lang.Exception
+    = public final class com.a.a.a.a.t extends java.lang.Exception
 
 Interfaces (count = 0):
 
 Constant Pool (count = 15):
-  + Class [com/a/a/a/a/u]
+  + Class [com/a/a/a/a/t]
   + Class [java/lang/Exception]
   + Methodref [java/lang/Exception.<init> ()V]
   + Methodref [java/lang/Exception.<init> (Ljava/lang/String;)V]
@@ -57208,7 +56817,7 @@ Constant Pool (count = 15):
   + Utf8 [Code]
   + Utf8 [LineNumberTable]
   + Utf8 [SourceFile]
-  + Utf8 [com/a/a/a/a/u]
+  + Utf8 [com/a/a/a/a/t]
   + Utf8 [java/lang/Exception]
 
 Fields (count = 0):
@@ -57216,7 +56825,7 @@ Fields (count = 0):
 Methods (count = 2):
   - Method:       <init>()V
     Access flags: 0x1
-      = public u()
+      = public t()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
@@ -57230,7 +56839,7 @@ Methods (count = 2):
         [4] -> line 26
   - Method:       <init>(Ljava/lang/String;)V
     Access flags: 0x1
-      = public u(java.lang.String)
+      = public t(java.lang.String)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 6, locals = 2, stack = 2):
       [0] aload_0 v0

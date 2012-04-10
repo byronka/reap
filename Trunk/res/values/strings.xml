@@ -805,9 +805,7 @@ value at the time of sale, to pay for the broker
       the user is able to modify later.  These will overwrite any current
       input values.</string>
     <string name="skip" formatted="false">Skip this step</string>
-    <string name="saveDataDialogBaseMessageText" formatted="false">Calculated
-      values are included 
-      in the database entry after 100% calculation on the graph page. 
+    <string name="saveDataDialogBaseMessageText" formatted="false"> 
       Current values are saved.</string>
     <string name="savedDataHelpMessageText" formatted="false">Press on an 
       entry to load it.  

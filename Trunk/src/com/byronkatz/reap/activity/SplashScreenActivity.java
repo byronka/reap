@@ -61,7 +61,7 @@ public class SplashScreenActivity extends Activity {
     93
   };
 
-  private Boolean licensed = false;
+  private Boolean licensed = true;
   private LicenseCheckerCallback mLicenseCheckerCallback;
   private LicenseChecker mChecker;
   // A handler on the UI thread.
@@ -260,7 +260,7 @@ public class SplashScreenActivity extends Activity {
         this, new ServerManagedPolicy(this,
             new AESObfuscator(SALT, getPackageName(), deviceId)),
             BASE64_PUBLIC_KEY);
-    doCheck();
+//    doCheck();
   }
 
 

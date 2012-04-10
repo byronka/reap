@@ -42,6 +42,9 @@ com.byronkatz.reap.activity.SavedDataBrowserActivity:
     private static final java.lang.String SORT_DIRECTION
     private static final java.lang.String SORTER
     private static final java.lang.String SORT_TYPE
+com.byronkatz.reap.activity.SplashScreenActivity:
+    307:312:private void doCheck()
+    317:324:private void deactivateInterface()
 com.byronkatz.reap.calculations.CalcValueGettable:
     public static final int MONTHS_IN_YEAR
 com.byronkatz.reap.calculations.Calculations:
@@ -106,6 +109,8 @@ com.google.android.vending.licensing.LicenseChecker:
     private static final java.lang.String KEY_FACTORY_ALGORITHM
     private static final int TIMEOUT_MS
     private static final boolean DEBUG_LICENSE_ERROR
+    139:173:public synchronized void checkAccess(com.google.android.vending.licensing.LicenseCheckerCallback)
+    332:332:private int generateNonce()
 com.google.android.vending.licensing.LicenseChecker$ResultListener:
     private static final int ERROR_CONTACTING_SERVER
     private static final int ERROR_INVALID_PACKAGE_NAME
@@ -129,6 +134,8 @@ com.google.android.vending.licensing.LicenseValidator:
     private static final int ERROR_INVALID_PACKAGE_NAME
     private static final int ERROR_NON_MATCHING_UID
     private static final java.lang.String SIGNATURE_ALGORITHM
+    57:65:LicenseValidator(com.google.android.vending.licensing.Policy,com.google.android.vending.licensing.DeviceLimiter,com.google.android.vending.licensing.LicenseCheckerCallback,int,java.lang.String,java.lang.String)
+com.google.android.vending.licensing.NullDeviceLimiter
 com.google.android.vending.licensing.Policy:
     public static final int LICENSED
     public static final int NOT_LICENSED

@@ -952,6 +952,7 @@ com.google.android.vending.licensing.AESObfuscator -> com.a.a.a.a.a:
     73:82:java.lang.String obfuscate(java.lang.String,java.lang.String) -> a
     87:107:java.lang.String unobfuscate(java.lang.String,java.lang.String) -> b
 com.google.android.vending.licensing.DeviceLimiter -> com.a.a.a.a.b:
+    int isDeviceAllowed$552c4e0e() -> a
 com.google.android.vending.licensing.ILicenseResultListener -> com.a.a.a.a.c:
     void verifyLicense(int,java.lang.String,java.lang.String) -> a
 com.google.android.vending.licensing.ILicenseResultListener$Stub -> com.a.a.a.a.d:
@@ -982,13 +983,11 @@ com.google.android.vending.licensing.LicenseChecker -> com.a.a.a.a.i:
     java.util.Set mChecksInProgress -> i
     java.util.Queue mPendingChecks -> j
     109:121:java.security.PublicKey generatePublicKey(java.lang.String) -> a
-    139:173:void checkAccess(com.google.android.vending.licensing.LicenseCheckerCallback) -> a
-    177:189:void runChecks() -> b
     192:196:void finishCheck(com.google.android.vending.licensing.LicenseValidator) -> a
     277:279:void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
     285:287:void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
     294:301:void handleServiceConnectionError(com.google.android.vending.licensing.LicenseValidator) -> b
-    305:315:void cleanupService() -> c
+    305:315:void cleanupService() -> b
     326:328:void onDestroy() -> a
     344:348:java.lang.String getVersionCode(android.content.Context,java.lang.String) -> a
     293:293:void access$0(com.google.android.vending.licensing.LicenseChecker,com.google.android.vending.licensing.LicenseValidator) -> a
@@ -1031,21 +1030,20 @@ com.google.android.vending.licensing.LicenseValidator -> com.a.a.a.a.n:
     206:215:void handleResponse(int,com.google.android.vending.licensing.ResponseData) -> a
     218:219:void handleApplicationError(int) -> a
     222:223:void handleInvalidResponse() -> d
-com.google.android.vending.licensing.NullDeviceLimiter -> com.a.a.a.a.o:
-com.google.android.vending.licensing.Obfuscator -> com.a.a.a.a.p:
+com.google.android.vending.licensing.Obfuscator -> com.a.a.a.a.o:
     java.lang.String obfuscate(java.lang.String,java.lang.String) -> a
     java.lang.String unobfuscate(java.lang.String,java.lang.String) -> b
-com.google.android.vending.licensing.Policy -> com.a.a.a.a.q:
+com.google.android.vending.licensing.Policy -> com.a.a.a.a.p:
     void processServerResponse(int,com.google.android.vending.licensing.ResponseData) -> a
     boolean allowAccess() -> a
-com.google.android.vending.licensing.PreferenceObfuscator -> com.a.a.a.a.r:
+com.google.android.vending.licensing.PreferenceObfuscator -> com.a.a.a.a.q:
     android.content.SharedPreferences mPreferences -> a
     com.google.android.vending.licensing.Obfuscator mObfuscator -> b
     android.content.SharedPreferences$Editor mEditor -> c
     46:51:void putString(java.lang.String,java.lang.String) -> a
     55:68:java.lang.String getString(java.lang.String,java.lang.String) -> b
     72:76:void commit() -> a
-com.google.android.vending.licensing.ResponseData -> com.a.a.a.a.s:
+com.google.android.vending.licensing.ResponseData -> com.a.a.a.a.r:
     int responseCode -> a
     int nonce -> b
     java.lang.String packageName -> c
@@ -1054,7 +1052,7 @@ com.google.android.vending.licensing.ResponseData -> com.a.a.a.a.s:
     long timestamp -> f
     java.lang.String extra -> g
     76:76:java.lang.String toString() -> toString
-com.google.android.vending.licensing.ServerManagedPolicy -> com.a.a.a.a.t:
+com.google.android.vending.licensing.ServerManagedPolicy -> com.a.a.a.a.s:
     long mValidityTimestamp -> a
     long mRetryUntil -> b
     long mMaxRetries -> c
@@ -1069,7 +1067,7 @@ com.google.android.vending.licensing.ServerManagedPolicy -> com.a.a.a.a.t:
     219:229:void setMaxRetries(java.lang.String) -> c
     246:259:boolean allowAccess() -> a
     263:273:java.util.Map decodeExtras(java.lang.String) -> d
-com.google.android.vending.licensing.ValidationException -> com.a.a.a.a.u:
+com.google.android.vending.licensing.ValidationException -> com.a.a.a.a.t:
 com.google.android.vending.licensing.util.Base64 -> com.a.a.a.a.a.a:
     byte[] ALPHABET -> b
     byte[] WEBSAFE_ALPHABET -> c

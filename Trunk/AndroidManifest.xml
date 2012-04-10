@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     android:installLocation="auto"
     package="com.byronkatz.reap"
-    android:versionCode="3"
-    android:versionName="1.02" >
+    android:versionCode="4"
+    android:versionName="1.03" >
 
     <uses-feature android:name="android.hardware.screen.portrait" />
 
-    <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
+<!--     <uses-permission android:name="com.android.vending.CHECK_LICENSE" /> -->
     <!-- internet permission is needed if I want to send myself error reports,
     but instead I set it so they use email. -->
 <!--     <uses-permission android:name="android.permission.INTERNET"  /> -->

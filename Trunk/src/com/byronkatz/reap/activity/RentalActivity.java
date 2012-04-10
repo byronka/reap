@@ -149,7 +149,7 @@ public class RentalActivity extends Activity {
     dataController.putInputValue(value, key);
     
     key = ValueEnum.INITIAL_VALUATION;
-    value = Utility.parseCurrency(fixupCosts.getText().toString());
+    value = Utility.parseCurrency(valuation.getText().toString());
     dataController.putInputValue(value, key);
 
     key = ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES;
