@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:katz="http://schemas.android.com/apk/res/com.byronkatz.reap"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/custom_background">
+
+    the following is just to catch the focus and do nothing with it
+
+    <LinearLayout
+        android:id="@+id/focusJail"
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/graphDataScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <!-- Starting new stuff below -->
+
+            <TabHost
+                android:id="@android:id/tabhost"
+                android:layout_width="fill_parent"
+                android:layout_height="280dip" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    android:padding="5dp" >
+
+                    <TabWidget
+                        android:id="@android:id/tabs"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" />
+
+                    <FrameLayout
+                        android:id="@android:id/tabcontent"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:padding="5dp" >
+
+                        <LinearLayout
+                            android:id="@+id/tab1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:orientation="vertical" >
+
+                            <com.byronkatz.reap.customview.AnalysisGraph
+                                android:id="@+id/npvFrameLayout"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                katz:graphType="NPV" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tab2"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:orientation="vertical" >
+
+                            <com.byronkatz.reap.customview.AnalysisGraph
+                                android:id="@+id/atcfFrameLayout"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                katz:graphType="ATCF" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tab3"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:orientation="vertical" >
+
+                            <com.byronkatz.reap.customview.AnalysisGraph
+                                android:id="@+id/aterFrameLayout"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                katz:graphType="ATER" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tab4"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:orientation="vertical" >
+
+                            <com.byronkatz.reap.customview.AnalysisGraph
+                                android:id="@+id/mirrFrameLayout"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                katz:graphType="MIRR" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tab5"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:orientation="vertical" >
+
+                            <com.byronkatz.reap.customview.AnalysisGraph
+                                android:id="@+id/crcvFrameLayout"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                katz:graphType="CRPV" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/tab6"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:orientation="vertical" >
+
+                            <com.byronkatz.reap.customview.AnalysisGraph
+                                android:id="@+id/crpvFrameLayout"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                katz:graphType="CRCV" />
+                        </LinearLayout>
+                    </FrameLayout>
+                </LinearLayout>
+            </TabHost>
+
+            <TableLayout
+                android:id="@+id/dataTableLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.40"
+                android:gravity="clip_vertical"
+                android:shrinkColumns="0"
+                android:paddingBottom="250dip"
+                android:stretchColumns="0" >
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Controls start below -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="bottom"
+        android:orientation="vertical" >
+
+        <com.byronkatz.reap.general.WrappingSlidingDrawer
+            android:id="@+id/drawer"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:content="@+id/sliderLinearLayout"
+            android:allowSingleTap="false"
+            android:handle="@+id/handle" >
+
+            <ImageView
+                android:id="@+id/handle"
+                android:layout_width="fill_parent"
+                android:layout_height="26dip"
+                android:src="@drawable/tray_handle"
+                android:scaleType="fitXY"
+                />
+
+            <LinearLayout
+                android:id="@+id/sliderLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="#000"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="95dp"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dip"
+                        android:layout_weight="0.20" >
+
+                        <TextView
+                            android:id="@+id/minValueTextView"
+                            android:layout_width="0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/minValueLabel"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:id="@+id/currentValueTextView"
+                            android:layout_width="0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/currentValueLabel"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:id="@+id/maxValueTextView"
+                            android:layout_width="0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/maxValueLabel"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:id="@+id/maxValueTextView"
+                            android:layout_width="55dip"
+                            android:layout_height="fill_parent"
+                            android:gravity="center"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dip"
+                        android:layout_weight="0.40" >
+
+                        <EditText
+                            android:id="@+id/minValueEditText"
+                            android:layout_width="0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="left"
+                            android:layout_weight="1"
+                            android:editable="true"
+                            android:inputType="numberDecimal"
+                            android:maxLength="20"
+                            android:textSize="11dp" >
+                        </EditText>
+
+                        <EditText
+                            android:id="@+id/currentValueEditText"
+                            android:layout_width="0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"
+                            android:editable="true"
+                            android:inputType="numberDecimal"
+                            android:maxLength="20"
+                            android:textSize="11dp" >
+                        </EditText>
+
+                        <EditText
+                            android:id="@+id/maxValueEditText"
+                            android:layout_width="0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:editable="true"
+                            android:inputType="numberDecimal"
+                            android:maxLength="20"
+                            android:textSize="11dp" >
+                        </EditText>
+
+                        <Button
+                            android:id="@+id/resetButton"
+                            android:layout_width="55dip"
+                            android:layout_height="fill_parent"
+                            android:text="@string/resetButton"
+                            android:textSize="12dip" >
+                        </Button>
+                    </LinearLayout>
+
+                    <Spinner
+                        android:id="@+id/valueSpinner"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.40" >
+                    </Spinner>
+                </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/valueSliderLinearLayout"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false" >
+
+                        <TextView
+                            android:id="@+id/valueSliderLabel"
+                            android:layout_width="40dip"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/valueSliderText"
+                            android:textAppearance="?android:attr/textAppearanceSmall" >
+                        </TextView>
+
+                        <SeekBar
+                            android:id="@+id/valueSlider"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dip"
+                            android:layout_marginRight="6dip"
+                            android:layout_weight="1"
+                            android:padding="5dip" >
+                        </SeekBar>
+                        
+                    <TextView
+                        android:layout_width="40dip"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@null" >
+                    </TextView>
+                    </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/timeSliderLinearLayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/timeSliderLabel"
+                        android:layout_width="40dip"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/timeSliderText"
+                        android:textAppearance="?android:attr/textAppearanceSmall" >
+                    </TextView>
+
+                    <SeekBar
+                        android:id="@+id/timeSlider"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dip"
+                        android:layout_marginRight="6dip"
+                        android:layout_weight="1"
+                        android:padding="5dip" >
+                    </SeekBar>
+
+                    <TextView
+                        android:id="@+id/yearLabel"
+                        android:layout_width="40dip"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/yearValueText"
+                        android:textAppearance="?android:attr/textAppearanceSmall" >
+                    </TextView>
+                </LinearLayout>
+            </LinearLayout>
+        </com.byronkatz.reap.general.WrappingSlidingDrawer>
+    </LinearLayout>
+
+</FrameLayout>
