@@ -769,7 +769,7 @@ public class Calculations implements ValueSettable {
       if (compoundingPeriod < 0) {
         return 0d;
       }
-      if (Math.abs(valuation - 0d) < EPSILON) {
+      if (Math.abs(valuation - 0d) > EPSILON) {
         return valuation
             * Math.pow(1 + yearlyRealEstateAppreciationRate, compoundingPeriod
                 / MONTHS_IN_YEAR);

@@ -306,13 +306,21 @@ public class DataController implements DataManager {
    * @param cv the ContentValues (basically a hashmap) which is a row from the database
    */
   public void setCurrentData(ContentValues cv) {
-
+    
+    Double tempValue = 0d;
+    
     //either a string or not a string
     for (ValueEnum inputEnum : ValueEnum.values()) {
 
 
       if (inputEnum.isSavedToDatabase() && (inputEnum.getType() != ValueEnum.ValueType.STRING)) {
-        putInputValue(cv.getAsDouble(inputEnum.name()), inputEnum);
+        tempValue = cv.getAsDouble(inputEnum.name());
+        if (tempValue != null) {
+          putInputValue(tempValue, inputEnum);
+        } else {
+          //if tempValue is null, just put 0 in its place in the cache
+          putInputValue(0d, inputEnum);
+        }
       } else if (inputEnum.isSavedToDatabase() && (inputEnum.getType() == ValueEnum.ValueType.STRING)) {
         setValueAsString(inputEnum, cv.getAsString(inputEnum.name()));
 

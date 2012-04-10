@@ -192,18 +192,19 @@ com.byronkatz.reap.activity.RentalActivity -> com.byronkatz.reap.activity.Rental
     android.widget.EditText initialHomeInsurance -> b
     android.widget.EditText vacancyAndCreditLoss -> c
     android.widget.EditText fixupCosts -> d
-    android.widget.EditText initialYearlyGeneralExpenses -> e
-    android.widget.EditText requiredRateOfReturn -> f
-    android.widget.EditText monthsUntilRentStarts -> g
-    com.byronkatz.reap.general.DataController dataController -> h
-    34:37:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
-    45:48:boolean onPrepareOptionsMenu(android.view.Menu) -> onPrepareOptionsMenu
-    53:56:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
-    62:65:void onResume() -> onResume
-    71:120:void onCreate(android.os.Bundle) -> onCreate
-    123:124:void callCalculator(android.view.View) -> callCalculator
-    127:154:void saveValuesToCache() -> a
-    158:161:void onPause() -> onPause
+    android.widget.EditText valuation -> e
+    android.widget.EditText initialYearlyGeneralExpenses -> f
+    android.widget.EditText requiredRateOfReturn -> g
+    android.widget.EditText monthsUntilRentStarts -> h
+    com.byronkatz.reap.general.DataController dataController -> i
+    35:38:boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    46:49:boolean onPrepareOptionsMenu(android.view.Menu) -> onPrepareOptionsMenu
+    54:57:boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    63:66:void onResume() -> onResume
+    72:128:void onCreate(android.os.Bundle) -> onCreate
+    131:132:void callCalculator(android.view.View) -> callCalculator
+    135:166:void saveValuesToCache() -> a
+    170:173:void onPause() -> onPause
 com.byronkatz.reap.activity.SaleActivity -> com.byronkatz.reap.activity.SaleActivity:
     android.widget.EditText generalSaleExpenses -> a
     android.widget.EditText sellingBrokerRate -> b
@@ -370,105 +371,106 @@ com.byronkatz.reap.calculations.Calculations -> com.byronkatz.reap.a.b:
     double inflationRate -> f
     double municipalExpenses -> g
     double totalPurchaseValue -> h
-    double fixupCosts -> i
-    double initialRent -> j
-    double yearlyRealEstateAppreciationRate -> k
-    double vacancyAndCreditLossRate -> l
-    int nocp -> m
-    int monthsUntilRentStarts -> n
-    double loanAmount -> o
-    double downPayment -> p
-    double loanInterestRateMonthly -> q
-    double[] interestAccumulator -> r
-    double[] interestPayment -> s
-    double[] principalPayment -> t
-    double[] amountOwed -> u
-    double mpValue -> v
-    double pmiMonthly -> w
-    double pmiEndsValue -> x
-    double[] pmiAccumulator -> y
-    int totalYearsToCalculate -> z
-    double requiredRateOfReturn -> A
-    double atcfNpvAccumulator -> B
-    double[] atcfCache -> C
-    double[] atcfAccumCache -> D
-    double[] atcfPvCache -> E
-    double yearlyLoanInterestRate -> F
-    double mirr -> G
-    double futureValuePositiveCashFlowsAccumulator -> H
-    double presentValueNegativeCashFlowsAccumulator -> I
-    double atcfTempValue -> J
-    double aterTempValue -> K
-    double brokerRate -> L
-    double initialSellingExpenses -> M
-    double buildingValue -> N
-    double marginalTaxRate -> O
-    double DEPRECIATION_CONSTANT -> P
-    double TAX_ON_CAPITAL_GAINS -> Q
-    double[] yearlyGrossIncomeCache -> R
-    double[] yearlyNetOperatingIncomeCache -> S
-    double[] taxableIncomeCache -> T
-    com.byronkatz.reap.general.DataManager dataManager -> U
-    com.byronkatz.reap.calculations.CalcValueGettable mirrObject -> V
-    com.byronkatz.reap.calculations.CalcValueGettable propertyTaxFValue -> W
-    com.byronkatz.reap.calculations.CalcValueGettable insuranceFValue -> X
-    com.byronkatz.reap.calculations.CalcValueGettable generalExpensesFValue -> Y
-    com.byronkatz.reap.calculations.CalcValueGettable operatingExpensesFValue -> Z
-    com.byronkatz.reap.calculations.CalcValueGettable municipalExpensesFValue -> aa
-    com.byronkatz.reap.calculations.CalcValueGettable investmentFValue -> ab
-    com.byronkatz.reap.calculations.CalcValueGettable monthlyRentFValue -> ac
-    com.byronkatz.reap.calculations.CalcValueGettable yearlyGrossIncomeValue -> ad
-    com.byronkatz.reap.calculations.CalcValueGettable yearlyNetIncomeValue -> ae
-    com.byronkatz.reap.calculations.CalcValueGettable netOperatingIncome -> af
-    com.byronkatz.reap.calculations.CalcValueGettable taxableIncome -> ag
-    com.byronkatz.reap.calculations.CalcValueGettable interestPaymentValue -> ah
-    com.byronkatz.reap.calculations.CalcValueGettable principalPaymentValue -> ai
-    com.byronkatz.reap.calculations.CalcValueGettable yearlyInterestPaidAccumulatedValue -> aj
-    com.byronkatz.reap.calculations.CalcValueGettable monthlyInterestPaidAccumulatedValue -> ak
-    com.byronkatz.reap.calculations.CalcValueGettable yearlyAmountOwedValue -> al
-    com.byronkatz.reap.calculations.CalcValueGettable monthlyAmountOwedValue -> am
-    com.byronkatz.reap.calculations.CalcValueGettable loanAmountValue -> an
-    com.byronkatz.reap.calculations.CalcValueGettable yearlyInterestPaid -> ao
-    com.byronkatz.reap.calculations.CalcValueGettable yearlyPrincipalPaid -> ap
-    com.byronkatz.reap.calculations.CalcValueGettable mortgagePayment -> aq
-    com.byronkatz.reap.calculations.CalcValueGettable yearlyMortgagePayment -> ar
-    com.byronkatz.reap.calculations.CalcValueGettable yearlyPrivateMortgageInsurance -> as
-    com.byronkatz.reap.calculations.CalcValueGettable yearlyPrivateMortgageInsuranceAccum -> at
-    com.byronkatz.reap.calculations.CalcValueGettable afterTaxCashFlow -> au
-    com.byronkatz.reap.calculations.CalcValueGettable afterTaxCashFlowNPV -> av
-    com.byronkatz.reap.calculations.CalcValueGettable afterTaxCashFlowAccumulator -> aw
-    com.byronkatz.reap.calculations.CalcValueGettable beforeTaxCashFlow -> ax
-    com.byronkatz.reap.calculations.CalcValueGettable yearlyOutlay -> ay
-    com.byronkatz.reap.calculations.CalcValueGettable capitalizationRateOnPurchaseValue -> az
-    com.byronkatz.reap.calculations.CalcValueGettable capitalizationRateOnProjectedValue -> aA
-    com.byronkatz.reap.calculations.CalcValueGettable firstDayCosts -> aB
-    com.byronkatz.reap.calculations.CalcValueGettable npv -> aC
-    com.byronkatz.reap.calculations.CalcValueGettable sellingExpensesFValue -> aD
-    com.byronkatz.reap.calculations.CalcValueGettable brokerCutOfSale -> aE
-    com.byronkatz.reap.calculations.CalcValueGettable afterTaxEquityReversion -> aF
-    com.byronkatz.reap.calculations.CalcValueGettable aterPv -> aG
-    com.byronkatz.reap.calculations.CalcValueGettable yearlyDepreciation -> aH
-    com.byronkatz.reap.calculations.CalcValueGettable taxesDueAtSale -> aI
-    com.byronkatz.reap.calculations.CalcValueGettable yearlyTaxOnIncome -> aJ
+    double valuation -> i
+    double fixupCosts -> j
+    double initialRent -> k
+    double yearlyRealEstateAppreciationRate -> l
+    double vacancyAndCreditLossRate -> m
+    int nocp -> n
+    int monthsUntilRentStarts -> o
+    double loanAmount -> p
+    double downPayment -> q
+    double loanInterestRateMonthly -> r
+    double[] interestAccumulator -> s
+    double[] interestPayment -> t
+    double[] principalPayment -> u
+    double[] amountOwed -> v
+    double mpValue -> w
+    double pmiMonthly -> x
+    double pmiEndsValue -> y
+    double[] pmiAccumulator -> z
+    int totalYearsToCalculate -> A
+    double requiredRateOfReturn -> B
+    double atcfNpvAccumulator -> C
+    double[] atcfCache -> D
+    double[] atcfAccumCache -> E
+    double[] atcfPvCache -> F
+    double yearlyLoanInterestRate -> G
+    double mirr -> H
+    double futureValuePositiveCashFlowsAccumulator -> I
+    double presentValueNegativeCashFlowsAccumulator -> J
+    double atcfTempValue -> K
+    double aterTempValue -> L
+    double brokerRate -> M
+    double initialSellingExpenses -> N
+    double buildingValue -> O
+    double marginalTaxRate -> P
+    double DEPRECIATION_CONSTANT -> Q
+    double TAX_ON_CAPITAL_GAINS -> R
+    double[] yearlyGrossIncomeCache -> S
+    double[] yearlyNetOperatingIncomeCache -> T
+    double[] taxableIncomeCache -> U
+    com.byronkatz.reap.general.DataManager dataManager -> V
+    com.byronkatz.reap.calculations.CalcValueGettable mirrObject -> W
+    com.byronkatz.reap.calculations.CalcValueGettable propertyTaxFValue -> X
+    com.byronkatz.reap.calculations.CalcValueGettable insuranceFValue -> Y
+    com.byronkatz.reap.calculations.CalcValueGettable generalExpensesFValue -> Z
+    com.byronkatz.reap.calculations.CalcValueGettable operatingExpensesFValue -> aa
+    com.byronkatz.reap.calculations.CalcValueGettable municipalExpensesFValue -> ab
+    com.byronkatz.reap.calculations.CalcValueGettable investmentFValue -> ac
+    com.byronkatz.reap.calculations.CalcValueGettable monthlyRentFValue -> ad
+    com.byronkatz.reap.calculations.CalcValueGettable yearlyGrossIncomeValue -> ae
+    com.byronkatz.reap.calculations.CalcValueGettable yearlyNetIncomeValue -> af
+    com.byronkatz.reap.calculations.CalcValueGettable netOperatingIncome -> ag
+    com.byronkatz.reap.calculations.CalcValueGettable taxableIncome -> ah
+    com.byronkatz.reap.calculations.CalcValueGettable interestPaymentValue -> ai
+    com.byronkatz.reap.calculations.CalcValueGettable principalPaymentValue -> aj
+    com.byronkatz.reap.calculations.CalcValueGettable yearlyInterestPaidAccumulatedValue -> ak
+    com.byronkatz.reap.calculations.CalcValueGettable monthlyInterestPaidAccumulatedValue -> al
+    com.byronkatz.reap.calculations.CalcValueGettable yearlyAmountOwedValue -> am
+    com.byronkatz.reap.calculations.CalcValueGettable monthlyAmountOwedValue -> an
+    com.byronkatz.reap.calculations.CalcValueGettable loanAmountValue -> ao
+    com.byronkatz.reap.calculations.CalcValueGettable yearlyInterestPaid -> ap
+    com.byronkatz.reap.calculations.CalcValueGettable yearlyPrincipalPaid -> aq
+    com.byronkatz.reap.calculations.CalcValueGettable mortgagePayment -> ar
+    com.byronkatz.reap.calculations.CalcValueGettable yearlyMortgagePayment -> as
+    com.byronkatz.reap.calculations.CalcValueGettable yearlyPrivateMortgageInsurance -> at
+    com.byronkatz.reap.calculations.CalcValueGettable yearlyPrivateMortgageInsuranceAccum -> au
+    com.byronkatz.reap.calculations.CalcValueGettable afterTaxCashFlow -> av
+    com.byronkatz.reap.calculations.CalcValueGettable afterTaxCashFlowNPV -> aw
+    com.byronkatz.reap.calculations.CalcValueGettable afterTaxCashFlowAccumulator -> ax
+    com.byronkatz.reap.calculations.CalcValueGettable beforeTaxCashFlow -> ay
+    com.byronkatz.reap.calculations.CalcValueGettable yearlyOutlay -> az
+    com.byronkatz.reap.calculations.CalcValueGettable capitalizationRateOnPurchaseValue -> aA
+    com.byronkatz.reap.calculations.CalcValueGettable capitalizationRateOnProjectedValue -> aB
+    com.byronkatz.reap.calculations.CalcValueGettable firstDayCosts -> aC
+    com.byronkatz.reap.calculations.CalcValueGettable npv -> aD
+    com.byronkatz.reap.calculations.CalcValueGettable sellingExpensesFValue -> aE
+    com.byronkatz.reap.calculations.CalcValueGettable brokerCutOfSale -> aF
+    com.byronkatz.reap.calculations.CalcValueGettable afterTaxEquityReversion -> aG
+    com.byronkatz.reap.calculations.CalcValueGettable aterPv -> aH
+    com.byronkatz.reap.calculations.CalcValueGettable yearlyDepreciation -> aI
+    com.byronkatz.reap.calculations.CalcValueGettable taxesDueAtSale -> aJ
+    com.byronkatz.reap.calculations.CalcValueGettable yearlyTaxOnIncome -> aK
     24:24:double getFutureValuePositiveCashFlowsAccumulator() -> a
     28:28:double getPresentValueNegativeCashFlowsAccumulator() -> b
-    213:216:boolean isApproximatelyEqual(double,double) -> a
-    223:250:void setValues(com.byronkatz.reap.general.DataManager) -> a
-    50:50:double[] access$0(com.byronkatz.reap.calculations.Calculations) -> a
-    40:40:double access$1(com.byronkatz.reap.calculations.Calculations) -> b
-    41:41:double access$2(com.byronkatz.reap.calculations.Calculations) -> c
-    76:76:double[] access$3(com.byronkatz.reap.calculations.Calculations) -> d
-    42:42:double access$4(com.byronkatz.reap.calculations.Calculations) -> e
-    77:77:double[] access$5(com.byronkatz.reap.calculations.Calculations) -> f
-    78:78:double[] access$6(com.byronkatz.reap.calculations.Calculations) -> g
-    71:71:double access$7(com.byronkatz.reap.calculations.Calculations) -> h
-    93:93:com.byronkatz.reap.calculations.CalcValueGettable access$8(com.byronkatz.reap.calculations.Calculations) -> i
-    72:72:double access$9(com.byronkatz.reap.calculations.Calculations) -> j
-    88:88:com.byronkatz.reap.calculations.CalcValueGettable access$10(com.byronkatz.reap.calculations.Calculations) -> k
-    117:117:com.byronkatz.reap.calculations.CalcValueGettable access$11(com.byronkatz.reap.calculations.Calculations) -> l
-    116:116:com.byronkatz.reap.calculations.CalcValueGettable access$12(com.byronkatz.reap.calculations.Calculations) -> m
+    215:218:boolean isApproximatelyEqual(double,double) -> a
+    225:252:void setValues(com.byronkatz.reap.general.DataManager) -> a
+    51:51:double[] access$0(com.byronkatz.reap.calculations.Calculations) -> a
+    41:41:double access$1(com.byronkatz.reap.calculations.Calculations) -> b
+    42:42:double access$2(com.byronkatz.reap.calculations.Calculations) -> c
+    77:77:double[] access$3(com.byronkatz.reap.calculations.Calculations) -> d
+    43:43:double access$4(com.byronkatz.reap.calculations.Calculations) -> e
+    78:78:double[] access$5(com.byronkatz.reap.calculations.Calculations) -> f
+    79:79:double[] access$6(com.byronkatz.reap.calculations.Calculations) -> g
+    72:72:double access$7(com.byronkatz.reap.calculations.Calculations) -> h
+    94:94:com.byronkatz.reap.calculations.CalcValueGettable access$8(com.byronkatz.reap.calculations.Calculations) -> i
+    73:73:double access$9(com.byronkatz.reap.calculations.Calculations) -> j
+    89:89:com.byronkatz.reap.calculations.CalcValueGettable access$10(com.byronkatz.reap.calculations.Calculations) -> k
+    118:118:com.byronkatz.reap.calculations.CalcValueGettable access$11(com.byronkatz.reap.calculations.Calculations) -> l
+    117:117:com.byronkatz.reap.calculations.CalcValueGettable access$12(com.byronkatz.reap.calculations.Calculations) -> m
     38:38:double access$13(com.byronkatz.reap.calculations.Calculations) -> n
-    120:120:com.byronkatz.reap.calculations.CalcValueGettable access$14(com.byronkatz.reap.calculations.Calculations) -> o
+    121:121:com.byronkatz.reap.calculations.CalcValueGettable access$14(com.byronkatz.reap.calculations.Calculations) -> o
     37:37:double access$15(com.byronkatz.reap.calculations.Calculations) -> p
     36:36:double access$16(com.byronkatz.reap.calculations.Calculations) -> q
     31:31:double access$17(com.byronkatz.reap.calculations.Calculations) -> r
@@ -476,171 +478,172 @@ com.byronkatz.reap.calculations.Calculations -> com.byronkatz.reap.a.b:
     34:34:double access$19(com.byronkatz.reap.calculations.Calculations) -> t
     35:35:double[] access$20(com.byronkatz.reap.calculations.Calculations) -> u
     39:39:double access$21(com.byronkatz.reap.calculations.Calculations) -> v
-    69:69:double access$22(com.byronkatz.reap.calculations.Calculations) -> w
-    98:98:com.byronkatz.reap.calculations.CalcValueGettable access$23(com.byronkatz.reap.calculations.Calculations) -> x
-    121:121:com.byronkatz.reap.calculations.CalcValueGettable access$24(com.byronkatz.reap.calculations.Calculations) -> y
-    118:118:com.byronkatz.reap.calculations.CalcValueGettable access$25(com.byronkatz.reap.calculations.Calculations) -> z
-    58:58:double access$26(com.byronkatz.reap.calculations.Calculations) -> A
-    70:70:double access$27(com.byronkatz.reap.calculations.Calculations) -> B
-    46:46:double access$28(com.byronkatz.reap.calculations.Calculations) -> C
-    32:32:double access$29(com.byronkatz.reap.calculations.Calculations) -> D
-    114:114:com.byronkatz.reap.calculations.CalcValueGettable access$30(com.byronkatz.reap.calculations.Calculations) -> E
-    108:108:com.byronkatz.reap.calculations.CalcValueGettable access$31(com.byronkatz.reap.calculations.Calculations) -> F
-    119:119:com.byronkatz.reap.calculations.CalcValueGettable access$32(com.byronkatz.reap.calculations.Calculations) -> G
-    66:66:void access$33(com.byronkatz.reap.calculations.Calculations,double) -> a
-    65:65:void access$34(com.byronkatz.reap.calculations.Calculations,double) -> b
-    67:67:void access$35(com.byronkatz.reap.calculations.Calculations,double) -> c
-    68:68:void access$36(com.byronkatz.reap.calculations.Calculations,double) -> d
-    66:66:double access$37(com.byronkatz.reap.calculations.Calculations) -> H
-    107:107:com.byronkatz.reap.calculations.CalcValueGettable access$38(com.byronkatz.reap.calculations.Calculations) -> I
-    67:67:double access$39(com.byronkatz.reap.calculations.Calculations) -> J
-    63:63:double access$40(com.byronkatz.reap.calculations.Calculations) -> K
-    65:65:double access$41(com.byronkatz.reap.calculations.Calculations) -> L
-    68:68:double access$42(com.byronkatz.reap.calculations.Calculations) -> M
-    64:64:void access$43(com.byronkatz.reap.calculations.Calculations,double) -> e
-    64:64:double access$44(com.byronkatz.reap.calculations.Calculations) -> N
-    59:59:void access$45(com.byronkatz.reap.calculations.Calculations,double) -> f
-    59:59:double access$46(com.byronkatz.reap.calculations.Calculations) -> O
-    57:57:int access$47(com.byronkatz.reap.calculations.Calculations) -> P
-    62:62:double[] access$48(com.byronkatz.reap.calculations.Calculations) -> Q
-    61:61:double[] access$49(com.byronkatz.reap.calculations.Calculations) -> R
-    60:60:double[] access$50(com.byronkatz.reap.calculations.Calculations) -> S
-    92:92:com.byronkatz.reap.calculations.CalcValueGettable access$51(com.byronkatz.reap.calculations.Calculations) -> T
-    103:103:com.byronkatz.reap.calculations.CalcValueGettable access$52(com.byronkatz.reap.calculations.Calculations) -> U
-    86:86:com.byronkatz.reap.calculations.CalcValueGettable access$53(com.byronkatz.reap.calculations.Calculations) -> V
-    43:43:int access$54(com.byronkatz.reap.calculations.Calculations) -> W
-    55:55:double[] access$55(com.byronkatz.reap.calculations.Calculations) -> X
-    106:106:com.byronkatz.reap.calculations.CalcValueGettable access$56(com.byronkatz.reap.calculations.Calculations) -> Y
-    51:51:double[] access$57(com.byronkatz.reap.calculations.Calculations) -> Z
-    45:45:double access$58(com.byronkatz.reap.calculations.Calculations) -> aa
-    52:52:double access$59(com.byronkatz.reap.calculations.Calculations) -> ab
-    48:48:double[] access$60(com.byronkatz.reap.calculations.Calculations) -> ac
+    40:40:double access$22(com.byronkatz.reap.calculations.Calculations) -> w
+    70:70:double access$23(com.byronkatz.reap.calculations.Calculations) -> x
+    99:99:com.byronkatz.reap.calculations.CalcValueGettable access$24(com.byronkatz.reap.calculations.Calculations) -> y
+    122:122:com.byronkatz.reap.calculations.CalcValueGettable access$25(com.byronkatz.reap.calculations.Calculations) -> z
+    119:119:com.byronkatz.reap.calculations.CalcValueGettable access$26(com.byronkatz.reap.calculations.Calculations) -> A
+    59:59:double access$27(com.byronkatz.reap.calculations.Calculations) -> B
+    71:71:double access$28(com.byronkatz.reap.calculations.Calculations) -> C
+    47:47:double access$29(com.byronkatz.reap.calculations.Calculations) -> D
+    32:32:double access$30(com.byronkatz.reap.calculations.Calculations) -> E
+    115:115:com.byronkatz.reap.calculations.CalcValueGettable access$31(com.byronkatz.reap.calculations.Calculations) -> F
+    109:109:com.byronkatz.reap.calculations.CalcValueGettable access$32(com.byronkatz.reap.calculations.Calculations) -> G
+    120:120:com.byronkatz.reap.calculations.CalcValueGettable access$33(com.byronkatz.reap.calculations.Calculations) -> H
+    67:67:void access$34(com.byronkatz.reap.calculations.Calculations,double) -> a
+    66:66:void access$35(com.byronkatz.reap.calculations.Calculations,double) -> b
+    68:68:void access$36(com.byronkatz.reap.calculations.Calculations,double) -> c
+    69:69:void access$37(com.byronkatz.reap.calculations.Calculations,double) -> d
+    67:67:double access$38(com.byronkatz.reap.calculations.Calculations) -> I
+    108:108:com.byronkatz.reap.calculations.CalcValueGettable access$39(com.byronkatz.reap.calculations.Calculations) -> J
+    68:68:double access$40(com.byronkatz.reap.calculations.Calculations) -> K
+    64:64:double access$41(com.byronkatz.reap.calculations.Calculations) -> L
+    66:66:double access$42(com.byronkatz.reap.calculations.Calculations) -> M
+    69:69:double access$43(com.byronkatz.reap.calculations.Calculations) -> N
+    65:65:void access$44(com.byronkatz.reap.calculations.Calculations,double) -> e
+    65:65:double access$45(com.byronkatz.reap.calculations.Calculations) -> O
+    60:60:void access$46(com.byronkatz.reap.calculations.Calculations,double) -> f
+    60:60:double access$47(com.byronkatz.reap.calculations.Calculations) -> P
+    58:58:int access$48(com.byronkatz.reap.calculations.Calculations) -> Q
+    63:63:double[] access$49(com.byronkatz.reap.calculations.Calculations) -> R
+    62:62:double[] access$50(com.byronkatz.reap.calculations.Calculations) -> S
+    61:61:double[] access$51(com.byronkatz.reap.calculations.Calculations) -> T
+    93:93:com.byronkatz.reap.calculations.CalcValueGettable access$52(com.byronkatz.reap.calculations.Calculations) -> U
+    104:104:com.byronkatz.reap.calculations.CalcValueGettable access$53(com.byronkatz.reap.calculations.Calculations) -> V
+    87:87:com.byronkatz.reap.calculations.CalcValueGettable access$54(com.byronkatz.reap.calculations.Calculations) -> W
+    44:44:int access$55(com.byronkatz.reap.calculations.Calculations) -> X
+    56:56:double[] access$56(com.byronkatz.reap.calculations.Calculations) -> Y
+    107:107:com.byronkatz.reap.calculations.CalcValueGettable access$57(com.byronkatz.reap.calculations.Calculations) -> Z
+    52:52:double[] access$58(com.byronkatz.reap.calculations.Calculations) -> aa
+    46:46:double access$59(com.byronkatz.reap.calculations.Calculations) -> ab
+    53:53:double access$60(com.byronkatz.reap.calculations.Calculations) -> ac
     49:49:double[] access$61(com.byronkatz.reap.calculations.Calculations) -> ad
-    96:96:com.byronkatz.reap.calculations.CalcValueGettable access$62(com.byronkatz.reap.calculations.Calculations) -> ae
+    50:50:double[] access$62(com.byronkatz.reap.calculations.Calculations) -> ae
+    97:97:com.byronkatz.reap.calculations.CalcValueGettable access$63(com.byronkatz.reap.calculations.Calculations) -> af
 com.byronkatz.reap.calculations.Calculations$AfterTaxCashFlow -> com.byronkatz.reap.a.c:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1002:1006:double getValue(int) -> a
+    1010:1014:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$AfterTaxCashFlowAccumulator -> com.byronkatz.reap.a.d:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    989:993:double getValue(int) -> a
+    997:1001:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$AfterTaxEquityReversion -> com.byronkatz.reap.a.e:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    805:809:double getValue(int) -> a
+    813:817:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$AtcfNpv -> com.byronkatz.reap.a.f:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    965:972:double getValue(int) -> a
+    973:980:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$AterPV -> com.byronkatz.reap.a.g:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    831:831:double getValue(int) -> a
+    839:839:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$BeforeTaxCashFlow -> com.byronkatz.reap.a.h:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1066:1070:double getValue(int) -> a
+    1074:1078:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$BrokerCutOfSale -> com.byronkatz.reap.a.i:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    786:790:double getValue(int) -> a
+    794:798:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$CapitalizationRateOnProjectedValue -> com.byronkatz.reap.a.j:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1092:1096:double getValue(int) -> a
+    1100:1104:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$CapitalizationRateOnPurchaseValue -> com.byronkatz.reap.a.k:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1079:1083:double getValue(int) -> a
+    1087:1091:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$FirstDayCosts -> com.byronkatz.reap.a.l:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    874:877:double getValue(int) -> a
+    882:885:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$GeneralExpensesFValue -> com.byronkatz.reap.a.m:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    710:713:double getValue(int) -> a
+    713:716:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$InsuranceFValue -> com.byronkatz.reap.a.n:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    689:692:double getValue(int) -> a
+    692:695:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$InterestPaymentValue -> com.byronkatz.reap.a.o:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1353:1357:double getValue(int) -> a
+    1361:1365:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$InvestmentFValue -> com.byronkatz.reap.a.p:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    766:769:double getValue(int) -> a
+    769:777:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$LoanAmountValue -> com.byronkatz.reap.a.q:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1265:1268:double getValue(int) -> a
+    1273:1276:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$MIRR -> com.byronkatz.reap.a.r:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    899:957:double getValue(int) -> a
+    907:965:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$MonthlyAmountOwedValue -> com.byronkatz.reap.a.s:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1250:1253:double getValue(int) -> a
+    1258:1261:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$MonthlyInterestPaidAccumulatedValue -> com.byronkatz.reap.a.t:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1311:1319:double getValue(int) -> a
+    1319:1327:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$MonthlyRentFValue -> com.byronkatz.reap.a.u:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    424:427:double getValue(int) -> a
+    427:430:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$MortgagePayment -> com.byronkatz.reap.a.v:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1279:1282:double getValue(int) -> a
+    1287:1290:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$MunicipalExpensesFValue -> com.byronkatz.reap.a.w:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    647:650:double getValue(int) -> a
+    650:653:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$NPV -> com.byronkatz.reap.a.x:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    885:888:double getValue(int) -> a
+    893:896:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$NetOperatingIncome -> com.byronkatz.reap.a.y:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    508:512:double getValue(int) -> a
+    511:515:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$OperatingExpensesFValue -> com.byronkatz.reap.a.z:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    731:734:double getValue(int) -> a
+    734:737:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$PrincipalPaymentValue -> com.byronkatz.reap.a.aa:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    406:409:double getValue(int) -> a
+    409:412:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$PropertyTaxFValue -> com.byronkatz.reap.a.ab:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    668:671:double getValue(int) -> a
+    671:674:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$SellingExpensesFValue -> com.byronkatz.reap.a.ac:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    847:851:double getValue(int) -> a
+    855:859:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$TaxableIncome -> com.byronkatz.reap.a.ad:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    543:549:double getValue(int) -> a
+    546:552:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$TaxesDueAtSale -> com.byronkatz.reap.a.ae:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    612:620:double getValue(int) -> a
-    626:625:double taxesDueFunction(int) -> b
+    615:623:double getValue(int) -> a
+    629:628:double taxesDueFunction(int) -> b
 com.byronkatz.reap.calculations.Calculations$YearlyAmountOwedValue -> com.byronkatz.reap.a.af:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1237:1240:double getValue(int) -> a
+    1245:1248:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$YearlyDepreciation -> com.byronkatz.reap.a.ag:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    575:578:double getValue(int) -> a
+    578:581:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$YearlyGrossIncomeValue -> com.byronkatz.reap.a.ah:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    443:446:double getValue(int) -> a
+    446:449:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$YearlyInterestPaid -> com.byronkatz.reap.a.ai:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1400:1413:double getValue(int) -> a
+    1408:1421:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$YearlyInterestPaidAccumulatedValue -> com.byronkatz.reap.a.aj:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1332:1340:double getValue(int) -> a
+    1340:1348:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$YearlyMortgagePayment -> com.byronkatz.reap.a.ak:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1300:1303:double getValue(int) -> a
+    1308:1311:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$YearlyNetIncomeValue -> com.byronkatz.reap.a.al:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    462:465:double getValue(int) -> a
+    465:468:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$YearlyOutlay -> com.byronkatz.reap.a.am:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1105:1108:double getValue(int) -> a
+    1113:1116:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$YearlyPrincipalPaid -> com.byronkatz.reap.a.an:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1369:1386:double getValue(int) -> a
+    1377:1394:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$YearlyPrivateMortgageInsurance -> com.byronkatz.reap.a.ao:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1217:1225:double getValue(int) -> a
+    1225:1233:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$YearlyPrivateMortgageInsuranceAccum -> com.byronkatz.reap.a.ap:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    1198:1204:double getValue(int) -> a
+    1206:1212:double getValue(int) -> a
 com.byronkatz.reap.calculations.Calculations$YearlyTaxOnIncome -> com.byronkatz.reap.a.aq:
     com.byronkatz.reap.calculations.Calculations this$0 -> a
-    593:597:double getValue(int) -> a
+    596:600:double getValue(int) -> a
 com.byronkatz.reap.customview.AnalysisGraph -> com.byronkatz.reap.customview.AnalysisGraph:
     java.lang.Float DIVISOR_MODIFIER -> j
     java.lang.Float LEFT_SIDE_MARGIN_PIXELS -> k
@@ -742,11 +745,11 @@ com.byronkatz.reap.general.DataController -> com.byronkatz.reap.general.b:
     280:282:android.database.Cursor getAllDatabaseValues(java.lang.String) -> a
     290:291:void setCurrentDatabaseRow(int) -> a
     298:298:int getCurrentDatabaseRow() -> e
-    324:325:boolean removeDatabaseEntry(int) -> b
-    329:329:java.util.Set getViewableDataTableRows() -> f
-    333:334:void setViewableDataTableRows(java.util.Set) -> a
-    337:337:java.lang.Integer getCurrentYearSelected() -> g
-    341:342:void setCurrentYearSelected(java.lang.Integer) -> a
+    332:333:boolean removeDatabaseEntry(int) -> b
+    337:337:java.util.Set getViewableDataTableRows() -> f
+    341:342:void setViewableDataTableRows(java.util.Set) -> a
+    345:345:java.lang.Integer getCurrentYearSelected() -> g
+    349:350:void setCurrentYearSelected(java.lang.Integer) -> a
 com.byronkatz.reap.general.DataManager -> com.byronkatz.reap.general.c:
     double getCalcValue(com.byronkatz.reap.general.ValueEnum,int) -> a
     double getInputValue(com.byronkatz.reap.general.ValueEnum) -> a
@@ -763,14 +766,16 @@ com.byronkatz.reap.general.DatabaseAdapter -> com.byronkatz.reap.general.e:
     java.lang.String LOCATIONS_DATABASE_CREATE -> a
     android.database.sqlite.SQLiteDatabase db -> b
     com.byronkatz.reap.general.DatabaseAdapter$myDbHelper dbHelper -> c
-    86:88:int insertEntry(android.content.ContentValues) -> a
-    92:92:boolean removeEntry(long) -> a
-    97:97:android.database.Cursor getAllEntries(java.lang.String) -> a
-    107:109:boolean updateEntry(long,android.content.ContentValues) -> a
-    29:29:java.lang.String access$0() -> a
+    89:91:int insertEntry(android.content.ContentValues) -> a
+    95:95:boolean removeEntry(long) -> a
+    100:100:android.database.Cursor getAllEntries(java.lang.String) -> a
+    110:112:boolean updateEntry(long,android.content.ContentValues) -> a
+    31:31:java.lang.String access$0() -> a
 com.byronkatz.reap.general.DatabaseAdapter$myDbHelper -> com.byronkatz.reap.general.f:
-    123:135:void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
-    151:154:void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
+    142:144:void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
+    149:179:void upgradeProcedure(android.database.sqlite.SQLiteDatabase) -> a
+    188:202:java.util.List getColumns(android.database.sqlite.SQLiteDatabase,java.lang.String) -> a
+    231:240:void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
 com.byronkatz.reap.general.HelpButtonOnClickWrapper -> com.byronkatz.reap.general.g:
     com.byronkatz.reap.general.ValueEnum ve -> a
     17:18:void onClick(android.view.View) -> onClick
@@ -874,51 +879,52 @@ com.byronkatz.reap.general.ValueEnum -> com.byronkatz.reap.general.r:
     com.byronkatz.reap.general.ValueEnum MARGINAL_TAX_RATE -> z
     com.byronkatz.reap.general.ValueEnum MODIFIED_INTERNAL_RATE_OF_RETURN -> A
     com.byronkatz.reap.general.ValueEnum MONTHLY_MORTGAGE_PAYMENT -> B
-    com.byronkatz.reap.general.ValueEnum MONTHLY_AMOUNT_OWED -> C
-    com.byronkatz.reap.general.ValueEnum MONTHLY_INTEREST_ACCUMULATED -> D
-    com.byronkatz.reap.general.ValueEnum YEARLY_DEPRECIATION -> E
-    com.byronkatz.reap.general.ValueEnum MONTHS_UNTIL_RENT_STARTS -> F
-    com.byronkatz.reap.general.ValueEnum MONTHLY_RENT_FV -> G
-    com.byronkatz.reap.general.ValueEnum NPV -> H
-    com.byronkatz.reap.general.ValueEnum NUMBER_OF_COMPOUNDING_PERIODS -> I
-    com.byronkatz.reap.general.ValueEnum PRIVATE_MORTGAGE_INSURANCE -> J
-    com.byronkatz.reap.general.ValueEnum PROJECTED_HOME_VALUE -> K
-    com.byronkatz.reap.general.ValueEnum PROPERTY_TAX -> L
-    com.byronkatz.reap.general.ValueEnum REAL_ESTATE_APPRECIATION_RATE -> M
-    com.byronkatz.reap.general.ValueEnum REQUIRED_RATE_OF_RETURN -> N
-    com.byronkatz.reap.general.ValueEnum SELLING_BROKER_RATE -> O
-    com.byronkatz.reap.general.ValueEnum SELLING_EXPENSES -> P
-    com.byronkatz.reap.general.ValueEnum STREET_ADDRESS -> Q
-    com.byronkatz.reap.general.ValueEnum STATE_INITIALS -> R
-    com.byronkatz.reap.general.ValueEnum CITY -> S
-    com.byronkatz.reap.general.ValueEnum TAXES_DUE_AT_SALE -> T
-    com.byronkatz.reap.general.ValueEnum TOTAL_PURCHASE_VALUE -> U
-    com.byronkatz.reap.general.ValueEnum VACANCY_AND_CREDIT_LOSS_RATE -> V
-    com.byronkatz.reap.general.ValueEnum YEARLY_BEFORE_TAX_CASH_FLOW -> W
-    com.byronkatz.reap.general.ValueEnum YEARLY_GENERAL_EXPENSES -> X
-    com.byronkatz.reap.general.ValueEnum YEARLY_HOME_INSURANCE -> Y
-    com.byronkatz.reap.general.ValueEnum YEARLY_INTEREST_PAID -> Z
-    com.byronkatz.reap.general.ValueEnum YEARLY_OPERATING_EXPENSES -> aa
-    com.byronkatz.reap.general.ValueEnum YEARLY_ACCUM_INTEREST -> ab
-    com.byronkatz.reap.general.ValueEnum YEARLY_INTEREST_RATE -> ac
-    com.byronkatz.reap.general.ValueEnum YEARLY_MORTGAGE_PAYMENT -> ad
-    com.byronkatz.reap.general.ValueEnum YEARLY_MUNICIPAL_FEES -> ae
-    com.byronkatz.reap.general.ValueEnum YEARLY_NET_OPERATING_INCOME -> af
-    com.byronkatz.reap.general.ValueEnum YEARLY_OUTLAY -> ag
-    com.byronkatz.reap.general.ValueEnum YEARLY_PRIVATE_MORTGAGE_INSURANCE -> ah
-    com.byronkatz.reap.general.ValueEnum YEARLY_PRIVATE_MORTGAGE_INSURANCE_ACCUM -> ai
-    com.byronkatz.reap.general.ValueEnum YEARLY_PRINCIPAL_PAID -> aj
-    com.byronkatz.reap.general.ValueEnum YEARLY_PROPERTY_TAX -> ak
-    com.byronkatz.reap.general.ValueEnum YEARLY_INCOME -> al
-    com.byronkatz.reap.general.ValueEnum GROSS_YEARLY_INCOME -> am
-    com.byronkatz.reap.general.ValueEnum TAXABLE_INCOME -> an
-    com.byronkatz.reap.general.ValueEnum YEARLY_TAX_ON_INCOME -> ao
-    java.lang.Integer helpText -> ap
-    java.lang.Integer titleText -> aq
-    com.byronkatz.reap.general.ValueEnum$ValueType valueType -> ar
-    java.lang.Boolean isSavedToDatabase -> as
-    java.lang.Boolean isVaryingByYear -> at
-    com.byronkatz.reap.general.ValueEnum[] ENUM$VALUES -> au
+    com.byronkatz.reap.general.ValueEnum INITIAL_VALUATION -> C
+    com.byronkatz.reap.general.ValueEnum MONTHLY_AMOUNT_OWED -> D
+    com.byronkatz.reap.general.ValueEnum MONTHLY_INTEREST_ACCUMULATED -> E
+    com.byronkatz.reap.general.ValueEnum YEARLY_DEPRECIATION -> F
+    com.byronkatz.reap.general.ValueEnum MONTHS_UNTIL_RENT_STARTS -> G
+    com.byronkatz.reap.general.ValueEnum MONTHLY_RENT_FV -> H
+    com.byronkatz.reap.general.ValueEnum NPV -> I
+    com.byronkatz.reap.general.ValueEnum NUMBER_OF_COMPOUNDING_PERIODS -> J
+    com.byronkatz.reap.general.ValueEnum PRIVATE_MORTGAGE_INSURANCE -> K
+    com.byronkatz.reap.general.ValueEnum PROJECTED_HOME_VALUE -> L
+    com.byronkatz.reap.general.ValueEnum PROPERTY_TAX -> M
+    com.byronkatz.reap.general.ValueEnum REAL_ESTATE_APPRECIATION_RATE -> N
+    com.byronkatz.reap.general.ValueEnum REQUIRED_RATE_OF_RETURN -> O
+    com.byronkatz.reap.general.ValueEnum SELLING_BROKER_RATE -> P
+    com.byronkatz.reap.general.ValueEnum SELLING_EXPENSES -> Q
+    com.byronkatz.reap.general.ValueEnum STREET_ADDRESS -> R
+    com.byronkatz.reap.general.ValueEnum STATE_INITIALS -> S
+    com.byronkatz.reap.general.ValueEnum CITY -> T
+    com.byronkatz.reap.general.ValueEnum TAXES_DUE_AT_SALE -> U
+    com.byronkatz.reap.general.ValueEnum TOTAL_PURCHASE_VALUE -> V
+    com.byronkatz.reap.general.ValueEnum VACANCY_AND_CREDIT_LOSS_RATE -> W
+    com.byronkatz.reap.general.ValueEnum YEARLY_BEFORE_TAX_CASH_FLOW -> X
+    com.byronkatz.reap.general.ValueEnum YEARLY_GENERAL_EXPENSES -> Y
+    com.byronkatz.reap.general.ValueEnum YEARLY_HOME_INSURANCE -> Z
+    com.byronkatz.reap.general.ValueEnum YEARLY_INTEREST_PAID -> aa
+    com.byronkatz.reap.general.ValueEnum YEARLY_OPERATING_EXPENSES -> ab
+    com.byronkatz.reap.general.ValueEnum YEARLY_ACCUM_INTEREST -> ac
+    com.byronkatz.reap.general.ValueEnum YEARLY_INTEREST_RATE -> ad
+    com.byronkatz.reap.general.ValueEnum YEARLY_MORTGAGE_PAYMENT -> ae
+    com.byronkatz.reap.general.ValueEnum YEARLY_MUNICIPAL_FEES -> af
+    com.byronkatz.reap.general.ValueEnum YEARLY_NET_OPERATING_INCOME -> ag
+    com.byronkatz.reap.general.ValueEnum YEARLY_OUTLAY -> ah
+    com.byronkatz.reap.general.ValueEnum YEARLY_PRIVATE_MORTGAGE_INSURANCE -> ai
+    com.byronkatz.reap.general.ValueEnum YEARLY_PRIVATE_MORTGAGE_INSURANCE_ACCUM -> aj
+    com.byronkatz.reap.general.ValueEnum YEARLY_PRINCIPAL_PAID -> ak
+    com.byronkatz.reap.general.ValueEnum YEARLY_PROPERTY_TAX -> al
+    com.byronkatz.reap.general.ValueEnum YEARLY_INCOME -> am
+    com.byronkatz.reap.general.ValueEnum GROSS_YEARLY_INCOME -> an
+    com.byronkatz.reap.general.ValueEnum TAXABLE_INCOME -> ao
+    com.byronkatz.reap.general.ValueEnum YEARLY_TAX_ON_INCOME -> ap
+    java.lang.Integer helpText -> aq
+    java.lang.Integer titleText -> ar
+    com.byronkatz.reap.general.ValueEnum$ValueType valueType -> as
+    java.lang.Boolean isSavedToDatabase -> at
+    java.lang.Boolean isVaryingByYear -> au
+    com.byronkatz.reap.general.ValueEnum[] ENUM$VALUES -> av
     90:90:java.lang.String toString() -> toString
     98:98:com.byronkatz.reap.general.ValueEnum$ValueType getType() -> a
     102:102:java.lang.Integer getTitleText() -> b

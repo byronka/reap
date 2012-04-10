@@ -187,7 +187,7 @@ public class RentalActivity extends Activity {
     fixupCosts.setText(Utility.displayCurrency(fc));
     
     Double val = dataController.getInputValue(ValueEnum.INITIAL_VALUATION);
-    fixupCosts.setText(Utility.displayCurrency(val));
+    valuation.setText(Utility.displayCurrency(val));
 
     Double iyge = dataController.getInputValue(ValueEnum.INITIAL_YEARLY_GENERAL_EXPENSES);
     initialYearlyGeneralExpenses.setText(Utility.displayCurrency(iyge));

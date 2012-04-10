@@ -13,7 +13,7 @@ com.byronkatz.reap.R$menu
 com.byronkatz.reap.R$string
 com.byronkatz.reap.R$styleable:
     public static final int AnalysisGraph_graphType
-    643:643:public R$styleable()
+    648:648:public R$styleable()
 com.byronkatz.reap.activity.AddressActivity:
     private static final int STATE_ARRAY_SIZE
     private android.widget.ArrayAdapter adapter
@@ -72,9 +72,9 @@ com.byronkatz.reap.general.DatabaseAdapter:
     public static final java.lang.String KEY_ID
     public static final java.lang.String MODIFIED_AT
     public static final java.lang.String YEAR_VALUE
-    77:78:public com.byronkatz.reap.general.DatabaseAdapter open()
-    82:83:public void close()
-    101:102:public java.util.HashMap getEntry(long)
+    80:81:public com.byronkatz.reap.general.DatabaseAdapter open()
+    85:86:public void close()
+    104:105:public java.util.HashMap getEntry(long)
 com.byronkatz.reap.general.RealEstateAnalysisProcessorApplication:
     public static final java.lang.String BASE_VALUES
 com.byronkatz.reap.general.Utility:

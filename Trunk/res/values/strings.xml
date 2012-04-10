@@ -163,7 +163,7 @@
 	       This is a calculated value</string>
        <string name="buildingValueHelpText" formatted="false">The value
          of the building itself, not the total estate (which includes land). This value
-         is used to calculated the depreciation which will be applied to each year\'s
+         is used to calculate the depreciation which will be applied to each year\'s
          taxes and to the taxes at the equity reversion (investment liquidation)
 	    \n\n
 	    This value is user-input</string>
@@ -740,7 +740,8 @@ value at the time of sale, to pay for the broker
         at the beginning of the first year of ownership.  It is used as the value
         of the investment if it is greater than 0.  This way, the user may determine
         that the actual value is less or greater than the purchase price.  The
-        Calculated Projected Value will use this value as its starting point.
+        Calculated Projected Value would then use this value as its starting point,
+        instead of the Input Total Purchase Value plus the Input Fixup Costs.
                         \n\n
 	    This value is user-input
         </string>
@@ -862,7 +863,7 @@ value at the time of sale, to pay for the broker
     <string name="authorInfoText">Real Estate Analysis Processor
 	    \n\u00A9 2012 Byron Katz
 	    \nrenaissance.nomad@gmail.com
-	    \nbuild 04041201
+	    \nbuild 04101201
     </string>
     <string name="sendEmailToDeveloperText">Send email to developer</string>
     <string name="crash_toast_text">The REAP application has crashed.  Email report
