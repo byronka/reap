@@ -401,9 +401,6 @@ public class Utility {
         returnValue = Double.valueOf(value);
       }
     } catch (Exception e) {
-      System.err.println("The REAP system encountered an error while" +
-          " trying to parse a number.  Please notify the developer" +
-          "of the following error:\n" + e.getMessage());
       return 0d;
     }
 
@@ -498,9 +495,13 @@ public class Utility {
 
   private static void parseThenDisplayInteger(View v) {
 
-    ((EditText) v).setText (String.valueOf(
-        Integer.valueOf(((EditText) v).getText().toString())));
+    try {
+      ((EditText) v).setText (String.valueOf(
+          Integer.valueOf(((EditText) v).getText().toString())));
 
+    } catch (Exception e) {
+      ((EditText) v).setText("0");
+    }
   }
 
 
@@ -532,9 +533,6 @@ public class Utility {
       }
 
     } catch (Exception e) {
-      System.err.println("The REAP system encountered an error while" +
-          " trying to parse a number.  Please notify the developer" +
-          "of the following error:\n" + e.getMessage());
       return 0.0d;
     }
 

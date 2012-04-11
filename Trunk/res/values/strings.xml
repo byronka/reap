@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name" formatted="false">Real Estate Analysis Processor</string>
+    <string name="app_name" formatted="false">REAP</string>
 
     <!-- License checking status messages -->
     <string name="check_license">Check license</string>
@@ -861,7 +861,7 @@ value at the time of sale, to pay for the broker
     <string name="authorInfoText">Real Estate Analysis Processor
 	    \n\u00A9 2012 Byron Katz
 	    \nrenaissance.nomad@gmail.com
-	    \nbuild 04101201
+	    \nbuild 04111201
     </string>
     <string name="sendEmailToDeveloperText">Send email to developer</string>
     <string name="crash_toast_text">The REAP application has crashed.  Email report

@@ -28,12 +28,14 @@ public class CurrentValueOnFocusChangeListener implements
 
     } else if (! hasFocus) {
 
-      Double tempValueNumeric = GraphActivityFunctions.parseEditText(graphActivity.currentValueEditText, graphActivity.currentSliderKey);
+      Double tempValueNumeric = GraphActivityFunctions.parseEditText(
+          graphActivity.currentValueEditText, graphActivity.currentSliderKey);
  
         graphActivity.currentValueNumeric = tempValueNumeric;
         graphActivity.recalcGraphPage();
 
-      GraphActivityFunctions.displayValue(graphActivity.currentValueEditText, graphActivity.currentValueNumeric, graphActivity.currentSliderKey);
+      GraphActivityFunctions.displayValue(
+          graphActivity.currentValueEditText, graphActivity.currentValueNumeric, graphActivity.currentSliderKey);
 
     }
   }

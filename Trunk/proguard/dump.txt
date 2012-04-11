@@ -2050,15 +2050,17 @@ Methods (count = 2):
       [77] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
-      + Line number table attribute (count = 8)
+      + Line number table attribute (count = 10)
         [0] -> line 26
         [4] -> line 27
         [16] -> line 29
-        [20] -> line 31
-        [38] -> line 33
-        [46] -> line 34
-        [53] -> line 36
-        [77] -> line 39
+        [20] -> line 32
+        [34] -> line 31
+        [38] -> line 34
+        [46] -> line 35
+        [53] -> line 38
+        [74] -> line 37
+        [77] -> line 41
       + Stack map table attribute (count = 2):
         - [16] Var: ..., Stack: (empty)
         - [77] Var: ..., Stack: (empty)
@@ -7723,7 +7725,7 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 128):
+Constant Pool (count = 130):
   + Integer [2131034188]
   + Integer [2131034190]
   + Integer [2131034192]
@@ -7740,6 +7742,7 @@ Constant Pool (count = 128):
   + Class [com/byronkatz/reap/general/r]
   + Class [com/byronkatz/reap/general/s]
   + Class [java/lang/Double]
+  + Class [java/lang/Exception]
   + Class [java/lang/Integer]
   + Class [java/lang/Math]
   + Class [java/lang/NoSuchFieldError]
@@ -7841,6 +7844,7 @@ Constant Pool (count = 128):
   + Utf8 [intValue]
   + Utf8 [invalidate]
   + Utf8 [java/lang/Double]
+  + Utf8 [java/lang/Exception]
   + Utf8 [java/lang/Integer]
   + Utf8 [java/lang/Math]
   + Utf8 [java/lang/NoSuchFieldError]
@@ -7866,56 +7870,56 @@ Methods (count = 6):
       [0] aload_0 v0
       [1] ldc #2
         + Integer [2131034190]
-      [3] invokevirtual #27
+      [3] invokevirtual #28
         + Methodref [android/app/Activity.findViewById (I)Landroid/view/View;]
       [6] checkcast #12
         + Class [com/byronkatz/reap/customview/AnalysisGraph]
-      [9] invokevirtual #32
+      [9] invokevirtual #33
         + Methodref [com/byronkatz/reap/customview/AnalysisGraph.invalidate ()V]
       [12] aload_0 v0
       [13] ldc #1
         + Integer [2131034188]
-      [15] invokevirtual #27
+      [15] invokevirtual #28
         + Methodref [android/app/Activity.findViewById (I)Landroid/view/View;]
       [18] checkcast #12
         + Class [com/byronkatz/reap/customview/AnalysisGraph]
-      [21] invokevirtual #32
+      [21] invokevirtual #33
         + Methodref [com/byronkatz/reap/customview/AnalysisGraph.invalidate ()V]
       [24] aload_0 v0
       [25] ldc #3
         + Integer [2131034192]
-      [27] invokevirtual #27
+      [27] invokevirtual #28
         + Methodref [android/app/Activity.findViewById (I)Landroid/view/View;]
       [30] checkcast #12
         + Class [com/byronkatz/reap/customview/AnalysisGraph]
-      [33] invokevirtual #32
+      [33] invokevirtual #33
         + Methodref [com/byronkatz/reap/customview/AnalysisGraph.invalidate ()V]
       [36] aload_0 v0
       [37] ldc #4
         + Integer [2131034194]
-      [39] invokevirtual #27
+      [39] invokevirtual #28
         + Methodref [android/app/Activity.findViewById (I)Landroid/view/View;]
       [42] checkcast #12
         + Class [com/byronkatz/reap/customview/AnalysisGraph]
-      [45] invokevirtual #32
+      [45] invokevirtual #33
         + Methodref [com/byronkatz/reap/customview/AnalysisGraph.invalidate ()V]
       [48] aload_0 v0
       [49] ldc #6
         + Integer [2131034198]
-      [51] invokevirtual #27
+      [51] invokevirtual #28
         + Methodref [android/app/Activity.findViewById (I)Landroid/view/View;]
       [54] checkcast #12
         + Class [com/byronkatz/reap/customview/AnalysisGraph]
-      [57] invokevirtual #32
+      [57] invokevirtual #33
         + Methodref [com/byronkatz/reap/customview/AnalysisGraph.invalidate ()V]
       [60] aload_0 v0
       [61] ldc #5
         + Integer [2131034196]
-      [63] invokevirtual #27
+      [63] invokevirtual #28
         + Methodref [android/app/Activity.findViewById (I)Landroid/view/View;]
       [66] checkcast #12
         + Class [com/byronkatz/reap/customview/AnalysisGraph]
-      [69] invokevirtual #32
+      [69] invokevirtual #33
         + Methodref [com/byronkatz/reap/customview/AnalysisGraph.invalidate ()V]
       [72] return
       Code attribute exceptions (count = 0):
@@ -7942,74 +7946,74 @@ Methods (count = 6):
       [0] aload_1 v1
       [1] ldc #2
         + Integer [2131034190]
-      [3] invokevirtual #27
+      [3] invokevirtual #28
         + Methodref [android/app/Activity.findViewById (I)Landroid/view/View;]
       [6] checkcast #12
         + Class [com/byronkatz/reap/customview/AnalysisGraph]
       [9] aload_0 v0
-      [10] invokevirtual #43
+      [10] invokevirtual #44
         + Methodref [java/lang/Integer.intValue ()I]
-      [13] invokevirtual #31
+      [13] invokevirtual #32
         + Methodref [com/byronkatz/reap/customview/AnalysisGraph.a (I)V]
       [16] aload_1 v1
       [17] ldc #1
         + Integer [2131034188]
-      [19] invokevirtual #27
+      [19] invokevirtual #28
         + Methodref [android/app/Activity.findViewById (I)Landroid/view/View;]
       [22] checkcast #12
         + Class [com/byronkatz/reap/customview/AnalysisGraph]
       [25] aload_0 v0
-      [26] invokevirtual #43
+      [26] invokevirtual #44
         + Methodref [java/lang/Integer.intValue ()I]
-      [29] invokevirtual #31
+      [29] invokevirtual #32
         + Methodref [com/byronkatz/reap/customview/AnalysisGraph.a (I)V]
       [32] aload_1 v1
       [33] ldc #3
         + Integer [2131034192]
-      [35] invokevirtual #27
+      [35] invokevirtual #28
         + Methodref [android/app/Activity.findViewById (I)Landroid/view/View;]
       [38] checkcast #12
         + Class [com/byronkatz/reap/customview/AnalysisGraph]
       [41] aload_0 v0
-      [42] invokevirtual #43
+      [42] invokevirtual #44
         + Methodref [java/lang/Integer.intValue ()I]
-      [45] invokevirtual #31
+      [45] invokevirtual #32
         + Methodref [com/byronkatz/reap/customview/AnalysisGraph.a (I)V]
       [48] aload_1 v1
       [49] ldc #4
         + Integer [2131034194]
-      [51] invokevirtual #27
+      [51] invokevirtual #28
         + Methodref [android/app/Activity.findViewById (I)Landroid/view/View;]
       [54] checkcast #12
         + Class [com/byronkatz/reap/customview/AnalysisGraph]
       [57] aload_0 v0
-      [58] invokevirtual #43
+      [58] invokevirtual #44
         + Methodref [java/lang/Integer.intValue ()I]
-      [61] invokevirtual #31
+      [61] invokevirtual #32
         + Methodref [com/byronkatz/reap/customview/AnalysisGraph.a (I)V]
       [64] aload_1 v1
       [65] ldc #6
         + Integer [2131034198]
-      [67] invokevirtual #27
+      [67] invokevirtual #28
         + Methodref [android/app/Activity.findViewById (I)Landroid/view/View;]
       [70] checkcast #12
         + Class [com/byronkatz/reap/customview/AnalysisGraph]
       [73] aload_0 v0
-      [74] invokevirtual #43
+      [74] invokevirtual #44
         + Methodref [java/lang/Integer.intValue ()I]
-      [77] invokevirtual #31
+      [77] invokevirtual #32
         + Methodref [com/byronkatz/reap/customview/AnalysisGraph.a (I)V]
       [80] aload_1 v1
       [81] ldc #5
         + Integer [2131034196]
-      [83] invokevirtual #27
+      [83] invokevirtual #28
         + Methodref [android/app/Activity.findViewById (I)Landroid/view/View;]
       [86] checkcast #12
         + Class [com/byronkatz/reap/customview/AnalysisGraph]
       [89] aload_0 v0
-      [90] invokevirtual #43
+      [90] invokevirtual #44
         + Methodref [java/lang/Integer.intValue ()I]
-      [93] invokevirtual #31
+      [93] invokevirtual #32
         + Methodref [com/byronkatz/reap/customview/AnalysisGraph.a (I)V]
       [96] return
       Code attribute exceptions (count = 0):
@@ -8034,13 +8038,13 @@ Methods (count = 6):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 13, locals = 2, stack = 4):
       [0] aload_1 v1
-      [1] invokevirtual #40
+      [1] invokevirtual #41
         + Methodref [java/lang/Double.doubleValue ()D]
       [4] aload_0 v0
-      [5] invokevirtual #40
+      [5] invokevirtual #41
         + Methodref [java/lang/Double.doubleValue ()D]
       [8] dsub
-      [9] invokestatic #41
+      [9] invokestatic #42
         + Methodref [java/lang/Double.valueOf (D)Ljava/lang/Double;]
       [12] areturn
       Code attribute exceptions (count = 0):
@@ -8051,17 +8055,17 @@ Methods (count = 6):
     Access flags: 0x8
       = static java.lang.Double a(android.widget.EditText,com.byronkatz.reap.general.r)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 91, locals = 3, stack = 2):
+    + Code attribute instructions (code length = 100, locals = 3, stack = 2):
       [0] dconst_0
-      [1] invokestatic #41
+      [1] invokestatic #42
         + Methodref [java/lang/Double.valueOf (D)Ljava/lang/Double;]
       [4] astore_2 v2
-      [5] invokestatic #30
+      [5] invokestatic #31
         + Methodref [com/byronkatz/reap/activity/n.a ()[I]
       [8] aload_1 v1
-      [9] invokevirtual #37
+      [9] invokevirtual #38
         + Methodref [com/byronkatz/reap/general/r.a ()Lcom/byronkatz/reap/general/s;]
-      [12] invokevirtual #38
+      [12] invokevirtual #39
         + Methodref [com/byronkatz/reap/general/s.ordinal ()I]
       [15] iaload
       [16] tableswitch (3 offsets, default=73) (target=89)
@@ -8070,61 +8074,74 @@ Methods (count = 6):
         3: offset = 60, target = 76
         default: offset = 73, target = 89
       [44] aload_0 v0
-      [45] invokevirtual #28
+      [45] invokevirtual #29
         + Methodref [android/widget/EditText.getText ()Landroid/text/Editable;]
-      [48] invokeinterface #46
+      [48] invokeinterface #47
         + InterfaceMethodref [android/text/Editable.toString ()Ljava/lang/String;]
-      [53] invokestatic #34
+      [53] invokestatic #35
         + Methodref [com/byronkatz/reap/general/l.a (Ljava/lang/String;)Ljava/lang/Double;]
       [56] astore_2 v2
-      [57] goto +32 (target=89)
+      [57] goto +41 (target=98)
       [60] aload_0 v0
-      [61] invokevirtual #28
+      [61] invokevirtual #29
         + Methodref [android/widget/EditText.getText ()Landroid/text/Editable;]
-      [64] invokeinterface #46
+      [64] invokeinterface #47
         + InterfaceMethodref [android/text/Editable.toString ()Ljava/lang/String;]
-      [69] invokestatic #35
+      [69] invokestatic #36
         + Methodref [com/byronkatz/reap/general/l.b (Ljava/lang/String;)Ljava/lang/Double;]
       [72] astore_2 v2
-      [73] goto +16 (target=89)
+      [73] goto +25 (target=98)
       [76] aload_0 v0
-      [77] invokevirtual #28
+      [77] invokevirtual #29
         + Methodref [android/widget/EditText.getText ()Landroid/text/Editable;]
-      [80] invokeinterface #46
+      [80] invokeinterface #47
         + InterfaceMethodref [android/text/Editable.toString ()Ljava/lang/String;]
-      [85] invokestatic #42
+      [85] invokestatic #43
         + Methodref [java/lang/Double.valueOf (Ljava/lang/String;)Ljava/lang/Double;]
       [88] astore_2 v2
-      [89] aload_2 v2
-      [90] areturn
-      Code attribute exceptions (count = 0):
+      [89] goto +9 (target=98)
+      [92] pop
+      [93] dconst_0
+      [94] invokestatic #42
+        + Methodref [java/lang/Double.valueOf (D)Ljava/lang/Double;]
+      [97] astore_2 v2
+      [98] aload_2 v2
+      [99] areturn
+      Code attribute exceptions (count = 1):
+      - ExceptionInfo (5 -> 89: 92):
+      + Class [java/lang/Exception]
       Code attribute attributes (attribute count = 2):
-      + Line number table attribute (count = 9)
+      + Line number table attribute (count = 12)
         [0] -> line 107
-        [5] -> line 109
-        [8] -> line 109
-        [44] -> line 111
-        [57] -> line 112
-        [60] -> line 114
-        [73] -> line 115
-        [76] -> line 117
-        [89] -> line 122
-      + Stack map table attribute (count = 4):
+        [5] -> line 110
+        [8] -> line 110
+        [44] -> line 112
+        [57] -> line 113
+        [60] -> line 115
+        [73] -> line 116
+        [76] -> line 118
+        [89] -> line 120
+        [92] -> line 122
+        [93] -> line 123
+        [98] -> line 126
+      + Stack map table attribute (count = 6):
         - [44] Var: ...[a:java/lang/Double], Stack: (empty)
         - [60] Var: ..., Stack: (empty)
         - [76] Var: ..., Stack: (empty)
         - [89] Var: ..., Stack: (empty)
+        - [92] Var: ..., Stack: [a:java/lang/Exception]
+        - [98] Var: ..., Stack: (empty)
   + Method:       a(Landroid/widget/EditText;Ljava/lang/Double;Lcom/byronkatz/reap/general/r;)V
     Access flags: 0x8
       = static void a(android.widget.EditText,java.lang.Double,com.byronkatz.reap.general.r)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 70, locals = 3, stack = 3):
-      [0] invokestatic #30
+      [0] invokestatic #31
         + Methodref [com/byronkatz/reap/activity/n.a ()[I]
       [3] aload_2 v2
-      [4] invokevirtual #37
+      [4] invokevirtual #38
         + Methodref [com/byronkatz/reap/general/r.a ()Lcom/byronkatz/reap/general/s;]
-      [7] invokevirtual #38
+      [7] invokevirtual #39
         + Methodref [com/byronkatz/reap/general/s.ordinal ()I]
       [10] iaload
       [11] tableswitch (3 offsets, default=58) (target=69)
@@ -8134,40 +8151,40 @@ Methods (count = 6):
         default: offset = 58, target = 69
       [36] aload_0 v0
       [37] aload_1 v1
-      [38] invokestatic #33
+      [38] invokestatic #34
         + Methodref [com/byronkatz/reap/general/l.a (Ljava/lang/Double;)Ljava/lang/String;]
-      [41] invokevirtual #29
+      [41] invokevirtual #30
         + Methodref [android/widget/EditText.setText (Ljava/lang/CharSequence;)V]
       [44] return
       [45] aload_0 v0
       [46] aload_1 v1
-      [47] invokestatic #36
+      [47] invokestatic #37
         + Methodref [com/byronkatz/reap/general/l.c (Ljava/lang/Double;)Ljava/lang/String;]
-      [50] invokevirtual #29
+      [50] invokevirtual #30
         + Methodref [android/widget/EditText.setText (Ljava/lang/CharSequence;)V]
       [53] return
       [54] aload_0 v0
       [55] aload_1 v1
-      [56] invokevirtual #40
+      [56] invokevirtual #41
         + Methodref [java/lang/Double.doubleValue ()D]
-      [59] invokestatic #44
+      [59] invokestatic #45
         + Methodref [java/lang/Math.floor (D)D]
       [62] d2i
-      [63] invokestatic #45
+      [63] invokestatic #46
         + Methodref [java/lang/String.valueOf (I)Ljava/lang/String;]
-      [66] invokevirtual #29
+      [66] invokevirtual #30
         + Methodref [android/widget/EditText.setText (Ljava/lang/CharSequence;)V]
       [69] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 7)
-        [0] -> line 135
-        [36] -> line 138
-        [44] -> line 139
-        [45] -> line 142
-        [53] -> line 144
-        [54] -> line 147
-        [69] -> line 148
+        [0] -> line 139
+        [36] -> line 142
+        [44] -> line 143
+        [45] -> line 146
+        [53] -> line 148
+        [54] -> line 151
+        [69] -> line 152
       + Stack map table attribute (count = 4):
         - [36] Var: ..., Stack: (empty)
         - [45] Var: ..., Stack: (empty)
@@ -8178,48 +8195,48 @@ Methods (count = 6):
       = private static synthetic int[] a()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 74, locals = 1, stack = 3):
-      [0] getstatic #22
+      [0] getstatic #23
         + Fieldref [com/byronkatz/reap/activity/n.a [I]
       [3] dup
       [4] ifnull +4 (target=8)
       [7] areturn
       [8] pop
-      [9] invokestatic #39
+      [9] invokestatic #40
         + Methodref [com/byronkatz/reap/general/s.values ()[Lcom/byronkatz/reap/general/s;]
       [12] arraylength
       [13] newarray 10
       [15] astore_0 v0
       [16] aload_0 v0
-      [17] getstatic #24
+      [17] getstatic #25
         + Fieldref [com/byronkatz/reap/general/s.b Lcom/byronkatz/reap/general/s;]
-      [20] invokevirtual #38
+      [20] invokevirtual #39
         + Methodref [com/byronkatz/reap/general/s.ordinal ()I]
       [23] iconst_2
       [24] iastore
       [25] goto +4 (target=29)
       [28] pop
       [29] aload_0 v0
-      [30] getstatic #25
+      [30] getstatic #26
         + Fieldref [com/byronkatz/reap/general/s.c Lcom/byronkatz/reap/general/s;]
-      [33] invokevirtual #38
+      [33] invokevirtual #39
         + Methodref [com/byronkatz/reap/general/s.ordinal ()I]
       [36] iconst_3
       [37] iastore
       [38] goto +4 (target=42)
       [41] pop
       [42] aload_0 v0
-      [43] getstatic #23
+      [43] getstatic #24
         + Fieldref [com/byronkatz/reap/general/s.a Lcom/byronkatz/reap/general/s;]
-      [46] invokevirtual #38
+      [46] invokevirtual #39
         + Methodref [com/byronkatz/reap/general/s.ordinal ()I]
       [49] iconst_1
       [50] iastore
       [51] goto +4 (target=55)
       [54] pop
       [55] aload_0 v0
-      [56] getstatic #26
+      [56] getstatic #27
         + Fieldref [com/byronkatz/reap/general/s.d Lcom/byronkatz/reap/general/s;]
-      [59] invokevirtual #38
+      [59] invokevirtual #39
         + Methodref [com/byronkatz/reap/general/s.ordinal ()I]
       [62] iconst_4
       [63] iastore
@@ -8227,7 +8244,7 @@ Methods (count = 6):
       [67] pop
       [68] aload_0 v0
       [69] dup
-      [70] putstatic #22
+      [70] putstatic #23
         + Fieldref [com/byronkatz/reap/activity/n.a [I]
       [73] areturn
       Code attribute exceptions (count = 4):
@@ -45095,7 +45112,7 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 442):
+Constant Pool (count = 426):
   + Integer [17039370]
   + Integer [603979776]
   + Integer [2130903049]
@@ -45115,8 +45132,6 @@ Constant Pool (count = 442):
   + String [CURRENCY]
   + String [INTEGER]
   + String [PERCENTAGE]
-  + String [The REAP system encountered an error while trying to parse a number.  Please notify the developerof the following error:
-]
   + String [com.android.calculator2]
   + String [com.android.calculator2.Calculator]
   + String [nothing]
@@ -45151,7 +45166,6 @@ Constant Pool (count = 442):
   + Class [com/byronkatz/reap/general/q]
   + Class [com/byronkatz/reap/general/r]
   + Class [com/byronkatz/reap/general/s]
-  + Class [java/io/PrintStream]
   + Class [java/lang/Double]
   + Class [java/lang/Exception]
   + Class [java/lang/Integer]
@@ -45160,7 +45174,6 @@ Constant Pool (count = 442):
   + Class [java/lang/Object]
   + Class [java/lang/String]
   + Class [java/lang/StringBuilder]
-  + Class [java/lang/System]
   + Class [java/text/NumberFormat]
   + Class [java/util/Collections]
   + Class [java/util/List]
@@ -45185,7 +45198,6 @@ Constant Pool (count = 442):
   + Fieldref [com/byronkatz/reap/general/s.b Lcom/byronkatz/reap/general/s;]
   + Fieldref [com/byronkatz/reap/general/s.c Lcom/byronkatz/reap/general/s;]
   + Fieldref [com/byronkatz/reap/general/s.d Lcom/byronkatz/reap/general/s;]
-  + Fieldref [java/lang/System.err Ljava/io/PrintStream;]
   + Fieldref [java/util/Locale.US Ljava/util/Locale;]
   + Methodref [android/app/Activity.finish ()V]
   + Methodref [android/app/Activity.getString (I)Ljava/lang/String;]
@@ -45234,12 +45246,10 @@ Constant Pool (count = 442):
   + Methodref [com/byronkatz/reap/general/s.name ()Ljava/lang/String;]
   + Methodref [com/byronkatz/reap/general/s.ordinal ()I]
   + Methodref [com/byronkatz/reap/general/s.values ()[Lcom/byronkatz/reap/general/s;]
-  + Methodref [java/io/PrintStream.println (Ljava/lang/String;)V]
   + Methodref [java/lang/Double.floatValue ()F]
   + Methodref [java/lang/Double.intValue ()I]
   + Methodref [java/lang/Double.valueOf (D)Ljava/lang/Double;]
   + Methodref [java/lang/Double.valueOf (Ljava/lang/String;)Ljava/lang/Double;]
-  + Methodref [java/lang/Exception.getMessage ()Ljava/lang/String;]
   + Methodref [java/lang/Integer.intValue ()I]
   + Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
   + Methodref [java/lang/Integer.valueOf (Ljava/lang/String;)Ljava/lang/Integer;]
@@ -45304,7 +45314,6 @@ Constant Pool (count = 442):
   + NameAndType [doubleValue ()D]
   + NameAndType [e ()I]
   + NameAndType [e Lcom/byronkatz/reap/general/b;]
-  + NameAndType [err Ljava/io/PrintStream;]
   + NameAndType [f Ljava/text/NumberFormat;]
   + NameAndType [findViewById (I)Landroid/view/View;]
   + NameAndType [finish ()V]
@@ -45314,7 +45323,6 @@ Constant Pool (count = 442):
   + NameAndType [g Ljava/text/NumberFormat;]
   + NameAndType [getCurrencyInstance (Ljava/util/Locale;)Ljava/text/NumberFormat;]
   + NameAndType [getItemId ()I]
-  + NameAndType [getMessage ()Ljava/lang/String;]
   + NameAndType [getPercentInstance (Ljava/util/Locale;)Ljava/text/NumberFormat;]
   + NameAndType [getString (I)Ljava/lang/String;]
   + NameAndType [getText ()Landroid/text/Editable;]
@@ -45326,7 +45334,6 @@ Constant Pool (count = 442):
   + NameAndType [name ()Ljava/lang/String;]
   + NameAndType [ordinal ()I]
   + NameAndType [parse (Ljava/lang/String;)Ljava/lang/Number;]
-  + NameAndType [println (Ljava/lang/String;)V]
   + NameAndType [remove (Ljava/lang/Object;)Z]
   + NameAndType [s Lcom/byronkatz/reap/general/r;]
   + NameAndType [setCanceledOnTouchOutside (Z)V]
@@ -45427,7 +45434,6 @@ Constant Pool (count = 442):
   + Utf8 [Lcom/byronkatz/reap/general/r;]
   + Utf8 [Lcom/byronkatz/reap/general/s;]
   + Utf8 [LineNumberTable]
-  + Utf8 [Ljava/io/PrintStream;]
   + Utf8 [Ljava/lang/String;]
   + Utf8 [Ljava/text/NumberFormat;]
   + Utf8 [Ljava/util/Locale;]
@@ -45437,8 +45443,6 @@ Constant Pool (count = 442):
   + Utf8 [SourceFile]
   + Utf8 [StackMapTable]
   + Utf8 [T]
-  + Utf8 [The REAP system encountered an error while trying to parse a number.  Please notify the developerof the following error:
-]
   + Utf8 [US]
   + Utf8 [[B]
   + Utf8 [[C]
@@ -45482,7 +45486,6 @@ Constant Pool (count = 442):
   + Utf8 [d]
   + Utf8 [doubleValue]
   + Utf8 [e]
-  + Utf8 [err]
   + Utf8 [f]
   + Utf8 [findViewById]
   + Utf8 [finish]
@@ -45491,14 +45494,12 @@ Constant Pool (count = 442):
   + Utf8 [g]
   + Utf8 [getCurrencyInstance]
   + Utf8 [getItemId]
-  + Utf8 [getMessage]
   + Utf8 [getPercentInstance]
   + Utf8 [getString]
   + Utf8 [getText]
   + Utf8 [getWindow]
   + Utf8 [h]
   + Utf8 [intValue]
-  + Utf8 [java/io/PrintStream]
   + Utf8 [java/lang/Double]
   + Utf8 [java/lang/Exception]
   + Utf8 [java/lang/Integer]
@@ -45507,7 +45508,6 @@ Constant Pool (count = 442):
   + Utf8 [java/lang/Object]
   + Utf8 [java/lang/String]
   + Utf8 [java/lang/StringBuilder]
-  + Utf8 [java/lang/System]
   + Utf8 [java/text/NumberFormat]
   + Utf8 [java/util/Collections]
   + Utf8 [java/util/List]
@@ -45518,7 +45518,6 @@ Constant Pool (count = 442):
   + Utf8 [nothing]
   + Utf8 [ordinal]
   + Utf8 [parse]
-  + Utf8 [println]
   + Utf8 [remove]
   + Utf8 [s]
   + Utf8 [setCanceledOnTouchOutside]
@@ -45573,40 +45572,40 @@ Methods (count = 23):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 51, locals = 1, stack = 2):
       [0] aconst_null
-      [1] putstatic #69
+      [1] putstatic #66
         + Fieldref [com/byronkatz/reap/general/l.a Landroid/app/Dialog;]
       [4] aconst_null
-      [5] putstatic #70
+      [5] putstatic #67
         + Fieldref [com/byronkatz/reap/general/l.b Landroid/view/Window;]
       [8] aconst_null
-      [9] putstatic #71
+      [9] putstatic #68
         + Fieldref [com/byronkatz/reap/general/l.c Landroid/widget/TextView;]
       [12] aconst_null
-      [13] putstatic #72
+      [13] putstatic #69
         + Fieldref [com/byronkatz/reap/general/l.d Ljava/lang/String;]
-      [16] invokestatic #117
+      [16] invokestatic #113
         + Methodref [com/byronkatz/reap/general/RealEstateAnalysisProcessorApplication.a ()Lcom/byronkatz/reap/general/RealEstateAnalysisProcessorApplication;]
-      [19] invokevirtual #118
+      [19] invokevirtual #114
         + Methodref [com/byronkatz/reap/general/RealEstateAnalysisProcessorApplication.b ()Lcom/byronkatz/reap/general/b;]
-      [22] putstatic #73
+      [22] putstatic #70
         + Fieldref [com/byronkatz/reap/general/l.e Lcom/byronkatz/reap/general/b;]
-      [25] getstatic #90
+      [25] getstatic #86
         + Fieldref [java/util/Locale.US Ljava/util/Locale;]
-      [28] invokestatic #159
+      [28] invokestatic #153
         + Methodref [java/text/NumberFormat.getCurrencyInstance (Ljava/util/Locale;)Ljava/text/NumberFormat;]
       [31] dup
       [32] astore_0 v0
       [33] iconst_0
-      [34] invokevirtual #162
+      [34] invokevirtual #156
         + Methodref [java/text/NumberFormat.setMaximumFractionDigits (I)V]
       [37] aload_0 v0
-      [38] putstatic #74
+      [38] putstatic #71
         + Fieldref [com/byronkatz/reap/general/l.f Ljava/text/NumberFormat;]
-      [41] getstatic #90
+      [41] getstatic #86
         + Fieldref [java/util/Locale.US Ljava/util/Locale;]
-      [44] invokestatic #160
+      [44] invokestatic #154
         + Methodref [java/text/NumberFormat.getPercentInstance (Ljava/util/Locale;)Ljava/text/NumberFormat;]
-      [47] putstatic #75
+      [47] putstatic #72
         + Fieldref [com/byronkatz/reap/general/l.g Ljava/text/NumberFormat;]
       [50] return
       Code attribute exceptions (count = 0):
@@ -45626,57 +45625,57 @@ Methods (count = 23):
       = public static void a(int,int,android.content.Context)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 72, locals = 3, stack = 3):
-      [0] new #30
+      [0] new #29
         + Class [android/app/Dialog]
       [3] dup
       [4] aload_2 v2
-      [5] invokespecial #100
+      [5] invokespecial #96
         + Methodref [android/app/Dialog.<init> (Landroid/content/Context;)V]
       [8] dup
-      [9] putstatic #69
+      [9] putstatic #66
         + Fieldref [com/byronkatz/reap/general/l.a Landroid/app/Dialog;]
-      [12] invokevirtual #102
+      [12] invokevirtual #98
         + Methodref [android/app/Dialog.getWindow ()Landroid/view/Window;]
       [15] dup
-      [16] putstatic #70
+      [16] putstatic #67
         + Fieldref [com/byronkatz/reap/general/l.b Landroid/view/Window;]
       [19] iconst_4
       [20] iconst_4
-      [21] invokevirtual #112
+      [21] invokevirtual #108
         + Methodref [android/view/Window.setFlags (II)V]
-      [24] getstatic #69
+      [24] getstatic #66
         + Fieldref [com/byronkatz/reap/general/l.a Landroid/app/Dialog;]
       [27] ldc #3
         + Integer [2130903049]
-      [29] invokevirtual #104
+      [29] invokevirtual #100
         + Methodref [android/app/Dialog.setContentView (I)V]
-      [32] getstatic #69
+      [32] getstatic #66
         + Fieldref [com/byronkatz/reap/general/l.a Landroid/app/Dialog;]
       [35] ldc #4
         + Integer [2131034218]
-      [37] invokevirtual #101
+      [37] invokevirtual #97
         + Methodref [android/app/Dialog.findViewById (I)Landroid/view/View;]
-      [40] checkcast #39
+      [40] checkcast #38
         + Class [android/widget/TextView]
       [43] dup
-      [44] putstatic #71
+      [44] putstatic #68
         + Fieldref [com/byronkatz/reap/general/l.c Landroid/widget/TextView;]
       [47] iload_0 v0
-      [48] invokevirtual #116
+      [48] invokevirtual #112
         + Methodref [android/widget/TextView.setText (I)V]
-      [51] getstatic #69
+      [51] getstatic #66
         + Fieldref [com/byronkatz/reap/general/l.a Landroid/app/Dialog;]
       [54] iload_1 v1
-      [55] invokevirtual #105
+      [55] invokevirtual #101
         + Methodref [android/app/Dialog.setTitle (I)V]
-      [58] getstatic #69
+      [58] getstatic #66
         + Fieldref [com/byronkatz/reap/general/l.a Landroid/app/Dialog;]
       [61] iconst_1
-      [62] invokevirtual #103
+      [62] invokevirtual #99
         + Methodref [android/app/Dialog.setCanceledOnTouchOutside (Z)V]
-      [65] getstatic #69
+      [65] getstatic #66
         + Fieldref [com/byronkatz/reap/general/l.a Landroid/app/Dialog;]
-      [68] invokevirtual #106
+      [68] invokevirtual #102
         + Methodref [android/app/Dialog.show ()V]
       [71] return
       Code attribute exceptions (count = 0):
@@ -45700,51 +45699,51 @@ Methods (count = 23):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 82, locals = 1, stack = 2):
       [0] aload_0 v0
-      [1] getstatic #82
+      [1] getstatic #79
         + Fieldref [com/byronkatz/reap/general/r.k Lcom/byronkatz/reap/general/r;]
-      [4] invokeinterface #166
+      [4] invokeinterface #160
         + InterfaceMethodref [java/util/List.remove (Ljava/lang/Object;)Z]
       [9] pop
       [10] aload_0 v0
-      [11] getstatic #81
+      [11] getstatic #78
         + Fieldref [com/byronkatz/reap/general/r.T Lcom/byronkatz/reap/general/r;]
-      [14] invokeinterface #166
+      [14] invokeinterface #160
         + InterfaceMethodref [java/util/List.remove (Ljava/lang/Object;)Z]
       [19] pop
       [20] aload_0 v0
-      [21] getstatic #80
+      [21] getstatic #77
         + Fieldref [com/byronkatz/reap/general/r.S Lcom/byronkatz/reap/general/r;]
-      [24] invokeinterface #166
+      [24] invokeinterface #160
         + InterfaceMethodref [java/util/List.remove (Ljava/lang/Object;)Z]
       [29] pop
       [30] aload_0 v0
-      [31] getstatic #79
+      [31] getstatic #76
         + Fieldref [com/byronkatz/reap/general/r.R Lcom/byronkatz/reap/general/r;]
-      [34] invokeinterface #166
+      [34] invokeinterface #160
         + InterfaceMethodref [java/util/List.remove (Ljava/lang/Object;)Z]
       [39] pop
       [40] aload_0 v0
-      [41] getstatic #83
+      [41] getstatic #80
         + Fieldref [com/byronkatz/reap/general/r.s Lcom/byronkatz/reap/general/r;]
-      [44] invokeinterface #166
+      [44] invokeinterface #160
         + InterfaceMethodref [java/util/List.remove (Ljava/lang/Object;)Z]
       [49] pop
       [50] aload_0 v0
-      [51] getstatic #84
+      [51] getstatic #81
         + Fieldref [com/byronkatz/reap/general/r.t Lcom/byronkatz/reap/general/r;]
-      [54] invokeinterface #166
+      [54] invokeinterface #160
         + InterfaceMethodref [java/util/List.remove (Ljava/lang/Object;)Z]
       [59] pop
       [60] aload_0 v0
-      [61] getstatic #77
+      [61] getstatic #74
         + Fieldref [com/byronkatz/reap/general/r.D Lcom/byronkatz/reap/general/r;]
-      [64] invokeinterface #166
+      [64] invokeinterface #160
         + InterfaceMethodref [java/util/List.remove (Ljava/lang/Object;)Z]
       [69] pop
       [70] aload_0 v0
-      [71] getstatic #78
+      [71] getstatic #75
         + Fieldref [com/byronkatz/reap/general/r.E Lcom/byronkatz/reap/general/r;]
-      [74] invokeinterface #166
+      [74] invokeinterface #160
         + InterfaceMethodref [java/util/List.remove (Ljava/lang/Object;)Z]
       [79] pop
       [80] aload_0 v0
@@ -45766,16 +45765,16 @@ Methods (count = 23):
       = public static java.util.List a(android.app.Activity,java.util.List)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 16, locals = 2, stack = 3):
-      [0] new #48
+      [0] new #47
         + Class [com/byronkatz/reap/general/m]
       [3] dup
       [4] aload_0 v0
-      [5] invokespecial #129
+      [5] invokespecial #125
         + Methodref [com/byronkatz/reap/general/m.<init> (Landroid/app/Activity;)V]
       [8] astore_0 v0
       [9] aload_1 v1
       [10] aload_0 v0
-      [11] invokestatic #163
+      [11] invokestatic #157
         + Methodref [java/util/Collections.sort (Ljava/util/List;Ljava/util/Comparator;)V]
       [14] aload_1 v1
       [15] areturn
@@ -45793,7 +45792,7 @@ Methods (count = 23):
       [0] aconst_null
       [1] astore_2 v2
       [2] aload_0 v0
-      [3] invokeinterface #165
+      [3] invokeinterface #159
         + InterfaceMethodref [android/view/MenuItem.getItemId ()I]
       [8] tableswitch (6 offsets, default=309) (target=317)
         2131034306: offset = 248, target = 256
@@ -45803,212 +45802,212 @@ Methods (count = 23):
         2131034310: offset = 40, target = 48
         2131034311: offset = 57, target = 65
         default: offset = 309, target = 317
-      [48] new #33
+      [48] new #32
         + Class [android/content/Intent]
       [51] dup
       [52] aload_1 v1
-      [53] ldc #41
+      [53] ldc #40
         + Class [com/byronkatz/reap/activity/ConfigureDataTablesActivity]
-      [55] invokespecial #109
+      [55] invokespecial #105
         + Methodref [android/content/Intent.<init> (Landroid/content/Context;Ljava/lang/Class;)V]
       [58] astore_2 v2
       [59] aload_1 v1
       [60] aload_2 v2
-      [61] invokevirtual #93
+      [61] invokevirtual #89
         + Methodref [android/app/Activity.startActivity (Landroid/content/Intent;)V]
       [64] return
-      [65] new #33
+      [65] new #32
         + Class [android/content/Intent]
       [68] dup
       [69] aload_1 v1
-      [70] ldc #42
+      [70] ldc #41
         + Class [com/byronkatz/reap/activity/DataPagesActivity]
-      [72] invokespecial #109
+      [72] invokespecial #105
         + Methodref [android/content/Intent.<init> (Landroid/content/Context;Ljava/lang/Class;)V]
       [75] astore_2 v2
       [76] aload_1 v1
       [77] aload_2 v2
-      [78] invokevirtual #93
+      [78] invokevirtual #89
         + Methodref [android/app/Activity.startActivity (Landroid/content/Intent;)V]
       [81] return
       [82] aload_1 v1
       [83] astore_0 v0
-      [84] new #29
+      [84] new #28
         + Class [android/app/AlertDialog$Builder]
       [87] dup
       [88] aload_0 v0
-      [89] invokespecial #95
+      [89] invokespecial #91
         + Methodref [android/app/AlertDialog$Builder.<init> (Landroid/content/Context;)V]
       [92] astore_1 v1
       [93] aload_0 v0
       [94] ldc #5
         + Integer [2131165429]
-      [96] invokevirtual #92
+      [96] invokevirtual #88
         + Methodref [android/app/Activity.getString (I)Ljava/lang/String;]
       [99] astore_2 v2
       [100] aload_0 v0
       [101] ldc #8
         + Integer [2131165437]
-      [103] invokevirtual #92
+      [103] invokevirtual #88
         + Methodref [android/app/Activity.getString (I)Ljava/lang/String;]
       [106] astore_3 v3
       [107] aload_0 v0
       [108] ldc #11
         + Integer [2131165441]
-      [110] invokevirtual #92
+      [110] invokevirtual #88
         + Methodref [android/app/Activity.getString (I)Ljava/lang/String;]
       [113] astore v4
       [115] aload_0 v0
       [116] ldc #9
         + Integer [2131165439]
-      [118] invokevirtual #92
+      [118] invokevirtual #88
         + Methodref [android/app/Activity.getString (I)Ljava/lang/String;]
       [121] astore v5
       [123] aload_0 v0
       [124] ldc #10
         + Integer [2131165440]
-      [126] invokevirtual #92
+      [126] invokevirtual #88
         + Methodref [android/app/Activity.getString (I)Ljava/lang/String;]
       [129] astore v6
       [131] aload_0 v0
       [132] ldc #12
         + Integer [2131165442]
-      [134] invokevirtual #92
+      [134] invokevirtual #88
         + Methodref [android/app/Activity.getString (I)Ljava/lang/String;]
       [137] astore v7
       [139] aload_1 v1
       [140] aload_2 v2
-      [141] invokevirtual #97
+      [141] invokevirtual #93
         + Methodref [android/app/AlertDialog$Builder.setMessage (Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;]
       [144] pop
       [145] aload_1 v1
       [146] aload_3 v3
-      [147] new #49
+      [147] new #48
         + Class [com/byronkatz/reap/general/n]
       [150] dup
       [151] aload_0 v0
       [152] aload v4
-      [154] invokespecial #130
+      [154] invokespecial #126
         + Methodref [com/byronkatz/reap/general/n.<init> (Landroid/app/Activity;Ljava/lang/String;)V]
-      [157] invokevirtual #99
+      [157] invokevirtual #95
         + Methodref [android/app/AlertDialog$Builder.setPositiveButton (Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;]
       [160] pop
-      [161] getstatic #73
+      [161] getstatic #70
         + Fieldref [com/byronkatz/reap/general/l.e Lcom/byronkatz/reap/general/b;]
-      [164] invokevirtual #119
+      [164] invokevirtual #115
         + Methodref [com/byronkatz/reap/general/b.e ()I]
-      [167] invokestatic #145
+      [167] invokestatic #139
         + Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
       [170] dup
       [171] astore_3 v3
-      [172] invokevirtual #144
+      [172] invokevirtual #138
         + Methodref [java/lang/Integer.intValue ()I]
       [175] ifle +73 (target=248)
-      [178] new #63
+      [178] new #61
         + Class [java/lang/StringBuilder]
       [181] dup
       [182] aload v5
-      [184] invokestatic #152
+      [184] invokestatic #146
         + Methodref [java/lang/String.valueOf (Ljava/lang/Object;)Ljava/lang/String;]
-      [187] invokespecial #153
+      [187] invokespecial #147
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [190] ldc #13
         + String [ ]
-      [192] invokevirtual #155
+      [192] invokevirtual #149
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [195] aload_3 v3
-      [196] invokevirtual #154
+      [196] invokevirtual #148
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/Object;)Ljava/lang/StringBuilder;]
-      [199] invokevirtual #156
+      [199] invokevirtual #150
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [202] astore v4
-      [204] new #63
+      [204] new #61
         + Class [java/lang/StringBuilder]
       [207] dup
       [208] aload_2 v2
-      [209] invokestatic #152
+      [209] invokestatic #146
         + Methodref [java/lang/String.valueOf (Ljava/lang/Object;)Ljava/lang/String;]
-      [212] invokespecial #153
+      [212] invokespecial #147
         + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
       [215] aload v4
-      [217] invokevirtual #155
+      [217] invokevirtual #149
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [220] invokevirtual #156
+      [220] invokevirtual #150
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [223] astore_2 v2
       [224] aload_1 v1
       [225] aload_2 v2
-      [226] invokevirtual #97
+      [226] invokevirtual #93
         + Methodref [android/app/AlertDialog$Builder.setMessage (Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;]
       [229] pop
       [230] aload_1 v1
       [231] aload v6
-      [233] new #50
+      [233] new #49
         + Class [com/byronkatz/reap/general/o]
       [236] dup
       [237] aload_0 v0
       [238] aload v7
       [240] aload_3 v3
-      [241] invokespecial #131
+      [241] invokespecial #127
         + Methodref [com/byronkatz/reap/general/o.<init> (Landroid/app/Activity;Ljava/lang/String;Ljava/lang/Integer;)V]
-      [244] invokevirtual #98
+      [244] invokevirtual #94
         + Methodref [android/app/AlertDialog$Builder.setNegativeButton (Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;]
       [247] pop
       [248] aload_1 v1
-      [249] invokevirtual #96
+      [249] invokevirtual #92
         + Methodref [android/app/AlertDialog$Builder.create ()Landroid/app/AlertDialog;]
-      [252] invokevirtual #94
+      [252] invokevirtual #90
         + Methodref [android/app/AlertDialog.show ()V]
       [255] return
-      [256] new #33
+      [256] new #32
         + Class [android/content/Intent]
       [259] dup
       [260] aload_1 v1
-      [261] ldc #44
+      [261] ldc #43
         + Class [com/byronkatz/reap/activity/SavedDataBrowserActivity]
-      [263] invokespecial #109
+      [263] invokespecial #105
         + Methodref [android/content/Intent.<init> (Landroid/content/Context;Ljava/lang/Class;)V]
       [266] astore_2 v2
       [267] aload_1 v1
       [268] aload_2 v2
-      [269] invokevirtual #93
+      [269] invokevirtual #89
         + Methodref [android/app/Activity.startActivity (Landroid/content/Intent;)V]
       [272] return
-      [273] new #33
+      [273] new #32
         + Class [android/content/Intent]
       [276] dup
       [277] aload_1 v1
-      [278] ldc #40
+      [278] ldc #39
         + Class [com/byronkatz/reap/activity/AppInfoActivity]
-      [280] invokespecial #109
+      [280] invokespecial #105
         + Methodref [android/content/Intent.<init> (Landroid/content/Context;Ljava/lang/Class;)V]
       [283] astore_2 v2
       [284] aload_1 v1
       [285] aload_2 v2
-      [286] invokevirtual #93
+      [286] invokevirtual #89
         + Methodref [android/app/Activity.startActivity (Landroid/content/Intent;)V]
       [289] return
-      [290] new #33
+      [290] new #32
         + Class [android/content/Intent]
       [293] dup
       [294] aload_1 v1
-      [295] ldc #43
+      [295] ldc #42
         + Class [com/byronkatz/reap/activity/GraphActivity]
-      [297] invokespecial #109
+      [297] invokespecial #105
         + Methodref [android/content/Intent.<init> (Landroid/content/Context;Ljava/lang/Class;)V]
       [300] dup
       [301] astore_2 v2
       [302] ldc #2
         + Integer [603979776]
-      [304] invokevirtual #111
+      [304] invokevirtual #107
         + Methodref [android/content/Intent.setFlags (I)Landroid/content/Intent;]
       [307] pop
       [308] aload_1 v1
       [309] aload_2 v2
-      [310] invokevirtual #93
+      [310] invokevirtual #89
         + Methodref [android/app/Activity.startActivity (Landroid/content/Intent;)V]
       [313] aload_1 v1
-      [314] invokevirtual #91
+      [314] invokevirtual #87
         + Methodref [android/app/Activity.finish ()V]
       [317] return
       Code attribute exceptions (count = 0):
@@ -46048,47 +46047,47 @@ Methods (count = 23):
       = public static void a(android.app.Activity)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 51, locals = 4, stack = 3):
-      [0] new #33
+      [0] new #32
         + Class [android/content/Intent]
       [3] dup
-      [4] invokespecial #108
+      [4] invokespecial #104
         + Methodref [android/content/Intent.<init> ()V]
       [7] dup
       [8] astore_1 v1
-      [9] ldc #21
+      [9] ldc #20
         + String [com.android.calculator2]
-      [11] ldc #22
+      [11] ldc #21
         + String [com.android.calculator2.Calculator]
-      [13] invokevirtual #110
+      [13] invokevirtual #106
         + Methodref [android/content/Intent.setClassName (Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;]
       [16] pop
       [17] aload_0 v0
       [18] ldc #6
         + Integer [2131165434]
-      [20] invokevirtual #92
+      [20] invokevirtual #88
         + Methodref [android/app/Activity.getString (I)Ljava/lang/String;]
       [23] astore_2 v2
       [24] aload_0 v0
       [25] ldc #7
         + Integer [2131165435]
-      [27] invokevirtual #92
+      [27] invokevirtual #88
         + Methodref [android/app/Activity.getString (I)Ljava/lang/String;]
       [30] astore_3 v3
       [31] aload_0 v0
       [32] aload_1 v1
-      [33] invokevirtual #93
+      [33] invokevirtual #89
         + Methodref [android/app/Activity.startActivity (Landroid/content/Intent;)V]
       [36] return
       [37] pop
       [38] aload_0 v0
       [39] aload_2 v2
-      [40] invokestatic #120
+      [40] invokestatic #116
         + Methodref [com/byronkatz/reap/general/l.a (Landroid/app/Activity;Ljava/lang/String;)V]
       [43] return
       [44] pop
       [45] aload_0 v0
       [46] aload_3 v3
-      [47] invokestatic #120
+      [47] invokestatic #116
         + Methodref [com/byronkatz/reap/general/l.a (Landroid/app/Activity;Ljava/lang/String;)V]
       [50] return
       Code attribute exceptions (count = 2):
@@ -46119,32 +46118,32 @@ Methods (count = 23):
       = private static void a(android.app.Activity,java.lang.String)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 36, locals = 3, stack = 4):
-      [0] new #29
+      [0] new #28
         + Class [android/app/AlertDialog$Builder]
       [3] dup
       [4] aload_0 v0
-      [5] invokespecial #95
+      [5] invokespecial #91
         + Methodref [android/app/AlertDialog$Builder.<init> (Landroid/content/Context;)V]
       [8] dup
       [9] astore_2 v2
       [10] aload_1 v1
-      [11] invokevirtual #97
+      [11] invokevirtual #93
         + Methodref [android/app/AlertDialog$Builder.setMessage (Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;]
       [14] pop
       [15] aload_0 v0
       [16] ldc #1
         + Integer [17039370]
-      [18] invokevirtual #92
+      [18] invokevirtual #88
         + Methodref [android/app/Activity.getString (I)Ljava/lang/String;]
       [21] astore_0 v0
       [22] aload_2 v2
       [23] aload_0 v0
-      [24] new #51
+      [24] new #50
         + Class [com/byronkatz/reap/general/p]
       [27] dup
-      [28] invokespecial #132
+      [28] invokespecial #128
         + Methodref [com/byronkatz/reap/general/p.<init> ()V]
-      [31] invokevirtual #99
+      [31] invokevirtual #95
         + Methodref [android/app/AlertDialog$Builder.setPositiveButton (Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;]
       [34] pop
       [35] return
@@ -46161,32 +46160,32 @@ Methods (count = 23):
       = public static void a(android.content.Context,java.lang.String)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 36, locals = 3, stack = 4):
-      [0] new #29
+      [0] new #28
         + Class [android/app/AlertDialog$Builder]
       [3] dup
       [4] aload_0 v0
-      [5] invokespecial #95
+      [5] invokespecial #91
         + Methodref [android/app/AlertDialog$Builder.<init> (Landroid/content/Context;)V]
       [8] dup
       [9] astore_2 v2
       [10] aload_1 v1
-      [11] invokevirtual #97
+      [11] invokevirtual #93
         + Methodref [android/app/AlertDialog$Builder.setMessage (Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;]
       [14] pop
       [15] aload_0 v0
       [16] ldc #1
         + Integer [17039370]
-      [18] invokevirtual #107
+      [18] invokevirtual #103
         + Methodref [android/content/Context.getString (I)Ljava/lang/String;]
       [21] astore_0 v0
       [22] aload_2 v2
       [23] aload_0 v0
-      [24] new #52
+      [24] new #51
         + Class [com/byronkatz/reap/general/q]
       [27] dup
-      [28] invokespecial #133
+      [28] invokespecial #129
         + Methodref [com/byronkatz/reap/general/q.<init> ()V]
-      [31] invokevirtual #99
+      [31] invokevirtual #95
         + Methodref [android/app/AlertDialog$Builder.setPositiveButton (Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;]
       [34] pop
       [35] return
@@ -46312,11 +46311,11 @@ Methods (count = 23):
       [148] aload_0 v0
       [149] arraylength
       [150] ificmplt -42 (target=108)
-      [153] new #62
+      [153] new #60
         + Class [java/lang/String]
       [156] dup
       [157] aload_2 v2
-      [158] invokespecial #148
+      [158] invokespecial #142
         + Methodref [java/lang/String.<init> ([C)V]
       [161] areturn
       Code attribute exceptions (count = 0):
@@ -46339,25 +46338,25 @@ Methods (count = 23):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 90, locals = 3, stack = 4):
       [0] aload_0 v0
-      [1] checkcast #38
+      [1] checkcast #37
         + Class [android/widget/EditText]
       [4] dup
       [5] astore_0 v0
-      [6] invokevirtual #113
+      [6] invokevirtual #109
         + Methodref [android/widget/EditText.getText ()Landroid/text/Editable;]
-      [9] invokeinterface #164
+      [9] invokeinterface #158
         + InterfaceMethodref [android/text/Editable.toString ()Ljava/lang/String;]
-      [14] invokevirtual #150
+      [14] invokevirtual #144
         + Methodref [java/lang/String.length ()I]
       [17] istore_2 v2
       [18] aload_1 v1
-      [19] invokevirtual #134
+      [19] invokevirtual #130
         + Methodref [com/byronkatz/reap/general/r.a ()Lcom/byronkatz/reap/general/s;]
       [22] astore_1 v1
-      [23] invokestatic #123
+      [23] invokestatic #119
         + Methodref [com/byronkatz/reap/general/l.b ()[I]
       [26] aload_1 v1
-      [27] invokevirtual #136
+      [27] invokevirtual #132
         + Methodref [com/byronkatz/reap/general/s.ordinal ()I]
       [30] iaload
       [31] tableswitch (4 offsets, default=58) (target=89)
@@ -46369,7 +46368,7 @@ Methods (count = 23):
       [60] aload_0 v0
       [61] iconst_1
       [62] iload_2 v2
-      [63] invokevirtual #114
+      [63] invokevirtual #110
         + Methodref [android/widget/EditText.setSelection (II)V]
       [66] return
       [67] aload_0 v0
@@ -46377,19 +46376,19 @@ Methods (count = 23):
       [69] iload_2 v2
       [70] iconst_1
       [71] isub
-      [72] invokevirtual #114
+      [72] invokevirtual #110
         + Methodref [android/widget/EditText.setSelection (II)V]
       [75] return
       [76] aload_0 v0
       [77] iconst_0
       [78] iload_2 v2
-      [79] invokevirtual #114
+      [79] invokevirtual #110
         + Methodref [android/widget/EditText.setSelection (II)V]
       [82] return
       [83] aload_0 v0
       [84] iconst_0
       [85] iload_2 v2
-      [86] invokevirtual #114
+      [86] invokevirtual #110
         + Methodref [android/widget/EditText.setSelection (II)V]
       [89] return
       Code attribute exceptions (count = 0):
@@ -46420,10 +46419,10 @@ Methods (count = 23):
       = public static java.lang.String a(java.lang.Double)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 8, locals = 1, stack = 2):
-      [0] getstatic #74
+      [0] getstatic #71
         + Fieldref [com/byronkatz/reap/general/l.f Ljava/text/NumberFormat;]
       [3] aload_0 v0
-      [4] invokevirtual #158
+      [4] invokevirtual #152
         + Methodref [java/text/NumberFormat.format (Ljava/lang/Object;)Ljava/lang/String;]
       [7] areturn
       Code attribute exceptions (count = 0):
@@ -46436,22 +46435,22 @@ Methods (count = 23):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 58, locals = 3, stack = 2):
       [0] aload_1 v1
-      [1] invokevirtual #134
+      [1] invokevirtual #130
         + Methodref [com/byronkatz/reap/general/r.a ()Lcom/byronkatz/reap/general/s;]
-      [4] invokevirtual #135
+      [4] invokevirtual #131
         + Methodref [com/byronkatz/reap/general/s.name ()Ljava/lang/String;]
       [7] astore_1 v1
-      [8] ldc #23
+      [8] ldc #22
         + String [nothing]
       [10] astore_2 v2
       [11] aload_1 v1
       [12] ldc #17
         + String [CURRENCY]
       [14] ifacmpne +14 (target=28)
-      [17] getstatic #74
+      [17] getstatic #71
         + Fieldref [com/byronkatz/reap/general/l.f Ljava/text/NumberFormat;]
       [20] aload_0 v0
-      [21] invokevirtual #158
+      [21] invokevirtual #152
         + Methodref [java/text/NumberFormat.format (Ljava/lang/Object;)Ljava/lang/String;]
       [24] astore_2 v2
       [25] goto +31 (target=56)
@@ -46460,7 +46459,7 @@ Methods (count = 23):
         + String [PERCENTAGE]
       [31] ifacmpne +11 (target=42)
       [34] aload_0 v0
-      [35] invokestatic #124
+      [35] invokestatic #120
         + Methodref [com/byronkatz/reap/general/l.b (Ljava/lang/Double;)Ljava/lang/String;]
       [38] astore_2 v2
       [39] goto +17 (target=56)
@@ -46469,9 +46468,9 @@ Methods (count = 23):
         + String [INTEGER]
       [45] ifacmpne +11 (target=56)
       [48] aload_0 v0
-      [49] invokevirtual #140
+      [49] invokevirtual #135
         + Methodref [java/lang/Double.intValue ()I]
-      [52] invokestatic #151
+      [52] invokestatic #145
         + Methodref [java/lang/String.valueOf (I)Ljava/lang/String;]
       [55] astore_2 v2
       [56] aload_2 v2
@@ -46497,21 +46496,21 @@ Methods (count = 23):
       = public static java.lang.String b(java.lang.Double)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 23, locals = 1, stack = 3):
-      [0] getstatic #75
+      [0] getstatic #72
         + Fieldref [com/byronkatz/reap/general/l.g Ljava/text/NumberFormat;]
       [3] iconst_2
-      [4] invokevirtual #162
+      [4] invokevirtual #156
         + Methodref [java/text/NumberFormat.setMaximumFractionDigits (I)V]
-      [7] getstatic #75
+      [7] getstatic #72
         + Fieldref [com/byronkatz/reap/general/l.g Ljava/text/NumberFormat;]
       [10] aload_0 v0
-      [11] invokevirtual #139
+      [11] invokevirtual #134
         + Methodref [java/lang/Double.floatValue ()F]
       [14] f2d
-      [15] invokevirtual #157
+      [15] invokevirtual #151
         + Methodref [java/text/NumberFormat.format (D)Ljava/lang/String;]
       [18] dup
-      [19] putstatic #72
+      [19] putstatic #69
         + Fieldref [com/byronkatz/reap/general/l.d Ljava/lang/String;]
       [22] areturn
       Code attribute exceptions (count = 0):
@@ -46526,22 +46525,22 @@ Methods (count = 23):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 58, locals = 3, stack = 2):
       [0] aload_1 v1
-      [1] invokevirtual #134
+      [1] invokevirtual #130
         + Methodref [com/byronkatz/reap/general/r.a ()Lcom/byronkatz/reap/general/s;]
-      [4] invokevirtual #135
+      [4] invokevirtual #131
         + Methodref [com/byronkatz/reap/general/s.name ()Ljava/lang/String;]
       [7] astore_1 v1
-      [8] ldc #23
+      [8] ldc #22
         + String [nothing]
       [10] astore_2 v2
       [11] aload_1 v1
       [12] ldc #17
         + String [CURRENCY]
       [14] ifacmpne +14 (target=28)
-      [17] getstatic #74
+      [17] getstatic #71
         + Fieldref [com/byronkatz/reap/general/l.f Ljava/text/NumberFormat;]
       [20] aload_0 v0
-      [21] invokevirtual #158
+      [21] invokevirtual #152
         + Methodref [java/text/NumberFormat.format (Ljava/lang/Object;)Ljava/lang/String;]
       [24] astore_2 v2
       [25] goto +31 (target=56)
@@ -46550,7 +46549,7 @@ Methods (count = 23):
         + String [PERCENTAGE]
       [31] ifacmpne +11 (target=42)
       [34] aload_0 v0
-      [35] invokestatic #127
+      [35] invokestatic #123
         + Methodref [com/byronkatz/reap/general/l.c (Ljava/lang/Double;)Ljava/lang/String;]
       [38] astore_2 v2
       [39] goto +17 (target=56)
@@ -46559,9 +46558,9 @@ Methods (count = 23):
         + String [INTEGER]
       [45] ifacmpne +11 (target=56)
       [48] aload_0 v0
-      [49] invokevirtual #140
+      [49] invokevirtual #135
         + Methodref [java/lang/Double.intValue ()I]
-      [52] invokestatic #151
+      [52] invokestatic #145
         + Methodref [java/lang/String.valueOf (I)Ljava/lang/String;]
       [55] astore_2 v2
       [56] aload_2 v2
@@ -46586,9 +46585,9 @@ Methods (count = 23):
     Access flags: 0x9
       = public static java.lang.Double a(java.lang.String)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 74, locals = 2, stack = 4):
+    + Code attribute instructions (code length = 49, locals = 2, stack = 2):
       [0] dconst_0
-      [1] invokestatic #141
+      [1] invokestatic #136
         + Methodref [java/lang/Double.valueOf (D)Ljava/lang/Double;]
       [4] pop
       [5] aconst_null
@@ -46596,71 +46595,49 @@ Methods (count = 23):
       [7] aload_0 v0
       [8] ldc #14
         + String [$]
-      [10] invokevirtual #149
+      [10] invokevirtual #143
         + Methodref [java/lang/String.contains (Ljava/lang/CharSequence;)Z]
       [13] ifeq +20 (target=33)
-      [16] getstatic #74
+      [16] getstatic #71
         + Fieldref [com/byronkatz/reap/general/l.f Ljava/text/NumberFormat;]
       [19] aload_0 v0
-      [20] invokevirtual #161
+      [20] invokevirtual #155
         + Methodref [java/text/NumberFormat.parse (Ljava/lang/String;)Ljava/lang/Number;]
-      [23] invokevirtual #147
+      [23] invokevirtual #141
         + Methodref [java/lang/Number.doubleValue ()D]
-      [26] invokestatic #141
+      [26] invokestatic #136
         + Methodref [java/lang/Double.valueOf (D)Ljava/lang/Double;]
       [29] astore_1 v1
-      [30] goto +42 (target=72)
+      [30] goto +17 (target=47)
       [33] aload_0 v0
-      [34] invokestatic #142
+      [34] invokestatic #137
         + Methodref [java/lang/Double.valueOf (Ljava/lang/String;)Ljava/lang/Double;]
       [37] astore_1 v1
-      [38] goto +34 (target=72)
-      [41] astore_0 v0
-      [42] getstatic #89
-        + Fieldref [java/lang/System.err Ljava/io/PrintStream;]
-      [45] new #63
-        + Class [java/lang/StringBuilder]
-      [48] dup
-      [49] ldc #20
-        + String [The REAP system encountered an error while trying to parse a number.  Please notify the developerof the following error:
-]
-      [51] invokespecial #153
-        + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [54] aload_0 v0
-      [55] invokevirtual #143
-        + Methodref [java/lang/Exception.getMessage ()Ljava/lang/String;]
-      [58] invokevirtual #155
-        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [61] invokevirtual #156
-        + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [64] invokevirtual #138
-        + Methodref [java/io/PrintStream.println (Ljava/lang/String;)V]
-      [67] dconst_0
-      [68] invokestatic #141
+      [38] goto +9 (target=47)
+      [41] pop
+      [42] dconst_0
+      [43] invokestatic #136
         + Methodref [java/lang/Double.valueOf (D)Ljava/lang/Double;]
-      [71] areturn
-      [72] aload_1 v1
-      [73] areturn
+      [46] areturn
+      [47] aload_1 v1
+      [48] areturn
       Code attribute exceptions (count = 1):
       - ExceptionInfo (7 -> 38: 41):
       + Class [java/lang/Exception]
       Code attribute attributes (attribute count = 2):
-      + Line number table attribute (count = 10)
+      + Line number table attribute (count = 7)
         [0] -> line 394
         [7] -> line 398
         [16] -> line 399
         [33] -> line 401
         [41] -> line 403
         [42] -> line 404
-        [54] -> line 406
-        [64] -> line 404
-        [67] -> line 407
-        [72] -> line 410
+        [47] -> line 407
       + Stack map table attribute (count = 4):
         - [33] Var: ...[a:java/lang/Double], Stack: (empty)
         - [38] Var: ..., Stack: (empty)
         - [41] Var: ..., Stack: [a:java/lang/Exception]
-        - [72] Var: ..., Stack: (empty)
+        - [47] Var: ..., Stack: (empty)
   + Method:       a(Ljava/lang/String;Lcom/byronkatz/reap/general/r;)Ljava/lang/String;
     Access flags: 0x9
       = public static java.lang.String a(java.lang.String,com.byronkatz.reap.general.r)
@@ -46674,17 +46651,17 @@ Methods (count = 23):
         + String [0]
       [8] astore_2 v2
       [9] aload_1 v1
-      [10] invokevirtual #134
+      [10] invokevirtual #130
         + Methodref [com/byronkatz/reap/general/r.a ()Lcom/byronkatz/reap/general/s;]
-      [13] getstatic #88
+      [13] getstatic #85
         + Fieldref [com/byronkatz/reap/general/s.d Lcom/byronkatz/reap/general/s;]
       [16] ifacmpeq +13 (target=29)
       [19] aload_2 v2
       [20] aload_1 v1
-      [21] invokestatic #128
+      [21] invokestatic #124
         + Methodref [com/byronkatz/reap/general/l.c (Ljava/lang/String;Lcom/byronkatz/reap/general/r;)Ljava/lang/Double;]
       [24] aload_1 v1
-      [25] invokestatic #121
+      [25] invokestatic #117
         + Methodref [com/byronkatz/reap/general/l.a (Ljava/lang/Double;Lcom/byronkatz/reap/general/r;)Ljava/lang/String;]
       [28] astore_2 v2
       [29] aload_2 v2
@@ -46692,12 +46669,12 @@ Methods (count = 23):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 6)
-        [0] -> line 422
-        [2] -> line 425
-        [6] -> line 426
-        [9] -> line 430
-        [19] -> line 431
-        [29] -> line 434
+        [0] -> line 419
+        [2] -> line 422
+        [6] -> line 423
+        [9] -> line 427
+        [19] -> line 428
+        [29] -> line 431
       + Stack map table attribute (count = 2):
         - [9] Var: ...[a:java/lang/String], Stack: (empty)
         - [29] Var: ..., Stack: (empty)
@@ -46714,17 +46691,17 @@ Methods (count = 23):
         + String [0]
       [8] astore_2 v2
       [9] aload_1 v1
-      [10] invokevirtual #134
+      [10] invokevirtual #130
         + Methodref [com/byronkatz/reap/general/r.a ()Lcom/byronkatz/reap/general/s;]
-      [13] getstatic #88
+      [13] getstatic #85
         + Fieldref [com/byronkatz/reap/general/s.d Lcom/byronkatz/reap/general/s;]
       [16] ifacmpeq +13 (target=29)
       [19] aload_2 v2
       [20] aload_1 v1
-      [21] invokestatic #128
+      [21] invokestatic #124
         + Methodref [com/byronkatz/reap/general/l.c (Ljava/lang/String;Lcom/byronkatz/reap/general/r;)Ljava/lang/Double;]
       [24] aload_1 v1
-      [25] invokestatic #125
+      [25] invokestatic #121
         + Methodref [com/byronkatz/reap/general/l.b (Ljava/lang/Double;Lcom/byronkatz/reap/general/r;)Ljava/lang/String;]
       [28] astore_2 v2
       [29] aload_2 v2
@@ -46732,12 +46709,12 @@ Methods (count = 23):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 6)
-        [0] -> line 446
-        [2] -> line 449
-        [6] -> line 450
-        [9] -> line 454
-        [19] -> line 455
-        [29] -> line 458
+        [0] -> line 443
+        [2] -> line 446
+        [6] -> line 447
+        [9] -> line 451
+        [19] -> line 452
+        [29] -> line 455
       + Stack map table attribute (count = 2):
         - [9] Var: ...[a:java/lang/String], Stack: (empty)
         - [29] Var: ..., Stack: (empty)
@@ -46747,39 +46724,39 @@ Methods (count = 23):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 58, locals = 3, stack = 2):
       [0] dconst_0
-      [1] invokestatic #141
+      [1] invokestatic #136
         + Methodref [java/lang/Double.valueOf (D)Ljava/lang/Double;]
       [4] astore_2 v2
       [5] aload_1 v1
-      [6] invokevirtual #134
+      [6] invokevirtual #130
         + Methodref [com/byronkatz/reap/general/r.a ()Lcom/byronkatz/reap/general/s;]
-      [9] getstatic #86
+      [9] getstatic #83
         + Fieldref [com/byronkatz/reap/general/s.b Lcom/byronkatz/reap/general/s;]
       [12] ifacmpne +11 (target=23)
       [15] aload_0 v0
-      [16] invokestatic #122
+      [16] invokestatic #118
         + Methodref [com/byronkatz/reap/general/l.a (Ljava/lang/String;)Ljava/lang/Double;]
       [19] astore_2 v2
       [20] goto +36 (target=56)
       [23] aload_1 v1
-      [24] invokevirtual #134
+      [24] invokevirtual #130
         + Methodref [com/byronkatz/reap/general/r.a ()Lcom/byronkatz/reap/general/s;]
-      [27] getstatic #85
+      [27] getstatic #82
         + Fieldref [com/byronkatz/reap/general/s.a Lcom/byronkatz/reap/general/s;]
       [30] ifacmpne +11 (target=41)
       [33] aload_0 v0
-      [34] invokestatic #126
+      [34] invokestatic #122
         + Methodref [com/byronkatz/reap/general/l.b (Ljava/lang/String;)Ljava/lang/Double;]
       [37] astore_2 v2
       [38] goto +18 (target=56)
       [41] aload_1 v1
-      [42] invokevirtual #134
+      [42] invokevirtual #130
         + Methodref [com/byronkatz/reap/general/r.a ()Lcom/byronkatz/reap/general/s;]
-      [45] getstatic #87
+      [45] getstatic #84
         + Fieldref [com/byronkatz/reap/general/s.c Lcom/byronkatz/reap/general/s;]
       [48] ifacmpne +8 (target=56)
       [51] aload_0 v0
-      [52] invokestatic #142
+      [52] invokestatic #137
         + Methodref [java/lang/Double.valueOf (Ljava/lang/String;)Ljava/lang/Double;]
       [55] astore_2 v2
       [56] aload_2 v2
@@ -46787,14 +46764,14 @@ Methods (count = 23):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 8)
-        [0] -> line 469
-        [5] -> line 471
-        [15] -> line 472
-        [23] -> line 473
-        [33] -> line 474
-        [41] -> line 475
-        [51] -> line 476
-        [56] -> line 479
+        [0] -> line 466
+        [5] -> line 468
+        [15] -> line 469
+        [23] -> line 470
+        [33] -> line 471
+        [41] -> line 472
+        [51] -> line 473
+        [56] -> line 476
       + Stack map table attribute (count = 3):
         - [23] Var: ...[a:java/lang/Double], Stack: (empty)
         - [41] Var: ..., Stack: (empty)
@@ -46803,222 +46780,207 @@ Methods (count = 23):
     Access flags: 0x9
       = public static void b(android.view.View,com.byronkatz.reap.general.r)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 119, locals = 2, stack = 3):
+    + Code attribute instructions (code length = 128, locals = 2, stack = 3):
       [0] aload_1 v1
-      [1] invokevirtual #134
+      [1] invokevirtual #130
         + Methodref [com/byronkatz/reap/general/r.a ()Lcom/byronkatz/reap/general/s;]
-      [4] getstatic #86
+      [4] getstatic #83
         + Fieldref [com/byronkatz/reap/general/s.b Lcom/byronkatz/reap/general/s;]
       [7] ifacmpne +36 (target=43)
       [10] aload_0 v0
       [11] dup
       [12] astore_0 v0
-      [13] checkcast #38
+      [13] checkcast #37
         + Class [android/widget/EditText]
       [16] aload_0 v0
-      [17] checkcast #38
+      [17] checkcast #37
         + Class [android/widget/EditText]
-      [20] invokevirtual #113
+      [20] invokevirtual #109
         + Methodref [android/widget/EditText.getText ()Landroid/text/Editable;]
-      [23] invokeinterface #164
+      [23] invokeinterface #158
         + InterfaceMethodref [android/text/Editable.toString ()Ljava/lang/String;]
-      [28] invokestatic #122
+      [28] invokestatic #118
         + Methodref [com/byronkatz/reap/general/l.a (Ljava/lang/String;)Ljava/lang/Double;]
       [31] astore_0 v0
-      [32] getstatic #74
+      [32] getstatic #71
         + Fieldref [com/byronkatz/reap/general/l.f Ljava/text/NumberFormat;]
       [35] aload_0 v0
-      [36] invokevirtual #158
+      [36] invokevirtual #152
         + Methodref [java/text/NumberFormat.format (Ljava/lang/Object;)Ljava/lang/String;]
-      [39] invokevirtual #115
+      [39] invokevirtual #111
         + Methodref [android/widget/EditText.setText (Ljava/lang/CharSequence;)V]
       [42] return
       [43] aload_1 v1
-      [44] invokevirtual #134
+      [44] invokevirtual #130
         + Methodref [com/byronkatz/reap/general/r.a ()Lcom/byronkatz/reap/general/s;]
-      [47] getstatic #85
+      [47] getstatic #82
         + Fieldref [com/byronkatz/reap/general/s.a Lcom/byronkatz/reap/general/s;]
       [50] ifacmpne +31 (target=81)
       [53] aload_0 v0
       [54] dup
       [55] astore_0 v0
-      [56] checkcast #38
+      [56] checkcast #37
         + Class [android/widget/EditText]
       [59] aload_0 v0
-      [60] checkcast #38
+      [60] checkcast #37
         + Class [android/widget/EditText]
-      [63] invokevirtual #113
+      [63] invokevirtual #109
         + Methodref [android/widget/EditText.getText ()Landroid/text/Editable;]
-      [66] invokeinterface #164
+      [66] invokeinterface #158
         + InterfaceMethodref [android/text/Editable.toString ()Ljava/lang/String;]
-      [71] invokestatic #126
+      [71] invokestatic #122
         + Methodref [com/byronkatz/reap/general/l.b (Ljava/lang/String;)Ljava/lang/Double;]
-      [74] invokestatic #127
+      [74] invokestatic #123
         + Methodref [com/byronkatz/reap/general/l.c (Ljava/lang/Double;)Ljava/lang/String;]
-      [77] invokevirtual #115
+      [77] invokevirtual #111
         + Methodref [android/widget/EditText.setText (Ljava/lang/CharSequence;)V]
       [80] return
       [81] aload_1 v1
-      [82] invokevirtual #134
+      [82] invokevirtual #130
         + Methodref [com/byronkatz/reap/general/r.a ()Lcom/byronkatz/reap/general/s;]
-      [85] getstatic #87
+      [85] getstatic #84
         + Fieldref [com/byronkatz/reap/general/s.c Lcom/byronkatz/reap/general/s;]
-      [88] ifacmpne +30 (target=118)
+      [88] ifacmpne +39 (target=127)
       [91] aload_0 v0
-      [92] dup
-      [93] astore_0 v0
-      [94] checkcast #38
+      [92] checkcast #37
         + Class [android/widget/EditText]
-      [97] aload_0 v0
-      [98] checkcast #38
+      [95] aload_0 v0
+      [96] checkcast #37
         + Class [android/widget/EditText]
-      [101] invokevirtual #113
+      [99] invokevirtual #109
         + Methodref [android/widget/EditText.getText ()Landroid/text/Editable;]
-      [104] invokeinterface #164
+      [102] invokeinterface #158
         + InterfaceMethodref [android/text/Editable.toString ()Ljava/lang/String;]
-      [109] invokestatic #146
+      [107] invokestatic #140
         + Methodref [java/lang/Integer.valueOf (Ljava/lang/String;)Ljava/lang/Integer;]
-      [112] invokestatic #152
+      [110] invokestatic #146
         + Methodref [java/lang/String.valueOf (Ljava/lang/Object;)Ljava/lang/String;]
-      [115] invokevirtual #115
+      [113] invokevirtual #111
         + Methodref [android/widget/EditText.setText (Ljava/lang/CharSequence;)V]
-      [118] return
-      Code attribute exceptions (count = 0):
+      [116] return
+      [117] pop
+      [118] aload_0 v0
+      [119] checkcast #37
+        + Class [android/widget/EditText]
+      [122] ldc #16
+        + String [0]
+      [124] invokevirtual #111
+        + Methodref [android/widget/EditText.setText (Ljava/lang/CharSequence;)V]
+      [127] return
+      Code attribute exceptions (count = 1):
+      - ExceptionInfo (91 -> 116: 117):
+      + Class [java/lang/Exception]
       Code attribute attributes (attribute count = 2):
       + Line number table attribute (count = 7)
-        [0] -> line 483
-        [10] -> line 484
-        [43] -> line 485
-        [53] -> line 486
-        [81] -> line 487
-        [91] -> line 488
-        [118] -> line 490
+        [0] -> line 480
+        [10] -> line 481
+        [43] -> line 482
+        [53] -> line 483
+        [81] -> line 484
+        [91] -> line 485
+        [127] -> line 487
       + Stack map table attribute (count = 3):
         - [43] Var: ..., Stack: (empty)
         - [81] Var: ..., Stack: (empty)
-        - [118] Var: ..., Stack: (empty)
+        - [127] Var: ..., Stack: (empty)
   + Method:       c(Ljava/lang/Double;)Ljava/lang/String;
     Access flags: 0x9
       = public static java.lang.String c(java.lang.Double)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 23, locals = 1, stack = 3):
-      [0] getstatic #75
+      [0] getstatic #72
         + Fieldref [com/byronkatz/reap/general/l.g Ljava/text/NumberFormat;]
       [3] iconst_4
-      [4] invokevirtual #162
+      [4] invokevirtual #156
         + Methodref [java/text/NumberFormat.setMaximumFractionDigits (I)V]
-      [7] getstatic #75
+      [7] getstatic #72
         + Fieldref [com/byronkatz/reap/general/l.g Ljava/text/NumberFormat;]
       [10] aload_0 v0
-      [11] invokevirtual #139
+      [11] invokevirtual #134
         + Methodref [java/lang/Double.floatValue ()F]
       [14] f2d
-      [15] invokevirtual #157
+      [15] invokevirtual #151
         + Methodref [java/text/NumberFormat.format (D)Ljava/lang/String;]
       [18] dup
-      [19] putstatic #72
+      [19] putstatic #69
         + Fieldref [com/byronkatz/reap/general/l.d Ljava/lang/String;]
       [22] areturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 3)
-        [0] -> line 517
-        [7] -> line 518
-        [19] -> line 519
+        [0] -> line 518
+        [7] -> line 519
+        [19] -> line 520
   + Method:       b(Ljava/lang/String;)Ljava/lang/Double;
     Access flags: 0x9
       = public static java.lang.Double b(java.lang.String)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 83, locals = 2, stack = 4):
+    + Code attribute instructions (code length = 56, locals = 2, stack = 2):
       [0] dconst_0
-      [1] invokestatic #141
+      [1] invokestatic #136
         + Methodref [java/lang/Double.valueOf (D)Ljava/lang/Double;]
       [4] pop
       [5] aconst_null
       [6] astore_1 v1
-      [7] getstatic #75
+      [7] getstatic #72
         + Fieldref [com/byronkatz/reap/general/l.g Ljava/text/NumberFormat;]
       [10] iconst_4
-      [11] invokevirtual #162
+      [11] invokevirtual #156
         + Methodref [java/text/NumberFormat.setMaximumFractionDigits (I)V]
       [14] aload_0 v0
       [15] ldc #15
         + String [%]
-      [17] invokevirtual #149
+      [17] invokevirtual #143
         + Methodref [java/lang/String.contains (Ljava/lang/CharSequence;)Z]
-      [20] ifeq +22 (target=42)
-      [23] getstatic #75
+      [20] ifeq +20 (target=40)
+      [23] getstatic #72
         + Fieldref [com/byronkatz/reap/general/l.g Ljava/text/NumberFormat;]
       [26] aload_0 v0
-      [27] invokevirtual #161
+      [27] invokevirtual #155
         + Methodref [java/text/NumberFormat.parse (Ljava/lang/String;)Ljava/lang/Number;]
-      [30] aconst_null
-      [31] astore_0 v0
-      [32] invokevirtual #147
+      [30] invokevirtual #141
         + Methodref [java/lang/Number.doubleValue ()D]
-      [35] invokestatic #141
+      [33] invokestatic #136
         + Methodref [java/lang/Double.valueOf (D)Ljava/lang/Double;]
-      [38] astore_1 v1
-      [39] goto +42 (target=81)
-      [42] aload_0 v0
-      [43] invokestatic #142
+      [36] astore_1 v1
+      [37] goto +17 (target=54)
+      [40] aload_0 v0
+      [41] invokestatic #137
         + Methodref [java/lang/Double.valueOf (Ljava/lang/String;)Ljava/lang/Double;]
-      [46] astore_1 v1
-      [47] goto +34 (target=81)
-      [50] astore_0 v0
-      [51] getstatic #89
-        + Fieldref [java/lang/System.err Ljava/io/PrintStream;]
-      [54] new #63
-        + Class [java/lang/StringBuilder]
-      [57] dup
-      [58] ldc #20
-        + String [The REAP system encountered an error while trying to parse a number.  Please notify the developerof the following error:
-]
-      [60] invokespecial #153
-        + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [63] aload_0 v0
-      [64] invokevirtual #143
-        + Methodref [java/lang/Exception.getMessage ()Ljava/lang/String;]
-      [67] invokevirtual #155
-        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [70] invokevirtual #156
-        + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [73] invokevirtual #138
-        + Methodref [java/io/PrintStream.println (Ljava/lang/String;)V]
-      [76] dconst_0
-      [77] invokestatic #141
+      [44] astore_1 v1
+      [45] goto +9 (target=54)
+      [48] pop
+      [49] dconst_0
+      [50] invokestatic #136
         + Methodref [java/lang/Double.valueOf (D)Ljava/lang/Double;]
-      [80] areturn
-      [81] aload_1 v1
-      [82] areturn
+      [53] areturn
+      [54] aload_1 v1
+      [55] areturn
       Code attribute exceptions (count = 1):
-      - ExceptionInfo (14 -> 47: 50):
+      - ExceptionInfo (14 -> 45: 48):
       + Class [java/lang/Exception]
       Code attribute attributes (attribute count = 2):
-      + Line number table attribute (count = 12)
-        [0] -> line 523
-        [7] -> line 524
-        [14] -> line 527
-        [23] -> line 528
-        [30] -> line 529
-        [42] -> line 531
-        [50] -> line 534
-        [51] -> line 535
-        [63] -> line 537
-        [73] -> line 535
-        [76] -> line 538
-        [81] -> line 541
+      + Line number table attribute (count = 9)
+        [0] -> line 524
+        [7] -> line 525
+        [14] -> line 528
+        [23] -> line 529
+        [30] -> line 530
+        [40] -> line 532
+        [48] -> line 535
+        [49] -> line 536
+        [54] -> line 539
       + Stack map table attribute (count = 4):
-        - [42] Var: ...[a:java/lang/Double], Stack: (empty)
-        - [47] Var: ..., Stack: (empty)
-        - [50] Var: ..., Stack: [a:java/lang/Exception]
-        - [81] Var: ..., Stack: (empty)
+        - [40] Var: ...[a:java/lang/Double], Stack: (empty)
+        - [45] Var: ..., Stack: (empty)
+        - [48] Var: ..., Stack: [a:java/lang/Exception]
+        - [54] Var: ..., Stack: (empty)
   + Method:       a()Lcom/byronkatz/reap/general/b;
     Access flags: 0x1008
       = static synthetic com.byronkatz.reap.general.b a()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 4, locals = 0, stack = 1):
-      [0] getstatic #73
+      [0] getstatic #70
         + Fieldref [com/byronkatz/reap/general/l.e Lcom/byronkatz/reap/general/b;]
       [3] areturn
       Code attribute exceptions (count = 0):
@@ -47030,48 +46992,48 @@ Methods (count = 23):
       = private static synthetic int[] b()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 74, locals = 1, stack = 3):
-      [0] getstatic #76
+      [0] getstatic #73
         + Fieldref [com/byronkatz/reap/general/l.h [I]
       [3] dup
       [4] ifnull +4 (target=8)
       [7] areturn
       [8] pop
-      [9] invokestatic #137
+      [9] invokestatic #133
         + Methodref [com/byronkatz/reap/general/s.values ()[Lcom/byronkatz/reap/general/s;]
       [12] arraylength
       [13] newarray 10
       [15] astore_0 v0
       [16] aload_0 v0
-      [17] getstatic #86
+      [17] getstatic #83
         + Fieldref [com/byronkatz/reap/general/s.b Lcom/byronkatz/reap/general/s;]
-      [20] invokevirtual #136
+      [20] invokevirtual #132
         + Methodref [com/byronkatz/reap/general/s.ordinal ()I]
       [23] iconst_2
       [24] iastore
       [25] goto +4 (target=29)
       [28] pop
       [29] aload_0 v0
-      [30] getstatic #87
+      [30] getstatic #84
         + Fieldref [com/byronkatz/reap/general/s.c Lcom/byronkatz/reap/general/s;]
-      [33] invokevirtual #136
+      [33] invokevirtual #132
         + Methodref [com/byronkatz/reap/general/s.ordinal ()I]
       [36] iconst_3
       [37] iastore
       [38] goto +4 (target=42)
       [41] pop
       [42] aload_0 v0
-      [43] getstatic #85
+      [43] getstatic #82
         + Fieldref [com/byronkatz/reap/general/s.a Lcom/byronkatz/reap/general/s;]
-      [46] invokevirtual #136
+      [46] invokevirtual #132
         + Methodref [com/byronkatz/reap/general/s.ordinal ()I]
       [49] iconst_1
       [50] iastore
       [51] goto +4 (target=55)
       [54] pop
       [55] aload_0 v0
-      [56] getstatic #88
+      [56] getstatic #85
         + Fieldref [com/byronkatz/reap/general/s.d Lcom/byronkatz/reap/general/s;]
-      [59] invokevirtual #136
+      [59] invokevirtual #132
         + Methodref [com/byronkatz/reap/general/s.ordinal ()I]
       [62] iconst_4
       [63] iastore
@@ -47079,7 +47041,7 @@ Methods (count = 23):
       [67] pop
       [68] aload_0 v0
       [69] dup
-      [70] putstatic #76
+      [70] putstatic #73
         + Fieldref [com/byronkatz/reap/general/l.h [I]
       [73] areturn
       Code attribute exceptions (count = 4):

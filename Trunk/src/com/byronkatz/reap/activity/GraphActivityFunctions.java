@@ -106,6 +106,7 @@ public class GraphActivityFunctions {
   static Double parseEditText(EditText editText, ValueEnum currentSliderKey) {
     Double returnValue = 0.0d;
 
+    try {
     switch (currentSliderKey.getType()) {
     case CURRENCY:
       returnValue = Utility.parseCurrency(editText.getText().toString());
@@ -117,6 +118,9 @@ public class GraphActivityFunctions {
       returnValue = Double.valueOf(editText.getText().toString());
     default:
       break;
+    }
+    } catch (Exception e) {
+      returnValue = 0.0d;
     }
 
     return returnValue;

@@ -39,7 +39,7 @@ com.byronkatz.reap.activity.ConfigureDataTablesActivity$1 -> com.byronkatz.reap.
     66:67:void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
 com.byronkatz.reap.activity.CurrentValueOnFocusChangeListener -> com.byronkatz.reap.activity.b:
     com.byronkatz.reap.activity.GraphActivity graphActivity -> a
-    26:39:void onFocusChange(android.view.View,boolean) -> onFocusChange
+    26:41:void onFocusChange(android.view.View,boolean) -> onFocusChange
 com.byronkatz.reap.activity.DataPagesActivity -> com.byronkatz.reap.activity.DataPagesActivity:
     android.widget.Button address -> a
     android.widget.Button taxes -> b
@@ -147,8 +147,8 @@ com.byronkatz.reap.activity.GraphActivityFunctions -> com.byronkatz.reap.activit
     37:54:void invalidateGraphs(android.app.Activity) -> a
     60:77:void highlightCurrentYearOnGraph(java.lang.Integer,android.app.Activity) -> a
     102:102:java.lang.Double calculateMinMaxDelta(java.lang.Double,java.lang.Double) -> a
-    107:122:java.lang.Double parseEditText(android.widget.EditText,com.byronkatz.reap.general.ValueEnum) -> a
-    135:148:void displayValue(android.widget.EditText,java.lang.Double,com.byronkatz.reap.general.ValueEnum) -> a
+    107:126:java.lang.Double parseEditText(android.widget.EditText,com.byronkatz.reap.general.ValueEnum) -> a
+    139:152:void displayValue(android.widget.EditText,java.lang.Double,com.byronkatz.reap.general.ValueEnum) -> a
     13:13:int[] $SWITCH_TABLE$com$byronkatz$reap$general$ValueEnum$ValueType() -> a
 com.byronkatz.reap.activity.LoanActivity -> com.byronkatz.reap.activity.LoanActivity:
     android.widget.EditText yearlyInterestRate -> b
@@ -825,13 +825,13 @@ com.byronkatz.reap.general.Utility -> com.byronkatz.reap.general.l:
     341:353:java.lang.String displayShortValue(java.lang.Double,com.byronkatz.reap.general.ValueEnum) -> a
     361:363:java.lang.String displayShortPercentage(java.lang.Double) -> b
     374:385:java.lang.String displayValue(java.lang.Double,com.byronkatz.reap.general.ValueEnum) -> b
-    394:410:java.lang.Double parseCurrency(java.lang.String) -> a
-    422:434:java.lang.String parseAndDisplayShortValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> a
-    446:458:java.lang.String parseAndDisplayValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> b
-    469:479:java.lang.Double parseValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> c
-    483:490:void parseThenDisplayValue(android.view.View,com.byronkatz.reap.general.ValueEnum) -> b
-    517:519:java.lang.String displayPercentage(java.lang.Double) -> c
-    523:541:java.lang.Double parsePercentage(java.lang.String) -> b
+    394:407:java.lang.Double parseCurrency(java.lang.String) -> a
+    419:431:java.lang.String parseAndDisplayShortValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> a
+    443:455:java.lang.String parseAndDisplayValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> b
+    466:476:java.lang.Double parseValue(java.lang.String,com.byronkatz.reap.general.ValueEnum) -> c
+    480:487:void parseThenDisplayValue(android.view.View,com.byronkatz.reap.general.ValueEnum) -> b
+    518:520:java.lang.String displayPercentage(java.lang.Double) -> c
+    524:539:java.lang.Double parsePercentage(java.lang.String) -> b
     39:39:com.byronkatz.reap.general.DataController access$0() -> a
     33:33:int[] $SWITCH_TABLE$com$byronkatz$reap$general$ValueEnum$ValueType() -> b
 com.byronkatz.reap.general.Utility$1 -> com.byronkatz.reap.general.m:
