@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/overallRentalScrollView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/custom_background" >
+
+    <LinearLayout
+        android:id="@+id/overallFinancialEnvironmentLinearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <!-- the following is just to catch the focus and do nothing with it -->
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+
+        <LinearLayout
+            android:id="@+id/inflationRateLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <TextView
+                android:id="@+id/estimatedRentPaymentsTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/estimatedRentPaymentsTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/tf_green2" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/estimatedRentPaymentsEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:inputType="numberDecimal"
+                android:maxLength="20" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/realEstateAppreciationRateLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <TextView
+                android:id="@+id/initialHomeInsuranceTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/initialHomeInsuranceTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/tf_green2" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/initialHomeInsuranceEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:inputType="numberDecimal"
+                android:maxLength="20" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/vacancyAndCreditLossLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <TextView
+                android:id="@+id/vacancyAndCreditLossTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/vacancyAndCreditLossTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/tf_green2" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/vacancyAndCreditLossEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:inputType="numberDecimal"
+                android:maxLength="20" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fixupCostsLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <TextView
+                android:id="@+id/fixupCostsTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/fixupCostsTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/tf_green2" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/fixupCostsEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:inputType="numberDecimal"
+                android:maxLength="20" >
+            </EditText>
+        </LinearLayout>
+        
+                <LinearLayout
+            android:id="@+id/valuationLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <TextView
+                android:id="@+id/valuationTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/valuationTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/tf_green2" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/valuationEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:inputType="numberDecimal"
+                android:maxLength="20" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/initialYearlyGeneralExpensesLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <TextView
+                android:id="@+id/initialYearlyGeneralExpensesTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/initialYearlyGeneralExpensesTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/tf_green2" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/initialYearlyGeneralExpensesEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:inputType="numberDecimal"
+                android:maxLength="20" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/requiredRateOfReturnLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <TextView
+                android:id="@+id/requiredRateOfReturnTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/requiredRateOfReturnTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/tf_green2" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/requiredRateOfReturnEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:inputType="numberDecimal"
+                android:maxLength="20" >
+            </EditText>
+        </LinearLayout>
+        
+                <LinearLayout
+            android:id="@+id/monthsUntilRentStartsLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <TextView
+                android:id="@+id/monthsUntilRentStartsTitle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="@string/monthsUntilRentStartsTitleText"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/tf_green2" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/monthsUntilRentStartsEditText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:inputType="number"
+                android:maxLength="3" >
+            </EditText>
+        </LinearLayout>
+        
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:onClick="callCalculator"
+            android:padding="10dip"
+            android:src="@drawable/calc_icon" />
+    </LinearLayout>
+
+</ScrollView>
