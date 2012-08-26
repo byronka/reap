@@ -11,7 +11,6 @@ public class HelpButtonOnClickWrapper implements OnClickListener {
     this.ve = ve;
   }
   
-  @Override
   public void onClick(View v) {
     Utility.showHelpDialog(
         ve.getHelpText(), ve.getTitleText(), v.getContext());

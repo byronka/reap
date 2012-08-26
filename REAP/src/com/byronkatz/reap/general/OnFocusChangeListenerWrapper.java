@@ -11,7 +11,6 @@ public class OnFocusChangeListenerWrapper implements OnFocusChangeListener {
     this.ve = ve; 
   }
 
-  @Override
   public void onFocusChange(View v, boolean hasFocus) {
     if (hasFocus) {
       Utility.setSelectionOnView(v, ve);

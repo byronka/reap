@@ -64,7 +64,6 @@ public class DataController implements DataManager {
    * using this method to get a calculated value actually causes the calculation
    * method in question to run at that time.
    */
-  @Override
   public double getCalcValue(ValueEnum valueEnum, int compoundingPeriod) {
 //    Thread.dumpStack();
 //    Log.d("call " + getCalcCalls++, "calculating " + valueEnum.name() + " " + compoundingPeriod);
@@ -79,12 +78,10 @@ public class DataController implements DataManager {
    * This method is used to insert user values into the user value map
    *
    */
-  @Override
   public void putInputValue(double value, ValueEnum valueEnum) {
     inputMap.put(valueEnum, value);
   }
 
-  @Override
   public double getInputValue(ValueEnum valueEnum) {
 
     if (inputMap.get(valueEnum) == null) {

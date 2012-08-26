@@ -21,18 +21,15 @@ public class DataManagerImpl implements DataManager {
     calcValuePointers.put(valueEnum, valueStorage);
   }
 
-  @Override
   public double getCalcValue(ValueEnum valueEnum, int compoundingPeriod) {
     return calcValuePointers.get(valueEnum).getValue(compoundingPeriod);
   }
 
-  @Override
   public void putInputValue(double value, ValueEnum valueEnum) {
     inputAmounts.put(valueEnum, value);
     
   }
 
-  @Override
   public double getInputValue(ValueEnum valueEnum) {
     if (inputAmounts.get(valueEnum) == null) {
       return 0d;

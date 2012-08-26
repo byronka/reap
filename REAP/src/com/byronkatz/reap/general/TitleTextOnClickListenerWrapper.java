@@ -14,7 +14,6 @@ public class TitleTextOnClickListenerWrapper implements OnClickListener {
 
   }
     
-    @Override
     public void onClick(View v) {
       Utility.showHelpDialog(
           valueEnum.getHelpText(),

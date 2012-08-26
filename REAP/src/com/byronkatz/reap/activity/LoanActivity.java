@@ -101,7 +101,6 @@ public class LoanActivity extends Activity {
 
     pmiButton.setOnClickListener(new OnClickListener() {
 
-      @Override
       public void onClick(View v) {
         Double totalPurchasevalue = 
             Utility.parseCurrency(totalPurchasePrice.getText().toString());
@@ -145,7 +144,6 @@ public class LoanActivity extends Activity {
 
     loanTerm.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-      @Override
       public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
           long arg3) {
 
@@ -170,7 +168,6 @@ public class LoanActivity extends Activity {
       }
 
 
-      @Override
       public void onNothingSelected(AdapterView<?> arg0) {
         // Do nothing.
       }

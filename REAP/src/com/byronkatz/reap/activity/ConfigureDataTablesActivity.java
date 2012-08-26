@@ -61,7 +61,6 @@ public class ConfigureDataTablesActivity extends Activity {
     graphVisibilityCheckbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 
-      @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         isGraphVisible = isChecked;
       }

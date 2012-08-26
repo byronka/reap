@@ -157,7 +157,6 @@ public class SplashScreenActivity extends Activity {
 
     mCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-      @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if (isChecked) {
           findViewById(R.id.estimatedRentRow).setVisibility(View.VISIBLE);
@@ -184,7 +183,6 @@ public class SplashScreenActivity extends Activity {
 
     loanTerm.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-      @Override
       public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
           long arg3) {
 
@@ -204,7 +202,6 @@ public class SplashScreenActivity extends Activity {
         } 
       }
 
-      @Override
       public void onNothingSelected(AdapterView<?> arg0) {
         // Do nothing.
       }
@@ -219,7 +216,6 @@ public class SplashScreenActivity extends Activity {
         (Button)findViewById(R.id.splashScreenGoButton);
     splashScreenGoButton.setOnClickListener(new OnClickListener() {
 
-      @Override
       public void onClick(View v) {
 
         if (licensed) {
@@ -237,7 +233,6 @@ public class SplashScreenActivity extends Activity {
         (Button)findViewById(R.id.splashScreenSkipButton);
     splashScreenSkipButton.setOnClickListener(new OnClickListener() {
 
-      @Override
       public void onClick(View v) {
 
         if (licensed) {
@@ -436,7 +431,6 @@ public class SplashScreenActivity extends Activity {
 
   private class MyLicenseCheckerCallback implements LicenseCheckerCallback {
 
-    @Override
     public void allow(int reason) {
       if (isFinishing()) {
         // Don't update UI if Activity is finishing.
@@ -448,7 +442,6 @@ public class SplashScreenActivity extends Activity {
       // Should allow user access.
     }
 
-    @Override
     public void dontAllow(int reason) {
       if (isFinishing()) {
         // Don't update UI if Activity is finishing.

@@ -219,7 +219,7 @@ public class Calculations implements ValueSettable {
     }
   }
   
-  @Override
+  
   public void setValues(DataManager dataManager) {
 
     this.dataManager = dataManager;
@@ -404,7 +404,7 @@ public class Calculations implements ValueSettable {
 
   private class PrincipalPaymentValue implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -422,7 +422,7 @@ public class Calculations implements ValueSettable {
    */
   private class MonthlyRentFValue implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -441,7 +441,7 @@ public class Calculations implements ValueSettable {
    */
   private class YearlyGrossIncomeValue implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -460,7 +460,7 @@ public class Calculations implements ValueSettable {
    */
   private class YearlyNetIncomeValue implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -506,7 +506,7 @@ public class Calculations implements ValueSettable {
    */
   private class NetOperatingIncome implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -541,7 +541,7 @@ public class Calculations implements ValueSettable {
    */
   private class TaxableIncome implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -573,7 +573,7 @@ public class Calculations implements ValueSettable {
    */
   private class YearlyDepreciation implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -591,7 +591,7 @@ public class Calculations implements ValueSettable {
    */
   private class YearlyTaxOnIncome implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -610,7 +610,7 @@ public class Calculations implements ValueSettable {
    */
   private class TaxesDueAtSale implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -645,7 +645,7 @@ public class Calculations implements ValueSettable {
    */
   private class MunicipalExpensesFValue implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -666,7 +666,7 @@ public class Calculations implements ValueSettable {
    */
   private class PropertyTaxFValue implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -687,7 +687,7 @@ public class Calculations implements ValueSettable {
    */
   private class InsuranceFValue implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -708,7 +708,7 @@ public class Calculations implements ValueSettable {
    */
   private class GeneralExpensesFValue implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -729,7 +729,7 @@ public class Calculations implements ValueSettable {
    * 
    */
   private class OperatingExpensesFValue implements CalcValueGettable {
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -764,7 +764,7 @@ public class Calculations implements ValueSettable {
    * 
    */
   private class InvestmentFValue implements CalcValueGettable {
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -789,7 +789,7 @@ public class Calculations implements ValueSettable {
    */
   private class BrokerCutOfSale implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -808,7 +808,7 @@ public class Calculations implements ValueSettable {
    */
   private class AfterTaxEquityReversion implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -834,7 +834,7 @@ public class Calculations implements ValueSettable {
    */
   private class AterPV implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       return (afterTaxEquityReversion.getValue(compoundingPeriod) / Math.pow(
           (1 + requiredRateOfReturn), (compoundingPeriod / MONTHS_IN_YEAR) + 1));
@@ -850,7 +850,7 @@ public class Calculations implements ValueSettable {
    */
   private class SellingExpensesFValue implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -877,7 +877,7 @@ public class Calculations implements ValueSettable {
      * is not the exact situation in the case of fixup costs, but for our
      * purposes it is a close approimation
      */
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -888,7 +888,7 @@ public class Calculations implements ValueSettable {
 
   private class NPV implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -902,7 +902,7 @@ public class Calculations implements ValueSettable {
 
   private class MIRR implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -968,7 +968,7 @@ public class Calculations implements ValueSettable {
 
   private class AtcfNpv implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -992,7 +992,7 @@ public class Calculations implements ValueSettable {
 
   private class AfterTaxCashFlowAccumulator implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0
           || compoundingPeriod >= (totalYearsToCalculate * 12)) {
@@ -1005,7 +1005,7 @@ public class Calculations implements ValueSettable {
 
   private class AfterTaxCashFlow implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0
           || compoundingPeriod >= (totalYearsToCalculate * 12)) {
@@ -1069,7 +1069,7 @@ public class Calculations implements ValueSettable {
 
   private class BeforeTaxCashFlow implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -1082,7 +1082,7 @@ public class Calculations implements ValueSettable {
 
   private class CapitalizationRateOnPurchaseValue implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -1095,7 +1095,7 @@ public class Calculations implements ValueSettable {
 
   private class CapitalizationRateOnProjectedValue implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -1108,7 +1108,7 @@ public class Calculations implements ValueSettable {
 
   private class YearlyOutlay implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -1200,7 +1200,7 @@ public class Calculations implements ValueSettable {
     public YearlyPrivateMortgageInsuranceAccum() {
     }
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
 
       if (compoundingPeriod < 0) {
@@ -1219,7 +1219,7 @@ public class Calculations implements ValueSettable {
     public YearlyPrivateMortgageInsurance() {
     }
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
 
       if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {
@@ -1239,7 +1239,7 @@ public class Calculations implements ValueSettable {
   private class YearlyAmountOwedValue implements CalcValueGettable {
 
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
 
       if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {
@@ -1252,7 +1252,7 @@ public class Calculations implements ValueSettable {
   private class MonthlyAmountOwedValue implements CalcValueGettable {
 
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
 
       if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {
@@ -1267,7 +1267,7 @@ public class Calculations implements ValueSettable {
     public LoanAmountValue() {
     }
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
 
       if (compoundingPeriod < 0) {
@@ -1282,7 +1282,7 @@ public class Calculations implements ValueSettable {
     public MortgagePayment() {
     }
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {
         return 0d;
@@ -1302,7 +1302,7 @@ public class Calculations implements ValueSettable {
     public YearlyMortgagePayment() {
     }
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
 
       if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {
@@ -1314,7 +1314,7 @@ public class Calculations implements ValueSettable {
 
   private class MonthlyInterestPaidAccumulatedValue implements CalcValueGettable {
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -1335,7 +1335,7 @@ public class Calculations implements ValueSettable {
     public YearlyInterestPaidAccumulatedValue() {
     }
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0) {
         return 0d;
@@ -1356,7 +1356,7 @@ public class Calculations implements ValueSettable {
     public InterestPaymentValue() {
     }
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0 || compoundingPeriod >= nocp) {
         return 0d;
@@ -1372,7 +1372,7 @@ public class Calculations implements ValueSettable {
     public YearlyPrincipalPaid() {
     }
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0 || compoundingPeriod > nocp) {
         return 0d;
@@ -1403,7 +1403,7 @@ public class Calculations implements ValueSettable {
     public YearlyInterestPaid() {
     }
 
-    @Override
+    
     public double getValue(int compoundingPeriod) {
       if (compoundingPeriod < 0 || compoundingPeriod > nocp) {
         return 0d;

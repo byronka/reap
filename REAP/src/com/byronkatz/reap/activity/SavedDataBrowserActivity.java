@@ -151,7 +151,6 @@ public class SavedDataBrowserActivity extends ListActivity {
 
     getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-      @Override
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //set cursor to row that we clicked on
 
@@ -161,7 +160,6 @@ public class SavedDataBrowserActivity extends ListActivity {
 
     getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
-      @Override
       public boolean onItemLongClick(AdapterView<?> arg0, View view, int position,
           long id) {
         displayLongClickOptionsDialog(position);
@@ -171,7 +169,6 @@ public class SavedDataBrowserActivity extends ListActivity {
     });
   }
 
-  @Override
   public boolean onCreateOptionsMenu (Menu menu){
     super.onCreateOptionsMenu(menu);
     MenuInflater inflater = getMenuInflater();
@@ -197,7 +194,6 @@ public class SavedDataBrowserActivity extends ListActivity {
 
     b.setItems(onLongClickFileOptions, new AlertDialog.OnClickListener() {
 
-      @Override
       public void onClick(DialogInterface dialog, int which) {
 
         dialog.dismiss();
@@ -224,7 +220,6 @@ public class SavedDataBrowserActivity extends ListActivity {
 
     b.setItems(sortTypes, new AlertDialog.OnClickListener() {
 
-      @Override
       public void onClick(DialogInterface dialog, int which) {
 
         dialog.dismiss();
@@ -309,7 +304,6 @@ public class SavedDataBrowserActivity extends ListActivity {
 
     emailDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
-      @Override
       public void onClick(DialogInterface dialog, int which) {
         emailEntry(position);
 
@@ -318,7 +312,6 @@ public class SavedDataBrowserActivity extends ListActivity {
 
     emailDialogBuilder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
 
-      @Override
       public void onClick(DialogInterface dialog, int which) {
         //What to do here to cancel?  Nothing?  Yeah I think so.
 
@@ -482,7 +475,6 @@ public class SavedDataBrowserActivity extends ListActivity {
 
     deleteDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
-      @Override
       public void onClick(DialogInterface dialog, int which) {
         deleteEntry();
       }
@@ -490,7 +482,6 @@ public class SavedDataBrowserActivity extends ListActivity {
     
     deleteDialogBuilder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
 
-      @Override
       public void onClick(DialogInterface dialog, int which) {
         //What to do here to cancel?  Nothing?  Yeah I think so.
       }
@@ -525,7 +516,6 @@ public class SavedDataBrowserActivity extends ListActivity {
 
     loadDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
-      @Override
       public void onClick(DialogInterface dialog, int which) {
         loadEntry();
       }
@@ -533,7 +523,6 @@ public class SavedDataBrowserActivity extends ListActivity {
     
     loadDialogBuilder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
 
-      @Override
       public void onClick(DialogInterface dialog, int which) {
         //What to do here to cancel?  Nothing?  Yeah I think so.
       }

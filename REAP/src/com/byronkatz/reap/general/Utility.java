@@ -98,7 +98,6 @@ public class Utility {
        * @param object2 the second ValueEnum to compare
        * @return the compare int, based on the strings
        */
-      @Override
       public int compare(ValueEnum object1, ValueEnum object2) {
         String object1String = activity.getString(object1.getTitleText());
         String object2String = activity.getString(object2.getTitleText());
@@ -171,7 +170,6 @@ public class Utility {
     builder.setMessage(baseMessage);
     builder.setPositiveButton(addNewEntryText, new DialogInterface.OnClickListener() {
 
-      @Override
       public void onClick(DialogInterface dialog, int which) {
 
         int newRowIndex = dataController.saveValues();
@@ -191,7 +189,6 @@ public class Utility {
       builder.setMessage(message);
       builder.setNegativeButton(updateCurrentEntry, new DialogInterface.OnClickListener() {
 
-        @Override
         public void onClick(DialogInterface dialog, int which) {
 
 
@@ -253,7 +250,6 @@ public class Utility {
     String buttonText = activity.getString(android.R.string.ok);
     builder.setPositiveButton(buttonText, new DialogInterface.OnClickListener() {
 
-      @Override
       public void onClick(DialogInterface dialog, int which) {
 
         dialog.dismiss();
@@ -268,7 +264,6 @@ public class Utility {
     String buttonText = context.getString(android.R.string.ok);
     builder.setPositiveButton(buttonText, new DialogInterface.OnClickListener() {
 
-      @Override
       public void onClick(DialogInterface dialog, int which) {
 
         dialog.dismiss();

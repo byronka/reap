@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 public class SavedDataBrowserViewBinder implements android.widget.SimpleCursorAdapter.ViewBinder {
 
-  @Override
   public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
 
 

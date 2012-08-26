@@ -20,7 +20,6 @@ public class CurrentValueOnFocusChangeListener implements
     this.graphActivity = graphActivity;
   }
 
-  @Override
   public void onFocusChange(View v, boolean hasFocus) {
 
     if (hasFocus) {

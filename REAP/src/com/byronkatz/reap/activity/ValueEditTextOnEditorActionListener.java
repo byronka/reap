@@ -18,7 +18,6 @@ public class ValueEditTextOnEditorActionListener implements
     this.graphActivity = graphActivity;
   }
 
-  @Override
   public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
     //put focus on the invisible View - see graph.xml

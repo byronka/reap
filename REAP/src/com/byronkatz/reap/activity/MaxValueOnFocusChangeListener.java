@@ -20,7 +20,6 @@ public class MaxValueOnFocusChangeListener implements OnFocusChangeListener {
       this.maxValueEditText = maxValueEditText;
     }
 
-    @Override
     public void onFocusChange(View v, boolean hasFocus) {
 
       if (hasFocus) {

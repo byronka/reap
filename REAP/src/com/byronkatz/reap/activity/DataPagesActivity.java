@@ -33,7 +33,7 @@ public class DataPagesActivity extends Activity {
   
   address.setOnClickListener(new OnClickListener() {
     
-    @Override
+
     public void onClick(View v) {
       Intent intent = new Intent(DataPagesActivity.this, AddressActivity.class);
       startActivity(intent); 
@@ -41,7 +41,7 @@ public class DataPagesActivity extends Activity {
   });
   
   taxes.setOnClickListener(new OnClickListener() {
-    @Override
+
     public void onClick(View v) {
       Intent intent = new Intent(DataPagesActivity.this, TaxesActivity.class);
       startActivity(intent); 
@@ -49,7 +49,7 @@ public class DataPagesActivity extends Activity {
   });
   
   loan.setOnClickListener(new OnClickListener() {
-    @Override
+
     public void onClick(View v) {
       Intent intent = new Intent(DataPagesActivity.this, LoanActivity.class);
       startActivity(intent); 
@@ -57,7 +57,7 @@ public class DataPagesActivity extends Activity {
   });
   
   sale.setOnClickListener(new OnClickListener() {
-    @Override
+
     public void onClick(View v) {
       Intent intent = new Intent(DataPagesActivity.this, SaleActivity.class);
       startActivity(intent); 
@@ -65,7 +65,7 @@ public class DataPagesActivity extends Activity {
   });
   
   financialEnvironment.setOnClickListener(new OnClickListener() {
-    @Override
+
     public void onClick(View v) {
       Intent intent = new Intent(DataPagesActivity.this, FinancialEnvironmentActivity.class);
       startActivity(intent); 
@@ -73,7 +73,7 @@ public class DataPagesActivity extends Activity {
   });
   
   rental.setOnClickListener(new OnClickListener() {
-    @Override
+
     public void onClick(View v) {
       Intent intent = new Intent(DataPagesActivity.this, RentalActivity.class);
       startActivity(intent); 

@@ -279,7 +279,6 @@ public class GraphActivity extends Activity {
 
     resetButton.setOnClickListener(new OnClickListener() {
 
-      @Override
       public void onClick(View v) {
 
         valueSlider.setProgress(0);
@@ -325,17 +324,14 @@ public class GraphActivity extends Activity {
     valueSlider.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
       
-      @Override
       public void onStopTrackingTouch(SeekBar seekBar) {
         //empty - do nothing
       }
 
-      @Override
       public void onStartTrackingTouch(SeekBar seekBar) {
         //empty - do nothing
       }
 
-      @Override
       public void onProgressChanged(SeekBar seekBar, int progress,
           boolean fromUser) {
 
@@ -363,17 +359,14 @@ public class GraphActivity extends Activity {
 
     timeSlider.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
-      @Override
       public void onStopTrackingTouch(SeekBar seekBar) {
         //do nothing here
       }
 
-      @Override
       public void onStartTrackingTouch(SeekBar seekBar) {
         //do nothing here
       }
 
-      @Override
       public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
         Integer currentYearSelected = getCurrentYearSelected();
@@ -418,7 +411,6 @@ public class GraphActivity extends Activity {
     valueSpinner.setOnItemSelectedListener(
         new OnItemSelectedListenerWrapper(new OnItemSelectedListener() {
 
-          @Override
           public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
               long arg3) {
 
@@ -433,7 +425,6 @@ public class GraphActivity extends Activity {
             recalcGraphPage();
           }
 
-          @Override
           public void onNothingSelected(AdapterView<?> arg0) {
             // do nothing with this. This method is necessary to satisfy interface.
           }

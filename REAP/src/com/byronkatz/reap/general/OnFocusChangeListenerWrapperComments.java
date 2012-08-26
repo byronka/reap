@@ -23,7 +23,6 @@ public class OnFocusChangeListenerWrapperComments implements OnFocusChangeListen
     this.ve = ve; 
   }
 
-  @Override
   public void onFocusChange(View v, boolean hasFocus) {
     if (hasFocus) {
       Utility.setSelectionOnView(v, ve);

@@ -14,7 +14,6 @@ public class OnItemSelectedListenerWrapper implements OnItemSelectedListener {
     listener = aListener;
   }
 
-  @Override
   public void onItemSelected(AdapterView<?> aParentView, View aView, int aPosition, long anId) {
 //    Log.d("OnItemSelectedListener", "spinnerInitializedCount: " + spinnerInitialized);
     //necessary to do this as a hack, because the Android implementation of 
@@ -32,7 +31,6 @@ public class OnItemSelectedListenerWrapper implements OnItemSelectedListener {
     }
   }
 
-  @Override
   public void onNothingSelected(AdapterView<?> aParentView) {
     listener.onNothingSelected(aParentView);
   }

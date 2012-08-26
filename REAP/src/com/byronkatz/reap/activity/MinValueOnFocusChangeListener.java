@@ -21,7 +21,6 @@ public class MinValueOnFocusChangeListener implements OnFocusChangeListener {
     this.minValueEditText = minValueEditText;
   }
 
-  @Override
   public void onFocusChange(View v, boolean hasFocus) {
 
     if (hasFocus) {
