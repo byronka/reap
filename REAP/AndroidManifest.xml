@@ -28,7 +28,6 @@ put in the SD card -->
             android:windowSoftInputMode="stateVisible|adjustResize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -51,7 +50,6 @@ put in the SD card -->
         <activity
             android:name=".activity.AddressActivity"
             android:label="@string/addressActivityTitleText"
-            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
             android:name=".activity.ConfigureDataTablesActivity"

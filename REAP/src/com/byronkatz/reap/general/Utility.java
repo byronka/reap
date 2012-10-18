@@ -294,6 +294,8 @@ public class Utility {
     String textInEditText = editText.getText().toString();
     int textLength = textInEditText.length();
     ValueType valueType = ve.getType();
+    	boolean selectAllOnFocus = true;
+    	editText.setSelectAllOnFocus(selectAllOnFocus);
 
     switch (valueType) {
     case CURRENCY:
