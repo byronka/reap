@@ -10,7 +10,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,7 +28,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.byronkatz.reap.R;
-import com.byronkatz.reap.calculations.Calculations;
 import com.byronkatz.reap.general.DataController;
 import com.byronkatz.reap.general.OnItemSelectedListenerWrapper;
 import com.byronkatz.reap.general.RealEstateAnalysisProcessorApplication;
@@ -332,22 +330,24 @@ public class GraphActivity extends Activity {
         //empty - do nothing
       }
 
-      public void onProgressChanged(SeekBar seekBar, int progress,
-          boolean fromUser) {
-
-        //set the value in the current value field:
-        currentValueNumeric = changeCurrentValueBasedOnProgress(progress, currentSliderKey);
-        GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
-
-          dataController.putInputValue(currentValueNumeric, currentSliderKey);
-
-        dataController.calculationsSetValues();
-        
-        GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
-        dataTable.setDataTableItems( getCurrentYearSelected(), valueToDataTableItemCorrespondence);
-
-      }
-    });
+			public void onProgressChanged(SeekBar seekBar, int progress,
+					boolean fromUser) {
+				// set the value in the current value field:
+				if (fromUser) {
+					currentValueNumeric = changeCurrentValueBasedOnProgress(
+							progress, currentSliderKey);
+				
+				GraphActivityFunctions.displayValue(currentValueEditText,
+						currentValueNumeric, currentSliderKey);
+				dataController.putInputValue(currentValueNumeric,
+						currentSliderKey);
+				dataController.calculationsSetValues();
+				GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
+				dataTable.setDataTableItems(getCurrentYearSelected(),
+						valueToDataTableItemCorrespondence);
+				}
+			}
+		});
 
   }
 
