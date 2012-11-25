@@ -1032,14 +1032,14 @@ com.byronkatz.reap.activity.GraphActivity -> com.byronkatz.reap.activity.GraphAc
     237:239:void updateYearDisplayAtSeekBar(java.lang.Integer) -> a
     250:263:void recalcGraphPage() -> a
     266:267:void sendFocusToJail() -> b
-    471:494:void changeAttributesAllValueEditText(int,com.byronkatz.reap.general.ValueEnum$ValueType) -> a
-    514:517:void setMaxLengthEditText(android.widget.EditText,int) -> a
-    538:538:java.lang.Integer getCurrentYearSelected() -> c
+    469:492:void changeAttributesAllValueEditText(int,com.byronkatz.reap.general.ValueEnum$ValueType) -> a
+    512:515:void setMaxLengthEditText(android.widget.EditText,int) -> a
+    536:536:java.lang.Integer getCurrentYearSelected() -> c
     303:303:java.lang.Double access$0(com.byronkatz.reap.activity.GraphActivity,int,com.byronkatz.reap.general.ValueEnum) -> a
     55:55:com.byronkatz.reap.general.DataController access$1(com.byronkatz.reap.activity.GraphActivity) -> a
-    537:537:java.lang.Integer access$2(com.byronkatz.reap.activity.GraphActivity) -> b
+    535:535:java.lang.Integer access$2(com.byronkatz.reap.activity.GraphActivity) -> b
     236:236:void access$3(com.byronkatz.reap.activity.GraphActivity,java.lang.Integer) -> a
-    439:439:void access$4(com.byronkatz.reap.activity.GraphActivity) -> c
+    437:437:void access$4(com.byronkatz.reap.activity.GraphActivity) -> c
     38:38:int[] $SWITCH_TABLE$com$byronkatz$reap$general$ValueEnum$ValueType() -> d
 com.byronkatz.reap.activity.GraphActivity$1 -> com.byronkatz.reap.activity.j:
     com.byronkatz.reap.activity.GraphActivity this$0 -> a
@@ -1048,16 +1048,16 @@ com.byronkatz.reap.activity.GraphActivity$2 -> com.byronkatz.reap.activity.k:
     com.byronkatz.reap.activity.GraphActivity this$0 -> a
     327:327:void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
     331:331:void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
-    336:349:void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
+    337:347:void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
 com.byronkatz.reap.activity.GraphActivity$3 -> com.byronkatz.reap.activity.l:
     com.byronkatz.reap.activity.GraphActivity this$0 -> a
-    364:364:void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
-    368:368:void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
-    372:380:void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
+    362:362:void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
+    366:366:void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
+    370:378:void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
 com.byronkatz.reap.activity.GraphActivity$4 -> com.byronkatz.reap.activity.m:
     com.byronkatz.reap.activity.GraphActivity this$0 -> a
-    418:426:void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
-    430:430:void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
+    416:424:void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
+    428:428:void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
 com.byronkatz.reap.activity.GraphActivityFunctions -> com.byronkatz.reap.activity.n:
     int[] $SWITCH_TABLE$com$byronkatz$reap$general$ValueEnum$ValueType -> a
     37:54:void invalidateGraphs(android.app.Activity) -> a

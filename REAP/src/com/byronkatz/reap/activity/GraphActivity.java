@@ -330,24 +330,22 @@ public class GraphActivity extends Activity {
         //empty - do nothing
       }
 
-			public void onProgressChanged(SeekBar seekBar, int progress,
-					boolean fromUser) {
-				// set the value in the current value field:
-				if (fromUser) {
-					currentValueNumeric = changeCurrentValueBasedOnProgress(
-							progress, currentSliderKey);
-				
-				GraphActivityFunctions.displayValue(currentValueEditText,
-						currentValueNumeric, currentSliderKey);
-				dataController.putInputValue(currentValueNumeric,
-						currentSliderKey);
-				dataController.calculationsSetValues();
-				GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
-				dataTable.setDataTableItems(getCurrentYearSelected(),
-						valueToDataTableItemCorrespondence);
-				}
-			}
-		});
+      public void onProgressChanged(SeekBar seekBar, int progress,
+              boolean fromUser) {
+
+            //set the value in the current value field:
+            currentValueNumeric = changeCurrentValueBasedOnProgress(progress, currentSliderKey);
+            GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
+
+              dataController.putInputValue(currentValueNumeric, currentSliderKey);
+
+            dataController.calculationsSetValues();
+            
+            GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
+            dataTable.setDataTableItems( getCurrentYearSelected(), valueToDataTableItemCorrespondence);
+
+          }
+        });
 
   }
 
