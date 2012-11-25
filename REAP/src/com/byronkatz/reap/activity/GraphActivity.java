@@ -283,21 +283,12 @@ public class GraphActivity extends Activity {
         valueSlider.setProgress(valueSlider.getMax() / 2);
       }
     });
-
-
     currentValueEditText.setOnEditorActionListener(new ValueEditTextOnEditorActionListener(this));
-
     currentValueEditText.setOnFocusChangeListener(new CurrentValueOnFocusChangeListener(this));
-
     minValueEditText.setOnEditorActionListener(new ValueEditTextOnEditorActionListener(this));
-
     minValueEditText.setOnFocusChangeListener(new MinValueOnFocusChangeListener(this, minValueEditText));
-
     maxValueEditText.setOnEditorActionListener(new ValueEditTextOnEditorActionListener(this));
-
-
     maxValueEditText.setOnFocusChangeListener(new MaxValueOnFocusChangeListener(this, maxValueEditText));
-
   }
 
   private Double changeCurrentValueBasedOnProgress (int progress, ValueEnum currentSliderKey) {
