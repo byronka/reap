@@ -20,22 +20,21 @@ public class CurrentValueOnFocusChangeListener implements
     this.graphActivity = graphActivity;
   }
 
-  public void onFocusChange(View v, boolean hasFocus) {
+	public void onFocusChange(View v, boolean hasFocus) {
 
-    if (hasFocus) {
-      Utility.setSelectionOnView(v, graphActivity.currentSliderKey);
+		if (hasFocus) {
+			Utility.setSelectionOnView(v, graphActivity.currentSliderKey);
+		} else if (!hasFocus) {
+			Double tempValueNumeric = GraphActivityFunctions.parseEditText(
+					graphActivity.currentValueEditText,
+					graphActivity.currentSliderKey);
+			graphActivity.currentValueNumeric = tempValueNumeric;
+			graphActivity.recalcGraphPage();
 
-    } else if (! hasFocus) {
-
-      Double tempValueNumeric = GraphActivityFunctions.parseEditText(
-          graphActivity.currentValueEditText, graphActivity.currentSliderKey);
- 
-        graphActivity.currentValueNumeric = tempValueNumeric;
-        graphActivity.recalcGraphPage();
-
-      GraphActivityFunctions.displayValue(
-          graphActivity.currentValueEditText, graphActivity.currentValueNumeric, graphActivity.currentSliderKey);
-
-    }
-  }
+			GraphActivityFunctions.displayValue(
+					graphActivity.currentValueEditText,
+					graphActivity.currentValueNumeric,
+					graphActivity.currentSliderKey);
+		}
+	}
 }
