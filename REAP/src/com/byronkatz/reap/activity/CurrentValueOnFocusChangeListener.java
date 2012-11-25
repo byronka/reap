@@ -8,33 +8,25 @@ import com.byronkatz.reap.general.Utility;
 
 public class CurrentValueOnFocusChangeListener implements
     OnFocusChangeListener {
-  /**
-   * 
-   */
-  private final GraphActivity graphActivity;
-
-  /**
-   * @param graphActivity
-   */
+  private final GraphActivity ga;
   CurrentValueOnFocusChangeListener(GraphActivity graphActivity) {
-    this.graphActivity = graphActivity;
+    this.ga = graphActivity;
   }
 
 	public void onFocusChange(View v, boolean hasFocus) {
 
 		if (hasFocus) {
-			Utility.setSelectionOnView(v, graphActivity.currentSliderKey);
+			Utility.setSelectionOnView(v, ga.currentSliderKey);
 		} else if (!hasFocus) {
 			Double tempValueNumeric = GraphActivityFunctions.parseEditText(
-					graphActivity.currentValueEditText,
-					graphActivity.currentSliderKey);
-			graphActivity.currentValueNumeric = tempValueNumeric;
-			graphActivity.recalcGraphPage();
-
+					ga.currentValueEditText,
+					ga.currentSliderKey);
+			ga.currentValueNumeric = tempValueNumeric;
+			ga.recalcGraphPage();
 			GraphActivityFunctions.displayValue(
-					graphActivity.currentValueEditText,
-					graphActivity.currentValueNumeric,
-					graphActivity.currentSliderKey);
+					ga.currentValueEditText,
+					ga.currentValueNumeric,
+					ga.currentSliderKey);
 		}
 	}
 }

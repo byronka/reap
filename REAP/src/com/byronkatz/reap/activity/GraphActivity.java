@@ -399,7 +399,6 @@ public class GraphActivity extends Activity {
 
     valueSpinner.setOnItemSelectedListener(
         new OnItemSelectedListenerWrapper(new OnItemSelectedListener() {
-
           public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
               long arg3) {
 
