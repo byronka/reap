@@ -15,17 +15,6 @@ public class GraphActivityFunctions {
   private static final double INCREASE_PERCENTAGE = 1.5d;
   private static final double DECREASE_PERCENTAGE = 0.5d;
 
-
-  static ProgressDialog setupProgressGraphDialog(GraphActivity graphActivity) {
-    ProgressDialog progressDialog = new ProgressDialog(graphActivity);
-    progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-    progressDialog.setMax(GraphActivity.DIVISIONS_OF_VALUE_SLIDER);
-    progressDialog.setMessage("Calculating...");
-    progressDialog.setCancelable(false);
-
-    return progressDialog;
-  }
-
   /**
    * manually tells each AnalysisGraph object that it is invalid.  This will cause
    * it to redraw itself.
