@@ -12,50 +12,55 @@ public class MinValueOnFocusChangeListener implements OnFocusChangeListener {
   /**
    * 
    */
-  private final GraphActivity graphActivity;
-  private final EditText minValueEditText;
+  private final GraphActivity ga;
+  private final EditText mvet;
 
-  public MinValueOnFocusChangeListener(GraphActivity graphActivity, 
-      EditText minValueEditText) {
-    this.graphActivity = graphActivity;
-    this.minValueEditText = minValueEditText;
+  public MinValueOnFocusChangeListener(GraphActivity ga, 
+      EditText mvet) {
+    this.ga = ga;
+    this.mvet = mvet;
   }
 
   public void onFocusChange(View v, boolean hasFocus) {
 
     if (hasFocus) {
-      Utility.setSelectionOnView(v, this.graphActivity.currentSliderKey);
-    } else if (! hasFocus) {
+      Utility.setSelectionOnView(v, ga.currentSliderKey);
+    } else if (! hasFocus)
+		parseAndDisplayMinValue(ga, mvet);
+  }
+
+private void parseAndDisplayMinValue(GraphActivity ga, EditText mvet) {
+	{
 
       Double tempMinValue = GraphActivityFunctions.parseEditText(
-          minValueEditText, this.graphActivity.currentSliderKey);
+          mvet, ga.currentSliderKey);
       
-      if (tempMinValue < this.graphActivity.currentValueNumeric) {
+      if (tempMinValue < ga.currentValueNumeric) {
 
-        this.graphActivity.minValueNumeric = tempMinValue;
+        ga.minValueNumeric = tempMinValue;
 
-        this.graphActivity.deltaValueNumeric = GraphActivityFunctions.
-            calculateMinMaxDelta(this.graphActivity.minValueNumeric, this.graphActivity.maxValueNumeric);
+        ga.deltaValueNumeric = GraphActivityFunctions.
+            calculateMinMaxDelta(ga.minValueNumeric, ga.maxValueNumeric);
         
-        double currentValueProgressDivisor = this.graphActivity.
-            currentValueNumeric - this.graphActivity.minValueNumeric;
+        double currentValueProgressDivisor = ga.
+            currentValueNumeric - ga.minValueNumeric;
         
         double newProgress = (currentValueProgressDivisor / 
-            this.graphActivity.deltaValueNumeric) * GraphActivity.DIVISIONS_OF_VALUE_SLIDER;
+            ga.deltaValueNumeric) * GraphActivity.DIVISIONS_OF_VALUE_SLIDER;
         
         GraphActivityFunctions.displayValue(
-            minValueEditText, this.graphActivity.minValueNumeric, this.graphActivity.currentSliderKey);
-        this.graphActivity.valueSlider.setProgress(0);
-        this.graphActivity.valueSlider.setProgress((int) Math.round(newProgress));
+            mvet, ga.minValueNumeric, ga.currentSliderKey);
+        ga.valueSlider.setProgress(0);
+        ga.valueSlider.setProgress((int) Math.round(newProgress));
       }  else {
         //set displayed value to what is in memory for min value
-        GraphActivityFunctions.displayValue(minValueEditText, this.graphActivity.minValueNumeric, this.graphActivity.currentSliderKey);
+        GraphActivityFunctions.displayValue(mvet, ga.minValueNumeric, ga.currentSliderKey);
         
-        Toast toast = Toast.makeText(this.graphActivity, "new Minimum must be less than Current value: " + 
-            this.graphActivity.currentValueEditText.getText().toString(), Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(ga, "new Minimum must be less than Current value: " + 
+            ga.currentValueEditText.getText().toString(), Toast.LENGTH_LONG);
         toast.show();
       }
 
     }
-  }
+}
 }

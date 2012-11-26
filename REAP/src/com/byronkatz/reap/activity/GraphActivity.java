@@ -60,8 +60,6 @@ public class GraphActivity extends Activity {
   Double maxValueNumeric;
   Double deltaValueNumeric;
   Double currentValueNumeric;
-//  Double originalCurrentValueNumeric; //for the reset button
-
   SharedPreferences sp;
 
   public static final int DIVISIONS_OF_VALUE_SLIDER = 40;
