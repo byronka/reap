@@ -2,8 +2,10 @@ package com.byronkatz.reap.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.byronkatz.reap.R;
@@ -16,27 +18,47 @@ public class GraphActivityFunctions {
   private static final double INCREASE_PERCENTAGE = 1.5d;
   private static final double DECREASE_PERCENTAGE = 0.5d;
 
+  static void graphValuedEditorAction(GraphActivity ga, EditText v) {
+		  switch (v.getId()) {
+		  case R.id.minValueEditText:
+			  parseAndDisplayMinValue(ga, v);
+			  break;
+		  case R.id.maxValueEditText:
+			  parseAndDisplayMaxValue(ga, v);
+			  break;
+		  case R.id.currentValueEditText:
+			  parseAndDisplayCurrentValue(ga);
+			  break;
+			  default:
+				  Log.e("REAP", "Have gotten into the default case of onEditorAction, should not be possible");
+		  }
+	}
+  
   static void parseAndDisplayMaxValue(GraphActivity ga, EditText mvet ) {
 		{
 
-		    Double tempMaxValue = parseEditText(mvet, ga.currentSliderKey);
-		    if (tempMaxValue > ga.currentValueNumeric) {
-		      ga.maxValueNumeric = tempMaxValue;
-		      ga.deltaValueNumeric = calculateMinMaxDelta(ga.minValueNumeric, ga.maxValueNumeric);
-		      double currentValueProgressDivisor = ga.currentValueNumeric - ga.minValueNumeric;
-		      double newProgress = (currentValueProgressDivisor / 
-		          ga.deltaValueNumeric) * GraphActivity.DIVISIONS_OF_VALUE_SLIDER;
-		      displayValue(mvet, ga.maxValueNumeric, ga.currentSliderKey);
-		      ga.valueSlider.setProgress(0);
-		      ga.valueSlider.setProgress((int) Math.round(newProgress));
-		    } else {
-		      //set displayed value to what is in memory for max value
-		      displayValue(mvet, ga.maxValueNumeric, ga.currentSliderKey);
-		      Toast toast = Toast.makeText(
-		          ga, "new Maximum must be greater than Current value: " + ga.currentValueEditText.getText().toString(), Toast.LENGTH_LONG);
-		      toast.show();
-		    }
-		  }
+			Double tempMaxValue = parseEditText(mvet, ga.currentSliderKey);
+			if (tempMaxValue > ga.currentValueNumeric) {
+				ga.maxValueNumeric = tempMaxValue;
+				ga.deltaValueNumeric = calculateMinMaxDelta(ga.minValueNumeric,
+						ga.maxValueNumeric);
+				double currentValueProgressDivisor = ga.currentValueNumeric
+						- ga.minValueNumeric;
+				double newProgress = (currentValueProgressDivisor / ga.deltaValueNumeric)
+						* GraphActivity.DIVISIONS_OF_VALUE_SLIDER;
+				displayValue(mvet, ga.maxValueNumeric, ga.currentSliderKey);
+				ga.valueSlider.setProgress(0);
+				ga.valueSlider.setProgress((int) Math.round(newProgress));
+			} else {
+				// set displayed value to what is in memory for max value
+				displayValue(mvet, ga.maxValueNumeric, ga.currentSliderKey);
+				Toast toast = Toast.makeText(ga,
+						"new Maximum must be greater than Current value: "
+								+ ga.currentValueEditText.getText().toString(),
+						Toast.LENGTH_LONG);
+				toast.show();
+			}
+		}
 	}
   
 	static void parseAndDisplayMinValue(GraphActivity ga, EditText mvet) {

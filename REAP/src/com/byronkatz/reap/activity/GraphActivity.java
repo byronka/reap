@@ -241,10 +241,6 @@ public class GraphActivity extends Activity {
     valueSlider.setProgress(valueSlider.getMax() / 2);
   }
 
-  void sendFocusToJail() {
-    findViewById(R.id.focusJail).requestFocus();
-  }
-
   private void setupCurrentValueFields() {
 
     Button resetButton;
@@ -379,14 +375,10 @@ public class GraphActivity extends Activity {
           public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
               long arg3) {
 
-            //sending focus to jail will make the current value save
-            sendFocusToJail();
+        	GraphActivityFunctions.graphValuedEditorAction(GraphActivity.this, currentValueEditText);
             currentSliderKey = spinnerArrayAdapter.getItem(pos);
-            
-            //let's change the number of digits able to enter per the valueEnum type
             changeInputFieldBasedOnType();
             currentValueNumeric = dataController.getInputValue(currentSliderKey);
-
             recalcGraphPage();
           }
 
