@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.byronkatz.reap.R;
 import com.byronkatz.reap.customview.AnalysisGraph;
@@ -15,6 +16,64 @@ public class GraphActivityFunctions {
   private static final double INCREASE_PERCENTAGE = 1.5d;
   private static final double DECREASE_PERCENTAGE = 0.5d;
 
+  static void parseAndDisplayMaxValue(GraphActivity ga, EditText mvet ) {
+		{
+
+		    Double tempMaxValue = parseEditText(mvet, ga.currentSliderKey);
+		    if (tempMaxValue > ga.currentValueNumeric) {
+		      ga.maxValueNumeric = tempMaxValue;
+		      ga.deltaValueNumeric = calculateMinMaxDelta(ga.minValueNumeric, ga.maxValueNumeric);
+		      double currentValueProgressDivisor = ga.currentValueNumeric - ga.minValueNumeric;
+		      double newProgress = (currentValueProgressDivisor / 
+		          ga.deltaValueNumeric) * GraphActivity.DIVISIONS_OF_VALUE_SLIDER;
+		      displayValue(mvet, ga.maxValueNumeric, ga.currentSliderKey);
+		      ga.valueSlider.setProgress(0);
+		      ga.valueSlider.setProgress((int) Math.round(newProgress));
+		    } else {
+		      //set displayed value to what is in memory for max value
+		      displayValue(mvet, ga.maxValueNumeric, ga.currentSliderKey);
+		      Toast toast = Toast.makeText(
+		          ga, "new Maximum must be greater than Current value: " + ga.currentValueEditText.getText().toString(), Toast.LENGTH_LONG);
+		      toast.show();
+		    }
+		  }
+	}
+  
+	static void parseAndDisplayMinValue(GraphActivity ga, EditText mvet) {
+		{
+			Double tempMinValue = parseEditText(mvet,
+					ga.currentSliderKey);
+			if (tempMinValue < ga.currentValueNumeric) {
+				ga.minValueNumeric = tempMinValue;
+				ga.deltaValueNumeric = calculateMinMaxDelta(ga.minValueNumeric, ga.maxValueNumeric);
+				double currentValueProgressDivisor = ga.currentValueNumeric - ga.minValueNumeric;
+				double newProgress = (currentValueProgressDivisor / ga.deltaValueNumeric)
+						* GraphActivity.DIVISIONS_OF_VALUE_SLIDER;
+				displayValue(mvet, ga.minValueNumeric, ga.currentSliderKey);
+				ga.valueSlider.setProgress(0);
+				ga.valueSlider.setProgress((int) Math.round(newProgress));
+			} else {
+				// set displayed value to what is in memory for min value
+				displayValue(mvet, ga.minValueNumeric, ga.currentSliderKey);
+
+				Toast toast = Toast.makeText(ga,
+						"new Minimum must be less than Current value: "
+								+ ga.currentValueEditText.getText().toString(),
+						Toast.LENGTH_LONG);
+				toast.show();
+			}
+		}
+	}
+  
+  static void parseAndDisplayCurrentValue(GraphActivity ga) {
+		{
+			Double tempValueNumeric = parseEditText(ga.currentValueEditText,ga.currentSliderKey);
+			ga.currentValueNumeric = tempValueNumeric;
+			ga.recalcGraphPage();
+			displayValue(ga.currentValueEditText,ga.currentValueNumeric,ga.currentSliderKey);
+		}
+	}
+  
   /**
    * manually tells each AnalysisGraph object that it is invalid.  This will cause
    * it to redraw itself.

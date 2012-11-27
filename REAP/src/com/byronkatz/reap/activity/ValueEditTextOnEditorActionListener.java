@@ -6,14 +6,7 @@ import android.widget.TextView.OnEditorActionListener;
 
 public class ValueEditTextOnEditorActionListener implements
     OnEditorActionListener {
-  /**
-   * 
-   */
   private final GraphActivity graphActivity;
-
-  /**
-   * @param graphActivity
-   */
   ValueEditTextOnEditorActionListener(GraphActivity graphActivity) {
     this.graphActivity = graphActivity;
   }

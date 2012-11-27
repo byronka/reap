@@ -18,20 +18,8 @@ public class CurrentValueOnFocusChangeListener implements
 		if (hasFocus) {
 			Utility.setSelectionOnView(v, ga.currentSliderKey);
 		} else if (!hasFocus)
-			parseAndDisplayCurrentValue(ga);
+			GraphActivityFunctions.parseAndDisplayCurrentValue(ga);
 	}
 
-	private void parseAndDisplayCurrentValue(GraphActivity ga) {
-		{
-			Double tempValueNumeric = GraphActivityFunctions.parseEditText(
-					ga.currentValueEditText,
-					ga.currentSliderKey);
-			ga.currentValueNumeric = tempValueNumeric;
-			ga.recalcGraphPage();
-			GraphActivityFunctions.displayValue(
-					ga.currentValueEditText,
-					ga.currentValueNumeric,
-					ga.currentSliderKey);
-		}
-	}
+	
 }
