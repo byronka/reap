@@ -196,39 +196,24 @@ public class GraphActivity extends Activity {
   }
 
 
+  private TabHost blah(TabHost tabs, TabHost.TabSpec spec, String text, int tabId, int stringId) {
+	    spec = tabs.newTabSpec(text);
+	    spec.setContent(tabId);
+	    spec.setIndicator(getText(stringId));
+	    tabs.addTab(spec);
+	    return tabs;
+  }
+  
   private void setupGraphTabs() {
     tabs = (TabHost) findViewById(android.R.id.tabhost);        
     tabs.setup();
-
-    TabHost.TabSpec spec = tabs.newTabSpec("NPV");
-    spec.setContent(R.id.tab1);
-    spec.setIndicator(getText(R.string.netPresentValueTabText));
-    tabs.addTab(spec);
-
-    spec = tabs.newTabSpec("ATCF");
-    spec.setContent(R.id.tab2);
-    spec.setIndicator(getText(R.string.atcfTabText));
-    tabs.addTab(spec);
-
-    spec = tabs.newTabSpec("ATER");
-    spec.setContent(R.id.tab3);
-    spec.setIndicator(getText(R.string.aterTabText));
-    tabs.addTab(spec);
-
-    spec = tabs.newTabSpec("MIRR");
-    spec.setContent(R.id.tab4);
-    spec.setIndicator(getText(R.string.modifiedInternalRateOfReturnTabText));
-    tabs.addTab(spec);
-
-    spec = tabs.newTabSpec("CRPV");
-    spec.setContent(R.id.tab5);
-    spec.setIndicator(getText(R.string.capRateOnPurchaseValueTabText));
-    tabs.addTab(spec);
-
-    spec = tabs.newTabSpec("CRCV");
-    spec.setContent(R.id.tab6);
-    spec.setIndicator(getText(R.string.capRateOnProjectedValueTabText));
-    tabs.addTab(spec);
+    TabHost.TabSpec spec = null;
+    tabs = blah(tabs, spec, "NPV", R.id.tab1, R.string.netPresentValueTabText );
+    tabs = blah(tabs, spec, "ATCF", R.id.tab2, R.string.atcfTabText );
+    tabs = blah(tabs, spec, "ATER", R.id.tab3, R.string.aterTabText );
+    tabs = blah(tabs, spec, "MIRR", R.id.tab4, R.string.modifiedInternalRateOfReturnTabText );
+    tabs = blah(tabs, spec, "CRPV", R.id.tab5, R.string.capRateOnPurchaseValueTabText );
+    tabs = blah(tabs, spec, "CRCV", R.id.tab6, R.string.capRateOnProjectedValueTabText );
   }
 
   private void updateYearDisplayAtSeekBar(Integer year) {
@@ -326,7 +311,7 @@ public class GraphActivity extends Activity {
             currentValueNumeric = changeCurrentValueBasedOnProgress(progress, currentSliderKey);
             GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
 
-              dataController.putInputValue(currentValueNumeric, currentSliderKey);
+            dataController.putInputValue(currentValueNumeric, currentSliderKey);
 
             dataController.calculationsSetValues();
             
