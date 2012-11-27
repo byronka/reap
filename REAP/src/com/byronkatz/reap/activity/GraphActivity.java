@@ -218,15 +218,11 @@ public class GraphActivity extends Activity {
 
   private void updateYearDisplayAtSeekBar(Integer year) {
     yearDisplayAtSeekBar.setText("Year:\n" + String.valueOf(year+1));
-
   }
 
-
   private void setupGraphs(Integer currentYearMaximum) {
-
     GraphActivityFunctions.invalidateGraphs(GraphActivity.this);
     GraphActivityFunctions.highlightCurrentYearOnGraph(currentYearMaximum, GraphActivity.this);
-
   }
 
   void recalcGraphPage() {
@@ -252,7 +248,6 @@ public class GraphActivity extends Activity {
   private void setupCurrentValueFields() {
 
     Button resetButton;
-
     resetButton          = (Button)   findViewById(R.id.resetButton);
     currentValueEditText = (EditText) findViewById(R.id.currentValueEditText);
     final EditText minValueEditText     = (EditText) findViewById(R.id.minValueEditText);
@@ -260,8 +255,7 @@ public class GraphActivity extends Activity {
 
     resetButton.setOnClickListener(new OnClickListener() {
 
-      public void onClick(View v) {
-
+    public void onClick(View v) {
         valueSlider.setProgress(0);
         valueSlider.setProgress(valueSlider.getMax() / 2);
       }
