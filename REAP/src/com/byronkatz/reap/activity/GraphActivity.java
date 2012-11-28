@@ -132,6 +132,16 @@ public class GraphActivity extends Activity {
   }
   
   @Override
+  public void onSaveInstanceState(Bundle outState) {
+	  //do nothing!  This damn method has been monkeying
+	  //with me.  By default it calls events on all views
+	  //in the graph activity to save themselves, but
+	  //then when they get restored, all hell breaks loose
+	  //because it doesn't restore them in the proper
+	  //order.  Better to just halt the stupidity.
+  }
+  
+  @Override
   public void onResume() {
 
     dataController.calculationsSetValues();
