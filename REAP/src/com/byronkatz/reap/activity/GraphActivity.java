@@ -129,8 +129,6 @@ public class GraphActivity extends Activity {
     currentSliderKey = ValueEnum.valueOf(temp);
     setSpinnerSelection(currentSliderKey);
     currentValueNumeric = dataController.getInputValue(currentSliderKey);
-
-//    checkYearSettingsAtResume();
   }
   
   @Override
@@ -168,8 +166,6 @@ public class GraphActivity extends Activity {
     if (currentYearSelected < 1 || currentYearSelected > currentYearMaximum) {
       currentYearSelected = currentYearMaximum;
     }
-
-    
     
     setupValueSpinner();
     setupTimeSlider(currentYearMaximum, currentYearSelected);
@@ -182,11 +178,8 @@ public class GraphActivity extends Activity {
     setupGraphTabs();
   }
 
-
-
   @Override
   public void onPause() {
-
     SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
     dataTable.saveGraphPageData(sharedPreferences, isGraphVisible, currentSliderKey, getCurrentYearSelected());
 
@@ -196,7 +189,7 @@ public class GraphActivity extends Activity {
   }
 
 
-  private TabHost blah(TabHost tabs, TabHost.TabSpec spec, String text, int tabId, int stringId) {
+  private TabHost tabFactory(TabHost tabs, TabHost.TabSpec spec, String text, int tabId, int stringId) {
 	    spec = tabs.newTabSpec(text);
 	    spec.setContent(tabId);
 	    spec.setIndicator(getText(stringId));
@@ -208,12 +201,12 @@ public class GraphActivity extends Activity {
     tabs = (TabHost) findViewById(android.R.id.tabhost);        
     tabs.setup();
     TabHost.TabSpec spec = null;
-    tabs = blah(tabs, spec, "NPV", R.id.tab1, R.string.netPresentValueTabText );
-    tabs = blah(tabs, spec, "ATCF", R.id.tab2, R.string.atcfTabText );
-    tabs = blah(tabs, spec, "ATER", R.id.tab3, R.string.aterTabText );
-    tabs = blah(tabs, spec, "MIRR", R.id.tab4, R.string.modifiedInternalRateOfReturnTabText );
-    tabs = blah(tabs, spec, "CRPV", R.id.tab5, R.string.capRateOnPurchaseValueTabText );
-    tabs = blah(tabs, spec, "CRCV", R.id.tab6, R.string.capRateOnProjectedValueTabText );
+    tabs = tabFactory(tabs, spec, "NPV", R.id.tab1, R.string.netPresentValueTabText );
+    tabs = tabFactory(tabs, spec, "ATCF", R.id.tab2, R.string.atcfTabText );
+    tabs = tabFactory(tabs, spec, "ATER", R.id.tab3, R.string.aterTabText );
+    tabs = tabFactory(tabs, spec, "MIRR", R.id.tab4, R.string.modifiedInternalRateOfReturnTabText );
+    tabs = tabFactory(tabs, spec, "CRPV", R.id.tab5, R.string.capRateOnPurchaseValueTabText );
+    tabs = tabFactory(tabs, spec, "CRCV", R.id.tab6, R.string.capRateOnProjectedValueTabText );
   }
 
   private void updateYearDisplayAtSeekBar(Integer year) {
