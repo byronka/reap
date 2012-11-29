@@ -91,7 +91,7 @@ public class GraphActivityFunctions {
 		{
 			Double tempValueNumeric = parseEditText(ga.currentValueEditText,ga.currentSliderKey);
 			ga.currentValueNumeric = tempValueNumeric;
-			ga.recalcGraphPage();
+			ga.recalcGraphPage(true);
 			displayValue(ga.currentValueEditText,ga.currentValueNumeric,ga.currentSliderKey);
 		}
 	}

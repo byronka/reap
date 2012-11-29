@@ -1,6 +1,7 @@
 package com.byronkatz.reap.activity;
 
 
+import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,7 @@ import com.byronkatz.reap.general.OnItemSelectedListenerWrapper;
 import com.byronkatz.reap.general.RealEstateAnalysisProcessorApplication;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
+import com.byronkatz.reap.general.WrappingSlidingDrawer;
 import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 public class GraphActivity extends Activity {
@@ -49,7 +51,12 @@ public class GraphActivity extends Activity {
   public static final String CURRENT_SLIDER_KEY = "CURRENT_SLIDER_KEY";
   public static final String CURRENT_YEAR_SELECTED = "CURRENT_YEAR_SELECTED";
   private TabHost tabs;
-
+  public static final String MIN_VALUE_NUMERIC      = "MIN_VALUE_NUMERIC";
+  public static final String MAX_VALUE_NUMERIC      = "MAX_VALUE_NUMERIC";
+  public static final String CURRENT_VALUE_NUMERIC  = "CURRENT_VALUE_NUMERIC";
+  public static final String DELTA_VALUE_NUMERIC    = "DELTA_VALUE_NUMERIC";
+  public static final String VALUESLIDER_PROGRESS   = "VALUESLIDER_PROGRESS";
+  public static final String DRAWER_OPEN            = "DRAWER_OPEN";
   ArrayAdapter<ValueEnum> spinnerArrayAdapter;
 
   private final DataController dataController = RealEstateAnalysisProcessorApplication
@@ -143,11 +150,10 @@ public class GraphActivity extends Activity {
   
   @Override
   public void onResume() {
-
     dataController.calculationsSetValues();
     getAndApplySharedPreferencesOnResume();
     dataTable.colorTheDataTables();
-    recalcGraphPage();
+    recalcGraphPage(false);
     //testing line below
     super.onResume();
 
@@ -228,7 +234,7 @@ public class GraphActivity extends Activity {
     GraphActivityFunctions.highlightCurrentYearOnGraph(currentYearMaximum, GraphActivity.this);
   }
 
-  void recalcGraphPage() {
+  void recalcGraphPage(boolean resetValueSlider) {
     EditText maxValueEditText = (EditText) findViewById (R.id.maxValueEditText);
     EditText minValueEditText = (EditText) findViewById (R.id.minValueEditText);
 
@@ -239,10 +245,15 @@ public class GraphActivity extends Activity {
     GraphActivityFunctions.displayValue(currentValueEditText, currentValueNumeric, currentSliderKey);
     GraphActivityFunctions.displayValue(minValueEditText, minValueNumeric, currentSliderKey);
     GraphActivityFunctions.displayValue(maxValueEditText, maxValueNumeric, currentSliderKey);
-    
-    valueSlider.setProgress(0);
-    valueSlider.setProgress(valueSlider.getMax() / 2);
+    if (resetValueSlider) {
+    	forceValueSliderToMidpoint();
+    }
   }
+
+private void forceValueSliderToMidpoint() {
+	valueSlider.setProgress(0);
+    valueSlider.setProgress(valueSlider.getMax() / 2);
+}
 
   private void setupCurrentValueFields() {
 
@@ -253,10 +264,8 @@ public class GraphActivity extends Activity {
     final EditText maxValueEditText     = (EditText) findViewById(R.id.maxValueEditText);
 
     resetButton.setOnClickListener(new OnClickListener() {
-
     public void onClick(View v) {
-        valueSlider.setProgress(0);
-        valueSlider.setProgress(valueSlider.getMax() / 2);
+    	forceValueSliderToMidpoint();
       }
     });
     currentValueEditText.setOnEditorActionListener(new ValueEditTextOnEditorActionListener(this));
@@ -382,7 +391,7 @@ public class GraphActivity extends Activity {
             currentSliderKey = spinnerArrayAdapter.getItem(pos);
             changeInputFieldBasedOnType();
             currentValueNumeric = dataController.getInputValue(currentSliderKey);
-            recalcGraphPage();
+            recalcGraphPage(true);
           }
 
           public void onNothingSelected(AdapterView<?> arg0) {
