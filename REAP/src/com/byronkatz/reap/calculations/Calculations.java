@@ -224,10 +224,6 @@ public class Calculations implements ValueSettable {
 
     this.dataManager = dataManager;
     assignDataManager(dataManager);
-
-    // before we load in the new values from the user, check if the new values
-    // are different then some of our current ones
-
     double oldLoanValue = loanAmount;
     double oldYearlyLoanInterestRate = yearlyLoanInterestRate;
     int oldNocp = nocp;
