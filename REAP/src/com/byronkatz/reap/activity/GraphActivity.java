@@ -138,7 +138,15 @@ public class GraphActivity extends Activity {
     currentValueNumeric = dataController.getInputValue(currentSliderKey);
   }
   
-
+  @Override
+  public void onSaveInstanceState(Bundle outState) {
+	  //do nothing!  This damn method has been monkeying
+	  //with me.  By default it calls events on all views
+	  //in the graph activity to save themselves, but
+	  //then when they get restored, all hell breaks loose
+	  //because it doesn't restore them in the proper
+	  //order.  Better to just halt the stupidity.
+  }
   
   @Override
   public void onResume() {
@@ -154,14 +162,20 @@ public class GraphActivity extends Activity {
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedState) {
+
     super.onCreate(savedState);
+    dataController.calculationsSetValues();
     setContentView(R.layout.graph);
+    
+    //data table is the table of calculated and input values shown under the graph
     dataTable = new DataTable(this);
 
     Integer currentYearMaximum = 
         (int) (dataController.getInputValue(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS))/12 + 
         (int) dataController.getInputValue(ValueEnum.EXTRA_YEARS);
-
+    
+    //set the current year from storage.  Either use that, or the maximum on the slider.
+    //just to make sure, though, let's also make sure that number is kosher before we pop it in.
     sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
     Integer currentYearSelected = sp.getInt(CURRENT_YEAR_SELECTED, currentYearMaximum);
@@ -184,6 +198,8 @@ public class GraphActivity extends Activity {
   public void onPause() {
     SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
     dataTable.saveGraphPageData(sharedPreferences, isGraphVisible, currentSliderKey, getCurrentYearSelected());
+
+    //Following saves the data to persistence between onPause / onResume
     dataController.saveFieldValues();
     super.onPause();
   }
