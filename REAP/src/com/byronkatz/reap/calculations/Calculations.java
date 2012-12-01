@@ -242,7 +242,6 @@ public class Calculations implements ValueSettable {
     createTaxableIncomeTable();
     createAtcfTable();
     createAtcfPvTable();
-
     createAtcfAccumTable();
 
   }

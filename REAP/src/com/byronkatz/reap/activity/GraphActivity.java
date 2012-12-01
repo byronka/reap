@@ -162,9 +162,7 @@ public class GraphActivity extends Activity {
     Integer currentYearMaximum = 
         (int) (dataController.getInputValue(ValueEnum.NUMBER_OF_COMPOUNDING_PERIODS))/12 + 
         (int) dataController.getInputValue(ValueEnum.EXTRA_YEARS);
-    
-    //set the current year from storage.  Either use that, or the maximum on the slider.
-    //just to make sure, though, let's also make sure that number is kosher before we pop it in.
+
     sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
     Integer currentYearSelected = sp.getInt(CURRENT_YEAR_SELECTED, currentYearMaximum);
