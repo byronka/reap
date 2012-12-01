@@ -155,7 +155,6 @@ public class GraphActivity extends Activity {
   @Override
   public void onCreate(Bundle savedState) {
     super.onCreate(savedState);
-    dataController.calculationsSetValues();
     setContentView(R.layout.graph);
     dataTable = new DataTable(this);
 
