@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:name="Data pages menu" >
+
+    <item
+        android:id="@+id/databaseMenuItem"
+        android:icon="@drawable/load_values"
+        android:title="@string/savedLocationsMenuTitle"/>
+    <item
+        android:id="@+id/saveCurrentValuesMenuItem"
+        android:icon="@drawable/save"
+        android:title="@string/saveCurrentValuesMenuTitle"/>
+    <item
+        android:id="@+id/viewGraphMenuItem"
+        android:icon="@drawable/graph"
+        android:title="@string/viewGraphMenuTitle"/>
+    <item
+        android:id="@+id/infoMenuItem"
+        android:icon="@drawable/info"
+        android:title="@string/infoMenuTitle"/>
+
+</menu>
