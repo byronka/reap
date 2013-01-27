@@ -3,8 +3,6 @@ package com.byronkatz.reap.activity;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
-import android.widget.SeekBar;
-import android.widget.Toast;
 
 import com.byronkatz.reap.general.Utility;
 

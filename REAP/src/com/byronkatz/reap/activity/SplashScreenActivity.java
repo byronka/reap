@@ -1,6 +1,5 @@
 package com.byronkatz.reap.activity;
 
-import java.util.zip.DataFormatException;
 import java.util.zip.Inflater;
 
 import android.app.Activity;
@@ -13,7 +12,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings.Secure;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -134,12 +132,6 @@ public class SplashScreenActivity extends Activity {
     inflater.setInput(zippedKey);
     inflater.finished();
     byte[] outputBuffer = new byte[392];
-    int sizeOfString = 0;
-    try {
-      sizeOfString = inflater.inflate(outputBuffer);
-    } catch (DataFormatException e) {
-      e.printStackTrace();
-    }
     String BASE64_PUBLIC_KEY = new String(outputBuffer);
 
 
@@ -296,27 +288,6 @@ public class SplashScreenActivity extends Activity {
     }
   }
 
-
-  private void doCheck() {
-    //first thing is grey out the entry values
-    deactivateInterface();
-
-    setProgressBarIndeterminateVisibility(true);
-    setTitle(R.string.titleBarTextWhileCheckLicense);
-    mChecker.checkAccess(mLicenseCheckerCallback);
-  }
-
-  private void deactivateInterface() {
-
-
-    ((Button)findViewById(R.id.splashScreenGoButton)).setEnabled(false);
-    ((Button)findViewById(R.id.splashScreenSkipButton)).setEnabled(false);
-    ((CheckBox) findViewById(R.id.splashScreenRentCheckBox)).setEnabled(false);
-    yearlyInterestRate.setEnabled(false);
-    totalPurchasePrice.setEnabled(false);
-    loanTerm.setEnabled(false);
-    estimatedRentPayments.setEnabled(false);
-  }
 
   private void activateInterface() {
 

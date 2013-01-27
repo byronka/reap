@@ -1,11 +1,9 @@
 package com.byronkatz.reap.activity;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.byronkatz.reap.R;

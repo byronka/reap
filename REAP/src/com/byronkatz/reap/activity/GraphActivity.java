@@ -1,7 +1,5 @@
 package com.byronkatz.reap.activity;
 
-
-import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +32,6 @@ import com.byronkatz.reap.general.OnItemSelectedListenerWrapper;
 import com.byronkatz.reap.general.RealEstateAnalysisProcessorApplication;
 import com.byronkatz.reap.general.Utility;
 import com.byronkatz.reap.general.ValueEnum;
-import com.byronkatz.reap.general.WrappingSlidingDrawer;
 import com.byronkatz.reap.general.ValueEnum.ValueType;
 
 public class GraphActivity extends Activity {
@@ -45,12 +42,13 @@ public class GraphActivity extends Activity {
   SeekBar timeSlider;
   TextView yearDisplayAtSeekBar;
   DataTable dataTable;
-  public static final String PREFS_NAME = "MyPrefsFile";
+  private TabHost tabs;
   private Boolean isGraphVisible;
+
+  public static final String PREFS_NAME = "MyPrefsFile";
   public static final String IS_GRAPH_VISIBLE = "IS_GRAPH_VISIBLE";
   public static final String CURRENT_SLIDER_KEY = "CURRENT_SLIDER_KEY";
   public static final String CURRENT_YEAR_SELECTED = "CURRENT_YEAR_SELECTED";
-  private TabHost tabs;
   public static final String MIN_VALUE_NUMERIC      = "MIN_VALUE_NUMERIC";
   public static final String MAX_VALUE_NUMERIC      = "MAX_VALUE_NUMERIC";
   public static final String CURRENT_VALUE_NUMERIC  = "CURRENT_VALUE_NUMERIC";

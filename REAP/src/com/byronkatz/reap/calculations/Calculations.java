@@ -2,8 +2,6 @@ package com.byronkatz.reap.calculations;
 
 import java.util.Arrays;
 
-import android.util.Log;
-
 import com.byronkatz.reap.general.DataManager;
 import com.byronkatz.reap.general.ValueEnum;
 

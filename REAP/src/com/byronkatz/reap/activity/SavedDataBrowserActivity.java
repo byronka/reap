@@ -506,7 +506,6 @@ public class SavedDataBrowserActivity extends ListActivity {
     toast.show();
 
     cursor.requery();
-//    deleteDialog.cancel();
   }
 
   private void createLoadDialog(final int position) {

@@ -1,8 +1,5 @@
 package com.byronkatz.reap.activity;
 
-import com.byronkatz.reap.R;
-
-import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.EditText;
 import android.widget.TextView;

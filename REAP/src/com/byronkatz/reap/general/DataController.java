@@ -12,7 +12,6 @@ import android.content.ContextWrapper;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.util.Log;
 
 import com.byronkatz.reap.calculations.CalcValueGettable;
 import com.byronkatz.reap.calculations.Calculations;
