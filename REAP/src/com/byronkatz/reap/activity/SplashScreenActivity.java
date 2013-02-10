@@ -1,5 +1,6 @@
 package com.byronkatz.reap.activity;
 
+import java.util.zip.DataFormatException;
 import java.util.zip.Inflater;
 
 import android.app.Activity;
@@ -132,6 +133,12 @@ public class SplashScreenActivity extends Activity {
     inflater.setInput(zippedKey);
     inflater.finished();
     byte[] outputBuffer = new byte[392];
+    int sizeOfString = 0;
+    try {
+      sizeOfString = inflater.inflate(outputBuffer);
+    } catch (DataFormatException e) {
+      e.printStackTrace();
+    }
     String BASE64_PUBLIC_KEY = new String(outputBuffer);
 
 

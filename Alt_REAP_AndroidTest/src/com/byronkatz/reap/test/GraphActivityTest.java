@@ -1,13 +1,10 @@
 package com.byronkatz.reap.test;
 
-import java.util.logging.Logger;
-
 import junit.framework.Assert;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.SeekBar;
-import android.widget.SlidingDrawer;
 
 import com.byronkatz.reap.activity.GraphActivity;
 
@@ -15,7 +12,7 @@ public class GraphActivityTest extends ActivityInstrumentationTestCase2<GraphAct
 
 	private Activity mActivity;
 	private SeekBar mSeekBar;
-	private SlidingDrawer mDrawer;
+	private com.byronkatz.reap.general.WrappingSlidingDrawer mDrawer;
 	
 	@SuppressWarnings("deprecation")
 	public GraphActivityTest() {
@@ -28,7 +25,7 @@ public class GraphActivityTest extends ActivityInstrumentationTestCase2<GraphAct
 		setActivityInitialTouchMode(false);
 		mActivity = getActivity();
 		mSeekBar = (SeekBar) mActivity.findViewById(com.byronkatz.reap.R.id.valueSlider);
-		mDrawer = (SlidingDrawer) mActivity.findViewById(com.byronkatz.reap.R.id.drawer);
+		mDrawer = (com.byronkatz.reap.general.WrappingSlidingDrawer) mActivity.findViewById(com.byronkatz.reap.R.id.drawer);
 	}
 	
 	public void testSeekBarValueStoredAfterPause() {
