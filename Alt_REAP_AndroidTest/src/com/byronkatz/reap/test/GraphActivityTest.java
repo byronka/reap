@@ -1,5 +1,9 @@
 package com.byronkatz.reap.test;
 
+import java.io.Console;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import junit.framework.Assert;
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -28,6 +32,12 @@ public class GraphActivityTest extends ActivityInstrumentationTestCase2<GraphAct
 		mDrawer = (com.byronkatz.reap.general.WrappingSlidingDrawer) mActivity.findViewById(com.byronkatz.reap.R.id.drawer);
 	}
 	
+	@Override
+	protected void tearDown() throws Exception {
+		mActivity.finish();
+		super.tearDown();
+	}
+	
 	public void testSeekBarValueStoredAfterPause() {
 		
 		mActivity.runOnUiThread(new Runnable() {
@@ -36,8 +46,12 @@ public class GraphActivityTest extends ActivityInstrumentationTestCase2<GraphAct
 			}
 		});
 		getInstrumentation().callActivityOnPause(mActivity);
-		SharedPreferences sp = mActivity.getSharedPreferences("TheName", 0);
-		assertEquals(33, sp.getInt("valuebar", 0));
+		SharedPreferences sp = mActivity.getSharedPreferences("MyPrefsFile", 0);
+		
+		for (Entry<String, ?> thingie: sp.getAll().entrySet()) {
+			System.out.println("key is "+thingie.getKey().toString()+" and value is "+thingie.getValue().toString());
+		}
+		assertEquals(33, sp.getInt("VALUESLIDER_PROGRESS", 0));
 		
 	}
 	
@@ -50,15 +64,19 @@ public class GraphActivityTest extends ActivityInstrumentationTestCase2<GraphAct
 		getInstrumentation().callActivityOnStop(mActivity);
 	}
 	
-	public void testSeekBarProperlyPlacedAfterResume() {	
+	public void testSeekBarProperlyPlacedAfterResume() {
 		mActivity.runOnUiThread(new Runnable() {
 			public void run() {
 				mSeekBar.setProgress(33);
 			}
 		});
 		getInstrumentation().callActivityOnPause(mActivity);
-		getInstrumentation().callActivityOnResume(mActivity);
-		Assert.assertEquals(33, mSeekBar.getProgress());
+//		getInstrumentation().callActivityOnResume(mActivity);
+		mActivity.runOnUiThread(new Runnable() {
+			public void run() {
+				Assert.assertEquals(33, mSeekBar.getProgress());
+			}
+		});
 	}
 	
 	public void testSeekBarProperlyPlacedAfterStart() {

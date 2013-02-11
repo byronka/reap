@@ -203,8 +203,7 @@ public class DataTable {
 
   }
 
-  public void saveGraphPageData (SharedPreferences sp, Boolean isGraphVisible,
-      ValueEnum currentSliderKey, int currentYearSelected) {
+  public SharedPreferences.Editor saveGraphPageData (SharedPreferences sp) {
 
     SharedPreferences.Editor editor = sp.edit();
 
@@ -214,11 +213,7 @@ public class DataTable {
     for (ValueEnum ve : vdtr) {
       editor.putBoolean(ve.name(), true);
     }
-
-    editor.putBoolean(GraphActivity.IS_GRAPH_VISIBLE, isGraphVisible);
-    editor.putString(GraphActivity.CURRENT_SLIDER_KEY, currentSliderKey.name());
-    editor.putInt(GraphActivity.CURRENT_YEAR_SELECTED, currentYearSelected);
-    editor.commit();
+    return editor;
   }
 
   public Set<ValueEnum> restoreViewableDataTableRows(final SharedPreferences sp) {

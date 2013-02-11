@@ -195,8 +195,12 @@ public class GraphActivity extends Activity {
   @Override
   public void onPause() {
     SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, 0);
-    dataTable.saveGraphPageData(sharedPreferences, isGraphVisible, currentSliderKey, getCurrentYearSelected());
-
+    SharedPreferences.Editor editor = dataTable.saveGraphPageData(sharedPreferences);
+    editor.putBoolean(GraphActivity.IS_GRAPH_VISIBLE, isGraphVisible);
+    editor.putString(GraphActivity.CURRENT_SLIDER_KEY, currentSliderKey.name());
+    editor.putInt(GraphActivity.CURRENT_YEAR_SELECTED, getCurrentYearSelected());
+    editor.putInt(VALUESLIDER_PROGRESS, valueSlider.getProgress());
+    editor.commit();
     //Following saves the data to persistence between onPause / onResume
     dataController.saveFieldValues();
     super.onPause();
