@@ -1,0 +1,21 @@
+
+# /Alt_REAP_AndroidTest/
+/Alt_REAP_AndroidTest/bin
+/Alt_REAP_AndroidTest/gen
+
+# /Branches/FixRestore/REAP/
+/Branches/FixRestore/REAP/bin
+
+# /Branches/FixRestore/Tags/Version_6-10_17_2012/REAP/
+/Branches/FixRestore/Tags/Version_6-10_17_2012/REAP/bin
+
+# /REAP/
+/REAP/bin
+/REAP/gen
+
+# /Tags/Version_6-10_17_2012/REAP/
+/Tags/Version_6-10_17_2012/REAP/bin
+
+# /play_licensing/library/
+/play_licensing/library/bin
+/play_licensing/library/gen
